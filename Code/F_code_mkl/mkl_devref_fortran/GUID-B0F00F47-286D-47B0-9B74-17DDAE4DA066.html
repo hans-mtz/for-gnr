@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lassq"/>
+<meta name="abstract" content="Updates a sum of squares represented in scaled form."/>
+<meta name="description" content="Updates a sum of squares represented in scaled form."/>
+<meta name="DC.subject" content="p?lassq, ScaLAPACK routines, auxiliary routines, updating sum of squares, sum of squares, updating, ScaLAPACK"/>
+<meta name="keywords" content="p?lassq, ScaLAPACK routines, auxiliary routines, updating sum of squares, sum of squares, updating, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B0F00F47-286D-47B0-9B74-17DDAE4DA066"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lassq</title>
+
+</head>
+<body id="GUID-B0F00F47-286D-47B0-9B74-17DDAE4DA066">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lassq</span></h1>
+<!--Updates a sum of squares represented in scaled form.--><div><p class="shortdesc">Updates a sum of squares represented in scaled form.</p>
+<div class="section" id="GUID-D6F94B51-797A-452E-A443-07022B38274F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslassq</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlassq</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclassq</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlassq</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-692481EE-6B57-4489-AAC1-87A50AF21E79"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?lassq</span><span>routine </span>returns the values <var>scl</var> and <var>smsq</var> such that </p>
+<p><var>scl</var><sup> 2</sup> * <var>smsq</var> = <var>x</var><sub>1</sub><sup>2</sup> + ... + <var>x</var><sub><var>n</var></sub><sup>2</sup> + <var>scale</var><sup> 2</sup>*<var>sumsq</var>,</p>
+<p>where </p>
+<p>x<sub><var>i</var></sub>= sub(<var>X</var>) = <var>X</var>(<span class="parmname">ix</span> + (<span class="parmname">jx</span>-1)*<var>m_x</var> + (<var>i</var> - 1)*<span class="parmname">incx</span>) for <span class="option">pslassq/pdlassq</span> , </p>
+<p>x<sub><var>i</var></sub>= sub(<var>X</var>) = abs(<var>X</var>(<span class="parmname">ix</span> + (<span class="parmname">jx</span>-1)*<var>m_x</var> + (<var>i</var> - 1)*<span class="parmname">incx</span>) for <span class="option">pclassq/pzlassq</span>. </p>
+<p>For real <span>routines </span><span class="option">pslassq/pdlassq</span> the value of <var>sumsq</var> is assumed to be non-negative and <var>scl</var> returns the value</p>
+<p><var>scl</var> = max(<var>scale</var>, abs(<var>x</var><sub><var>i</var></sub>)).</p>
+<p>For complex <span>routines </span><span class="option">pclassq/pzlassq</span> the value of <var>sumsq</var> is assumed to be at least unity and the value of <var>ssq</var> will then satisfy</p>
+<p> 1.0 <span class="eqsymbol">≤</span><var> ssq</var><span class="eqsymbol"> ≤</span><var>sumsq</var> +2<span class="parmname">n</span></p>
+<p>Value <var>scale</var> is assumed to be non-negative and <var>scl</var> returns the value<br/><img src="GUID-50AB5AEC-579C-43D3-A311-3560609B0594-low.gif" width="352" height="40"/><br/></p>
+<p>For all <span>routines </span><span class="option">p?lassq</span> values <var>scale</var> and <var>sumsq</var> must be supplied in <span class="parmname">scale</span> and <span class="parmname">sumsq </span>respectively, and <span class="parmname">scale</span> and <span class="parmname">sumsq </span>are overwritten by <var>scl</var> and <var>ssq</var> respectively. </p>
+<p>All <span>routines </span><span class="option">p?lassq</span> make only one pass through the vector sub(<var/><var>X</var>).</p>
+</div>
+<div class="section" id="GUID-3B0AFC65-5231-4BD6-9179-1B0FA4D29161"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-ABCC8755-D609-4032-98E4-9F3AAF9569C9"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The length of the distributed vector sub(<var>x</var> ). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pslassq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlassq</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclassq</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlassq</span>. </p>
+<p><span>The</span> vector for which a scaled sum of squares is computed: </p>
+<p><samp class="codeph"><var>x</var>(<var>ix</var> + (<var>jx</var>-1)*<var>m_x</var> + (<var>i</var> - 1)*<var>incx</var>), 1 <span class="eqsymbol">≤</span><var> i</var> ≤<var> n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row index in the global matrix <var>X</var> indicating the first row of sub(<var>X</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The column index in the global matrix <var>X</var> indicating the first column of sub(<var>X</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. </p>
+<p>The array descriptor for the distributed matrix <var>X</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The global increment for the elements of <var>X</var>. Only two values of <var>incx</var> are supported in this version, namely 1 and <var>m_x</var>. The argument <var>incx</var> must not equal zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslassq/pclassq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlassq/pzlassq</span>. </p>
+<p>On entry, the value <var>scale</var> in the equation above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sumsq</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslassq/pclassq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlassq/pzlassq</span>. </p>
+<p>On entry, the value <span class="parmname">sumsq</span> in the equation above.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2CD51842-1B4C-44BD-BE5D-FB9CEE7EAE60"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-86FA498F-C459-41D1-A43E-6CD3308B4F11"><dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, <span class="parmname">scale</span> is overwritten with <var>sc</var><var>l</var> , the scaling factor for the sum of squares.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sumsq</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, <span class="parmname">sumsq</span> is overwritten with the value <var>smsq,</var> the basic sum of squares from which <var>scl</var> has been factored out.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

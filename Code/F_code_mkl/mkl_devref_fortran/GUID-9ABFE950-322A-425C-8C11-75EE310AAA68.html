@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="cluster_sparse_solver_get_csr_size"/>
+<meta name="abstract" content="Computes the (local) number of rows and (local) number of nonzero entries for (distributed) CSR data corresponding to the provided name."/>
+<meta name="description" content="Computes the (local) number of rows and (local) number of nonzero entries for (distributed) CSR data corresponding to the provided name."/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9ABFE950-322A-425C-8C11-75EE310AAA68"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>cluster_sparse_solver_get_csr_size</title>
+
+</head>
+<body id="GUID-9ABFE950-322A-425C-8C11-75EE310AAA68">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">cluster_sparse_solver_get_csr_size</span></h1>
+<!--Computes the (local) number of rows and (local) number of nonzero entries for (distributed) CSR data corresponding to the provided name.--><div><p class="shortdesc">Computes the (local) number of rows and (local) number of nonzero entries for (distributed) CSR data corresponding to the provided name.</p>
+<div class="section" id="GUID-38A41F1A-9502-4824-A8BD-BE0799523545"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call  cluster_sparse_solver_get_csr_size</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">name</span><span class="sep">, </span><span class="var">local_nrows</span><span class="sep">, </span><span class="var">local_nnz</span><span class="sep">, </span><span class="var">comm</span><span class="sep">, </span><span class="var">error</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="INCLUDE_PARDISO"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-6EA27D8A-01EE-4666-AA92-B1030630F134"><li><span class="filepath">mkl_cluster_sparse_solver.f90</span></li>
+</ul>
+</div>
+<div class="section" id="PARDISO"><h2 class="sectiontitle">Description</h2><p>This routine uses the internal data created during the factorization phase of <span class="keyword">cluster_sparse_solver</span> for matrix <var>A</var>. The routine then:</p>
+<ul id="GUID-F71E520A-7FC0-4B1E-AA21-CB08E90C941B"><li><p>Computes the local number of rows and the local number of nonzeros for CSR data that correspond to the provided <var>name</var></p>
+</li>
+<li><p>Returns the computed values in <span class="parmname">local_nrows</span> and <span class="parmname">local_nnz</span></p>
+</li>
+</ul>
+<p>It is assumed that the CSR data defined by the <span class="parmname">name</span> will be distributed in the same way as the matrix <var>A</var> (as defined by <samp class="codeph"><span class="parmname">iparm</span>(40)</samp>) used in <span class="keyword">cluster_sparse_solver</span>.</p>
+<p>The returned values can be used for allocating CSR arrays for factors <var>L</var> and <var>U</var>,  and also for allocating arrays for permutations <var>P</var> and <var>Q</var>, or scaling matrix <var>D</var> which can then be used with <span class="keyword">cluster_sparse_solver_set_csr_ptrs</span> or <span class="keyword">cluster_sparse_solver_set_ptr</span> for exporting corresponding data via <span class="keyword">cluster_sparse_solver_export</span>.</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Only call this routine after the factorization phase (<samp class="codeph"><span class="parmname">phase</span>=22</samp>) of the <span class="keyword">cluster_sparse_solver</span> has been called. Neither <span class="parmname">pt</span>, nor <span class="parmname">iparm</span> should be changed after the preceding call to <span class="keyword">cluster_sparse_solver</span>. </p>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-FB4D5442-2BE8-4687-A6F6-D2AAE34B8A87"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-614BAFB8-061A-4EFE-914C-BC27DB58A156"><dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p><span class="keyword">INTEGER*8</span> for 64-bit architectures</p>
+<p>Array with size of 64.</p>
+<p>Handle to internal data structure used in the prior calls to <span class="keyword">cluster_sparse_solver</span>. </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>Do not modify <span class="parmname">pt</span> after the calls to  <span class="keyword">cluster_sparse_solver</span>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">name</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Specifies CSR data for which the output values are computed.</p>
+<dl id="GUID-D3E2CA0D-3D25-4358-93E1-382BAFFE053E"><dt class="dlterm"><span class="keyword">SPARSE_PTLUQT_L</span></dt>
+
+<dd><p>Factor <var>L</var> from <samp class="codeph"><var>P</var>*<var>A</var>*<var>Q</var>=<var>L</var>*<var>U</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">SPARSE_PTLUQT_U</span></dt>
+
+<dd><p>Factor <var>U</var>  from <samp class="codeph"><var>P</var>*<var>A</var>*<var>Q</var>=<var>L</var>*<var>U</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">SPARSE_DPTLUQT_L</span></dt>
+
+<dd><p>Factor <var>L</var> from <samp class="codeph"><var>P</var>* (<var>D</var><sup>-1</sup><var>A</var>)*<var>Q</var>=<var>L</var>*<var>U</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">SPARSE_DPTLUQT_U</span></dt>
+
+<dd><p>Factor <var>U</var> from <samp class="codeph"><var>P</var>* (<var>D</var><sup>-1</sup><var>A</var>)*<var>Q</var>=<var>L</var>*<var>U</var></samp>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="dlterm"><span class="parmname">comm</span></dt>
+
+<dd><p><span class="keyword">INTEGER*4</span></p>
+<p> MPI communicator. The solver uses the Fortran MPI communicator internally.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="FUNCTN_PARDISO_OUTPUTPARAM"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AA7BE346-2BC0-4A5A-8AA7-FA06AB7BBAD9"><dt class="dlterm"><span class="parmname">local_nrows</span></dt>
+
+<dd><p>INTEGER</p>
+<p>The local number of rows for the CSR data which correspond to the <span class="parmname">name</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">local_nnz</span></dt>
+
+<dd><p>INTEGER</p>
+<p> The local number of nonzero entries for the CSR
+data which correspond to the <span class="parmname">name</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">error</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The error indicator:</p>
+<dl id="GUID-A32C8FF2-CA1A-47A6-8834-28E98E4C647B"><dt><strong><var>error</var></strong></dt>
+<dd><strong>Information</strong></dd>
+<dt class="dlterm"><samp class="codeph">0 </samp></dt>
+
+<dd><p>no error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1 </samp></dt>
+
+<dd><p><span class="parmname">pt</span> is a null pointer</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-2 </samp></dt>
+
+<dd><p>invalid <span class="parmname">pt</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-3 </samp></dt>
+
+<dd><p>invalid <span class="parmname">name</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-4 </samp></dt>
+
+<dd><p>unsupported <span class="parmname">name</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-9 </samp></dt>
+
+<dd><p>unsupported internal code path, consider switching off non-default <span class="parmname">iparm</span> parameters for <span class="keyword">cluster_sparse_solver</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-10 </samp></dt>
+
+<dd><p>unsupported case when the matrix <var>A</var> is distributed among processes with overlap in the preceding calls to <span class="keyword">cluster_sparse_solver</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-12 </samp></dt>
+
+<dd><p>internal memory error</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> Refer to <span class="filepath">cl_solver_export_f90.f90</span> for an example using this functionality.</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html">Parallel Direct Sparse Solver for Clusters Interface</a></div>
+</div>
+<div/>
+</body>
+</html>

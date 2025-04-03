@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?syntrd"/>
+<meta name="abstract" content="Reduces a real symmetric matrix to symmetric tridiagonal form."/>
+<meta name="description" content="Reduces a real symmetric matrix to symmetric tridiagonal form."/>
+<meta name="DC.subject" content="pssyntrd, pdsyntrd"/>
+<meta name="keywords" content="pssyntrd, pdsyntrd"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1760738E-5820-4B7C-8128-FF2D3F3631E3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?syntrd</title>
+
+</head>
+<body id="GUID-1760738E-5820-4B7C-8128-FF2D3F3631E3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?syntrd</span></h1>
+<!--Reduces a real symmetric matrix to symmetric  tridiagonal form.--><div><p class="shortdesc">Reduces a real symmetric matrix to symmetric  tridiagonal form.</p>
+<div class="section" id="GUID-FE3B23DE-DA3B-4EDE-BAD1-5BB14C860014"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pssyntrd</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdsyntrd</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-31536BD7-C0CB-4FA0-B6C8-9666CAE7173D"><h2 class="sectiontitle">Description</h2><p><span class="option">p?syntrd</span> is a prototype version of <span class="option">p?sytrd</span> which uses tailored  codes (either the serial, <span class="option">?sytrd</span>, or the parallel code, <span class="option">p?syttrd</span>)  when the workspace provided by the user is adequate.</p>
+<p><span class="option">p?syntrd</span> reduces a real symmetric matrix sub( <var>A</var> ) to symmetric  tridiagonal form <var>T</var> by an orthogonal similarity transformation:</p>
+<p><var>Q</var>' * sub( <var>A</var> ) * <var>Q</var> = <var>T</var>, where sub( <var>A</var> ) = <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1,<span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1).</p>
+<p><strong>Features</strong></p>
+<p><span class="option">p?syntrd</span> is faster than <span class="option">p?sytrd</span> on almost all matrices,  particularly small ones (i.e. <span class="parmname">n</span> &lt; 500 * sqrt(P) ), provided that  enough workspace is available to use the tailored codes.</p>
+<p>The tailored codes provide performance that is essentially  independent of the input data layout.</p>
+<p>The tailored codes place no restrictions on <span class="parmname">ia</span>, <span class="parmname">ja</span>, MB or NB.  At present, <span class="parmname">ia</span>, <span class="parmname">ja</span>, MB and NB are restricted to those values allowed  by <span class="option">p?hetrd</span> to keep the interface simple (see the Application Notes section for more information about the restrictions).</p>
+</div>
+<div class="section" id="GUID-1E979991-9073-47BB-ADD1-EAD56B797B65"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-06EFA061-8046-4FA5-B653-6FD777B84662"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global)</p>
+<p>CHARACTER. </p>
+<p>Specifies whether the upper or lower triangular part of the          symmetric matrix sub( <var>A</var> ) is stored:</p>
+<p>= 'U':  Upper triangular</p>
+<p>= 'L':  Lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of rows and columns to be operated on, i.e. the          order of the distributed submatrix sub( <var>A</var> ). <span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyntrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyntrd</span></p>
+<p>Pointer into the          local memory to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>.</p>
+<p>On entry, this array contains the local pieces of the          symmetric distributed matrix sub( <var>A</var> ).  If <span class="parmname">uplo</span> = 'U', the          leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of sub( <var>A</var> ) contains          the upper triangular part of the matrix, and its strictly          lower triangular part is not referenced. If <span class="parmname">uplo</span> = 'L', the          leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of sub( <var>A</var> ) contains the          lower triangular part of the matrix, and its strictly upper          triangular part is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The row index in the global array <span class="parmname">a</span> indicating the first          row of sub( <var>A</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The column index in the global array <span class="parmname">a</span> indicating the          first column of sub( <var>A</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd>(local)<p><span class="keyword">REAL</span> for <span class="option">pssyntrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyntrd</span></p>
+<p>Array,                                                  size (<span class="parmname">lwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global)</p>
+<p>INTEGER. </p>
+<p>The size of the array <span class="parmname">work</span>.</p>
+<p><span class="parmname">lwork</span> is local input and must be at least          <span class="parmname">lwork</span> &gt;= MAX( NB * ( NP +1 ), 3 * NB )</p>
+<p>For optimal performance, greater workspace is needed, i.e.</p>
+<p><span class="parmname">lwork</span> &gt;= 2*( <var>ANB</var>+1 )*( 4*<var>NPS</var>+2 ) + ( <var>NPS</var> + 4 ) * <var>NPS</var></p>
+<p><var>ANB</var> = <span class="option">pjlaenv</span>( <var>ICTXT</var>, 3, '<span class="option">p?syttrd</span>', 'L', 0, 0, 0, 0 )</p>
+<p><var>ICTXT</var> = <span class="parmname">desca</span>( <var>ctxt_</var> )</p>
+<p><var>SQNPC</var> = INT( <span class="option">sqrt</span>( REAL( <var>NPROW</var> * <var>NPCOL</var> ) ) )</p>
+<p><span class="option">numroc</span> is a ScaLAPACK tool function.</p>
+<p><span class="option">pjlaenv</span> is a ScaLAPACK environmental inquiry function.</p>
+<p><var>NPROW</var> and <var>NPCOL</var> can be determined by calling            the subroutine <span class="option">blacs_gridinfo</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5A2E92A6-97E8-4E59-B408-53BF63967F6B"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, if <span class="parmname">uplo</span> = 'U',          the diagonal and first superdiagonal of sub( <var>A</var> ) are overwritten by the corresponding elements of the tridiagonal          matrix <var>T</var>, and the elements above the first superdiagonal,          with the array <span class="parmname">tau</span>, represent the orthogonal matrix <var>Q</var> as a          product of elementary reflectors; if <span class="parmname">uplo</span> = 'L', the diagonal          and first subdiagonal of sub( <var>A</var> ) are overwritten by the          corresponding elements of the tridiagonal matrix <var>T</var>, and the          elements below the first subdiagonal, with the array <span class="parmname">tau</span>,          represent the orthogonal matrix <var>Q</var> as a product of elementary          reflectors. See <strong>Further Details</strong>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span></p></td>
+
+<td valign="top" class="noborder">(local)<p><span class="keyword">REAL</span> for <span class="option">pssyntrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyntrd</span></p>
+<p>Array, size LOCc(<span class="parmname">ja</span>+<span class="parmname">n</span>-1)</p>
+<p>The diagonal elements of the tridiagonal matrix <var>T</var>:          <span class="parmname">d</span>(i) = <var>A</var>(i,i). <span class="parmname">d</span> is tied to the distributed matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">e</span></p></td>
+
+<td valign="top" class="noborder">(local)<p><span class="keyword">REAL</span> for <span class="option">pssyntrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyntrd</span></p>
+<p>Array, size LOCc(<span class="parmname">ja</span>+<span class="parmname">n</span>-1)          if <span class="parmname">uplo</span> = 'U', LOCc(<span class="parmname">ja</span>+<span class="parmname">n</span>-2) otherwise.</p>
+<p>The off-diagonal          elements of the tridiagonal matrix <var>T</var>: <span class="parmname">e</span>(i) = <var>A</var>(i,i+1) if          <span class="parmname">uplo</span> = 'U', <span class="parmname">e</span>(i) = <var>A</var>(i+1,i) if <span class="parmname">uplo</span> = 'L'. <span class="parmname">e</span> is tied to the          distributed matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tau</span></p></td>
+
+<td valign="top" class="noborder">(local)<p><span class="keyword">REAL</span> for <span class="option">pssyntrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyntrd</span></p>
+<p>Array, size          LOCc(<span class="parmname">ja</span>+<span class="parmname">n</span>-1).</p>
+<p>This array contains the scalar factors <span class="parmname">tau</span> of          the elementary reflectors. <span class="parmname">tau</span> is tied to the distributed          matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder">(local)<p><span class="keyword">REAL</span> for <span class="option">pssyntrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyntrd</span></p>
+<p>Array,                                                  size (<span class="parmname">lwork</span>)</p>
+<p>On exit, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the optimal <span class="parmname">lwork</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p>(global)</p>
+<p>INTEGER. </p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had                an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>), if the <var>i</var>-th                argument is a scalar and had an illegal value, then                <span class="parmname">info</span> = -<var>i</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-3C52F61F-8B2C-47D7-9593-7A8F00C7BF8F"><h2 class="sectiontitle">Application Notes</h2><p>If <span class="parmname">uplo</span> = 'U', the matrix <var>Q</var> is represented as a product of elementary  reflectors</p>
+<p><var>Q</var> = H(<span class="parmname">n</span>-1) . . . H(2) H(1).</p>
+<p>Each H(i) has the form</p>
+<p>H(i) = I - <span class="parmname">tau</span> * v * v',  where <span class="parmname">tau</span> is a complex scalar, and v is a complex vector with  v(i+1:<span class="parmname">n</span>) = 0 and v(i) = 1; v(1:i-1) is stored on exit in  <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+i-2,<span class="parmname">ja</span>+i), and <span class="parmname">tau</span> in <span class="parmname">tau</span>(<span class="parmname">ja</span>+i-1).</p>
+<p>If <span class="parmname">uplo</span> = 'L', the matrix <var>Q</var> is represented as a product of elementary  reflectors</p>
+<p><var>Q</var> = H(1) H(2) . . . H(<span class="parmname">n</span>-1).</p>
+<p>Each H(i) has the form</p>
+<p>H(i) = I - <span class="parmname">tau</span> * v * v',  where <span class="parmname">tau</span> is a complex scalar, and v is a complex vector with  v(1:i) = 0 and v(i+1) = 1; v(i+2:<span class="parmname">n</span>) is stored on exit in  <var>A</var>(<span class="parmname">ia</span>+i+1:<span class="parmname">ia</span>+<span class="parmname">n</span>-1,<span class="parmname">ja</span>+i-1), and <span class="parmname">tau</span> in <span class="parmname">tau</span>(<span class="parmname">ja</span>+i-1).</p>
+<p>The contents of sub( <var>A</var> ) on exit are illustrated by the following  examples with <span class="parmname">n</span> = 5:</p>
+<p>if <span class="parmname">uplo</span> = 'U':         </p>
+<p><img class="img-middle" src="equations/GUID-1760738E-5820-4B7C-8128-FF2D3F363ee1.png"/></p>
+<p> if <span class="parmname">uplo</span> = 'L':    </p>
+<p><img class="img-middle" src="equations/GUID-1760738E-5820-4B7C-8128-FF2D3F363ee2.png"/></p>
+<p>where <var>d</var> and <var>e</var> denote diagonal and off-diagonal elements of <var>T</var>, and <var>vi</var>  denotes an element of the vector defining H(<var>i</var>).</p>
+<p><strong>Alignment requirements</strong></p>
+<p>The distributed submatrix sub( <var>A</var> ) must verify some alignment properties, namely the following expression should be true:</p>
+<p>( <var>mb_a</var> = <var>nb_a</var> and <var>IROFFA</var> = <var>ICOFFA</var> and <var>IROFFA</var> = 0 )  with <var>IROFFA</var> = mod( <span class="parmname">ia</span>-1, <var>mb_a</var>), and <var>ICOFFA</var> = mod( <span class="parmname">ja</span>-1, <var>nb_a</var> ).</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html">Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

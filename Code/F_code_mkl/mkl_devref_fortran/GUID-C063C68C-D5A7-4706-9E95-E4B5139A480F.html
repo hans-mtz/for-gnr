@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?spsvx"/>
+<meta name="abstract" content="Uses the diagonal pivoting factorization to compute the solution to the system of linear equations with a real or complex symmetric coefficient matrix A stored in packed format, and provides error bounds on the solution."/>
+<meta name="description" content="Uses the diagonal pivoting factorization to compute the solution to the system of linear equations with a real or complex symmetric coefficient matrix A stored in packed format, and provides error bounds on the solution."/>
+<meta name="DC.subject" content="?spsvx, LAPACK routines, driver routines, solving linear equations, linear equations, solving, symmetric matrix, error bounds, packed storage, factorization, diagonal pivoting, packed"/>
+<meta name="keywords" content="?spsvx, LAPACK routines, driver routines, solving linear equations, linear equations, solving, symmetric matrix, error bounds, packed storage, factorization, diagonal pivoting, packed"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?spsvx</title>
+
+</head>
+<body id="GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?spsvx</span></h1>
+<!--Uses the diagonal pivoting factorization  to compute the solution to the system of linear equations with a real or complex symmetric  coefficient matrix A stored in packed format, and provides error bounds on the solution.--><div><p class="shortdesc">Uses the diagonal pivoting factorization  to compute the solution to the system of linear equations with a real or complex symmetric  coefficient matrix A stored in packed format, and provides error bounds on the solution.</p>
+<div class="section" id="GUID-4CA07DAF-F2DC-4EBE-A1C5-1DCC79618B37"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sspsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">afp</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dspsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">afp</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cspsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">afp</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zspsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">afp</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spsvx</span><span class="delim">( </span><span class="var">ap</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">x</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">afp</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ipiv</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">fact</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ferr</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">berr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rcond</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-8364D006-3BF5-47D1-856A-F3C5B81C8242"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B07FA97E-CC52-4E56-B0E6-A012A472177A"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine uses the diagonal pivoting factorization to compute the solution to a real or complex system of linear equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>, where <var>A</var> is a <var>n</var>-by-<var>n</var> symmetric matrix stored in packed format, the columns of matrix <var>B</var> are individual right-hand sides, and the columns of <var>X</var> are the corresponding solutions.</p>
+<p>Error bounds on the solution and a condition estimate are also provided.</p>
+<p>The routine <span class="option">?spsvx</span> performs the following steps:</p>
+<ol id="GUID-19816323-D51C-4A3C-A1F6-D1C05F988645"><li><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>, the diagonal pivoting method is used to factor the matrix A. The form of the factorization is <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power"><var>T</var></sup></samp> or<samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>T</var></sup></samp>, where  <var>U</var> (or <var>L</var>) is a product of permutation and unit upper (lower) triangular matrices, and <var>D</var> is symmetric and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.</p>
+</li>
+<li><p>If some <samp class="codeph"><var>d</var><sub><var>i</var>,<var>i</var></sub></samp>= 0, so that <var>D</var> is exactly singular, then the routine returns with <samp class="codeph"><var>info</var> = <var>i</var></samp>. Otherwise, the factored form of <var>A</var> is used to estimate the condition number of the matrix <var>A</var>. If the reciprocal of the condition number is less than machine precision, <samp class="codeph"><var>info</var> = <var>n</var>+1</samp> is returned as a warning, but the routine still goes on to solve for <var>X</var> and compute error bounds as described below.</p>
+</li>
+<li><p>The system of equations is solved for <var>X</var> using the factored form of <var>A</var>.</p>
+</li>
+<li><p>Iterative refinement is applied to improve the computed solution matrix and calculate error bounds and backward error estimates for it.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="GUID-B951BD0C-C58C-423E-BCE7-D44E18D32D80"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">fact</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'F'</span> or <span class="keyword">'N'</span>.</p>
+<p>Specifies whether or not the factored form of the matrix <var>A</var> has been supplied on entry.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>:  on entry, <var>afp</var> and <var>ipiv</var> contain the factored form of <var>A</var>. Arrays <var>ap</var>, <var>afp</var>, and <var>ipiv</var> are not modified.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>, the matrix <var>A</var> is copied to <var>afp</var> and factored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored and how <var>A</var> is factored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>ap</var> stores the upper triangular part of the symmetric matrix <var>A</var>, and <var>A</var> is factored as <samp class="codeph"><var>U*D*U</var><sup class="power"><var>T</var></sup></samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>ap</var> stores the lower triangular part of the symmetric matrix <var>A</var>;  <var>A</var> is factored as <samp class="codeph"><var>L*D*L</var><sup class="power"><var>T</var></sup></samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nrhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides, the number of columns in <samp class="codeph"><var>B</var>; <var>nrhs</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span>, <span class="parmname">afp</span>, <span class="parmname">b</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sspsvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspsvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cspsvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zspsvx</span>. </p>
+<p>Arrays: <var>ap</var><span>(size *)</span>, <var>afp</var><span>(size *)</span>, <var>b</var><span>(size <var>ldb</var> by *)</span><span>, <samp class="codeph"><var>work</var>(*)</samp></span>.</p>
+<p>The array <var>ap</var> contains the upper or lower triangle of the symmetric matrix <var>A</var> in <dfn class="term">packed storage</dfn> (see <a class="allformats" href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>). </p>
+<p>The array <var>afp</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>. It contains the block diagonal matrix <var>D</var> and the multipliers used to obtain the factor <var>U</var> or <var>L</var> from the factorization <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power"><var>T</var></sup></samp> or <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>T</var></sup></samp> as computed by <a class="allformats" href="GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A.html#GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A"><span class="option">?sptrf</span></a>, in the same storage format as <var>A</var>.</p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations.</p>
+<p><samp class="codeph"><var>work</var>(*)</samp> is a workspace array.</p>
+<p>The dimension of arrays <var>ap</var> and <var>afp</var> must be at least <samp class="codeph">max(1, <var>n</var>(<var>n</var>+1)/2)</samp>; the second dimension of <var>b</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp><span>; the dimension of <var>work</var> must be at least <samp class="codeph">max(1,3*<var>n</var>)</samp> for real flavors and <samp class="codeph">max(1,2*<var>n</var>)</samp> for complex flavors</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. The array <var>ipiv</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>. It contains  details of the interchanges and the block structure of <var>D</var>, as determined by <a class="allformats" href="GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A.html#GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A"><span class="option">?sptrf</span></a>. </p>
+<p>If <samp class="codeph"><var>ipiv</var>(<var>i</var>) = <var>k</var> &gt; 0</samp>, then <samp class="codeph"><var>d</var><sub class="subb"><var>i</var><var>i</var></sub></samp> is a 1-by-1 block, and the <var>i</var>-th row and column of <var>A</var> was interchanged with the <var>k</var>-th row and column. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>and <var>ipiv</var>(<var>i</var>) =<var>ipiv</var>(<var>i</var>-1) = -<var>m</var> &lt; 0, then <var>D</var> has a 2-by-2 block in rows/columns <var>i</var> and <samp class="codeph"><var>i</var>-1</samp>, and (<samp class="codeph"><var>i</var>-1</samp>)-th row and column of <var>A</var> was interchanged with the <var>m</var>-th row and column. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>and <var>ipiv</var>(<var>i</var>) =<var>ipiv</var>(<var>i</var>+1) = -<var>m</var> &lt; 0, then <var>D</var> has a 2-by-2 block in rows/columns <var>i</var> and <samp class="codeph"><var>i</var>+1</samp>, and (<samp class="codeph"><var>i</var>+1</samp>)-th row and column of <var>A</var> was interchanged with the <var>m</var>-th row and column. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldx</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>x</var>; <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>; used in real flavors only. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">cspsvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zspsvx</span>. </p>
+<p>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>; used in complex flavors only. </p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-E66DE531-28ED-48AA-A892-135F145ACBB1"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sspsvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspsvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cspsvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zspsvx</span>.</p>
+<p>Array, size <span><var>ldx</var> by *</span>.</p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp> or <samp class="codeph"><var>info</var> = <var>n</var>+1</samp>, the array <var>x</var> contains the solution matrix <var>X</var> to the system of equations.<span> The second dimension of  <var>x</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp>.</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">afp</span>, <span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>These arrays are output arguments if <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>. See the description of <var>afp</var>, <var>ipiv</var> in <em>Input Arguments</em> section.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rcond</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>An estimate of the reciprocal condition number of the matrix <var>A</var>. If <var>rcond</var> is less than the machine precision (in particular, if <samp class="codeph"><var>rcond</var> = 0)</samp>, the matrix is singular to working precision.  This condition is indicated by a return code of <var>info</var> &gt; 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ferr</span>, <span class="parmname">berr</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays, size at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>. Contain the component-wise forward and relative backward errors, respectively, for each solution vector.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, then <samp class="codeph"><var>d</var><sub class="subb"><var>i</var><var>i</var></sub></samp> is exactly zero. The factorization has been completed, but the block diagonal matrix <var>D</var> is exactly singular, so the solution  and error bounds could not be computed; <var>rcond</var> = 0 is returned. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <var>i</var> = <var>n</var> + 1, then <var>D</var> is nonsingular, but <var>rcond</var> is less than machine precision, meaning that the matrix is singular to working precision. Nevertheless, the  solution and error bounds are computed because there are a number of situations where the  computed solution can be more accurate than the value of <var>rcond</var> would suggest.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-F87DA5FB-F3D0-4AA0-9F70-EE721EECEB04"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">spsvx</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>A</var> of size (<samp class="codeph"><var>n</var>*(<var>n</var>+1)/2</samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>B</var> of size (<samp class="codeph"><var>n</var>,<var>nrhs</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>X</var> of size (<samp class="codeph"><var>n</var>,<var>nrhs</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">afp</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>AF</var> of size (<samp class="codeph"><var>n</var>*(<var>n</var>+1)/2</samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector with the number of elements <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ferr</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector with the number of elements
+<var>nrhs</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">berr</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector with the number of elements
+<var>nrhs</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">fact</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'F'</span>. The default value is <span class="keyword">'N'</span>. If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>, then both arguments <var>af</var> and <var>ipiv</var> must be present; otherwise, an error is returned.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

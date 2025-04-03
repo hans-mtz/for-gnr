@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Using a Custom Message-Passing Interface"/>
+<meta name="DC.subject" content="message-passing interface, custom, usage, MPI"/>
+<meta name="keywords" content="message-passing interface, custom, usage, MPI"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-961566D0-E177-467A-96F6-E0D6541430A0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-75CABA2D-272A-4E55-BE10-30D8EF592752.html#GUID-75CABA2D-272A-4E55-BE10-30D8EF592752"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-49AF3492-25AD-4873-842E-62C881921A30"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Using a Custom Message-Passing Interface</title>
+
+</head>
+<body id="GUID-49AF3492-25AD-4873-842E-62C881921A30">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Using a Custom Message-Passing Interface</h1>
+<div id="GUID-24896E73-E305-4E9D-BD6D-27C1A1B5FD9E"><p>While different message-passing interface (MPI) libraries are compatible at the application programming interface (API) level, they are often incompatible at the application binary interface (ABI) level. Therefore, Intel&reg; oneAPI Math Kernel Library provides a set of prebuilt BLACS libraries that support certain MPI libraries, but this, however, does not enable use of Intel&reg; oneAPI Math Kernel Library with other MPI libraries. To fill this gap, Intel&reg; oneAPI Math Kernel Library also includes the MKL MPI wrapper, which provides an MPI-independent ABI to Intel&reg; oneAPI Math Kernel Library. The adaptor is provided as source code. To use Intel&reg; oneAPI Math Kernel Library with an MPI library that is not supported by default, you can use the adapter to build custom static or dynamic BLACS libraries and use them similarly to the prebuilt libraries.</p>
+<div class="section" id="GUID-23774829-E42C-478E-9BDF-E67469C99FEC"><h2 class="sectiontitle"> Building a Custom BLACS Library</h2><p> The MKL MPI wrapper is located in the 
+        <span class="filepath"><var>&lt;mkl directory&gt;</var></span><span class="filepath">/</span><span class="filepath">interfaces</span><span class="filepath">/</span><span class="filepath">mklmpi</span> directory. 
+      </p>
+<p>To build a custom BLACS library, from the above directory run the 
+        <span class="keyword">make</span> command. 
+      </p>
+<p> For example: the command 
+      </p>
+<p><samp class="codeph"> 
+          make libintel64</samp></p>
+<p> builds a static custom BLACS library 
+        <span class="filepath">lib</span><span class="filepath">mkl_blacs_custom_lp64.</span><span class="filepath">a</span> using the 
+        <span>MPI compiler from the current shell environment</span>. Look into the 
+        <span class="filepath"><var>&lt;mkl directory&gt;</var></span><span class="filepath">/</span><span class="filepath">interfaces</span><span class="filepath">/</span><span class="filepath">mklmpi</span><span class="filepath">/</span><span class="filepath">makefile</span> for targets and variables that define how to build the custom library. In particular, you can specify the compiler through the 
+        <span class="keyword">MPICC</span> variable. 
+      </p>
+<p>For more control over the building process, refer to the documentation available through the command 
+      </p>
+<p><samp class="codeph">make help</samp></p>
+</div>
+<div class="section" id="GUID-17A84CDD-E57E-4311-8654-41CF776A05E7"><h2 class="sectiontitle">Using a Custom BLACS Library</h2><p><span>Use 
+        </span> custom BLACS libraries exactly the same way as you use the prebuilt BLACS libraries, but pass the custom library to the linker. For example, instead of passing the 
+        <span class="filepath">lib</span><span class="filepath">mkl_blacs_mpich_lp64.</span><span class="filepath">a</span> library, pass 
+        <span class="filepath">lib</span><span class="filepath">mkl_blacs_custom_lp64.</span><span class="filepath">a</span>. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-961566D0-E177-467A-96F6-E0D6541430A0.html">Working with the Intel&reg; oneAPI Math Kernel Library Cluster Software</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-75CABA2D-272A-4E55-BE10-30D8EF592752.html#GUID-75CABA2D-272A-4E55-BE10-30D8EF592752">Linking with Intel&reg; oneAPI Math Kernel Library Cluster Software</a></div></div></div>
+</body>
+</html>

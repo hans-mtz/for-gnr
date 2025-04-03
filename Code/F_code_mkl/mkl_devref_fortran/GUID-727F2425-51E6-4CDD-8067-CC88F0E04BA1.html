@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larcm"/>
+<meta name="abstract" content="Multiplies a square real matrix by a complex matrix."/>
+<meta name="description" content="Multiplies a square real matrix by a complex matrix."/>
+<meta name="DC.subject" content="?larcm, LAPACK routines, auxiliary routines, complex matrix multiplication"/>
+<meta name="keywords" content="?larcm, LAPACK routines, auxiliary routines, complex matrix multiplication"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-727F2425-51E6-4CDD-8067-CC88F0E04BA1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larcm</title>
+
+</head>
+<body id="GUID-727F2425-51E6-4CDD-8067-CC88F0E04BA1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">?larcm</h1>
+<!--Multiplies a square real matrix by a complex matrix.--><div><p class="shortdesc">Multiplies a square real matrix by a complex matrix.</p>
+<div class="section" id="GUID-5920EE25-273B-41E2-885B-69B881C6B6B6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call clarcm</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarcm</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-89A2CD4A-19B2-47A8-84C8-77D937CF2F8F"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine performs a simple matrix-matrix multiplication of the form </p>
+<p><samp class="codeph"><var>C</var> = <var>A</var>*<var>B</var></samp>, </p>
+<p>where <var>A</var> is <var>m</var>-by-<var>m</var> and real, <var>B</var> is <var>m</var>-by-<var>n</var> and complex, and <var>C</var> is <var>m</var>-by-<var>n</var> and complex.</p>
+</div>
+<div class="section" id="GUID-82A1E62E-31C9-4ADD-9AEB-A2E341ACE7FC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-6C8DC33B-DDA0-46C1-9A52-83D555100512"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>The number of rows and columns of matrix <var>A</var> and the number of rows of matrix <var>C</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of matrix <var>B</var> and the number of columns of matrix <var>C</var></p>
+<p>(<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">clarcm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlarcm</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>m</var>)</samp>. Contains the <var>m</var>-by-<var>m</var> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>a</var>, <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span><span class="keyword">max</span>(1, <var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">clarcm</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarcm</span></p>
+<p>Array, <span class="keyword">DIMENSION</span><samp class="codeph">(<var>ldb</var>, <var>n</var>)</samp>. Contains the <var>m</var>-by-<var>n</var> matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>b</var>, <var>ldb</var><span class="eqsymbol">≥</span><span class="keyword">max</span>(1, <var>m</var>) for column-major
+layout;  <var>ldb</var><span class="eqsymbol">≥</span><span class="keyword">max</span>(1, <var>n</var>) for row-major
+layout .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>c</var>, <var>ldc</var><span class="eqsymbol">≥</span><span class="keyword">max</span>(1, <var>m</var>) for column-major
+layout;  <var>ldc</var><span class="eqsymbol">≥</span><span class="keyword">max</span>(1, <var>n</var>) for row-major
+layout .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">clarcm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlarcm</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span><samp class="codeph">(2*<var>m</var>*<var>n</var>)</samp>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B40C7EC4-82E0-4DDF-A6AE-EFDDD7768F6C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-FFE7A0A5-86D9-4CDF-A8AA-5E291A585709"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">clarcm</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarcm</span></p>
+<p>Array, size (<var>ldc</var>, <var>n</var>). Contains the <var>m</var>-by-<var>n</var> matrix <var>C</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="RETURNVALUES_81E2DB7FEF854AB3A370A911D3B26836"><h2 class="sectiontitle">Return Values</h2><p>This function returns a value <span class="parmname">info</span>.
+If <span class="parmname">info</span> = 0, the execution is successful.
+If<span class="parmname"> info </span>= -<var>i</var>, parameter<var> i</var> had an illegal value.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

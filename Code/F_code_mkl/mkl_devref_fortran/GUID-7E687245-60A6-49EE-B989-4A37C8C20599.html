@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lassq"/>
+<meta name="abstract" content="Updates a sum of squares represented in scaled form."/>
+<meta name="description" content="Updates a sum of squares represented in scaled form."/>
+<meta name="DC.subject" content="?lassq, LAPACK routines, auxiliary routines, updating sum of squares, sum of squares, updating, LAPACK"/>
+<meta name="keywords" content="?lassq, LAPACK routines, auxiliary routines, updating sum of squares, sum of squares, updating, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7E687245-60A6-49EE-B989-4A37C8C20599"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lassq</title>
+
+</head>
+<body id="GUID-7E687245-60A6-49EE-B989-4A37C8C20599">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lassq</span></h1>
+<!--Updates a sum of squares represented in scaled form.--><div><p class="shortdesc">Updates a sum of squares represented in scaled form.</p>
+<div class="section" id="GUID-AADAC83B-10DF-477E-97C2-48DDCD2821BE"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slassq</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlassq</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call classq</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlassq</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">sumsq</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-08B3FEAF-20DB-409C-8CBC-68DAA1F36780"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C4C48473-155C-4CA2-B676-EAE2CF7D4ECD"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>
+The real routines <span class="option">slassq</span>/<span class="option">dlassq</span> return the values <var>scl</var> and <var>smsq</var> such that</p>
+<p><samp class="codeph"><var>scl</var><sup class="power">2</sup> * <var>smsq</var> = <var>x</var>(1)<sup class="power">2</sup> +...+ <var>x</var>(<var>n</var>)<sup class="power">2</sup> + <var>scale</var><sup class="power">2</sup> *<var>sumsq</var></samp>, </p>
+<p>where <samp class="codeph"><var>x</var>(  <var>i</var> ) = <var>x</var>(1 + ( <var>i</var> - 1) <var>incx</var>)</samp>. </p>
+<p>The value of <var>sumsq</var>  is  assumed to be non-negative and <var>scl</var>  returns the value </p>
+<p><samp class="codeph"><var>scl</var> = max( <var>scale</var>, abs(<var>x</var>(<var>i</var>)))</samp>. </p>
+<p>Values <var>scale</var> and <var>sumsq</var> must be supplied in <var>scale</var> and <var>sumsq</var>, and <var>scl</var> and <var>smsq</var> are overwritten on <var>scale</var> and <var>sumsq</var>, respectively. </p>
+<p>The complex routines <span class="option">classq</span>/<span class="option">zlassq</span> return the values <var>scl</var> and <var>ssq</var> such that</p>
+<p><samp class="codeph"><var>scl</var><sup class="power">2</sup> * <var>ssq</var> = <var>x</var>(1)<sup class="power">2</sup> +...+ <var>x</var>(<var>n</var>)<sup class="power">2</sup> + <var>scale</var><sup class="power">2</sup> *<var>sumsq</var></samp>, </p>
+<p>where <samp class="codeph"><var>x</var>(<var>i</var>) = abs(<var>x</var>(1 +(<var>i</var> - 1)*<var>incx</var>))</samp>. </p>
+<p>The value of <var>sumsq</var>  is  assumed to be at least unity and the value of <var>ssq</var> will then satisfy  <samp class="codeph">1.0 ≤ <var>ssq</var> ≤ <var>sumsq</var> + 2<var>n</var></samp></p>
+<p><var>scale</var> is assumed to be non-negative and <var>scl</var>  returns the value</p>
+<p><samp class="codeph"><var>scl</var> = max( <var>scale</var>, abs(real(<var>x</var>(<var>i</var>))), abs(aimag(<var>x</var>(<var>i</var>))))</samp>. </p>
+<p>Values <var>scale</var> and <var>sumsq</var> must be supplied in <var>scale</var> and <var>sumsq</var>, and <var>scl</var> and <var>ssq</var> are overwritten on <var>scale</var> and <var>sumsq</var>, respectively. </p>
+<p>All routines <span class="option">?lassq</span> make only one pass through the vector <var>x</var>.</p>
+</div>
+<div class="section" id="GUID-DB1F20B2-CBA0-4036-9BBF-E786245CD01F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B27ADE45-F7FE-4C65-8AC7-56048B7A92FD"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of elements to be used from the vector <var>x</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slassq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlassq</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">classq</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlassq</span>.</p>
+<p>The vector for which a scaled sum of squares is computed: <samp class="codeph"><var>x</var>(<var>i</var>) = <var>x</var>(1+(<var>i</var>-1)*<var>incx</var>)</samp>, <samp class="codeph">1 ≤ <var>i</var> ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The increment between successive values of the vector <var>x</var>. <samp class="codeph"><var>incx</var> &gt; 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slassq</span>/<span class="option">classq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlassq</span>/<span class="option">zlassq</span>.</p>
+<p>On entry, the value <var>scale</var> in the equation above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sumsq</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slassq</span>/<span class="option">classq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlassq</span>/<span class="option">zlassq</span>.</p>
+<p>On entry, the value <var>sumsq</var> in the equation above.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-9C839811-4470-4CEC-AF5B-5DF1A8CF5670"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0DE41CDA-2EAC-44BA-B15F-EB525CBAEE28"><dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p>On exit, <var>scale</var> is overwritten with <var>scl</var>, the scaling factor for the sum of squares.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sumsq</span></dt>
+
+<dd><p>For real flavors: </p>
+<p>On exit, <var>sumsq</var> is overwritten with the value <var>smsq</var> in the equation above.</p>
+<p>For complex flavors: </p>
+<p>On exit, <var>sumsq</var> is overwritten with the value <var>ssq</var> in the equation above.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?stein"/>
+<meta name="abstract" content="Computes the eigenvectors of a tridiagonal matrix using inverse iteration."/>
+<meta name="description" content="Computes the eigenvectors of a tridiagonal matrix using inverse iteration."/>
+<meta name="DC.subject" content="p?stein, ScaLAPACK routines, symmetric eigenproblems"/>
+<meta name="keywords" content="p?stein, ScaLAPACK routines, symmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AD6C57C2-B53E-49FF-B9C5-8AC33A289150"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?stein</title>
+
+</head>
+<body id="GUID-AD6C57C2-B53E-49FF-B9C5-8AC33A289150">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?stein</span></h1>
+<!--Computes the eigenvectors of a tridiagonal matrix using inverse iteration.--><div><p class="shortdesc">Computes the eigenvectors of a tridiagonal matrix using inverse iteration.</p>
+<div class="section" id="GUID-7C813021-ACD2-45FB-B654-2E3EC6D0B522"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psstein</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">orfac</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">iz</span><span class="sep">, </span><span class="var">jz</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">ifail</span><span class="sep">, </span><span class="var">iclustr</span><span class="sep">, </span><span class="var">gap</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdstein</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">orfac</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">iz</span><span class="sep">, </span><span class="var">jz</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">ifail</span><span class="sep">, </span><span class="var">iclustr</span><span class="sep">, </span><span class="var">gap</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcstein</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">orfac</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">iz</span><span class="sep">, </span><span class="var">jz</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">ifail</span><span class="sep">, </span><span class="var">iclustr</span><span class="sep">, </span><span class="var">gap</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzstein</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">orfac</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">iz</span><span class="sep">, </span><span class="var">jz</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">ifail</span><span class="sep">, </span><span class="var">iclustr</span><span class="sep">, </span><span class="var">gap</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-51A12826-EB6D-4AE5-9B69-AD48FA9147EE"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-46AAF10F-C7A4-4CC4-921E-997719ADE313"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?stein</span><span> routine </span>computes the eigenvectors of a symmetric tridiagonal matrix <var>T</var> corresponding to specified eigenvalues, by inverse iteration. <span class="option">p?stein</span> does not orthogonalize vectors that are on different processes. The extent of orthogonalization is controlled by the input parameter <span class="parmname">lwork</span>. Eigenvectors that are to be orthogonalized are computed by the same process. <span class="option">p?stein</span> decides on the allocation of work among the processes and then calls <a href="GUID-49D7263F-FF20-4525-8E87-5CA0176FE215.html#GUID-49D7263F-FF20-4525-8E87-5CA0176FE215"><span class="option">?stein2</span></a> (modified LAPACK<span> routine</span>) on each individual process. If insufficient workspace is allocated, the expected orthogonalization may not be done.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>If the eigenvectors obtained are not orthogonal, increase <span class="parmname">lwork</span> and run the code again.</p>
+</div>
+<p><var>p</var> = <span class="keyword">NPROW</span>*<span class="keyword">NPCOL</span> is the total number of processes.</p>
+</div>
+<div class="section" id="GUID-F54F700A-7D50-4151-82DE-3E0D50927F7F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-33289292-862B-404E-BADF-ECB374EFE645"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>T</var><samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of eigenvectors to be returned.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span>, <span class="parmname">w</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+<p>Arrays: <samp class="codeph"><var/></samp></p>
+<p><samp class="codeph"><var>d</var></samp> of size <span class="parmname">n</span> contains the diagonal elements of <var>T</var>. </p>
+<p><samp class="codeph"><var>e</var></samp> of size <samp class="codeph"><var>n</var>-1 </samp>contains the off-diagonal elements of <var>T</var>. </p>
+<p><samp class="codeph"><var>w</var></samp> of size <span class="parmname">m</span> contains all the eigenvalues grouped by split-off block. The eigenvalues are supplied from smallest to largest within the block. (Here the output array <span class="parmname">w</span> from <a class="allformats" href="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65.html#GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65"><span class="option">p?stebz</span></a>  with order <samp class="codeph">= <span class="keyword">'B'</span></samp> is expected. The array should be replicated in all processes.) </p>
+<p/>
+</dd>
+<dt class="dlterm"><span class="parmname">iblock</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Array of size <span class="parmname">n</span>. The submatrix indices associated with the corresponding eigenvalues in <samp class="codeph"><var>w</var>: 1</samp> for eigenvalues belonging to the first submatrix from the top, 2 for those belonging to the second submatrix, etc. (The output array <span class="parmname">iblock</span> from <a class="allformats" href="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65.html#GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65"><span class="option">p?stebz</span></a> is expected here). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">isplit</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Array of size <span class="parmname">n</span>. The splitting points at which <var>T</var> breaks up into submatrices. The first submatrix consists of rows/columns 1 to <span class="parmname">isplit</span><span>(1)</span>, the second of rows/columns <samp class="codeph"><var>isplit</var><span>(1)</span>+1</samp> through <samp class="codeph"><var>isplit</var><span>(2)</span></samp>, and so on, and the <span class="parmname">nsplit</span>-th submatrix consists of rows/columns <samp class="codeph"><var>isplit</var><span>(<var>nsplit</var>-1)</span>+1</samp> through <samp class="codeph"><var>isplit</var><span>(<var>nsplit</var>)</span>=<var>n</var></samp>.  (The output array <span class="parmname">isplit</span> from <a class="allformats" href="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65.html#GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65"><span class="option">p?stebz</span></a> is expected here.) </p>
+</dd>
+<dt class="dlterm"><span class="parmname">orfac</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. <var/></p>
+<p><span class="parmname">orfac</span> specifies which eigenvectors should be orthogonalized. Eigenvectors that correspond to eigenvalues within <samp class="codeph"><var>orfac</var>*||T||</samp> of each other are to be orthogonalized. However, if the workspace is insufficient (see <span class="parmname">lwork</span>), this tolerance may be decreased until all eigenvectors can be stored in one process. No orthogonalization is done if <span class="parmname">orfac</span> is equal to zero. A default value of 1000 is used if <span class="parmname">orfac</span> is negative. <span class="parmname">orfac</span> should be identical on all processes</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iz</span>, <span class="parmname">jz</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>Z</var> indicating the first row and the first column of the submatrix <var>Z</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descz</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>Z</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local). <span><span class="keyword">REAL</span> for single-precision flavors</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+<p>Workspace array of size <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p><var/><span class="parmname">lwork</span> controls the extent of orthogonalization which can be done. The number of eigenvectors for which storage is allocated on each process is <samp class="codeph"><var>nvec</var> = <span class="keyword">floor</span>((<var>lwork</var>-max(5*<var>n</var>,<var>np</var>00*<var>mq</var>00))/<var>n</var>)</samp>. Eigenvectors corresponding to eigenvalue clusters of size (<samp class="codeph"><var>nvec</var> - <span class="keyword">ceil</span>(<var>m</var>/<var>p</var>) + 1)</samp> are guaranteed to be orthogonal (the orthogonality is similar to that obtained from <span class="keyword">?stein2</span>). </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><span class="parmname">lwork</span> must be no smaller than <samp class="codeph">max(5*<var>n</var>,<var>np</var>00*<var>mq</var>00) + <span class="keyword">ceil</span>(<var>m</var>/<var>p</var>)*<var>n</var></samp> and should have the same input value on all processes.</p>
+</div>
+<p>It is the minimum value of <span class="parmname">lwork</span> input on different processes that is significant.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <span class="parmname">lwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Workspace array of size <samp class="codeph">3<var>n</var>+<var>p</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>The size of the array<span class="parmname"> iwork</span>. It must be greater than <samp class="codeph">3*<var>n</var>+<var>p</var>+1</samp>. </p>
+<p>If <samp class="codeph"><var>liwork</var> = -1</samp>, then<span class="parmname"> liwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-9AEC9A7F-3E6E-4F18-AD9A-BA904E0A3391"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-15DD5526-F2F7-4DAC-ABF0-09409BA1FF27"><dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstein</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcstein</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzstein</span>. </p>
+<p>Array of size <samp class="codeph"><var>descz</var><span>(<var>dlen_</var>)</span>, <var>n</var>/<span class="keyword">NPCOL</span> + <span class="keyword">NB</span>)</samp>. <var>z</var> contains the computed eigenvectors associated with the specified eigenvalues. Any vector which fails to converge is set to its current iterate after MAXIT iterations  (See <a href="GUID-49D7263F-FF20-4525-8E87-5CA0176FE215.html#GUID-49D7263F-FF20-4525-8E87-5CA0176FE215"><span class="option">?stein2</span></a>). On output, <var>z</var> is distributed across the <var>p</var> processes in block cyclic format. </p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><var>work</var><span>(1)</span><span>[0]</span></samp></dt>
+
+<dd><p>On exit, <samp class="codeph"><var>work</var></samp><samp class="codeph"><span>(1)</span></samp> gives a lower bound on the workspace (<span class="parmname">lwork</span>) that guarantees the user desired orthogonalization (see <span class="parmname">orfac</span>). Note that this may overestimate the minimum workspace needed. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>On exit, <samp class="codeph"><var>iwork</var><span>(1)</span></samp> contains the amount of integer workspace required. </p>
+<p>On exit, the <samp class="codeph"><var>iwork</var><span>(2)</span></samp> through <samp class="codeph"><var>iwork</var><span>(<var>p</var>+2)</span></samp> indicate the eigenvectors computed by each process. Process <var>i</var> computes eigenvectors indexed <samp class="codeph"><var>iwork</var><span>(<var>i</var>+2)</span>+1</samp> through <samp class="codeph"><var>iwork</var><span>(<var>i</var>+3)</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ifail</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Array of size <span class="parmname">m</span>. On normal exit, all elements of <span class="parmname">ifail</span> are zero. If one or more eigenvectors fail to converge after MAXIT iterations (as in <a class="allformats" href="GUID-0262B467-B5BB-48DF-96AA-3D03B2A48577.html#GUID-0262B467-B5BB-48DF-96AA-3D03B2A48577"><span class="option">?stein</span></a>), then <samp class="codeph"><var>info</var> &gt; 0</samp> is returned. If <samp class="codeph">mod(<var>info</var></samp>, <samp class="codeph"><var>m</var>+1)&gt;0</samp>, then for <samp class="codeph"><var>i</var>=1</samp> to <samp class="codeph"><span class="keyword">mod</span>(<var>info</var>,<var>m</var>+1)</samp>, the eigenvector corresponding to the eigenvalue <samp class="codeph"><var>w</var>(<var>ifail</var>(i))</samp> failed to converge (<var>w</var> refers to the array of eigenvalues on output).</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><samp class="codeph">mod(<var>x</var>,<var>y</var>)</samp> is the integer remainder of <samp class="codeph"><var>x</var>/<var>y</var></samp>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">iclustr</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Array of size <samp class="codeph">2*<var>p</var>.</samp></p>
+<p>This output array contains indices of eigenvectors corresponding to a cluster of eigenvalues that could not be orthogonalized due to insufficient workspace (see <span class="parmname">lwork</span>, <span class="parmname">orfac</span> and <span class="parmname">info</span>). Eigenvectors corresponding to clusters of eigenvalues indexed <samp class="codeph"><var>iclustr</var>(2*I-1)</samp> to <samp class="codeph"><var>iclustr</var>(2*I)</samp>, <samp class="codeph"><var>i</var> = 1</samp> to <samp class="codeph"><var>info</var>/(<var>m</var>+1)</samp>, could not be orthogonalized due to lack of workspace. Hence the eigenvectors corresponding to these clusters may not be orthogonal. <span class="parmname">iclustr</span> is a zero terminated array: <samp class="codeph"><var>iclustr</var><span>(2*<var>k</var>)</span></samp><span class="eqsymbol">≠</span> 0 and <samp class="codeph"><var>iclustr</var><span>(2*<var>k</var>+1)</span></samp> = 0 if and only if <var>k</var> is the number of clusters. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">gap</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+This output array contains the gap between eigenvalues whose eigenvectors could not be orthogonalized. The <span class="parmname">info</span>/<span class="parmname">m</span> output values in this array correspond to the <samp class="codeph"><var>info</var>/(<var>m</var>+1)</samp> clusters indicated by the array <span class="parmname">iclustr</span>. As a result, the dot product between eigenvectors corresponding to the <var>i-th</var> cluster may be as high as <samp class="codeph">(<var>O</var>(<var>n</var>)*<var>macheps</var>)/<var>gap</var></samp><span>(<var>i</var>)</span>. </dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> &lt; 0</samp>: If the  <var>i</var>-th argument is an array and the <var>j</var>-th entry had an illegal value, then <samp class="codeph"><var>info</var> = </samp>-(<var>i</var>*100+<var>j</var>), </p>
+<p>If the <var>i</var>-th argument is a scalar and had an illegal value, then <samp class="codeph"><var>info</var> =</samp> -<var>i</var>. </p>
+<p>If <samp class="codeph"><var>info</var> &lt; 0</samp>: if <samp class="codeph"><var>info</var> =</samp> -<var>i</var>, the <var>i</var>-th argument had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>: if <samp class="codeph"><span class="keyword">mod</span>(<var>info</var>, <var>m</var>+1)</samp> = <var>i</var>, then <var>i</var> eigenvectors failed to converge in MAXIT iterations. Their indices are stored in the array <span class="parmname">ifail</span>. If <samp class="codeph"><var>info</var>/(<var>m</var>+1)</samp> = <var>i</var>, then eigenvectors corresponding to <var>i</var> clusters of eigenvalues could not be orthogonalized due to insufficient workspace. The indices of the clusters are stored in the array <span class="parmname">iclustr</span>. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html">Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

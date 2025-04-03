@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasyf_aa"/>
+<meta name="abstract" content="Factorizes a panel of a real or complex symmetric matrix using Aasen's algorithm."/>
+<meta name="description" content="Factorizes a panel of a real or complex symmetric matrix using Aasen's algorithm."/>
+<meta name="DC.subject" content="?lasyf_aa, slasyf_aa, dlasyf_aa, clasyf_aa, zlasyf_aa, LAPACK routines"/>
+<meta name="keywords" content="?lasyf_aa, slasyf_aa, dlasyf_aa, clasyf_aa, zlasyf_aa, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-62CCC1EB-CA92-41A9-9B55-FEF561D94C03"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasyf_aa</title>
+
+</head>
+<body id="GUID-62CCC1EB-CA92-41A9-9B55-FEF561D94C03">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasyf_aa</span></h1>
+<!-- Factorizes a panel of a real or complex symmetric matrix using Aasen's algorithm.--><div><p class="shortdesc"> Factorizes a panel of a real or complex symmetric matrix using Aasen's algorithm.</p>
+<div id="SYNTAX_E7CA60529A0C4B05B1C7FA7C0D9EF2CC"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slasyf_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasyf_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call clasyf_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlasyf_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_46CDBB1B9D7C47738DD26AFBD8780920"><h2 class="sectiontitle">Description</h2><p><span class="option">?lasyf_aa</span> factorizes a panel of a real or complex  symmetric matrix <var>A</var> using Aasen's algorithm. The panel consists of a set of <span class="parmname">nb</span> rows of <var>A</var> when <span class="parmname">uplo</span> is 'U', or a set of <span class="parmname">nb</span> columns when <span class="parmname">uplo</span> is 'L'. In order to factorize the panel, Aasen's algorithm requires the last row, or column, of the previous panel. The first row, or column, of <var>A</var> is set to be the first row, or column, of an identity matrix, which is used to factorize the first panel. The resulting <var>j</var>-th row of <var>U</var>, or <var>j</var>-th column of <var>L</var>, is stored in the (<var>j</var>-1)-st row, or column, of <var>A</var> (without the unit diagonals), while the diagonal and subdiagonal of <var>A</var> are overwritten by those of <var>T</var>.</p>
+</div>
+<div class="section" id="ARGUMENTS_01A2FC96F6724D408F1C95397F694ED9"><h2 class="sectiontitle">Input Parameters</h2><p/>
+<dl id="GUID-8E066EA2-246F-4868-85A8-73FF46B77B2A"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>If <span class="parmname">uplo</span> = 'U': Upper triangular of <var>A</var> is stored.</p>
+<p>If <span class="parmname">uplo</span>= 'L': Lower triangular of <var>A</var> is stored..</p>
+</dd>
+<dt class="dlterm"><span class="parmname">j1</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The location of the first row, or column, of the panel within the submatrix of <var>A</var>, passed to this routine: when called by <span class="option">?sytrf_aa</span>, for the first panel, <span class="parmname">j1</span> is 1, while for the remaining panels, <span class="parmname">j1</span> is 2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the submatrix. <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the panel to be factorized.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">slasyf_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasyf_aa</span></p>
+<p><span class="keyword">REAL </span> for <span class="option">clasyf_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlasyf_aa</span></p>
+<p>Array of size <span>(<span class="parmname">lda</span>, <span class="parmname">m</span>)</span> for the first panel, and size <span>(<span class="parmname">lda</span>,<span class="parmname">m</span> + 1)</span> for the remaining panels.</p>
+<p> On entry, <span class="parmname">a</span> contains the last row, or column, of the previous panel, and the trailing submatrix of <span class="parmname">a</span> to be factorized, except for the first panel, when only the panel is passed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1, <span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">slasyf_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasyf_aa</span></p>
+<p><span class="keyword">REAL </span> for <span class="option">clasyf_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlasyf_aa</span></p>
+<p>Workspace array of size <span>(<span class="parmname">ldh</span>,<span class="parmname">nb</span>)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the workspace <span class="parmname">h</span>. <span class="parmname">ldh</span><span class="eqsymbol">≥</span> max(1, <span class="parmname">m</span>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_409FE2F42BAA4062AC211378BF4F3BD1"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-CB1E9AF7-C18E-4A8A-A792-2EF027ED7AB9"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the leading panel is factorized.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER </span>. </span>Array of size (<span class="parmname">n</span>). Details of the row and column interchanges: the row and column <var>k</var> were interchanged with the row and column <span class="parmname">ipiv</span><samp class="codeph">(<var>k</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">slasyf_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasyf_aa</span></p>
+<p><span class="keyword">REAL </span> for <span class="option">clasyf_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlasyf_aa</span></p>
+<p>Workspace array of size(<span class="parmname">m</span>).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

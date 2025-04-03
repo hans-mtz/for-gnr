@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?ormbr"/>
+<meta name="abstract" content="Multiplies an arbitrary real matrix by the real orthogonal matrix Q or PT determined by ?gebrd."/>
+<meta name="description" content="Multiplies an arbitrary real matrix by the real orthogonal matrix Q or PT determined by ?gebrd."/>
+<meta name="DC.subject" content="?ormbr, LAPACK routines, singular value decomposition"/>
+<meta name="keywords" content="?ormbr, LAPACK routines, singular value decomposition"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BE0A97C9-5EF6-411F-B9CC-1477B612542D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?ormbr</title>
+
+</head>
+<body id="GUID-BE0A97C9-5EF6-411F-B9CC-1477B612542D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?ormbr</span></h1>
+<!--Multiplies an arbitrary real matrix by the real orthogonal matrix  Q  or  P T  determined by  ?gebrd .--><div><p class="shortdesc">Multiplies an arbitrary real matrix by the real orthogonal matrix <var>Q </var>or <var>P</var><sup class="power"><var>T</var></sup> determined by <span class="option">?gebrd</span>.</p>
+<div class="section" id="GUID-5149AFCE-D835-47A5-A9F4-B4A6117B2541"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sormbr</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dormbr</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ormbr</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="delim"> [</span><span class="sep">,</span><span class="var">vect</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">side</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-6F7A65DF-07BA-4884-ADB2-8A6E0F8B71FD"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-BFB7DF93-5643-4E76-A0C9-7988A677D517"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given an arbitrary real matrix <var>C</var>, this routine forms one of the matrix products <samp class="codeph"><var>Q</var>*<var>C</var></samp>, <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>C</var></samp>, <samp class="codeph"><var>C</var>*<var>Q</var></samp>,  <samp class="codeph"><var>C</var>*<var>Q</var><sup class="power"><var>T</var></sup></samp>,  <samp class="codeph"><var>P</var>*<var>C</var></samp>, <samp class="codeph"><var>P</var><sup class="power"><var>T</var></sup>*<var>C</var></samp>, <samp class="codeph"><var>C</var>*<var>P</var></samp>,  <samp class="codeph"><var>C</var>*<var>P</var><sup class="power"><var>T</var></sup></samp>, where <var>Q</var> and <var>P</var> are orthogonal matrices computed by a call to <a href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B">gebrd</a>. The routine overwrites the product on <var>C</var>.</p>
+</div>
+<div class="section" id="GUID-74D81E8B-96DD-49DF-ABA9-8C7FE99DF308"><h2 class="sectiontitle">Input Parameters</h2><p>In the descriptions below, <var>r</var> denotes the order of <var>Q</var> or <var>P</var><sup class="power"><var>T</var></sup>: </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>r</var> = <var>m</var></samp>; if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>r</var> = <var>n</var></samp>.</p>
+<dl id="GUID-318DB1C9-B762-42A0-B27A-49500C26DFD4"><dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'Q'</span> or <span class="keyword">'P'</span>. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, then <var>Q</var> or <var>Q</var><sup class="power"><var>T</var></sup> is applied to <var>C</var>. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, then <var>P</var> or <var>P</var><sub><var>T</var></sub> is applied to <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, multipliers are applied to <var>C</var> from the left. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, they are applied to <var>C</var> from the right.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, then <var>Q</var> or <var>P</var> is applied to <var>C</var>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, then <var>Q</var><sup class="power"><var>T</var></sup> or <var>P</var><sup class="power"><var>T</var></sup> is applied to <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in <var>C</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>C</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>One of the dimensions of <var>A</var> in <span class="option">?gebrd</span>:</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, the number of columns in <var>A</var>;</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, the number of rows in <var>A</var>.</p>
+<p>Constraints: <var>m</var><span class="eqsymbol">≥</span> 0, <var>n</var><span class="eqsymbol">≥</span> 0, <var>k</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">c</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sormbr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dormbr</span>. </p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span> is the array <var>a</var> as returned by <span class="option">?gebrd</span>. </p>
+<p>Its second dimension must be at least max(1, min(<var>r</var>,<var>k</var>)) for <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, or max(1, <var>r</var>)) for <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>.</p>
+<p><var>c</var><span>(<var>ldc</var>,*)</span> holds the matrix <var>C</var>. </p>
+<p>Its second dimension must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>. Constraints:</p>
+<p><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>r</var>)
+ if <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>;</p>
+<p><var>lda</var><span class="eqsymbol">≥</span> max(1, min(<var>r</var>,<var>k</var>))
+ if <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>c</var>; <var>ldc</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)
+.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sormbr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dormbr</span>. </p>
+<p>Array, size at least max (1, min(<var>r</var>, <var>k</var>)). </p>
+<p>For <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, the array <var>tauq</var> as returned by <span class="option">?gebrd</span>. For <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, the array <var>taup</var> as returned by <span class="option">?gebrd</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array. Constraints: </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A2AA5546-1938-4299-9912-D550223CA8B0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2D9472ED-1C1D-4652-A3C1-60517473A1BF"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the product <samp class="codeph"><var>Q</var>*<var>C</var></samp>, <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>C</var></samp>, <samp class="codeph"><var>C</var>*<var>Q</var></samp>,  <samp class="codeph"><var>C</var>*<var>Q,</var><sup class="power"><var>T</var></sup></samp>,  <samp class="codeph"><var>P</var>*<var>C</var></samp>, <samp class="codeph"><var>P</var><sup class="power"><var>T</var></sup>*<var>C</var></samp>, <samp class="codeph"><var>C</var>*<var>P</var></samp>, or  <samp class="codeph"><var>C</var>*<var>P</var><sup class="power"><var>T</var></sup></samp>, as specified by <var>vect</var>, <var>side</var>, and <var>trans</var>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-38553FE3-A4D9-407F-94E9-FB6B2AEAD318"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">ormbr</span> interface are the following:</p>
+<dl id="GUID-169AA9F6-2979-49A3-A0D3-DA6C11F1ED36"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>r</var>,min<var>(nq,k)</var>) where</p>
+<p><samp class="codeph"><var>r</var> = <var>nq</var></samp>, if <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, </p>
+<p><samp class="codeph"><var>r</var> = min(<var>nq,k</var>)</samp>, if <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, </p>
+<p><samp class="codeph"><var>nq</var> = <var>m</var></samp>, if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, </p>
+<p><samp class="codeph"><var>nq</var> = <var>n</var></samp>, if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, </p>
+<p><samp class="codeph"><var>k</var> = <var>m</var></samp>, if <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, </p>
+<p><samp class="codeph"><var>k</var> = <var>n</var></samp>, if <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length min(<var>nq,k</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Holds the matrix <var>C</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p>Must be <span class="keyword">'Q'</span> or <span class="keyword">'P'</span>. The default 
+value is 
+<span class="keyword">'Q'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>Must be <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. The default value is <span class="keyword">'L'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2E15A992-AB23-4521-B18B-67F57BBD18D4"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using </p>
+<p><samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp> for <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, or</p>
+<p><samp class="codeph"><var>lwork</var> = <var>m</var>*<var>blocksize</var></samp> for <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, </p>
+<p>where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The computed product differs from the exact product by a matrix <var>E</var> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)*||<var>C</var>||<sub>2</sub></samp>.</p>
+<p>The total number of floating-point operations is approximately</p>
+<p><samp class="codeph">2*<var>n</var>*<var>k</var>(2*<var>m</var> - <var>k</var>)</samp>	if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> and <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>k</var></samp>;</p>
+<p><samp class="codeph">2*<var>m</var>*<var>k</var>(2*<var>n</var> - <var>k</var>)</samp>	if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp> and <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span><var>k</var></samp>;</p>
+<p><samp class="codeph">2*<var>m</var><sup class="power">2</sup>*<var>n</var></samp> 	if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> and <samp class="codeph"><var>m</var> &lt; <var>k</var></samp>;</p>
+<p><samp class="codeph">2*<var>n</var><sup class="power">2</sup>*<var>m</var></samp> 	if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp> and <samp class="codeph"><var>n</var> &lt; <var>k</var></samp>.</p>
+<p>The complex counterpart of this routine is <a href="GUID-DBD590BD-86E0-4A78-927F-C8D85B7BC388.html#GUID-DBD590BD-86E0-4A78-927F-C8D85B7BC388">unmbr</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F.html">Singular Value Decomposition: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

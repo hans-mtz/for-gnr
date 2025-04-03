@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?geqrf"/>
+<meta name="abstract" content="Computes the QR factorization of a general m-by-n matrix."/>
+<meta name="description" content="Computes the QR factorization of a general m-by-n matrix."/>
+<meta name="DC.subject" content="LAPACK routines, QR factorization, ?geqrf, general matrix"/>
+<meta name="keywords" content="LAPACK routines, QR factorization, ?geqrf, general matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?geqrf</title>
+
+</head>
+<body id="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?geqrf</span></h1>
+<!--Computes the QR factorization of a general m-by-n matrix. --><div><p class="shortdesc">Computes the QR factorization of a general m-by-n matrix. </p>
+<div class="section" id="GUID-814D7756-F1E2-4417-A0EA-B4294B8303D4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgeqrf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgeqrf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgeqrf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgeqrf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call geqrf</span><span class="delim">(</span><span class="var">a</span><span class="delim"> [</span><span class="sep">, </span><span class="var">tau</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-E9698D32-846E-42D7-8E8B-03273EDC2655"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A3A0248F-23B3-4E74-BDA2-BB8D23F19A50"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine forms the <var>QR</var> factorization of a 
+  general <var>m</var>-by-<var>n</var> matrix <var>A</var><span> (see <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html#GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5">Orthogonal Factorizations</a>)</span>. No pivoting is performed.</p>
+<p>The routine does not form the matrix <var>Q</var> explicitly. Instead, <var>Q</var> is represented as a product of min(<var>m</var>, <var>n</var>) <dfn class="term">elementary reflectors</dfn>. Routines are provided to work with <var>Q</var> in this representation.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a> for details.</p>
+</div>
+</div>
+<div class="section" id="GUID-F841BA63-D4EE-4C75-9831-BB804CEA8622"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-849CB74D-9D33-4CC5-B123-96C5D4E55614"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>A</var> (<span><samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp></span>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<span><samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp></span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqrf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqrf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqrf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeqrf</span>. </p>
+<p>Arrays: <var>a</var>(<var>lda</var>,*) contains the matrix <var>A</var>. The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><span class="parmname">work</span> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <span class="parmname">a</span>; at least max(1, <span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array (<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var></samp>). </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <a href="#APN_GEQRF">Application Notes</a> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0C3D97D-E883-4070-A1C2-4FE43CC37D12"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0EF926B9-AE4E-4945-A720-6C8C1318986F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the factorization data as follows:</p>
+<p>The elements on and above the diagonal of the array contain the min(<span class="parmname">m</span>,<span class="parmname">n</span>)-by-<var>n</var> upper trapezoidal matrix <var>R</var> (<var>R</var> is upper triangular if <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">n</span>); the elements below the diagonal, with the array <span class="parmname">tau</span>, present the orthogonal matrix <var>Q</var> as a product of min(<span class="parmname">m</span>,<span class="parmname">n</span>) elementary reflectors<span> (see <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations</a>)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqrf</span></p>
+<p><span class="keyword">DOUBLE 
+PRECISION</span> for <span class="option">dgeqrf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqrf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeqrf</span>. </p>
+<p>Array, size at least max (1, min(<var>m</var>, <var>n</var>)). Contains scalars that define elementary reflectors for the matrix <samp class="codeph">Q</samp> in its decomposition in a product of elementary reflectors<span>  (see <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations</a>)</span>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+<p/>
+</div>
+<div class="section" id="GUID-69FF9755-AEC0-4DA4-975B-495558B0F458"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <var>geqrf</var> interface are the following:</p>
+<dl id="GUID-AB7750C7-BB37-4E6A-AAFC-8CFDABD81977"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length min(<var>m,n</var>)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="APN_GEQRF"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp>, where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The computed factorization is the exact factorization of a matrix <var>A</var> + <var>E</var>, where </p>
+<p><samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)||<var>A</var>||<sub>2</sub></samp>.</p>
+<p>The approximate number of floating-point operations for real flavors is</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>(4/3)<var>n</var><sup class="power">3</sup></p></td>
+
+<td valign="top" class="noborder"><p>if <samp class="codeph"><var>m</var> = <var>n</var></samp>,</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(2/3)<var>n</var><sup class="power">2</sup>(3<var>m</var><var>-n</var>)</p></td>
+
+<td valign="top" class="noborder"><p>if <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>,</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(2/3)<var>m</var><sup class="power">2</sup>(3<var>n</var>-<var>m</var>)</p></td>
+
+<td valign="top" class="noborder"><p>if <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>.</p>
+</td>
+</tr></table><p>The number of operations for complex flavors is 4 times greater.</p>
+<p>To solve a set of least squares problems minimizing <samp class="codeph">||<var>A*x</var> - <var>b</var>||<sub>2</sub></samp> for all columns <var>b</var> of a given matrix <var>B</var>, you can call the following:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="option">?geqrf</span> (this routine)</p></td>
+
+<td valign="top" class="noborder"><p>to factorize <samp class="codeph"><var>A</var> = <var>QR</var></samp>;</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-58268D68-68D4-4F4D-A91D-EB0B380CCF3D.html#GUID-58268D68-68D4-4F4D-A91D-EB0B380CCF3D">ormqr</a></p></td>
+
+<td valign="top" class="noborder"><p>to compute <samp class="codeph"><var>C</var> = <var>Q</var></samp><sup class="power"><var>T</var></sup><var>*B</var> (for real matrices);</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-BE377403-F989-4EA1-8DC0-5655CFFDCCDA.html#GUID-BE377403-F989-4EA1-8DC0-5655CFFDCCDA">unmqr</a></p></td>
+
+<td valign="top" class="noborder"><p>to compute <samp class="codeph"><var>C</var> = <var>Q</var></samp><sup class="power"><var>H</var></sup><var>*B</var> (for complex matrices);</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-230D5D74-DB1B-469A-A24E-3F46FC8E41C7.html#GUID-230D5D74-DB1B-469A-A24E-3F46FC8E41C7">trsm</a> (a BLAS routine) </p></td>
+
+<td valign="top" class="noborder"><p>to solve <samp class="codeph"><var>R*X</var> = <var>C</var></samp>.</p>
+</td>
+</tr></table><p>(The columns of the computed <var>X</var> are the least squares solution vectors <var>x</var>.)</p>
+<p>To compute the elements of <var>Q</var> explicitly, call </p>
+<dl id="GUID-8BDD5614-B46A-4654-8CDC-CC6A292F43D5"><dt class="dlterm"><a href="GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2.html#GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2">orgqr</a></dt>
+
+<dd><p>(for real matrices)</p>
+</dd>
+<dt class="dlterm"><a href="GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7.html#GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7">ungqr</a></dt>
+
+<dd><p>(for complex matrices).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"><span class="option">mkl_progress</span></a> </div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

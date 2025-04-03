@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?tpmv"/>
+<meta name="abstract" content="Computes a matrix-vector product using a triangular packed matrix."/>
+<meta name="description" content="Computes a matrix-vector product using a triangular packed matrix."/>
+<meta name="DC.subject" content="?tpmv, BLAS Level 2 routines, triangular matrix, matrix-vector product, packed storage, product:matrix-vector, matrix-vector operation:product"/>
+<meta name="keywords" content="?tpmv, BLAS Level 2 routines, triangular matrix, matrix-vector product, packed storage, product:matrix-vector, matrix-vector operation:product"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6B9E8195-1172-44D5-971A-3D8E15C6B69E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?tpmv</title>
+
+</head>
+<body id="GUID-6B9E8195-1172-44D5-971A-3D8E15C6B69E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?tpmv</span></h1>
+<!--Computes a matrix-vector product using a triangular packed matrix.--><div><p class="shortdesc">Computes a matrix-vector product using a triangular packed matrix.</p>
+<div class="section" id="GUID-5785B6D6-DB9C-43FA-B98A-009D5E077A9D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call stpmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtpmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctpmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztpmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call tpmv</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">, </span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">diag</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-73CEDCBB-5325-4AB7-B689-770479EA4D69"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5A841A4A-FFFB-40F6-9060-FF101700DE75"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?tpmv</span> routines perform one of the matrix-vector operations defined as</p>
+<p><samp class="codeph"><var>x</var> := <var>A</var>*<var>x</var></samp>, or <samp class="codeph"><var>x</var> := <var>A</var>'*<var>x</var></samp>, or <samp class="codeph"><var>x</var> := conjg(<var>A</var>')*<var>x</var></samp>,</p>
+<p>where:</p>
+<p><var>x</var> is an <var>n</var>-element vector,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> unit, or non-unit, upper or lower triangular matrix, supplied in packed form.</p>
+</div>
+<div class="section" id="GUID-97878501-BE26-4765-A934-A8A159C9E54F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-74E470B0-9F10-4CDF-92AA-B00A03AE961E"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the matrix <var>A</var> is upper or lower triangular:</p>
+<span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span><p>if <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, then the matrix is low  triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies the operation:</p>
+<p>if <span><samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp></span>, then <samp class="codeph"><var>x</var> := <var>A</var>*<var>x</var></samp>;</p>
+<p>if <span><samp class="codeph"><span class="parmname">trans</span>= 'T'</samp> or <samp class="codeph">'t'</samp></span>, then <samp class="codeph"><var>x</var> := <var>A</var>'*<var>x</var></samp>;</p>
+<p>if <span><samp class="codeph"><span class="parmname">trans</span>= 'C'</samp> or <samp class="codeph">'c'</samp></span>, then <samp class="codeph"><var>x</var> := conjg(<var>A</var>')*<var>x</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the matrix <var>A</var> is unit triangular:</p>
+<p>if <span><samp class="codeph"><span class="parmname">diag</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>  then the matrix is unit triangular;</p>
+<p>if <span><samp class="codeph"><span class="parmname">diag</span> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span></span>, then the matrix is not unit triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stpmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtpmv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctpmv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztpmv</span></p>
+<p>Array, size at least <samp class="codeph">((<var>n</var>*(<var>n</var> + 1))/2)</samp>. </p>
+<p>Before entry with <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, the array <var>ap</var> must contain the upper triangular matrix packed sequentially, column-by-column, so that <span><samp class="codeph"><var>ap</var>(1)</samp> contains <samp class="codeph"><var>a</var>(1,1)</samp>, <samp class="codeph"><var>ap</var>(2)</samp> and <samp class="codeph"><var>ap</var>(3)</samp> contain <samp class="codeph"><var>a</var>(1,2)</samp> and <samp class="codeph"><var>a</var>(2,2)</samp></span> respectively, and so on. Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the array <var>ap</var> must contain the lower triangular matrix packed sequentially, column-by-column, so that<span><samp class="codeph"><var>ap</var>(1)</samp> contains <samp class="codeph"><var>a</var>(1,1)</samp>, <samp class="codeph"><var>ap</var>(2)</samp> and <samp class="codeph"><var>ap</var>(3)</samp> contain <samp class="codeph"><var>a</var>(2,1)</samp> and <samp class="codeph"><var>a</var>(3,1)</samp></span> respectively, and so on. When <span><samp class="codeph"><span class="parmname">diag</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, the diagonal elements of <var>a</var> are not referenced, but are assumed to be unity.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stpmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtpmv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctpmv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztpmv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of <var>incx</var> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-180038D9-902F-4B20-AB6B-E38F2A6C83E4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7D9BC52B-D419-4E8E-82DA-3E4FD0618B54"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Overwritten with the transformed vector <var>x</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2D03E9BC-E4B5-4BE1-ADDE-7E9659DA8B36"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">tpmv</span> interface are the following:</p>
+<dl id="GUID-3B5AA28B-02F8-4173-94BA-2476A6EAEE37"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Holds the array <var>ap</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'C'</span>, or <span class="keyword">'T'</span>.</p>
+<p>The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'U'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

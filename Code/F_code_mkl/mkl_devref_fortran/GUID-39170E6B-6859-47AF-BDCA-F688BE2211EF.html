@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gelq"/>
+<meta name="abstract" content="Computes an LQ factorization of a general matrix."/>
+<meta name="description" content="Computes an LQ factorization of a general matrix."/>
+<meta name="DC.subject" content="?gelq, sgelq, dgelq, cgelq, zgelq, LAPACK routines"/>
+<meta name="keywords" content="?gelq, sgelq, dgelq, cgelq, zgelq, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9.html#GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-39170E6B-6859-47AF-BDCA-F688BE2211EF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gelq</title>
+
+</head>
+<body id="GUID-39170E6B-6859-47AF-BDCA-F688BE2211EF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gelq</span></h1>
+<!--Computes an LQ factorization of a general matrix.--><div><p class="shortdesc">Computes an LQ factorization of a general matrix.</p>
+<div id="SYNTAX_EF6C2387405342D89440CAC5F788E460"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgelq</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">tsize</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgelq</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">tsize</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgelq</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">tsize</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgelq</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">tsize</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_47AC547C9E7C4A789ED5EDC9A984E7B0"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?gelq</span> routines computes an LQ factorization of an <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>. If the matrix is short and wide (<span class="parmname">n</span> is substantially larger than <span class="parmname">m</span>), a highly scalable algorithm is used to avoid communication overhead.  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The internal format of the elementary reflectors generated by <span class="option">?gelq</span> is only compatible with the <span class="option">?gemlq</span> routine and not any other LQ routines.</p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>An optimized version of <span class="option">?gelq</span> is not available.</p>
+</div>
+</div>
+<div class="section" id="ARGUMENTS_74254E3BFB3E445C8A1D539BBED351CC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-283DE4DB-9DEA-4250-A28A-8020D9FE83AB"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>A</var>. <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of the matrix <var>A</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelq</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelq</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelq</span></p>
+<p>Array, size <samp class="codeph">(<span class="parmname">lda</span>, <span class="parmname">n</span>)</samp>. Contains the <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span><samp class="codeph">max(1, <span class="parmname">m</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tsize</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <span class="parmname">tsize</span><span class="eqsymbol">≥</span> 5, the size of the array <span class="parmname">t</span>. If <span class="parmname">tsize</span> = -1 or <span class="parmname">tsize</span> = -2, then the routine performs a  workspace query. The routine calculates the sizes required for  the <span class="parmname">t</span> and <span class="parmname">work</span> arrays and returns these values as the first entries of the <span class="parmname">t</span> and <span class="parmname">work</span> arrays, without issuing any error message related to <span class="parmname">t</span> or <span class="parmname">work</span> by <span class="option">xerbla</span>. </p>
+<p/>
+<p>If <span class="parmname">tsize</span> = -1, the routine calculates the  optimal size of <span class="parmname">t</span> for optimum performance and returns this value in <samp class="codeph"><span class="parmname">t</span>(1)</samp>. </p>
+<p/>
+<p>If <span class="parmname">tsize</span> = -2, the routine calculates then minimum size required for <span class="parmname">t</span> and returns this value in <samp class="codeph"><span class="parmname">t</span>(1)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the array <span class="parmname">work</span>. If <span class="parmname">lwork</span> = -1 or <span class="parmname">lwork</span> = -2, then the routine performs a workspace query. The routine only calculates the sizes of the <span class="parmname">t</span> and <span class="parmname">work</span> arrays and returns these values as the first entries of the <span class="parmname">t</span> and <span class="parmname">work</span> arrays, without issuing any error message related to <span class="parmname">t</span> or <span class="parmname">work</span> by <span class="option">xerbla</span>. </p>
+<p>If <span class="parmname">lwork</span> = -1, the routine calculates the optimal size of <span class="parmname">work</span> for optimum performance and returns this value in <samp class="codeph"><span class="parmname">work</span>(1)</samp>. </p>
+<p/>
+<p>If <span class="parmname">lwork</span> = -2, the routine calculates the minimum size required for <span class="parmname">work</span> and returns this value in <samp class="codeph"><span class="parmname">work</span>(1)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_8EE8A14FF3C240559F796ECC48F3E1C2"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E241195A-887A-4C78-A45B-79C88DBB145F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelq</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelq</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelq</span></p>
+<p>The elements on and below the diagonal of the array contain the lower trapezoidal matrix <var>L</var> (<var>L</var> is lower triangular if <span class="parmname">m</span><span class="eqsymbol">≤</span><span class="parmname">n</span>). The elements above the diagonal are used to store part of the internal data structure representing <var>Q</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelq</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelq</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelq</span></p>
+<p>Array, size <samp class="codeph">(max(5,<span class="parmname">tsize</span>)).</samp></p>
+<p>If <span class="parmname">info</span> = 0, <samp class="codeph"><span class="parmname">t</span>(1)</samp> returns the optimal  value for <span class="parmname">tsize</span>. You can specify that it return the minimum required value for <span class="parmname">tsize</span> instead - see the <span class="parmname">tsize</span> description for details. The remaining entries of <span class="parmname">t</span> contains part of the data structure used to represent <var>Q</var>. To apply or construct Q, you need to retain <span class="parmname">a</span> and <span class="parmname">t</span> and pass them to other routines.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelq</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelq</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelq</span></p>
+<p>Array, size <samp class="codeph">(max(1,<span class="parmname">lwork</span>))</samp>. </p>
+<p>If <span class="parmname">info</span> = 0, <samp class="codeph"><span class="parmname">work</span>(1)</samp> contains the optimal value for  <span class="parmname">lwork</span>. You can specify that it return the minimum required value for <span class="parmname">lwork</span> instead - see the <span class="parmname">lwork</span> description for details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p><span class="parmname">info</span> = 0 indicates a  successful exit.</p>
+<p><span class="parmname">info</span> &lt; 0:  if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9.html#GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9"><span class="option">?gemlq</span></a> Multiples a matrix C by a real orthogonal or complex unitary matrix Q, as computed by ?gelq.</div></div></div>
+</body>
+</html>

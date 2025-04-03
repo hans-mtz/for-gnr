@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?rot"/>
+<meta name="abstract" content="Applies a planar rotation to two distributed vectors."/>
+<meta name="description" content="Applies a planar rotation to two distributed vectors."/>
+<meta name="DC.subject" content="psrot, ScaLAPACK routines, auxiliary routines, planar rotation, rotation, planar, pdrot"/>
+<meta name="keywords" content="psrot, ScaLAPACK routines, auxiliary routines, planar rotation, rotation, planar, pdrot"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-53D98600-6821-4E79-BD51-3649C6BE82A6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?rot</title>
+
+</head>
+<body id="GUID-53D98600-6821-4E79-BD51-3649C6BE82A6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?rot</span></h1>
+<!-- Applies a planar rotation to two distributed vectors.--><div><p class="shortdesc"> Applies a planar rotation to two distributed vectors.</p>
+<div class="section" id="GUID-4E6D193B-505D-495C-AFFF-BECB9BC2EA2C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psrot</span><span class="delim">(</span><span class="var"> n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdrot</span><span class="delim">(</span><span class="var"> n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-65284A7E-4AD2-4C79-8447-C93F82E16482"><h2 class="sectiontitle">Description</h2><p><span class="option">p?rot</span> applies a planar rotation defined by <span class="parmname">cs</span> and <span class="parmname">sn</span> to the two distributed vectors sub(<span class="parmname">x</span>) and sub(<span class="parmname">y</span>). </p>
+</div>
+<div class="section" id="GUID-D5EDFBCC-CA18-4326-A0BF-EBBB28640FE0"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-400BC96A-7A8A-4C3A-BCB3-66F89C88B75F"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The number of elements to operate on when applying the planar rotation to <span class="parmname">x</span> and <span class="parmname">y</span> (<span class="parmname">n</span><span class="eqsymbol">≥</span>0).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">psrot</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdrot</span></p>
+<p>(local) array of size ( (<span class="parmname">jx</span>-1)*<var>m_x</var> + <span class="parmname">ix</span> + ( <span class="parmname">n</span> - 1 )*abs( <span class="parmname">incx</span> ) )</p>
+<p>This array contains the entries of the distributed vector sub( <span class="parmname">x</span> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The global row index of the submatrix of the distributed matrix <span class="parmname">x</span> to operate on. If <span class="parmname">incx</span> = 1, then it is required that <span class="parmname">ix</span> = <span class="parmname">iy</span>. 1 <span class="eqsymbol">≤</span><span class="parmname">ix</span><span class="eqsymbol">≤</span><var>m_x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jx</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The global column index of the submatrix of the distributed matrix <span class="parmname">x</span> to operate on. If <span class="parmname">incx</span> = <var>m_x</var>, then it is required that <span class="parmname">jx</span> = <span class="parmname">jy</span>. 1 <span class="eqsymbol">≤</span><span class="parmname">ix</span><span class="eqsymbol">≤</span><var>n_x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size 9</p>
+<p>The array descriptor of the distributed matrix <span class="parmname">x</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The global increment for the elements of <span class="parmname">x</span>. Only two values of <span class="parmname">incx</span> are supported in this version, namely 1 and <var>m_x</var>. Moreover, it must hold that <span class="parmname">incx</span> = <var>m_x</var> if <span class="parmname">incy</span> =<var>m_y</var> and that <span class="parmname">incx</span> = 1 if <span class="parmname">incy</span> = 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">psrot</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdrot</span></p>
+<p>(local) array of size ( (<span class="parmname">jy</span>-1)*<var>m_y</var> + <span class="parmname">iy</span> + ( <span class="parmname">n</span> - 1 )*abs( <span class="parmname">incy</span> ) )</p>
+<p>This array contains the entries of the distributed vector sub( <span class="parmname">y</span> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iy</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The global row index of the submatrix of the distributed matrix <span class="parmname">y</span> to operate on. If <span class="parmname">incy</span> = 1, then it is required that <span class="parmname">iy</span> = <span class="parmname">ix</span>. 1 <span class="eqsymbol">≤</span><span class="parmname">iy</span><span class="eqsymbol">≤</span><var>m_y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jy</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The global column index of the submatrix of the distributed matrix <span class="parmname">y</span> to operate on. If <span class="parmname">incy</span> = <var>m_x</var>, then it is required that <span class="parmname">jy</span> = <span class="parmname">jx</span>. 1 <span class="eqsymbol">≤</span><span class="parmname">jy</span><span class="eqsymbol">≤</span><var>m_y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descy</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size 9</p>
+<p>The array descriptor of the distributed matrix <span class="parmname">y</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The global increment for the elements of <span class="parmname">y</span>. Only two values of <span class="parmname">incy</span> are supported in this version, namely 1 and <var>m_y</var>. Moreover, it must hold that <span class="parmname">incy</span> = <var>m_y</var> if <span class="parmname">incx</span> = <var>m_x</var> and that <span class="parmname">incy</span> = 1 if <span class="parmname">incx</span> = 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cs</span>, <span class="parmname">sn</span></dt>
+
+<dd><p>(global) </p>
+<p><span class="keyword">REAL</span> for <span class="option">psrot</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdrot</span></p>
+<p>The parameters defining the properties of the planar rotation. It must hold that 0 <span class="eqsymbol">≤</span><span class="parmname">cs</span>,<span class="parmname">sn</span><span class="eqsymbol">≤</span> 1 and that <span class="parmname">sn</span><sup>2</sup> + <span class="parmname">cs</span><sup>2</sup> = 1. The latter is hardly checked in finite precision arithmetics.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">psrot</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdrot</span></p>
+<p>(local workspace) array of size <span class="parmname">lwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The length of the workspace array <span class="parmname">work</span>.</p>
+<p>If <span class="parmname">incx</span> = 1 and <span class="parmname">incy</span> = 1, then <span class="parmname">lwork</span> = 2*<var>m_x</var></p>
+<p>If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the <span>routine </span>only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the IWORK array, and no error message related to LIWORK is issued by <a href="GUID-E523C816-D553-4D4E-8458-5404828CC07B.html"><span class="option">pxerbla</span></a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-07E31C11-E5F2-4F8F-9645-5B6C3A51587B"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-0FC3B13D-EF21-4528-BA99-A71573F64C8C"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd/>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd/>
+<dt class="dlterm"><span class="parmname">work</span><span>(1)</span></dt>
+
+<dd><p> On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><span>(1)</span> returns the optimal <span class="parmname">lwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>= 0: successful exit</p>
+<p>&lt; 0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+<p>If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>), if the <var>i</var>-th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = -<var>i</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

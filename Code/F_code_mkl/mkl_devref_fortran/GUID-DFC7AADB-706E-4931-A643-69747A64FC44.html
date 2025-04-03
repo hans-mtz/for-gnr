@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Vector Arguments in VM"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FF74FCC9-69BE-400B-B483-ECF09454CD22.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DFC7AADB-706E-4931-A643-69747A64FC44"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Vector Arguments in VM</title>
+
+</head>
+<body id="GUID-DFC7AADB-706E-4931-A643-69747A64FC44">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Vector Arguments in VM</h1>
+<div><p>Vector arguments of classic VM mathematical functions are passed in one-dimensional arrays with unit vector increment. It means that a vector of length 
+      <var>n</var> is passed contiguously in an array 
+      <span class="parmname">a</span> whose values are defined as 
+    </p>
+<p><samp class="codeph">a(1), a(2), ..., a(<var>n</var>)</samp></p>
+<p>. 
+    </p>
+<p>Strided VM mathematical functions allow using positive increments for all input and output vector arguments. 
+    </p>
+<p>To accommodate for arrays with other increments, or more complicated indexing, VM contains auxiliary Pack/Unpack functions that gather the array elements into a contiguous vector and then scatter them after the computation is complete. 
+    </p>
+<p>Generally, if the vector elements are stored in a one-dimensional array 
+      <span class="parmname">a</span> as 
+    </p>
+<p><samp class="codeph">a(m1), a(m2), ..., a(mn)</samp></p>
+<p/>
+<p>and need to be regrouped into an array 
+      <var>y</var> as 
+    </p>
+<p><samp class="codeph">y(k1), y(k2), ..., y(kn), 
+      </samp></p>
+<p>. 
+    </p>
+<p>VM Pack/Unpack functions can use one of the following indexing methods: 
+    </p>
+<div class="section" id="GUID-859AF494-ACD0-48D8-A747-F572C7D6BB19"><h2 class="sectiontitle">Positive Increment Indexing</h2><p><samp class="codeph">kj = 1 + incy * (j - 1), mj = 1 + inca * (j - 1), j = 1, ..., n.</samp></p>
+<p>. 
+      </p>
+<p>Constraint: 
+        <samp class="codeph">incy &gt; 0</samp> and 
+        <samp class="codeph">inca &gt; 0</samp>. 
+      </p>
+<p>For example, setting incy = 1 specifies gathering array elements into a contiguous vector. 
+      </p>
+<p>This method is similar to that used in BLAS, with the exception that negative and zero increments are not permitted. 
+      </p>
+</div>
+<div class="section" id="GUID-2AC2CA8D-B233-4C72-AEAB-BB86947ECC54"><h2 class="sectiontitle">Index Vector Indexing</h2><p><samp class="codeph"> kj = iy(j), mj = ia(j), j = 1 ,..., n 
+        </samp>. 
+      </p>
+<p>. 
+      </p>
+<p>where ia and iy are arrays of length 
+        <var>n</var> that contain index vectors for the input and output arrays 
+        <span class="parmname">a</span> and 
+        <span class="parmname">y</span>, respectively. 
+      </p>
+</div>
+<div class="section" id="GUID-909A896A-3343-4D0B-B305-9D6DFE0B2EA3"><h2 class="sectiontitle">Mask Vector Indexing</h2><p>Indices 
+        <samp class="codeph">kj</samp> , 
+        <samp class="codeph">mj</samp> are such that: 
+      </p>
+<p><samp class="codeph">my(kj) <span class="eqsymbol">≠</span> 0, ma(mj) <span class="eqsymbol">≠</span> 0 , j = 1,..., n 
+        </samp>. 
+      </p>
+<p>. 
+      </p>
+<p>where 
+        <samp class="codeph">ma</samp> and 
+        <samp class="codeph">my</samp> are arrays that contain mask vectors for the input and output arrays 
+        <span class="parmname">a</span> and 
+        <span class="parmname">y</span>, respectively. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FF74FCC9-69BE-400B-B483-ECF09454CD22.html">Appendix B: Routine and Function Arguments</a></div>
+</div>
+<div><div class="relinfo"><strong>Related information</strong><br/>
+<div><a href="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html">Vector Mathematical Functions</a></div>
+</div>
+</div>
+</body>
+</html>

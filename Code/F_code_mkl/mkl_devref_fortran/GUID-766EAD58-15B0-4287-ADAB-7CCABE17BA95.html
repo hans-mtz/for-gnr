@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_spmm"/>
+<meta name="abstract" content="Computes the product of two sparse matrices. The result is stored in a newly allocated sparse matrix."/>
+<meta name="description" content="Computes the product of two sparse matrices. The result is stored in a newly allocated sparse matrix."/>
+<meta name="DC.subject" content="mkl_sparse_spmm"/>
+<meta name="keywords" content="mkl_sparse_spmm"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-766EAD58-15B0-4287-ADAB-7CCABE17BA95"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_spmm</title>
+
+</head>
+<body id="GUID-766EAD58-15B0-4287-ADAB-7CCABE17BA95">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_spmm</span></h1>
+<!--Computes the product of two sparse matrices. The result is stored in a newly allocated sparse matrix.--><div><p class="shortdesc">Computes the product of two sparse matrices. The result is stored in a newly allocated sparse matrix.</p>
+<div class="section" id="GUID-FCF29D3F-2C1E-4B29-9F24-E6EE00C210B2"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_spmm</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">C</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-4E254B61-5410-453E-9103-FDA6ABE1E825"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-95913FFE-597E-45AE-B020-7BDE59D8BCBA"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-AF1F6A42-FE9E-4107-A73A-4AAC72BBEAD4"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_sparse_spmm</span> routine performs a matrix-matrix operation:<pre><var>C</var> := op(<var>A</var>) *<var>B</var></pre></p>
+<p>where <var>A</var>, <var>B</var>, and<var> C</var> are sparse matrices and <var>op</var> is a matrix modifier for matrix <var>A</var>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine is only supported for sparse matrices in CSC, CSR, and BSR formats. It is not supported for sparse matrices in COO format.</p>
+</div>
+</div>
+<div class="section" id="GUID-E5BC5084-A84D-4AFF-B20A-E43118E7087C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-AD6BCB14-4457-488F-B182-FAB84D804D31"><dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><samp class="codeph">C_INT</samp>. 
+          </p>
+<p>Specifies operation 
+            <samp class="codeph">op()</samp> on input matrix. 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_NON_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Non-transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>T</sup></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_CONJUGATE_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Conjugate transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>H</sup></samp>. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>B</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7D20C86F-1A39-406C-8608-DBA4267C96F3"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A81E34BE-BE34-4D4A-951D-DF87ECF71830"><dt class="dlterm"><span class="parmname">C</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the resulting sparse matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stat</span></dt>
+
+<dd><p><samp class="codeph">INTEGER</samp></p>
+<p>Value indicating whether the operation was successful or not, and why: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p>The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html">Inspector-Executor Sparse BLAS Execution Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

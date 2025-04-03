@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?jacobix"/>
+<meta name="abstract" content="Alternative interface for?jacobi function for passing additional data into the objective function."/>
+<meta name="description" content="Alternative interface for?jacobi function for passing additional data into the objective function."/>
+<meta name="DC.subject" content="Jacobian matrix calculation routines, ?jacobix, sjacobix, djacobix"/>
+<meta name="keywords" content="Jacobian matrix calculation routines, ?jacobix, sjacobix, djacobix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FBB163B2-AAAD-4A08-8E83-C66A39F29AE8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-91AEE6DE-974A-457B-9E40-424D575F2CEF.html#GUID-91AEE6DE-974A-457B-9E40-424D575F2CEF"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-654B56A8-AC2D-416B-980E-ED6D78408D9A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?jacobix</title>
+
+</head>
+<body id="GUID-654B56A8-AC2D-416B-980E-ED6D78408D9A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?jacobix</span></h1>
+<!--Alternative interface for ?jacobi  function for passing additional data into the objective function.--><div><p class="shortdesc">Alternative interface for<span class="option">?jacobi</span> function for passing additional data into the objective function.</p>
+<div class="section" id="GUID-688A7A62-6676-416A-8EB8-ACC84B335A6B"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">sjacobix</span><span class="sep">(</span><span class="var">fcn</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">fjac</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">user_data</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">djacobix</span><span class="sep">(</span><span class="var">fcn</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">fjac</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">user_data</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-8B7C5F49-2DB7-45C9-816D-22EE8F123262"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-12EA51D8-9491-4D4C-9F29-5E132BE63F75"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?jacobix</span> routine presents an alternative interface for the <span class="option">?jacobi</span> function that enables you to pass additional data into the objective function <span class="parmname">fcn</span>.</p>
+<p>See calling and usage examples  in the <span class="filepath">examples\solverf\source</span> folderof your Intel&reg; oneAPI Math Kernel Library directory. Specifically, see <span><span class="filepath" id="EXAMPLES__SOLVERF__SOURCE__EX_NLSQP_F90_X_F90">ex_nlsqp_f90_x.f90</span> and <span class="filepath" id="EXAMPLES__SOLVERF__SOURCE__EX_NLSQP_BC_F90_X_F90">ex_nlsqp_bc_f90_x.f90</span></span>.</p>
+</div>
+<div class="section" id="GUID-3F76DEC4-5881-44FA-AC62-705F4856A904"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2B12D90D-A306-4309-8348-EB9BFEDEAFD9"><dt class="dlterm"><span class="parmname">fcn</span></dt>
+
+<dd><p>User-supplied subroutine to evaluate the function that defines the least squares problem. Called as <span class="option">fcn</span> (<span class="parmname">m</span>, <span class="parmname">n</span>, <span class="parmname">x</span>, <span class="parmname">f</span>, <span class="parmname">user_data</span>) with the following parameters:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-3B" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="17.857142857142858%" id="d742031e191"><p>Parameter</p>
+</th>
+<th class="cellrowborder" valign="top" width="29.107142857142858%" id="d742031e194"><p>Type</p>
+</th>
+<th class="row-nocellborder" align="center" valign="top" width="53.0357142857143%" id="d742031e197"><p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="row-nocellborder" colspan="3" align="left" valign="top" headers="d742031e191 d742031e194 d742031e197 "><p>Input Parameters</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="17.857142857142858%" headers="d742031e191 "><p><span class="parmname">m</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="29.107142857142858%" headers="d742031e194 "><p><span class="keyword">INTEGER</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="53.0357142857143%" headers="d742031e197 "><p>Length of <span class="parmname">f</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="17.857142857142858%" headers="d742031e191 "><p><span class="parmname">n</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="29.107142857142858%" headers="d742031e194 "><p><span class="keyword">INTEGER</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="53.0357142857143%" headers="d742031e197 "><p>Length of <span class="parmname">x</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="17.857142857142858%" headers="d742031e191 "><p><span class="parmname">x</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="29.107142857142858%" headers="d742031e194 "><p><span class="keyword">REAL</span> for <span class="option">sjacobix</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">djacobix</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="53.0357142857143%" headers="d742031e197 "><p>Array of size <span class="parmname">n</span>. Vector, at which the function is evaluated. The <span class="option">fcn</span> function should not change this parameter.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="17.857142857142858%" headers="d742031e191 "><p><span class="parmname">user_data</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="29.107142857142858%" headers="d742031e194 "><p><span class="keyword">INTEGER(C_INTPTR_T)</span>, for Fortran</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="53.0357142857143%" headers="d742031e197 "><p>Reference to your additional data, if any, passed by value: <samp class="codeph"><span class="parmname">user_data</span>=%VAL(LOC(<var>data</var>))</samp>. Otherwise, a dummy argument.</p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="3" align="left" valign="top" headers="d742031e191 d742031e194 d742031e197 "><p>Output Parameters</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="17.857142857142858%" headers="d742031e191 "><p><span class="parmname">f</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="29.107142857142858%" headers="d742031e194 "><p><span class="keyword">REAL</span> for <span class="option">sjacobix</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">djacobix</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="53.0357142857143%" headers="d742031e197 "><p>Array of size <span class="parmname">m</span>; contains the function values at <span class="parmname">x</span>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You need to declare <span class="option">fcn</span> as <span class="keyword">EXTERNAL</span> in the calling program.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span> Length of <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span> Length of <var>F</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sjacobix</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">djacobix</span></p>
+<p>Array of size <span class="parmname">n</span>. Vector at which the function is evaluated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">eps</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sjacobix</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">djacobix</span></p>
+<p>Precision of the Jacobian matrix calculation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">user_data</span></dt>
+
+<dd><p><span class="keyword">INTEGER(C_INTPTR_T)</span>. Reference to your additional data, passed by value: <samp class="codeph"><span class="parmname">user_data</span>=%VAL(LOC(<var>data</var>))</samp>. Otherwise, a dummy argument.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-10CAF378-72FB-4FF9-9F27-188D47770FB0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8E9E8B93-B3FD-431C-B083-BF78E45D26FD"><dt class="dlterm"><span class="parmname">fjac</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sjacobix</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">djacobix</span></p>
+<p>Array of size <var>m</var> by <var>n</var>). Contains the Jacobian matrix of the function.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span> Indicates task completion status.</p>
+<ul id="GUID-94C54A0D-BFBB-4878-9022-0709219E1CEB"><li id="LI_2A892258FE4A47A6810676B3F8A0F899"><p><span class="parmname">res</span> = <span class="keyword">TR_SUCCESS</span> - the routine completed the task normally.</p>
+</li>
+<li id="LI_923E3E448385428D8C6AB193A9EDB0DC"><p><span class="parmname">res</span> = <span class="keyword">TR_INVALID_OPTION</span> - there was an error in the input parameters.</p>
+</li>
+<li id="LI_697B6E8A2D05432A87BC4645F0FAF495"><p><span class="parmname">res</span> = <span class="keyword">TR_OUT_OF_MEMORY</span> - there was a memory error.</p>
+</li>
+</ul>
+<p><span class="keyword">TR_SUCCESS</span>, <span class="keyword">TR_INVALID_OPTION</span>, and <span class="keyword">TR_OUT_OF_MEMORY</span> are defined in the <span class="filepath">mkl_rci.fi</span> include file.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FBB163B2-AAAD-4A08-8E83-C66A39F29AE8.html">Jacobian Matrix Calculation Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-91AEE6DE-974A-457B-9E40-424D575F2CEF.html#GUID-91AEE6DE-974A-457B-9E40-424D575F2CEF"><span class="option">?jacobi</span></a> </div></div></div>
+</body>
+</html>

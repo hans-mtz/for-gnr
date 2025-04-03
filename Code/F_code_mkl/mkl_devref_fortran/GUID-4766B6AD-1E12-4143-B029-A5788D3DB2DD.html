@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hemv"/>
+<meta name="abstract" content="Computes a matrix-vector product using a Hermitian matrix."/>
+<meta name="description" content="Computes a matrix-vector product using a Hermitian matrix."/>
+<meta name="DC.subject" content="?hemv, BLAS Level 2 routines, Hermitian matrix, matrix-vector product, matrix-vector operation, product, matrix-vector"/>
+<meta name="keywords" content="?hemv, BLAS Level 2 routines, Hermitian matrix, matrix-vector product, matrix-vector operation, product, matrix-vector"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4766B6AD-1E12-4143-B029-A5788D3DB2DD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hemv</title>
+
+</head>
+<body id="GUID-4766B6AD-1E12-4143-B029-A5788D3DB2DD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hemv</span></h1>
+<!--Computes a matrix-vector product using a Hermitian matrix.--><div><p class="shortdesc">Computes a matrix-vector product using a Hermitian matrix.</p>
+<div class="section" id="GUID-152B72DC-F67F-4D7D-96DA-67AE6AD41718"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chemv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhemv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hemv</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">alpha</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">beta</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-BA9B11B6-C9AD-45D5-BB7F-31A07989F56B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-F06B5070-DD0D-44D0-BB68-C863624771AC"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?hemv</span> routines perform a matrix-vector operation defined as <pre><var>y</var> := <var>alpha</var>*<var>A</var>*<var>x</var> + <var>beta</var>*<var>y</var>,</pre></p>
+<p>where: </p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><var>x</var> and <var>y</var> are <var>n</var>-element vectors,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> Hermitian matrix.</p>
+</div>
+<div class="section" id="GUID-08C417C4-226F-4577-94A1-80D205AB02D4"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-71ECE4C2-AC08-4C42-884C-EB1E6DFD9D84"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the array <span class="parmname">a</span> is used.</p>
+<p>If <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, then the upper triangular of the array <span class="parmname">a</span> is used.</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, then the low triangular of the array <span class="parmname">a</span> is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chemv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhemv</span></p>
+<p>Specifies the scalar <var>alpha</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chemv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhemv</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>n</var>)</samp>.</p>
+<p>Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, the leading   <var>n</var>-by-<var>n</var> upper triangular part of the array <var>a</var>  must contain the upper triangular part of the Hermitian matrix and the strictly lower triangular part of <var>a</var> is not referenced. Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the leading <var>n</var>-by-<var>n</var> lower triangular part of the array <var>a</var> must contain the lower triangular part of the Hermitian matrix and the strictly upper triangular part of <var>a</var> is not referenced. </p>
+<p>The imaginary parts of the diagonal elements need not be set and are assumed to be zero. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>a</var> as declared 
+in the calling (sub)program. The value of <var>lda</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chemv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhemv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element vector <var>x</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of <var>incx</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chemv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhemv</span></p>
+<p>Specifies the scalar <var>beta</var>. When <var>beta</var> is supplied as zero then <var>y</var> need not be set on input. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chemv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhemv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incy</var>))</samp>. Before entry, the incremented array <var>y</var> must contain the <var>n</var>-element vector <var>y</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>y</var>.</p>
+<p>The value of <var>incy</var> must not be zero. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-66566E59-9A52-4207-B123-AF45FA3A0FBC"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D381D720-3346-4055-A02C-9EA9250C4E79"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Overwritten by the updated vector <var>y</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EED8F66F-85EB-4EC2-9978-6F2366C8AF62"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hemv</span> interface are the following:</p>
+<dl id="GUID-B6768A93-02CA-417B-9145-E088E5C2A3A8"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <em><var>A</var></em> of size (<var>n</var>,<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>The default value is 0.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="blacs_setup"/>
+<meta name="abstract" content="Allocates virtual machine and spawns processes."/>
+<meta name="description" content="Allocates virtual machine and spawns processes."/>
+<meta name="DC.subject" content="BLACS, blacs_setup"/>
+<meta name="keywords" content="BLACS, blacs_setup"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html#GUID-7336B11C-2B31-466B-8173-0F84835CC0BD"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9117683B-13C6-4F47-8822-01DBDC017394"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>blacs_setup</title>
+
+</head>
+<body id="GUID-9117683B-13C6-4F47-8822-01DBDC017394">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">blacs_setup</span></h1>
+<!--Allocates virtual machine and spawns processes. --><div><p class="shortdesc">Allocates virtual machine and spawns processes. </p>
+<div class="section" id="GUID-7FC7F6B8-175E-473A-A850-83BE6FFB04E4"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call blacs_setup</span><span class="sep">( </span><span class="var">mypnum</span><span class="sep">, </span><span class="var">nprocs</span><span class="sep"> )</span></p></div></div>
+<div class="section" id="GUID-4573F94C-6770-4FB0-84D2-473B64EFFF69"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nprocs</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.  On the process spawned from the keyboard rather than from <span class="keyword">pvmspawn</span>, this parameter indicates the number of processes to create when building the virtual machine.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-5E12B5F9-D8BC-4D7A-9A1B-0355755B2114"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">mypnum</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.  An integer between 0 and (<span class="parmname">nprocs</span> - 1) that uniquely identifies each process. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nprocs</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>. For all processes other than spawned from the keyboard,  this parameter means the number of processes available for BLACS use.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-ABF6C6C9-888C-4235-BF9C-9AC291B91E35"><h2 class="sectiontitle">Description</h2><p>This routine only accomplishes meaningful work in the PVM BLACS. On all other platforms, it is functionally equivalent to <a class="allformats" href="GUID-BD0F736D-6E2F-4063-BC9F-78C6CCCB70A3.html#GUID-BD0F736D-6E2F-4063-BC9F-78C6CCCB70A3"><span class="option">blacs_pinfo</span></a>. The BLACS assume a static system, that is, the given number of processes does not change. PVM supplies a dynamic system, allowing processes to be added to the system on the fly.</p>
+<p><span class="option">blacs_setup</span> is used to allocate the virtual machine and spawn off processes. It reads in a file called <span class="filepath">blacs_setup.dat</span>, in which the first line must be the name of your executable. The second line is optional, but if it exists, it should be a PVM spawn flag. Legal values at this time are 0 (<span class="keyword">PvmTaskDefault</span>), 4 (<span class="keyword">PvmTaskDebug</span>), 8 (<span class="keyword">PvmTaskTrace</span>), and 12 (<span class="keyword">PvmTaskDebug</span> + <span class="keyword">PvmTaskTrace</span>). The primary reason for this line is to allow the user to easily turn on and off PVM debugging. Additional lines, if any, specify what machines should be added to the current configuration before spawning <var>nprocs</var>-1 processes to the machines in a round robin fashion. </p>
+<p><var>nprocs</var> is input on the process which has no PVM parent (that is, <var>mypnum</var>=0), and both parameters are output for all processes. So, on PVM systems, the call to <span class="option">blacs_pinfo</span> informs you that the virtual machine has not been set up, and a call to <span class="option">blacs_setup</span> then sets up the machine and returns the real values for <var>mypnum</var> and <var>nprocs</var>. </p>
+<p>Note that if the file <span class="filepath">blacs_setup.dat</span> does not exist, the BLACS prompt the user for the executable name, and processes are spawned to the current PVM configuration.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html">Initialization Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html#GUID-7336B11C-2B31-466B-8173-0F84835CC0BD">Examples of BLACS Routines Usage</a></div></div></div>
+</body>
+</html>

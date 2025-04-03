@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vslLeapfrogStream"/>
+<meta name="abstract" content="Initializes a stream using the leapfrog method."/>
+<meta name="description" content="Initializes a stream using the leapfrog method."/>
+<meta name="DC.subject" content="vector statistics functions, LeapfrogStream, VS routines, service routines"/>
+<meta name="keywords" content="vector statistics functions, LeapfrogStream, VS routines, service routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-06D1ED1A-ABCF-43D2-8AC3-8FE98BC38A23"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vslLeapfrogStream</title>
+
+</head>
+<body id="GUID-06D1ED1A-ABCF-43D2-8AC3-8FE98BC38A23">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vslLeapfrogStream</span></h1>
+<!--Initializes a stream using the leapfrog method.--><div><p class="shortdesc">Initializes a stream using the leapfrog method.</p>
+<div class="section" id="GUID-7E060642-8D85-47BF-841A-A3132DF6D15E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status</span><span class="delim"> = </span><span class="kwd">vslleapfrogstream</span><span class="sep">( </span><span class="var">stream</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">nstreams</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-ABB49D9D-89D5-4ED6-AA75-97191EE4F37D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e194"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_vsl.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9F1AAE30-2EE9-45ED-88AB-EEF8F275FA70"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d51210e72" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d51210e75" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d51210e78" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d51210e72"><p><span class="parmname">stream</span></p>
+</td>
+<td valign="top" headers="d51210e75"><p><span class="keyword">TYPE(VSL_STREAM_STATE)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d51210e78"><p>Descriptor of the stream to which leapfrog method is applied</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d51210e72"><p><span class="parmname">k</span></p>
+</td>
+<td valign="top" headers="d51210e75"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d51210e78"><p>Index of the computational node, or stream number</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d51210e72"><p><span class="parmname">nstreams</span></p>
+</td>
+<td valign="top" headers="d51210e75"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d51210e78"><p>Largest number of computational nodes, or stride</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-F50F8E51-3E2B-4A06-800B-BF54619FDBC6"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">vslLeapfrogStream</span> function generates random numbers in  <span>a random stream</span> with non-unit stride. This feature is particularly useful in distributing random numbers from the original stream across the <span class="parmname">nstreams</span> buffers without generating the original random sequence with subsequent manual distribution.</p>
+<p>One of the important applications of the leapfrog method is splitting the original sequence into non-overlapping subsequences across <span class="parmname">nstreams</span> computational nodes. The function initializes the original random stream (see <a href="#SF_FIG10-1">Figure <span>"Leapfrog Method"</span></a>) to generate random numbers for the computational node <span><samp class="codeph"><var>k</var>, 0 <span class="eqsymbol">≤</span><var>k</var> &lt; <var>nstreams</var></samp></span>, where <span><var>nstreams</var></span> is the largest number of computational nodes used.</p>
+<div class="figtop" id="SF_FIG10-1"><span class="figcap">Leapfrog Method</span><p><br/><div class="imagecenter"><img src="GUID-52122C0B-48C1-4BE9-A4C0-D259F4C12744-low.gif" alt="Leapfrog Method" align="center"/></div><br/></p>
+<p><br/><div class="imagecenter"><img src="GUID-52122C0B-48C1-4BE9-A4C0-D259F4C12744-low.gif" width="450" height="160" alt="Leapfrog Method" align="center"/></div><br/></p>
+</div>
+<p>The leapfrog method is supported only for those basic generators that allow splitting elements by the leapfrog method, which is more efficient than simply generating them by a generator with subsequent manual distribution across computational nodes. See <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a>  for details.</p>
+<p>For quasi-random basic generators, the leapfrog method allows generating individual components of quasi-random vectors instead of whole quasi-random vectors. In this case <span class="parmname">nstreams</span> parameter should be equal to the dimension of the quasi-random vector while <span class="parmname">k</span> parameter should be the index of a component to be generated (<samp class="codeph">0 <span class="eqsymbol">≤</span><var>k</var> &lt; <var>nstreams</var></samp>). Other parameters values are not allowed.</p>
+<p>The following code illustrates the initialization of three independent streams using the leapfrog method:</p>
+<div class="tbstyle(tblExampleStandard)" id="CH10EX10-1"><h2 class="sectiontitle">Code for Leapfrog Method</h2><pre>... 
+TYPE(VSL_STREAM_STATE)   ::stream1 
+TYPE(VSL_STREAM_STATE)   ::stream2 
+TYPE(VSL_STREAM_STATE)   ::stream3
+
+! Creating 3 identical streams 
+status = vslnewstream(stream1, VSL_BRNG_MCG31, 174) 
+status = vslcopystream(stream2, stream1) 
+status = vslcopystream(stream3, stream1)
+
+! Leapfrogging the streams 
+status = vslleapfrogstream(stream1, 0, 3) 
+status = vslleapfrogstream(stream2, 1, 3) 
+status = vslleapfrogstream(stream3, 2, 3)
+
+! Generating random numbers 
+... 
+! Deleting the streams 
+status = vsldeletestream(stream1) 
+status = vsldeletestream(stream2) 
+status = vsldeletestream(stream3) 
+...</pre></div>
+</div>
+<div class="section" id="RETURNVALUES_6EAF3F8FDDCF42328291445DE5C15871"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-B5712E49-29A1-4150-86EC-C4CCBC6B71CB"><dt class="dlterm"><span class="keyword">VSL_ERROR_OK, VSL_STATUS_OK</span></dt>
+
+<dd class="ddretval"><p>Indicates no error, execution is successful.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_ERROR_NULL_PTR</span></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is a <span class="keyword">NULL</span> pointer.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_BAD_STREAM</span></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is not a valid random stream.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_LEAPFROG_UNSUPPORTED</span></dt>
+
+<dd class="ddretval"><p>BRNG does not support Leapfrog method.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html">Service Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

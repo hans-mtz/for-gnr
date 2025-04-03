@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vmlSetErrorCallBack"/>
+<meta name="abstract" content="Sets the additional error handler callback function and gets the old callback function."/>
+<meta name="description" content="Sets the additional error handler callback function and gets the old callback function."/>
+<meta name="DC.subject" content="VM functions, service functions, SetErrorCallBack, vmlSetErrorCallBack"/>
+<meta name="keywords" content="VM functions, service functions, SetErrorCallBack, vmlSetErrorCallBack"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D6D98FC7-E01C-4DE1-8EF5-03F1C4DE3981.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-CCD9240B-E4C0-4BC8-BBE9-57FDB9207500"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vmlSetErrorCallBack</title>
+
+</head>
+<body id="GUID-CCD9240B-E4C0-4BC8-BBE9-57FDB9207500">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vmlSetErrorCallBack</span></h1>
+<!--Sets the additional error handler callback function and gets the old callback function.--><div><p class="shortdesc">Sets the additional error handler callback function and gets the old callback function.</p>
+<div class="section" id="GUID-F57C59B4-9E6A-43B4-872B-D6C366F2949D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">oldcallback</span><span class="oper"> = </span><span class="kwd">vmlseterrorcallback</span><span class="sep">( </span><span class="var">callback</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-3ECEC18D-64AD-4680-929D-DFC9CAB6711F"><h2 class="sectiontitle">Include Files</h2><ul id="d163e185"><li id="d163e186"><span class="filepath">mkl_vml.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E703E2C3-910B-4756-8A92-3A4AF2F2AE9E"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1535492e59" width="16.528925619834713%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1535492e62" width="37.1900826446281%"> </th>
+<th valign="bottom" align="left" id="d1535492e63" width="46.28099173553719%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1535492e59"><p><span class="parmname">callback</span></p>
+</td>
+<td valign="top" headers="d1535492e62"><p>Address of the callback function.</p>
+</td>
+<td valign="top" headers="d1535492e63"><p>The callback function has the following format: <pre>INTEGER FUNCTION ERRFUNC(par)</pre><pre> TYPE (ERROR_STRUCTURE) par</pre><pre> ! ...</pre><pre> ! user error processing</pre><pre> ! ...</pre><pre> ERRFUNC = 0</pre><pre> ! if ERRFUNC= 0 - standard VM error handler</pre><pre> ! is called after the callback</pre><pre> ! if ERRFUNC != 0 - standard VM error handler</pre><pre> ! is not called</pre><pre>END</pre></p>
+<p>The passed error structure is defined as follows: <pre>TYPE ERROR_STRUCTURE SEQUENCE</pre><pre>INTEGER*4 ICODE</pre><pre>INTEGER*4 IINDEX</pre><pre><span class="keyword">REAL</span>*8 DBA1</pre><pre><span class="keyword">REAL</span>*8 DBA2</pre><pre><span class="keyword">REAL</span>*8 DBR1</pre><pre><span class="keyword">REAL</span>*8 DBR2</pre><pre>CHARACTER(64) CFUNCNAME</pre><pre>INTEGER*4 IFUNCNAMELEN</pre><pre><span class="keyword">REAL</span>*8 DBA1IM</pre><pre><span class="keyword">REAL</span>*8 DBA2IM</pre><pre><span class="keyword">REAL</span>*8 DBR1IM</pre><pre><span class="keyword">REAL</span>*8 DBR2IM</pre><pre> END TYPE ERROR_STRUCTURE</pre></p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1535492e59"> </td>
+<td valign="top" headers="d1535492e62"> </td>
+<td valign="top" headers="d1535492e63"> </td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-A4A5D6CE-3FA7-4A13-B932-B4D7C6DBD0C4"><h2 class="sectiontitle">Output Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1535492e154" width="16.528925619834713%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1535492e157" width="37.1900826446281%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1535492e160" width="46.28099173553719%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1535492e154"><p><span class="parmname">oldcallback</span></p>
+</td>
+<td valign="top" headers="d1535492e157"><p><span class="keyword">INTEGER</span></p>
+</td>
+<td valign="top" headers="d1535492e160"><p>Address of the former callback function.</p>
+</td>
+</tr>
+</table>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This function does not have a FORTRAN 77 interface due to the use of internal structures.</p>
+</div>
+</div>
+<div class="section" id="GUID-5DC6321E-8CE2-4BBB-BA48-72FF0BB26902"><h2 class="sectiontitle">Description</h2><p>The callback function is called on each VM mathematical function error if <span class="keyword">VML_ERRMODE_CALLBACK</span> error mode is set <span>(see <a href="GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E.html#TBL9-14"><span>"Values of the <var>mode</var> Parameter"</span></a>)</span>.</p>
+<p>Use the <span class="option">vmlSetErrorCallBack()</span> function if you need to define your own callback function instead of default empty callback function.</p>
+<p>The input structure for a callback function contains the following information about the error encountered:</p>
+<ul id="GUID-9F6FB043-FED0-4B73-A33A-F3E0EF04D0CF"><li><p>the input value that caused an error</p>
+</li>
+<li><p>location (array index) of this value</p>
+</li>
+<li><p>the computed result value</p>
+</li>
+<li><p>error code</p>
+</li>
+<li><p>name of the function in which the error occurred.</p>
+</li>
+</ul>
+<p>You can insert your own error processing into the callback function. This may include correcting the passed result values in order to pass them back and resume computation. The standard error handler is called after the callback function only if it returns <span class="parmname">0</span>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D6D98FC7-E01C-4DE1-8EF5-03F1C4DE3981.html">VM Service Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="eigenvalue problems, general matrix, orthogonal matrix, unitary matrix, upper Hessenberg matrix, triangular matrix, quasi-triangular matrix, LAPACK"/>
+<meta name="keywords" content="eigenvalue problems, general matrix, orthogonal matrix, unitary matrix, upper Hessenberg matrix, triangular matrix, quasi-triangular matrix, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B4F91A56-ABE9-4AC6-B1B3-30AAA370ACA2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-83026634-3CE7-4682-A658-91385E6C2165.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF5DAB23-821E-4BA1-B2A6-41D1F69A7DDE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CAFC1A46-A123-4D82-8515-01E92CE63CAA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2B69D8BD-AC07-436C-B808-DD4C00E97FA7.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines</h1>
+<div><p>This 
+      <span>topic 
+      </span> describes LAPACK routines for solving nonsymmetric eigenvalue problems, computing the Schur factorization of general matrices, as well as performing a number of related computational tasks. 
+    </p>
+<p>A 
+      <dfn class="term">nonsymmetric eigenvalue problem</dfn> is as follows: given a nonsymmetric (or non-Hermitian) matrix 
+      <var>A</var>, find the 
+      <dfn class="term">eigenvalues</dfn><span class="eqsymbol">λ</span> and the corresponding 
+      <dfn class="term">eigenvectors</dfn><var>z</var> that satisfy the equation 
+    </p>
+<p><samp class="codeph"><var>Az</var> = 
+        <span class="eqsymbol">λ</span><var>z</var></samp> (right eigenvectors 
+      <var>z</var>) 
+    </p>
+<p>or the equation 
+    </p>
+<p><samp class="codeph"><var>z</var><sup><var>H</var></sup><var>A</var> = 
+        <span class="eqsymbol">λ</span><var>z</var><sup><var>H</var></sup></samp> (left eigenvectors 
+      <var>z</var>). 
+    </p>
+<p>Nonsymmetric eigenvalue problems have the following properties: 
+    </p>
+<ul id="GUID-9A97D091-E2BF-4082-8ACD-5CFEA82A94D2"><li><p>The number of eigenvectors may be less than the matrix order (but is not less than the number of 
+          <dfn class="term">distinct eigenvalues</dfn> of 
+          <var>A</var>). 
+        </p>
+</li>
+<li><p>Eigenvalues may be complex even for a real matrix 
+          <var>A</var>. 
+        </p>
+</li>
+<li><p>If a real nonsymmetric matrix has a complex eigenvalue 
+          <samp class="codeph"><var>a</var>+<var>bi</var></samp> corresponding to an eigenvector 
+          <var>z</var>, then 
+          <samp class="codeph"><var>a</var>-<var>bi</var></samp> is also an eigenvalue. The eigenvalue 
+          <samp class="codeph"><var>a</var>-<var>bi</var></samp> corresponds to the eigenvector whose elements are complex conjugate to the elements of 
+          <var>z</var>. 
+        </p>
+</li>
+</ul>
+<p>To solve a nonsymmetric eigenvalue problem with LAPACK, you usually need to reduce the matrix to the upper Hessenberg form and then solve the eigenvalue problem with the Hessenberg matrix obtained. 
+      <a href="#TBL4-5">Table 
+        <span>"Computational Routines for Solving Nonsymmetric Eigenvalue Problems"</span></a> lists LAPACK routines to reduce the matrix to the upper Hessenberg form by an orthogonal (or unitary) similarity transformation 
+      <samp class="codeph"><var>A</var> = 
+        <var>QHQ</var><sup><var>H</var></sup></samp> as well as routines to solve eigenvalue problems with Hessenberg matrices, forming the Schur factorization of such matrices and computing the corresponding condition numbers.<span> The corresponding routine names in the Fortran 95 interface are without the first symbol. 
+      </span></p>
+<p>The decision tree in 
+      <a href="#LSE_CRNSEP_FIG4-4P">Figure 
+        <span>"Decision Tree: Real Nonsymmetric Eigenvalue Problems"</span></a> helps you choose the right routine or sequence of routines for an eigenvalue problem with a real nonsymmetric matrix. If you need to solve an eigenvalue problem with a complex non-Hermitian matrix, use the decision tree shown in 
+      <a href="#LSE_CRNSEP_FIG4-5P">Figure 
+        <span>"Decision Tree: Complex Non-Hermitian Eigenvalue Problems"</span></a>. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL4-5" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Solving Nonsymmetric Eigenvalue Problems</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="28.71287128712871%" id="d1125228e186"><p>Operation performed 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="35.64356435643564%" id="d1125228e189"><p>Routines for real matrices 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="35.64356435643564%" id="d1125228e192"><p>Routines for complex matrices 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Reduce to Hessenberg form 
+            <samp class="codeph"><var>A</var> = 
+              <var>QHQ</var><sup><var>H</var></sup></samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7"><span class="option">?gehrd</span></a>, 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7"><span class="option">?gehrd</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Generate the matrix Q 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87.html#GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87"><span class="option">?orghr</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435.html#GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435"><span class="option">?unghr</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Apply the matrix Q 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-B4F91A56-ABE9-4AC6-B1B3-30AAA370ACA2.html#GUID-B4F91A56-ABE9-4AC6-B1B3-30AAA370ACA2"><span class="option">?ormhr</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-83026634-3CE7-4682-A658-91385E6C2165.html#GUID-83026634-3CE7-4682-A658-91385E6C2165"><span class="option">?unmhr</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Balance matrix 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C"><span class="option">?gebal</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C"><span class="option">?gebal</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Transform eigenvectors of balanced matrix to those of the original matrix 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6"><span class="option">?gebak</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6"><span class="option">?gebak</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Find eigenvalues and Schur factorization (QR algorithm) 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a class="allformats" href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C"><span class="option">?hseqr</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a class="allformats" href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C"><span class="option">?hseqr</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Find eigenvectors from Hessenberg form (inverse iteration) 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a class="allformats" href="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html#GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D"><span class="option">?hsein</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a class="allformats" href="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html#GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D"><span class="option">?hsein</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Find eigenvectors from Schur factorization 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a class="allformats" href="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html#GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4"><span class="option">?trevc</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a class="allformats" href="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html#GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4"><span class="option">?trevc</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Estimate sensitivities of eigenvalues and eigenvectors 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965.html#GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965"><span class="option">?trsna</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965.html#GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965"><span class="option">?trsna</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Reorder Schur factorization 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-CAFC1A46-A123-4D82-8515-01E92CE63CAA.html#GUID-CAFC1A46-A123-4D82-8515-01E92CE63CAA"><span class="option">?trexc</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-CAFC1A46-A123-4D82-8515-01E92CE63CAA.html#GUID-CAFC1A46-A123-4D82-8515-01E92CE63CAA"><span class="option">?trexc</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Reorder Schur factorization, find the invariant subspace and estimate sensitivities 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28.html#GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28"><span class="option">?trsen</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28.html#GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28"><span class="option">?trsen</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.71287128712871%" headers="d1125228e186 "><p>Solves Sylvester<span class="eqsymbol">'</span>s equation. 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="35.64356435643564%" headers="d1125228e189 "><p><a href="GUID-2B69D8BD-AC07-436C-B808-DD4C00E97FA7.html#GUID-2B69D8BD-AC07-436C-B808-DD4C00E97FA7"><span class="option">?trsyl</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.64356435643564%" headers="d1125228e192 "><p><a href="GUID-2B69D8BD-AC07-436C-B808-DD4C00E97FA7.html#GUID-2B69D8BD-AC07-436C-B808-DD4C00E97FA7"><span class="option">?trsyl</span></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="figimgmap" id="LSE_CRNSEP_FIG4-4P"><strong>Decision Tree: Real Nonsymmetric Eigenvalue Problems</strong><div id="LSE_CRNSEP_FIG4-4"><img usemap="#d1125228e495" border="0" src="GUID-311780B5-57AB-4676-94EE-12C6EE31F3F8-low.jpg" alt="Decision Tree: Real Nonsymmetric Eigenvalue Problems"/>
+<map name="d1125228e495" id="d1125228e495">
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="372,18,429,39"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="371,158,429,174"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="371,308,429,326"/>
+<area href="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html#GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4" alt="trevc" title="trevc" shape="rect" coords="431,307,488,324"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="250,74,305,93"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="193,77,249,92"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="194,92,247,109"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="193,211,248,227"/>
+<area href="GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87.html#GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87" alt="orghr" title="orghr" shape="rect" coords="193,226,252,244"/>
+<area href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6" alt="gebak" title="gebak" shape="rect" coords="193,245,252,261"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="252,211,308,228"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="253,228,308,246"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="194,361,250,377"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="253,361,309,377"/>
+<area href="GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87.html#GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87" alt="orghr" title="orghr" shape="rect" coords="195,378,251,395"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="255,378,309,395"/>
+<area href="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html#GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4" alt="trevc" title="trevc" shape="rect" coords="193,395,248,411"/>
+<area href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6" alt="gebak" title="gebak" shape="rect" coords="252,396,309,410"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="194,439,248,460"/>
+<area href="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html#GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D" alt="hsein" title="hsein" shape="rect" coords="250,440,302,459"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="14,496,68,514"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="72,496,128,512"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="11,514,70,530"/>
+<area href="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html#GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D" alt="hsein" title="hsein" shape="rect" coords="77,513,125,530"/>
+<area href="GUID-B4F91A56-ABE9-4AC6-B1B3-30AAA370ACA2.html#GUID-B4F91A56-ABE9-4AC6-B1B3-30AAA370ACA2" alt="ormhr" title="ormhr" shape="rect" coords="12,529,73,546"/>
+<area href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6" alt="gebak" title="gebak" shape="rect" coords="72,529,130,546"/>
+</map></div></p>
+<p class="figimgmap" id="LSE_CRNSEP_FIG4-5P"><strong>Decision Tree: Complex Non-Hermitian Eigenvalue Problems</strong><div id="LSE_CRNSEP_FIG4-5"><img usemap="#d1125228e804" border="0" src="GUID-229AE1FC-7F59-4647-A326-D9EDA6B8B26C-low.jpg" alt="Decision Tree: Complex Non-Hermitian Eigenvalue Problems"/>
+<map name="d1125228e804" id="d1125228e804">
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="368,19,426,38"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="244,75,307,92"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="188,76,246,91"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="191,92,246,108"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="368,155,425,174"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="190,210,244,226"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="248,209,305,226"/>
+<area href="GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435.html#GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435" alt="unghr" title="unghr" shape="rect" coords="189,227,249,244"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="250,227,307,245"/>
+<area href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6" alt="gebak" title="gebak" shape="rect" coords="188,243,249,261"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="366,304,423,324"/>
+<area href="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html#GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4" alt="trevc" title="trevc" shape="rect" coords="424,304,481,324"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="189,360,246,377"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="250,360,305,376"/>
+<area href="GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435.html#GUID-3D274DD7-1977-4DB7-B39F-DCEC320D3435" alt="unghr" title="unghr" shape="rect" coords="190,378,249,394"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="252,377,305,393"/>
+<area href="GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4.html#GUID-3F64CC21-485F-4485-B9D0-184F3DF08EC4" alt="trevc" title="trevc" shape="rect" coords="191,394,247,409"/>
+<area href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6" alt="gebak" title="gebak" shape="rect" coords="248,394,305,410"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="189,440,245,459"/>
+<area href="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html#GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D" alt="hsein" title="hsein" shape="rect" coords="247,439,299,458"/>
+<area href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C" alt="gebal" title="gebal" shape="rect" coords="9,495,65,511"/>
+<area href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7" alt="gehrd" title="gehrd" shape="rect" coords="68,492,125,511"/>
+<area href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C" alt="hseqr" title="hseqr" shape="rect" coords="9,512,65,528"/>
+<area href="GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D.html#GUID-5A0CBA9E-754E-4738-8ECD-32503DA5398D" alt="hsein" title="hsein" shape="rect" coords="71,512,118,526"/>
+<area href="GUID-83026634-3CE7-4682-A658-91385E6C2165.html#GUID-83026634-3CE7-4682-A658-91385E6C2165" alt="unmhr" title="unmhr" shape="rect" coords="9,529,70,545"/>
+<area href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6" alt="gebak" title="gebak" shape="rect" coords="74,527,127,544"/>
+</map></div></p>
+</div>
+<div/>
+</body>
+</html>

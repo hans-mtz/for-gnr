@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Matrix Storage Schemes for LAPACK Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Matrix Storage Schemes for LAPACK Routines</title>
+
+</head>
+<body id="GUID-BEC328BC-73C7-453F-B375-DB017AD24971">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Matrix Storage Schemes for LAPACK Routines</h1>
+<div><p>LAPACK routines use the following matrix storage schemes: 
+    </p>
+<ul id="GUID-9F205278-BB77-4D34-9A58-404AA6CFCB96"><li><p><dfn class="term">Full storage</dfn>: an 
+          <var>m</var>-by-<var>n</var> matrix 
+          <var>A</var> is stored in a two-dimensional array 
+          <samp class="codeph">a</samp>, with the matrix element 
+          <var>a</var><sub class="subb"><var>i</var><var>j</var></sub> (<var>i</var> = 1..<var>m</var><var>j</var> = 1..<var>n</var>), and stored in the array element 
+          <samp class="codeph">a(<var>i</var>,<var>j</var>)</samp>. 
+        </p>
+</li>
+<li><p><dfn class="term">Packed storage</dfn> scheme allows you to store symmetric, Hermitian, or triangular matrices more compactly: the upper or lower triangle of the matrix is packed by columns in a one-dimensional array. 
+        </p>
+</li>
+<li><p><dfn class="term">Band storage</dfn>: an 
+          <var>m</var>-by-<var>n</var> band matrix with 
+          <var>kl</var> sub-diagonals and 
+          <var>ku</var> superdiagonals is stored compactly in a two-dimensional array 
+          <var>ab</var> with 
+          <samp class="codeph"><var>kl</var>+<var>ku</var>+1</samp> rows and 
+          <var>n</var> columns. Columns of the matrix are stored in the corresponding columns of the array, and 
+          <dfn class="term">diagonals</dfn> of the matrix are stored in rows of the array. 
+        </p>
+</li>
+<li><p><dfn class="term">Rectangular Full Packed (RFP) storage</dfn>: the upper or lower triangle of the matrix is packed combining the full and packed storage schemes. This combination enables using half of the full storage as packed storage while maintaining efficiency by using Level 3 BLAS/LAPACK kernels as the full storage. 
+        </p>
+</li>
+</ul>
+<p>Generally in LAPACK routines, arrays that hold matrices in packed storage have names ending in 
+      <var>p</var>; arrays with matrices in band storage have names ending in 
+      <var>b</var>; arrays with matrices in the RFP storage have names ending in 
+      <var>fp</var>. 
+    </p>
+<p>For more information on matrix storage schemes, see 
+      <a class="allformats" href="GUID-7B11079E-CB74-4A5F-AEEA-D6C9B7181C42.html#GUID-7B11079E-CB74-4A5F-AEEA-D6C9B7181C42">"Matrix Arguments"</a> in 
+      <span>"Routine and Function Arguments"</span>. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html">LAPACK Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

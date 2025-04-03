@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?geqrt2"/>
+<meta name="abstract" content="Computes a QR factorization of a general real or complex matrix using the compact WY representation of Q."/>
+<meta name="description" content="Computes a QR factorization of a general real or complex matrix using the compact WY representation of Q."/>
+<meta name="DC.subject" content="LAPACK routines, QR factorization, ?geqrt2, general matrix"/>
+<meta name="keywords" content="LAPACK routines, QR factorization, ?geqrt2, general matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A84A6E27-95CF-4A70-86A2-897669BB3B1D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?geqrt2</title>
+
+</head>
+<body id="GUID-A84A6E27-95CF-4A70-86A2-897669BB3B1D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?geqrt2</span></h1>
+<!--Computes a QR factorization of a general  real or complex matrix using the compact WY representation of Q.--><div><p class="shortdesc">Computes a QR factorization of a general  real or complex matrix using the compact WY representation of Q.</p>
+<div class="section" id="GUID-814D7756-F1E2-4417-A0EA-B4294B8303D4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgeqrt2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgeqrt2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgeqrt2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgeqrt2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call geqrt2</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="delim"> [</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-E9698D32-846E-42D7-8E8B-03273EDC2655"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A3A0248F-23B3-4E74-BDA2-BB8D23F19A50"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p> The strictly lower triangular matrix <var>V</var> contains the elementary reflectors
+<var>H</var>(<var>i</var>) in the <var>i</var>th column below the diagonal. For example, if <span class="parmname">m</span>=5 and
+<span class="parmname">n</span>=3, the matrix <var>V</var> is</p>
+<p><br/><div class="imagecenter"><img src="GUID-6A873184-E8FC-4B04-BF63-94914BFD4929-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p> where <var>v</var><sub><var>i</var></sub> represents the vector that
+defines <var>H</var>(<var>i</var>). The vectors  are returned in the  lower triangular part of array <span class="parmname">a</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The 1s along the diagonal of
+<var>V</var> are not stored in <span class="parmname">a</span>.</p>
+</div>
+<p> The block reflector <var>H</var> is then given by</p>
+<p><samp class="codeph"><var>H</var> = <var>I</var> - <var>V</var>*<var>T</var>*<var>V</var><sup>T</sup></samp> for real flavors, and</p>
+<p><samp class="codeph"><var>H</var> = <var>I</var> - <var>V</var>*<var>T</var>*<var>V</var><sup>H</sup></samp> for complex flavors,</p>
+<p> where <var>V</var><sup>T</sup> is the transpose and <var>V</var><sup>H</sup> is the conjugate transpose
+of <var>V</var>.</p>
+</div>
+<div class="section" id="GUID-F841BA63-D4EE-4C75-9831-BB804CEA8622"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-849CB74D-9D33-4CC5-B123-96C5D4E55614"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>A</var> (<span class="parmname">m</span> ≥ <span class="parmname">n</span>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<span class="parmname">n</span> ≥ 0). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqrt2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqrt2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqrt2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zgeqrt2</span>. </p>
+<p>Array, size <span><span class="parmname">lda</span> by <span class="parmname">n</span></span>. Array <span class="parmname">a</span> contains the <var>m</var>-by-<var>n</var> matrix <var>A</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <span class="parmname">t</span>; at least max(1, <span class="parmname">n</span>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0C3D97D-E883-4070-A1C2-4FE43CC37D12"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0EF926B9-AE4E-4945-A720-6C8C1318986F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the factorization data as follows:</p>
+<p>The elements on and above the diagonal
+of the array contain the <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular
+matrix <var>R</var>. The elements
+below the diagonal are the columns of <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqrt2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqrt2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqrt2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zgeqrt2</span>. </p>
+<p>Array, size<span> (<span class="parmname">ldt</span>, min(<span class="parmname">m</span>, <span class="parmname">n</span>))</span>.</p>
+<p> The <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular factor of the block reflector.  The elements on and above the diagonal contain
+the block reflector <var>T</var>. The elements below the diagonal
+are not used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful. </p>
+<p>If <span class="parmname">info</span> &lt; 0 and <span class="parmname">info</span> = <var>-i</var>, the <var>i</var>th argument had an illegal value.</p>
+<p><samp class="codeph">If <var>info</var> = -1011</samp>, memory allocation error occurred.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

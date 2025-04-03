@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lagtf"/>
+<meta name="abstract" content="Computes an LU factorization of a matrix T-λ*I, where T is a general tridiagonal matrix, and λ is a scalar, using partial pivoting with row interchanges."/>
+<meta name="description" content="Computes an LU factorization of a matrix T-λ*I, where T is a general tridiagonal matrix, and λ is a scalar, using partial pivoting with row interchanges."/>
+<meta name="DC.subject" content="?lagtf, LAPACK routines, auxiliary routines, LU factorization, tridiagonal matrix, general tridiagonal matrix"/>
+<meta name="keywords" content="?lagtf, LAPACK routines, auxiliary routines, LU factorization, tridiagonal matrix, general tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C455408E-8AA7-4DC1-9CA2-61FB78A3A7E5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lagtf</title>
+
+</head>
+<body id="GUID-C455408E-8AA7-4DC1-9CA2-61FB78A3A7E5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lagtf</span></h1>
+<!--Computes an LU factorization of a matrix T- λ *I, where T is a general tridiagonal matrix, and  λ  is a scalar, using partial pivoting with row interchanges.--><div><p class="shortdesc">Computes an LU factorization of a matrix T-<span class="eqsymbol">λ</span>*I, where T is a general tridiagonal matrix, and <span class="eqsymbol">λ</span> is a scalar, using partial pivoting with row interchanges.</p>
+<div class="section" id="GUID-0FA474E7-8F3F-4294-BD22-02D832EDCE08"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slagtf</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lambda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">tol</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">in</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlagtf</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lambda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">tol</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">in</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-1CEBCD50-8181-4CCA-9316-450571DFC1E5"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-14E80514-1019-4086-8EFA-07BC7065C300"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine factorizes the matrix (<samp class="codeph"><var>T</var> - <var>lambda</var>*<var>I</var></samp>), where <var>T</var> is an <var>n</var>-by-<var>n</var> tridiagonal matrix and <var>lambda</var> is a scalar, as</p>
+<p><samp class="codeph"><var>T</var> - <var>lambda</var>*<var>I</var> = <var>P</var>*<var>L</var>*<var>U</var></samp>,</p>
+<p>where <var>P</var> is a permutation matrix, <var>L</var> is a unit lower tridiagonal matrix with at most one non-zero sub-diagonal elements per column and <var>U</var> is an upper triangular matrix with at most two non-zero super-diagonal elements per column. The factorization is obtained by Gaussian elimination with partial pivoting and implicit row scaling. The parameter <var>lambda</var> is included in the routine so that <span class="option">?lagtf</span> may be used, in conjunction with <span class="option">?lagts</span>, to obtain eigenvectors of <var>T</var> by inverse iteration.</p>
+</div>
+<div class="section" id="GUID-DBF49A01-D7F0-4470-8D6F-358B4D3CE277"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7E3A5B57-C39F-48D6-A962-37073AFCC88A"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>T</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span>, <span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slagtf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlagtf</span></p>
+<p>Arrays, dimension <var>a</var>(<var>n</var>), <var>b</var>(<var>n</var>-1), <var>c</var>(<var>n</var>-1): </p>
+<p>On entry, <var>a</var><span class="keyword">(*)</span> must contain the diagonal elements of the matrix <var>T</var>. </p>
+<p>On entry, <var>b</var><span class="keyword">(*)</span> must contain the (<var>n</var>-1) super-diagonal elements of <var>T</var>. </p>
+<p>On entry, <var>c</var><span class="keyword">(*)</span> must contain the (<var>n</var>-1) sub-diagonal elements of <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slagtf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlagtf</span></p>
+<p>On entry, a relative tolerance used to indicate whether or not the matrix (<var>T</var> - <var>lambda</var>*<var>I</var>) is nearly singular. <var>tol</var> should normally be chose as approximately the largest relative error in the elements of <var>T</var>. For example, if the elements of <var>T</var> are correct to about 4 significant figures, then <var>tol</var> should be set to about <samp class="codeph">5*10<sup>-4</sup></samp>. If <var>tol</var> is supplied as less than eps, where eps is the relative machine precision, then the value eps is used in place of <var>tol</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0EFB274A-1500-478A-A91B-29064FA93F35"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-08F0AEBB-4012-47CB-A9EA-3AE44AD3E016"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, <var>a</var> is overwritten by the <var>n</var> diagonal elements of the upper triangular matrix <var>U</var> of the factorization of <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, <var>b</var> is overwritten by the <var>n</var>-1 super-diagonal elements of the matrix <var>U</var> of the factorization of <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>On exit, <var>c</var> is overwritten by the <var>n</var>-1 sub-diagonal elements of the matrix <var>L</var> of the factorization of <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slagtf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlagtf</span></p>
+<p>Array, dimension (<var>n</var>-2). </p>
+<p>On exit, <var>d</var> is overwritten by the <var>n</var>-2 second super-diagonal elements of the matrix <var>U</var> of the factorization of <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">in</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Array, dimension (<var>n</var>). </p>
+<p>On exit, <var>in</var> contains details of the permutation matrix <var>p</var>. If an interchange occurred at the <span class="keyword">k</span>-th step of the elimination, then <samp class="codeph"><var>in</var>(<span class="keyword">k</span>) = 1</samp>, otherwise <samp class="codeph"><var>in</var>(<span class="keyword">k</span>) = 0</samp>. The element <var>in</var>(<var>n</var>) returns the smallest positive integer <span class="keyword">j</span> such that </p>
+<p><samp class="codeph"><span class="keyword">abs</span>(<var>u</var>(<span class="keyword">j</span>,<span class="keyword">j</span>)) ≤  <span class="keyword">norm</span>((<var>T</var> - <var>lambda</var>*<var>I</var>)(<span class="keyword">j</span>))*<var>tol</var></samp>, </p>
+<p>where norm( <var>A</var>(<span class="keyword">j</span>)) denotes the sum of the absolute values of the <span class="keyword">j</span>-th row of the matrix <var>A</var>. </p>
+<p>If no such <span class="keyword">j</span> exists then <var>in</var>(<var>n</var>) is returned as zero. If <var>in</var>(<var>n</var>) is returned as positive, then a diagonal element of <var>U</var> is small, indicating that (<samp class="codeph"><var>T</var> - <var>lambda</var>*<var>I</var></samp>) is singular or nearly singular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-k</var></samp>, the <var>k-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

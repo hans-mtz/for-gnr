@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Summary Statistics Task Computation Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-44CA0D4A-ADEF-4B94-8032-F90F99E96710.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FE852E94-7AF7-4B20-99F0-69F58DC674B4.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-15139301-7EDD-4873-AEB4-384C81354E9E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Summary Statistics Task Computation Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-15139301-7EDD-4873-AEB4-384C81354E9E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Summary Statistics Task Computation
+    Routines</h1>
+<div><p>Task computation routines calculate statistical
+      estimates on the data provided and parameters held in the task descriptor.
+      After you create the task and initialize its parameters, you can call the
+      computation routines as many times as necessary. 
+      <a href="#TBL10-29">Table 
+        <span>"Summary Statistics Estimates Obtained with 
+          <span class="option">vslSSCompute</span>
+          Routine"</span></a> lists the 
+      <span>respective 
+      </span>statistical estimates. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> The Summary Statistics computation routines do not
+        signal floating-point errors, such as overflow or gradual underflow, or
+        operations with 
+        <span class="keyword">NaNs</span> (except for the
+        missing values in the observations). 
+      </p>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-29" class="NoLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Summary Statistics Estimates Obtained with 
+  <span class="option">vslSSCompute</span>
+  Routine</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="30%" id="d193809e48"><p>Estimate 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="d193809e51"><p>Support of Observations Available in Blocks 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="45%" id="d193809e54"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_MEAN</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of means. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of sums. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_2R_MOM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of the 2<sup>nd</sup> order raw moments. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_2R_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of raw sums of the 2<sup>nd</sup> order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_3R_MOM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of the 3<sup>rd</sup> order raw moments. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_3R_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of raw sums of the 3<sup>rd</sup> order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_4R_MOM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of the 4<sup>th</sup> order raw moments. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_4R_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of raw sums of the 4<sup>th</sup> order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_2C_MOM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of the 2<sup>nd</sup> order central moments. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_2C_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of central sums of the
+            2<sup>nd</sup> order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_3C_MOM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of the 3<sup>rd</sup> order central moments. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_3C_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of central sums of the
+            3<sup>rd</sup> order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_4C_MOM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of the 4<sup>th</sup> order central moments. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_4C_SUM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes the array of central sums of the
+            4<sup>th</sup> order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_KURTOSIS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of kurtosis values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_SKEWNESS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of skewness values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_MIN</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of minimum values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_MAX</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of maximum values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_VARIATION</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes the array of variation coefficients. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_COV</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a covariance matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_COR</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a correlation matrix. The main
+            diagonal of the correlation matrix holds variances of the random vector
+            components. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_CP</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a cross-product matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_POOLED_COV</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a pooled covariance matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_POOLED_MEAN</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes an array of pooled means. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_GROUP_COV</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes group covariance matrices. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_GROUP_MEAN</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes group means. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_QUANTS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes quantiles. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_ORDER_STATS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes order statistics. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_ROBUST_COV</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a robust covariance matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_OUTLIERS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Detects outliers in the dataset. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_PARTIAL_COV</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a partial covariance matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_PARTIAL_COR</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a partial correlation matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_MISSING_VALS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Supports missing values in datasets. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_PARAMTR_COR</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes a parameterized correlation matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_STREAM_QUANTS</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>Yes 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes quantiles for streaming data. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">VSL_SS_MDAD</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p>Computes median absolute deviation. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">
+              VSL_SS_MNAD</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Computes mean absolute deviation. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d193809e48 "><p><span class="keyword">
+              VSL_SS_SORTED_OBSERV</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d193809e51 "><p>No 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d193809e54 "><p> Sorts the dataset by the components of the random vector 
+            <span class="eqsymbol">ξ</span>. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a href="#TBL10-30">Table 
+      <span>"Summary Statistics Computation
+        Method"</span></a>lists estimate calculation methods supported by Intel&reg; oneAPI Math Kernel Library. See the<em>Intel&reg; oneAPI Math Kernel Library Summary Statistics Application Notes</em> document [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SSLNOTES">SS
+      Notes</a>] for a detailed description of the methods. 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-30" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Summary Statistics Computation Method</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="45%" id="d193809e547"><p>Method 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="55.00000000000001%" id="d193809e550"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_FAST</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p>Fast method for calculation of the estimates: 
+          </p>
+<p><ul id="GUID-7F838BF6-0573-46F2-8E70-97665392C039"><li><p/>
+<p>raw/central moments<span>/sums</span>, skewness, kurtosis, variation,
+                variance-covariance/correlation<span>/cross-product</span>
+                matrix 
+              </p>
+</li>
+<li><p>min/max/quantile/order statistics 
+              </p>
+</li>
+<li><p>partial variance-covariance 
+              </p>
+</li>
+<li><p>median/mean absolute deviation 
+              </p>
+</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">
+              VSL_SS_METHOD_FAST_USER_MEAN</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> Fast method for calculation of the estimates
+            given user-defined mean: 
+          </p>
+<p><ul id="GUID-202530ED-B59C-41E7-BDA8-84354E6788A9"><li><p>central moments<span>/sums</span> of 2-4 order, skewness, kurtosis, variation,
+                variance-covariance/correlation<span>/cross-product</span>
+                matrix<span>, mean absolute deviation</span></p>
+</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_1PASS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> One-pass method for calculation of estimates: 
+          </p>
+<p><ul id="GUID-7C5457EB-1365-43A5-BFAD-A722C8ECB69A"><li><p>raw/central moments<span>/sums</span>, skewness, kurtosis, variation,
+                variance-covariance/correlation<span>/cross-product</span>
+                matrix 
+              </p>
+</li>
+<li><p>pooled/group covariance matrix 
+              </p>
+</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_TBS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> TBS method for robust estimation of covariance
+            and mean 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_BACON</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> BACON method for detection of multivariate
+            outliers 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_MI</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> Multiple imputation method for support of
+            missing values 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_SD</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> Spectral decomposition method for
+            parameterization of a correlation matrix 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_SQUANTS_ZW</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p> Zhang-Wang (ZW) method for quantile estimation
+            for streaming data 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_SQUANTS_ZW_FAST</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p>Fast ZW method for quantile estimation for
+            streaming data 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d193809e547 "><p><span class="keyword">VSL_SS_METHOD_RADIX</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d193809e550 "><p>Radix method for dataset sorting 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> You can calculate all requested estimates in one call
+    of the routine. For example, to compute a kurtosis and covariance matrix using
+    a fast method, pass a combination of the pre-defined parameters into the 
+  <span class="option">Compute</span> routine as
+  shown in the example below: 
+  </p>
+<p><pre>...
+method = VSL_SS_METHOD_FAST;
+task_params = VSL_SS_KURTOSIS|VSL_SS_COV;
+…
+status = vsldSSCompute( task, task_params, method );</pre></p>
+<p> To compute statistical estimates for the next block of
+    observations, you can do one of the following: 
+  <ul id="GUID-12471212-496F-4A80-8002-606D95D420E0"><li><p>copy the observations to memory, starting with the
+        address available to the task 
+      </p>
+</li>
+<li><p>use one of the appropriate 
+        <a href="GUID-9D27013C-5463-4596-BB93-7E9993ADE2D6.html#GUID-9D27013C-5463-4596-BB93-7E9993ADE2D6">Editors</a> to modify the pointer
+        to the new dataset in the task. 
+      </p>
+</li>
+</ul>
+ The library does not detect your changes of the dataset and computed
+  statistical estimates. To obtain statistical estimates for a new matrix, change
+  the observations and initialize relevant arrays. You can follow this procedure
+  to compute statistical estimates for observations that come in portions. See 
+  <a href="#TBL10-29">Table 
+    <span>"Summary Statistics Estimates Obtained with 
+      <span class="option">vslSSCompute</span>
+      Routine"</span></a>for information on such observations supported by the Intel&reg; oneAPI Math Kernel Library Summary Statistics estimators.</p>
+<p>To modify parameters of the task using the Task
+    Editors, set the address of the targeted matrix of the observations or change
+    the respective vector component indices. After you complete editing the task
+    parameters, you can compute statistical estimates in the modified environment. 
+  </p>
+<p> If the task completes successfully, the computation
+    routine returns the zero status code. If an error is detected, the computation
+    routine returns an error code. In particular, an error status code is returned
+    in the following cases: 
+  </p>
+<ul id="GUID-7C41A3C7-39CE-4B28-9313-A3F675B0661C"><li><p> the task pointer is 
+        <span class="keyword">NULL</span></p>
+</li>
+<li><p> memory allocation has failed 
+      </p>
+</li>
+<li><p> the calculation has failed for some other reason 
+      </p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can use the 
+      <span class="keyword">NULL</span> task pointer in calls to
+      editor routines. In this case, the routine is terminated and no system crash
+      occurs. 
+    </p>
+</div>
+</div>
+<div/>
+</body>
+</html>

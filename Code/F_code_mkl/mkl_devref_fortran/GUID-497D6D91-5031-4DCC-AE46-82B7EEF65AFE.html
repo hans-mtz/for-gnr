@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Random Number Generators Naming Conventions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFB5DEF8-A870-4508-B796-55D2CAE9689B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-497D6D91-5031-4DCC-AE46-82B7EEF65AFE"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Random Number Generators Naming Conventions</title>
+
+</head>
+<body id="GUID-497D6D91-5031-4DCC-AE46-82B7EEF65AFE">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Random Number Generators Naming Conventions</h1>
+<div><p>The names of the 
+      routines in VS random number generators are lowercase (<span class="option">virnguniform</span>). The names are not case-sensitive. 
+  </p>
+<p>The names of generator routines have the following structure: 
+  </p>
+<p><samp class="codeph"><span class="option">v</span>&lt;<var>type of result</var>&gt;<span class="option">rng</span>&lt;<var>distribution</var>&gt;</samp><span class="eqsymbol"> </span><span class="eqsymbol"> </span><span class="eqsymbol"> </span></p>
+<p>where 
+  </p>
+<ul id="GUID-64A656AF-98F8-4C16-AF0A-E59D07215936"><li><p><span class="option">v</span> is the prefix of a VS vector function. 
+  </p>
+</li>
+<li><p>&lt;<var>type of result</var>&gt; is either 
+      <var class="varnamett">s</var>, 
+      <var class="varnamett">d</var>, or 
+      <var class="varnamett">i</var> and specifies one of the following types: 
+    </p>
+<dl id="GUID-87992353-6AF4-45B5-B523-5A43A25F19B2"><dt class="dlterm"><var class="varnamett">s</var></dt>
+
+<dd><p><span class="option">REAL</span></p>
+</dd>
+<dt class="dlterm"><var class="varnamett">d</var></dt>
+
+<dd><p><span class="option">DOUBLE PRECISION</span></p>
+</dd>
+<dt class="dlterm"><var class="varnamett">i</var></dt>
+
+<dd><p><span class="option">INTEGER</span></p>
+<p>Prefixes 
+            <var class="varnamett">s</var> and 
+            <var class="varnamett">d</var> apply to continuous distributions only, prefix 
+            <var class="varnamett">i</var> applies only to discrete case. 
+          </p>
+</dd>
+</dl>
+</li>
+<li><p><span class="option">rng</span> indicates that the routine is a random generator. 
+  </p>
+</li>
+<li><p><var>&lt;distribution&gt;</var> specifies the type of statistical distribution. 
+    </p>
+</li>
+</ul>
+<p>Names of service routines follow the template below: 
+    <pre><span class="option">vsl</span>&lt;<var>name</var>&gt;</pre></p>
+<p>where 
+  </p>
+<ul id="GUID-6F1B026E-A8CA-41DF-BC23-0E3D9B39D1C3"><li><p><span class="option">vsl</span> is the prefix of a VS service function. 
+  </p>
+</li>
+<li><p><var>&lt;name&gt;</var> contains a short function name. 
+    </p>
+</li>
+</ul>
+<p> For a more detailed description of service routines, refer to 
+    <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html#GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB">Service Routines</a> and 
+    <a href="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html#GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62">Advanced Service Routines</a>. 
+  </p>
+<p>The prototype of each generator routine corresponding to a given probability distribution fits the following structure: 
+    <pre>status = &lt;<var>function name</var>&gt;( <span class="parmname">method</span>, <span class="parmname">stream</span>, <span class="parmname">n</span>, <span class="parmname">r</span>, [&lt;<var>distribution parameters</var>&gt;] )</pre></p>
+<p>where 
+  </p>
+<ul class="bullet" id="GUID-C73C5593-D568-4DE9-8FAF-D80C3F59910A"><li><p><span class="parmname">method</span> defines the method of generation. A detailed description of this parameter can be found in table 
+        <a href="#TBL10-1"><span>"Values of 
+            <samp class="codeph">&lt;<var>method</var>&gt;</samp> in 
+            <span class="parmname">method</span> parameter"</span></a>. See 
+        <span>below</span>, where the structure of the 
+        <span class="parmname">method</span> parameter name is explained. 
+      </p>
+</li>
+<li><p><span class="parmname">stream</span> defines the descriptor of the random stream and must have a non-zero value. Random streams, descriptors, and their usage are discussed further in 
+        <a href="GUID-19EC10DA-0064-4AA2-BA7F-F66BABA35312.html#GUID-19EC10DA-0064-4AA2-BA7F-F66BABA35312">Random Streams</a> and 
+        <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html#GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB">Service Routines</a>. 
+      </p>
+</li>
+<li><p><span class="parmname">n</span> defines the number of random values to be generated. If 
+        <var>n</var> is less than or equal to zero, no values are generated. Furthermore, if 
+        <var>n</var> is negative, an error condition is set. 
+      </p>
+</li>
+<li><p><span class="parmname">r</span> defines the destination array for the generated numbers. The dimension of the array must be large enough to store at least 
+        <var>n</var> random numbers. 
+      </p>
+</li>
+<li><p><span class="parmname">status</span> defines the error status of a VS routine. See 
+        <a href="GUID-9E874ACA-44BF-4E38-9F85-C2A4B2354D45.html#GUID-9E874ACA-44BF-4E38-9F85-C2A4B2354D45">Error Reporting</a> for a detailed description of error status values. 
+      </p>
+</li>
+</ul>
+<p>Additional parameters included into 
+    <var>&lt;distribution parameters&gt;</var> field are individual for each generator routine and are described in detail in 
+    <a href="GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9.html#GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9">Distribution Generators</a>. 
+  </p>
+<p>To invoke a distribution generator, use a call to the respective VS routine. For example, to obtain a vector 
+    <var>r</var>, composed of 
+    <var>n</var> independent and identically distributed random numbers with normal (Gaussian) distribution, that have the mean value 
+    <var>a</var> and standard deviation 
+    <var>sigma</var>, write the following: 
+  </p>
+<p><pre><span class="parmname">status</span> = <span class="option">vsrnggaussian</span>( <span class="parmname">method</span>, <span class="parmname">stream</span>, <span class="parmname">n</span>, <span class="parmname">r</span>, <span class="parmname">a</span>, <span class="parmname">sigma</span> )</pre></p>
+<p id="METHOD_NAME">The name of a 
+    <span class="parmname">method</span> parameter has the following structure: 
+    <pre><span class="keyword">VSL_RNG_METHOD_</span><span class="parmname">method</span>&lt;<var>distribution</var>&gt;_&lt;<var>method</var>&gt;</pre><pre><span class="keyword">VSL_RNG_METHOD_</span>&lt;<var>distribution</var>&gt;_&lt;<var>method</var>&gt;_<span class="keyword">ACCURATE</span></pre></p>
+<p>where 
+  </p>
+<ul id="GUID-90E7379F-DD37-4B06-AAA6-288FF16A4E88"><li><samp class="codeph">&lt;<var>distribution</var>&gt; 
+      </samp> is the probability distribution. 
+    </li>
+<li><samp class="codeph">&lt;<var>method</var>&gt; 
+      </samp> is the method name. 
+    </li>
+</ul>
+<p>Type of the name structure for the 
+    <span class="parmname">method</span> parameter corresponds to fast and accurate modes of random number generation (see 
+    <a href="GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9.html#GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9">"Distribution Generators"</a> and 
+    <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a> for details). 
+  </p>
+<p>Method names 
+    <samp class="codeph">VSL_RNG_METHOD_&lt;<var>distribution</var>&gt;_&lt;<var>method</var>&gt;</samp></p>
+<p> and 
+  </p>
+<p><samp class="codeph">VSL_RNG_METHOD_&lt;<var>distribution</var>&gt;_&lt;<var>method</var>&gt;_<span class="keyword">ACCURATE</span></samp></p>
+<p> should be used with 
+  </p>
+<p><samp class="codeph"><span class="option">v</span>&lt;<var>precision</var>&gt;<span class="option">Rng</span>&lt;<var>distribution</var>&gt;</samp></p>
+<p> function only, where 
+  </p>
+<ul id="GUID-3BB66068-1D39-4178-9431-0A229D07D763"><li><samp class="codeph">&lt;<var>precision</var>&gt; is</samp><dl id="GUID-7057BB5A-9F8C-45B7-A6C8-D31211AD276B"><dt class="dlterm"><var>s</var></dt>
+
+<dd>for single precision continuous distribution 
+          </dd>
+<dt class="dlterm"><var>d</var></dt>
+
+<dd>for double precision continuous distribution 
+          </dd>
+<dt class="dlterm"><var>i</var></dt>
+
+<dd>for discrete distribution 
+          </dd>
+</dl>
+</li>
+<li><samp class="codeph">&lt;<var>distribution</var>&gt;</samp> is the probability distribution. 
+    </li>
+</ul>
+<p> is the probability distribution.<a href="#TBL10-1">Table 
+      <span>"Values of 
+        <samp class="codeph">&lt;<var>method</var>&gt;</samp> in 
+        <span class="parmname">method</span> parameter"</span></a> provides specific predefined values of the 
+    <span class="parmname">method</span> name. The third column contains names of the functions that use the given method. 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-1" class="NoLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Values of 
+    <samp class="codeph">&lt;<var>method</var>&gt;</samp> in 
+    <span class="parmname">method</span> parameter</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="18.867924528301884%" id="d573708e459"><p>Method 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="61.13207547169811%" id="d573708e462"><p>Short Description 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="20%" id="d573708e465"><p>Functions 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">STD</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Standard method. Currently there is only one method for these functions. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><span class="option">Uniform</span> (<a href="GUID-D7AD317E-34EC-4789-8027-01D0E194FAC1.html#GUID-D7AD317E-34EC-4789-8027-01D0E194FAC1"><span class="option">continuous</span></a>), 
+          <span class="option">Uniform</span> (<a href="GUID-46FE7EF1-CE00-42CB-891D-17FD96062255.html#GUID-46FE7EF1-CE00-42CB-891D-17FD96062255"><span class="option">discrete</span></a>), 
+          <a href="GUID-2F560822-06F8-48C4-A925-8E4C978C83C1.html#GUID-2F560822-06F8-48C4-A925-8E4C978C83C1"><span class="option">UniformBits</span></a>, 
+          <a href="GUID-822F4BD0-7A13-4E32-8138-ECC32E8D2595.html#GUID-822F4BD0-7A13-4E32-8138-ECC32E8D2595"><span class="option">UniformBits32</span></a>, 
+          <a href="GUID-EC7348DB-8DAD-4A9E-8845-C856AACBC92D.html#GUID-EC7348DB-8DAD-4A9E-8845-C856AACBC92D"><span class="option">UniformBits64</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">BOXMULLER</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p><span class="keyword">BOXMULLER</span> generates normally distributed random number 
+            <var>x</var> thru the pair of uniformly distributed numbers 
+            <var>u</var><sub>1</sub> and 
+            <var>u</var><sub>2</sub> according to the formula: 
+          </p>
+<p><img src="GUID-6BFFD880-FE67-4C1B-AD8E-F1B61F434E41-low.jpg" alt="Equation" align="center" class=".eq"/></p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4.html#GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4"><span class="option">Gaussian</span></a>, 
+            <a href="GUID-1595CFFA-4878-4BCD-9C1D-2034731C1F4F.html#GUID-1595CFFA-4878-4BCD-9C1D-2034731C1F4F"><span class="option">GaussianMV</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">BOXMULLER2</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p><span class="keyword">BOXMULLER2</span> generates normally distributed random numbers 
+            <var>x</var><sub>1</sub> and 
+            <var>x</var><sub>2</sub> thru the pair of uniformly distributed numbers 
+            <var>u</var><sub>1</sub> and 
+            <var>u</var><sub>2</sub> according to the formulas:<br/><div class="imagecenter"><img src="GUID-1299DBD4-66AD-4C8A-A3D5-5F9732EBBE46-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/><br/><div class="imagecenter"><img src="GUID-A097077D-5CEA-479B-9A9E-C53D69A67645-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4.html#GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4"><span class="option">Gaussian</span></a>, 
+            <a href="GUID-1595CFFA-4878-4BCD-9C1D-2034731C1F4F.html#GUID-1595CFFA-4878-4BCD-9C1D-2034731C1F4F"><span class="option">GaussianMV</span></a>, 
+            <a href="GUID-C564D9DC-FDF0-426B-9C9D-1740969BDBEC.html#GUID-C564D9DC-FDF0-426B-9C9D-1740969BDBEC"><span class="option">Lognormal</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">ICDF</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Inverse cumulative distribution function method. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-4C8925AA-53F1-4995-AA30-E83D11EDB9D1.html#GUID-4C8925AA-53F1-4995-AA30-E83D11EDB9D1"><span class="option">Exponential</span></a>, 
+            <a href="GUID-82CA78E7-40B9-4397-A5D0-6438B0AFEA03.html#GUID-82CA78E7-40B9-4397-A5D0-6438B0AFEA03"><span class="option">Laplace</span></a>, 
+            <a href="GUID-ADDE9E9C-1CF4-4D93-8036-AB56C960F9AD.html#GUID-ADDE9E9C-1CF4-4D93-8036-AB56C960F9AD"><span class="option">Weibull</span></a>, 
+            <a href="GUID-116EDA6A-10CC-43B9-A0D1-F66171CE039A.html#GUID-116EDA6A-10CC-43B9-A0D1-F66171CE039A"><span class="option">Cauchy</span></a>, 
+            <a href="GUID-E46BDF2E-5DCF-465A-8A85-3D7ACDA8A326.html#GUID-E46BDF2E-5DCF-465A-8A85-3D7ACDA8A326"><span class="option">Rayleigh</span></a>, 
+            <a href="GUID-78515EFB-B2C5-470A-9F9F-159479965212.html#GUID-78515EFB-B2C5-470A-9F9F-159479965212"><span class="option">Gumbel</span></a>, 
+            <a href="GUID-5AE1F70B-299C-44E1-B78C-5D055A326BEB.html#GUID-5AE1F70B-299C-44E1-B78C-5D055A326BEB"><span class="option">Bernoulli</span></a>, 
+            <a href="GUID-33316B72-9E47-46E8-B6EE-0B9055B6015F.html#GUID-33316B72-9E47-46E8-B6EE-0B9055B6015F"><span class="option">Geometric</span></a>, 
+            <a href="GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4.html#GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4"><span class="option">Gaussian</span></a>, 
+            <a href="GUID-1595CFFA-4878-4BCD-9C1D-2034731C1F4F.html#GUID-1595CFFA-4878-4BCD-9C1D-2034731C1F4F"><span class="option">GaussianMV</span>, 
+            </a><a href="GUID-C564D9DC-FDF0-426B-9C9D-1740969BDBEC.html#GUID-C564D9DC-FDF0-426B-9C9D-1740969BDBEC"><span class="option">Lognormal</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">GNORM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>For 
+            <span class="eqsymbol">α</span> &gt; 1, a gamma distributed random number is generated as a cube of properly scaled normal random number; for 0.6 
+            <span class="eqsymbol">≤</span><span class="eqsymbol">α</span> &lt; 1, a gamma distributed random number is generated using rejection from Weibull distribution; for 
+            <span class="eqsymbol">α</span> &lt; 0.6, a gamma distributed random number is obtained using transformation of exponential power distribution; for 
+            <span class="eqsymbol">α</span> = 1, gamma distribution is reduced to exponential distribution. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-980B3240-6CE4-47DD-B3DE-B6D77C208F71.html#GUID-980B3240-6CE4-47DD-B3DE-B6D77C208F71"><span class="option">Gamma</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">CJA</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>For 
+            <samp class="codeph"><var>min</var>(<var>p</var>, 
+              <var>q</var>) &gt; 1</samp>, Cheng method is used; for 
+            <samp class="codeph"><var>min</var>(<var>p</var>, 
+              <var>q</var>) &lt; 1</samp>, Johnk method is used, if 
+            <samp class="codeph"><var>q</var> + 
+              <var>K</var>·<var>p</var><sup>2</sup>+ 
+              <var>C</var><span class="eqsymbol">≤</span> 0</samp> (<samp class="codeph"><var>K</var></samp> = 0.852..., 
+            <samp class="codeph"><var>C</var></samp>=-0.956...) otherwise, Atkinson switching algorithm is used; for 
+            <samp class="codeph"><var>max</var>(<var>p</var>, 
+              <var>q</var>) &lt; 1</samp>, method of Johnk is used; for 
+            <samp class="codeph"><var>min</var>(<var>p</var>, 
+              <var>q</var>) &lt; 1, 
+              <var>max</var>(<var>p</var>, 
+              <var>q</var>)&gt; 1</samp>, Atkinson switching algorithm is used (CJA stands for the first letters of Cheng, Johnk, Atkinson); for 
+            <samp class="codeph"><var>p</var> = 1</samp> or 
+            <samp class="codeph"><var>q</var> = 1</samp>, inverse cumulative distribution function method is used;for 
+            <samp class="codeph"><var>p</var> = 1 and 
+              <var>q</var> = 1</samp>, beta distribution is reduced to uniform distribution. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-CD24FF51-197B-40A1-83A8-514788192ACD.html#GUID-CD24FF51-197B-40A1-83A8-514788192ACD"><span class="option">Beta</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">BTPE</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Acceptance/rejection method for 
+          </p>
+<p><samp class="codeph"><span class="parmname">ntrial</span>·min(<var>p</var>,1 - 
+              <var>p</var>)<span class="eqsymbol">≥</span> 30</samp></p>
+<p>with decomposition into 4 regions: 
+          <ul class="dash" id="GUID-E9F7B7FD-DD9C-488B-82CC-327D9A013C87"><li><p>2 parallelograms 
+              </p>
+</li>
+<li><p>triangle 
+              </p>
+</li>
+<li><p>left exponential tail 
+              </p>
+</li>
+<li><p>right exponential tail 
+              </p>
+</li>
+</ul>
+</p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-FFDE0311-D89C-4AF1-A404-F5D9A8385BAE.html#GUID-FFDE0311-D89C-4AF1-A404-F5D9A8385BAE"><span class="option">Binomial</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">H2PE</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Acceptance/rejection method for large mode of distribution with decomposition into 3 regions: 
+          <ul class="dash" id="GUID-A676842F-5806-4E9A-A472-6ACC9337F72B"><li><p>rectangular 
+              </p>
+</li>
+<li><p>left exponential tail 
+              </p>
+</li>
+<li><p>right exponential tail 
+              </p>
+</li>
+</ul>
+</p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-DBF2550A-21E7-4A4C-852D-1D61782FD64B.html#GUID-DBF2550A-21E7-4A4C-852D-1D61782FD64B"><span class="option">Hypergeometric</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">PTPE</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Acceptance/rejection method for 
+            <span class="eqsymbol">λ</span><span class="eqsymbol">≥</span> 27 with decomposition into 4 regions: 
+          <ul class="dash" id="GUID-F3D3E9AA-4C67-4A2A-9C6A-4D7F15990E7C"><li><p>2 parallelograms 
+              </p>
+</li>
+<li><p>triangle 
+              </p>
+</li>
+<li><p>left exponential tail 
+              </p>
+</li>
+<li><p>right exponential tail; 
+              </p>
+</li>
+</ul>
+otherwise, table lookup method is used. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-481CC941-38A0-4D59-B2FE-8D365676188B.html#GUID-481CC941-38A0-4D59-B2FE-8D365676188B"><span class="option">Poisson</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">POISNORM</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>for 
+            <span class="eqsymbol">λ</span><span class="eqsymbol">≥</span> 1, method based on Poisson inverse CDF approximation by Gaussian inverse CDF; 
+          </p>
+<p>for 
+            <span class="eqsymbol">λ</span> &lt; 1, table lookup method is used. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-481CC941-38A0-4D59-B2FE-8D365676188B.html#GUID-481CC941-38A0-4D59-B2FE-8D365676188B"><span class="option">Poisson</span></a>, 
+            <a href="GUID-564BE4F0-009A-414A-AE5F-7D6D9B4757D7.html#GUID-564BE4F0-009A-414A-AE5F-7D6D9B4757D7"><span class="option">PoissonV</span></a></p>
+<p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">NBAR</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Acceptance/rejection method for , 
+          </p>
+<p><br/><div class="imagecenter"><img src="GUID-0EB48D85-C276-418D-98DA-9C8ADE8FBCAE-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>with decomposition into 5 regions: 
+          <ul class="dash" id="GUID-33674CCE-B6EE-445B-90EB-9AEBCB3AA2F2"><li><p>rectangular 
+              </p>
+</li>
+<li><p>2 trapezoid 
+              </p>
+</li>
+<li><p>left exponential tail 
+              </p>
+</li>
+<li><p>right exponential tail 
+              </p>
+</li>
+</ul>
+</p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-F1701FDA-38DE-457B-9265-EA2688AC8ADC.html#GUID-F1701FDA-38DE-457B-9265-EA2688AC8ADC"><span class="option">NegBinomial</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="18.867924528301884%" headers="d573708e459 "><p><span class="keyword">CHI2GAMMA</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="61.13207547169811%" headers="d573708e462 "><p>Random number generator of chi-square distribution with 
+            <var class="varname">ν</var> degrees of freedom. To generate any successive random number 
+            <var>x</var> of the chi-square distribution:
+          </p>
+<ul id="GUID-1354E951-1008-4E52-8C6C-BAE7762E556B"><li>If 
+              <var class="varname">ν</var> is 1 or 3, a chi-square distributed random number is generated as a sum of squares of 
+              <var class="varname">ν</var> independent normal random numbers with mean value a = 0 and standard deviation 
+              <var class="varname">σ</var> =1.
+            </li>
+<li>If 
+              <var class="varname">ν</var> is even and 2 
+              <span class="eqsymbol">≤ 
+              </span><var class="varname">ν 
+              </var><span class="eqsymbol">≤ 
+              </span>16, a chi-square distributed random number is generated using the formula:
+              <p><br/><img src="equations/GUID-497D6D91-5031-4DCC-AE46-82B7EEF65ee1.png"/><br/></p>
+<p> where 
+                <em>u</em><sub><em>i</em></sub> are successive random numbers uniformly distributed over the interval (0, 1)
+              </p>
+</li>
+<li>If 
+              <var class="varname">ν 
+              </var><span class="eqsymbol">≥</span> 17 or 
+              <var class="varname">ν 
+              </var> is odd and 5 
+              <span class="eqsymbol">≤ 
+              </span><var class="varname">ν 
+              </var><span class="eqsymbol">≤ 
+              </span> 15, a chi-square distribution is reduced to a Gamma distribution with these parameters:
+              <ul id="GUID-52427924-75B8-4B87-831A-455DA199CD3E"><li>Shape 
+                  <var class="varname">α</var> = 
+                  <var class="varname">ν</var> / 2
+                </li>
+<li>Offset a = 0
+                </li>
+<li>Scale factor 
+                  <var class="varname">β</var> = 2
+                </li>
+</ul>
+ The random numbers of the Gamma distribution are generated using the 
+              <a href="GUID-980B3240-6CE4-47DD-B3DE-B6D77C208F71.html"> VSL_RNG_METHOD_GAMMA_GNORM</a> method.
+            </li>
+</ul>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d573708e465 "><p><a href="GUID-482EEED2-95DF-4AA3-A484-E2CC41F2912C.html">ChiSquare</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>In this document, routines are often referred to by their base name (<span class="option">Gaussian</span>) when this does not lead to ambiguity. In the routine reference, the full name (<span class="option">vsrnggaussian</span>, 
+    <span class="option">vsRngGaussian</span>) is always used in prototypes and code examples. 
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FFB5DEF8-A870-4508-B796-55D2CAE9689B.html">Random Number Generators Conventions</a></div>
+</div>
+<div/>
+</body>
+</html>

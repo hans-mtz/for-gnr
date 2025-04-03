@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Cluster FFT Functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-16933772-8860-4EAA-8EF5-67FD8B467467.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0DD1121A-4E73-4D3E-9A54-F0FDEBB763AD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C9985E1-293E-4420-A99E-8005798AE914.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-61AF8BC3-E79A-4FD4-B7AF-5A9E4FC47CE9.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3A9886A4-61DD-4B70-A9BD-CE7D5E2BB5D4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Cluster FFT Functions</title>
+
+</head>
+<body id="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Cluster FFT Functions</h1>
+<div><p>This section describes the cluster Fast Fourier Transform (FFT) functions implemented in 
+      Intel&reg; oneAPI Math Kernel Library.
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>These functions are available only for 
+        <span>Intel&reg; 64 and Intel&reg; Many Integrated Core architectures</span>. 
+      </p>
+</div>
+<p>The cluster FFT function library was designed to perform fast Fourier transforms on a cluster, that is, a group of computers interconnected via a network. Each computer (node) in the cluster has its own memory and processor(s). Data interchanges between the nodes are provided by the network. 
+    </p>
+<p>One or more processes may be running in parallel on each cluster node. To organize communication between different processes, the cluster FFT function library uses the Message Passing Interface (MPI). To avoid dependence on a specific MPI implementation (for example, MPICH, Intel&reg; MPI, and others), the library works with MPI via a message-passing library for linear algebra called BLACS. 
+    </p>
+<p>Cluster FFT functions of 
+      Intel&reg; oneAPI Math Kernel Library provide one-dimensional, two-dimensional, and multi-dimensional (up to the order of 7) functions and both Fortran and C interfaces for all transform functions.
+    </p>
+<p>To develop applications using the cluster FFT functions, you should have basic skills in MPI programming. 
+    </p>
+<p>The interfaces for the 
+      Intel&reg; oneAPI Math Kernel Library cluster FFT functions are similar to the corresponding interfaces for the conventional 
+      Intel&reg; oneAPI Math Kernel Library<a href="GUID-CD8C749B-7CC1-466C-9815-06A7A1D77D30.html#GUID-CD8C749B-7CC1-466C-9815-06A7A1D77D30">FFT functions</a>. Refer there for details not explained in this section. 
+    </p>
+<p><a href="#TBL11-18">Table 
+        <span>"Cluster FFT Functions in 
+          Intel&reg; oneAPI Math Kernel Library"</span></a>lists cluster FFT functions implemented in 
+      Intel&reg; oneAPI Math Kernel Library:
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL11-18" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Cluster FFT Functions in 
+    <span>oneMKL</span></span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="40%" id="d1536916e87"><p>Function Name 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="60%" id="d1536916e90"><p>Operation 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="row-nocellborder" colspan="2" valign="top" headers="d1536916e87 d1536916e90 "><p>Descriptor Manipulation Functions 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3.html#GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"><span class="option">DftiCreateDescriptorDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Allocates memory for the descriptor data structure and preliminarily initializes it. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Performs all initialization for the actual FFT computation. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB.html#GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB"><span class="option">DftiFreeDescriptorDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Frees memory allocated for a descriptor. 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="2" valign="top" headers="d1536916e87 d1536916e90 "><p>FFT Computation Functions 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618.html#GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618"><span class="option">DftiComputeForwardDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Computes the forward FFT. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-23EBC314-CD93-44B9-A456-C867DF0BD984.html#GUID-23EBC314-CD93-44B9-A456-C867DF0BD984"><span class="option">DftiComputeBackwardDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Computes the backward FFT. 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="2" valign="top" headers="d1536916e87 d1536916e90 "><p>Descriptor Configuration Functions 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15"><span class="option">DftiSetValueDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Sets one particular configuration parameter with the specified configuration value. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="40%" headers="d1536916e87 "><p><a href="GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594.html#GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594"><span class="option">DftiGetValueDM</span></a></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="60%" headers="d1536916e90 "><p>Gets the value of one particular configuration parameter. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE.html">Fourier Transform Functions</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-16933772-8860-4EAA-8EF5-67FD8B467467.html">Computing Cluster FFT</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17.html">Distributing Data among Processes</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-0DD1121A-4E73-4D3E-9A54-F0FDEBB763AD.html">Cluster FFT Interface</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-4C9985E1-293E-4420-A99E-8005798AE914.html">Cluster FFT Descriptor Manipulation Functions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-61AF8BC3-E79A-4FD4-B7AF-5A9E4FC47CE9.html">Cluster FFT Computation Functions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-3A9886A4-61DD-4B70-A9BD-CE7D5E2BB5D4.html">Cluster FFT Descriptor Configuration Functions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE.html">Error Codes</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

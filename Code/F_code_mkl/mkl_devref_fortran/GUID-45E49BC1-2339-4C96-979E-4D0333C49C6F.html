@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hesvxx"/>
+<meta name="abstract" content="Uses extra precise iterative refinement to compute the solution to the system of linear equations with a Hermitian indefinite coefficient matrix A applying the diagonal pivoting factorization."/>
+<meta name="description" content="Uses extra precise iterative refinement to compute the solution to the system of linear equations with a Hermitian indefinite coefficient matrix A applying the diagonal pivoting factorization."/>
+<meta name="DC.subject" content="LAPACK routines, driver routines, solving linear equations, ?hesvxx, linear equations, solving, Hermitian indefinite matrix, LAPACK, multiple right-hand sides, extra precise interative refinement, diagonal pivoting factorization"/>
+<meta name="keywords" content="LAPACK routines, driver routines, solving linear equations, ?hesvxx, linear equations, solving, Hermitian indefinite matrix, LAPACK, multiple right-hand sides, extra precise interative refinement, diagonal pivoting factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-45E49BC1-2339-4C96-979E-4D0333C49C6F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hesvxx</title>
+
+</head>
+<body id="GUID-45E49BC1-2339-4C96-979E-4D0333C49C6F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hesvxx</span></h1>
+<!--Uses extra precise iterative refinement to compute the solution to the system of linear equations with a Hermitian indefinite coefficient matrix A applying the diagonal pivoting factorization.--><div><p class="shortdesc">Uses extra precise iterative refinement to compute the solution to the system of linear equations with a Hermitian indefinite coefficient matrix A applying the diagonal pivoting factorization.</p>
+<div class="section" id="GUID-8E0774E4-B4DE-4A20-A70C-63992FDC54A0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chesvxx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">rpvgrw</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">n_err_bnds</span><span class="sep">, </span><span class="var">err_bnds_norm</span><span class="sep">, </span><span class="var">err_bnds_comp</span><span class="sep">, </span><span class="var">nparams</span><span class="sep">, </span><span class="var">params</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhesvxx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">rpvgrw</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">n_err_bnds</span><span class="sep">, </span><span class="var">err_bnds_norm</span><span class="sep">, </span><span class="var">err_bnds_comp</span><span class="sep">, </span><span class="var">nparams</span><span class="sep">, </span><span class="var">params</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-AE785D20-3084-4992-B279-A30F48D0AF45"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B80266E4-F691-4BB9-ADAC-315F6EF929C6"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine uses the <dfn class="term">diagonal pivoting</dfn> factorization to compute the solution to a complex/double complex system of linear equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>, where <var>A</var> is an <var>n</var>-by-<var>n</var> Hermitian matrix, the columns of matrix <var>B</var> are individual right-hand sides, and the columns of <var>X</var> are the corresponding solutions.</p>
+<p>Both normwise and maximum componentwise error bounds are also provided on request. The routine  returns a solution with a small guaranteed error (<samp class="codeph">O(eps)</samp>, where <span class="keyword">eps</span> is the working machine precision) unless the matrix is very ill-conditioned, in which case a warning is returned. Relevant condition numbers are also calculated and returned.</p>
+<p>The routine accepts user-provided factorizations and equilibration factors; see definitions of the <span class="parmname">fact</span> and <span class="parmname">equed</span> options. Solving with refinement and using a factorization from a previous call of the routine also produces a solution with <samp class="codeph">O(eps)</samp> errors or warnings but that may not be true for general user-provided factorizations and equilibration factors if they differ from what the routine would itself produce.</p>
+<p>The routine <span class="option">?hesvxx</span> performs the following steps:</p>
+<ol id="GUID-6D03319D-9E29-458A-91C6-8FC2CA3E816A"><li><p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'E'</span></samp>, scaling factors are computed to equilibrate the system:</p>
+<p><samp class="codeph"><var>diag</var>(<span class="parmname">s</span>)*<var>A</var>*<var>diag</var>(<span class="parmname">s</span>)   *inv(<var>diag</var>(<span class="parmname">s</span>))*<var>X</var> = <var>diag</var>(<span class="parmname">s</span>)*<var>B</var></samp></p>
+<p>Whether or not the system will be equilibrated depends on the scaling of the matrix <var>A</var>, but if equilibration is used, <var>A</var> is overwritten by <samp class="codeph"><var>diag</var>(<span class="parmname">s</span>)*<var>A</var>*<var>diag</var>(<span class="parmname">s</span>)</samp> and <var>B</var> by <samp class="codeph"><var>diag</var>(<span class="parmname">s</span>)*<var>B</var></samp>.</p>
+</li>
+<li><p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'N'</span></samp> or <samp class="codeph"><span class="keyword">'E'</span></samp>, the LU decomposition is used to factor the  matrix <var>A</var> (after equilibration if <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'E'</span></samp>) as</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var>*<var>D</var>*<var>U</var><sup class="power"><var>T</var></sup></samp>, if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, </p>
+<p>or <samp class="codeph"><var>A</var> = <var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup></samp>, if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, </p>
+<p>where <var>U</var> or <var>L</var> is a product of permutation and unit upper (lower) triangular matrices, and <var>D</var> is a symmetric and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.</p>
+</li>
+<li><p>If some <samp class="codeph"><var>D</var>(<var>i</var>,<var>i</var>)=0</samp>, so that <var>D</var>
+ 
+  is exactly singular, the routine returns with <samp class="codeph"><span class="parmname">info</span> = <var>i</var></samp>. Otherwise, the factored form of <var>A</var> is used to estimate the condition number of the matrix <var>A</var> (see the <span class="parmname">rcond</span> parameter). If the reciprocal of the condition number is less than machine precision, the routine still goes on to solve for <var>X</var> and compute error bounds.</p>
+</li>
+<li><p>The system of equations is solved for <var>X</var> using the factored form of <var>A</var>.</p>
+</li>
+<li><p>By default, unless <samp class="codeph">params(1)</samp> is set to zero, the routine applies iterative refinement to get a small error and error bounds. Refinement calculates the residual to at least twice the working precision.</p>
+</li>
+<li><p>If equilibration was used, the matrix <var>X</var> is premultiplied by <samp class="codeph"><var>diag</var>(<span class="parmname">r</span>)</samp> so that it solves the original system before equilibration.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="GUID-0E2CA1DF-9FA1-4ABE-BD59-FF31FB125F1F"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">fact</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'F'</span>, <span class="keyword">'N'</span>, or <span class="keyword">'E'</span>.</p>
+<p>Specifies whether or not the factored form of the matrix <var>A</var> is supplied on entry, and if not, whether the matrix <var>A</var> should be equilibrated before it is factored.</p>
+<p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'F'</span></samp>,  on entry, <span class="parmname">af</span> and <span class="parmname">ipiv</span> contain the factored form of <var>A</var>. If <span class="parmname">equed</span> is not <span class="keyword">'N'</span>, the matrix <var>A</var> has been equilibrated with scaling factors given by <span class="parmname">s</span>. Parameters <var>a</var>,  <span class="parmname">af</span>, and <span class="parmname">ipiv</span> are not modified.</p>
+<p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'N'</span></samp>, the matrix <var>A</var> will be copied to <span class="parmname">af</span> and factored.</p>
+<p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'E'</span></samp>, the matrix <var>A</var> will be equilibrated, if necessary,  copied to <span class="parmname">af</span> and factored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of <var>A</var> is stored.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of  <var>A</var> is stored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of linear equations; the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nrhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides; the number of columns of the matrices <var>B</var> and <var>X</var>; <var>nrhs</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span>, <span class="parmname">af</span>, <span class="parmname">b</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhesvxx</span>.</p>
+<p>Arrays: <span class="parmname">a</span><span>(size <span class="parmname">lda</span> by *)</span>, <span class="parmname">af</span><span>(size <span class="parmname">ldaf</span> by *)</span>, <span class="parmname">b</span><span>(<span class="parmname">ldb</span>, *)</span><span>, <samp class="codeph"><span class="parmname">work</span>(*)</samp></span>.</p>
+<p>The array <span class="parmname">a</span> contains the Hermitian matrix <var>A</var> as specified by <span class="parmname">uplo</span>. If <span class="parmname">uplo</span> = <span class="keyword">'U'</span>, the leading  <var>n</var>-by-<var>n</var> upper triangular part of <span class="parmname">a</span>
+
+contains 
+the upper triangular part of the matrix <var>A</var>
+ and the strictly lower triangular part of <span class="parmname">a</span>
+is not referenced. If <span class="parmname">uplo</span> = <span class="keyword">'L'</span>, the leading  <var>n</var>-by-<var>n</var> lower triangular part of <span class="parmname">a</span>
+
+contains 
+the lower triangular part of the matrix <var>A</var>
+ and the strictly upper triangular part of <span class="parmname">a</span>
+is not referenced.<span> The second dimension of  <var>a</var> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</span></p>
+<p>The array <span class="parmname">af</span> is an input argument if <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'F'</span></samp>. It contains the block diagonal matrix <var>D</var> and the multipliers used to obtain the factor <var>U</var> and
+  <var>L</var> from the factorization <samp class="codeph"><var>A</var>
+= <var>U</var>*<var>D</var>*<var>U</var><sup>T</sup></samp>
+ or <samp class="codeph"><var>A</var>
+= <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup></samp> as computed by <a class="allformats" href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"><span class="option">?hetrf</span></a>.<span> The second dimension of  <span class="parmname">af</span> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</span></p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations.<span> The second dimension of  <var>b</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp>.</span></p>
+<p><span class="parmname">work(*)</span> is a workspace array. The dimension of <span class="parmname">work</span> must be at least <samp class="codeph">max(1,5*<var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>; <samp class="codeph"><span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldaf</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">af</span>; <samp class="codeph"><span class="parmname">ldaf</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. The array <var>ipiv</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>. It contains  details of the interchanges and the block structure of <var>D</var>  as determined by <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">?sytrf</span></a>. </p>
+<p>If  <span class="parmname">ipiv(k)</span> &gt; 0, rows and columns <var>k</var> and <span class="parmname">ipiv(k)</span> were interchanged and <var>D(k,k)</var> is a 1-by-1 diagonal block.</p>
+<p>If <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> and <samp class="codeph"><span class="parmname">ipiv(k)</span> = <span class="parmname">ipiv(k-1)</span> &lt; 0</samp>, rows and columns <var>k-1</var>
+and <span class="parmname">-ipiv(k)</span>
+were interchanged and <samp class="codeph"><var>D</var>(<var>k</var>-1:<var>k</var>,  <var>k</var>-1:<var>k</var>)</samp>
+is a 2-by-2 diagonal block.</p>
+<p>If <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> and <samp class="codeph"><span class="parmname">ipiv(k)</span> = <span class="parmname">ipiv(k+1)</span> &lt; 0</samp>, rows and columns <var>k+1</var>
+and <span class="parmname">-ipiv(k)</span>
+were interchanged and <samp class="codeph"><var>D</var>(<var>k</var>:<var>k</var>+1,  <var>k</var>:<var>k</var>+1)</samp>
+is a 2-by-2 diagonal block.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">equed</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'Y'</span>.</p>
+<p><span class="parmname">equed</span>
+ is an input argument if <samp class="codeph"><span class="parmname">fact</span>
+ = <span class="keyword">'F'</span></samp>. It specifies the form of equilibration that was done: </p>
+<p>If <samp class="codeph"><span class="parmname">equed</span>
+ = <span class="keyword">'N'</span></samp>, no equilibration was done (always true if <samp class="codeph"><span class="parmname">fact</span>
+ = <span class="keyword">'N'</span></samp>).</p>
+<p>if <samp class="codeph"><span class="parmname">equed</span>
+ = <span class="keyword">'Y'</span></samp>, both row and column equilibration was done, that is, <var>A</var> has been replaced by <samp class="codeph"><var>diag</var>(<span class="parmname">s</span>)*<var>A</var>*<var>diag</var>(<span class="parmname">s</span>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">s</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Array, size  (<var>n</var>). The array <span class="parmname">s</span>
+ contains the scale factors for <var>A</var>. If <samp class="codeph"><span class="parmname">equed</span> = <span class="keyword">'Y'</span></samp>, <var>A</var>
+is multiplied on the left and right by <samp class="codeph">diag(<span class="parmname">s</span>)</samp>.</p>
+<p>This array is an input argument if <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'F'</span></samp> only; otherwise it is an output argument.</p>
+<p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'F'</span></samp> and <span class="parmname">equed</span> = <span class="keyword">'Y'</span>, each element of <span class="parmname">s</span>
+ must be positive.</p>
+<p>Each element of <span class="parmname">s</span> should be a power of the radix to ensure a
+reliable solution and error estimates. Scaling by powers of the
+radix does not cause rounding errors unless the result underflows
+or overflows. Rounding errors during scaling lead to refining
+with a matrix that is not equivalent to the  input matrix,
+producing error estimates that may not be  reliable.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">b</span>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldx</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>x</var>; <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n_err_bnds</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>Number of error bounds to return for each right hand side and
+each type (normwise or componentwise). See <span class="parmname">err_bnds_norm</span>
+ and <span class="parmname">err_bnds_comp</span>
+ descriptions in the <em>Output Arguments</em> section
+below.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nparams</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of parameters set in <span class="parmname">params</span>. If  <span class="eqsymbol">≤</span> 0, the <span class="parmname">params</span> array is never referenced and default values are used.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">params</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size <span class="parmname">nparams</span>. Specifies algorithm parameters. If an entry is less than 0.0, that entry is filled with the default value used for that parameter. Only positions up to <span class="parmname">nparams</span> are accessed; defaults are used for higher-numbered parameters. If defaults are acceptable, you can pass <span class="parmname">nparams</span> = 0, which prevents the source code from accessing the <span class="parmname">params</span>
+argument.</p>
+<p><samp class="codeph"><span class="parmname">params</span>(1)</samp> : Whether to perform iterative refinement or not. Default: 1.0 (for single precision flavors), 1.0D+0 (for double precision flavors).</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>=0.0</p></td>
+
+<td valign="top" class="noborder"><p>No refinement is performed and no error bounds are computed.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>=1.0</p></td>
+
+<td valign="top" class="noborder"><p>Use the extra-precise refinement algorithm.</p>
+</td>
+</tr></table><p>(Other values are reserved for future use.)</p>
+<p><samp class="codeph"><span class="parmname">params</span>(2)</samp> : Maximum number of residual computations allowed for refinement.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>Default</p></td>
+
+<td valign="top" class="noborder"><p>10</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>Aggressive</p></td>
+
+<td valign="top" class="noborder"><p>Set to 100 to permit convergence using approximate factorizations or factorizations other than <em>LU</em>. If the factorization uses a technique other than Gaussian elimination, the guarantees in <span class="parmname">err_bnds_norm</span> and <span class="parmname">err_bnds_comp</span> may no longer be trustworthy.</p>
+</td>
+</tr></table><p><samp class="codeph"><span class="parmname">params</span>(3)</samp> : Flag determining if the code will attempt to find a solution with a small componentwise relative error in the double-precision algorithm. Positive is true, 0.0 is false. Default: 1.0 (attempt componentwise convergence).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Workspace array, size at least <samp class="codeph">max(1, 3*<var>n</var>)</samp>; used in complex flavors only.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-DC9BFA5D-601B-47BA-9822-A1D1D1C96AAA"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2B23087E-C622-4805-8182-7E14FD51ED48"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhesvxx</span>.</p>
+<p>Array, size <span><var>ldx</var> by <var>nrhs</var></span>.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the array <span class="parmname">x</span>
+ contains the solution <var>n</var>-by-<var>nrhs</var> matrix <var>X</var> to the original system of equations.  Note that <var>A</var> and <var>B</var> are modified on exit if <samp class="codeph"><span class="parmname">equed</span><span class="eqsymbol">≠</span><span class="keyword">'N'</span></samp>, and the solution to the equilibrated system is:</p>
+<p><samp class="codeph">inv(<var>diag</var>(<span class="parmname">s</span>))*<var>X</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'E'</span></samp> and <span class="parmname">equed</span> = <span class="keyword">'Y'</span>, overwritten by   <samp class="codeph"><var>diag</var>(<span class="parmname">s</span>)*<var>A</var>*<var>diag</var>(<span class="parmname">s</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">af</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">af</span> is an output argument and on exit returns the block diagonal matrix <var>D</var>
+ and the multipliers used to obtain the factor <var>U</var> or <var>L</var> from the factorization <samp class="codeph"><var>A</var>
+= <var>U</var>*<var>D</var>*<var>U</var><sup>T</sup></samp>
+ or <samp class="codeph"><var>A</var>
+= <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>If <span class="parmname">equed</span> = <span class="keyword">'N'</span>, <var>B</var>
+is not modified.</p>
+<p>If <span class="parmname">equed</span> = <span class="keyword">'Y'</span>,
+<var>B</var>
+is
+overwritten by <samp class="codeph"><var>diag</var>(<span class="parmname">s</span>)*<var>B</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p>This array is an output argument if <samp class="codeph"><span class="parmname">fact</span><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp>. Each element  of this array is a power of the  radix.  See the description of <span class="parmname">s</span> in <em>Input Arguments</em> section.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rcond</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Reciprocal scaled condition number. An estimate of the reciprocal Skeel condition number of the matrix <var>A</var> after equilibration (if done). If <span class="parmname">rcond</span> is less than the machine precision, in particular, if <span class="parmname">rcond</span> = 0, the matrix is singular to working precision. Note that the error may still be small even if this number is very small and the matrix appears ill-conditioned.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rpvgrw</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Contains the reciprocal pivot growth factor:</p>
+<p><img src="GUID-25B0E829-0C5A-45FA-A1F9-E1E014AF3377-low.png"/></p>
+<p> If this is much less than 1, the stability of the <em>LU</em> factorization of the (equlibrated) matrix <var>A</var> could be poor. This also means that the solution <var>X</var>, estimated condition numbers, and error bounds could be unreliable. If factorization fails with  <samp class="codeph">0 &lt; <span class="parmname">info</span><span class="eqsymbol">≤</span><var>n</var></samp>, this parameter contains the reciprocal pivot growth factor for the leading <span class="parmname">info</span> columns of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">berr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>. <span> Contains the component-wise relative backward error for each solution vector <samp class="codeph"><var>x</var>(<var>j</var>)</samp>, that is, the smallest relative change in any element of <var>A</var> or <var>B</var> that makes <samp class="codeph"><var>x</var>(<var>j</var>)</samp> an exact solution.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">err_bnds_norm</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Array of  size  <span><var>nrhs</var> by <var>n_err_bnds</var></span>. For each right-hand side, contains information about various error bounds and condition numbers corresponding to the normwise relative error<span>, which is defined as follows:</span></p>
+<p>Normwise relative error in the <var>i</var>-th solution vector</p>
+<p><img src="GUID-86F1B859-61C1-4BB8-A002-84C1B7AD8491-low.gif" align="center"/></p>
+<p>The array is indexed by the type of error information as described below. There are currently up to three pieces of information returned.</p>
+<p>The first index in <span class="parmname">err_bnds_norm(i,:)</span>
+ corresponds to the <var>i</var>-th right-hand side.</p>
+<p>The second index in <span class="parmname">err_bnds_norm(:,err)</span> contains the following three fields:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=1</p></td>
+
+<td valign="top" class="noborder"><p>"Trust/don't trust" boolean. Trust the answer if the reciprocal condition number is less than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for <span class="option">chesvxx</span>
+ and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for <span class="option">zhesvxx</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=2</p></td>
+
+<td valign="top" class="noborder"><p>"Guaranteed" error bound. The estimated forward error, almost certainly within a factor of 10 of the true error so long as the next entry is greater than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for <span class="option">chesvxx</span> and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for <span class="option">zhesvxx</span>. This error bound should only be trusted if the previous boolean is true.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=3</p></td>
+
+<td valign="top" class="noborder"><p>Reciprocal condition number. Estimated normwise reciprocal condition number. Compared with the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for <span class="option">chesvxx</span> and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>for <span class="option">zhesvxx</span> to determine if the error estimate is "guaranteed". These reciprocal condition numbers for some appropriately scaled matrix <var>Z</var> are:</p>
+<p><img src="GUID-EC7273D4-03D2-4D17-B3DC-5617F1A91813-low.png"/></p>
+<p>Let <var>z</var>=<span class="parmname">s</span>*<var>a</var>, where <span class="parmname">s</span> scales each row by a power of the radix so all absolute row sums of <var>z</var> are approximately 1.</p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">err_bnds_comp</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chesvxx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhesvxx</span>.</p>
+<p>Array of  size  <span><var>nrhs</var> by <var>n_err_bnds</var></span>. For each right-hand side, contains information about various error bounds and condition numbers corresponding to the componentwise relative error<span>, which is defined as follows:</span></p>
+<p>Componentwise relative error in the <var>i</var>-th solution vector:</p>
+<p><img src="GUID-BE2CDA4A-F31A-4637-8AFC-9BDD114F279B-low.jpg" align="center"/></p>
+<p>The array is indexed by the right-hand side <var>i</var>, on which the componentwise relative error depends, and by the type of error information as described below. There are currently up to three pieces of information returned for each right-hand side. If componentwise accuracy is not requested (<span class="parmname">params(3)</span> = 0.0), then <span class="parmname">err_bnds_comp</span> is not accessed. If <span class="parmname">n_err_bnds</span> &lt; 3, then at most the first  <span class="parmname">(:,n_err_bnds)</span> entries are returned.</p>
+<p>The first index in <span class="parmname">err_bnds_comp(i,:)</span> corresponds to the <var>i</var>-th right-hand side.</p>
+<p>The second index in <span class="parmname">err_bnds_comp(:,err)</span> contains the following three fields:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=1</p></td>
+
+<td valign="top" class="noborder"><p>"Trust/don't trust" boolean. Trust the answer if the reciprocal condition number is less than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for <span class="option">chesvxx</span> and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for <span class="option">zhesvxx</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=2</p></td>
+
+<td valign="top" class="noborder"><p>"Guaranteed" error bpound. The estimated forward error, almost certainly within a factor of 10 of the true error so long as the next entry is greater than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for <span class="option">chesvxx</span> and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for <span class="option">zhesvxx</span>. This error bound should only be trusted if the previous boolean is true.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=3</p></td>
+
+<td valign="top" class="noborder"><p>Reciprocal condition number. Estimated componentwise reciprocal condition number. Compared with the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for <span class="option">chesvxx</span> and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for <span class="option">zhesvxx</span>
+
+ to determine if the error estimate is "guaranteed". These reciprocal condition numbers for some appropriately scaled matrix <var>Z</var> are:</p>
+<p><img src="GUID-EC7273D4-03D2-4D17-B3DC-5617F1A91813-low.png"/></p>
+<p>Let <samp class="codeph"><var>z</var>=<span class="parmname">s</span>*(<var>a</var>*diag(<var>x</var>))</samp>, where <var>x</var> is the solution for the current right-hand side and <span class="parmname">s</span> scales each row of <samp class="codeph"><var>a</var>*diag(<var>x</var>)</samp> by a power of the radix so all absolute row sums of <var>z</var> are approximately 1.</p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">fact</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">ipiv</span> is an output argument and on exit contains details of the interchanges and the block structure <var>D</var>, as determined by <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">ssytrf</span></a> for single precision flavors and <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">dsytrf</span></a> for double precision flavors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">equed</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">fact</span><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp>, then <span class="parmname">equed</span> is an output argument. It specifies the form of equilibration that was done (see the description of <span class="parmname">equed</span> in <em>Input Arguments</em> section). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">params</span></dt>
+
+<dd><p>If an entry is less than 0.0, that entry is filled with the default value used for that parameter, otherwise the entry is not modified.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the execution is successful. The solution to every right-hand side is guaranteed.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If 0 &lt; <span class="parmname">info</span><span class="eqsymbol">≤</span><var>n</var>:<span><var>U</var>(<span class="parmname">info</span>,<span class="parmname">info</span>)</span> is exactly zero. The factorization has been completed, but the factor <var>U</var> is exactly singular, so the solution and error bounds could not be computed; <span class="parmname">rcond</span> = 0 is returned. </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>n</var>+<var>j</var></samp>: The solution corresponding to the <var>j</var>-th right-hand side is not guaranteed. The solutions corresponding to other right-hand sides <var>k</var> with <var>k</var> &gt; <var>j</var> may not be guaranteed as well, but only the first such right-hand side is reported. If a small componentwise error is not requested <samp class="codeph"><span class="parmname">params(3)</span> = 0.0</samp>, then the <var>j</var>-th right-hand side is the first with a normwise error bound that is not guaranteed (the smallest <var>j</var> such that <samp class="codeph"><span class="parmname">err_bnds_norm</span>(<var>j</var>,1) = 0.0</samp> or <samp class="codeph"><span class="parmname">err_bnds_comp</span>(<var>j</var>,1) = 0.0</samp>. See the definition of <span class="parmname">err_bnds_norm</span> and <span class="parmname">err_bnds_comp</span> for <var>err</var> = 1. To get information about all of the right-hand sides, check <span class="parmname">err_bnds_norm</span> or <span class="parmname">err_bnds_comp</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

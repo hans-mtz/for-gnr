@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Distributing Data among Processes"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Distributing Data among Processes</title>
+
+</head>
+<body id="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Distributing Data among Processes</h1>
+<div><p>The Intel&reg; oneAPI Math Kernel Library cluster FFT functions store all input and output multi-dimensional arrays (matrices) in one-dimensional arrays (vectors). The arrays are stored<span>in the column-major order</span>. For example, a two-dimensional matrix 
+      <samp class="codeph">A</samp> of size (<var>m,n</var>) is stored in a vector 
+      <samp class="codeph">B</samp> of size 
+      <var>m*n</var> so that 
+    </p>
+<p><samp class="codeph">B((j-1)*m+i)=A(i,j)</samp> (<var>i=1, ..., m, j=1, ..., n</var>) . 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Order of FFT dimensions is the same as the order of array dimensions in the programming language. For example, a 3-dimensional FFT with Lengths=(<var>m,n,l</var>) can be computed over an array 
+        <samp class="codeph">AR(m,n,l)</samp>. 
+      </p>
+</div>
+<p>All MPI processes involved in cluster FFT computation operate their own portions of data. These local arrays make up the virtual global array that the fast Fourier transform is applied to. It is your responsibility to properly allocate local arrays (if needed), fill them with initial data and gather resulting data into an actual global array or process the resulting data differently. To be able do this, see sections below on how the virtual global array is composed of the local ones. 
+    </p>
+<div class="section" id="GUID-889D5C7E-620B-472D-8628-003F307F6529"><h2 class="sectiontitle">Multi-dimensional transforms</h2><p>If the dimension of transform is greater than one, the cluster FFT function library splits data in the dimension whose index changes most slowly, so that the parts contain all elements with several consecutive values of this index. It is the first dimension in C<span> and the last dimension in Fortran</span>. If the global array is two-dimensional<span>, in C</span>, it gives each process several consecutive rows. 
+        <span>The term "rows" will be used regardless of the array dimension and programming language. 
+        </span>Local arrays are placed in memory allocated for the virtual global array consecutively, in the order determined by process ranks. For example, in case of two processes, during the computation of a three-dimensional transform whose matrix has size (11,15,12), the processes may store local arrays of sizes (6,15,12) and (5,15,12), respectively. 
+      </p>
+<p>If 
+        <var>p</var> is the number of MPI processes and the matrix of a transform to be computed has size (<var>m,n,l</var>)<span>, in C</span>, each MPI process works with local data array of size (<var>m</var><sub><var>q</var></sub><var> , n, l</var>), where Σ<var>m</var><sub><var>q</var></sub><var>=m</var>, 
+        <var>q=0, ... , p-1</var>. Local input arrays must contain appropriate parts of the actual global input array, and then local output arrays will contain appropriate parts of the actual global output array. You can figure out which particular rows of the global array the local array must contain from the following configuration parameters of the cluster FFT interface: 
+        <samp class="codeph">CDFT_LOCAL_NX</samp>, 
+        <samp class="codeph">CDFT_LOCAL_START_X</samp>, and 
+        <samp class="codeph">CDFT_LOCAL_SIZE</samp>. To retrieve values of the parameters, use the 
+        <a href="GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594.html#GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594"><span class="option">DftiGetValueDM</span></a> function: 
+      </p>
+<ul id="GUID-26E445E1-C5A4-4D25-8FD9-BB5A6995E1E5"><li><samp class="codeph">CDFT_LOCAL_NX</samp> specifies how many rows of the global array the current process receives. 
+        </li>
+<li><samp class="codeph">CDFT_LOCAL_START_X</samp> specifies which row of the global input or output array corresponds to the first row of the local input or output array. If 
+          <samp class="codeph">A</samp> is a global array and 
+          <samp class="codeph">L</samp> is the appropriate local array, then 
+           
+           
+          <p><samp class="codeph">L(i,j,k)=A(i,j,k+cdft_local_start_x-1)</samp>, where 
+            <var>i=1, ..., m</var><var>, j=1, ..., n, k=1, ..., l</var><sub><var>q</var></sub>. 
+          </p>
+</li>
+</ul>
+<p><a href="GUID-5D5475C9-854A-426B-82CB-3BBE271D215E.html#APPC-EXC-23">Example 
+          <span>"2D Out-of-place Cluster FFT Computation"</span></a> shows how the data is distributed among processes for a two-dimensional cluster FFT computation. 
+      </p>
+</div>
+<div class="section" id="GUID-7E9D4165-67AC-49C2-82A2-0F4C0578CFB3"><h2 class="sectiontitle">One-dimensional transforms</h2><p>In this case, input and output data are distributed among processes differently and even the numbers of elements stored in a particular process before and after the transform may be different. Each local array stores a segment of consecutive elements of the appropriate global array. Such segment is determined by the number of elements and a shift with respect to the first array element. So, to specify segments of the global input and output arrays that a particular process receives, 
+        <em>four</em> configuration parameters are needed: 
+        <samp class="codeph">CDFT_LOCAL_NX</samp>, 
+        <samp class="codeph">CDFT_LOCAL_START_X</samp>, 
+        <samp class="codeph">CDFT_LOCAL_OUT_NX</samp>, and 
+        <samp class="codeph">CDFT_LOCAL_OUT_START_X</samp>. Use the 
+        <a href="GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594.html#GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594"><span class="option">DftiGetValueDM</span></a> function to retrieve their values. The meaning of the four configuration parameters depends upon the type of the transform, as shown in 
+        <a href="#TBL11-19">Table 
+          <span>"Data Distribution Configuration Parameters for 1D Transforms"</span></a>: 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL11-19" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Data Distribution Configuration Parameters for 1D Transforms</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="NaN%" id="d17297e206">Meaning of the Parameter 
+            </th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d17297e208">Forward Transform 
+            </th>
+<th class="row-nocellborder" valign="top" width="NaN%" id="d17297e210">Backward Transform 
+            </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="NaN%" headers="d17297e206 "><p>Number of elements in input array 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d17297e208 "><p><samp class="codeph">CDFT_LOCAL_NX</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d17297e210 "><p><samp class="codeph">CDFT_LOCAL_OUT_NX</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d17297e206 "><p>Elements shift in input array 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d17297e208 "><p><samp class="codeph">CDFT_LOCAL_START_X</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d17297e210 "><p><samp class="codeph">CDFT_LOCAL_OUT_START_X</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d17297e206 "><p>Number of elements in output array 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d17297e208 "><p><samp class="codeph">CDFT_LOCAL_OUT_NX</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d17297e210 "><p><samp class="codeph">CDFT_LOCAL_NX</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d17297e206 "><p>Elements shift in output array 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d17297e208 "><p><samp class="codeph">CDFT_LOCAL_OUT_START_X</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d17297e210 "><p><samp class="codeph">CDFT_LOCAL_START_X</samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="GUID-CBADE038-E691-4D11-AE29-B4D93C519FE7"><h2 class="sectiontitle">Memory size for local data</h2><p>The memory size needed for local arrays cannot be just calculated from 
+        <samp class="codeph">CDFT_LOCAL_NX (CDFT_LOCAL_OUT_NX)</samp>, because the cluster FFT functions sometimes require allocating a little bit more memory for local data than just the size of the appropriate sub-array. The configuration parameter 
+        <samp class="codeph">CDFT_LOCAL_SIZE</samp> specifies the size of the local input and output array in data elements. Each local input and output arrays must have size not less than 
+        <samp class="codeph">CDFT_LOCAL_SIZE</samp>*<var>size_of_element</var>. Note that in the current implementation of the cluster FFT interface, data elements can be real or complex values, each complex value consisting of the real and imaginary parts. If you employ a user-defined workspace for in-place transforms (for more information, refer to 
+        <a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#TBL11-20">Table 
+          <span>"Settable configuration Parameters"</span></a>), it must have the same size as the local arrays. 
+        <a href="GUID-5D5475C9-854A-426B-82CB-3BBE271D215E.html#APPC-EXC-24">Example 
+          <span>"1D In-place Cluster FFT Computations"</span></a> illustrates how the cluster FFT functions distribute data among processes in case of a one-dimensional FFT computation performed with a user-defined workspace. 
+      </p>
+</div>
+<div class="section" id="GUID-6FB5DADB-77AD-4C00-AC30-178081CCCA69"><h2 class="sectiontitle">Available Auxiliary Functions</h2><p>If a global input array is located on one MPI process and you want to obtain its local parts or you want to gather the global output array on one MPI process, you can use functions 
+      <span class="option">MKL_CDFT_ScatterData</span> and 
+      <span class="option">MKL_CDFT_GatherData</span>to distribute or gather data among processes, respectively. These functions are defined in a file that is delivered with Intel&reg; oneAPI Math Kernel Library and located in the following subdirectory of the Intel&reg; oneAPI Math Kernel Library installation directory:<span class="filepath">examples/cdftf/source/cdft_example_support.f90</span>. 
+      </p>
+</div>
+<div class="section" id="GUID-37F55B3E-6A0A-4F0C-864A-B42D2AA71500"><h2 class="sectiontitle">Restriction on Lengths of Transforms</h2><p>The algorithm that the Intel&reg; oneAPI Math Kernel Library cluster FFT functions use to distribute data among processes imposes a restriction on lengths of transforms with respect to the number of MPI processes used for the FFT computation:</p>
+<ul id="GUID-0A14D438-0EB2-4D59-AD97-CB524DBF14FC"><li>For a multi-dimensional transform, lengths 
+          <span>of the last two dimensions</span> must be not less than the number of MPI processes. 
+        </li>
+<li>Length of a one-dimensional transform must be the product of two integers each of which is not less than the number of MPI processes. 
+        </li>
+</ul>
+<p>Non-compliance with the restriction causes an error 
+        <samp class="codeph">CDFT_SPREAD_ERROR</samp> (refer to 
+        <a href="GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE.html#GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE">Error Codes</a> for details). To achieve the compliance, you can change the transform lengths and/or the number of MPI processes, which is specified at start of an MPI program. MPI-2 enables changing the number of processes during execution of an MPI program. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html">Cluster FFT Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

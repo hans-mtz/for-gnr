@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lacgv"/>
+<meta name="abstract" content="Conjugates a complex vector."/>
+<meta name="description" content="Conjugates a complex vector."/>
+<meta name="DC.subject" content="ScaLAPACK routines, auxiliary routines, p?lacgv, complex vector conjugation, vector conjugation, ScaLAPACK, complex vector, conjugation"/>
+<meta name="keywords" content="ScaLAPACK routines, auxiliary routines, p?lacgv, complex vector conjugation, vector conjugation, ScaLAPACK, complex vector, conjugation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-942AAC45-F97E-4AD9-9961-F617DEEE163A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lacgv</title>
+
+</head>
+<body id="GUID-942AAC45-F97E-4AD9-9961-F617DEEE163A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lacgv</span></h1>
+<!--Conjugates a complex vector.--><div><p class="shortdesc">Conjugates a complex vector.</p>
+<div class="section" id="GUID-B0C083B8-3639-4C96-AD7A-D6A343A5B335"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pclacgv</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlacgv</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DDC82734-C25E-46EF-AF2C-808A37C22544"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?lacgv</span><span>routine </span>conjugates a complex vector <samp class="codeph">sub(</samp><var>X</var><samp class="codeph">)</samp> of length <var>n</var>, where <samp class="codeph">sub(</samp><var>X</var><samp class="codeph">)</samp> denotes <var>X</var><samp class="codeph">(<var>ix</var>, <samp class="codeph"><var>jx</var>:<var>jx</var>+<var>n</var>-1)</samp></samp> if <samp class="codeph"><var>incx</var> = <var>m_x</var></samp>, and <var>X</var><samp class="codeph">(<var>ix</var>:<var>ix</var>+<var>n</var>-1, <var>jx</var>)</samp> if <samp class="codeph"><var>incx</var> = 1</samp>.</p>
+</div>
+<div class="section" id="GUID-6F3C6751-970D-4486-A527-DF094570787D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4506CA1C-A135-4642-BA7F-FC3B3F69D71B"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The length of the distributed vector sub(<var>X</var>)<var>.</var></p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclacgv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlacgv</span>. </p>
+<p>Pointer into the local memory to an array of size <span>(<var>lld_x,*</var>)</span>. On entry the vector to be conjugated <span><samp class="codeph"><var>x</var>(i) = <var>X</var>(<var>ix</var>+(<var>jx</var>-1)*<var>m_x</var>+(<var>i</var>-1)*<var>incx</var>)</samp>, <samp class="codeph">1 ≤ <var>i</var> ≤ <var>n</var></samp></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row index in the global matrix <var>X</var> indicating the first row of sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The column index in the global matrix <var>X</var> indicating the first column of sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span>. </span>Array of size <var>dlen_</var>=9. The array descriptor for the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The global increment for the elements of <var>X</var>. Only two values of <span class="parmname">incx</span> are supported in this version, namely 1 and <var>m_x</var>. <span class="parmname">incx</span> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7181970D-2851-458A-991D-AFE0576054C5"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-186B3F41-E2EE-496B-B5CC-F4947E38E72E"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, the local pieces of conjugated distributed vector sub(<var>X</var>).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

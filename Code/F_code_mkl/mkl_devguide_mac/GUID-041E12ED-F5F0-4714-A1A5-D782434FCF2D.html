@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Setting the Default Mode of Vector Math with an Environment Variable"/>
+<meta name="DC.subject" content="Vector Mathematics, environment variable to set default mode, default mode, setting with environment variable"/>
+<meta name="keywords" content="Vector Mathematics, environment variable to set default mode, default mode, setting with environment variable"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D722085B-88DE-471E-90D5-62FCAECBDED7.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-041E12ED-F5F0-4714-A1A5-D782434FCF2D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Setting the Default Mode of Vector Math with an Environment Variable</title>
+
+</head>
+<body id="GUID-041E12ED-F5F0-4714-A1A5-D782434FCF2D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Setting the Default Mode of
+    Vector Math with an Environment Variable</h1>
+<div id="GUID-C3224AE1-F51B-4577-A9C2-6C4AEEACFE7A"><p> enables overriding the default setting of the Vector Mathematics (VM) global mode using the<span class="keyword">MKL_VML_MODE</span> environment variable. 
+    </p>
+<p>Because the mode is set or can be changed in different ways, their
+      precedence determines the actual mode used. The settings and function calls
+      that set or change the VM mode are listed below, with the precedence growing
+      from lowest to highest: 
+    <ol id="GUID-16F66455-7E09-49CF-A242-B76B6A5D217F"><li>The default setting 
+      </li>
+<li>The 
+        <span class="keyword">MKL_VML_MODE</span> environment variable 
+      </li>
+<li>A call 
+  <span class="option">vmlSetMode</span> function 
+  </li>
+<li>A call to any VM function other than a service function 
+  </li>
+</ol>
+</p>
+<p>For more details, see the Vector Mathematical Functions section in the 
+    <em>Intel&reg; oneAPI Math Kernel Library Developer Reference</em> and the description of the 
+  <span class="option">vmlSetMode</span> function in particular. 
+  </p>
+<p>To set the 
+    <span class="keyword">MKL_VML_MODE</span> environment variable, use the following
+    command<span> in your command shell</span>: 
+  </p>
+<ul id="GUID-6FEDF072-EEE9-431E-A7E4-02D0CE025A05"><li><p>For the bash shell: 
+      </p>
+<p><samp class="codeph">export
+          MKL_VML_MODE=<var>&lt;mode-string&gt;</var></samp></p>
+</li>
+<li><p>For a C shell (csh or tcsh): 
+      </p>
+<p><samp class="codeph">setenv MKL_VML_MODE 
+          <var>&lt;mode-string&gt;</var></samp></p>
+</li>
+</ul>
+<p>In 
+    <span>these 
+    </span>command<span>s</span>, 
+    <samp class="codeph"><var>&lt;mode-string&gt;</var></samp> controls error
+    handling behavior and computation accuracy, consists of one or several
+    comma-separated values of the 
+    <span class="parmname">mode</span> parameter listed in the table below, and meets
+    these requirements: 
+  </p>
+<ul id="GUID-F9A875F9-3CC4-45CE-BF60-48E7FBCF4623"><li>Not more than one accuracy control value is permitted 
+    </li>
+<li>Any combination of error control values except 
+      <span class="keyword">VML_ERRMODE_DEFAULT</span> is permitted 
+    </li>
+<li>No denormalized numbers control values are permitted 
+    </li>
+</ul>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-F8344F70-B542-4D4D-81A9-B8D835215A65" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Values of the 
+	 <var>mode</var> Parameter</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="41%" id="d442e119">Value of 
+			 <var>mode</var></th>
+<th class="row-nocellborder" valign="top" width="59%" id="d442e123">Description 
+		  </th>
+</tr>
+</thead>
+<tbody><tr><td class="boldspan" colspan="2" valign="top" headers="d442e119 d442e123 ">Accuracy Control 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_HA</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">high accuracy versions of VM functions 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_LA</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">low accuracy versions of VM functions 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_EP</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">enhanced performance accuracy versions of VM functions 
+		  </td>
+</tr>
+<tr><td class="boldspan" colspan="2" valign="top" headers="d442e119 d442e123 ">Denormalized Numbers Handling Control 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_FTZDAZ_ON</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">Faster processing of denormalized inputs is enabled. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_FTZDAZ_OFF</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">Faster processing of denormalized inputs is disabled. 
+		  </td>
+</tr>
+<tr><td class="boldspan" colspan="2" valign="top" headers="d442e119 d442e123 ">Error Mode Control 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_ERRMODE_IGNORE</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">On computation error, VM Error status is updated, but otherwise no action is set. Cannot be combined with other 
+				<span class="keyword">VML_ERRMODE</span> settings. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_ERRMODE_NOERR</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">On computation error, VM Error status is not updated and no action is set. Cannot be combined with other 
+			 <span class="keyword">VML_ERRMODE</span> settings. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_ERRMODE_STDERR</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">On error, the error text information is written to 
+			 <var>stderr</var>. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_ERRMODE_EXCEPT</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">On error, an exception is raised. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_ERRMODE_CALLBACK</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">On error, an additional error handler function is called. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d442e119 "><span class="keyword">VML_ERRMODE_DEFAULT</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d442e123 ">On error, 
+			 an exception is raised and an additional error handler function is called. 
+		  </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span>These 
+    </span>command<span>s</span> provide an example of valid settings for the 
+    <span class="keyword">MKL_VML_MODE</span> environment variable<span> in your command shell</span>: 
+  </p>
+<ul id="GUID-26A5AEB0-7B91-4152-A442-2B0533A5ED40"><li><p>For the bash shell: 
+      </p>
+<p><samp class="codeph">export
+          MKL_VML_MODE=VML_LA,VML_ERRMODE_ERRNO,VML_ERRMODE_STDERR</samp></p>
+</li>
+<li><p>For a C shell (csh or tcsh): 
+      </p>
+<p><samp class="codeph">setenv MKL_VML_MODE
+          VML_LA,VML_ERRMODE_ERRNO,VML_ERRMODE_STDERR</samp></p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>VM ignores the 
+      <span class="keyword">MKL_VML_MODE</span> environment variable in the case of
+      incorrect or misspelled settings of 
+      <span class="parmname">mode</span>. 
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D722085B-88DE-471E-90D5-62FCAECBDED7.html">Managing Behavior of Function Domains with Environment Variables</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="LAPACK Least Squares and Eigenvalue Problem Routines"/>
+<meta name="DC.subject" content="least squares problems, eigenvalue problems"/>
+<meta name="keywords" content="least squares problems, eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CFFD2E72-2C8E-48C0-90CE-56BB9DDE6D2A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E31148D3-56E2-481E-A5CF-6F98C74FE856"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>LAPACK Least Squares and Eigenvalue Problem Routines</title>
+
+</head>
+<body id="GUID-E31148D3-56E2-481E-A5CF-6F98C74FE856">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">LAPACK Least Squares and Eigenvalue Problem
+    Routines</h1>
+<div><p>This section includes descriptions of LAPACK 
+      <a href="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html#GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E">computational routines</a> and 
+      <a href="GUID-CFFD2E72-2C8E-48C0-90CE-56BB9DDE6D2A.html#GUID-CFFD2E72-2C8E-48C0-90CE-56BB9DDE6D2A">driver routines</a> for solving
+      linear least squares problems, eigenvalue and singular value problems, and
+      performing a number of related computational tasks. For a full reference on
+      LAPACK routines and related information see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LUG">LUG</a>]. 
+    </p>
+<p id="LSP"><strong>Least Squares
+        Problems.</strong> A typical 
+      <dfn class="term">least squares problem</dfn> is as follows:
+      given a matrix 
+      <var>A</var> and a vector 
+      <var>b</var>, find the
+      vector 
+      <var>x</var> that minimizes
+      the sum of squares 
+      <samp class="codeph">Σ<sub><var>i</var></sub>((<var>Ax</var>)<sub><var>i</var></sub> - 
+        <var>b</var><sub><var>i</var></sub>)<sup>2</sup></samp> or, equivalently, find the vector
+      
+      <var>x</var> that minimizes
+      the 2-norm 
+      <samp class="codeph">||<var>Ax</var> - 
+        <var>b</var>||<sub>2</sub></samp>. 
+    </p>
+<p>In the most usual case, 
+      <var>A</var> is an 
+      <var>m</var>-by-<var>n</var> matrix with 
+      <var>m</var> ≥ 
+      <var>n</var> and 
+      <samp class="codeph">rank(<var>A</var>) = 
+        <var>n</var></samp>.
+      This problem is also referred to as finding the 
+      <dfn class="term">least squares solution</dfn> to an 
+      <dfn class="term">overdetermined</dfn> system of linear
+      equations (here we have more equations than unknowns). To solve this problem,
+      you can use the 
+      <var>QR</var> factorization
+      of the matrix A (see 
+      <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html#QRFACTOR">QR Factorization</a>). 
+    </p>
+<p>If 
+      <samp class="codeph"><var>m</var> &lt; 
+        <var>n</var></samp> and
+      
+      <samp class="codeph">rank(<var>A</var>) = 
+        <var>m</var></samp>,
+      there exist an infinite number of solutions 
+      <var>x</var> which exactly
+      satisfy 
+      <samp class="codeph"><var>Ax</var> = 
+        <var>b</var></samp>,
+      and thus minimize the norm 
+      <samp class="codeph">||<var>Ax</var> - 
+        <var>b</var>||<sub>2</sub></samp>. In this case it is often useful
+      to find the unique solution that minimizes 
+      <samp class="codeph">||<var>x</var>||<sub>2</sub></samp>. This problem is referred to as
+      finding the 
+      <dfn class="term">minimum-norm solution</dfn> to an 
+      <dfn class="term">underdetermined</dfn> system of linear
+      equations (here we have more unknowns than equations). To solve this problem,
+      you can use the 
+      <var>LQ</var> factorization
+      of the matrix 
+      <var>A</var> (see 
+      <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html#LQFACTOR">LQ Factorization</a>). 
+    </p>
+<p>In the general case you may have a 
+      <dfn class="term">rank-deficient least squares problem</dfn>,
+      with 
+      <samp class="codeph">rank(<var>A</var>)&lt; min(<var>m</var>, 
+        <var>n</var>)</samp>:
+      find the 
+      <dfn class="term">minimum-norm least squares solution</dfn>
+      that minimizes both 
+      <samp class="codeph">||<var>x</var>||<sub>2</sub></samp> and 
+      <samp class="codeph">||<var>Ax</var> - 
+        <var>b</var>||<sup>2</sup></samp>. In this case (or when the rank
+      of A is in doubt) you can use the 
+      <var>QR</var> factorization
+      with pivoting or 
+      <dfn class="term">singular value decomposition</dfn> (see 
+      <a href="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F.html#GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F">Singular Value Decomposition</a>). 
+    </p>
+<p id="EVP"><strong>Eigenvalue
+        Problems.</strong> The eigenvalue problems (from German 
+      <var>eigen</var> "own") are
+      stated as follows: given a matrix 
+      <var>A</var>, find the 
+      <dfn class="term">eigenvalues</dfn><span class="eqsymbol">λ</span> and the
+      corresponding 
+      <dfn class="term">eigenvectors</dfn><var>z</var> that satisfy
+      the equation 
+    </p>
+<p><samp class="codeph"><var>Az</var> = 
+        <span class="eqsymbol">λ</span><var>z</var></samp> (right eigenvectors 
+      <var>z</var>) 
+    </p>
+<p>or the equation 
+    </p>
+<p><samp class="codeph"><var>z</var><sup><var>H</var></sup><var>A</var> = 
+        <span class="eqsymbol">λ</span><var>z</var><sup><var>H</var></sup></samp> (left
+      eigenvectors 
+      <var>z</var>). 
+    </p>
+<p>If 
+      <var>A</var> is a real
+      symmetric or complex Hermitian matrix, the above two equations are equivalent,
+      and the problem is called a 
+      <dfn class="term">symmetric</dfn> eigenvalue problem. Routines
+      for solving this type of problems are described in the 
+       
+      <span>topic
+        
+      </span><a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html#GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F">Symmetric Eigenvalue Problems</a>. 
+    </p>
+<p>Routines for solving eigenvalue problems with
+      nonsymmetric or non-Hermitian matrices are described in the 
+       
+      <span>topic
+        
+      </span><a href="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html#GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF">Nonsymmetric Eigenvalue
+        Problems</a>. 
+    </p>
+<p>The library also includes routines that handle 
+      <dfn class="term">generalized symmetric-definite eigenvalue
+        problems</dfn>: find the eigenvalues 
+      <span class="eqsymbol">λ</span> and the
+      corresponding eigenvectors 
+      <var>x</var> that satisfy
+      one of the following equations: 
+    </p>
+<p><samp class="codeph"><var>Az</var> = 
+        <span class="eqsymbol">λ</span><var>Bz</var></samp>, 
+      <samp class="codeph"><var>ABz</var> = 
+        <span class="eqsymbol">λ</span>z</samp>, or 
+      <samp class="codeph"><var>BAz</var> = 
+        <span class="eqsymbol">λ</span>z</samp>, 
+    </p>
+<p>where 
+      <var>A</var> is symmetric
+      or Hermitian, and 
+      <var>B</var> is symmetric
+      positive-definite or Hermitian positive-definite. Routines for reducing these
+      problems to standard symmetric eigenvalue problems are described in the 
+       
+      <span>topic
+        
+      </span><a href="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html#GUID-5BECF668-947E-4144-B825-2796C91ABECF">Generalized Symmetric-Definite
+        Eigenvalue Problems</a>. 
+    </p>
+<p>To solve a particular problem, you usually call
+      several computational routines. Sometimes you need to combine the routines of
+      this chapter with other LAPACK routines described in 
+      <span>"LAPACK Routines: Linear Equations"</span> as well
+      as with BLAS routines described in 
+      <span>"BLAS and Sparse BLAS Routines"</span>. 
+    </p>
+<p>For example, to solve a set of least squares problems
+      minimizing 
+      <samp class="codeph">||<var>Ax</var> - 
+        <var>b</var>||<sup>2</sup></samp> for all columns 
+      <var>b</var> of a given
+      matrix 
+      <var>B</var> (where 
+      <var>A</var> and 
+      <var>B</var> are real
+      matrices), you can call 
+  <span class="option">?geqrf</span> to form the
+  factorization 
+  <samp class="codeph"><var>A</var> = 
+    <var>QR</var></samp>, then
+  call 
+  <span class="option">?ormqr</span> to compute 
+  <samp class="codeph"><var>C</var> = 
+    <var>Q</var><sup><var>H</var></sup><var>B</var></samp> and finally call the
+  BLAS routine 
+  <span class="option">?trsm</span> to solve for 
+  <var>X</var> the system of
+  equations 
+  <samp class="codeph"><var>RX</var> = 
+    <var>C</var></samp>. 
+  </p>
+<p>Another way is to call an appropriate driver routine
+    that performs several tasks in one call. For example, to solve the least
+    squares problem the driver routine 
+  <span class="option">?gels</span> can be used. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html">LAPACK Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html">LAPACK Least Squares and Eigenvalue Problem Computational Routines</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-CFFD2E72-2C8E-48C0-90CE-56BB9DDE6D2A.html">LAPACK Least Squares and Eigenvalue Problem Driver Routines</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

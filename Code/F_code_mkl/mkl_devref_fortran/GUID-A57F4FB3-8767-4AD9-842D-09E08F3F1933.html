@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larft"/>
+<meta name="abstract" content="Forms the triangular factor T of a block reflector H = I - V*T*V**H."/>
+<meta name="description" content="Forms the triangular factor T of a block reflector H = I - V*T*V**H."/>
+<meta name="DC.subject" content="?larft, slarft, dlarft, clarft, zlarft, LAPACK routines, auxiliary routines, block reflector, triangular factor, LAPACK"/>
+<meta name="keywords" content="?larft, slarft, dlarft, clarft, zlarft, LAPACK routines, auxiliary routines, block reflector, triangular factor, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A57F4FB3-8767-4AD9-842D-09E08F3F1933"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larft</title>
+
+</head>
+<body id="GUID-A57F4FB3-8767-4AD9-842D-09E08F3F1933">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larft</span></h1>
+<!--Forms the triangular factor  T  of a block reflector  H  =  I  -  V * T * V ** H .--><div><p class="shortdesc">Forms the triangular factor <var>T</var> of a block reflector <var>H</var> = <var>I</var> - <var>V</var>*<var>T</var>*<var>V</var>**<var>H</var>.</p>
+<div class="section" id="GUID-F75006D2-8FDF-4510-B96B-080DCF8185C0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slarft</span><span class="delim">( </span><span class="var">direct</span><span class="sep">, </span><span class="var">storev</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarft</span><span class="delim">( </span><span class="var">direct</span><span class="sep">, </span><span class="var">storev</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clarft</span><span class="delim">( </span><span class="var">direct</span><span class="sep">, </span><span class="var">storev</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarft</span><span class="delim">( </span><span class="var">direct</span><span class="sep">, </span><span class="var">storev</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-406CC076-FA94-4376-BB76-179E7945B55B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-487288D2-250B-4D8B-A296-35A6B01E0E8D"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?larft</span> forms the triangular factor <var>T</var> of a real/complex block reflector <var>H</var> of order <var>n</var>, which is defined as a product of <var>k</var> elementary reflectors.</p>
+<p>If <samp class="codeph"><var>direct</var> = <span class="keyword">'F'</span></samp>, <samp class="codeph"><var>H</var> =  <var>H</var>(1)*<var>H</var>(2)* . . .*<var>H</var>(<var>k</var>)</samp> and <var>T</var> is upper triangular;</p>
+<p>If <samp class="codeph"><var>direct</var> = <span class="keyword">'B'</span></samp>, <samp class="codeph"><var>H</var> =  <var>H</var>(<var>k</var>)*. . .*<var>H</var>(2)*<var>H</var>(1)</samp> and <var>T</var> is lower triangular.</p>
+<p>If <samp class="codeph"><var>storev</var> = <span class="keyword">'C'</span></samp>, the vector which defines the elementary reflector H(<var>i</var>) is stored in the <var>i</var>-th column of the array <var>v</var>, and <samp class="codeph"><var>H</var>  = <var>I</var> - <var>V</var>*<var>T</var>*<var>V</var><sup class="power"><var>T</var></sup></samp> (for real flavors) or <samp class="codeph"><var>H</var>  = <var>I</var> - <var>V</var>*<var>T</var>*<var>V</var><sup class="power"><var>H</var></sup></samp> (for complex flavors)  .</p>
+<p>If <samp class="codeph"><var>storev</var> = <span class="keyword">'R'</span></samp>, the vector which defines the elementary reflector H(<var>i</var>) is stored in the <var>i</var>-th row of the array <var>v</var>, and <samp class="codeph"><var>H</var>  =  <var>I</var> - <var>V</var><sup class="power"><var>T</var></sup>*<var>T</var>*<var>V</var></samp> (for real flavors) or <samp class="codeph"><var>H</var>  =  <var>I</var> - <var>V</var><sup class="power"><var>H</var></sup>*<var>T</var>*<var>V</var></samp> (for complex flavors).</p>
+</div>
+<div class="section" id="GUID-1F842DF3-ED30-4087-8537-724A1A7680B7"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-57F279B0-211D-4503-9DB6-8DD0E3C4F17C"><dt class="dlterm"><span class="parmname">direct</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>Specifies the order in which the elementary reflectors are multiplied to form the block reflector:</p>
+<p>= <span class="keyword">'F'</span>: <samp class="codeph"><var>H</var> = <var>H</var>(1)*<var>H</var>(2)*. . . *<var>H</var>(<var>k</var>)</samp> (forward) </p>
+<p>= <span class="keyword">'B'</span>: <samp class="codeph"><var>H</var> = <var>H</var>(<var>k</var>)*. . .*<var>H</var>(2)*<var>H</var>(1)</samp> (backward)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">storev</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>Specifies how the vectors which define the elementary reflectors are stored <span>(see also <em>Application Notes</em> below)</span>:</p>
+<p>= <span class="keyword">'C'</span>: column-wise</p>
+<p>= <span class="keyword">'R'</span>: row-wise.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the block reflector <var>H</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the triangular factor <var>T</var> (equal to the number of elementary reflectors). <samp class="codeph"><var>k</var><span class="eqsymbol">≥</span> 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarft</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarft</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarft</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarft</span></p>
+<p>Array, <span class="keyword">DIMENSION</span></p>
+<p>(<var>ldv</var>, <var>k</var>) if <samp class="codeph"><var>storev</var> = <span class="keyword">'C'</span></samp> or </p>
+<p>(<var>ldv</var>, <var>n</var>) if <samp class="codeph"><var>storev</var> = <span class="keyword">'R'</span></samp>. </p>
+<p>The matrix <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>v</var>. </p>
+<p>If <samp class="codeph"><var>storev</var> = <span class="keyword">'C'</span></samp>, <samp class="codeph"><var>ldv</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp></p>
+<p>if <samp class="codeph"><var>storev</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>ldv</var><span class="eqsymbol">≥</span><var>k</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarft</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarft</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarft</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarft</span></p>
+<p>Array, size (<var>k</var>). <var>tau</var><samp class="codeph">(<var>i</var>)</samp> must contain the scalar factor of the elementary reflector <var>H</var>(<var>i</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>t</var>. <samp class="codeph"><var>ldt</var><span class="eqsymbol">≥</span><var>k</var></samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6079741F-FB5A-48F7-9BC0-677EFE6B22AE"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-196BF29D-23E5-4233-A5E5-548D373875D0"><dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarft</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarft</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarft</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarft</span></p>
+<p>Array, size <span><var>ldt</var> by <var>k</var></span>. The <var>k</var>-by-<var>k</var> triangular factor <var>T</var> of the block reflector. If <samp class="codeph"><var>direct</var> = <span class="keyword">'F'</span></samp>, <var>T</var> is upper triangular; if <samp class="codeph"><var>direct</var> = <span class="keyword">'B'</span></samp>, <var>T</var> is lower triangular. The rest of the array is not used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p>The matrix <var>V</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-ED3289CB-02CD-461E-8CA6-3B61F41FFA6E"><h2 class="sectiontitle">Application Notes</h2><p>The shape of the matrix <var>V</var> and the storage of the vectors which define the <var>H</var>(<var>i</var>) is best illustrated by the following example with <samp class="codeph"><var>n</var> = 5</samp> and <samp class="codeph"><var>k</var> = 3</samp>. The elements equal to 1 are not stored; the corresponding  array elements are modified but restored on exit. The rest of the array is not 
+used.</p>
+<p><br/><div class="imagecenter"><img src="GUID-CD9449DF-85A3-4532-B4C3-FF199240C045-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p><br/><div class="imagecenter"><img src="GUID-C8C7D96D-8337-44AE-B1F7-16E1B0B76C07-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

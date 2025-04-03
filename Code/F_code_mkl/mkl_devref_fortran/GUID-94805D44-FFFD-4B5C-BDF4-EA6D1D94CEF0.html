@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?laiect"/>
+<meta name="abstract" content="Exploits IEEE arithmetic to accelerate the computations of eigenvalues. (C interface function)."/>
+<meta name="description" content="Exploits IEEE arithmetic to accelerate the computations of eigenvalues. (C interface function)."/>
+<meta name="DC.subject" content="p?laiect, ScaLAPACK routines, auxiliary routines, negative eigenvalues, IEEE arithmetic, pslaiect, pdlaiectb, pdlaiectl"/>
+<meta name="keywords" content="p?laiect, ScaLAPACK routines, auxiliary routines, negative eigenvalues, IEEE arithmetic, pslaiect, pdlaiectb, pdlaiectl"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-94805D44-FFFD-4B5C-BDF4-EA6D1D94CEF0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?laiect</title>
+
+</head>
+<body id="GUID-94805D44-FFFD-4B5C-BDF4-EA6D1D94CEF0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?laiect</span></h1>
+<!--Exploits IEEE arithmetic to accelerate the computations of eigenvalues. (C interface function).--><div><p class="shortdesc">Exploits IEEE arithmetic to accelerate the computations of eigenvalues. (C interface function).</p>
+<div class="section" id="GUID-BDF7861F-E7AA-46B1-9A8A-61C0A8DBBA3F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">void pslaiect</span><span class="delim">(</span><span class="kwd">float</span><span class="var"> *sigma</span><span class="sep">, </span><span class="kwd">int</span><span class="var"> *n</span><span class="sep">, </span><span class="kwd">float</span><span class="var"> *d</span><span class="sep">, </span><span class="kwd">int</span><span class="var"> *count</span><span class="delim">)</span><span class="delim">;</span></p><p class="dlsyntaxpara"><span class="kwd">void pdlaiectb</span><span class="delim">(</span><span class="kwd">float</span><span class="var"> *sigma</span><span class="sep">, </span><span class="kwd">int</span><span class="var"> *n</span><span class="sep">, </span><span class="kwd">float</span><span class="var"> *d</span><span class="sep">, </span><span class="kwd">int</span><span class="var"> *count</span><span class="delim">)</span><span class="delim">;</span></p><p class="dlsyntaxpara"><span class="kwd">void pdlaiectl</span><span class="delim">(</span><span class="kwd">float</span><span class="var"> *sigma</span><span class="sep">, </span><span class="kwd">int</span><span class="var"> *n</span><span class="sep">, </span><span class="kwd">float</span><span class="var"> *d</span><span class="sep">, </span><span class="kwd">int</span><span class="var"> *count</span><span class="delim">)</span><span class="delim">;</span></p></dl></div>
+<div class="section" id="GUID-CB865104-B1E1-4808-B494-824ACE508D16"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?laiect</span><span>routine </span>computes the number of negative eigenvalues of (<samp class="codeph"><var>A</var>- <span class="eqsymbol">σ</span><var>I</var></samp>). This implementation of the Sturm Sequence loop exploits IEEE arithmetic and has no conditionals in the innermost loop. The signbit for real <span>routine </span><span class="option">pslaiect</span> is assumed to be bit 32. Double-precision <span>routines </span><span class="option">pdlaiectb</span> and <span class="option">pdlaiectl</span> differ in the order of the double precision word storage and, consequently, in the signbit location. For <span class="option">pdlaiectb</span>, the double precision word is stored in the big-endian word order and the signbit is assumed to be bit 32. For <span class="option">pdlaiectl</span>, the double precision word is stored in the little-endian word order and the signbit is assumed to be bit 64.</p>
+<p>Note that all arguments are call-by-reference so that this <span>routine </span>can be directly called from Fortran code. </p>
+<p>This is a ScaLAPACK internal <span>subroutine </span>and arguments are not checked for unreasonable values.</p>
+</div>
+<div class="section" id="GUID-F34ECB00-AA92-4C81-BD5D-0C6D5287B12A"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2116CFC8-F4A4-42DA-AEF8-5AB01896A488"><dt class="dlterm"><span class="parmname">sigma</span></dt>
+
+<dd><p><span class="keyword">REAL</span>for <span class="option">pslaiect</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span>for <span class="option">pdlaiectb/pdlaiectl</span>. </p>
+<p>The shift. <span class="option">p?laiect</span> finds the number of eigenvalues less than equal to <var>sigma</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the tridiagonal matrix <var>T</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span>for <span class="option">pslaiect</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaiectb/pdlaiectl</span>.</p>
+<p>Array of size<samp class="codeph"> 2<var>n</var>-1</samp>. </p>
+<p>On entry, this array contains the diagonals and the squares of the off-diagonal elements of the tridiagonal matrix <var>T</var>. These elements are assumed to be interleaved in memory for better cache performance. The diagonal entries of <var>T</var> are in the entries <samp class="codeph"><var>d</var>(1), <var>d</var>(3),..., <var>d</var>(2<var>n</var>-1)</samp>, while the squares of the off-diagonal entries are <samp class="codeph"><var>d</var>(2), <var>d</var>(4), ..., <var>d</var>(2<var>n</var>-2)</samp>. To avoid overflow, the matrix must be scaled so that its largest entry is no greater than <samp class="codeph"><var>overflow</var><sup class="power">(1/2)</sup> * <var>underflow</var><sup class="power">(1/4)</sup></samp> in absolute value, and for greatest accuracy, it should not be much smaller than that.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-02B18389-6018-4634-85C8-BEC0E33361B4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0EE19AE0-F2F8-4F6F-A37F-3DEE40E70662"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The count of the number of eigenvalues of <var>T</var> less than or equal to <var>sigma</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

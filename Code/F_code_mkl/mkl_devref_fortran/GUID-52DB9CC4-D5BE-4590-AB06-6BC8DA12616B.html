@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laed2"/>
+<meta name="abstract" content="Used by sstedc/dstedc. Merges eigenvalues and deflates secular equation. Used when the original matrix is tridiagonal."/>
+<meta name="description" content="Used by sstedc/dstedc. Merges eigenvalues and deflates secular equation. Used when the original matrix is tridiagonal."/>
+<meta name="DC.subject" content="?laed2, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="keywords" content="?laed2, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-52DB9CC4-D5BE-4590-AB06-6BC8DA12616B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laed2</title>
+
+</head>
+<body id="GUID-52DB9CC4-D5BE-4590-AB06-6BC8DA12616B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laed2</span></h1>
+<!--Used by  sstedc / dstedc . Merges eigenvalues and deflates secular equation. Used when the original matrix is tridiagonal.--><div><p class="shortdesc">Used by <span class="option">sstedc</span>/<span class="option">dstedc</span>. Merges eigenvalues and deflates secular equation. Used when the original matrix is tridiagonal.</p>
+<div class="section" id="GUID-87F7344B-F507-4E67-9831-98DEA47EA859"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaed2</span><span class="delim">( </span><span class="var">k</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">indxq</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">dlamda</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">q2</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">indxc</span><span class="sep">, </span><span class="var">indxp</span><span class="sep">, </span><span class="var">coltyp</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaed2</span><span class="delim">( </span><span class="var">k</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">indxq</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">dlamda</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">q2</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">indxc</span><span class="sep">, </span><span class="var">indxp</span><span class="sep">, </span><span class="var">coltyp</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-AE325DB6-966A-42B5-9432-5BE6271BCDAD"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-95C2C4E4-13DA-4FF4-9087-872A11A98B80"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?laed2</span> merges the two sets of eigenvalues together into a single sorted set. Then it tries to deflate the size of the problem. There are two ways in which deflation can occur: when two or more eigenvalues are close together or if there is a tiny entry in the <var>z</var> vector. For each such occurrence the order of the related secular equation problem is reduced by one.</p>
+</div>
+<div class="section" id="GUID-CE597829-462B-49B0-BAF8-A967D1E8ADE5"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2FCD7C23-7357-4E88-B43E-C8A683751089"><dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of non-deflated eigenvalues, and the order of the related secular equation (<samp class="codeph">0 ≤ <var>k</var> ≤ <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The dimension of the symmetric tridiagonal matrix (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n1</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The location of the last eigenvalue in the leading sub-matrix; <samp class="codeph">min(1,<var>n</var>) ≤ <var>n1</var> ≤ <var>n</var>/2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">q</span>, <span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed2</span>. </p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>d</var><span class="keyword">(*)</span></samp> contains the eigenvalues of the two submatrices to be combined. The dimension of <var>d</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><samp class="codeph"><var>q</var>(<var>ldq</var>, *)</samp> contains the eigenvectors of the two submatrices in the two square blocks with corners at (1,1), (<var>n1</var>,<var>n1</var>) and  (<var>n1</var>+1,<var>n1</var>+1), (<var>n</var>,<var>n</var>). The second dimension of <var>q</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>. </p>
+<p><samp class="codeph"><var>z</var><span class="keyword">(*)</span></samp> contains the updating vector (the last row of the first sub-eigenvector matrix and the first row of the second sub-eigenvector matrix).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldq</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>q</var>; <samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indxq</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, dimension (<var>n</var>).</p>
+<p>On entry, the permutation which separately sorts the two subproblems in <var>d</var> into ascending order. Note that elements in the second half of this permutation must first have <var>n1</var> added to their values. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed2</span>. </p>
+<p>On entry, the off-diagonal element associated with the rank-1 cut which originally split the two submatrices which are now being recombined.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span>, <span class="parmname">indxp</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Workspace arrays, dimension (<var>n</var>) each. Array <var>indx</var> contains the permutation used to sort the contents of <var>dlamda</var> into ascending order. </p>
+<p>Array <var>indxp</var> contains the permutation used to place deflated values of <var>d</var> at the end of the array. </p>
+<p><var>indxp</var>(1:<var>k</var>) points to the nondeflated <var>d</var>-values and <var>indxp</var>(<var>k</var>+1:<var>n</var>) points to the deflated eigenvalues.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">coltyp</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Workspace array, dimension (<var>n</var>). </p>
+<p>During execution, a label which will indicate which of the following types a column in the <var>q2</var> matrix is: </p>
+<p>1 : non-zero in the upper half only; </p>
+<p>2 : dense; </p>
+<p>3 : non-zero in the lower half only; </p>
+<p>4 : deflated.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A66C9296-08A7-4798-AF5B-602CFCA5CA30"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2B57D14C-F006-4992-88B2-313E3F0C0261"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, <var>d</var> contains the trailing (<var>n</var>-<var>k</var>) updated eigenvalues (those which were deflated) sorted into increasing order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>On exit, <var>q</var> contains the trailing (<var>n</var>-<var>k</var>) updated eigenvectors (those which were deflated) in its last <var>n</var>-<var>k</var> columns.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>On exit, <var>z</var> content is destroyed by the updating process.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indxq</span></dt>
+
+<dd><p>Destroyed on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p>On exit, <var>rho</var> has been modified to the value required by <span class="option">?laed3</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dlamda</span>, <span class="parmname">w</span>, <span class="parmname">q2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed2</span>. </p>
+<p>Arrays: <var>dlamda</var>(<var>n</var>), <var>w</var>(<var>n</var>), <var>q2</var>(<var>n1</var><sup class="power">2</sup>+(<var>n</var>-<var>n1</var>)<sup class="power">2</sup>).</p>
+<p>The array <var>dlamda</var> contains a copy of the first <var>k</var> eigenvalues which is used by <span class="option">?laed3</span> to form the secular equation.</p>
+<p>The array <var>w</var> contains the first <var>k</var> values of the final deflation-altered <var>z</var>-vector which is passed to <span class="option">?laed3</span>.</p>
+<p>The array <var>q2</var> contains a copy of the first <var>k</var> eigenvectors which is used by <span class="option">?laed3</span> in a matrix multiply (<span class="option">sgemm</span>/<span class="option">dgemm</span>) to solve for the new eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indxc</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, dimension (<var>n</var>).</p>
+<p>The permutation used to arrange the columns of the deflated <var>q</var> matrix into three groups: the first group contains non-zero elements only at and above <var>n1</var>, the second contains non-zero elements only below <var>n1</var>, and the third is dense.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">coltyp</span></dt>
+
+<dd><p>On exit, <var>coltyp</var>(i) is the number of columns of type i, for i=1 to 4 only (see the definition of types in the description of <var>coltyp</var> in <em>Input Parameters</em>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

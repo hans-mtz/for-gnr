@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?labrd"/>
+<meta name="abstract" content="Reduces the first nb rows and columns of a general rectangular matrix A to real bidiagonal form by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A."/>
+<meta name="description" content="Reduces the first nb rows and columns of a general rectangular matrix A to real bidiagonal form by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A."/>
+<meta name="DC.subject" content="p?labrd, ScaLAPACK routines, auxiliary routines, general rectangular matrix, reduction to bidiagonal form"/>
+<meta name="keywords" content="p?labrd, ScaLAPACK routines, auxiliary routines, general rectangular matrix, reduction to bidiagonal form"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8133C686-B899-4816-BDB1-EAABB8A78B8F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?labrd</title>
+
+</head>
+<body id="GUID-8133C686-B899-4816-BDB1-EAABB8A78B8F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?labrd</span></h1>
+<!--Reduces the first  nb  rows and columns of a general rectangular matrix A to real bidiagonal form by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A.--><div><p class="shortdesc">Reduces the first <var>nb</var> rows and columns of a general rectangular matrix A to real bidiagonal form by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A.</p>
+<div class="section" id="GUID-9A3AF98A-E1E3-4668-98DA-DDE6829A22FE"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslabrd</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tauq</span><span class="sep">, </span><span class="var">taup</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlabrd</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tauq</span><span class="sep">, </span><span class="var">taup</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclabrd</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tauq</span><span class="sep">, </span><span class="var">taup</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlabrd</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tauq</span><span class="sep">, </span><span class="var">taup</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-CDEBE400-7B1A-48CC-AEA4-5405925594BC"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?labrd</span><span>routine </span>reduces the first <var>nb</var> rows and columns of a real/complex general <var>m</var>-by-<var>n</var> distributed matrix sub(<var>A</var>) =<var> A</var><samp class="codeph">(<var>ia</var>:<var>ia</var>+<var>m</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> to upper or lower bidiagonal form by an orthogonal/unitary transformation <var>Q'* A * P</var>, and returns the matrices <var>X</var> and <var>Y</var> necessary to apply the transformation to the unreduced part of sub(<var>A</var>).</p>
+<p>If <samp class="codeph"><var>m </var><span class="eqsymbol">≥</span><var>n</var></samp>, <samp class="codeph">sub(<var>A</var>)</samp> is reduced to upper bidiagonal form; if <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>, <samp class="codeph">sub(<var>A</var>)</samp> is reduced to lower bidiagonal form.</p>
+<p>This is an auxiliary <span>routine </span>called by <a href="GUID-0FCEF7B7-6056-4427-892D-8E842BA6C443.html#GUID-0FCEF7B7-6056-4427-892D-8E842BA6C443"><span class="option">p?gebrd</span></a>.</p>
+</div>
+<div class="section" id="GUID-01A6CB34-7EB7-4D42-AE11-B3854E31E09D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-6F5F3CAD-8DEB-4728-8C1D-DDFC3C77EBE5"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span> The number of rows in the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.  <samp class="codeph">(<var>m</var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of columns in the distributed matrix sub(<var>A</var>). <samp class="codeph">(<var>n </var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of leading rows and columns of sub(<var>A</var>) to be          reduced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. </p>
+<p>On entry, this array contains the local pieces of the general distributed matrix  sub(<var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span>, <span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>X</var> indicating the first row and the first column of the matrix sub(<var>X</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iy</span>, <span class="parmname">jy</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>Y</var> indicating the first row and the first column of the matrix sub(<var>Y</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descy</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>Y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span></p>
+<p>Workspace array of size<samp class="codeph"><var>lwork</var>.</samp></p>
+<p><samp class="codeph"><var>lwork </var><span class="eqsymbol">≥</span><var> nb_a</var> + <var>nq</var></samp>, </p>
+<p>with  <samp class="codeph"><var>nq</var> = <span class="keyword">numroc</span>(<var>n</var>+<span class="keyword">mod</span>(<var>ia</var>-1, <var>nb_y</var>), <var>nb_y</var>, <var>mycol</var>, <var>iacol</var>, <var>npcol</var>)</samp></p>
+<p><samp class="codeph"><var>iacol</var> = <span class="keyword">indxg2p</span> (<var>ja</var>, <var>nb_a</var>, <var>mycol</var>, <var>csrc_a</var>, <var>npcol</var>)</samp></p>
+<p><span class="keyword">indxg2p</span> and <span class="keyword">numroc</span> are ScaLAPACK tool functions; <var>myrow</var>, <var>mycol</var>, <var>nprow</var>, and <var>npcol</var> can be determined by calling the <span>subroutine </span><span class="keyword">blacs_gridinfo</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-52886AF0-875B-44C8-A501-F8848A53465A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-DE141F79-3141-49D5-9DD1-49EDDF90FBEA"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local) </p>
+<p>On exit, the first <var>nb</var> rows and columns of the matrix are overwritten; the rest of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp> is unchanged. </p>
+<p>If <samp class="codeph"><var>m </var><span class="eqsymbol">≥</span><var> n</var></samp>, elements on and below the diagonal in the first <var>nb</var> columns, with the array <var>tauq</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors; and elements above the diagonal in the first <var>nb</var> rows, with the  array <var>taup</var>, represent the orthogonal/unitary matrix <var>P</var> as a product of elementary reflectors. </p>
+<p>If <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>, elements below the diagonal in the first <var>nb</var> columns, with the array <var>tauq</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors, and elements on and above the diagonal in the first <var>nb</var> rows, with the array <var>taup</var>, represent the orthogonal/unitary matrix <var>P</var> as a product of elementary reflectors.<span> See <em>Application Notes</em> below.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span></p>
+<p>Array of size <samp class="codeph"><var>LOCr</var>(<var>ia</var>+min(<var>m,n</var>)-1)</samp> if <samp class="codeph"><var> m </var><span class="eqsymbol">≥</span><var> n</var></samp>; <samp class="codeph"><var>LOCc</var>(<var>ja</var>+min(<var>m,n</var>)-1)</samp> otherwise. The distributed diagonal elements of the bidiagonal distributed matrix <var>B</var>: </p>
+<p><span class="parmname">d</span>(<var>i</var>) = <var>A</var>(<span class="parmname">ia</span>+<var>i</var>-1, <span class="parmname">ja</span>+<var>i</var>-1).  </p>
+<p><span class="parmname">d</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span></p>
+<p>Array of size<samp class="codeph"><var> LOCr</var>(<var>ia</var>+min(<var>m,n</var>)-1)</samp> if <samp class="codeph"><var>m </var><span class="eqsymbol">≥ </span><var>n</var></samp>; <samp class="codeph"><var>LOCc</var>(<var>ja</var>+min(<var>m,n</var>)-2)</samp> otherwise. The distributed off-diagonal elements of the bidiagonal distributed matrix <var>B</var>: </p>
+<p>if <samp class="codeph"><var>m </var><span class="eqsymbol">≥</span><var> n</var></samp>,  <span><samp class="codeph"><var>E</var>(<var>i</var>) = <var>A</var>(<var>ia</var>+<var>i</var>-1, <var>ja</var>+<var>i</var>)</samp> for <samp class="codeph"><var>i</var> = 1, 2, ..., <var>n</var>-1</samp></span>; </p>
+<p>if <samp class="codeph"><var>m</var>&lt;<var>n</var></samp>, <span><samp class="codeph"><var>E</var>(<var>i</var>) = <var>A</var>(<var>ia</var>+<var>i</var>, <var>ja</var>+<var>i</var>-1)</samp> for <samp class="codeph"><var>i</var> = 1, 2, ..., <var>m</var>-1</samp></span>. </p>
+<p><var>e</var> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tauq</span>, <span class="parmname">taup</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span></p>
+<p>Array size<var> LOCc</var>(<var>ja</var>+min(<var>m</var>, <var>n</var>)-1) for <var>tauq</var>, size<var> LOCr</var>(<var>ia</var>+min(<var>m</var>, <var>n</var>)-1) for <var>taup</var>. The scalar factors of the elementary reflectors which represent the orthogonal/unitary matrix <var>Q</var> for <var>tauq</var>, <var>P</var> for <var>taup</var>. <var>tauq</var> and <var>taup</var> are tied to the distributed matrix <var>A</var>.  <span> See <em>Application Notes</em> below.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span></p>
+<p><span class="option"/>Pointer into the local memory to an array of size <var>lld_x</var><span>by </span><var>nb</var>. On exit, the local pieces of the distributed <span class="parmname">m</span>-by-<span class="parmname">nb</span> matrix <var>X</var><samp class="codeph">(<var>ix</var>:<var>ix</var>+<var>m</var>-1</samp>, <samp class="codeph"><var>jx</var>:<var>jx</var>+<var>nb</var>-1)</samp> required to update the unreduced part of sub(<var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslabrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlabrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclabrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlabrd</span></p>
+<p><span class="option"/>Pointer into the local memory to an array of size <var>lld_y</var><span>by </span><var>nb</var>.  On exit, the local pieces of the distributed <span class="parmname">n</span>-by-<span class="parmname">nb</span> matrix<var> Y</var><samp class="codeph">(<var>iy</var>:<var>iy</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>jy</var>:<var>jy</var>+<var>nb</var>-1)</samp> required to update the unreduced part of sub(<var>A</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3EA84D08-86BD-4652-8E62-293AAB191AC6"><h2 class="sectiontitle">Application Notes</h2><p>The matrices <var>Q</var> and <var>P</var> are represented as products of elementary reflectors:</p>
+<p><samp class="codeph"><var>Q</var> = <var>H</var>(1)*<var>H</var>(2)*...*<var>H</var>(<var>nb</var>)</samp>,  and  <samp class="codeph"><var>P</var> = <var>G</var>(1)*<var>G</var>(2)*...*<var>G</var>(<var>nb</var>)</samp></p>
+<p>Each <samp class="codeph"><var>H</var>(i)</samp> and <samp class="codeph"><var>G</var>(i)</samp> has the form:</p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tauq</var>*<var>v</var>*<var>v'</var></samp> , and <samp class="codeph"><var>G</var>(i) = <var>I</var> - <var>taup</var>*<var>u</var>*<var>u'</var></samp>,</p>
+<p>where <var>tauq</var> and <var>taup</var> are real/complex scalars, and <var>v</var> and <var>u</var> are real/complex vectors. </p>
+<p>If <samp class="codeph"><var>m </var><span class="eqsymbol">≥</span><var> n</var></samp>, <samp class="codeph"><var>v</var>(1: <var>i</var>-1 ) = 0, <var>v</var>(<var>i</var>) = 1</samp>, and <samp class="codeph"><var>v</var>(<var>i</var>:<var>m</var>)</samp> is stored on exit in</p>
+<p><samp class="codeph"><var>A</var>(<var>ia</var>+<var>i</var>-1:<var>ia</var>+<var>m</var>-1, <var>ja</var>+<var>i</var>-1)</samp>; <samp class="codeph"><var>u</var>(1:<var>i</var>) = 0, <var>u</var>(<var>i</var>+1 ) = 1</samp>, and <samp class="codeph"><var>u</var>(<var>i</var>+1:<var>n</var>)</samp> is stored on exit in <samp class="codeph"><var>A</var>(<var>ia</var>+<var>i</var>-1, <var>ja</var>+<var>i</var>:<var>ja</var>+<var>n</var>-1)</samp>; <var>tauq</var> is stored in <samp class="codeph"><var>tauq</var><span>(<var>ja</var>+<var>i</var>-1)</span></samp> and <var>taup</var> in <samp class="codeph"><var>taup</var><span>(<var>ia</var>+<var>i</var>-1)</span></samp>.</p>
+<p>If <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>, <samp class="codeph"><var>v</var>(1: <var>i</var>) = 0</samp>, <samp class="codeph"><var>v</var>(<var>i</var>+1 ) = 1</samp>, and <samp class="codeph"><var>v</var>(<var>i+</var>1:<var>m</var>)</samp> is stored on exit in</p>
+<p><samp class="codeph"><var>A</var>(<var>ia</var>+<var>i+</var>1:<var>ia</var>+<var>m</var>-1, <var>ja</var>+<var>i</var>-1)</samp>; <samp class="codeph"><var>u</var>(1:<var>i</var>-1 ) = 0</samp>, <samp class="codeph"><var>u</var>(<var>i</var>) = 1</samp>, and <samp class="codeph"><var>u</var>(<var>i</var>:<var>n</var>)</samp> is stored on exit in <samp class="codeph"><var>A</var>(<var>ia</var>+<var>i</var>-1</samp>, <samp class="codeph"><var>ja</var>+<var>i</var>:<var>ja</var>+<var>n</var>-1)</samp>; <var>tauq</var> is stored in <samp class="codeph"><var>tauq</var><span>(<var>ja</var>+<var>i</var>-1)</span></samp> and <var>taup</var> in <samp class="codeph"><var>taup</var><span>(<var>ia</var>+<var>i</var>-1)</span></samp>. The elements of the vectors <var>v</var> and <var>u</var> together form the <var>m</var>-by-<var>nb</var> matrix <var>V</var> and the <var>nb</var>-by-<var>n</var> matrix <var>U'</var> which are necessary, with <var>X</var> and <var>Y</var>, to apply the transformation to the unreduced part of the matrix, using a block update of the form: <samp class="codeph">sub(<var>A</var>):= sub(<var>A</var>) - <var>V*Y'</var> - <var>X*U'</var></samp>. <span>The contents of <samp class="codeph">sub(<var>A</var>)</samp> on exit are illustrated by the following examples with <samp class="codeph"><var>nb</var> = 2</samp>:</span></p>
+<p><span><br/><div class="imagecenter"><img src="GUID-FC69E394-55E6-4857-8219-EE4255C57A0F-low.jpg" width="420" height="168" alt="Equation" align="center" class=".eq"/></div><br/></span></p>
+<p>where <var>a</var> denotes an element of the original matrix which is unchanged, <var>vi</var> denotes an element of the vector defining <samp class="codeph"><var>H</var>(<var>i</var>)</samp>, and <var>ui</var> an element of the vector defining <samp class="codeph"><var>G</var>(<var>i</var>)</samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

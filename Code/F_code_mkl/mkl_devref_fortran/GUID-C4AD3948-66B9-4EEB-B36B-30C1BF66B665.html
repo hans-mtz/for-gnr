@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sytrf_rk"/>
+<meta name="abstract" content="Computes the factorization of a real or complex symmetric indefinite matrix using the bounded Bunch-Kaufman (rook) diagonal pivoting method (BLAS3 blocked algorithm)."/>
+<meta name="description" content="Computes the factorization of a real or complex symmetric indefinite matrix using the bounded Bunch-Kaufman (rook) diagonal pivoting method (BLAS3 blocked algorithm)."/>
+<meta name="DC.subject" content="?sytrf_rk, ssytrf_rk, dsytrf_rk, csytrf_rk, zsytrf_rk, LAPACK routines"/>
+<meta name="keywords" content="?sytrf_rk, ssytrf_rk, dsytrf_rk, csytrf_rk, zsytrf_rk, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sytrf_rk</title>
+
+</head>
+<body id="GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sytrf_rk</span></h1>
+<!--Computes the factorization of a real or complex symmetric indefinite matrix using the bounded Bunch-Kaufman (rook) diagonal pivoting method (BLAS3 blocked algorithm).--><div><p class="shortdesc">Computes the factorization of a real or complex symmetric indefinite matrix using the bounded Bunch-Kaufman (rook) diagonal pivoting method (BLAS3 blocked algorithm).</p>
+<div id="SYNTAX_4D69D62E03AB476DADAB0F26D63032B7"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssytrf_rk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsytrf_rk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call csytrf_rk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zsytrf_rk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0065F08D-FABA-4D39-B060-3E850B112B75"><h2 class="sectiontitle">Description</h2><p><span class="option">?sytrf_rk</span> computes the factorization of a real or complex symmetric matrix A using the bounded Bunch-Kaufman (rook) diagonal pivoting method: A= P*U*D*(U<sup>T</sup>)*(P<sup>T</sup>) or A = P*L*D*(L<sup>T</sup>)*(P<sup>T</sup>), where U (or L) is unit upper (or lower) triangular matrix, U<sup>T</sup> (or L<sup>T</sup>) is the transpose of U (or L), P is a permutation matrix, P<sup>T</sup> is the transpose of P, and D is symmetric and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.</p>
+<p>This is the blocked version of the algorithm, calling Level-3 BLAS.</p>
+</div>
+<div class="section" id="GUID-D284B55D-C8FD-4AA9-BC03-E0D8DC0CF9E1"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7DBFA998-E203-4A08-8A2C-CF857D2936F3"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span></p>
+<p>Specifies whether the upper or lower triangular part of the symmetric matrix A is stored:</p>
+<ul id="GUID-D6C23F13-F68B-4079-87E6-F4614A3AA051"><li>= <samp class="codeph">'U'</samp>: Upper triangular</li>
+<li>= <samp class="codeph">'L'</samp>: Lower triangular</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix A. <span class="parmname">n</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytrf_rk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytrf_rk</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytrf_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytrf_rk</span></p>
+<p><span>Array, dimension (<span class="parmname">lda</span>,<span class="parmname">n</span>).</span> On entry, the symmetric matrix A. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of A contains the upper triangular part of the matrix A, and the strictly lower triangular part of A is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of A contains the lower triangular part of the matrix A, and the strictly upper triangular part of A is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">A</span>.<span><span class="parmname">lda</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The length of the array <span class="parmname">work</span>.</p>
+<p>If <span class="parmname">lwork</span> = <samp class="codeph"><var>-1</var></samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by XERBLA.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EC1BE7DD-4BB4-401A-BDCF-902549DD4743"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-26FDC91C-D1DC-42B6-BF8E-210AA1261EEC"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytrf_rk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytrf_rk</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytrf_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytrf_rk</span></p>
+<p>On exit, contains:</p>
+<ul id="GUID-71EAC46A-F24B-4172-84ED-8DB3EDAE05A5"><li><em>Only</em> diagonal elements of the symmetric block diagonal matrix D on the diagonal of A; that is, D(<var>k</var>,<var>k</var>) = A(<var>k</var>,<var>k</var>); (superdiagonal (or subdiagonal) elements of D are stored on exit in array <span class="parmname">e</span>).</li>
+<li>If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, factor U in the superdiagonal part of A. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, factor L in the subdiagonal part of A.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytrf_rk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytrf_rk</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytrf_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytrf_rk</span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> On exit, contains the superdiagonal (or subdiagonal) elements of the symmetric block diagonal matrix D with 1-by-1 or 2-by-2 diagonal blocks. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, e(<var>i</var>) = D(<var>i</var><samp class="codeph">-</samp>1,<var>i</var>), <var>i</var>=2:N, and e(1) is set to 0. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, e(<var>i</var>) = D(<var>i</var>+1,<var>i</var>), <var>i</var>=1:N<samp class="codeph">-</samp>1, and e(<span class="parmname">n</span>) is set to 0.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> For 1-by-1 diagonal block D(<var>k</var>), where 1 ≤ <var>k</var> ≤ <span class="parmname">n</span>, the element <span class="parmname">e</span>(<var>k</var>) is set to 0 in both the <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp> and <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp> cases.</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER </span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span><span class="parmname">ipiv</span> describes the permutation matrix P in the factorization of matrix A as follows: The absolute value of ipiv(<var>k</var>) represents the index of the row and column that were interchanged with the <var>k</var><sup>th</sup> row and column. The value of <span class="parmname">uplo</span> describes the order in which the interchanges were applied. Also, the sign of <span class="parmname">ipiv</span> represents the block structure of the symmetric block diagonal matrix D with 1-by-1 or 2-by-2 diagonal blocks, which correspond to 1 or 2 interchanges at each factorization step. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp> (in factorization order, <var>k</var> decreases from <span class="parmname">n</span> to 1):</p>
+<ol id="GUID-4FA2E036-C9CC-4B8F-9689-09A0DBDF5F8D"><li><p>A single positive entry ipiv(<var>k</var>) &gt; 0 means that D(<var>k</var>,<var>k</var>) is a 1-by-1 diagonal block. If ipiv(<var>k</var>) != <var>k</var>, rows and columns <var>k</var> and ipiv(<var>k</var>) were interchanged in the matrix A(1:N,1:N). If ipiv(<var>k</var>) = <var>k</var>, no interchange occurred.</p>
+</li>
+<li><p>A pair of consecutive negative entries ipiv(<var>k</var>) &lt; 0 and ipiv(<var>k</var><samp class="codeph">-</samp>1). &lt; 0 means that D(<var>k</var><samp class="codeph">-</samp>1:<var>k</var>,<var>k</var><samp class="codeph">-</samp>1:<var>k</var>) is a 2-by-2 diagonal block. (Note that negative entries in <span class="parmname">ipiv</span> appear <em>only</em> in pairs.)</p>
+<ul id="GUID-71209B09-A789-4F8E-9DD1-E98A3FABFCE2"><li>If <samp class="codeph">-</samp>ipiv(<var>k</var>) != <var>k</var>, rows and columns <var>k</var> and <samp class="codeph">-</samp>ipiv(<var>k</var>) were interchanged in the matrix A(1:N,1:N). If <samp class="codeph">-</samp>ipiv(<var>k</var>) = <var>k</var>, no interchange occurred.</li>
+<li>If <samp class="codeph">-</samp>ipiv(<var>k</var><samp class="codeph">-</samp>1) != <var>k</var><samp class="codeph">-</samp>1, rows and columns <var>k</var><samp class="codeph">-</samp>1 and <samp class="codeph">-</samp>ipiv(<var>k</var><samp class="codeph">-</samp>1) were interchanged in the matrix A(1:N,1:N). If <samp class="codeph">-</samp>ipiv(<var>k</var><samp class="codeph">-</samp>1) = <var>k</var><samp class="codeph">-</samp>1, no interchange occurred.</li>
+</ul>
+</li>
+<li><p>In both cases 1 and 2, always ABS( ipiv(<var>k</var>) ) ≤ <var>k</var>.</p>
+</li>
+</ol>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> Any entry ipiv(<var>k</var>) is always nonzero on output.</div>
+<p>If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp> (in factorization order, <var>k</var> increases from 1 to <span class="parmname">n</span>):</p>
+<ol id="GUID-2E6838CE-C1B5-4494-A8BC-E1BFE8DFF438"><li><p>A single positive entry ipiv(<var>k</var>) &gt; 0 means that D(<var>k</var>,<var>k</var>) is a 1-by-1 diagonal block. If ipiv(<var>k</var>) != <var>k</var>, rows and columns <var>k</var> and ipiv(<var>k</var>) were interchanged in the matrix A(1:N,1:N). If ipiv(<var>k</var>) = <var>k</var>, no interchange occurred.</p>
+</li>
+<li><p>A pair of consecutive negative entries ipiv(<var>k</var>) &lt; 0 and ipiv(<var>k</var>+1) &lt; 0 means that D(<var>k</var>:<var>k</var>+1,<var>k</var>:<var>k</var>+1) is a 2-by-2 diagonal block. (Note that negative entries in <span class="parmname">ipiv</span> appear <em>only</em> in pairs.)</p>
+<ul id="GUID-96861631-DFCE-48EB-B49E-4C3279EE52E8"><li>If <samp class="codeph">-</samp>ipiv(<var>k</var>) != <var>k</var>, rows and columns <var>k</var> and <samp class="codeph">-</samp>ipiv(<var>k</var>) were interchanged in the matrix A(1:N,1:N). If <samp class="codeph">-</samp>ipiv(<var>k</var>) = <var>k</var>, no interchange occurred.</li>
+<li>If <samp class="codeph">-</samp>ipiv(<var>k</var>+1) != <var>k</var>+1, rows and columns <var>k</var><samp class="codeph">-</samp>1 and <samp class="codeph">-</samp>ipiv(<var>k</var><samp class="codeph">-</samp>1) were interchanged in the matrix A(1:N,1:N). If <samp class="codeph">-</samp>ipiv(<var>k</var>+1) = <var>k</var>+1, no interchange occurred.</li>
+</ul>
+</li>
+<li><p>In both cases 1 and 2, always ABS( ipiv(<var>k</var>) ) ≥ <var>k</var>.</p>
+</li>
+</ol>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> Any entry ipiv(<var>k</var>) is always nonzero on output.</div>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytrf_rk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytrf_rk</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytrf_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytrf_rk</span></p>
+<p>Array, dimension ( MAX(1,<span class="parmname">lwork</span>) ). On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span>(1) returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<ul id="GUID-DCD16B31-F2FA-4703-A6F7-787610B8014C"><li>= 0: Successful exit.</li>
+<li>&lt; 0: If <span class="parmname">info</span> = <samp class="codeph">-</samp><var>k</var>, the <var>k</var><sup>th</sup> argument had an illegal value.</li>
+<li>&gt; 0: If <span class="parmname">info</span> = <var>k</var>, the matrix A is singular. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, column <var>k</var> in the upper triangular part of A contains all zeros. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, column <var>k</var> in the lower triangular part of A contains all zeros. Therefore, D(<var>k</var>,<var>k</var>) is exactly zero, and superdiagonal elements of column <var>k</var> of U (or subdiagonal elements of column <var>k</var> of L) are all zeros. The factorization has been completed, but the block diagonal matrix D is exactly singular, and division by zero will occur if it is used to solve a system of equations.</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <span class="parmname">info</span> stores only the first occurrence of a singularity; any subsequent occurrence of singularity is not stored in <span class="parmname">info</span> even though the factorization always completes.</div>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vmlSetMode"/>
+<meta name="abstract" content="Sets a new mode for VM functions according to the mode parameter and stores the previous VM mode to oldmode."/>
+<meta name="description" content="Sets a new mode for VM functions according to the mode parameter and stores the previous VM mode to oldmode."/>
+<meta name="DC.subject" content="VM functions, service functions, SetMode, vmlSetMode"/>
+<meta name="keywords" content="VM functions, service functions, SetMode, vmlSetMode"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D6D98FC7-E01C-4DE1-8EF5-03F1C4DE3981.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vmlSetMode</title>
+
+</head>
+<body id="GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vmlSetMode</span></h1>
+<!--Sets a new mode for VM functions according to the  mode  parameter and stores the previous VM mode to  oldmode .--><div><p class="shortdesc">Sets a new mode for VM functions according to the <var>mode</var> parameter and stores the previous VM mode to <var>oldmode</var>.</p>
+<div class="section" id="GUID-6F502D48-7B38-47E3-9A84-5A27A98BE930"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">oldmode</span><span class="oper"> = </span><span class="kwd">vmlsetmode</span><span class="sep">( </span><span class="var">mode</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-CB5C170E-2BA5-41FF-88BC-D6D5F0F3C5C0"><h2 class="sectiontitle">Include Files</h2><ul id="d163e179"><li id="d163e180"><span class="filepath">mkl_vml.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B87D14B8-18DC-49F4-9029-5647BD4965AF"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_23D49276A9414D8FAA1A4DF142B6691C" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d63717e67" width="16.528925619834713%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d63717e70" width="37.1900826446281%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d63717e73" width="46.28099173553719%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d63717e67"><p><var>mode</var></p>
+</td>
+<td valign="top" headers="d63717e70"><p><span class="keyword">INTEGER(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d63717e73"><p>Specifies the VM mode to be set.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-D1D114BD-3C9D-47AD-9313-464BCA282FD8"><h2 class="sectiontitle">Output Parameters</h2><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_A206616C34334754B72222E177E4C4F4" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d63717e94" width="16.528925619834713%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d63717e97" width="37.1900826446281%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d63717e100" width="46.28099173553719%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d63717e94"><p><var>oldmode</var></p>
+</td>
+<td valign="top" headers="d63717e97"><p><span class="keyword">INTEGER*8</span></p>
+<p><span class="keyword">INTEGER(KIND=8)</span></p>
+</td>
+<td valign="top" headers="d63717e100"><p>Specifies the former VM mode.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-AD0207CC-ADF9-4A52-A5F2-E4338F2D2651"><h2 class="sectiontitle">Description</h2><p>The <span class="option">vmlSetMode</span> function sets a new mode for VM functions according to the <var>mode</var> parameter and stores the previous VM mode to <var>oldmode</var>.  The mode change has a global effect on all the VM functions within a thread.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can override the global mode setting and change the mode for a given VM function call by using a respective <span class="option">vm[s,d]&lt;Func&gt;</span> variant of the function.</p>
+</div>
+<p>The <var>mode</var> parameter is designed to control accuracy, handling of denormalized numbers, and error handling. <span><a href="#TBL9-14">Table <span>"Values of the <var>mode</var> Parameter"</span></a> lists values of the <var>mode</var> parameter. </span> You can obtain all other possible values of the <var>mode</var> parameter from the <var>mode</var> parameter
+ values by using bitwise <span class="keyword">OR ( | )</span> operation to combine one value for accuracy, one value for handling of denormalized numbers, and one value for error control options. The default value of the <var>mode</var> parameter is <samp class="codeph"><span class="keyword">VML_HA</span> | <span class="keyword">VML_FTZDAZ_OFF</span> | <span class="keyword">VML_ERRMODE_DEFAULT</span></samp>.</p>
+<p> The  <span class="keyword">VML_FTZDAZ_ON</span>
+mode is specifically designed to improve the performance of computations that involve denormalized numbers at the cost of reasonable accuracy loss. This mode changes the numeric behavior of the functions: denormalized input values are treated as zeros (<span class="keyword">DAZ</span> = denormals-are-zero) and denormalized results are flushed to zero (<span class="keyword">FTZ</span> = flush-to-zero). Accuracy loss may occur if input and/or output values are close to denormal range.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL9-14" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Values of the 
+	 <var>mode</var> Parameter</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="41%" id="d63717e200">Value of 
+			 <var>mode</var></th>
+<th class="row-nocellborder" valign="top" width="59%" id="d63717e204">Description 
+		  </th>
+</tr>
+</thead>
+<tbody><tr><td class="boldspan" colspan="2" valign="top" headers="d63717e200 d63717e204 ">Accuracy Control 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_HA</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">high accuracy versions of VM functions 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_LA</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">low accuracy versions of VM functions 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_EP</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">enhanced performance accuracy versions of VM functions 
+		  </td>
+</tr>
+<tr><td class="boldspan" colspan="2" valign="top" headers="d63717e200 d63717e204 ">Denormalized Numbers Handling Control 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_FTZDAZ_ON</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">Faster processing of denormalized inputs is enabled. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_FTZDAZ_OFF</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">Faster processing of denormalized inputs is disabled. 
+		  </td>
+</tr>
+<tr><td class="boldspan" colspan="2" valign="top" headers="d63717e200 d63717e204 ">Error Mode Control 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_ERRMODE_IGNORE</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">On computation error, VM Error status is updated, but otherwise no action is set. Cannot be combined with other 
+				<span class="keyword">VML_ERRMODE</span> settings. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_ERRMODE_NOERR</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">On computation error, VM Error status is not updated and no action is set. Cannot be combined with other 
+			 <span class="keyword">VML_ERRMODE</span> settings. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_ERRMODE_STDERR</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">On error, the error text information is written to 
+			 <var>stderr</var>. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_ERRMODE_EXCEPT</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">On error, an exception is raised. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_ERRMODE_CALLBACK</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">On error, an additional error handler function is called. 
+		  </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="41%" headers="d63717e200 "><span class="keyword">VML_ERRMODE_DEFAULT</span></td>
+<td class="row-nocellborder" valign="top" width="59%" headers="d63717e204 ">On error, 
+			 an exception is raised and an additional error handler function is called. 
+		  </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d63717e298"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d63717e298 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="FUNCTN_VML_SETMODE-EX1"><h2 class="sectiontitle">Examples</h2><p>The following example shows how to set low accuracy, fast processing for denormalized numbers and <span class="keyword">stderr</span>
+ error mode:</p>
+<dl id="GUID-095EFEEF-E0E8-4426-B122-21DF02A77CE5"><dt class="dlterm"><b class="parmname">Fortran:
+                                            </b></dt><dd><p> </p></dd><dt class="dlterm"/>
+
+<dd><pre><var>oldmode</var> = <span class="option">vmlsetmode</span>( <span class="keyword">VML_LA</span> ) 
+call <span class="option">vmlsetmode</span>( <span class="keyword">IOR</span>(<span class="keyword">VML_LA</span>, <span class="keyword">VML_FTZDAZ_ON</span>, <span class="keyword">VML_ERRMODE_STDERR</span>) )</pre></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D6D98FC7-E01C-4DE1-8EF5-03F1C4DE3981.html">VM Service Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

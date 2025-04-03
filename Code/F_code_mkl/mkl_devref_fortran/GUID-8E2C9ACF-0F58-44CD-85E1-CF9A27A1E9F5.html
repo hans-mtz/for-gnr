@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Extended Eigensolver Naming Conventions"/>
+<meta name="DC.subject" content="Extended Eigensolvers"/>
+<meta name="keywords" content="Extended Eigensolvers"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-84C0FEDC-B53E-41CE-B10D-D10E106D0416.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8E2C9ACF-0F58-44CD-85E1-CF9A27A1E9F5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Extended Eigensolver Naming Conventions</title>
+
+</head>
+<body id="GUID-8E2C9ACF-0F58-44CD-85E1-CF9A27A1E9F5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Extended Eigensolver Naming Conventions</h1>
+<div><p>There are two different types of interfaces available in the Extended Eigensolver routines: 
+    </p>
+<ol id="GUID-1FB45845-742D-42DC-B390-14C9C80551BE"><li><p>The reverse communication interfaces (RCI): 
+        </p>
+<pre>?feast_<var>&lt;matrix type&gt;</var>_rci</pre><p>These interfaces are matrix free format (the interfaces are independent of the matrix data formats). You must provide matrix-vector multiply and direct/iterative linear system solvers for your own explicit or implicit data format. 
+        </p>
+</li>
+<li><p>The predefined interfaces: 
+        </p>
+<pre>?feast_<var>&lt;matrix type&gt;&lt;type of eigenvalue problem&gt;</var></pre><p>are predefined drivers for 
+        <span class="option">?feast</span> reverse communication interface that act on commonly used matrix data storage (dense, banded and compressed sparse row representation), using internal matrix-vector routines and selected inner linear system solvers. 
+        </p>
+</li>
+</ol>
+<p>For these interfaces: 
+    </p>
+<ul id="GUID-A9C0717F-3F5E-4A81-9245-57B6D704B422"><li><p><samp class="codeph">?</samp> indicates the data type of matrix 
+          <var>A</var> (and matrix 
+          <var>B</var> if any) defined as follows: 
+        </p>
+<dl id="GUID-E31E6594-7D70-4642-8B48-292291BEDF8B"><dt class="dlterm"><samp class="codeph">s</samp></dt>
+
+<dd><p>real, single precision 
+              </p>
+</dd>
+<dt class="dlterm"><samp class="codeph">d</samp></dt>
+
+<dd><p>real, double precision 
+              </p>
+</dd>
+<dt class="dlterm"><samp class="codeph">c</samp></dt>
+
+<dd><p>complex, single precision 
+              </p>
+</dd>
+<dt class="dlterm"><samp class="codeph">z</samp></dt>
+
+<dd><p>complex , double precision 
+              </p>
+</dd>
+</dl>
+</li>
+<li><p><samp class="codeph"><var>&lt;matrix type&gt;</var></samp> defined as follows: 
+        </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-90EA2B28-D24B-40FC-9D0C-132F7E79FC1A" class="AllLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="d1056914e100"><p>Value of 
+                    <samp class="codeph"><var>&lt;matrix type&gt;</var></samp></p>
+</th>
+<th class="cellrowborder" valign="top" width="25.33206831119545%" id="d1056914e106"><p> Matrix format 
+                  </p>
+</th>
+<th class="row-nocellborder" valign="top" width="46.204933586337766%" id="d1056914e109"><p> Inner linear system solver used by Extended Eigensolver 
+                  </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">sy</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p>(symmetric real) 
+                  </p>
+</td>
+<td class="cellrowborder" rowspan="2" valign="middle" width="25.33206831119545%" headers="d1056914e106 "><p>Dense 
+                  </p>
+</td>
+<td class="row-nocellborder" rowspan="2" valign="middle" width="46.204933586337766%" headers="d1056914e109 "><p> LAPACK dense solvers 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">he</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p>(Hermitian complex) 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">sb</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p>(symmetric banded real) 
+                  </p>
+</td>
+<td class="cellrowborder" rowspan="2" valign="middle" width="25.33206831119545%" headers="d1056914e106 "><p>Banded-LAPACK 
+                  </p>
+</td>
+<td class="row-nocellborder" rowspan="2" valign="middle" width="46.204933586337766%" headers="d1056914e109 "><p> Internal banded solver 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">hb</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p>(Hermitian banded complex) 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">scsr</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p> (symmetric real) 
+                  </p>
+</td>
+<td class="cellrowborder" rowspan="2" valign="middle" width="25.33206831119545%" headers="d1056914e106 "><p> Compressed sparse row 
+                  </p>
+</td>
+<td class="row-nocellborder" rowspan="2" valign="middle" width="46.204933586337766%" headers="d1056914e109 "><p> PARDISO solver 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">hcsr</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p> (Hermitian complex) 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">s</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p>(symmetric real) 
+                  </p>
+</td>
+<td class="cellrowborder" rowspan="2" valign="middle" width="25.33206831119545%" headers="d1056914e106 "><p>Reverse communications interfaces 
+                  </p>
+</td>
+<td class="row-nocellborder" rowspan="2" valign="middle" width="46.204933586337766%" headers="d1056914e109 "><p>User defined 
+                  </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="9.487666034155598%" headers="d1056914e100 "><p><samp class="codeph">h</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="18.975332068311197%" headers="d1056914e100 "><p>(Hermitian complex) 
+                  </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p/>
+</li>
+<li><p><samp class="codeph"><var>&lt;type of eigenvalue problem&gt;</var></samp> is: 
+        </p>
+<dl id="GUID-284026E7-BEDF-4A77-AE19-CC2A5B4EEC8F"><dt class="dlterm"><samp class="codeph">gv</samp></dt>
+
+<dd><p>generalized eigenvalue problem 
+              </p>
+</dd>
+<dt class="dlterm"><samp class="codeph">ev</samp></dt>
+
+<dd><p>standard eigenvalue problem 
+              </p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For example, 
+      <samp class="codeph">sfeast_scsrev</samp> is a single-precision routine with a symmetric real matrix stored in sparse compressed-row format for a standard eigenvalue problem, and 
+      <samp class="codeph">zfeast_hrci</samp> is a complex double-precision routine with a Hermitian matrix using the reverse communication interface. 
+    </p>
+<p>Note that: 
+    </p>
+<ul id="GUID-BB5ABC32-FCB2-47AF-A4D2-136F488860CF"><li><p><samp class="codeph">?</samp> can be 
+          <samp class="codeph">s</samp> or 
+          <samp class="codeph">d</samp> if a matrix is real symmetric: 
+          <samp class="codeph"><var>&lt;matrix type&gt;</var></samp> is 
+          <samp class="codeph">sy</samp>, 
+          <samp class="codeph">sb</samp>, or 
+          <samp class="codeph">scsr</samp>. 
+        </p>
+</li>
+<li><p><samp class="codeph">?</samp> can be 
+          <samp class="codeph">c</samp> or 
+          <samp class="codeph">z</samp> if a matrix is complex Hermitian: 
+          <samp class="codeph"><var>&lt;matrix type&gt;</var></samp> is 
+          <samp class="codeph">he</samp>, 
+          <samp class="codeph">hb</samp>, or 
+          <samp class="codeph">hcsr</samp>. 
+        </p>
+</li>
+<li><p><samp class="codeph">?</samp> can be 
+          <samp class="codeph">c</samp> or 
+          <samp class="codeph">z</samp> if the Extended Eigensolver RCI interface is used for solving a complex Hermitian problem. 
+        </p>
+</li>
+<li><p><samp class="codeph">?</samp> can be 
+          <samp class="codeph">s</samp> or 
+          <samp class="codeph">d</samp> if the Extended Eigensolver RCI interface is used for solving a real symmetric problem. 
+        </p>
+</li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-84C0FEDC-B53E-41CE-B10D-D10E106D0416.html">Extended Eigensolver Interfaces for Eigenvalues within Interval</a></div>
+</div>
+<div/>
+</body>
+</html>

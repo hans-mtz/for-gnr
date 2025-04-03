@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Naming conventions in Inspector-executor Sparse BLAS Routines"/>
+<meta name="DC.subject" content="Enter index keyword"/>
+<meta name="keywords" content="Enter index keyword"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5F55E186-B077-4FB8-827D-222793C5129D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D5DA1100-EB05-44F5-AA99-96F3458BB112"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Naming conventions in Inspector-executor Sparse BLAS Routines</title>
+
+</head>
+<body id="GUID-D5DA1100-EB05-44F5-AA99-96F3458BB112">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"> Naming conventions in Inspector-executor Sparse BLAS Routines</h1>
+<div><p>The Inspector-executor Sparse BLAS API routine names use the following convention: 
+      <pre>mkl_sparse_[&lt;<var>character</var>&gt;_]&lt;<var>operation</var>&gt;[_&lt;<var>format</var>&gt;]</pre></p>
+<p>The 
+      <samp class="codeph">&lt;<var>character</var>&gt;</samp> field indicates the data type: 
+    </p>
+<dl compact="compact" id="GUID-EEF841CF-438A-4E6F-92C6-926F26D99B78"><dt class="dlterm"><tt>s</tt></dt>
+
+<dd><p>real, single precision 
+          </p>
+</dd>
+<dt class="dlterm"><tt>c</tt></dt>
+
+<dd><p>complex, single precision 
+          </p>
+</dd>
+<dt class="dlterm"><tt>d</tt></dt>
+
+<dd><p>real, double precision 
+          </p>
+</dd>
+<dt class="dlterm"><tt>z</tt></dt>
+
+<dd><p>complex, double precision 
+          </p>
+</dd>
+</dl>
+<p> The data type is included in the name only if the function accepts dense matrix or scalar floating point parameters. 
+    </p>
+<p>The 
+      <samp class="codeph">&lt;<var>operation</var>&gt;</samp> field indicates the type of operation: 
+    </p>
+<dl compact="compact" id="GUID-2DFB4803-7774-4993-9A7C-9EF2439686AC"><dt class="dlterm"><tt>create</tt></dt>
+
+<dd><p> create matrix handle 
+          </p>
+</dd>
+<dt class="dlterm"><tt>copy</tt></dt>
+
+<dd><p> create a copy of matrix handle 
+          </p>
+</dd>
+<dt class="dlterm"><tt>convert</tt></dt>
+
+<dd><p> convert matrix between sparse formats 
+          </p>
+</dd>
+<dt class="dlterm"><tt>export</tt></dt>
+
+<dd><p> export matrix from internal representation to CSR or BSR format 
+          </p>
+</dd>
+<dt class="dlterm"><tt>destroy</tt></dt>
+
+<dd><p> frees memory allocated for matrix handle 
+          </p>
+</dd>
+<dt class="dlterm"><tt>set_&lt;<var>op</var>&gt;_hint</tt></dt>
+
+<dd><p> provide information about number of upcoming compute operations and operation type for optimization purposes, where &lt;<var>op</var>&gt; is 
+            <span class="keyword">mv</span>, 
+            <span class="keyword">sv</span>, 
+            <span class="keyword">mm</span>, 
+            <span class="keyword">sm</span>, 
+            <span class="keyword">dotmv</span>, 
+            <span class="keyword">symgs</span>, or 
+            <span class="keyword">memory</span></p>
+</dd>
+<dt class="dlterm"><tt>optimize</tt></dt>
+
+<dd><p>analyze the matrix using hints and store optimization information in matrix handle 
+          </p>
+</dd>
+<dt class="dlterm"><tt>mv</tt></dt>
+
+<dd><p> compute sparse matrix-vector product 
+          </p>
+</dd>
+<dt class="dlterm"><tt>mm</tt></dt>
+
+<dd><p> compute sparse matrix by dense matrix product (batch mv) 
+          </p>
+</dd>
+<dt class="dlterm"><tt>set_value</tt></dt>
+
+<dd><p>change a value in a matrix 
+          </p>
+</dd>
+<dt class="dlterm"><tt>spmm</tt>/<tt>spmmd</tt></dt>
+
+<dd><p> compute sparse matrix by sparse matrix product and store the result as a sparse/dense matrix 
+          </p>
+</dd>
+<dt class="dlterm"><tt>trsv</tt></dt>
+
+<dd><p> solve a triangular system 
+          </p>
+</dd>
+<dt class="dlterm"><tt>trsm</tt></dt>
+
+<dd><p> solve a triangular system with multiple right-hand sides 
+          </p>
+</dd>
+<dt class="dlterm"><tt>add</tt></dt>
+
+<dd><p> compute sum of two sparse matrices 
+          </p>
+</dd>
+<dt class="dlterm"><tt> symgs</tt></dt>
+
+<dd><p>compute a symmetric Gauss-Zeidel preconditioner 
+          </p>
+</dd>
+<dt class="dlterm"><tt>symgs_mv</tt></dt>
+
+<dd><p>compute a symmetric Gauss-Zeidel preconditioner with a final matrix-vector multiplication 
+          </p>
+</dd>
+<dt class="dlterm"><tt>sypr</tt></dt>
+
+<dd><p> compute the symmetric or Hermitian product of sparse matrices and store the result as a sparse matrix 
+          </p>
+</dd>
+<dt class="dlterm"><tt>syprd</tt></dt>
+
+<dd><p> compute the symmetric or Hermitian product of sparse and dense matrices and store the result as a dense matrix 
+          </p>
+</dd>
+<dt class="dlterm"><tt>syrk</tt></dt>
+
+<dd><p> compute the product of sparse matrix with its transposed matrix and store the result as a sparse matrix 
+          </p>
+</dd>
+<dt class="dlterm"><tt>syrkd</tt></dt>
+
+<dd><p>compute the product of sparse matrix with its transposed matrix and store the result as a dense matrix 
+          </p>
+</dd>
+<dt class="dlterm"><tt>order</tt></dt>
+
+<dd><p>perform ordering of column indexes of the matrix in CSR format 
+          </p>
+</dd>
+<dt class="dlterm"><tt>dotmv</tt></dt>
+
+<dd><p> compute a sparse matrix-vector product with dot product 
+          </p>
+</dd>
+</dl>
+<p>The 
+      <samp class="codeph">&lt;<var>format</var>&gt;</samp> field indicates the sparse matrix storage format: 
+    </p>
+<dl compact="compact" id="GUID-392F40F6-D290-4CC5-B2BA-8EB60CC4ABBA"><dt class="dlterm"><tt>coo</tt></dt>
+
+<dd><p>coordinate format 
+          </p>
+</dd>
+<dt class="dlterm"><tt>bsr</tt></dt>
+
+<dd><p>block sparse row format plus variations. Fill out either rows_start and rows_end (for 4-arrays representation) or rowIndex array (for 3-array BSR/CSR). 
+          </p>
+</dd>
+<dt class="dlterm"><tt>csr</tt></dt>
+
+<dd><p>compressed sparse row format plus variations. Fill out either 
+            <span class="keyword">rows_start</span> and 
+            <span class="keyword">rows_end 
+            </span>(for 4-arrays representation) or 
+            <span class="keyword">rowIndex</span> array (for 3-array BSR/CSR). 
+          </p>
+</dd>
+<dt class="dlterm"><tt>csc</tt></dt>
+
+<dd><p>compressed sparse column format plus variations. Fill out either 
+            <span class="keyword">cols_start</span> and 
+            <span class="keyword">cols_end</span> (for 4-arrays representation) or 
+            <span class="keyword">colIndex</span> array (for 3 array CSC). 
+          </p>
+</dd>
+</dl>
+<p>The format is included in the function name only if the function parameters include an explicit sparse matrix in one of the conventional sparse matrix formats. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5F55E186-B077-4FB8-827D-222793C5129D.html">Inspector-executor Sparse BLAS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

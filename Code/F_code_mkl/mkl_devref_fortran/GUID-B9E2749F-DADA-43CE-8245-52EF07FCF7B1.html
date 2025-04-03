@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hbev"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, eigenvectors of a Hermitian band matrix."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, eigenvectors of a Hermitian band matrix."/>
+<meta name="DC.subject" content="?hbev, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="keywords" content="?hbev, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-258D5408-0894-424A-83B2-33DE708A319C.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B9E2749F-DADA-43CE-8245-52EF07FCF7B1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hbev</title>
+
+</head>
+<body id="GUID-B9E2749F-DADA-43CE-8245-52EF07FCF7B1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hbev</span></h1>
+<!--Computes all eigenvalues and, optionally, eigenvectors of a Hermitian band matrix.--><div><p class="shortdesc">Computes all eigenvalues and, optionally, eigenvectors of a Hermitian band matrix.</p>
+<div class="section" id="GUID-C15206F7-0AC7-4D4D-AF30-BEE17DAAB5B6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chbev</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhbev</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hbev</span><span class="delim">(</span><span class="var">ab</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-A1FE6425-ACA0-4AF8-A07E-18631F8DBAA5"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-64751BB4-E515-4229-861C-A4747FF32ED4"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all eigenvalues and, optionally, eigenvectors of a complex Hermitian band matrix <var>A</var>.</p>
+</div>
+<div class="section" id="GUID-B45B8C3F-32F4-41B8-9553-B6BA05AA5B82"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-31351B06-96E0-4C99-9264-304FA14F1748"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then only eigenvalues are computed. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then eigenvalues and eigenvectors are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>ab</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>ab</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">kd</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of super- or sub-diagonals in <var>A</var></p>
+<p>(<samp class="codeph"><var>kd</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chbev</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhbev</span>.</p>
+<p>Arrays: </p>
+<p><var>ab</var><span>(<var>lda</var>,*)</span> is an array containing either upper or lower triangular part of the Hermitian matrix <var>A</var> (as specified by <var>uplo</var>) in band storage format. </p>
+<p>The second dimension of <var>ab</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> (*) is a workspace array. </p>
+<p>The dimension of <var>work</var> must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>ab</var>; must be at least <var>kd</var> +1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>z</var>. </p>
+<p>Constraints: </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then <var>ldz</var><span class="eqsymbol">≥</span> max(1, <var>n</var>) .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chbev</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhbev</span></p>
+<p>Workspace array, size at least max(1, 3<var>n</var>-2).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-ED550800-A20B-4149-AAC0-7C3463A79FB1"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3049FE31-4639-42FF-9EBF-17B264A6849C"><dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chbev</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhbev</span></p>
+<p>Array, size at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, contains the eigenvalues in ascending order. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chbev</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhbev</span>. </p>
+<p>Array <span class="keyword">z</span><span>(<var>ldz</var>,*)</span>. </p>
+<p>The second dimension of <var>z</var> must be at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then if <samp class="codeph"><var>info</var> = 0</samp>, <var>z</var> contains the orthonormal eigenvectors of the matrix <var>A</var>, with the <var>i</var>-th column of <var>z</var> holding the eigenvector associated with <samp class="codeph"><var>w</var>(<var>i</var>)</samp>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>On exit, this array is overwritten by the values generated during the reduction to tridiagonal form(see the description of <a href="GUID-6E6360FD-4FE6-41C9-9092-BC7A67ED7967.html">hbtrd</a>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, then the algorithm failed to converge; </p>
+<p><var>i</var> indicates the number of elements of an intermediate tridiagonal form which did not converge to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-31E986F4-936D-404E-88C5-9F7157A22F1F"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hbev</span> interface are the following:</p>
+<dl id="GUID-0BADFB7C-8FF0-46CF-A154-6AD7F241E125"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>Holds the array <var>A</var> of size (<var>kd+1,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>Holds the matrix <var>Z</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>z</var> as follows: </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, if <var>z</var> is present, </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, if <var>z</var> is omitted.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-258D5408-0894-424A-83B2-33DE708A319C.html">Symmetric Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLACS Point To Point Communication"/>
+<meta name="DC.subject" content="BLACS, point to point communication"/>
+<meta name="keywords" content="BLACS, point to point communication"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-982A507F-8877-45DB-B9A3-9C5DF6C3E2B1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-09BA170F-F6F3-42E6-8E7D-03553271BE71.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3AEE121D-2F03-477B-9C90-A95A7FB99A98.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F6973522-E9CA-4BC8-A764-A9AB6F4EF10A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B92D8C88-5DB5-4F8D-860D-CB94AD0B25C7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLACS Point To Point Communication</title>
+
+</head>
+<body class="no-rel-links" id="GUID-B92D8C88-5DB5-4F8D-860D-CB94AD0B25C7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLACS Point To Point Communication</h1>
+<div><p>This <span>topic </span> describes BLACS routines for point to point communication.</p>
+<p>Point to point communication requires two complementary operations. The <dfn class="term">send</dfn> operation produces a message that is then consumed by the <dfn class="term">receive</dfn> operation. These operations have various resources associated with them. The main such resource is the buffer that holds the data to be sent or serves as the area where the incoming data is to be received. The level of <dfn class="term">blocking</dfn> indicates what correlation the return from a send/receive operation has with the availability of these resources and with the status of message.</p>
+<div class="level3" id="GUID-ED0163B4-8BAD-4599-9390-F0D432673160"><h2 class="sectiontitle">Non-blocking</h2><p>The return from the <dfn class="term">send</dfn>
+ or <dfn class="term">receive</dfn>
+ operations  does not imply that the resources may be reused, that the message has been sent/received or that the complementary operation has been called. Return means only that the send/receive has been started, and will be completed at some later date. Polling is required to determine when the operation has finished.</p>
+<p>In non-blocking message passing, the concept of <dfn class="term">communication/computation overlap</dfn>
+(abbreviated C/C overlap) is important. If a system possesses C/C overlap, independent
+computation can occur at the same time as communication. That means a nonblocking operation
+can be posted, and unrelated work can be done while the message is sent/received in parallel.
+If C/C overlap is not present, after returning from the routine call, computation will be
+interrupted at some later date when the message is actually sent or received.</p>
+</div>
+<div class="level3" id="GUID-176B57EB-9FCB-412E-AF35-4B1B2E2351B4"><h2 class="sectiontitle">Locally-blocking</h2><p>Return from the <dfn class="term">send</dfn>
+ or <dfn class="term">receive</dfn>
+ operations
+ indicates that the resources may be
+reused. However, since this only depends on local information, it is unknown whether the
+complementary operation has been called. There are no locally-blocking receives: the send
+must be completed before the receive buffer is available for re-use.</p>
+<p>If a receive has not been posted at the time a locally-blocking send is issued, buffering
+will be required to avoid losing the message. Buffering can be done on the sending process,
+the receiving process, or not done at all, losing the message.</p>
+</div>
+<div class="level3" id="GUID-9C6A62AB-5E32-4D1B-BE70-2487E23506A7"><h2 class="sectiontitle">Globally-blocking</h2><p>Return from a globally-blocking procedure indicates that the operation
+resources may be reused, and that complement of the operation has at least been
+posted. Since the receive has been posted, there is no buffering required for globally-blocking
+sends: the message is always sent directly into the user's receive buffer.</p>
+<p>Almost all processors support non-blocking communication, as well as some other level
+of blocking sends. What level of blocking the send possesses varies between platforms.
+For instance, the Intel&reg; processors support locally-blocking sends, with buffering done on the
+receiving process. This is a very important distinction, because codes written assuming locally-blocking
+sends will hang on platforms with globally-blocking sends. Below is a simple example
+of how this can occur:</p>
+<pre>IAM = MY_PROCESS_ID()
+ IF (IAM .EQ. 0) THEN
+   SEND TO PROCESS 1
+   RECV FROM PROCESS 1
+ELSE IF (IAM .EQ. 1) THEN
+   SEND TO PROCESS 0
+   RECV FROM PROCESS 0
+END IF</pre><p>If the send is globally-blocking, process 0 enters the send, and waits for process 1 to
+start its receive before continuing. In the meantime, process 1 starts to send to 0, and waits for 0 to receive before continuing. Both processes are now waiting on each
+other, and the program will never continue.</p>
+<p>The solution for this case is obvious. One of the processes simply reverses the order of
+its communication calls and the hang is avoided. However, when the communication is not
+just between two processes, but rather involves a hierarchy of processes, determining how
+to avoid this kind of difficulty can become problematic.</p>
+<p>For this reason, it was decided the BLACS would support locally-blocking sends. On systems
+natively supporting globally-blocking sends, non-blocking sends coupled with buffering
+is used to simulate locally-blocking sends. The BLACS
+support globally-blocking receives.</p>
+<p>In addition, the BLACS specify that point to point messages between two given processes
+will be strictly ordered. If process 0 sends three messages (label them <var>A</var>, <var>B</var>, and
+<var>C</var>) to process 1, process 1 must receive <var>A</var> before it can receive <var>B</var>, and message <var>C</var> can be
+received only after both <var>A</var> and <var>B</var>. The main reason for this restriction is that it allows for
+the computation of message identifiers.</p>
+<p>Note, however, that messages from different processes are not ordered.
+If processes 0, . . ., 3 send messages <var>A</var>, . . ., <var>D</var> to process 4, process 4 may receive
+these messages in any order that is convenient.</p>
+</div>
+<div class="section" id="GUID-855E577C-33EA-495E-823D-F16C93CE2948"><h2 class="sectiontitle">Convention</h2><p>The convention used in the communication routine names follows the template <span class="keyword">?xxyy2d</span>, where the letter in
+the <span class="keyword">?</span> position indicates the data type being sent, <span class="keyword">xx</span> is replaced to indicate the shape of the
+matrix, and the <span class="keyword">yy</span> positions are used to indicate the type of communication to perform:</p>
+<dl id="GUID-0FD4F741-4D6A-47E0-B65A-92A0507B821E"><dt class="dlterm"><span class="keyword">i</span></dt>
+
+<dd><p>integer</p>
+</dd>
+<dt class="dlterm"><span class="keyword">s</span></dt>
+
+<dd><p>single precision real</p>
+</dd>
+<dt class="dlterm"><span class="keyword">d</span></dt>
+
+<dd><p>double precision real</p>
+</dd>
+<dt class="dlterm"><span class="keyword">c</span></dt>
+
+<dd><p>single precision complex</p>
+</dd>
+<dt class="dlterm"><span class="keyword">z</span></dt>
+
+<dd><p>double precision complex</p>
+</dd>
+<dt class="dlterm"><span class="keyword">ge</span></dt>
+
+<dd><p>The data to be communicated is stored in a general
+rectangular matrix.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">tr</span></dt>
+
+<dd><p>The data to be communicated is stored in a
+trapezoidal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">sd</span></dt>
+
+<dd><p>Send. One process sends to another.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">rv</span></dt>
+
+<dd><p>Receive. One process receives from another.</p>
+</dd>
+</dl>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL16-2" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">BLACS Point To Point Communication</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="33%" id="d1386266e223"><p>Routine name</p>
+</th>
+<th class="row-nocellborder" valign="top" width="67%" id="d1386266e226"><p>Operation performed</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="33%" headers="d1386266e223 "><p><a href="GUID-982A507F-8877-45DB-B9A3-9C5DF6C3E2B1.html#GUID-982A507F-8877-45DB-B9A3-9C5DF6C3E2B1">gesd2d</a></p>
+<p><a href="GUID-09BA170F-F6F3-42E6-8E7D-03553271BE71.html#GUID-09BA170F-F6F3-42E6-8E7D-03553271BE71">trsd2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d1386266e226 "><p>Take the indicated matrix and send it to the destination process.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33%" headers="d1386266e223 "><p><a class="allformats" href="GUID-3AEE121D-2F03-477B-9C90-A95A7FB99A98.html#GUID-3AEE121D-2F03-477B-9C90-A95A7FB99A98">gerv2d</a></p>
+<p><a class="allformats" href="GUID-F6973522-E9CA-4BC8-A764-A9AB6F4EF10A.html#GUID-F6973522-E9CA-4BC8-A764-A9AB6F4EF10A">trrv2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d1386266e226 "><p>Receive a message from the process into the matrix.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>As a simple example, the pseudo code given above is rewritten below in terms of the
+BLACS. It is further specifed that the data being exchanged is the double precision vector
+<var>X</var>, which is 5 elements long.</p>
+<pre>CALL GRIDINFO(NPROW, NPCOL, MYPROW, MYPCOL)
+
+IF (MYPROW.EQ.0 .AND. MYPCOL.EQ.0) THEN
+   CALL DGESD2D(5, 1, X, 5, 1, 0)
+   CALL DGERV2D(5, 1, X, 5, 1, 0)
+ELSE IF (MYPROW.EQ.1 .AND. MYPCOL.EQ.0) THEN
+   CALL DGESD2D(5, 1, X, 5, 0, 0)
+   CALL DGERV2D(5, 1, X, 5, 0, 0)
+END IF</pre></div>
+<div/>
+</body>
+</html>

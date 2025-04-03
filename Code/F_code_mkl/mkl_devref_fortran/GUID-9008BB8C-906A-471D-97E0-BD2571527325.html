@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larrj"/>
+<meta name="abstract" content="Performs refinement of the initial estimates of the eigenvalues of the matrix T."/>
+<meta name="description" content="Performs refinement of the initial estimates of the eigenvalues of the matrix T."/>
+<meta name="DC.subject" content="?larrj, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?larrj, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9008BB8C-906A-471D-97E0-BD2571527325"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larrj</title>
+
+</head>
+<body id="GUID-9008BB8C-906A-471D-97E0-BD2571527325">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larrj</span></h1>
+<!--Performs  refinement of the initial estimates of the eigenvalues of the matrix  T .--><div><p class="shortdesc">Performs  refinement of the initial estimates of the eigenvalues of the matrix <var>T</var>.</p>
+<div class="section" id="GUID-5BF750E2-940D-4BED-91CA-47423BC67761"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarrj</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">ifirst</span><span class="sep">, </span><span class="var">ilast</span><span class="sep">, </span><span class="var">rtol</span><span class="sep">, </span><span class="var">offset</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">pivmin, spdiam</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarrj</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">ifirst</span><span class="sep">, </span><span class="var">ilast</span><span class="sep">, </span><span class="var">rtol</span><span class="sep">, </span><span class="var">offset</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">pivmin, spdiam</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-6AFD7028-3F1D-493B-91A9-D46C3891719E"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-04D24341-0528-4645-BBFD-35BC51825CF2"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given the initial eigenvalue approximations of <var>T</var>, this routine  does  bisection to refine the eigenvalues of <var>T</var>,
+   <samp class="codeph"><span class="parmname">w</span>(<span class="parmname">ifirst</span>-<span class="parmname">offset</span>)</samp> through <samp class="codeph"><span class="parmname">w</span>(<span class="parmname">ilast</span>-<span class="parmname">offset</span>)</samp>, to more accuracy. Initial guesses for these eigenvalues are input in <span class="parmname">w</span>, the corresponding estimate of the error in these guesses in <span class="parmname">werr</span>. During bisection, intervals <samp class="codeph">[a,b]</samp> are maintained by storing their mid-points and semi-widths in the arrays <span class="parmname">w</span> and <span class="parmname">werr</span> respectively.</p>
+</div>
+<div class="section" id="GUID-25FE13AD-04C6-44D7-AC0C-EABD55F6A98C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-F91266D9-0714-45CE-A022-9F49CA2414F6"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>Contains <span class="parmname">n</span> diagonal elements of the matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<samp class="codeph"><var>n</var>-1</samp>).</p>
+<p>Contains <samp class="codeph">(<span class="parmname">n</span>-1)</samp> squared sub-diagonal elements of the <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ifirst</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+The index of the first eigenvalue to be computed.</dd>
+<dd class="ddexpand"><p/>
+</dd>
+<dt class="dlterm"><span class="parmname">ilast</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+The index of the last eigenvalue to be computed.</dd>
+<dt class="dlterm"><span class="parmname">rtol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>Tolerance for the convergence of the bisection intervals.  An interval <samp class="codeph">[a,b]</samp> is considered to be converged if <samp class="codeph">(b-a) ≤ <span class="parmname">rtol</span>*max(|a|,|b|)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">offset</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+Offset for the arrays <span class="parmname">w</span> and <span class="parmname">werr</span>, that is the <samp class="codeph"><span class="parmname">ifirst</span>-<span class="parmname">offset</span></samp> through <samp class="codeph"><span class="parmname">ilast</span>-<span class="parmname">offset</span></samp> elements of these arrays are to be used.
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<samp class="codeph"><var>n</var></samp>).</p>
+<p>On input, <samp class="codeph"><span class="parmname">w</span>(<span class="parmname">ifirst</span>-<span class="parmname">offset</span>)</samp> through <samp class="codeph"><span class="parmname">w</span>(<span class="parmname">ilast</span>-<span class="parmname">offset</span>)</samp> are estimates of the eigenvalues of <samp class="codeph"><var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup></samp> indexed <span class="parmname">ifirst</span> through <span class="parmname">ilast</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>On input, <samp class="codeph"><span class="parmname">werr</span>(<span class="parmname">ifirst</span>-<span class="parmname">offset</span>)</samp> through <samp class="codeph"><span class="parmname">werr</span>(<span class="parmname">ilast</span>-<span class="parmname">offset</span>)</samp> are the errors in the estimates of the corresponding elements in <span class="parmname">w</span>.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<samp class="codeph">2*<var>n</var></samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<samp class="codeph">2*<var>n</var></samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>The minimum pivot in the Sturm sequence for the matrix  <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">spdiam</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrj</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrj</span></p>
+<p>The spectral diameter of the matrix  <var>T</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-FD83B777-4E0A-4ADD-9FB4-75D63CF53644"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9DAA1FEB-2837-4C7F-A9FA-9C3D33BAD4AA"><dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>On exit, contains the refined estimates of the eigenvalues.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p>On exit, contains the refined errors in the estimates of the corresponding elements in <span class="parmname">w</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Now it is not used and always is set to 0.
+
+</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

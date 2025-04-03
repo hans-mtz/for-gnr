@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?syrdb"/>
+<meta name="abstract" content="Reduces a real symmetric matrix to tridiagonal form with Successive Bandwidth Reduction approach."/>
+<meta name="description" content="Reduces a real symmetric matrix to tridiagonal form with Successive Bandwidth Reduction approach."/>
+<meta name="DC.subject" content="?syrdb, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?syrdb, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-31D3AC68-670B-4A56-8AA0-174325601344"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?syrdb</title>
+
+</head>
+<body id="GUID-31D3AC68-670B-4A56-8AA0-174325601344">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?syrdb</span></h1>
+<!--Reduces a real symmetric matrix to tridiagonal form with Successive Bandwidth Reduction approach.--><div><p class="shortdesc">Reduces a real symmetric matrix to tridiagonal form with Successive Bandwidth Reduction approach.</p>
+<div class="section" id="GUID-033B2F58-4BEC-449B-B318-3CD39D7CCA86"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssyrdb</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsyrdb</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-056EB0D3-224B-418C-9E8B-80E6B9679287"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5E0EBFC6-3063-45CA-8B13-0BD8EECDC722"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces a real symmetric matrix <var>A</var> to symmetric tridiagonal form <var>T</var> by an orthogonal similarity transformation: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>T</var></sup></samp> and optionally multiplies matrix <var>Z</var> by <var>Q</var>, or simply forms <var>Q</var>. </p>
+<p>This routine reduces a full symmetric matrix <var>A</var> to the banded symmetric matrix <var>B</var>, and then to the tridiagonal symmetric matrix <var>T</var> with a Successive Bandwidth Reduction approach after C. Bischof's works (see for instance,  [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BISCHOF00">Bischof00</a>]). <span class="option">?syrdb</span> is functionally close to <span class="option">?sytrd</span> routine but the tridiagonal form may differ from those obtained by <span class="option">?sytrd</span>. Unlike <span class="option">?sytrd</span>, the orthogonal matrix <var>Q</var> cannot be restored from the details of matrix <var>A</var> on exit.</p>
+</div>
+<div class="section" id="GUID-7FBED722-6B98-4D33-A9CF-43C96C9A69E2"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4830B3EE-7634-410A-9F3A-771D518D19D5"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'N'</span></samp>, then only <var>A</var> is reduced to <var>T</var>. </p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'V'</span></samp>, then <var>A</var> is reduced to <var>T</var> and <var>A</var> contains <var>Q</var> on exit.</p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'U'</span></samp>, then <var>A</var> is reduced to <var>T</var> and <var>Z</var> contains <samp class="codeph"><var>Z</var>*<var>Q</var></samp> on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>a</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>a</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">kd</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The bandwidth of the banded matrix <var>B</var> (<samp class="codeph"><var>kd</var><span class="eqsymbol">≥</span> 1</samp>, <samp class="codeph"><var>kd</var><span class="eqsymbol">≤</span><var>n</var>-1</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>,<span class="parmname">z</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyrdb</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyrdb</span>.</p>
+<p><span class="parmname">a</span>(<var>lda</var>,*) is an array containing either upper or lower triangular part of the matrix <var>A</var>, as specified by <var>uplo</var>. </p>
+<p>The second dimension of <span class="parmname">a</span> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><span class="parmname">z</span>(<var>ldz</var>,*), the second dimension of <var>z</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'U'</span></samp>, then the matrix <var>z</var> is multiplied by <var>Q</var>. </p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'N'</span></samp> or <span class="keyword">'V'</span>, then <var>z</var> is not referenced.</p>
+<p><var>work</var>(<var>lwork</var>) is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <span class="parmname">a</span>; at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>z</var>; at least <samp class="codeph">max(1, <var>n</var>)</samp>. Not referenced if <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'N'</span></samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array (<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> (2<var>kd</var>+1)<var>n</var>+<var>kd</var></samp>). </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5524D7D8-BA86-470E-BBF7-8B9A8EA0AD08"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-B77FD179-2A52-4634-9F40-EEAFC267DB04"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'V'</span></samp>, then overwritten by <var>Q</var> matrix. </p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'N'</span></samp> or <samp class="codeph"><span class="keyword">'U'</span></samp>, then overwritten by the banded matrix <var>B</var> and details of the orthogonal matrix  <var>Q</var><sub class="subb"><var>B</var></sub> to reduce <var>A</var> to <var>B</var> as specified by <span class="parmname">uplo</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>On exit,</p>
+<p>if <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'U'</span></samp>, then the matrix <var>z</var> is overwritten by <var>Z</var>*<var>Q</var>. </p>
+<p>If <samp class="codeph"><span class="parmname">jobz</span> = <span class="keyword">'N'</span></samp> or <samp class="codeph"><span class="keyword">'V'</span></samp>, then <var>z</var> is not referenced. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span>, <span class="parmname">tau</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span></p>
+<p>Arrays: </p>
+<p><var>d</var>(*) contains the diagonal elements of the matrix <var>T</var>. </p>
+<p>The dimension of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p><var>e</var>(*) contains the off-diagonal elements of <var>T</var>. </p>
+<p>The dimension of <var>e</var> must be at least max(1, <var>n</var>-1).</p>
+<p><var>tau</var>(*) stores further details of the orthogonal matrix <var>Q</var>. </p>
+<p>The dimension of <var>tau</var> must be at least max(1, <var>n</var>-<var>kd</var>-1).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var>=0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-10959FE7-D8B3-4F0D-90F8-70972BC41BB2"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*(3*<var>kd</var>+3)</samp>. </p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>In first case the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p> For better performance, try using <var>kd</var> equal to 40 if <samp class="codeph">n ≤ 2000</samp> and <samp class="codeph">64</samp> otherwise.</p>
+<p>Try using <span class="option">?syrdb</span> instead of <span class="option">?sytrd</span> on large matrices obtaining only eigenvalues - when no eigenvectors are needed, especially in multi-threaded environment. <span class="option">?syrdb</span> becomes faster beginning approximately with <samp class="codeph">n = 1000</samp>, and much faster at larger matrices with a better scalability than <span class="option">?sytrd</span>.</p>
+<p>Avoid applying <span class="option">?syrdb</span> for computing eigenvectors due to the two-step reduction, that is, the number of operations needed to apply orthogonal transformations to <var>Z</var> is doubled compared to the traditional one-step reduction. In that case it is better to apply <span class="option">?sytrd</span> and <span class="option">?ormtr/?orgtr</span> to obtain tridiagonal form along with the orthogonal transformation matrix <var>Q</var>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

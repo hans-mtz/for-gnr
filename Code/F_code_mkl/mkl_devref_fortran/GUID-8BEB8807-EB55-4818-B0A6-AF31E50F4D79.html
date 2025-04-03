@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larrv"/>
+<meta name="abstract" content="Computes the eigenvectors of the tridiagonal matrix T = L*D*LT given L, D and the eigenvalues of L*D*LT."/>
+<meta name="description" content="Computes the eigenvectors of the tridiagonal matrix T = L*D*LT given L, D and the eigenvalues of L*D*LT."/>
+<meta name="DC.subject" content="?larrv, LAPACK routines, auxiliary routines, general tridiagonal matrix"/>
+<meta name="keywords" content="?larrv, LAPACK routines, auxiliary routines, general tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912.html#GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74.html#GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A60855D6-C482-422E-87FF-4D4B6AFD77EE.html#GUID-A60855D6-C482-422E-87FF-4D4B6AFD77EE"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8BEB8807-EB55-4818-B0A6-AF31E50F4D79"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larrv</title>
+
+</head>
+<body id="GUID-8BEB8807-EB55-4818-B0A6-AF31E50F4D79">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larrv</span></h1>
+<!--Computes the eigenvectors of the tridiagonal matrix  T  =  L* D* L T  given  L ,  D  and the eigenvalues of  L* D* L T .--><div><p class="shortdesc">Computes the eigenvectors of the tridiagonal matrix <var>T</var> = <var>L*</var><var>D*</var><var>L</var><sup class="power"><var>T</var></sup> given <var>L</var>, <var>D</var> and the eigenvalues of <var>L*</var><var>D*</var><var>L</var><sup class="power"><var>T</var></sup>.</p>
+<div class="section" id="GUID-8CE12AA2-3FF5-444E-9018-5B9AAE36F839"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarrv</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">minrgp</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarrv</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">minrgp</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clarrv</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">minrgp</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarrv</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">minrgp</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-3D95815C-3653-45EB-B2D1-64B447F68D0D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A69B97F0-E23F-4B7F-9B59-FD47C464B3BD"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?larrv</span> computes the eigenvectors of the tridiagonal matrix <var>T</var> = <var>L*</var><var>D*</var><var>L</var><sup class="power"><var>T</var></sup> given <var>L</var>, <var>D</var> and  approximations to the eigenvalues of <var>L*</var><var>D*</var><var>L</var><sup class="power"><var>T</var></sup>. </p>
+<p>The input eigenvalues should have been computed by <span class="option">slarre</span> for real flavors (<span class="option">slarrv/clarrv</span>) and by <span class="option">dlarre</span> for double precision flavors (<span class="option">dlarre/zlarre</span>). </p>
+</div>
+<div class="section" id="GUID-91A9EE3F-28FE-4C72-B52D-6B905ACFC86B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DADA94B2-E918-4F43-BA5B-638D8FF3DDA2"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span>, <span class="parmname">vu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Lower and upper bounds respectively of the interval that contains the desired eigenvalues. <span class="parmname">vl</span> &lt; <span class="parmname">vu</span>. Needed to compute gaps on the left or right end of the extremal eigenvalues in the desired range. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On entry, the <var>n</var> diagonal elements of the diagonal matrix <var>D</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>On entry, the (<var>n</var>-1) subdiagonal elements of the unit bidiagonal matrix <var>L</var> are contained in elements 1 to <var>n</var>-1 of <var>L</var> if the matrix is not splitted. At the end of each block the corresponding shift is stored as given by <span class="option">slarre</span> for real flavors and by <span class="option">dlarre</span> for double precision flavors. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>The minimum pivot allowed in the Sturm sequence.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">isplit</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The splitting points, at which <var>T</var> breaks up into blocks. The first block consists of rows/columns 1 to <var>isplit</var>(1), the second of rows/columns <var>isplit</var>(1)+1 through <var>isplit</var>(2), etc.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The total number of eigenvalues found. </p>
+<p><samp class="codeph">0 ≤ <var>m</var> ≤ <var>n</var></samp>. If <samp class="codeph"><var>range</var> = <span class="keyword">'A'</span></samp>, <samp class="codeph"><var>m</var> = <var>n</var></samp>, and if <samp class="codeph"><var>range</var> = <span class="keyword">'I'</span></samp>, <samp class="codeph"><var>m</var> = <var>iu</var> - <var>il</var> +1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dol</span>, <span class="parmname">dou</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If you want to compute only selected eigenvectors from all the eigenvalues supplied, specify an index range <span class="parmname">dol</span>:<span class="parmname">dou</span>. Or else apply the setting <span class="parmname">dol</span>=1, <span class="parmname">dou</span>=<span class="parmname">m</span>. Note that <span class="parmname">dol</span> and <span class="parmname">dou</span> refer to the order in which the eigenvalues are stored in <span class="parmname">w</span>.</p>
+<p>If you want to compute only selected eigenpairs, then the columns <span class="parmname">dol</span>-1 to <span class="parmname">dou</span>+1 of the eigenvector space <var>Z</var> contain the computed eigenvectors. All other columns of <var>Z</var> are set to zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">minrgp</span>, <span class="parmname">rtol1</span>,  <span class="parmname">rtol2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Parameters for bisection. An interval <span class="keyword">[LEFT,RIGHT]</span> has converged if <samp class="codeph">RIGHT-LEFT.LT.MAX( <span class="parmname">rtol1</span>*gap, <span class="parmname">rtol2</span>*max(|LEFT|,|RIGHT|) )</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The first <var>m</var> elements of <var>w</var>  contain the approximate eigenvalues for which eigenvectors are to be computed. The eigenvalues should be grouped by split-off block and ordered from smallest to largest within the block (the output array <var>w</var> from <span class="option">?larre</span> is expected here). These eigenvalues are set with respect to the shift of the corresponding root representation for their block.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The first <var>m</var> elements contain the semiwidth of the uncertainty interval of the corresponding eigenvalue in <var>w</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The separation from the right neighbor eigenvalue in <var>w</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iblock</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The indices of the blocks (submatrices) associated with the corresponding eigenvalues in <var>w</var>; <samp class="codeph"><var>iblock</var>(<var>i</var>)=1</samp> if eigenvalue <var>w</var>(<var>i</var>) belongs to the first block from the top, =2 if <var>w</var>(<var>i</var>) belongs to the second block, etc. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">indexw</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>).</p>
+<p> The indices of the eigenvalues within each block (submatrix);          for example, <var>indexw</var>(<var>i</var>)= 10 and <var>iblock</var>(<var>i</var>)=2 imply that the <var>i</var>-th eigenvalue <var>w</var>(<var>i</var>) is the 10-th eigenvalue in the second block.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">gers</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (2*<var>n</var>). The <var>n</var> Gerschgorin intervals (the <var>i</var>-th Gerschgorin interval is <samp class="codeph">(<span class="parmname">gers</span>(2*<var>i</var>-1), <span class="parmname">gers</span>(2*<var>i</var>))</samp>. The Gerschgorin intervals should be computed from the original unshifted matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the output array <var>Z</var>. <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp>, and if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span>/<span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span>/<span class="option">zlarrv</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (12*<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (7*<var>n</var>). </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-8C89ABF5-A671-4724-BF29-71D3D478FDF7"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0C9E7D76-052E-48AF-A66D-3CE6F1CB5556"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, <span class="parmname">d</span> may be overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p>On exit, <span class="parmname">l</span> is overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>On exit, <span class="parmname">w</span> holds the eigenvalues of the unshifted matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p>On exit, <span class="parmname">werr</span> contains refined values of its input approximations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p>On exit, <span class="parmname">wgap</span> contains refined values of its input approximations. Very small gaps are changed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarrv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarrv</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldz</var>, max(1,<var>m</var>) ). </p>
+<p>If <var>info</var> = 0, the first <var>m</var> columns of <var>z</var> contain the orthonormal eigenvectors of the matrix <var>T</var> corresponding to the input eigenvalues, with the <var>i</var>-th column of <var>z</var> holding the eigenvector associated with <var>w</var>(<var>i</var>). </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The user must ensure that at least max(1,<var>m</var>) columns are  supplied in the array <var>z</var>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">isuppz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> . </p>
+<p>Array, <span class="keyword">DIMENSION</span><samp class="codeph">(2*max(1,<var>m</var>))</samp>. The support of the eigenvectors in <var>z</var>, that is, the indices indicating the nonzero elements in <var>z</var>. The <var>i</var>-th eigenvector is nonzero only in elements <var>isuppz</var>(2<var>i</var>-1) through <var>isuppz</var>(2<var>i</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>:  successful exit </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>:  A problem occured in <span class="option">?larrv</span>. If <samp class="codeph"><var>info</var> = 5</samp>, the Rayleigh Quotient Iteration failed to converge to full accuracy.</p>
+<p>If <samp class="codeph"><var>info</var> &lt; 0</samp>: One of the called subroutines signaled an internal problem. Inspection of the corresponding parameter <span class="parmname">info</span> for further information is required.</p>
+<ul id="GUID-BDE37932-6ED9-4B4B-A244-1BBE67052C53"><li><p>If <samp class="codeph"><var>info</var> = -1</samp>, there is a problem in <span class="option">?larrb</span> when refining a child eigenvalue;</p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -2</samp>, there is a problem in <span class="option">?larrf</span> when computing the relatively robust representation (RRR) of a child. When a child is inside a tight cluster, it can be difficult to find an RRR. A partial remedy from the user's point of view is to make the parameter <span class="parmname">minrgp</span> smaller and recompile. However, as the orthogonality of the computed vectors is proportional to 1/<span class="parmname">minrgp</span>, you should be aware that you might be trading in precision when you decrease <span class="parmname">minrgp</span>.</p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -3</samp>, there is a problem in <span class="option">?larrb</span> when refining a single eigenvalue after the Rayleigh correction was rejected.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912.html#GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912"><span class="option">?larrb</span></a> </div>
+<div><a href="GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74.html#GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74"><span class="option">?larre</span></a> </div>
+<div><a href="GUID-A60855D6-C482-422E-87FF-4D4B6AFD77EE.html#GUID-A60855D6-C482-422E-87FF-4D4B6AFD77EE"><span class="option">?larrf</span></a> </div></div></div>
+</body>
+</html>

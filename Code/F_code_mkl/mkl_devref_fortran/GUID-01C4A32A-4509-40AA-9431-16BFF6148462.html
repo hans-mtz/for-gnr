@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gthr"/>
+<meta name="abstract" content="Gathers a full-storage sparse vector's elements into compressed form."/>
+<meta name="description" content="Gathers a full-storage sparse vector's elements into compressed form."/>
+<meta name="DC.subject" content="?gthr, Sparse BLAS Level 1 routines and functions, gathering sparse vector's elements into compressed form, converting a sparse vector into compressed storage form, sparse vectors, converting to compressed form"/>
+<meta name="keywords" content="?gthr, Sparse BLAS Level 1 routines and functions, gathering sparse vector's elements into compressed form, converting a sparse vector into compressed storage form, sparse vectors, converting to compressed form"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-01C4A32A-4509-40AA-9431-16BFF6148462"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gthr</title>
+
+</head>
+<body id="GUID-01C4A32A-4509-40AA-9431-16BFF6148462">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gthr</span></h1>
+<!--Gathers a full-storage sparse vector's elements into compressed form.--><div><p class="shortdesc">Gathers a full-storage sparse vector's elements into compressed form.</p>
+<div class="section" id="GUID-735A04FE-D073-461D-AF79-C7BB086F1B01"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgthr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgthr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgthr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgthr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="oper"> = </span><span class="kwd">gthr</span><span class="delim">(</span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0EA3376C-7359-4F1E-9A0C-F4F8BE6F25CE"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D06C9EE6-5FB5-440F-9824-C26326181692"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?gthr</span> routines gather the specified elements of a full-storage sparse vector <var>y</var> into compressed form(<var>nz</var>, <var>x</var>, <var>indx</var>). The routines reference only the elements of <var>y</var> whose indices are listed in the array <var>indx</var>:</p>
+<p><samp class="codeph">x(<var>i</var>) = <var>y</var>(<var>indx</var>(<var>i</var>))</samp>, for <samp class="codeph"><var>i</var>=1,2,... ,<var>nz</var></samp>.</p>
+</div>
+<div class="section" id="GUID-23AAD4E1-CE4A-45DA-992A-8020EDC3CBC3"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-6DB668FE-DFF6-4EB5-95A9-8FCACC862851"><dt class="dlterm"><span class="parmname">nz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elements of <var>y</var> to be gathered.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies indices of elements to be gathered.</p>
+<p>Array, size at least <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgthr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgthr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgthr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgthr</span></p>
+<p>Array, size at least max(<var>indx(i)</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EDC47CC9-F216-45BE-949F-76B1A6630178"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9F5592A0-B595-4656-9616-61FACF47E31A"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgthr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgthr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgthr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgthr</span></p>
+<p>Array, size at least <var>nz</var>.</p>
+<p>Contains the vector converted to the compressed form.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7FF854E0-2779-47A0-BD95-BA22E71AE76D"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gthr</span> interface are the following:</p>
+<dl id="GUID-4AF8A955-78D5-495F-9FDE-EF48AD8EE87D"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

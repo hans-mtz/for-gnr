@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Data Fitting Function Task Status and Error Reporting"/>
+<meta name="DC.subject" content="Task Status"/>
+<meta name="keywords" content="Task Status"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-426E072B-5F6B-467B-955B-8F7505F7956A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-795DC5D3-020A-4B00-A755-592A522F93AB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Data Fitting Function Task Status and Error Reporting</title>
+
+</head>
+<body id="GUID-795DC5D3-020A-4B00-A755-592A522F93AB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Data Fitting Function Task Status and Error
+    Reporting</h1>
+<div><p>The Data Fitting routines report a task status
+      through integer values. Negative status values indicate errors, while positive
+      values indicate warnings. An error can be caused by invalid parameter values or
+      a memory allocation failure. 
+    </p>
+<p>The status codes have symbolic names predefined in
+      the header file<span> as integer constants via the 
+        <span class="keyword">PARAMETER</span> operators</span>. 
+    </p>
+<p>If no error occurred, the function returns the 
+      <span class="keyword">DF_STATUS_OK</span> code defined as
+      zero: 
+    </p>
+<dl id="GUID-4C310437-E0CB-4ACF-8644-A8BDD3485F00"><dt class="dlterm"/>
+
+<dd><samp class="codeph">INTEGER, PARAMETER::DF_STATUS_OK = 0</samp></dd>
+</dl>
+<p>In case of an error, the function returns a non-zero
+      error code that specifies the origin of the failure. Header files
+      define the following status codes: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL17-24" class="AllLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Status Codes in the Data Fitting
+    Component</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="d884118e45"><p>Status Code 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="50%" id="d884118e48"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="row-nocellborder" colspan="2" align="center" valign="top" headers="d884118e45 d884118e48 "><p><strong>Common Status
+              Codes</strong></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">DF_STATUS_OK</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p>Operation completed successfully. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">DF_ERROR_NULL_TASK</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Data Fitting task is a 
+            <span class="keyword">NULL</span> pointer. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_MEM_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Memory allocation failure. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_METHOD_NOT_SUPPORTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Requested method is not supported. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_COMP_TYPE_NOT_SUPPORTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Requested computation type is not supported. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_NULL_PTR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p>Pointer to parameter is null. 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="2" valign="top" headers="d884118e45 d884118e48 "><p><strong>Data Fitting Task
+              Creation and Initialization, and Generic Editing Operations</strong></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_NX</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid number of breakpoints. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_X</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of breakpoints is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_X_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid hint describing the structure of the
+            partition. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_NY</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid dimension of vector-valued function 
+            <span class="parmname">y</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_Y</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of function values is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_Y_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid flag describing the structure of
+            function 
+            <span class="parmname">y</span></p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="2" valign="top" headers="d884118e45 d884118e48 "><p><strong>Data Fitting
+              Task-Specific Editing Operations</strong></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_SPLINE_ORDER</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid spline order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_SPLINE_TYPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid spline type. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_IC_TYPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Type of internal conditions used for spline
+            construction is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_IC</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of internal conditions for spline
+            construction is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_BC_TYPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Type of boundary conditions used in spline
+            construction is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_BC</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of boundary conditions for spline
+            construction is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_PP_COEFF</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of piecewise polynomial spline
+            coefficients is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_PP_COEFF_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid flag describing the structure of the
+            piecewise polynomial spline coefficients. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_PERIODIC_VAL</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Function values at the endpoints of the
+            interpolation interval are not equal as required in periodic boundary
+            conditions. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_DATA_ATTR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p>Invalid attribute of the pointer to be set or
+            modified in Data Fitting task descriptor with the 
+          <span class="keyword">df?editidxptr</span> task editor. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_DATA_IDX</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Index of the pointer to be set or modified in
+            the Data Fitting task descriptor with the 
+          <span class="keyword">df?editidxptr</span> task editor is out of the
+          pre-defined range. 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="2" valign="top" headers="d884118e45 d884118e48 "><p><strong>Data Fitting
+              Computation Operations</strong></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_NSITE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p>Invalid number of interpolation sites. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_SITE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of interpolation sites is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_SITE_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid flag describing the structure of
+            interpolation sites. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_NDORDER</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p>Invalid size of the array defining derivative
+            orders to be computed at interpolation sites. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_DORDER</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array defining derivative orders to be
+            computed at interpolation sites is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_DATA_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid flag providing additional information
+            about partition or interpolation sites. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_INTERP</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of spline-based interpolation results is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_INTERP_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid flag defining the structure of
+            spline-based interpolation results. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_CELL_IDX</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of indices of partition cells containing
+            interpolation sites is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_NLIM</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid size of arrays containing integration
+            limits. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_LLIM</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of the left-side integration limits is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_RLIM</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p>Array of the right-side integration limits is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_INTEGR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Array of spline-based integration results is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_INTEGR_HINT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Invalid flag providing the structure of the
+            array of spline-based integration results. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="50%" headers="d884118e45 "><p><span class="keyword">
+              DF_ERROR_BAD_LOOKUP_INTERP_SITE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="50%" headers="d884118e48 "><p> Bad site provided for interpolation with
+            look-up interpolator. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The routine that estimates piecewise polynomial cubic
+      spline coefficients can return internal error codes related to the specifics of
+      the implementation. Such error codes indicate invalid input data or other
+      issues unrelated to Data Fitting routines. 
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-426E072B-5F6B-467B-955B-8F7505F7956A.html">Data Fitting Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

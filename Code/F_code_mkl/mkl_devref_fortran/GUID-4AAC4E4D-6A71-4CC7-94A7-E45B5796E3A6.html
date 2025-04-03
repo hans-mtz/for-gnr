@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasd5"/>
+<meta name="abstract" content="Computes the square root of the i-th eigenvalue of a positive symmetric rank-one modification of a 2-by-2 diagonal matrix.Used by ?bdsdc."/>
+<meta name="description" content="Computes the square root of the i-th eigenvalue of a positive symmetric rank-one modification of a 2-by-2 diagonal matrix.Used by ?bdsdc."/>
+<meta name="DC.subject" content="?lasd5, LAPACK routines, auxiliary routines, square roots"/>
+<meta name="keywords" content="?lasd5, LAPACK routines, auxiliary routines, square roots"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4AAC4E4D-6A71-4CC7-94A7-E45B5796E3A6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasd5</title>
+
+</head>
+<body id="GUID-4AAC4E4D-6A71-4CC7-94A7-E45B5796E3A6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasd5</span></h1>
+<!--Computes the square root of the  i -th eigenvalue of a positive symmetric rank-one modification of a 2-by-2 diagonal matrix.Used by  ?bdsdc .--><div><p class="shortdesc">Computes the square root of the <var>i</var>-th eigenvalue of a positive symmetric rank-one modification of a 2-by-2 diagonal matrix.Used by <span class="option">?bdsdc</span>.</p>
+<div class="section" id="GUID-3A302E88-9CCC-41D7-842A-2F4E9ED5B1DF"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasd5</span><span class="delim">( </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dsigma</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasd5</span><span class="delim">( </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dsigma</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-DEDC2D08-3C22-4FA2-AC93-DDF838320290"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9CD262F9-1636-4CDB-A069-588A8F6B0647"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the square root of the <var>i</var>-th eigenvalue of a positive symmetric rank-one modification of a 2-by-2 diagonal matrix <samp class="codeph">diag(<var>d</var>)*diag(<var>d</var>)+<var>rho</var>*<var>Z</var>*<var>Z</var><sup class="power"><var>T</var></sup></samp></p>
+<p>The diagonal entries in the array <var>d</var> must satisfy <samp class="codeph">0 ≤ <var>d</var>(i) &lt; <var>d</var>(j)</samp> for <samp class="codeph">i&lt;i</samp>, <var>rho</var> mustbe greater than 0, and that the Euclidean norm of the vector <var>Z</var> is equal to 1.</p>
+</div>
+<div class="section" id="GUID-9FA7052D-9C69-43E4-94CA-D66FDBC90563"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-75E1A927-8C78-4B95-AB89-0431E293B43C"><dt class="dlterm"><span class="parmname">i</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span>The index of the eigenvalue to be computed. <samp class="codeph"><var>i</var> = 1</samp> or <samp class="codeph"><var>i</var> = 2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd5</span></p>
+<p> Array, <span class="keyword">dimension</span> (2 ). </p>
+<p>The original eigenvalues, <samp class="codeph">0 ≤ <var>d</var>(1) &lt; <var>d</var>(2)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd5</span></p>
+<p>Array, <span class="keyword">dimension</span> ( 2 ). </p>
+<p>The components of the updating vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd5</span></p>
+<p>The scalar in the symmetric updating formula.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd5</span></p>
+<p>Workspace array, <span class="keyword">dimension</span> ( 2 ). Contains (<samp class="codeph"><var>d</var>(<var>j</var>) + <var>sigma_i</var></samp>) in its <var>j</var>-th component.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-47B83DD3-6BCC-4209-B207-2BDDF72E2278"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A6408F65-E5CB-4FFC-B20B-653716A32D75"><dt class="dlterm"><span class="parmname">delta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd5</span></p>
+<p>Array, <span class="keyword">dimension</span> ( 2 ). </p>
+<p>Contains (<samp class="codeph"><var>d</var>(<var>j</var>) - <var>sigma_i</var></samp>) in its <var>j</var>-th component. The vector <var>delta</var> contains the information necessary to construct the eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dsigma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd5</span></p>
+<p>The computed <var>sigma_i</var>, the <var>i</var>-th updated eigenvalue.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

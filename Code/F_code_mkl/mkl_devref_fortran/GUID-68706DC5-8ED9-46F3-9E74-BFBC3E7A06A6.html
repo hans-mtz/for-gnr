@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Naming Conventions in Sparse BLAS Level 2 and Level 3"/>
+<meta name="DC.subject" content="Sparse BLAS Level 2, naming conventions, Sparse BLAS Level 3, routine name conventions"/>
+<meta name="keywords" content="Sparse BLAS Level 2, naming conventions, Sparse BLAS Level 3, routine name conventions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-68706DC5-8ED9-46F3-9E74-BFBC3E7A06A6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Naming Conventions in Sparse BLAS Level 2 and Level 3</title>
+
+</head>
+<body id="GUID-68706DC5-8ED9-46F3-9E74-BFBC3E7A06A6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Naming Conventions in Sparse BLAS Level 2 and Level 3</h1>
+<div><p>Each Sparse BLAS Level 2 and Level 3 routine has a six- or eight-character base name preceded by the prefix <samp class="codeph">mkl_</samp>  or <samp class="codeph">mkl_cspblas_ </samp>. </p>
+<p>The routines with typical (conventional) interface have six-character base names in accordance with the template: <pre>mkl<em>_&lt;character &gt; &lt;data&gt; &lt;operation&gt;</em>( )</pre></p>
+<p>The routines with simplified interfaces have eight-character base names in accordance with the templates:</p>
+<p><pre>mkl<em>_&lt;character &gt; &lt;data&gt; </em><em>&lt;</em><em>mtype&gt; </em><em>&lt;operation&gt;</em>( )</pre>
+for routines with one-based indexing; and<pre>mkl_cspblas_<em>&lt;character&gt; &lt;data&gt;</em>  <em>&lt;</em><em>mtype&gt;</em> <em>&lt;operation&gt;</em>( )</pre>
+for routines with zero-based 
+indexing.</p>
+<p>The <samp class="codeph"><em>&lt;character&gt;</em></samp> field indicates the data type:</p>
+<dl id="GUID-EEF841CF-438A-4E6F-92C6-926F26D99B78"><dt class="dlterm"><tt>s</tt></dt>
+
+<dd><p>real, single precision</p>
+</dd>
+<dt class="dlterm"><tt>c</tt></dt>
+
+<dd><p>complex, single precision</p>
+</dd>
+<dt class="dlterm"><tt>d</tt></dt>
+
+<dd><p>real, double precision</p>
+</dd>
+<dt class="dlterm"><tt>z</tt></dt>
+
+<dd><p>complex, double precision</p>
+</dd>
+</dl>
+<p>The <samp class="codeph"><em>&lt;data&gt;</em></samp> field indicates the sparse matrix storage format (see section <a href="GUID-D4B34D21-9AB1-4B43-A52D-5D3E8F7985C2.html#GUID-D4B34D21-9AB1-4B43-A52D-5D3E8F7985C2">Sparse Matrix Storage Formats</a>):</p>
+<dl id="GUID-2DFB4803-7774-4993-9A7C-9EF2439686AC"><dt class="dlterm"><tt>coo</tt></dt>
+
+<dd><p>coordinate format</p>
+</dd>
+<dt class="dlterm"><tt>csr</tt></dt>
+
+<dd><p>compressed sparse row format and its variations</p>
+</dd>
+<dt class="dlterm"><tt>csc</tt></dt>
+
+<dd><p>compressed sparse column format and its variations</p>
+</dd>
+<dt class="dlterm"><tt>dia</tt></dt>
+
+<dd><p>diagonal format</p>
+</dd>
+<dt class="dlterm"><tt>sky</tt></dt>
+
+<dd><p>skyline storage format</p>
+</dd>
+<dt class="dlterm"><tt>bsr</tt></dt>
+
+<dd><p>block sparse row format and its variations</p>
+</dd>
+</dl>
+<p>The <samp class="codeph"><em>&lt;operation&gt;</em></samp> field indicates the type of operation:</p>
+<dl id="GUID-78A292AB-CA24-403F-AFBB-CD12EE00F377"><dt class="dlterm"><tt>mv</tt></dt>
+
+<dd><p>matrix-vector product (Level 2) </p>
+</dd>
+<dt class="dlterm"><tt>mm</tt></dt>
+
+<dd><p>matrix-matrix product (Level 3)</p>
+</dd>
+<dt class="dlterm"><tt>sv</tt></dt>
+
+<dd><p>solving a single triangular system (Level 2)</p>
+</dd>
+<dt class="dlterm"><tt>sm</tt></dt>
+
+<dd><p>solving triangular systems with multiple right-hand sides (Level 3)</p>
+</dd>
+</dl>
+<p>The field <samp class="codeph"><em>&lt;mtype&gt;</em></samp> indicates the matrix type:</p>
+<dl id="GUID-82162707-3DF8-4305-B772-8CC1E4BA3B06"><dt class="dlterm"><tt>ge</tt></dt>
+
+<dd><p>sparse representation of a general matrix</p>
+</dd>
+<dt class="dlterm"><tt>sy</tt></dt>
+
+<dd><p>sparse representation of the upper or lower triangle of a symmetric matrix</p>
+</dd>
+<dt class="dlterm"><tt>tr</tt></dt>
+
+<dd><p>sparse representation of a triangular matrix</p>
+</dd>
+</dl>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html">Sparse BLAS Level 2 and Level 3 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

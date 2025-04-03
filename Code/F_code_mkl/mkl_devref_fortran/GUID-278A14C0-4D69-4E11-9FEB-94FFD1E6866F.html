@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?ladiv"/>
+<meta name="abstract" content="Performs complex division in real arithmetic, avoiding unnecessary overflow."/>
+<meta name="description" content="Performs complex division in real arithmetic, avoiding unnecessary overflow."/>
+<meta name="DC.subject" content="?ladiv, LAPACK routines, auxiliary routines, complex division in real arithmetic"/>
+<meta name="keywords" content="?ladiv, LAPACK routines, auxiliary routines, complex division in real arithmetic"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-278A14C0-4D69-4E11-9FEB-94FFD1E6866F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?ladiv</title>
+
+</head>
+<body id="GUID-278A14C0-4D69-4E11-9FEB-94FFD1E6866F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?ladiv</span></h1>
+<!--Performs complex division in real arithmetic, avoiding unnecessary overflow.--><div><p class="shortdesc">Performs complex division in real arithmetic, avoiding unnecessary overflow.</p>
+<div class="section" id="GUID-26EAC52D-2762-4BA4-A66A-38AF9F512767"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call sladiv</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">p</span><span class="sep">, </span><span class="var">q</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dladiv</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">p</span><span class="sep">, </span><span class="var">q</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="oper"> = </span><span class="kwd">cladiv</span><span class="delim">( </span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="oper"> = </span><span class="kwd">zladiv</span><span class="delim">( </span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-ADB8DE90-83A3-4A7C-A968-6CBA1ADD870B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9FF5D0A6-FE41-40D2-B0A6-7A97888C310D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routines <span class="option">sladiv</span>/<span class="option">dladiv</span> perform complex division in real arithmetic as</p>
+<p><br/><div class="imagecenter"><img src="GUID-06B289D1-2488-4E5C-AF9F-A4BEB7F64D26-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>Complex functions <span class="option">cladiv</span>/<span class="option">zladiv</span> compute the result as </p>
+<p><samp class="codeph"><var>res</var> = <var>x</var>/<var>y</var></samp>, </p>
+<p>where <var>x</var> and <var>y</var> are complex. The computation of <var>x</var> /  <var>y</var> will not overflow on an intermediary step unless the results overflows.</p>
+<p>The algorithm used is due to <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BAUDIN12">[Baudin12]</a>.</p>
+</div>
+<div class="section" id="GUID-48AB6BAE-B841-409A-8747-30A778704FDB"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-5553D05E-6F26-42E1-B652-256A7004F22E"><dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span>, <span class="parmname">c</span>, <span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sladiv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dladiv</span></p>
+<p>The scalars <var>a</var>, <var>b</var>, <var>c</var>, and <var>d</var> in the above expression (for real flavors only).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span>, <span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cladiv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zladiv</span></p>
+<p>The complex scalars <var>x</var> and <var>y</var> (for complex flavors only).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A1058DAA-A26F-470F-A804-0079FBC948CD"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C59FAE35-1867-417F-A5F3-8B9C86DCFF8D"><dt class="dlterm"><span class="parmname">p</span>, <span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sladiv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dladiv</span></p>
+<p>The scalars <var>p</var> and <var>q</var> in the above expression (for real flavors only).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cladiv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zladiv</span></p>
+<p>Contains the result of division <var>x</var> /  <var>y</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

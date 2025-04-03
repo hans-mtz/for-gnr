@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larz"/>
+<meta name="abstract" content="Applies an elementary reflector (as returned by ?tzrzf) to a general matrix."/>
+<meta name="description" content="Applies an elementary reflector (as returned by ?tzrzf) to a general matrix."/>
+<meta name="DC.subject" content="?larz, LAPACK routines, auxiliary routines, general matrix, elementary reflector"/>
+<meta name="keywords" content="?larz, LAPACK routines, auxiliary routines, general matrix, elementary reflector"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A63BB130-6652-478C-8F10-46E029E2261B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larz</title>
+
+</head>
+<body id="GUID-A63BB130-6652-478C-8F10-46E029E2261B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larz</span></h1>
+<!--Applies an elementary reflector (as returned by  ?tzrzf ) to a general matrix.--><div><p class="shortdesc">Applies an elementary reflector (as returned by <span class="option">?tzrzf</span>) to a general matrix.</p>
+<div class="section" id="GUID-5BA676B7-8CCB-4F4B-B2F5-8EFCF2513162"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarz</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarz</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clarz</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarz</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-0C775930-E06A-4F3C-B8D4-9CD5D1F0BF95"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-AC51A973-BFA5-4AD2-8AFD-C27D3F2B5DD5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?larz</span> applies a real/complex elementary reflector <var>H</var> to a real/complex <var>m</var>-by-<var>n</var> matrix <var>C</var>, from either the left or the right. <var>H</var> is represented in the forms </p>
+<p><samp class="codeph"><var>H</var> = <var>I</var>-<var>tau</var>*<var>v</var>*<var>v</var><sup class="power"><var>T</var></sup></samp>  for real flavors and <samp class="codeph"><var>H</var> = <var>I</var>-<var>tau</var>*<var>v</var>*<var>v</var><sup class="power"><var>H</var></sup></samp> for complex flavors,</p>
+<p>where <var>tau</var> is a real/complex scalar and v  is a real/complex vector, respectively. </p>
+<p>If <samp class="codeph"><var>tau</var> = 0</samp>, then <var>H</var> is taken to be the unit matrix. </p>
+<p>For complex flavors, to apply <var>H</var><sup class="power"><var>H</var></sup> (the conjugate transpose of <var>H</var>), supply conjg(<var>tau</var>) instead of <var>tau</var>. </p>
+<p><var>H</var> is a product of <var>k</var> elementary reflectors as returned by <span class="option">?tzrzf</span>.</p>
+</div>
+<div class="section" id="GUID-3D5D00E0-40EA-4232-8852-A0C4DA3CA7D2"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-41D4FEE2-DE95-4FD7-9C62-24E0E3AFC81F"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>: form <var>H</var>*<var>C</var></p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>: form <var>C</var>*<var>H</var></p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of rows of the matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of columns of the matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of entries of the vector <var>v</var> containing the meaningful part of the Householder vectors. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>L</var><span class="eqsymbol">≥</span> 0</samp>, </p>
+<p>if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span><var>L</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarz</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (1+(<var>l</var>-1)*abs(<var>incv</var>)). </p>
+<p>The vector <var>v</var> in the representation of <var>H</var> as returned by <span class="option">?tzrzf</span>. </p>
+<p><var>v</var> is not used if <samp class="codeph"><var>tau</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The increment between elements of <var>v</var>. </p>
+<p><samp class="codeph"><var>incv</var><span class="eqsymbol">≠</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarz</span></p>
+<p>The value <var>tau</var> in the representation of <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarz</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldc</var>,<var>n</var>). </p>
+<p>On entry, the <var>m</var>-by-<var>n</var> matrix <var>C</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>c</var>. </p>
+<p><samp class="codeph"><var>ldc</var><span class="eqsymbol">≥</span> max(1,<var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarz</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span></p>
+<p>(<var>n</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> or </p>
+<p>(<var>m</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-166028DE-970C-4D55-80C4-DB1E6397A3A1"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9582056A-DF00-4D38-8B81-65176B5BC341"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>On exit, <var>C</var> is overwritten by the matrix <var>H</var>*<var>C</var> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, or <var>C</var>*<var>H</var> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

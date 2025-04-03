@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasd4"/>
+<meta name="abstract" content="Computes the square root of the i-th updated eigenvalue of a positive symmetric rank-one modification to a positive diagonal matrix. Used by ?bdsdc."/>
+<meta name="description" content="Computes the square root of the i-th updated eigenvalue of a positive symmetric rank-one modification to a positive diagonal matrix. Used by ?bdsdc."/>
+<meta name="DC.subject" content="?lasd4, LAPACK routines, auxiliary routines, square roots"/>
+<meta name="keywords" content="?lasd4, LAPACK routines, auxiliary routines, square roots"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BF713616-3313-4C41-A6F4-0799F477D2B5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasd4</title>
+
+</head>
+<body id="GUID-BF713616-3313-4C41-A6F4-0799F477D2B5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasd4</span></h1>
+<!--Computes the square root of the  i -th updated eigenvalue of a positive symmetric rank-one modification to a positive diagonal matrix. Used by  ?bdsdc .--><div><p class="shortdesc">Computes the square root of the <var>i</var>-th updated eigenvalue of a positive symmetric rank-one modification to a positive diagonal matrix. Used by <span class="option">?bdsdc</span>.</p>
+<div class="section" id="GUID-E775781F-5795-4101-972F-6E154D772256"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasd4</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">sigma</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasd4</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">sigma</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-BD09C071-9562-478D-BD74-14B314333511"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-271736EC-FA92-4EB8-A95C-9A7A8969BADE"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the square root of the <var>i</var>-th updated eigenvalue of a positive symmetric rank-one modification to a positive diagonal matrix whose entries are given as the squares of the corresponding entries in the array <var>d</var>, and that <samp class="codeph">0 ≤ <var>d</var>(<var>i</var>) &lt; <var>d</var>(<var>j</var>)</samp> for <samp class="codeph"><var>i</var> &lt; <var>j</var></samp> and that <samp class="codeph"><var>rho</var> &gt; 0</samp>. This is arranged by the calling routine, and is no loss in generality. The rank-one modified system is thus</p>
+<p><samp class="codeph">diag(<var>d</var>)*diag(<var>d</var>)  + <var>rho</var>*<var>Z</var>*<var>Z</var><sup class="power"><var>T</var></sup></samp>,</p>
+<p>where the Euclidean norm of <var>Z</var> is equal to 1.The method consists of approximating the rational functions in the secular equation by simpler interpolating rational functions.</p>
+</div>
+<div class="section" id="GUID-CF1AB16D-77F2-40B8-B8E4-8B84B21A72A5"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7649B3D5-396F-4E7F-B288-3D09F2477BD3"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The length of all arrays.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">i</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span></p>
+<p>The index of the eigenvalue to be computed. <samp class="codeph">1 ≤ <var>i</var> ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd4</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>).</p>
+<p>The original eigenvalues. They must be in order, <samp class="codeph">0 ≤ <var>d</var>(<var>i</var>) &lt; <var>d</var>(<var>j</var>)</samp>  for <samp class="codeph"><var>i</var> &lt; <var>j</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd4</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The components of the updating vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd4</span></p>
+<p>The scalar in the symmetric updating formula.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd4</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var> ). </p>
+<p>If <samp class="codeph"><var>n</var><span class="eqsymbol">≠</span> 1</samp>, <var>work</var> contains (<samp class="codeph"><var>d</var>(<var>j</var>) + <var>sigma_i</var></samp>) in its <var>j</var>-th component. </p>
+<p>If <samp class="codeph"><var>n</var> = 1</samp>, then <samp class="codeph"><var>work</var>( 1 ) = 1</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-92EB8675-2FF5-40A9-9E99-23BA11E180C5"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-EF4C1F22-DACE-4E5F-952B-C3F37E2F7506"><dt class="dlterm"><span class="parmname">delta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd4</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>If <samp class="codeph"><var>n</var><span class="eqsymbol">≠</span> 1</samp>, <var>delta</var> contains (<samp class="codeph"><var>d</var>(<var>j</var>) - <var>sigma_i</var></samp>) in its <var>j</var>-th component. </p>
+<p>If <samp class="codeph"><var>n</var> = 1</samp>, then <samp class="codeph"><var>delta</var> (1) = 1</samp>. The vector <var>delta</var> contains the information necessary to construct the (singular) eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sigma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd4</span></p>
+<p>The computed <var>sigma_i</var>, the <var>i</var>-th updated eigenvalue.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span></p>
+<p>= 0:  successful exit</p>
+<p>&gt; 0:  If <samp class="codeph"><var>info</var> = 1</samp>, the updating process failed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hpcon"/>
+<meta name="abstract" content="Estimates the reciprocal of the condition number of a packed Hermitian matrix."/>
+<meta name="description" content="Estimates the reciprocal of the condition number of a packed Hermitian matrix."/>
+<meta name="DC.subject" content="?hpcon, LAPACK routines, condition number estimation, condition number, Hermitian matrix, packed storage, estimating the condition number"/>
+<meta name="keywords" content="?hpcon, LAPACK routines, condition number estimation, condition number, Hermitian matrix, packed storage, estimating the condition number"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C4E6059F-8442-46E0-B4DD-F09C8335FB62"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hpcon</title>
+
+</head>
+<body id="GUID-C4E6059F-8442-46E0-B4DD-F09C8335FB62">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hpcon</span></h1>
+<!--Estimates the reciprocal of the condition number of a packed Hermitian matrix.--><div><p class="shortdesc">Estimates the reciprocal of the condition number of a packed Hermitian matrix.</p>
+<div class="section" id="GUID-BBC1D328-1D2C-4DAE-96E0-8BB98346068D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chpcon</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhpcon</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hpcon</span><span class="delim">( </span><span class="var">ap</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-FCD74852-8DEF-4E71-A377-FBDC7199408D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-1E602034-25A1-4658-A192-83D9156A3FC0"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine estimates the reciprocal of the condition number of a Hermitian matrix <var>A</var>:</p>
+<p><samp class="codeph"><span class="eqsymbol">κ</span><sub class="subnb">1</sub>(<var>A</var>) = ||<var>A</var>||<sub class="subnb">1</sub> ||<var>A</var><sup>-1</sup>||<sub class="subnb">1</sub></samp> (since <var>A</var> is Hermitian, <samp class="codeph"><span class="eqsymbol">κ</span><sub><span class="eqsymbol">∞</span></sub>(<var>A</var>) = k<sub class="subnb">1</sub>(<var>A</var>)</samp>).</p>
+<p>An estimate is obtained for <samp class="codeph">||<var>A</var><sup>-1</sup>||</samp>, and the reciprocal of the condition number is computed as <samp class="codeph"><var>rcond</var> = 1 / (||<var>A</var>|| ||<var>A</var><sup>-1</sup>||)</samp>. </p>
+<p>Before calling this routine:</p>
+<ul id="GUID-B75B9C55-5B3D-44F1-B8E5-7A027594AA9C"><li><p>compute <var>anorm</var> (either ||<var>A</var>||<sub class="subnb">1</sub> =max<sub class="subb"><var>j</var></sub><span class="eqsymbol">Σ</span><sub class="subb"><var>i</var></sub> |<var>a</var><sub class="subb"><var>i</var><var>j</var></sub>| or ||<var>A</var>||<sub><span class="eqsymbol">∞</span></sub> =max<sub class="subb"><var>i</var></sub><span class="eqsymbol">Σ</span><sub class="subb"><var>j</var></sub> |<var>a</var><sub class="subb"><var>i</var><var>j</var></sub>|)</p>
+</li>
+<li><p>call <a class="allformats" href="GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE.html#GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE"><span class="option">?hptrf</span></a> to compute the factorization of <var>A</var>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-B25FE5F6-99A2-4FA8-B1F8-8C233D69AB6B"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates how the input matrix <var>A</var> has been factored:</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>ap</var> stores the packed upper triangular factor <var>U</var> of the factorization <var>A</var> = <samp class="codeph"><var>U*D*U</var><sup class="power">T</sup></samp>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>ap</var> stores the packed lower triangular factor <var>L</var> of the factorization <var>A</var> = <samp class="codeph"><var>L*D*L</var><sup class="power">T</sup></samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chpcon</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhpcon</span>. </p>
+<p>The array  <samp class="codeph"><var>ap</var></samp><samp class="codeph">(*)</samp> contains the packed factored matrix <var>A</var>, as returned by <a class="allformats" href="GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE.html#GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE"><span class="option">?hptrf</span></a>. The dimension of <var>ap</var> must be at least max(1,<var>n</var>(<var>n</var>+1)/2).</p>
+<p>The array <samp class="codeph"><var>work</var>(*)</samp> is a workspace for the routine. The dimension of <var>work</var> must be at least <samp class="codeph">max(1, 2*<var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. The array <var>ipiv</var>, as returned by <a class="allformats" href="GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE.html#GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE"><span class="option">?hptrf</span></a>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">anorm</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>The norm of the <em>original</em> matrix <var>A</var><span> (see <em>Description</em>)</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-6B89DAFF-8F1E-41AC-8D8F-B291C151AFF2"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rcond</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>An estimate of the reciprocal of the condition number. The routine sets <var>rcond</var> =0 if the estimate underflows; in this case the matrix is singular (to working precision). However, anytime <var>rcond</var> is small compared to 1.0, for the working precision, the matrix may be poorly conditioned or even singular.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <var>info</var> = <var>-i</var>, the <var>i</var>-th parameter had an illegal value.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-1B3582AC-5E0F-49D5-9E4F-EB91E540D6FF"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hbcon</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>A</var> of size <samp class="codeph">(<var>n</var>*(<var>n</var>+1)/2)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-B6E34BFD-7CDB-4F8B-9965-D5825FEA3182"><h2 class="sectiontitle">Application Notes</h2><p>The computed <var>rcond</var> is never less than <var>r</var> (the reciprocal of the true condition number) and in practice is nearly always less than 10<var>r</var>. A call to this routine involves solving a number of systems of linear equations <samp class="codeph"><var>A</var>*<var>x</var> = <var>b</var></samp>; the number is usually 5 and never more than 11. Each solution requires approximately <samp class="codeph">8<var>n</var><sup class="power">2</sup></samp> floating-point operations.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241.html">Estimating the Condition Number: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

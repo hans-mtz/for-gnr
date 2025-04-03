@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetrd"/>
+<meta name="abstract" content="Reduces a complex Hermitian matrix to tridiagonal form."/>
+<meta name="description" content="Reduces a complex Hermitian matrix to tridiagonal form."/>
+<meta name="DC.subject" content="?hetrd, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?hetrd, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1371B572-C7DA-4F0F-AAD5-246AED285650"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetrd</title>
+
+</head>
+<body id="GUID-1371B572-C7DA-4F0F-AAD5-246AED285650">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetrd</span></h1>
+<!--Reduces a complex Hermitian matrix to tridiagonal form. --><div><p class="shortdesc">Reduces a complex Hermitian matrix to tridiagonal form. </p>
+<div class="section" id="GUID-45C31AF5-960E-44EA-95AE-8F09E043F00A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chetrd</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetrd</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hetrd</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DC9372E4-ECB7-4E3F-ABAB-FE1FF35836E0"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D81658C9-221D-4347-AD47-193372E5E2DB"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces a complex Hermitian matrix <var>A</var> to symmetric tridiagonal form <var>T</var> by a unitary similarity transformation: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>H</var></sup></samp>. The unitary matrix <var>Q</var> is not formed explicitly but is represented as a product of <var>n</var>-1 elementary reflectors. Routines are provided to work with <var>Q</var> in this representation. <span>(They are described later in this <span>topic</span>.)</span></p>
+</div>
+<div class="section" id="GUID-901DC72E-F1FA-4EBB-B345-19AB5BA9DA50"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B5D21977-D477-42B5-8360-90952C190871"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>a</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>a</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetrd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetrd</span>.</p>
+<p><var>a</var><span>(<var>lda</var>,*)</span>
+ is an array containing either upper or lower triangular part of the matrix <var>A</var>, as specified by <var>uplo</var>. If <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of <span class="parmname">a</span> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>A</var> is not referenced.  If <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of <span class="parmname">a</span> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>A</var> is not referenced.</p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array (<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var></samp>). </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EC10FE0C-625D-4A7F-920A-29E33698C061"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7D4A0F93-5F2E-47FE-B758-C269961BF280"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit,</p>
+<p>if <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp>, the diagonal and first superdiagonal of <var>A</var> are overwritten by the corresponding elements of the tridiagonal matrix <var>T</var>, and the elements above the first superdiagonal, with the array <span class="parmname">tau</span>, represent the orthogonal matrix <var>Q</var> as a product of elementary reflectors;</p>
+<p> if <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp>, the diagonal and first subdiagonal of <var>A</var> are overwritten by the corresponding elements of the tridiagonal matrix <var>T</var>, and the elements below the first subdiagonal, with the array <span class="parmname">tau</span>, represent the orthogonal matrix <var>Q</var> as a product of elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chetrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhetrd</span>. </p>
+<p>Arrays: </p>
+<p><var>d</var><span>(*)</span> contains the diagonal elements of the matrix <var>T</var>. </p>
+<p>The dimension of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p><var>e</var><span>(*)</span> contains the off-diagonal elements of <var>T</var>. </p>
+<p>The dimension of <var>e</var> must be at least max(1, <var>n</var>-1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetrd</span><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetrd</span>. </p>
+<p>Array, size at least max(1, <var>n</var>-1). Stores (<span class="parmname">n</span>-1) scalars that define elementary reflectors in decomposition  of the unitary matrix <var>Q</var> in a product of <span class="parmname">n</span>-1 elementary reflectors. </p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6EBEA326-9096-4352-9FCD-AB5C82F88324"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hetrd</span> interface are the following:</p>
+<dl id="GUID-C3F59B37-EBDC-4D5C-88BA-B7423B9A42F4"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length (<var>n-</var>1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+<p>Note that diagonal (<span class="parmname">d</span>) and off-diagonal (<span class="parmname">e</span>) elements of the matrix <var>T</var> are
+omitted because they are kept in the matrix <var>A</var> on exit.</p>
+</div>
+<div class="section" id="GUID-6578A326-54E0-4887-A0EE-5BBD34F3452B"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> =<var>n</var>*<var>blocksize</var></samp>, where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The computed matrix <var>T</var> is exactly similar to a matrix <var>A</var> + <var>E</var>, where <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>A</var>||<sub>2</sub>, <var>c</var>(<var>n</var>)</samp> is a modestly increasing function of <var>n</var>, and <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>The approximate number of floating-point operations is <samp class="codeph">(16/3)<var>n</var><sup class="power">3</sup></samp>.</p>
+<p>After calling this routine, you can call the following:</p>
+<dl id="GUID-3FA7162A-C0F5-49DA-9A56-A2DDC8F21491"><dt class="dlterm"><a href="GUID-C176AF71-9A01-4940-A445-8327C8C7AD34.html#GUID-C176AF71-9A01-4940-A445-8327C8C7AD34">ungtr</a></dt>
+
+<dd><p>to form the computed matrix <var>Q</var> explicitly</p>
+</dd>
+<dt class="dlterm"><a href="GUID-565CECA3-EDF7-4028-A783-ABD9F0B372FD.html#GUID-565CECA3-EDF7-4028-A783-ABD9F0B372FD">unmtr</a></dt>
+
+<dd><p>to multiply a complex matrix by <var>Q</var>.</p>
+</dd>
+</dl>
+<p>The real counterpart of this routine is <a href="GUID-FE0029DA-AFF9-4926-93CA-88850D35FEE5.html#GUID-FE0029DA-AFF9-4926-93CA-88850D35FEE5">?sytrd</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

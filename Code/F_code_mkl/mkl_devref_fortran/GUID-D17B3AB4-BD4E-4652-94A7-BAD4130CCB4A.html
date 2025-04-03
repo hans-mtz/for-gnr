@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Using FFTW3 Wrappers"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D17B3AB4-BD4E-4652-94A7-BAD4130CCB4A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Using FFTW3 Wrappers</title>
+
+</head>
+<body id="GUID-D17B3AB4-BD4E-4652-94A7-BAD4130CCB4A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"> Using FFTW3 Wrappers</h1>
+<div><p> The FFTW3 wrappers are a set of functions and data structures depending on one another. The wrappers are not designed to provide the interface on a function-per-function basis. Some FFTW3 wrapper functions are empty and do nothing, but they are present to avoid link errors and satisfy function calls. 
+    </p>
+<p> This document does not list the declarations of the functions that the FFTW3 wrappers provide (you can find the declarations in the 
+      <span class="filepath">fftw3.h</span>header file). Instead, this section comments on particular limitations of the wrappers and provides usage hints:. These are some known limitations of FFTW3 wrappers and their usage in Intel&reg; oneAPI Math Kernel Library.<ul id="GUID-F9479176-110C-4837-AE59-1B013B936E5E"><li><p>The FFTW3 wrappers do not support long double precision because Intel&reg; oneAPI Math Kernel Library FFT functions operate only on single- and double-precision floating-point data types. Therefore the functions with prefix 
+          <span class="keyword">fftwl_</span>, supporting the 
+          <span class="keyword">long double</span> data type, are not provided. 
+        </p>
+</li>
+<li><p> The wrappers provide equivalent implementation for double- and single-precision functions (those with prefixes 
+          <span class="keyword">fftw_</span> and 
+          <span class="keyword">fftwf_</span>, respectively). So, all these comments equally apply to the double- and single-precision functions and will refer to functions with prefix 
+          <span class="keyword">fftw_</span>, that is, double-precision functions, for brevity. 
+        </p>
+</li>
+<li><p> The FFTW3 interface that the wrappers provide is defined in the 
+          <span class="filepath">fftw3.h</span><span> and 
+            <span class="filepath">fftw3.f</span></span> header file<span>s</span>. 
+          <span>These files are</span>borrowed from the FFTW3.x package and distributed within Intel&reg; oneAPI Math Kernel Library with permission. Additionally, the<span class="filepath">fftw3_mkl.h</span><span>, 
+            <span class="filepath">fftw3_mkl.f</span>, and 
+            <span class="filepath">fftw3_mkl_f77.h</span></span> header file<span>s</span> define supporting structures and supplementary constants and macros<span>, as well as expose Fortran interface in C</span>. 
+        </p>
+</li>
+<li><p> Actual functionality of the plan creation wrappers is implemented in guru64 set of functions. Basic interface, advanced interface, and guru interface plan creation functions call the guru64 interface functions. So, all types of the FFTW3 plan creation interface in the wrappers are functional. 
+        </p>
+</li>
+<li><p>Plan creation functions may return a 
+          <samp class="codeph">NULL 
+          </samp>plan, indicating that the functionality is not supported. So, please carefully check the result returned by plan creation functions in your application. In particular, the following problems return a 
+          <samp class="codeph">NULL 
+          </samp>plan: 
+        </p>
+<ul class="dash" id="GUID-54CE6882-985E-4302-A343-C942042EE88B"><li><p> c2r and r2c problems with a split storage of complex data. 
+            </p>
+</li>
+<li><p> r2r problems with 
+              <span class="parmname">kind</span> values 
+              <span class="keyword">FFTW_R2HC</span>, 
+              <span class="keyword">FFTW_HC2R</span>, and 
+              <span class="keyword">FFTW_DHT</span>. The only supported r2r kinds are even/odd DFTs (sine/cosine transforms). 
+            </p>
+</li>
+<li><p> Multidimensional r2r transforms. 
+            </p>
+</li>
+<li><p> Transforms of multidimensional vectors. That is, the only supported values for parameter 
+              <span class="parmname">howmany_rank</span> in guru and guru64 plan creation functions are 0 and 1. 
+            </p>
+</li>
+<li><p>Multidimensional transforms with 
+              <span class="parmname">rank 
+              </span>&gt; MKL_MAXRANK. 
+            </p>
+</li>
+</ul>
+</li>
+<li><p>The 
+          <span class="keyword">MKL_RODFT00</span> value of the 
+          <span class="parmname">kind</span> parameter is introduced by the FFTW3 wrappers. For better performance, you are strongly encouraged to use this value rather than 
+          <span class="keyword">FFTW_RODFT00</span>. To use this 
+          <span class="parmname">kind</span> value, provide an extra first element equal to 0.0 for the input/output vectors. Consider the following example: 
+        </p>
+<pre>plan1 = fftw_plan_r2r_1d(n, in1, out1, FFTW_RODFT00, FFTW_ESTIMATE);
+plan2 = fftw_plan_r2r_1d(n, in2, out2, MKL_RODFT00, FFTW_ESTIMATE);
+ </pre><p> Both plans perform the same transform, except that the 
+          <span class="parmname">in2/out2</span> arrays have one extra zero element at location 0. For example, if 
+          <span class="parmname">n</span>=3, 
+          <span class="parmname">in1</span>={<span class="parmname">x,y,z</span>} and 
+          <span class="parmname">out1</span>={<span class="parmname">u,v,w</span>}, then 
+          <span class="parmname">in2</span>={0<span class="parmname">,x,y,z</span>} and 
+          <span class="parmname">out2</span>={0<span class="parmname">,u,v,w</span>}. 
+        </p>
+</li>
+<li><p> The 
+          <span class="parmname">flags</span> parameter in plan creation functions is always ignored. The same algorithm is used regardless of the value of this parameter. In particular, 
+          <span class="parmname">flags</span> values 
+          <span class="keyword">FFTW_ESTIMATE</span>, 
+          <span class="keyword">FFTW_MEASURE,</span> etc. have no effect. 
+        </p>
+</li>
+<li><p>For multithreaded plans, use normal sequence of calls to the 
+  <span class="option">fftw_init_threads()</span> and 
+  <span class="option">fftw_plan_with_nthreads()</span> functions (refer to FFTW documentation). 
+  </p>
+</li>
+<li><p> Memory allocation function 
+  <span class="option">fftw_malloc</span> returns memory aligned at a 16-byte boundary. You must free the memory with 
+  <span class="option">fftw_free</span>. 
+  </p>
+</li>
+<li><p>The FFTW3 wrappers to Intel&reg; oneAPI Math Kernel Library use the 32-bit<span class="keyword">int</span>type in both LP64 and ILP64 interfaces of Intel&reg; oneAPI Math Kernel Library. Use guru64 FFTW3 interfaces for 64-bit sizes.</p>
+</li>
+<li><p> Fortran wrappers (see 
+      <a href="GUID-4C4AA60A-D30E-41C7-838A-2BBABF7BEA06.html#GUID-4C4AA60A-D30E-41C7-838A-2BBABF7BEA06">Calling Wrappers from Fortran</a>) use the 
+      <span class="keyword">INTEGER</span> type, which is 32-bit in LP64 interfaces and 64-bit in ILP64 interfaces. 
+    </p>
+</li>
+<li><p> The wrappers typically indicate a problem by returning a 
+      <samp class="codeph">NULL</samp> plan. In a few cases, the wrappers may report a descriptive message of the problem detected. By default the reporting is turned off. To turn it on, set variable 
+      <span class="keyword">fftw3_mkl.verbose</span> to a non-zero value, for example: 
+    </p>
+<pre>#include "fftw3.h"
+#include "fftw3_mkl.h"
+fftw3_mkl.verbose = 0;
+plan = fftw_plan_r2r(...);
+ </pre></li>
+<li><p>The following functions are empty: 
+    <ul class="dash" id="GUID-C8BF1777-FC4D-44DC-8D5B-04E5A37AD53E"><li><p> For saving, loading, and printing plans 
+        </p>
+</li>
+<li><p> For saving and loading wisdom 
+        </p>
+</li>
+<li><p> For estimating arithmetic cost of the transforms. 
+        </p>
+</li>
+</ul>
+</p>
+</li>
+<li><p> Do not use macro 
+      <span class="keyword">FFTW_DLL</span>with the FFTW3 wrappers to Intel&reg; oneAPI Math Kernel Library.</p>
+</li>
+<li><p>Do not use negative stride values. Though FFTW3 wrappers support negative strides in the part of advanced and guru FFTW interface, the underlying implementation does not. 
+    </p>
+</li>
+<li><p>Do not set a FFTW2 wrapper library before a FFT23 wrapper library or Intel&reg; oneAPI Math Kernel Library in your link line application. All libraries define "fftw_destroy_plan" symbol and linkage in incorrect order results into expected errors.</p>
+</li>
+</ul>
+</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html">FFTW3 Interface to Intel&reg; Math Kernel Library</a></div>
+</div>
+<div/>
+</body>
+</html>

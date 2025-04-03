@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="oneMKL PARDISO - Parallel Direct Sparse Solver Interface"/>
+<meta name="DC.subject" content="parallel direct solver (PARDISO), PARDISO* solver"/>
+<meta name="keywords" content="parallel direct solver (PARDISO), PARDISO* solver"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C16BFBCA-EF1C-4CDB-BC73-41655B6DD8F5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-61CBF1F8-E590-405A-A043-880016F83D72.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-25061027-AC23-4BD5-80F6-48168458416F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2C3EA4B8-1203-4AB2-A8CD-39B99B89E762.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E8CE439A-3F76-4EB8-934E-7C37C83BAF44.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-13CCE899-B2DD-47F7-A739-9491CEEA48CE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AC122A6E-151E-46DB-A99A-140597C60A8F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C8AE66AE-7964-414D-B229-4EC952472C7C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9ED49D39-6E90-487D-B087-E483D84ECFB2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FF7588E5-1765-4C06-9B57-A1F14BB44744.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6836578B-B580-4842-8D21-731A0C6DBF85.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-EE25678B-B88C-4BF3-9552-8A42AA041250.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7E829836-0FEF-46B2-8943-86A022193462"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>oneMKL PARDISO - Parallel Direct Sparse Solver Interface</title>
+
+</head>
+<body id="GUID-7E829836-0FEF-46B2-8943-86A022193462">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">oneMKL PARDISO - Parallel Direct Sparse Solver Interface</h1>
+<div><p>This section describes the interface to the shared-memory multiprocessing parallel direct sparse solver known as the 
+      Intel&reg; oneAPI Math Kernel Library PARDISO solver. 
+    </p>
+<p>The 
+      Intel&reg; oneAPI Math Kernel Library PARDISO package is a high-performance, robust, memory efficient, and easy to use software package for solving large sparse linear systems of equations on shared memory multiprocessors. The solver uses a combination of left- and right-looking Level-3 BLAS supernode techniques [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK00-2">Schenk00-2</a>]. To improve sequential and parallel sparse numerical factorization performance, the algorithms are based on a Level-3 BLAS update and pipelining parallelism is used with a combination of left- and right-looking supernode techniques [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK00">Schenk00</a>, 
+      <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK01">Schenk01</a>, 
+      <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK02">Schenk02</a>, 
+      <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK03">Schenk03</a>]. The parallel pivoting methods allow complete supernode pivoting to compromise numerical stability and scalability during the factorization process. For sufficiently large problem sizes, numerical experiments demonstrate that the scalability of the parallel algorithm is nearly independent of the shared-memory multiprocessing architecture. 
+    </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d939664e61"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d939664e61 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+<p>The following table lists the names of the 
+      Intel&reg; oneAPI Math Kernel Library PARDISO routines and describes their general use. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-329EC110-6E75-4009-8093-85ED2F0593AD" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"><span>oneMKL</span> PARDISO Routines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="44%" id="d939664e89">Routine 
+        </th>
+<th class="row-nocellborder" valign="top" width="56.00000000000001%" id="d939664e91">Description 
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-C16BFBCA-EF1C-4CDB-BC73-41655B6DD8F5.html#GUID-C16BFBCA-EF1C-4CDB-BC73-41655B6DD8F5"><span class="keywordtt">pardisoinit</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Initializes 
+            Intel&reg; oneAPI Math Kernel Library PARDISO with default parameters depending on the matrix type. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA"><span class="keywordtt">pardiso</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-61CBF1F8-E590-405A-A043-880016F83D72.html#GUID-61CBF1F8-E590-405A-A043-880016F83D72"><span class="keywordtt">pardiso_64</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides, 64-bit integer version. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-25061027-AC23-4BD5-80F6-48168458416F.html"><span class="keyword">mkl_pardiso_pivot</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Replaces routine which handles Intel&reg; oneAPI Math Kernel Library PARDISO pivots with user-defined routine.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-2C3EA4B8-1203-4AB2-A8CD-39B99B89E762.html"><span class="keyword">pardiso_getdiag</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Returns diagonal elements of initial and factorized matrix.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-E8CE439A-3F76-4EB8-934E-7C37C83BAF44.html"><span class="keyword">pardiso_export</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p> Places pointers dedicated for sparse representation of requested matrix into MKL PARDISO. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-13CCE899-B2DD-47F7-A739-9491CEEA48CE.html"><span class="keyword">pardiso_handle_store</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Store internal structures from <span class="keyword">pardiso</span> to a file. </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-AC122A6E-151E-46DB-A99A-140597C60A8F.html"><span class="keyword">pardiso_handle_restore</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Restore <span class="keyword">pardiso</span> internal structures from a file. </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-C8AE66AE-7964-414D-B229-4EC952472C7C.html"><span class="keyword">pardiso_handle_delete</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Delete files with  <span class="keyword">pardiso</span> internal structure data. </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-9ED49D39-6E90-487D-B087-E483D84ECFB2.html"><span class="keyword">pardiso_handle_store_64</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Store internal structures from <span class="keyword">pardiso_64</span> to a file. </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-FF7588E5-1765-4C06-9B57-A1F14BB44744.html"><span class="keyword">pardiso_handle_restore_64</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Restore <span class="keyword">pardiso_64</span> internal structures from a file. </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d939664e89 "><a href="GUID-6836578B-B580-4842-8D21-731A0C6DBF85.html"><span class="keyword">pardiso_handle_delete_64</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d939664e91 "><p>Delete files with  <span class="keyword">pardiso_64</span> internal structure data. </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The 
+    Intel&reg; oneAPI Math Kernel Library PARDISO solver supports a wide range of real and complex sparse matrix types (see<a href="#SSR_FIG8-1">the figure 
+    </a> below). 
+  </p>
+<div class="figtop" id="SSR_FIG8-1"><span class="figcap">Sparse Matrices That Can Be Solved with the Intel MKL PARDISO Solver</span><p><br/><div class="imagecenter"><img id="IMAGE_44BB336E389845529B00288F8C185E8E" src="GUID-0693ED1B-F1A8-4E41-894B-79895E0C790C-low.gif" height="251" alt="Sparse Matrices That Can be Solved With PARDISO" align="center"/></div><br/></p>
+</div>
+<p>The 
+    Intel&reg; oneAPI Math Kernel Library PARDISO solver performs four tasks: 
+  </p>
+<ul id="GUID-A90B3790-3698-4856-B377-DE276CC1F7C1"><li id="LI_9C63DE637D8947AA835E2C655E7057A6"> analysis and symbolic factorization 
+    </li>
+<li id="LI_8CA264E155004C4DB6386D26F5FC3E0D">numerical factorization 
+    </li>
+<li id="LI_148DDBD428504E92B8910F5D2326C471">forward and backward substitution including iterative refinement 
+    </li>
+<li id="LI_9F7A2C721102435C9D8D248BF8C4E024">termination to release all internal solver memory. 
+    </li>
+</ul>
+<p>To find code examples that use 
+    Intel&reg; oneAPI Math Kernel Library PARDISO routines to solve systems of linear equations, unzip the<span>appropriate Fortran</span> archive file in the 
+    <span class="filepath">examples</span>folder of the 
+    Intel&reg; oneAPI Math Kernel Library installation directory. Code examples will be in the<span id="EXAMPLE_PATH"><span><span class="filepath">examples/solverf/source</span></span></span> folder. 
+  </p>
+<div class="section" id="GUID-071D5322-DBE3-44FF-8F53-0EF5509543CB"><h2 class="sectiontitle">Supported Matrix Types</h2><p>The analysis steps performed by 
+      Intel&reg; oneAPI Math Kernel Library PARDISO depend on the structure of the input matrix<var>A</var>. 
+    </p>
+<dl id="GUID-7766CDE7-D431-48E2-8AF0-286BB03508CF"><dt class="dlterm">Symmetric Matrices 
+        </dt>
+
+<dd><p> The solver first computes a symmetric fill-in reducing permutation 
+            <var>P</var> based on either the minimum degree algorithm [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LIU85">Liu85</a>] or the nested dissection algorithm from the METIS package [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#KARYPIS98">Karypis98</a>] (both included with 
+            Intel&reg; oneAPI Math Kernel Library), followed by the parallel left-right looking numerical Cholesky factorization [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK00-2">Schenk00-2</a>] of 
+            <samp class="codeph"><var>PAP</var><sup><var>T</var></sup> = 
+              <var>LL</var><sup><var>T</var></sup></samp> for symmetric positive-definite matrices, or 
+            <var>PAP</var><sup><var>T</var></sup> = 
+            <var>LDL</var><sup><var>T</var></sup> for symmetric indefinite matrices. The solver uses diagonal pivoting, or 1x1 and 2x2 Bunch-Kaufman pivoting for symmetric indefinite matrices. An approximation of 
+            <var>X</var> is found by forward and backward substitution and optional iterative refinement. 
+          </p>
+<p>Whenever numerically acceptable 1x1 and 2x2 pivots cannot be found within the diagonal supernode block, the coefficient matrix is perturbed. One or two passes of iterative refinement may be required to correct the effect of the perturbations. This restricting notion of pivoting with iterative refinement is effective for highly indefinite symmetric systems. Furthermore, for a large set of matrices from different applications areas, this method is as accurate as a direct factorization method that uses complete sparse pivoting techniques [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK04">Schenk04</a>]. 
+          </p>
+<p>Another method of improving the pivoting accuracy is to use symmetric weighted matching algorithms. These algorithms identify large entries in the coefficient matrix 
+            <var>A</var> that, if permuted close to the diagonal, permit the factorization process to identify more acceptable pivots and proceed with fewer pivot perturbations. These algorithms are based on maximum weighted matchings and improve the quality of the factor in a complementary way to the alternative of using more complete pivoting techniques. 
+          </p>
+<p>The inertia is also computed for real symmetric indefinite matrices. 
+          </p>
+</dd>
+<dt class="dlterm">Structurally Symmetric Matrices 
+        </dt>
+
+<dd><p> The solver first computes a symmetric fill-in reducing permutation 
+            <var>P</var> followed by the parallel numerical factorization of 
+            <var>PAP</var><sup><var>T</var></sup> = 
+            <var>QLU</var><sup><var>T</var></sup>. The solver uses partial pivoting in the supernodes and an approximation of 
+            <var>X</var> is found by forward and backward substitution and optional iterative refinement. 
+          </p>
+</dd>
+<dt class="dlterm">Nonsymmetric Matrices 
+        </dt>
+
+<dd><p> The solver first computes a nonsymmetric permutation 
+            <var>P</var><sub><var>MPS</var></sub> and scaling matrices 
+            <var>D</var><sub><var>r</var></sub> and 
+            <var>D</var><sub><var>c</var></sub> with the aim of placing large entries on the diagonal to enhance reliability of the numerical factorization process [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DUFF99">Duff99</a>]. In the next step the solver computes a fill-in reducing permutation 
+            <var>P</var> based on the matrix 
+            <var>P</var><sub><var>MPS</var></sub><var>A</var> + (<var>P</var><sub><var>MPS</var></sub><var>A</var>)<sup><var>T</var></sup> followed by the parallel numerical factorization 
+          </p>
+<p><samp class="codeph"><var>Q</var><var>L</var><var>U</var><var>R</var> = 
+              <var>P</var><var>P</var><sub><var>MPS</var></sub><var>D</var><sub><var>r</var></sub><var>A</var><var>D</var><sub><var>c</var></sub><var>P</var></samp></p>
+<p>with supernode pivoting matrices 
+            <var>Q</var> and 
+            <var>R</var>. When the factorization algorithm reaches a point where it cannot factor the supernodes with this pivoting strategy, it uses a pivoting perturbation strategy similar to [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LI99">Li99</a>]. The magnitude of the potential pivot is tested against a constant threshold of 
+          </p>
+<p><samp class="codeph">alpha = eps*||<var>A2</var>||<sub>inf</sub></samp>, 
+          </p>
+<p>where 
+            <samp class="codeph">eps</samp> is the machine precision, 
+            <samp class="codeph"><var>A2</var> = 
+              <var>P*P</var><sub><var>MPS</var></sub>*<var>D</var><sub><var>r</var></sub>*<var>A</var>*<var>D</var><sub><var>c</var></sub>*<var>P</var></samp>, and 
+            <samp class="codeph">||<var>A2</var>||<sub>inf</sub></samp> is the infinity norm of 
+            <samp class="codeph"><var>A</var></samp>. Any tiny pivots encountered during elimination are set to the sign 
+            <samp class="codeph">(<var>l</var><sub class="subb"><var>I</var><var>I</var></sub>)*eps*||<var>A2</var>||<sub>inf</sub></samp>, which trades off some numerical stability for the ability to keep pivots from getting too small. Although many failures could render the factorization well-defined but essentially useless, in practice the diagonal elements are rarely modified for a large class of matrices. The result of this pivoting approach is that the factorization is, in general, not exact and iterative refinement may be needed. 
+          </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D309FCF9-4568-44D1-A199-E54E04D624C8"><h2 class="sectiontitle">Sparse Data Storage</h2><p>Intel&reg; oneAPI Math Kernel Library PARDISO stores sparse data in several formats: 
+    </p>
+<ul id="GUID-1003E72D-A4AF-4319-9E0C-6FD71C560280"><li id="LI_AD3E46B6D3304F508589D36AFBC13A14"><p>CSR3: The 3-array variation of the compressed sparse row format described in 
+          <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format.</a></p>
+</li>
+<li id="LI_171971FBFFD547EC9B5A83BE4A10D1C4"><p>BSR3: The three-array variation of the block compressed sparse row format described in 
+          <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a>. Use 
+          <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM37"><samp class="codeph"><span class="parmname">iparm</span>(37)</samp></a> to specify the block size. 
+        </p>
+</li>
+<li id="LI_3ADED06C69954222901A7ECBBE4E07CF"><p>VBSR: Variable BSR format. 
+          Intel&reg; oneAPI Math Kernel Library PARDISO analyzes the matrix provided in CSR3 format and converts it into an internal structure which can improve performance for matrices with a block structure. Use<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM37"><samp class="codeph"><span class="parmname">iparm</span>(37)</samp></a><samp class="codeph"> = -<var>t</var></samp> (0 &lt; 
+          <var>t</var><span class="eqsymbol">≤</span> 100) to specify use of internal VBSR format and to set the degree of similarity required to combine elements of the matrix. For example, if you set 
+          <samp class="codeph"><span class="parmname">iparm</span>(37)</samp><samp class="codeph"> = -80</samp>, two rows of the input matrix are combined when their non-zero patterns are 80% or more similar. 
+        </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Intel&reg; oneAPI Math Kernel Library supports only the VBSR format for real and symmetric positive definite or indefinite matrices (<span class="parmname">mtype</span> = 2 or 
+            <span class="parmname">mtype</span> = -2). 
+          </p>
+<p>Intel&reg; oneAPI Math Kernel Library supports these features for all matrix types as long as<samp class="codeph"><span class="parmname">iparm</span>(24)</samp>=1: 
+          <ul id="GUID-2AEC289D-C18C-4895-B79D-8559B9C4B429"><li id="LI_5E27DF29B5B443A783296341AE2D8079"><p><span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span><samp class="codeph"> &gt; 0</samp>: Partial solution 
+              </p>
+</li>
+<li id="LI_1F59B31581BB442C89B2925154A594A8"><p><span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span><samp class="codeph"> &gt; 0</samp>: Schur complement 
+              </p>
+</li>
+<li id="LI_D9DE87CD1218453281F96CBB2F088A9B"><p><span><samp class="codeph"><span class="parmname">iparm</span>(60)</samp></span><samp class="codeph"> &gt; 0</samp>: OOC 
+                Intel&reg; oneAPI Math Kernel Library PARDISO 
+              </p>
+</li>
+</ul>
+</p>
+</div>
+</li>
+</ul>
+<p>For all storage formats, the 
+      Intel&reg; oneAPI Math Kernel Library PARDISO parameter<span class="parmname">ja</span> is used for the 
+      <span class="parmname">columns</span> array, 
+      <span class="parmname">ia</span> is used for 
+      <span class="parmname">rowIndex</span>, and 
+      <span class="parmname">a</span> is used for 
+      <span class="parmname">values</span>. The algorithms in 
+      Intel&reg; oneAPI Math Kernel Library PARDISO require column indices<span class="parmname">ja</span> to be in increasing order per row and that the diagonal element in each row be present for any structurally symmetric matrix. For symmetric or nonsymmetric matrices the diagonal elements which are equal to zero are not necessary. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>Intel&reg; oneAPI Math Kernel Library PARDISO column indices<span class="parmname">ja</span> must be in increasing order per row. You can validate the sparse matrix structure with the matrix checker (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM27"><samp class="codeph"><span class="parmname">iparm</span>(27)</samp></a>) 
+      </p>
+</div>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>While the presence of zero diagonal elements for symmetric matrices is not required, you should explicitly set zero diagonal elements for symmetric matrices. Otherwise, 
+          Intel&reg; oneAPI Math Kernel Library PARDISO creates internal copies of arrays<span class="parmname">ia</span>, 
+          <span class="parmname">ja</span>, and 
+          <span class="parmname">a</span> full of diagonal elements, which require additional memory and computational time. However, the memory and time required the diagonal elements in internal arrays is usually not significant compared to the memory and the time required to factor and solve the matrix. 
+        </p>
+</div>
+</p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d939664e813"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d939664e813 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-884444B9-FD11-47B3-A49A-BA68CFA93A83"><h2 class="sectiontitle">Storage of Matrices</h2><p>By default, 
+      Intel&reg; oneAPI Math Kernel Library PARDISO stores data in RAM. This is referred to as In-Core (IC) mode. However, you can specify that 
+      Intel&reg; oneAPI Math Kernel Library PARDISO store matrices on disk by setting<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM60"><samp class="codeph"><span class="parmname">iparm</span>(60)</samp></a>. This mode is called the Out-of-Core (OOC) mode. 
+    </p>
+<p>You can set the following parameters for the OOC mode. 
+    </p>
+<table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder"><tr><th valign="bottom" align="left" id="d939664e849">Parameter/Environment Variable Name 
+        </th>
+<th valign="bottom" align="left" id="d939664e851">Description</th>
+</tr>
+<tr><td valign="top" headers="d939664e849"><span class="option">MKL_PARDISO_OOC_PATH</span></td>
+<td valign="top" headers="d939664e851"><p>Directory for storing data created in the OOC mode. 
+          </p>
+</td>
+</tr>
+<tr><td valign="top" headers="d939664e849"><span class="option"> MKL_PARDISO_OOC_FILE_NAME</span></td>
+<td valign="top" headers="d939664e851"><p>Full file name (incl. path) which will be used for the OOC files 
+          </p>
+</td>
+</tr>
+<tr><td valign="top" headers="d939664e849"><span class="option"> MKL_PARDISO_OOC_MAX_CORE_SIZE</span></td>
+<td valign="top" headers="d939664e851"><p>Maximum size of RAM (in megabytes) available for 
+            Intel&reg; oneAPI Math Kernel Library PARDISO 
+          </p>
+</td>
+</tr>
+<tr><td valign="top" headers="d939664e849"><span class="option"> MKL_PARDISO_OOC_MAX_SWAP_SIZE</span></td>
+<td valign="top" headers="d939664e851"><p> Maximum swap size (in megabytes) available for 
+            Intel&reg; oneAPI Math Kernel Library PARDISO 
+          </p>
+</td>
+</tr>
+<tr><td valign="top" headers="d939664e849"><span class="option"> MKL_PARDISO_OOC_KEEP_FILE</span></td>
+<td valign="top" headers="d939664e851"><p>A flag which determines whether temporary data files will be deleted or stored 
+          </p>
+</td>
+</tr>
+</table>
+<p>By default, the current working directory is used in the OOC mode as a directory path for storing data. All work arrays will be stored in files named 
+      <samp class="codeph">ooc_temp</samp> with different extensions. When 
+    <span class="option">MKL_PARDISO_OOC_FILE_NAME</span> is not set and 
+    <span class="option">MKL_PARDISO_OOC_PATH</span> is set, the names for the created files will contain 
+    <span class="filepath">&lt;path&gt;/mkl_pardiso</span> or 
+    <span class="filepath">&lt;path&gt;\mkl_pardiso</span> depending on the OS. Setting 
+    <samp class="codeph">MKL_PARDISO_OOC_FILE_NAME=&lt;filename&gt;</samp> will override the path which could have been set in 
+    <span class="option">MKL_PARDISO_OOC_PATH</span>. In this case 
+    <span class="filepath">&lt;filename&gt;</span> will be used for naming the OOC files. 
+    </p>
+<p>By default, 
+    <span class="option">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> is 2000 (MB) and 
+    <span class="option">MKL_PARDISO_OOC_MAX_SWAP_SIZE</span> is 0. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Do not set the sum of 
+      <span class="option">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> and 
+      <span class="option">MKL_PARDISO_OOC_MAX_SWAP_SIZE</span> greater than the size of the RAM plus the size of the swap memory. Be sure to allow enough free memory for the operating system and any other processes which need to be running. 
+      </p>
+</div>
+<p>By default, all temporary data files will be deleted. For keeping them it is required to set<span class="option"> MKL_PARDISO_OOC_KEEP_FILE</span> to 0. 
+    </p>
+<p> OOC parameters can be set in a configuration file. You can set the path to this file and its name using environmental variables 
+      <span class="keyword">MKL_PARDISO_OOC_CFG_PATH</span> and 
+      <span class="keyword">MKL_PARDISO_OOC_CFG_FILE_NAME</span>. 
+    </p>
+<p>For setting parameters of OOC mode either environment variables or a configuration file can be used. When the last option is chosen, by default the name of the file is 
+      <em>pardiso_ooc.cfg</em> and it should be placed in the working directory. If needed, the user can set the path to the configuration file using environmental variables 
+    <span class="option">MKL_PARDISO_OOC_CFG_PATH</span> and 
+    <span class="option">MKL_PARDISO_OOC_CFG_FILE_NAME</span>. These variables specify the path and filename as follows: 
+    </p>
+<ul id="GUID-2285F50E-B079-4AA6-B639-407AB11B8908"><li>Linux* OS and OS X*: 
+        <span class="filepath">&lt;MKL_PARDISO_OOC_CFG_PATH&gt;/ &lt;MKL_PARDISO_OOC_CFG_FILE_NAME&gt;</span></li>
+<li> Windows* OS: 
+        <span class="filepath">&lt;MKL_PARDISO_OOC_CFG_PATH&gt;\&lt;MKL_PARDISO_OOC_CFG_FILE_NAME&gt;</span></li>
+</ul>
+<p>An example of the configuration file: 
+    </p>
+<pre>MKL_PARDISO_OOC_PATH = &lt;path&gt;
+MKL_PARDISO_OOC_MAX_CORE_SIZE = N
+MKL_PARDISO_OOC_MAX_SWAP_SIZE = K
+MKL_PARDISO_OOC_KEEP_FILE = 0 (or 1)
+</pre><div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>The maximum length of the path lines in the configuration files is 1000 characters. 
+      </p>
+</div>
+<p>Alternatively, the OOC parameters can be set as environment variables via command line. 
+    </p>
+<p>For Linux* OS and OS X*: 
+    </p>
+<pre>export MKL_PARDISO_OOC_PATH = &lt;path&gt;
+export MKL_PARDISO_OOC_MAX_CORE_SIZE = N
+export MKL_PARDISO_OOC_MAX_SWAP_SIZE = K
+export MKL_PARDISO_OOC_KEEP_FILE = 0 (or 1)
+</pre><p> For Windows* OS: 
+    </p>
+<pre>set MKL_PARDISO_OOC_PATH = &lt;path&gt;
+set MKL_PARDISO_OOC_MAX_CORE_SIZE = N
+set MKL_PARDISO_OOC_MAX_SWAP_SIZE = K
+set MKL_PARDISO_OOC_KEEP_FILE = 0 (or 1)</pre><p> where 
+      <span class="filepath">&lt;path&gt;</span> should follow the OS naming convention. 
+    </p>
+</div>
+<div class="section" id="GUID-D5D7DA43-6BED-434F-9C95-F98B1F80AD5A"><h2 class="sectiontitle">Direct-Iterative Preconditioning for Nonsymmetric Linear Systems</h2><p>The solver uses a combination of direct and iterative methods [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SONN89">Sonn89</a>] to accelerate the linear solution process for transient simulation. Most applications of sparse solvers require solutions of systems with gradually changing values of the nonzero coefficient matrix, but with an identical sparsity pattern. In these applications, the analysis phase of the solvers has to be performed only once and the numerical factorizations are the important time-consuming steps during the simulation. 
+      Intel&reg; oneAPI Math Kernel Library PARDISO uses a numerical factorization and applies the factors in a preconditioned Krylov Subspace iteration. If the iteration does not converge, the solver automatically switches back to the numerical factorization. This method can be applied to nonsymmetric matrices in 
+      Intel&reg; oneAPI Math Kernel Library PARDISO. You can select the method using the<samp class="codeph"><span class="parmname">iparm</span>(4)</samp> input parameter. The 
+      <samp class="codeph"><span class="parmname">iparm</span>(20)</samp>parameter returns the error status after running 
+      Intel&reg; oneAPI Math Kernel Library PARDISO. 
+    </p>
+</div>
+<div class="section" id="GUID-72263E5F-9E9B-4BFC-AB67-EEA3708768F6"><h2 class="sectiontitle"> Single and Double Precision Computations</h2><p>Intel&reg; oneAPI Math Kernel Library PARDISO solves tasks using single or double precision. Each precision has its benefits and drawbacks. Double precision variables have more digits to store value, so the solver uses more memory for keeping data. But this mode solves matrices with better accuracy, which is especially important for input matrices with large condition numbers. 
+    </p>
+<p> Single precision variables have fewer digits to store values, so the solver uses less memory than in the double precision mode. Additionally this mode usually takes less time. But as computations are made less precisely, only some systems of equations can be solved accurately enough using single precision. 
+    </p>
+</div>
+<div class="section" id="GUID-70E6283E-35F8-4935-84DB-E4FBDD5B5A12"><h2 class="sectiontitle">Separate Forward and Backward Substitution</h2><p> The solver execution step (see 
+      <a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#PHASE">parameter</a><samp class="codeph"><span class="parmname">phase</span> = 33</samp> below) can be divided into two or three separate substitutions: forward, backward, and possible diagonal. This separation can be explained by the examples of solving systems with different matrix types. 
+    </p>
+<p>A real symmetric positive definite matrix 
+      <var>A</var> (<samp class="codeph"><span class="parmname">mtype</span> = 2</samp>) is factored by 
+      Intel&reg; oneAPI Math Kernel Library PARDISO as<samp class="codeph"><var>A</var> = 
+        <var>L</var>*<var>L</var><sup><var>T</var></sup></samp> . In this case the solution of the system 
+      <samp class="codeph"><var>A</var>*<var>x</var>=<var>b</var></samp> can be found as sequence of substitutions: 
+      <samp class="codeph"><var>L</var>*<var>y</var>=<var>b</var></samp> (forward substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =331</samp>) and<samp class="codeph"><var>L</var><sup><var>T</var></sup>*<var>x</var>=<var>y</var></samp> (backward substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =333</samp>). 
+    </p>
+<p> A real nonsymmetric matrix 
+      <var>A</var> (<samp class="codeph"><span class="parmname">mtype</span> = 11</samp>) is factored by 
+      Intel&reg; oneAPI Math Kernel Library PARDISO as<samp class="codeph"><var>A</var> = 
+        <var>L</var>*<var>U</var></samp> . In this case the solution of the system 
+      <samp class="codeph"><var>A</var>*<var>x</var>=<var>b</var></samp> can be found by the following sequence: 
+      <samp class="codeph"><var>L</var>*<var>y</var>=<var>b</var></samp> (forward substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =331</samp>) and<samp class="codeph"><var>U</var>*<var>x</var>=<var>y</var></samp> (backward substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =333</samp>). 
+    </p>
+<p> Solving a system with a real symmetric indefinite matrix 
+      <var>A</var> (<samp class="codeph"><span class="parmname">mtype</span> = -2</samp>) is slightly different from the cases above. 
+      Intel&reg; oneAPI Math Kernel Library PARDISO factors this matrix as<samp class="codeph"><var>A</var>=<var>L</var><var>D</var><var>L</var><sup><var>T</var></sup></samp>, and the solution of the system 
+      <samp class="codeph"><var>A</var>*<var>x</var>=<var>b</var></samp> can be calculated as the following sequence of substitutions: 
+      <samp class="codeph"><var>L</var>*<var>y</var>=<var>b</var></samp> (forward substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =331</samp>), 
+      <samp class="codeph"><var>D</var>*<var>v</var>=<var>y</var></samp> (diagonal substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =332</samp>), and finally 
+      <samp class="codeph"><var>L</var><sup><var>T</var></sup>*<var>x</var>=<var>v</var></samp> (backward substitution, 
+      <samp class="codeph"><span class="parmname">phase</span> =333</samp>). Diagonal substitution makes sense only for symmetric indefinite matrices (<samp class="codeph"><span class="parmname">mtype</span> = -2, -4, 6</samp>). For matrices of other types a solution can be found as described in the first two examples. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>The number of refinement steps (<samp class="codeph"><a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM8"><span class="parmname">iparm</span>(8)</a></samp>) must be set to zero if a solution is calculated with separate substitutions (<samp class="codeph"><span class="parmname">phase</span> = 331, 332, 333</samp>), otherwise 
+        Intel&reg; oneAPI Math Kernel Library PARDISO produces the wrong result. 
+      </p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> Different pivoting (<samp class="codeph"><a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM21"><span class="parmname">iparm</span>(21)</a></samp>) produces different 
+        <samp class="codeph"><var>L</var><var>D</var><var>L</var><sup><var>T</var></sup></samp> factorization. Therefore results of forward, diagonal and backward substitutions with diagonal pivoting can differ from results of the same steps with Bunch-Kaufman pivoting. Of course, the final results of sequential execution of forward, diagonal and backward substitution are equal to the results of the full solving step (<samp class="codeph"><span class="parmname">phase</span>=33</samp>) regardless of the pivoting used. 
+      </p>
+</div>
+</div>
+<div class="section" id="GUID-D5243640-A159-4B01-B06F-01C30ECA4791"><h2 class="sectiontitle">Callback Function for Pivoting Control</h2><p>In-core 
+      Intel&reg; oneAPI Math Kernel Library PARDISO allows you to control pivoting with a callback routine,<a href="GUID-25061027-AC23-4BD5-80F6-48168458416F.html">mkl_pardiso_pivot</a>. You can then use the 
+      <a href="GUID-2C3EA4B8-1203-4AB2-A8CD-39B99B89E762.html">pardiso_getdiag</a> routine to access the diagonal elements. Set 
+      <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM56"><samp class="codeph">iparm(56)</samp></a> to 1 in order to use the callback functionality. 
+    </p>
+</div>
+<div class="section" id="LOW_RANK"><h2 class="sectiontitle">Low Rank Update</h2><p>Use low rank update to accelerate the factorization step in 
+      Intel&reg; oneAPI Math Kernel Library PARDISO when you use multiple matrices with identical structure and similar values. After calling<span class="option">pardiso</span> in the usual manner for factorization (<span class="parmname">phase</span> = 12, 13, 22, or 23) for some matrix 
+    <var>A1</var>, low rank update can be applied to the factorization step (<span class="parmname">phase</span> = 22 or 23) of some matrix 
+    <var>A2</var> with identical structure. 
+    </p>
+<p>To use the low rank update feature, set 
+      <samp class="codeph"><span class="parmname">iparm</span>(39)</samp><samp class="codeph"> = 1</samp> while also setting 
+      <samp class="codeph"><samp class="codeph"><span class="parmname">iparm</span>(24)</samp> = 10</samp>. Additionally, supply an array that lists the values in 
+      <var>A2</var> that are different from 
+      <var>A1</var> using the 
+      <span class="parmname">perm</span> parameter as outlined in the 
+    <span class="option">pardiso 
+    </span><a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#GUID-CC61C899-715B-4FB3-A49C-FABA1F435FF7"><span class="parmname">perm</span></a> parameter description. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p>Low rank update can only be called for matrices with the exact same pattern of nonzero values. As such, the value of the 
+        <span class="parmname">mtype</span>, 
+        <span class="parmname">ia</span>, 
+        <span class="parmname">ja</span>, and 
+        <samp class="codeph"><span class="parmname">iparm</span>(24)</samp> parameters should also be identical. In general, the low rank factorization should be called with the same parameters as the preceding factorization step for the same internal data structure handle (except for array 
+        <span class="parmname">a</span>, 
+        <samp class="codeph"><span class="parmname">iparm</span>(39)</samp>, and 
+        <span class="parmname">perm</span>). 
+      </p>
+<p>Low rank update does not currently support Intel TBB threading. In this case, 
+        Intel&reg; oneAPI Math Kernel Library PARDISO defaults to full factorization instead. 
+      </p>
+<p>Low rank update cannot be used in combination with a user-supplied permutation vector - in other words, you must use the default values of 
+        <span><samp class="codeph"><span class="parmname">iparm</span>(5) = 0</samp>, 
+          <samp class="codeph"><span class="parmname">iparm</span>(31) = 0</samp>, and 
+          <samp class="codeph"><span class="parmname">iparm</span>(36) = 0</samp></span>). Additionally, 
+        <span><samp class="codeph"><span class="parmname">iparm</span>(4)</samp>, 
+          <samp class="codeph"><span class="parmname">iparm</span>(6)</samp>, 
+          <samp class="codeph"><span class="parmname">iparm</span>(12)</samp>, 
+          <samp class="codeph"><span class="parmname">iparm</span>(28)</samp>, 
+          <samp class="codeph"><span class="parmname">iparm</span>(37)</samp>, 
+          <samp class="codeph"><span class="parmname">iparm</span>(56)</samp>, and 
+          <samp class="codeph"><span class="parmname">iparm</span>(60)</samp></span> must all be set to the default value of 0. 
+      </p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html">Sparse Solver Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html">pardiso</a><br/>
+Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.</li>
+<li class="ulchildlink"><a href="GUID-C16BFBCA-EF1C-4CDB-BC73-41655B6DD8F5.html">pardisoinit</a><br/>
+Initialize Intel&reg; oneAPI Math Kernel Library PARDISO with default parameters in accordance with the matrix type.</li>
+<li class="ulchildlink"><a href="GUID-61CBF1F8-E590-405A-A043-880016F83D72.html">pardiso_64</a><br/>
+Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides, 64-bit integer version.</li>
+<li class="ulchildlink"><a href="GUID-25061027-AC23-4BD5-80F6-48168458416F.html">mkl_pardiso_pivot</a><br/>
+Replaces routine which handles Intel&reg; oneAPI Math Kernel Library PARDISO pivots with user-defined routine.</li>
+<li class="ulchildlink"><a href="GUID-2C3EA4B8-1203-4AB2-A8CD-39B99B89E762.html">pardiso_getdiag</a><br/>
+Returns diagonal elements of initial and factorized matrix.</li>
+<li class="ulchildlink"><a href="GUID-E8CE439A-3F76-4EB8-934E-7C37C83BAF44.html">pardiso_export</a><br/>
+Places pointers dedicated for sparse representation of a requested matrix (values, rows, and columns) into MKL PARDISO</li>
+<li class="ulchildlink"><a href="GUID-13CCE899-B2DD-47F7-A739-9491CEEA48CE.html">pardiso_handle_store</a><br/>
+Store internal structures from <span class="keyword">pardiso</span> to a file. </li>
+<li class="ulchildlink"><a href="GUID-AC122A6E-151E-46DB-A99A-140597C60A8F.html">pardiso_handle_restore</a><br/>
+Restore <span class="keyword">pardiso</span> internal structures from a file. </li>
+<li class="ulchildlink"><a href="GUID-C8AE66AE-7964-414D-B229-4EC952472C7C.html">pardiso_handle_delete</a><br/>
+Delete files with  <span class="keyword">pardiso</span> internal structure data. </li>
+<li class="ulchildlink"><a href="GUID-9ED49D39-6E90-487D-B087-E483D84ECFB2.html">pardiso_handle_store_64</a><br/>
+Store internal structures from <span class="keyword">pardiso_64</span> to a file. </li>
+<li class="ulchildlink"><a href="GUID-FF7588E5-1765-4C06-9B57-A1F14BB44744.html">pardiso_handle_restore_64</a><br/>
+Restore <span class="keyword">pardiso_64</span> internal structures from a file. </li>
+<li class="ulchildlink"><a href="GUID-6836578B-B580-4842-8D21-731A0C6DBF85.html">pardiso_handle_delete_64</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html">oneMKL PARDISO Parameters in Tabular Form</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html">pardiso iparm Parameter</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-EE25678B-B88C-4BF3-9552-8A42AA041250.html">PARDISO_DATA_TYPE</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

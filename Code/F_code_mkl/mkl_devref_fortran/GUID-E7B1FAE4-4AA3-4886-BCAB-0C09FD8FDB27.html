@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Singular Value Decomposition: ScaLAPACK Driver Routines"/>
+<meta name="DC.subject" content="singular value decomposition, ScaLAPACK, SVD (singular value decomposition), singular value decomposition, LAPACK routines, singular value decomposition, bidiagonal matrix, orthogonal matrix, unitary matrix"/>
+<meta name="keywords" content="singular value decomposition, ScaLAPACK, SVD (singular value decomposition), singular value decomposition, LAPACK routines, singular value decomposition, bidiagonal matrix, orthogonal matrix, unitary matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D2528D78-17BC-49A0-99F2-28B9BA6C64B5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FCEF7B7-6056-4427-892D-8E842BA6C443.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-EB9FED01-2EA5-4396-998B-0CEEC3CF4A75.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F9A41BF9-733E-4347-B1C1-B35FC5F59178.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E7B1FAE4-4AA3-4886-BCAB-0C09FD8FDB27"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Singular Value Decomposition: ScaLAPACK Driver Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-E7B1FAE4-4AA3-4886-BCAB-0C09FD8FDB27">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Singular Value Decomposition: ScaLAPACK Driver
+    Routines</h1>
+<div><p>This section describes ScaLAPACK routines for
+      computing the singular value decomposition (SVD) of a general 
+      <var>m</var>-by-<var>n</var> matrix 
+      <var>A</var> (see 
+      <span>LAPACK</span><a href="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F.html#GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F"><span>"Singular
+          Value Decomposition"</span></a> 
+      ).
+    </p>
+<p>To find the SVD of a general matrix 
+      <var>A</var>, this matrix
+      is first reduced to a bidiagonal matrix 
+      <var>B</var> by a unitary
+      (orthogonal) transformation, and then SVD of the bidiagonal matrix is computed.
+      Note that the SVD of 
+      <var>B</var> is computed
+      using the LAPACK routine 
+      <a href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C"><span class="option">?bdsqr</span></a> .
+    </p>
+<p><a href="#TBL6-6">Table 
+        <span>"Computational Routines for Singular Value
+          Decomposition (SVD)"</span></a> lists ScaLAPACK computational routines for
+      performing this decomposition. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL6-6" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Singular Value
+    Decomposition (SVD)</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="46%" id="d1733081e91">Operation
+        </th>
+<th class="cellrowborder" valign="top" width="24%" id="d1733081e93">General matrix
+        </th>
+<th class="row-nocellborder" valign="top" width="30%" id="d1733081e95">Orthogonal/unitary matrix
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="46%" headers="d1733081e91 ">Reduce 
+          <var>A</var> to a
+          bidiagonal matrix
+        </td>
+<td class="cellrowborder" valign="top" width="24%" headers="d1733081e93 "><a href="GUID-0FCEF7B7-6056-4427-892D-8E842BA6C443.html#GUID-0FCEF7B7-6056-4427-892D-8E842BA6C443"><span class="option">p?gebrd</span></a></td>
+<td class="row-nocellborder" valign="top" width="30%" headers="d1733081e95 "> 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="46%" headers="d1733081e91 ">Multiply matrix after reduction
+        </td>
+<td class="cellrowborder" valign="top" width="24%" headers="d1733081e93 "> 
+        </td>
+<td class="row-nocellborder" valign="top" width="30%" headers="d1733081e95 "><a href="GUID-EB9FED01-2EA5-4396-998B-0CEEC3CF4A75.html#GUID-EB9FED01-2EA5-4396-998B-0CEEC3CF4A75"><span class="option">p?ormbr</span></a>/<a href="GUID-F9A41BF9-733E-4347-B1C1-B35FC5F59178.html#GUID-F9A41BF9-733E-4347-B1C1-B35FC5F59178"><span class="option">p?unmbr</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,1290 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Interface Consideration"/>
+<meta name="DC.subject" content="Interface Consideration"/>
+<meta name="keywords" content="Interface Consideration"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-34C8DB79-0139-46E0-8B53-99F3BEE7B2D4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Interface Consideration</title>
+
+</head>
+<body id="GUID-34C8DB79-0139-46E0-8B53-99F3BEE7B2D4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Interface Consideration</h1>
+<div><div class="section" id="GUID-C55F4F73-B701-4E30-8013-20F9CB6BAE42"><h2 class="sectiontitle">One-Based and Zero-Based Indexing</h2><p>The Intel&reg; oneAPI Math Kernel Library Sparse BLAS Level 2 and Level 3 routines support one-based and zero-based indexing of data arrays.</p>
+<p>Routines with typical interfaces support zero-based
+        indexing for the following sparse data storage formats: CSR, CSC, BSR, and COO.
+        Routines with simplified interfaces support zero based indexing for the
+        following sparse data storage formats: CSR, BSR, and COO. See the complete list
+        of 
+        <a href="GUID-89D3F5E7-67D5-410F-AB5B-84A71080687B.html#GUID-89D3F5E7-67D5-410F-AB5B-84A71080687B">Sparse BLAS Level 2 and Level 3
+          Routines</a>. 
+      </p>
+<p>The one-based indexing uses the convention of
+        starting array indices at 1. The zero-based indexing uses the convention of
+        starting array indices at 0. For example, indices of the 5-element array 
+        <span class="parmname">x</span> can be
+        presented in case of one-based indexing as follows: 
+      </p>
+<p>Element index: 
+        <samp class="codeph">1 2 3 4 5</samp></p>
+<p>Element value: 
+        <samp class="codeph">1.0 5.0 7.0 8.0 9.0</samp></p>
+<p>and in case of zero-based indexing as follows: 
+      </p>
+<p>Element index: 
+        <samp class="codeph">0 1 2 3 4</samp></p>
+<p>Element value: 
+        <samp class="codeph">1.0 5.0 7.0 8.0 9.0</samp></p>
+<p>The detailed descriptions of the one-based and
+        zero-based variants of the sparse data storage formats are given in the 
+        <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#MKL_APPA_SMSF_2">"Sparse Matrix Storage
+          Formats"</a> in 
+        <span>the
+          
+        </span>Appendix 
+        <span>"Linear Solvers Basics"</span>. 
+      </p>
+<p>Most parameters of the routines are identical for
+        both one-based and zero-based indexing, but some of them have certain
+        differences. The following table lists all these differences. 
+      </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-E5C0A76F-C860-423C-8188-9744E8F58DDB" class="AllLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr valign="middle"><th class="cellrowborder" valign="middle" width="4.61cm" id="d399064e79"><strong>Parameter</strong></th>
+<th class="cellrowborder" align="center" valign="middle" width="7.21cm" id="d399064e82"><strong>One-based Indexing</strong></th>
+<th class="row-nocellborder" align="center" valign="middle" width="7.17cm" id="d399064e85"><strong>Zero-based Indexing</strong></th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="4.61cm" headers="d399064e79 "><span class="parmname">val 
+                </span></td>
+<td class="cellrowborder" valign="top" width="7.21cm" headers="d399064e82 "><p>Array containing non-zero elements of the
+                  matrix 
+                  <var>A</var>,
+                  its length is 
+                  <samp class="codeph"><span class="parmname">pntre</span>(m) - 
+                    <span class="parmname">pntrb</span>(1)</samp>. 
+                   
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="7.17cm" headers="d399064e85 "><p>Array containing non-zero elements of the
+                  matrix 
+                  <var>A</var>,
+                  its length is 
+                  <samp class="codeph"><span class="parmname">pntre</span>(m—1) - 
+                    <span class="parmname">pntrb</span>(0)</samp>. 
+                   
+                </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="4.61cm" headers="d399064e79 "><span class="parmname">pntrb</span></td>
+<td class="cellrowborder" valign="top" width="7.21cm" headers="d399064e82 "><p>Array of length 
+                  <span class="parmname">m</span>. This array contains row
+                  indices, such that 
+                  <samp class="codeph"><span class="parmname">pntrb</span>(<span class="keyword">i</span>) -
+                    
+                    <span class="parmname">pntrb</span>(1)+1</samp> is the
+                  first index of row 
+                  <span class="keyword">i</span> in the arrays 
+                  <span class="parmname">val</span> and 
+                  <span class="parmname">indx</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="7.17cm" headers="d399064e85 "><p>Array of length 
+                  <span class="parmname">m</span>. This array contains row
+                  indices, such that 
+                  <samp class="codeph"><span class="parmname">pntrb</span>(<span class="keyword">i</span>) -
+                    
+                    <span class="parmname">pntrb</span>(0)</samp> is the
+                  first index of row 
+                  <span class="keyword">i</span> in the arrays 
+                  <span class="parmname">val</span> and 
+                  <span class="parmname">indx</span>. 
+                </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="4.61cm" headers="d399064e79 "><span class="parmname">pntre</span></td>
+<td class="cellrowborder" valign="top" width="7.21cm" headers="d399064e82 "><p>Array of length 
+                  <span class="parmname">m</span>. This array contains row
+                  indices, such that 
+                  <samp class="codeph"><span class="parmname">pntre</span>(<var>I</var>) - 
+                    <span class="parmname">pntrb</span>(1)</samp> is the last
+                  index of row 
+                  <span class="keyword">i</span> in the arrays 
+                  <span class="parmname">val</span> and 
+                  <span class="parmname">indx</span>. 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="7.17cm" headers="d399064e85 "><p>Array of length 
+                  <span class="parmname">m</span>. This array contains row
+                  indices, such that 
+                  <samp class="codeph"><span class="parmname">pntre</span>(<span class="keyword">i</span>) -
+                    
+                    <span class="parmname">pntrb</span>(0)-1</samp> is the
+                  last index of row 
+                  <span class="keyword">i</span> in the arrays 
+                  <span class="parmname">val</span> and 
+                  <span class="parmname">indx</span>. 
+                </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="4.61cm" headers="d399064e79 "><span class="parmname">ia</span></td>
+<td class="cellrowborder" valign="top" width="7.21cm" headers="d399064e82 "><p>Array of length 
+                  <samp class="codeph"><span class="parmname">m</span> + 1</samp>, containing
+                  indices of elements in the array 
+                  <span class="parmname">a</span>, such that 
+                  <samp class="codeph"><span class="parmname">ia</span>(<span class="keyword">i</span>)</samp>
+                  is the index in the array 
+                  <span class="parmname">a</span>
+                  of the first non-zero element from the row 
+                  <span class="keyword">i</span>. The value of the last element 
+                  <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">m</span> + 1)</samp> is equal to
+                  the number of non-zeros plus one. 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="7.17cm" headers="d399064e85 "><p>Array of length 
+                  <samp class="codeph"><span class="parmname">m</span>+1</samp>, containing
+                  indices of elements in the array 
+                  <span class="parmname">a</span>, such that 
+                  <samp class="codeph"><span class="parmname">ia</span>(<span class="keyword">i</span>)</samp>
+                  is the index in the array 
+                  <span class="parmname">a</span>
+                  of the first non-zero element from the row 
+                  <span class="keyword">i</span>. The value of the last element 
+                  <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">m</span>)</samp> is equal to the
+                  number of non-zeros. 
+                </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="4.61cm" headers="d399064e79 "><span class="parmname">ldb 
+                </span></td>
+<td class="cellrowborder" valign="top" width="7.21cm" headers="d399064e82 "><p>Specifies the leading dimension of 
+                  <span class="parmname">b</span>
+                  as declared in the calling (sub)program. 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="7.17cm" headers="d399064e85 "><p>Specifies the second dimension of 
+                  <span class="parmname">b</span>
+                  as declared in the calling (sub)program. 
+                </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="4.61cm" headers="d399064e79 "><span class="parmname">ldc</span></td>
+<td class="cellrowborder" valign="top" width="7.21cm" headers="d399064e82 "><p>Specifies the leading dimension of 
+                  <span class="parmname">c</span>
+                  as declared in the calling (sub)program. 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="7.17cm" headers="d399064e85 "><p>Specifies the second dimension of 
+                  <span class="parmname">c</span>
+                  as declared in the calling (sub)program. 
+                </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-07643022-2C96-4291-9450-4C269AF1121C"><h2 class="sectiontitle">Differences Between Intel MKL and NIST*
+        Interfaces</h2><p>The Intel&reg; oneAPI Math Kernel Library Sparse BLAS Level 3 routines have the following conventional interfaces:</p>
+<p><samp class="codeph">mkl_xyyymm(<span class="parmname">transa</span>, 
+          <span class="parmname">m</span>, 
+          <span class="parmname">n</span>, 
+          <span class="parmname">k</span>, 
+          <span class="parmname">alpha</span>, 
+          <span class="parmname">matdescra</span>,
+          arg(<var>A</var>), 
+          <span class="parmname">b</span>, 
+          <span class="parmname">ldb</span>, 
+          <span class="parmname">beta</span>, 
+          <span class="parmname">c</span>, 
+          <span class="parmname">ldc</span>)</samp>, for
+        matrix-matrix product; 
+      </p>
+<p><samp class="codeph">mkl_xyyysm(<span class="parmname">transa</span>, 
+          <span class="parmname">m</span>, 
+          <span class="parmname">n</span>, 
+          <span class="parmname">alpha</span>, 
+          <span class="parmname">matdescra</span>,
+          arg(<var>A</var>), 
+          <span class="parmname">b</span>, 
+          <span class="parmname">ldb</span>, 
+          <span class="parmname">c</span>, 
+          <span class="parmname">ldc</span>)</samp>, for triangular
+        solvers with multiple right-hand sides. 
+      </p>
+<p>Here 
+        <samp class="codeph">x</samp> denotes data type,
+        and 
+        <span class="parmname">yyy</span> - sparse
+        matrix data structure (storage format). 
+      </p>
+<p>The analogous NIST* Sparse BLAS (NSB) library
+        routines have the following interfaces: 
+      </p>
+<p><samp class="codeph">xyyymm(<span class="parmname">transa</span>, 
+          <span class="parmname">m</span>, 
+          <span class="parmname">n</span>, 
+          <span class="parmname">k</span>, 
+          <span class="parmname">alpha</span>, 
+          <span class="parmname">descra</span>,
+          arg(<var>A</var>), 
+          <span class="parmname">b</span>, 
+          <span class="parmname">ldb</span>, 
+          <span class="parmname">beta</span>, 
+          <span class="parmname">c</span>, 
+          <span class="parmname">ldc</span>, 
+          <span class="parmname">work</span>, 
+          <span class="parmname">lwork</span>)</samp>, for
+        matrix-matrix product; 
+      </p>
+<p><samp class="codeph">xyyysm(<span class="parmname">transa</span>, 
+          <span class="parmname">m</span>, 
+          <span class="parmname">n</span>, 
+          <span class="parmname">unitd</span>, 
+          <span class="parmname">dv</span>, 
+          <span class="parmname">alpha</span>, 
+          <span class="parmname">descra</span>,
+          arg(<var>A</var>), 
+          <span class="parmname">b</span>, 
+          <span class="parmname">ldb</span>, 
+          <span class="parmname">beta</span>, 
+          <span class="parmname">c</span>, 
+          <span class="parmname">ldc</span>, 
+          <span class="parmname">work</span>, 
+          <span class="parmname">lwork</span>)</samp>, for
+        triangular solvers with multiple right-hand sides. 
+      </p>
+<p>Some similar arguments are used in both libraries.
+        The argument 
+        <span class="parmname">transa</span>
+        indicates what operation is performed and is slightly different in the NSB
+        library (see 
+        <a href="#TBL2-5">Table 
+          <span>“Parameter 
+            <span class="parmname">transa</span>”</span></a>). The
+        arguments 
+        <span class="parmname">m</span> and 
+        <span class="parmname">k</span> are the
+        number of rows and column in the matrix 
+        <var>A</var>,
+        respectively, 
+        <span class="parmname">n</span> is the
+        number of columns in the matrix 
+        <var>C</var>. The
+        arguments 
+        <span class="parmname">alpha</span> and 
+        <span class="parmname">beta</span> are
+        scalar 
+        <var>alpha</var> and 
+        <var>beta</var>
+        respectively (<span class="parmname">beta</span>is not used in the Intel&reg; oneAPI Math Kernel Library triangular solvers.) The arguments<span class="parmname">b</span> and 
+        <span class="parmname">c</span> are
+        rectangular arrays with the leading dimension 
+        <span class="parmname">ldb</span> and 
+        <span class="parmname">ldc</span>,
+        respectively. 
+        <samp class="codeph">arg(<var>A</var>)</samp> denotes the list of
+        arguments that describe the sparse representation of 
+        <var>A</var>. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL2-5" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"> Parameter 
+        <span class="parmname">transa</span></span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.801980198019802%" id="d399064e615"><p>  
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="26.732673267326735%" id="d399064e618"><p>MKL interface 
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="26.732673267326735%" id="d399064e621"><p>NSB interface 
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="26.732673267326735%" id="d399064e624"><p>Operation 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="19.801980198019802%" headers="d399064e615 "><p>data type 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e618 "><p>CHARACTER*1 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e621 "><p>INTEGER 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="26.732673267326735%" headers="d399064e624 "><p>  
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.801980198019802%" headers="d399064e615 "><p>value 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e618 "><p> N or n 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e621 "><p> 0 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="26.732673267326735%" headers="d399064e624 "><p><samp class="codeph">op(<var>A</var>) = 
+                  <var>A</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.801980198019802%" headers="d399064e615 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e618 "><p> T or t 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e621 "><p> 1 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="26.732673267326735%" headers="d399064e624 "><p><samp class="codeph">op(<var>A</var>) = 
+                  <var>A</var><sup>T</sup></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.801980198019802%" headers="d399064e615 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e618 "><p> C or c 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="26.732673267326735%" headers="d399064e621 "><p> 2 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="26.732673267326735%" headers="d399064e624 "><p><samp class="codeph">op(<var>A</var>) = 
+                  <var>A</var><sup>T</sup></samp> or 
+                <samp class="codeph">op(<var>A</var>) = 
+                  <var>A</var><sup>H</sup></samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="GUID-0C896CB1-25B6-4B53-A425-C5954B4C22F9"><h2 class="sectiontitle">Parameter matdescra</h2><p>The parameter 
+        <span class="parmname">matdescra</span>
+        describes the relevant characteristic of the matrix 
+        <var>A</var>. This manual
+        describes 
+        <span class="parmname">matdescra</span>as an array of six elements in line with the NIST* implementation. However, only the first four elements of the array are used in the current versions of the Intel&reg; oneAPI Math Kernel Library Sparse BLAS routines. Elements<samp class="codeph"><span class="parmname">matdescra</span>(5)</samp> and 
+        <samp class="codeph"><span class="parmname">matdescra</span>(6)</samp> are
+        reserved for future use. Note that whether 
+        <span class="parmname">matdescra</span>is described in your application as an array of length 6 or 4 is of no importance because the array is declared as a pointer in the Intel&reg; oneAPI Math Kernel Library routines. To learn more about declaration of the<span class="parmname">matdescra</span>array, see the Sparse BLAS examples located in the Intel&reg; oneAPI Math Kernel Library installation directory:<span><samp class="codeph">examples/spblasf/</samp></span><span> for Fortran 
+        </span>. The table below lists
+        elements of the parameter 
+        <span class="parmname">matdescra</span>,
+        their Fortran values, and their meanings. The parameter 
+        <span class="parmname">matdescra</span>
+        corresponds to the argument 
+        <span class="parmname">descra</span> from
+        NSB library. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL2-6" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"> Possible Values of the Parameter 
+        <span class="parmname">matdescra</span><samp class="codeph"> (<span class="parmname">descra</span>)</samp></span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="15.04136375031336%" id="d399064e789"><p>  
+              </p>
+</th>
+<th class="cellrowborder" colspan="2" valign="top" id="d399064e792"><p>MKL interface 
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="15.876995069775216%" id="d399064e795"><p>NSB interface 
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="35.096515417397846%" id="d399064e798"><p>Matrix characteristics 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "> </td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>one-based indexing 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>zero-based indexing 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "> </td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "> </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>data type 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>CHARACTER 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>Char 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>INTEGER 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>  
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>1st element 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(1)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(0)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p><samp class="codeph"><span class="parmname">descra</span>(1)</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>matrix structure 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>value 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>G 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>G 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>0 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>general 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>S 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>S 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>1 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>symmetric 
+                <samp class="codeph">(<var>A</var> = 
+                  <var>A</var><sup>T</sup></samp>) 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>H 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>H 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>2 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>Hermitian 
+                <samp class="codeph">(<var>A</var> = (<var>A</var><sup>H</sup>)</samp>) 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>3 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>triangular 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>A 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>A 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>4 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>skew(anti)-symmetric 
+                <samp class="codeph">(<var>A</var> = -<var>A</var><sup>T</sup>)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>D 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>D 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>5 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>diagonal 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>2nd element 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(2)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(1)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p><samp class="codeph"><span class="parmname">descra</span>(2)</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>upper/lower triangular indicator 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>value 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>1 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>lower 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>2 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>upper 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>3rd element 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(3)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(2)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p><samp class="codeph"><span class="parmname">descra</span>(3)</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>main diagonal type 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>value 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>N 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>N 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>0 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>non-unit 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>  
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>1 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 "><p>unit 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>4th element 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(4)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p><samp class="codeph"><span class="parmname">matdescra</span>(3)</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p><samp class="codeph"><span class="parmname">descra</span>(4)</samp></p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 ">type of indexing 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "><p>value 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "><p>F 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "> </td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>1 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 ">one-based indexing 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15.04136375031336%" headers="d399064e789 "> </td>
+<td class="cellrowborder" valign="top" width="17.548257708698923%" headers="d399064e792 "> </td>
+<td class="cellrowborder" valign="top" width="16.436868053814656%" headers="d399064e792 "><p>C 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15.876995069775216%" headers="d399064e795 "><p>0 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="35.096515417397846%" headers="d399064e798 ">zero-based indexing 
+            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p/>
+<p> In some cases possible element values of the
+        parameter matdescra depend on the values of other elements. The 
+        <a href="#TBL2-7">Table "Possible Combinations of
+          Element Values of the Parameter 
+          <span class="parmname">matdescra</span>"</a> lists all
+        possible combinations of element values for both multiplication routines and
+        triangular solvers. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL2-7" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Possible Combinations of Element Values of
+        the Parameter 
+        <span class="parmname">matdescra</span></span></caption><thead align="left"><tr><th class="row-nocellborder" rowspan="2" valign="top" width="NaN%" id="d399064e1167"><p><strong> Routines</strong></p>
+</th>
+</tr>
+<tr><th class="cellrowborder" valign="top" width="NaN%" id="d399064e1172"><p><strong>matdescra(1)</strong></p>
+</th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d399064e1176"><p><strong>matdescra(2)</strong></p>
+</th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d399064e1180"><p><strong>matdescra(3)</strong></p>
+</th>
+<th class="row-nocellborder" valign="top" width="NaN%" id="d399064e1184"><p><strong>matdescra(4)</strong></p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 ">Multiplication Routines 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">G 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">ignored 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">ignored 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong>
+              (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">S or H 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 "><strong>L</strong>
+              (default) 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 "><strong>N</strong>
+              (default) 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong>
+              (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">S or H 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 "><strong>L</strong>
+              (default) 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">U 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong>
+              (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">S or H 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">U 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 "><strong>N</strong> (default) 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">S or H 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">U 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">U 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">A 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 "><strong>L</strong> (default) 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">ignored 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">A 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">U 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">ignored 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 ">Multiplication Routines and
+              Triangular Solvers 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">T 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">L 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">U 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">T 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">L 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">N 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">T 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">U 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">U 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">T 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">U 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">N 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">D 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">ignored 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 "><strong>N</strong> (default) 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1167 "> </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1172 ">D 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1176 ">ignored 
+            </td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d399064e1180 ">U 
+            </td>
+<td class="row-nocellborder" valign="top" width="NaN%" headers="d399064e1184 "><strong> F</strong> (default) or C 
+            </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For a matrix in the skyline format with the main
+        diagonal declared to be a unit, diagonal elements must be stored in the sparse
+        representation even if they are zero. In all other formats, diagonal elements
+        can be stored (if needed) in the sparse representation if they are not zero. 
+      </p>
+</div>
+<div class="section" id="GUID-9D554A25-DD6B-449C-8E8E-CC32EAE798D3"><h2 class="sectiontitle">Operations with Partial Matrices</h2><p>One of the distinctive feature of the Intel&reg; oneAPI Math Kernel Library Sparse BLAS routines is a possibility to perform operations only on partial matrices composed of certain parts (triangles and the main diagonal) of the input sparse matrix. It can be done by setting properly first three elements of the parameter<span class="parmname">matdescra</span>. 
+      </p>
+<p>An arbitrary sparse matrix 
+        <var>A</var> can be
+        decomposed as 
+        <pre><var>A</var> = <var>L</var> + <var>D</var> + <var>U</var></pre></p>
+<p>where 
+        <var>L</var> is the
+        strict lower triangle of 
+        <var>A</var>, 
+        <var>U</var> is the
+        strict upper triangle of 
+        <var>A</var>, 
+        <var>D</var> is the main
+        diagonal. 
+      </p>
+<p><a href="#TBL2-8">Table 
+          <span>"Output Matrices for Multiplication
+            Routines"</span></a> shows correspondence between the output matrices and
+        values of the parameter 
+        <span class="parmname">matdescra</span>
+        for the sparse matrix 
+        <var>A</var> for
+        multiplication routines. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL2-8" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"> Output Matrices for Multiplication
+        Routines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.19191919191919%" id="d399064e1431"><p>matdescra(1)
+                
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="19.19191919191919%" id="d399064e1434"><p>matdescra(2)
+                
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="19.19191919191919%" id="d399064e1437"><p>matdescra(3)
+                
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="42.42424242424242%" id="d399064e1440"><p>Output Matrix 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>G 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>ignored 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>ignored 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>A</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>A</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>S or H 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>L+D+L</var>')*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>L+D+L</var>')*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>S or H 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>L+I+L</var>')*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>L+I+L</var>')*<var>B</var> + 
+                  <var>beta</var>*<var>C</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>S or H 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>U'+D+U</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>U'+D+U</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>S or H 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>U'+I+U</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>U'+I+U</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>L+I</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>L+I</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>L+D</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>L+D</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>U+I</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>U+I</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>U+D</var>)*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>U+D</var>)*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>A 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>ignored 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>L-L</var>')*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>L-L</var>')*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>A 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>ignored 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*op(<var>U-U</var>')*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*op(<var>U-U</var>')*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>D 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>ignored 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*<var>D</var>*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*<var>D</var>*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "><p>D 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "><p>ignored 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><p><samp class="codeph"><var>alpha</var>*<var>x</var> + 
+                  <var>beta</var>*<var>y</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1431 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1434 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e1437 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e1440 "><var>alpha</var>*<var>B</var> + 
+              <var>beta</var>*<var>C</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a href="#TBLTRI">Table 
+          <span>“Output Matrices for Triangular
+            Solvers”</span></a> shows correspondence between the output matrices and
+        values of the parameter 
+        <span class="parmname">matdescra</span>
+        for the sparse matrix 
+        <var>A</var> for
+        triangular solvers. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBLTRI" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"> Output Matrices for Triangular
+        Solvers</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.19191919191919%" id="d399064e2063"><p>matdescra(1)
+                
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="19.19191919191919%" id="d399064e2066"><p>matdescra(2)
+                
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="19.19191919191919%" id="d399064e2069"><p>matdescra(3)
+                
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="42.42424242424242%" id="d399064e2072"><p>Output Matrix 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><p><samp class="codeph"><var>alpha</var>*inv(op(<var>L</var>))*<var>x</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><var>alpha</var>*inv(op(<var>L</var>))*<var>B</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "><p>L 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><p><samp class="codeph"><var>alpha</var>*inv(op(<var>L</var>))*<var>x</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><var>alpha</var>*inv(op(<var>L</var>))*<var>B</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><p><samp class="codeph"><var>alpha</var>*inv(op(<var>U</var>))*<var>x</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><var>alpha</var>*inv(op(<var>U</var>))*<var>B</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "><p>T 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "><p>U 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><p><samp class="codeph"><var>alpha</var>*inv(op(<var>U</var>))*<var>x</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><var>alpha</var>*inv(op(<var>U</var>))*<var>B</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "><p>D 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "><p>ignored 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "><p>N 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><p><samp class="codeph"><var>alpha</var>*inv(<var>D</var>)*<var>x</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><var>alpha</var>*inv(<var>D</var>)*<var>B</var></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "><p>D 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "><p>ignored 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "><p>U 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><p><samp class="codeph"><var>alpha</var>*<var>x</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2063 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2066 "> </td>
+<td class="cellrowborder" valign="top" width="19.19191919191919%" headers="d399064e2069 "> </td>
+<td class="row-nocellborder" valign="top" width="42.42424242424242%" headers="d399064e2072 "><var>alpha</var>*<var>B</var></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html">Sparse BLAS Level 2 and Level 3 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dfgmres_get"/>
+<meta name="abstract" content="Retrieves the number of the current iteration and updates the solution."/>
+<meta name="description" content="Retrieves the number of the current iteration and updates the solution."/>
+<meta name="DC.subject" content="dfgmres_get, RCI FGMRES sparse solver routines, Sparse Solver, iterative sparse solver interface"/>
+<meta name="keywords" content="dfgmres_get, RCI FGMRES sparse solver routines, Sparse Solver, iterative sparse solver interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CACC422-8069-440F-8272-344094F0186B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A795E55E-D415-4087-BB92-E7F4EFA76DDB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dfgmres_get</title>
+
+</head>
+<body id="GUID-A795E55E-D415-4087-BB92-E7F4EFA76DDB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dfgmres_get</span></h1>
+<!--Retrieves the number of the current iteration and updates the solution.--><div><p class="shortdesc">Retrieves the number of the current iteration and updates the solution.</p>
+<div class="section" id="GUID-AF71989E-99CB-4641-822A-06282D20C57F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">dfgmres_get</span><span class="sep">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">RCI_request</span><span class="sep">, </span><span class="var">ipar</span><span class="sep">, </span><span class="var">dpar</span><span class="sep">, </span><span class="var">tmp</span><span class="sep">, </span><span class="var">itercount</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-D0B9A0DB-14F7-4DDD-8230-5D10298AC643"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B27CA603-5D14-4B8A-B799-BAB3B5EE6CB4"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">dfgmres_get</span> retrieves the current iteration number of the solution process and updates the solution according to the computations performed by the <span class="option">dfgmres</span> routine. To retrieve the current iteration number only, set the parameter <span class="parmname">ipar</span><samp class="codeph">(13)</samp>= -1 beforehand. Normally, you should do this before proceeding further with the computations. If the intermediate solution is needed, the method parameters must be set properly. For details see <a href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>and the Iterative Sparse Solver code examples in the Intel&reg; oneAPI Math Kernel Library installation directory:</p>
+<ul id="GUID-293CE04F-E38F-486D-9A86-DB9F2B6E66C2"><li><span class="filepath">examples/solverf/source</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FE6CA054-7FBC-42AB-8966-12AF521FF7F8"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BE604425-D09C-482D-9035-50A180B3F143"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Sets the size of the problem.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Array of size <span class="parmname">128</span>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmname">128</span>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <samp class="codeph">((2*<span class="parmname">ipar</span>(15)+1)*<span class="parmname">n</span>+<span class="parmname">ipar</span>(15)*<span class="parmname">ipar</span>(15)+9)/2 + 1)</samp>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DCF03359-F4AA-4D09-8F99-03E9CFDFAEA8"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F6A27FFB-DE0E-42B2-95CA-61373AB3743F"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmname">n</span>. If <span class="parmname">ipar</span><samp class="codeph">(13)</samp>= 0, it contains the updated approximation to the solution according to the computations done in <span class="option">dfgmres</span> routine. Otherwise, it is not changed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmname">n</span>. If <span class="parmname">ipar</span><span class="parmnamen">(13)</span>&gt; 0, it contains the updated approximation to the solution according to the computations done in <span class="option">dfgmres</span> routine. Otherwise, it is not changed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Gives information about result of the
+routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itercount</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Contains the value of the current iteration number.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DD1484E4-8FA5-4158-B97C-5643482B4567"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-175F0903-0EAF-4B74-BF00-E0AAF30C9623"><dt class="dlterm"><span class="parmname">RCI_request</span>= 0</dt>
+
+<dd class="ddretval"><p>Indicates that the task completed normally.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= -12</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because errors were found in the routine parameters. Usually this happens if the parameters <span class="parmname">ipar</span> and <span class="parmname">dpar</span> were altered by mistake outside of the routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= -10000</dt>
+
+<dd class="ddretval"><p>Indicates that the routine failed to complete the task.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4CACC422-8069-440F-8272-344094F0186B.html">RCI ISS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

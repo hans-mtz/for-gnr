@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trsen"/>
+<meta name="abstract" content="Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers for the selected cluster of eigenvalues and respective invariant subspace."/>
+<meta name="description" content="Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers for the selected cluster of eigenvalues and respective invariant subspace."/>
+<meta name="DC.subject" content="?trsen, LAPACK routines, nonsymmetric eigenvalue problems"/>
+<meta name="keywords" content="?trsen, LAPACK routines, nonsymmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trsen</title>
+
+</head>
+<body id="GUID-78D7846A-6330-4301-92C9-DB9D38BF7F28">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trsen</span></h1>
+<!--Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers for the selected cluster of eigenvalues and respective invariant subspace.--><div><p class="shortdesc">Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers for the selected cluster of eigenvalues and respective invariant subspace.</p>
+<div class="section" id="GUID-65246E7A-E041-49AB-9336-8D92B94A50C4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call strsen</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compq</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtrsen</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compq</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctrsen</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compq</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztrsen</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compq</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call trsen</span><span class="delim">(</span><span class="var">t</span><span class="sep">, </span><span class="var">select</span><span class="delim"> [</span><span class="sep">,</span><span class="var">wr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">wi</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">m</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">s</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">sep</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">q</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call trsen</span><span class="delim">(</span><span class="var">t</span><span class="sep">, </span><span class="var">select</span><span class="delim"> [</span><span class="sep">,</span><span class="var">w</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">m</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">s</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">sep</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">q</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-4FF554EB-5A6C-4B4A-9481-9B429111A348"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-58B02239-B16D-4544-8FCA-B579C437EFDD"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reorders the Schur factorization of a general matrix <var>A</var> = <var>Q*T*Q</var><sup class="power"><var>T</var></sup>  (for real flavors) or<var> A</var> = <var>Q*T*Q</var><sup class="power"><var>H</var></sup> (for complex flavors) so that a selected cluster of eigenvalues appears in the leading diagonal elements (or, for real flavors, diagonal blocks) of the Schur form. The reordered Schur form <var>R</var> is computed by a unitary (orthogonal) similarity transformation: <samp class="codeph"><var>R</var> = <var>Z</var><sup class="power"><var>H</var></sup><var>*T*Z</var></samp>. Optionally the updated matrix <var>P</var> of Schur vectors is computed as <samp class="codeph"><var>P</var> = <var>Q*Z</var></samp>, giving <var>A</var> = <var>P*R*P</var><sup class="power"><var>H</var></sup>.</p>
+<p>Let </p>
+<p><br/><div class="imagecenter"><img src="GUID-81E37B63-28D0-4F33-92A2-6FD50DD8AF33-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where the selected eigenvalues are precisely the eigenvalues of the leading <var>m</var>-by-<var>m</var> submatrix <var>T</var><sub class="subnb">11</sub>. Let <var>P</var> be correspondingly partitioned as (<var>Q</var><sub>1</sub><var>Q</var><sub>2</sub>) where <var>Q</var><sub class="subnb">1</sub> consists of the first <var>m</var> columns of <var>Q</var>. Then <samp class="codeph"><var>A</var>*<var>Q</var><sub>1</sub> = <var>Q</var><sub class="subnb">1</sub>*<var>T</var><sub class="subnb">11</sub></samp>, and so the <var>m</var> columns of <var>Q</var><sub class="subnb">1</sub> form an orthonormal basis for the invariant subspace corresponding to the selected cluster of eigenvalues.</p>
+<p>Optionally the routine also computes estimates of the reciprocal condition numbers of the average of the cluster of eigenvalues and of the invariant subspace.</p>
+</div>
+<div class="section" id="GUID-E2F4B37C-FDF1-4935-8A41-FCC16F72A01A"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1B136274-1FAF-431A-9643-44618BD666EA"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'E'</span> or <span class="keyword">'V'</span> or <span class="keyword">'B'</span>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>, then no condition numbers are required. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, then only the condition number for the cluster of eigenvalues is computed. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp>, then only the condition number for the invariant subspace is computed. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'B'</span></samp>, then condition numbers for both the cluster and the invariant subspace are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compq</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'V'</span> or <span class="keyword">'N'</span>. </p>
+<p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'V'</span></samp>, then <var>Q</var> of the Schur vectors is updated. </p>
+<p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'N'</span></samp>, then no Schur vectors are updated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">select</span></dt>
+
+<dd><p><span><span class="keyword">LOGICAL</span>. </span></p>
+<p>Array, size at least max (1, <var>n</var>). </p>
+<p>Specifies the eigenvalues in the selected cluster. To select an eigenvalue <span><var class="varname">λ</var><sub><var>j</var></sub></span>, <var>select</var><span>(<var>j</var>)</span> must be <span class="keyword">.TRUE.</span></p>
+<p><em>For real flavors</em>: to select a complex conjugate pair of eigenvalues <span><var class="varname">λ</var><sub><var>j</var></sub></span> and <span><var class="varname">λ</var><sub><var>j</var>+1</sub></span> (corresponding 2 by 2 diagonal block), <var>select</var><span>(<var>j</var>)</span> and/or <var>select</var><span>(<var>j</var> + 1)</span> must be <span class="keyword">.TRUE.</span>; the complex conjugate <span><var class="varname">λ</var><sub><var>j</var></sub></span>and <span><var class="varname">λ</var><sub><var>j</var> + 1</sub></span> must be either both included in the cluster or both excluded.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>T</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span>, <span class="parmname">q</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsen</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctrsen</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsen</span>. </p>
+<p>Arrays: </p>
+<p><var>t</var><span>(<var>ldt</var>,*)</span> Theupper quasi-triangular <var>n</var>-by-<var>n</var> matrix <var>T</var>, in Schur canonical form. </p>
+<p>The second dimension of <var>t</var> must be at least max(1, <var>n</var>).</p>
+<p><var>q</var><span>(<var>ldq</var>,*)</span></p>
+<p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'V'</span></samp>, then <var>q</var> must contain the matrix <var>Q</var> of Schur vectors. </p>
+<p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'N'</span></samp>, then <var>q</var> is not referenced. </p>
+<p>The second dimension of <var>q</var> must be at least max(1, <var>n</var>) if <samp class="codeph"><var>compq</var> = <span class="keyword">'V'</span></samp> and at least 1 if <samp class="codeph"><var>compq</var> = <span class="keyword">'N'</span></samp>.</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>t</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldq</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>q</var>; </p>
+<p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'N'</span></samp>, then <samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'V'</span></samp>, then <samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The dimension of the array <var>work</var>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1,2*<var>m</var>*(<var>n</var>-<var>m</var>))</samp>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, then <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>m</var>*(<var>n</var>-<var>m</var>))</samp></p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>, then <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 1</samp> for complex flavors and <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp> for real flavors. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.<var>iwork</var>(<var>liwork</var>) is a workspace array. The array <var>iwork</var> is not referenced if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>. </p>
+<p>The actual amount of workspace required cannot exceed <var>n</var><sup class="power">2</sup>/2 if <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>iwork</var>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>, <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> max(1,2<var>m</var>(<var>n</var>-<var>m</var>))</samp>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp> or <span class="keyword">'E'</span>, <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>liwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>i</var><var>work</var> array, returns this value as the first entry of the <var>i</var><var>work</var> array, and no error message related to <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-801077D0-4602-465E-949A-EDBA7E2A19B3"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-5DC38F6E-6AA1-489D-A260-E0FEF1866668"><dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p>Overwritten by the reordered matrix <var>R</var> in Schur canonical form with the  selected eigenvalues in the leading diagonal blocks.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>If <samp class="codeph"><var>compq</var> = <span class="keyword">'V'</span></samp>, <var>q</var> contains the updated matrix of Schur vectors; the first m columns of the <var>Q</var> form an orthogonal basis for the specified invariant subspace.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">ctrsen</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsen</span>. </p>
+<p>Array, size at least max(1, <var>n</var>). The recorded eigenvalues of <var>R</var>. The eigenvalues are stored in the same order as on the diagonal of <var>R</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsen</span></p>
+<p>Arrays, size at least max(1, <var>n</var>). Contain the real and imaginary parts, respectively, of the reordered eigenvalues of <var>R</var>. The eigenvalues are stored in the same order as on the diagonal of <var>R</var>. Note that if a complex eigenvalue is sufficiently ill-conditioned, then its value may differ significantly from its value before reordering.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p><em>For complex flavors</em>: the dimension of the specified invariant subspaces, which is the same as the number of selected eigenvalues (see <var>select</var>). </p>
+<p><em>For real flavors</em>: the dimension of the specified invariant subspace. The value of <var>m</var> is obtained by counting 1 for each selected real eigenvalue and 2 for each selected complex conjugate pair of eigenvalues (see <var>select</var>). </p>
+<p>Constraint: <samp class="codeph">0 <span class="eqsymbol">≤</span><var>m</var><span class="eqsymbol">≤</span><var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp> or <span class="keyword">'B'</span>, <var>s</var> is a lower bound on the reciprocal condition number of the average of the selected cluster of eigenvalues. </p>
+<p>If <samp class="codeph"><var>m</var> = 0</samp> or <var>n</var>, then <samp class="codeph"><var>s</var> = 1</samp>.</p>
+<p><em>For real flavors</em>: if <samp class="codeph"><var>info</var> = 1</samp>, then <var>s</var> is set to zero.<var>s</var> is not referenced if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'V'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sep</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single-precision flavors <span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>, <var>sep</var> is the estimated reciprocal condition number of the specified invariant subspace. </p>
+<p>If <samp class="codeph"><var>m</var> = 0</samp> or <var>n</var>, then <samp class="codeph"><var>sep</var> = |<var>T</var>|</samp>.</p>
+<p><em>For real flavors</em>: if <samp class="codeph"><var>info</var> = 1</samp>, then <var>sep</var> is set to zero.</p>
+<p><var>sep</var> is not referenced if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work</var><samp class="codeph">(1)</samp> returns the optimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>iwork</var><samp class="codeph">(1)</samp> returns the optimal size of <var>liwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, the  reordering of <var>T</var> failed because some eigenvalues are too  close to separate (the problem is very ill-conditioned); <var>T</var> may have been partially reordered, and <span class="parmname">wr</span> and <span class="parmname">wi</span> contain the eigenvalues in the same order as in <var>T</var>; <span class="parmname">s</span> and  <span class="parmname">sep</span> (if requested) are set to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7523A96F-8BBE-4969-88EA-81ACA12A3AB6"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">trsen</span> interface are the following:</p>
+<dl id="GUID-D0D5690C-2FC9-40FE-816B-E27492015FEB"><dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p>Holds the matrix <var>T</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">select</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wi</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>Holds the matrix <var>Q</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compq</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>q</var> as follows: <samp class="codeph"><var>compq</var> = <span class="keyword">'V'</span></samp>, if <var>q</var> is present, <samp class="codeph"><var>compq</var> = <span class="keyword">'N'</span></samp>, if <var>q</var> is omitted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>Restored based on the presence of arguments <var>s</var> and <span class="keyword">sep</span> as follows: </p>
+<p><samp class="codeph"><var>job</var> = <span class="keyword">'B'</span></samp>, if both <var>s</var> and <var>sep</var> are present, </p>
+<p><samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, if <var>s</var> is present and <var>sep</var> omitted, </p>
+<p><samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp>, if <var>s</var> is omitted and <var>sep</var> present, </p>
+<p><samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>, if both <var>s</var> and <var>sep</var> are omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C0C897EB-4343-4580-8E4F-2D02925B25CB"><h2 class="sectiontitle">Application Notes</h2><p>The computed matrix <var>R</var> is exactly similar to a matrix <samp class="codeph"><var>T</var>+<var>E</var></samp>, where <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)*||<var>T</var>||<sub>2</sub></samp>, and <span class="eqsymbol">ε</span> is the machine precision. The computed <var>s</var> cannot underestimate the true reciprocal condition number by more than a factor of (min(<var>m</var>, <var>n</var>-<var>m</var>))<sub>1/2</sub>; <var>sep</var> may differ from the true value by (<var>m</var>*<var>n</var>-<var>m</var><sup class="power">2</sup>)<sub>1/2</sub>. The angle between the computed invariant subspace and the true subspace is <samp class="codeph"><var>O</var>(<span class="eqsymbol">ε</span>)*||<var>A</var>||<sub>2</sub>/<var>sep</var></samp>. Note that if a 2-by-2 diagonal block is involved in the re-ordering, its off-diagonal elements are in general changed; the diagonal elements and the eigenvalues of the block are unchanged unless the block is sufficiently ill-conditioned, in which case they may be noticeably altered. It is possible for a 2-by-2 block to break into two 1-by-1 blocks, that is, for a pair of complex eigenvalues to become purely real. </p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> (or <var>liwork</var>) for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>). </p>
+<p>If <var>lwork</var> (or <var>liwork</var>) has any of admissible sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>) on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>, <samp class="codeph"><var>iwork</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>), the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> (<var>liwork</var>) is less than the minimal required value and is not equal to -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html">Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

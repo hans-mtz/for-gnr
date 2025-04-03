@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?pptrf"/>
+<meta name="abstract" content="Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite matrix using packed storage."/>
+<meta name="description" content="Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite matrix using packed storage."/>
+<meta name="DC.subject" content="?pptrf, LAPACK routines, triangular factorization, symmetric positive-definite matrix, packed storage, Hermitian positive-definite matrix, Cholesky factorization"/>
+<meta name="keywords" content="?pptrf, LAPACK routines, triangular factorization, symmetric positive-definite matrix, packed storage, Hermitian positive-definite matrix, Cholesky factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?pptrf</title>
+
+</head>
+<body id="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?pptrf</span></h1>
+<!--Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite  matrix using packed storage.--><div><p class="shortdesc">Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite  matrix using packed storage.</p>
+<div class="section" id="GUID-A6B7A403-9AEF-4449-A2BC-006ECB0B14E6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spptrf</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dpptrf</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cpptrf</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zpptrf</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pptrf</span><span class="delim">( </span><span class="var">ap</span><span class="delim"> [</span><span class="sep">, </span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-D2B30CB5-345F-4871-B2E3-47CA4D98510D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-94CCFB2A-4AC6-474C-9924-8BB62612853F"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine forms the Cholesky factorization of a symmetric positive-definite or, for complex data, Hermitian positive-definite packed matrix <var>A</var>:</p>
+<table cellpadding="4" cellspacing="0" summary="" border="0" class="noborder"><tr><td valign="top" width="68%"><samp class="codeph"><span class="parmname">A</span> = <span class="parmname">U</span><sup><span class="parmname">T</span></sup><span class="parmname">*U</span></samp> for real data, <samp class="codeph"><span class="parmname">A</span> = <span class="parmname">U</span><sup><span class="parmname">H</span></sup><span class="parmname">*U</span></samp> for complex data</td>
+<td valign="top" width="32%">if <samp class="codeph"><var>uplo</var>=<span class="keyword">'U'</span></samp></td>
+</tr>
+<tr><td valign="top"><samp class="codeph"><span class="parmname">A</span> = <span class="parmname">L*L</span><sup><span class="parmname">T</span></sup></samp> for real data, <samp class="codeph"><span class="parmname">A</span> = <span class="parmname">L*L</span><sup><span class="parmname">H</span></sup></samp> for complex data
+</td>
+<td valign="top">if <samp class="codeph"><var>uplo</var>=<span class="keyword">'L'</span></samp></td>
+</tr>
+</table>
+<p>where <var>L</var> is a lower triangular matrix and <var>U</var> is upper triangular.</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p> This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a> for details.</p>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-586659E1-6579-494D-B996-B05BA606741A"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is packed in the array <var>ap</var>, and how <var>A</var> is factored: </p>
+<p>If <var>uplo</var> = <span class="keyword">'U'</span>, the array <var>ap</var> stores the upper triangular part of the matrix <var>A</var>, and <var>A</var> is factored as <var>U</var><sup class="power"><var>H</var></sup><var>*U</var>. </p>
+<p>If <var>uplo</var> = <span class="keyword">'L'</span>, the array <var>ap</var> stores the lower triangular part of the matrix <var>A</var>;  <var>A</var> is factored as <var>L*L</var><sup class="power"><var>H</var></sup>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">spptrf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dpptrf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpptrf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpptrf</span>.</p>
+<p>Array, size at least max(1, <var>n</var>(<var>n</var>+1)/2). The array <var>ap</var> contains either the upper or the lower triangular part of the matrix <var>A</var> (as specified by <var>uplo</var>) in packed storage (see <a class="allformats" href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>).</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-49F7AB13-43AF-4E35-9482-47B403518D3B"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by the Cholesky factor <var>U</var> or <var>L</var>, as specified by <var>uplo</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, the leading minor of order <var>i</var> (and therefore the matrix <var>A</var> itself) is not positive-definite, and the factorization could not be completed.  This may indicate an error in forming the matrix <var>A</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-114951AD-0875-4B6D-AFA8-F019B7445D9B"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">pptrf</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>A</var> of size <samp class="codeph">(<var>n</var>*(<var>n</var>+1)/2)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-4807306C-B0C4-4262-9E73-A8E50AC4EDAD"><h2 class="sectiontitle">Application Notes</h2><p>If <var>uplo</var> = <span class="keyword">'U'</span>, the computed factor <var>U</var> is the exact factor of a perturbed matrix <samp class="codeph"><var>A</var> + <var>E</var></samp>, where</p>
+<p><br/><div class="imagecenter"><img src="GUID-9A07D9FE-211B-4350-B172-4A1A0ACC87C5-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p><samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modest linear function of <var>n</var>, and <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>A similar estimate holds for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>.</p>
+<p>The total number of floating-point operations is approximately <samp class="codeph">(1/3)<var>n</var><sup class="power">3</sup></samp> for real flavors and <samp class="codeph">(4/3)<var>n</var><sup class="power">3</sup></samp> for complex flavors.</p>
+<p>After calling this routine, you can call the following routines:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF.html#GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF"><span class="option">?pptrs</span></a></p></td>
+
+<td valign="top" class="noborder"><p>to solve <samp class="codeph"><var>A*X</var> = <var>B</var></samp></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-65301377-3A94-4C5E-BCF5-33691A0323FE.html#GUID-65301377-3A94-4C5E-BCF5-33691A0323FE"><span class="option">?ppcon</span></a></p></td>
+
+<td valign="top" class="noborder"><p>to estimate the condition number of <var>A</var></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2.html#GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2"><span class="option">?pptri</span></a></p></td>
+
+<td valign="top" class="noborder"><p>to compute the inverse of <var>A</var>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"><span class="option">mkl_progress</span></a> </div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

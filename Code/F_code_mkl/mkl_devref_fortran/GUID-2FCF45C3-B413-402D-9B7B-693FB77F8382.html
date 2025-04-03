@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sparse BLAS Diagonal Matrix Storage Format"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2FCF45C3-B413-402D-9B7B-693FB77F8382"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sparse BLAS Diagonal Matrix Storage Format</title>
+
+</head>
+<body id="GUID-2FCF45C3-B413-402D-9B7B-693FB77F8382">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Sparse BLAS Diagonal Matrix Storage
+    Format</h1>
+<div><p>If the sparse matrix has diagonals containing only zero elements, then the diagonal storage format can be used to reduce the amount of information needed to locate the non-zero elements. This storage format is particularly useful in many applications where the matrix arises from a finite element or finite difference discretization. The Intel&reg; oneAPI Math Kernel Library diagonal storage format is specified by two arrays:<var>values</var> and 
+      <var>distance</var>, and
+      two parameters: 
+      <var>ndiag</var>, which is
+      the number of non-empty diagonals, and 
+      <var>lval</var>, which is
+      the declared leading dimension in the calling (sub)programs. The following
+      table describes the arrays 
+      <var>values</var> and 
+      <var>distance</var>: 
+    </p>
+<dl id="GUID-12DBED97-1262-4DEA-B3DF-55C75E7DB39F"><dt class="dlterm"><var>values</var></dt>
+
+<dd><p>A real or complex two-dimensional array is
+            dimensioned as 
+            <var>lval</var> by 
+            <var>ndiag</var>.
+            Each column of it contains the non-zero elements of certain diagonal of 
+            <var>A</var>. The key
+            point of the storage is that each element in 
+            <var>values</var>
+            retains the row number of the original matrix. To achieve this diagonals in the
+            lower triangular part of the matrix are padded from the top, and those in the
+            upper triangular part are padded from the bottom. Note that the value of 
+            <span><var>distance</var>(<var>i</var>)</span> is the number of
+            elements to be padded for diagonal 
+            <var>i</var>. 
+          </p>
+</dd>
+<dt class="dlterm"><var>distance</var></dt>
+
+<dd><p>An integer array with dimension 
+            <var>ndiag</var>.
+            Element 
+            <var>i</var> of the
+            array 
+            <var>distance</var>
+            is the distance between 
+            <var>i</var>-diagonal
+            and the main diagonal. The distance is positive if the diagonal is above the
+            main diagonal, and negative if the diagonal is below the main diagonal. The
+            main diagonal has a distance equal to zero. 
+          </p>
+</dd>
+</dl>
+<p>The above matrix 
+      <var>C</var> can be
+      represented in the diagonal storage format as follows: 
+    </p>
+<p><br/><img src="equations/GUID-2FCF45C3-B413-402D-9B7B-693FB77F8ee1.png"/><br/></p>
+<p>where the asterisks denote padded elements. 
+    </p>
+<p>When storing symmetric, Hermitian, or skew-symmetric
+      matrices, it is necessary to store only the upper or the lower triangular part
+      of the matrix. 
+    </p>
+<p>For the Intel&reg; oneAPI Math Kernel Library triangular solver routines elements of the array<var>distance</var> must be
+      sorted in increasing order. In all other cases the diagonals and distances can
+      be stored in arbitrary order. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html">Sparse Matrix Storage Formats</a></div>
+</div>
+<div/>
+</body>
+</html>

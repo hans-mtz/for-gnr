@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dss_create"/>
+<meta name="abstract" content="Initializes the solver."/>
+<meta name="description" content="Initializes the solver."/>
+<meta name="DC.subject" content="dss_create, Sparse Solver, direct sparse solver interface"/>
+<meta name="keywords" content="dss_create, Sparse Solver, direct sparse solver interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D896A4FB-CED1-422B-BD40-260AFDFC6BB1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dss_create</title>
+
+</head>
+<body id="GUID-D896A4FB-CED1-422B-BD40-260AFDFC6BB1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dss_create</span></h1>
+<!--Initializes the solver.--><div><p class="shortdesc">Initializes the solver.</p>
+<div class="section" id="GUID-A0E36378-D9EB-494C-A000-D1CF1BD8534E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_create</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-BAC6104B-9025-4DD5-911C-F514B042F110"><h2 class="sectiontitle">Include Files</h2><ul id="d163e166"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_dss.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FCA36665-17EE-4EEB-B9AE-FEFB9DEE7D06"><h2 class="sectiontitle">Description</h2><p>The <span class="keyword">dss_create</span> routine  initializes the solver. After the call to <span class="keyword">dss_create</span>, all subsequent invocations of the Intel&reg; oneAPI Math Kernel Library DSS routines must use the value of the handle returned by<span class="keyword">dss_create</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>Do not write the value of handle directly.</p>
+</div>
+<p>The default value of the parameter <span class="parmname">opt</span> is </p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_WARNING</span> + <span class="keyword">MKL_DSS_TERM_LVL_ERROR</span>.</p>
+<p> By default, the DSS routines use double precision for
+solving systems of linear equations. The precision used by the DSS routines
+can be set to single mode by adding the following
+value to the <span class="parmname">opt</span> parameter:</p>
+<p><span class="keyword"> MKL_DSS_SINGLE_PRECISION</span>.</p>
+<p> Input data and internal arrays
+are required to have single precision.</p>
+<p> By default, the DSS routines use Fortran style (one-based)
+indexing for input arrays of integer types (the first value is
+referenced as array element 1). To set indexing to C style (the first value is referenced as array element 0),  add
+the following value to the <span class="parmname">opt</span> parameter:</p>
+<p><span class="keyword">MKL_DSS_ZERO_BASED_INDEXING</span>.</p>
+<p> The <span class="parmname">opt</span> parameter can also control number of refinement
+steps used on the solution stage by specifying the two following
+values:</p>
+<p><span class="keyword"> MKL_DSS_REFINEMENT_OFF</span> -
+maximum number of refinement steps is set to zero;
+<span class="keyword">MKL_DSS_REFINEMENT_ON</span> (default value) - maximum number
+of refinement steps is set to 2.</p>
+<p>By default, DSS uses in-core computations. To launch the out-of-core version of DSS (OOC DSS) you can add to this parameter one of two possible values: <span class="keyword">MKL_DSS_OOC_STRONG</span> and <span class="keyword">MKL_DSS_OOC_VARIABLE</span>.</p>
+<p><span class="keyword">MKL_DSS_OOC_STRONG</span> - OOC DSS is used. </p>
+<p><span class="keyword">MKL_DSS_OOC_VARIABLE</span> - if the memory needed for the matrix factors is less than the value of the environment variable <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span>, then the OOC DSS uses the in-core kernels of Intel&reg; oneAPI Math Kernel Library PARDISO, otherwise it uses the OOC computations.</p>
+<p>The variable <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> defines the maximum size of RAM allowed for storing work arrays associated with the matrix factors. It is ignored if <span class="keyword">MKL_DSS_OOC_STRONG</span> is set. The default value of <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> is 2000 MB. This value and default path and file name for storing temporary data can be changed using the configuration file <span class="keyword">pardiso_ooc.cfg</span> or command line (See more details in the description of the  <a class="allformats" href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA">pardiso</a>
+routine).</p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>Other than message and termination level options, do not change the OOC DSS settings after they are specified in the routine <span class="option">dss_create</span>.</p>
+</div>
+</div>
+<div class="section" id="GUID-77A4ED80-AF79-48EE-B509-8F6174BCC4DE"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">opt</span></p></td>
+
+<td valign="top" class="noborder"><p/>
+<p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Parameter to pass the DSS options. The default value is <span class="keyword">MKL_DSS_MSG_LVL_WARNING</span> + <span class="keyword">MKL_DSS_TERM_LVL_ERROR</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-A32CF5B6-3111-4974-832F-416C32AFC08B"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">handle</span></p></td>
+
+<td valign="top" class="noborder"><p/>
+<p><span class="keyword">TYPE (MKL_DSS_HANDLE)</span>, <span class="keyword">INTENT(OUT)</span></p>
+<p> Pointer to the data structure storing internal DSS results (<span class="keyword">MKL_DSS_HANDLE</span>).</p>
+</td>
+</tr></table></div>
+<div class="section" id="RETURNVALUES_DB9997A5597D498AAADF8741040E7D6F"><h2 class="sectiontitle">Return Values</h2><p><span class="keyword">MKL_DSS_SUCCESS</span></p>
+<p><span class="keyword">MKL_DSS_INVALID_OPTION</span></p>
+<p><span class="keyword">MKL_DSS_OUT_OF_MEMORY</span></p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_TERM_LVL_ERR</span></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

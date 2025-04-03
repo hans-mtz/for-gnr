@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?dttrsv"/>
+<meta name="abstract" content="Computes an LU factorization of a general band matrix, using partial pivoting with row interchanges. The routine is called by p?dttrs."/>
+<meta name="description" content="Computes an LU factorization of a general band matrix, using partial pivoting with row interchanges. The routine is called by p?dttrs."/>
+<meta name="DC.subject" content="p?dttrsv, ScaLAPACK routines, auxiliary routines, triangular factorization, tridiagonal triangular factorization, band matrix, LU factorization, tridiagonal band matrix, general tridiagonal triangular matrix, band storage"/>
+<meta name="keywords" content="p?dttrsv, ScaLAPACK routines, auxiliary routines, triangular factorization, tridiagonal triangular factorization, band matrix, LU factorization, tridiagonal band matrix, general tridiagonal triangular matrix, band storage"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3D5D4AB1-FAEB-4B27-9809-673E35DF665F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?dttrsv</title>
+
+</head>
+<body id="GUID-3D5D4AB1-FAEB-4B27-9809-673E35DF665F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?dttrsv</span></h1>
+<!--Computes an LU factorization of a general band matrix, using partial pivoting with row interchanges. The routine is called by  p?dttrs .--><div><p class="shortdesc">Computes an LU factorization of a general band matrix, using partial pivoting with row interchanges. The routine is called by <span class="option">p?dttrs</span>.</p>
+<div class="section" id="GUID-256D8026-BFDB-423C-B888-FDA98D28ACC6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psdttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pddttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcdttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzdttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-947ADD2C-3A20-4BE1-BA3D-4DE13AA29BFA"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?dttrsv</span><span>routine </span>solves a tridiagonal triangular system of linear equations</p>
+<p><samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp>*<var>X</var> =  <var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1, 1 :<var>nrhs</var>)</samp> or</p>
+<p><samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp><sup><var class="varname">T</var></sup><var/> * <var>X</var> = <var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1, 1 :<var>nrhs</var>)</samp> for real flavors; <samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp><sup class="power"><var>H</var></sup>* <var>X</var> = <var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1, 1 :<var>nrhs</var>)</samp> for complex flavors,</p>
+<p>where <samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp> is a tridiagonal matrix factor produced by the Gaussian elimination code of <a href="GUID-83BFC2A7-DEA8-4ABF-A237-EBE37BDA24B0.html"><span class="option">p?dttrf</span></a> and is stored in <samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp> and <var>af</var>.</p>
+<p>The matrix stored in <samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp> is either upper or lower triangular according to <var>uplo</var>, and the choice of solving <samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp> or <samp class="codeph"><var>A</var>(1 :<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp><sup><var>T</var></sup></samp> is dictated by the user by the parameter <var>trans</var>.</p>
+<p><span>The routine </span><span class="option">p?dttrf</span> must be called first.</p>
+</div>
+<div class="section" id="GUID-934258CB-B6CA-49B2-B9A7-95AD746F5C5F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-D01C93D3-546E-40BD-9B68-B232328364EA"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span></p>
+<p>If <samp class="codeph"><var>uplo</var>=<span class="keyword">'U'</span></samp>, the upper triangle of <samp class="codeph"><var>A</var>(1:<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp> is stored, </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of <var>A</var>(1:<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span></p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, solve with <samp class="codeph"><var>A</var>(1:<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp>, </p>
+<p>if <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, solve with conjugate transpose <samp class="codeph"><var>A</var>(1:<var>n</var>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the distributed submatrix <samp class="codeph"><var>A</var>;(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides; the number of columns of the distributed submatrix <samp class="codeph"><var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1, 1:<var>nrhs</var>)</samp>. <samp class="codeph">(<var>nrhs</var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">dl</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdttrsv</span>. </p>
+<p>Pointer to local part of global vector storing the lower diagonal of the matrix. </p>
+<p>Globally, <samp class="codeph"><span><var>dl</var>(1)</span></samp><samp class="codeph"/> is not referenced, and <span class="parmname">dl</span> must be aligned with <span class="parmname">d</span>. </p>
+<p>Must be of size <samp class="codeph"><span class="eqsymbol">≥</span><var>nb_a</var>.</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdttrsv</span>. </p>
+<p>Pointer to local part of global vector storing the main diagonal of the matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">du</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdttrsv</span>. </p>
+<p>Pointer to local part of global vector storing the upper diagonal of the matrix. </p>
+<p>Globally, <span><span class="parmname">du</span>(<var>n</var>)</span> is not referenced, and <span class="parmname">du</span> must be aligned with <span class="parmname">d</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The index in the global matrix <var>A</var> that points to the start of the matrix to be operated on (which may be either all of <var>A</var> or a submatrix of <var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. </p>
+<p>if 1<var>d</var> type <samp class="codeph">(<var>dtype_a</var> = 501 or 502)</samp>, <samp class="codeph"><var>dlen</var><span class="eqsymbol">≥</span> 7</samp>; </p>
+<p>if 2<var>d</var> type <samp class="codeph">(<var>dtype_a</var> = 1)</samp>, <samp class="codeph"><var>dlen</var><span class="eqsymbol">≥</span> 9</samp>. </p>
+<p>The array descriptor for the distributed matrix <var>A</var>. Contains information of mapping of <var>A</var> to memory.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdttrsv</span>. </p>
+<p>Pointer into the local memory to an array of local lead dimension <var>lld_b</var><span class="eqsymbol">≥</span><var>nb</var>. On entry, this array contains the local pieces of the right-hand sides <samp class="codeph"><var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1, 1 :<var>nrhs</var>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ib</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row index in the global matrix <var>B</var> that points to the first row of the matrix to be operated on (which may be either all of <var>B</var> or a submatrix of <var>B</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descb</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>if 1<var>d</var> type <samp class="codeph">(<var>dtype_b</var> = 502)</samp>, <samp class="codeph"><var>dlen</var><span class="eqsymbol">≥</span>7</samp>;</p>
+<p>if 2<var>d</var> type <samp class="codeph">(<var>dtype_b</var> = 1)</samp>, <samp class="codeph"><var>dlen</var><span class="eqsymbol">≥</span> 9</samp>. </p>
+<p>The array descriptor for the distributed matrix <var>B</var>. Contains information of mapping <var>B</var> to memory.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">laf</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">INTEGER</span>.</p>
+<p>Size of user-input auxiliary fill-in space <span class="parmname">af</span>. </p>
+<p><span class="parmname">laf</span><samp class="codeph"><span class="eqsymbol">≥</span> 2*(<var>nb</var>+2)</samp>. If <span class="parmname">laf</span> is not large enough, an error code is returned  and the minimum acceptable size will be returned in <samp class="codeph"><span><var>af</var>(1)</span></samp><samp class="codeph"/>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local).</p>
+<p><span class="keyword">REAL</span> for <span class="option">psdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdttrsv</span>. </p>
+<p>Temporary workspace. This space may be overwritten in between <span>calls to routines</span>. </p>
+<p><span class="parmname">work</span> must be the size given in <span class="parmname">lwork</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Size of user-input workspace <span class="parmname">work</span>. If <span class="parmname">lwork</span> is too small, the minimal acceptable size will be returned in <samp class="codeph"><samp class="codeph"><span><var>work</var>(1)</span></samp><samp class="codeph"/></samp> and an error code is returned. </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 10*<var>npcol</var>+4*<var>nrhs</var></samp>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DBC391E5-2579-4804-AD5F-59A793AA2CE6"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A5D827B7-9C49-4161-B666-D15C6F2C6B7B"><dt class="dlterm"><span class="parmname">dl</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, this array contains information containing the factors of the matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, this array contains information containing the factors of the matrix. Must be of size <span class="eqsymbol">≥</span><var>nb_a</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, this contains the local piece of the solutions distributed matrix X.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">af</span></dt>
+
+<dd><p>(local).</p>
+<p><span class="keyword">REAL</span> for <span class="option">psdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdttrsv</span>. </p>
+<p>Auxiliary fill-in space. The fill-in space is created in a call to the factorization <span>routine </span><span class="option">p?dttrf</span> and is stored in <span class="parmname">af</span>. If a linear system  is to be solved using <span class="option">p?dttrs</span> after the factorization <span>routine</span>, <span class="parmname">af</span> must not be altered after the factorization.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>On exit, <samp class="codeph"><span>work(1)</span></samp><samp class="codeph"/> contains the minimal <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(local). <span><span class="keyword">INTEGER</span>.</span></p>
+<p> If <span class="parmname">info</span>=0, the execution is successful. </p>
+if <span class="parmname">info</span>&lt; 0: If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had an illegal value, then <var/><span class="parmname">info</span> = - (<var>i</var>*100+<var>j</var>), if the <var>i</var>-th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = -<var>i</var>. </dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

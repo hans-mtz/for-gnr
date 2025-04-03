@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Summary Statistics Task Editors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-44CA0D4A-ADEF-4B94-8032-F90F99E96710.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CBFF6663-8A1F-453C-A5EC-7DAFC0DB9859.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6945A686-D18A-4C31-87EB-2598F799D435.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F3F06F13-0CBA-452B-9EC8-6AEDB4D9A1C8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-06E0E337-5A76-44C8-B090-C033642B6B16.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-237CBB58-F698-42D5-B70B-4A617AD7FEFD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5C6DD292-F445-4DFA-8CC3-24F5FC14EAF1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F4CC8BB7-DE2C-4EAC-9F7E-B9E5834A4214.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0D8394C9-9F14-4D57-8A82-F75CE1EA5295.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F38E37B8-BF11-4E0D-B6E1-E8F67716CF6D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F14C4E35-C68A-4AC8-A235-2C0A7453EEC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C03443AC-10A5-4F6E-8834-C184CDB4F5D6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AD6B4B8F-FD29-4E48-9BD3-90F94CBE8CEE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-88973FF0-9B74-476A-8265-65D2DF76C090.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9D27013C-5463-4596-BB93-7E9993ADE2D6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Summary Statistics Task Editors</title>
+
+</head>
+<body class="no-rel-links" id="GUID-9D27013C-5463-4596-BB93-7E9993ADE2D6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Summary Statistics Task Editors</h1>
+<div><p>Task editors are intended to set up or change the
+      task parameters listed in 
+      <a href="GUID-CBFF6663-8A1F-453C-A5EC-7DAFC0DB9859.html#TBL10-23">Table 
+        <span>"Parameters of Summary Statistics Task to Be
+          Initialized or Modified"</span></a>. As an example, to compute the sample mean
+      for a one-dimensional dataset, initialize a variable for the mean value, and
+      pass its address into the task as shown in the example below: 
+    </p>
+<pre>#define DIM    1
+#define N   1000
+
+int main()
+{
+     VSLSSTaskPtr task;
+     double x[N];
+     double mean;
+     MKL_INT p, n, xstorage;
+     int status;
+     /* initialize variables used in the computations of sample mean */
+     p = DIM;
+     n = N;
+     xstorage = VSL_SS_MATRIX_STORAGE_ROWS;
+     mean = 0.0;
+
+     /* create task */
+     status = vsldSSNewTask( &amp;task, &amp;p, &amp;n, &amp;xstorage, x, 0, 0 );
+
+     /* initialize task parameters */
+     status = vsldSSEditTask( task, VSL_SS_ED_MEAN, &amp;mean );
+
+     /* compute mean using SS fast method */ 
+     status = vsldSSCompute(task, VSL_SS_MEAN, VSL_SS_METHOD_FAST );
+
+     /* deallocate task resources */
+     status = vslSSDeleteTask( &amp;task ); 
+
+     return 0;
+}</pre><p>Use the single (<span class="option">vslsssedittask</span>) or double
+    (<span class="option">vsldssedittask</span>) version
+    of an editor, to initialize single or double precision version task parameters,
+    respectively. Use an integer version of an editor (<span class="option">vslissedittask</span>) to initialize
+    parameters of the integer type. 
+    </p>
+<p><a href="#TBL10-24">Table 
+        <span>"Summary Statistics Task Editors"</span></a>
+      lists the task editors for Summary Statistics. Each of them initializes and/or
+      modifies a respective group of related parameters. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-24" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Summary Statistics Task Editors</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="36%" id="d1177854e108"><p>Editor 
+            </p>
+</th>
+<th class="row-nocellborder" valign="top" width="64%" id="d1177854e111"><p>Description 
+            </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-CBFF6663-8A1F-453C-A5EC-7DAFC0DB9859.html#GUID-CBFF6663-8A1F-453C-A5EC-7DAFC0DB9859"><span class="option">vslSSEditTask</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes a pointer in the task descriptor. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-6945A686-D18A-4C31-87EB-2598F799D435.html#GUID-6945A686-D18A-4C31-87EB-2598F799D435"><span class="option">vslSSEditMoments</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              raw and central moments. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-F3F06F13-0CBA-452B-9EC8-6AEDB4D9A1C8.html">vslSSEditSums</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Modifies  the pointers to arrays that hold sum estimates.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-06E0E337-5A76-44C8-B090-C033642B6B16.html#GUID-06E0E337-5A76-44C8-B090-C033642B6B16"><span class="option">vslSSEditCovCor</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              covariance and/or correlation matrices. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-237CBB58-F698-42D5-B70B-4A617AD7FEFD.html">vslSSEditCP</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Modifies  the pointers to cross-product matrix parameters.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-5C6DD292-F445-4DFA-8CC3-24F5FC14EAF1.html#GUID-5C6DD292-F445-4DFA-8CC3-24F5FC14EAF1"><span class="option">vslSSEditPartialCovCor</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              partial covariance and/or correlation matrices. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-F4CC8BB7-DE2C-4EAC-9F7E-B9E5834A4214.html#GUID-F4CC8BB7-DE2C-4EAC-9F7E-B9E5834A4214"><span class="option">vslSSEditQuantiles</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              quantile/order statistics calculations. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-0D8394C9-9F14-4D57-8A82-F75CE1EA5295.html#GUID-0D8394C9-9F14-4D57-8A82-F75CE1EA5295"><span class="option">vslSSEditStreamQuantiles</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays for quantile
+              related calculations for streaming data. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-F38E37B8-BF11-4E0D-B6E1-E8F67716CF6D.html#GUID-F38E37B8-BF11-4E0D-B6E1-E8F67716CF6D"><span class="option">vslSSEditPooledCovariance</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              algorithms related to a pooled covariance matrix. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-F14C4E35-C68A-4AC8-A235-2C0A7453EEC5.html#GUID-F14C4E35-C68A-4AC8-A235-2C0A7453EEC5"><span class="option">vslSSEditRobustCovariance</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays for robust
+              estimation of a covariance matrix and mean. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-C03443AC-10A5-4F6E-8834-C184CDB4F5D6.html#GUID-C03443AC-10A5-4F6E-8834-C184CDB4F5D6"><span class="option">vslSSEditOutliersDetection</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays for detection of
+              outliers. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-AD6B4B8F-FD29-4E48-9BD3-90F94CBE8CEE.html#GUID-AD6B4B8F-FD29-4E48-9BD3-90F94CBE8CEE"><span class="option">vslSSEditMissingValues</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              the method of supporting missing values in a dataset. 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="36%" headers="d1177854e108 "><p><a href="GUID-88973FF0-9B74-476A-8265-65D2DF76C090.html#GUID-88973FF0-9B74-476A-8265-65D2DF76C090"><span class="option">vslSSEditCorParameterization</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="64%" headers="d1177854e111 "><p>Changes pointers to arrays associated with
+              the algorithm for parameterization of a correlation matrix. 
+            </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can use the 
+        <span class="keyword">NULL</span> task pointer in calls
+        to editor routines. In this case, the routine is terminated and no system crash
+        occurs. 
+      </p>
+</div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?geqrt"/>
+<meta name="abstract" content="Computes a blocked QR factorization of a general real or complex matrix using the compact WY representation of Q."/>
+<meta name="description" content="Computes a blocked QR factorization of a general real or complex matrix using the compact WY representation of Q."/>
+<meta name="DC.subject" content="LAPACK routines, QR factorization, ?geqrt, general matrix"/>
+<meta name="keywords" content="LAPACK routines, QR factorization, ?geqrt, general matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-280BB03B-34FC-4FBD-AC59-6E244E77808F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?geqrt</title>
+
+</head>
+<body id="GUID-280BB03B-34FC-4FBD-AC59-6E244E77808F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?geqrt</span></h1>
+<!--Computes a blocked QR factorization of a general  real or complex matrix using the compact WY representation of Q.--><div><p class="shortdesc">Computes a blocked QR factorization of a general  real or complex matrix using the compact WY representation of Q.</p>
+<div class="section" id="GUID-814D7756-F1E2-4417-A0EA-B4294B8303D4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgeqrt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgeqrt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgeqrt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgeqrt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call geqrt</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">nb</span><span class="kwd"/><span class="sep"/><span class="delim">[</span><span class="sep">, </span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-E9698D32-846E-42D7-8E8B-03273EDC2655"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A3A0248F-23B3-4E74-BDA2-BB8D23F19A50"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p> The strictly lower triangular matrix <var>V</var> contains the elementary reflectors
+<var>H</var>(<var>i</var>) in the <var>i</var>th column below the diagonal. For example, if <span class="parmname">m</span>=5 and
+<span class="parmname">n</span>=3, the matrix <var>V</var> is</p>
+<p><br/><div class="imagecenter"><img src="GUID-6A873184-E8FC-4B04-BF63-94914BFD4929-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p> where <var>v</var><sub><var>i</var></sub> represents one of  the vectors that
+define <var>H</var>(<var>i</var>). The vectors are returned in the lower triangular part of  array <span class="parmname">a</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The 1s along the diagonal of
+<var>V</var> are not stored in <span class="parmname">a</span>.</p>
+</div>
+<p> Let <samp class="codeph"><var>k</var> = min(<span class="parmname">m</span>,<span class="parmname">n</span>)</samp>. The number of blocks is <samp class="codeph"><var>b</var> =
+ceiling(<var>k</var>/<span class="parmname">nb</span>)</samp>, where each block is of order <span class="parmname">nb</span> except for the last block,
+which is of order <samp class="codeph"><var>ib</var> = <var>k</var> - (<var>b</var>-1)*<span class="parmname">nb</span></samp>. For each of the <var>b</var> blocks, a
+upper triangular block reflector factor is computed:<samp class="codeph"><var>t1</var>, <var>t2</var>, ..., <var>tb</var></samp>.
+The <span class="parmname">nb</span>-by-<span class="parmname">nb</span> (and <var>ib</var>-by-<var>ib</var> for the last block) <var>t</var>s are stored in the
+<span class="parmname">nb</span>-by-<span class="parmname">n</span> array <span class="parmname">t</span> as</p>
+<p><samp class="codeph"><span class="parmname"> t</span> = (<var>t1</var><var>t2</var> ... <var>tb</var>)</samp>.</p>
+</div>
+<div class="section" id="GUID-F841BA63-D4EE-4C75-9831-BB804CEA8622"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-849CB74D-9D33-4CC5-B123-96C5D4E55614"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>A</var> (<span class="parmname">m</span> ≥ 0). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<span class="parmname">n</span> ≥ 0). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The block size to be used in the blocked QR (min(<span class="parmname">m</span>, <span class="parmname">n</span>) ≥ <span class="parmname">nb</span> ≥   1). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqrt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqrt</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqrt</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zgeqrt</span>. </p>
+<p>Arrays: <span class="parmname">a</span><span class="keyword">DIMENSION</span> (<span class="parmname">lda</span>, <span class="parmname">n</span>) contains the <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>. </p>
+<p><span class="parmname">work</span><span class="keyword">DIMENSION</span> (<span class="parmname">nb</span>, <span class="parmname">n</span>) is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <span class="parmname">a</span>; at least max(1, <span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <span class="parmname">t</span>; at least <span class="parmname">nb</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0C3D97D-E883-4070-A1C2-4FE43CC37D12"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0EF926B9-AE4E-4945-A720-6C8C1318986F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the factorization data as follows:</p>
+<p>The elements on and above the diagonal of the array contain the min(<span class="parmname">m</span>,<span class="parmname">n</span>)-by-<var>n</var> upper trapezoidal matrix <var>R</var> (<var>R</var> is upper triangular if <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">n</span>); the elements below the diagonal, with the array <span class="parmname">t</span>, present the orthogonal matrix <var>Q</var> as a product of min(<span class="parmname">m</span>,<span class="parmname">n</span>) elementary reflectors (see <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations</a>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqrt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqrt</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqrt</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zgeqrt</span>. </p>
+<p>Array, <span class="keyword">DIMENSION</span> (<span class="parmname">ldt</span>, min(<span class="parmname">m</span>, <span class="parmname">n</span>)). </p>
+<p> The upper triangular block reflector's factors stored as a sequence of upper triangular
+blocks.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful. </p>
+<p>If <span class="parmname">info</span> &lt; 0 and <span class="parmname">info</span> = <var>-i</var>, the <var>i</var>th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

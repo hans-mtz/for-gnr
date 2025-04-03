@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hpgst"/>
+<meta name="abstract" content="Reduces a generalized eigenvalue problem with a Hermitian matrix to a standard eigenvalue problem using packed storage."/>
+<meta name="description" content="Reduces a generalized eigenvalue problem with a Hermitian matrix to a standard eigenvalue problem using packed storage."/>
+<meta name="DC.subject" content="?hpgst, LAPACK routines, generalized eigenvalue problems, complex Hermitian positive-definite problem, packed storage"/>
+<meta name="keywords" content="?hpgst, LAPACK routines, generalized eigenvalue problems, complex Hermitian positive-definite problem, packed storage"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-417A645A-CF05-4998-AC62-3A99DA520723"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hpgst</title>
+
+</head>
+<body id="GUID-417A645A-CF05-4998-AC62-3A99DA520723">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hpgst</span></h1>
+<!--Reduces a generalized eigenvalue problem with a Hermitian matrix  to a standard eigenvalue problem using packed storage.--><div><p class="shortdesc">Reduces a generalized eigenvalue problem with a Hermitian matrix  to a standard eigenvalue problem using packed storage.</p>
+<div class="section" id="GUID-2C9B1269-9C7D-402F-9EA6-F2CA896F558D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chpgst</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">bp</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhpgst</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">bp</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hpgst</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">bp</span><span class="delim"> [</span><span class="sep">,</span><span class="var">itype</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-978ADA86-EF1F-44DC-82B2-9DA8A47DA174"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-87E6E4F3-0151-4600-B81A-A4946206C6BC"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces generalized eigenproblems with Hermitian matrices</p>
+<p><samp class="codeph"><var>A</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>B</var>*<var>z</var></samp>, <samp class="codeph"><var>A</var>*<var>B</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>z</var></samp>, or <samp class="codeph"><var>B</var>*<var>A</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>z</var></samp>.</p>
+<p>to standard eigenproblems <samp class="codeph"><var>C</var>*<var>y</var> = <span class="eqsymbol">λ</span>*<var>y</var></samp>, using packed matrix storage. Here <var>A</var> is a complex Hermitian matrix, and <var>B</var> is a complex Hermitian positive-definite matrix. Before calling this routine, you must call <span class="option">?pptrf</span> to compute the Cholesky factorization: <samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>H</var></sup><var>*U</var></samp> or <samp class="codeph"><var>B</var> = <var>L*L</var><sup class="power"><var>H</var></sup></samp>.</p>
+</div>
+<div class="section" id="GUID-D7870188-7823-44A4-9D11-B69C978CB7FE"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-62486515-CED8-41CB-AA5E-15B5F7715E6A"><dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Must be 1 or 2 or 3. </p>
+<p>If <samp class="codeph"><var>itype</var> = 1</samp>, the generalized eigenproblem is <samp class="codeph"><var>A*z</var> = <var>lambda</var><var>*B*z</var></samp></p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: <samp class="codeph"><var>C</var> = inv(<var>U</var><sup class="power"><var>H</var></sup>)*<var>A</var><samp class="codeph">*inv(<var>U</var>)</samp></samp>, <samp class="codeph"><var>z</var> = inv(<var>U</var>)*<var>y</var></samp>;</p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: <samp class="codeph"><var>C</var> = inv(<var>L</var>)*<var>A</var>*inv(<var>L</var><sup class="power"><var>H</var></sup>)</samp>, <samp class="codeph"><var>z</var> = inv(<var>L</var><sup class="power"><var>H</var></sup>)*<var>y</var></samp>. </p>
+<p>If <samp class="codeph"><var>itype</var> = 2</samp>, the generalized eigenproblem is <samp class="codeph"><var>A</var>*<var>B</var>*<var>z</var> = <var>lambda</var>*<var>z</var></samp></p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: <samp class="codeph"><var>C</var> = <var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>H</var></sup></samp>, <samp class="codeph"><samp class="codeph"><var>z</var> = inv(<var>U</var>)*<var>y</var></samp></samp>;</p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: <samp class="codeph"><var>C</var> = <var>L</var><sup class="power"><var>H</var></sup>*<var>A</var>*<var>L</var></samp>, <samp class="codeph"><var>z</var> = inv(<var>L</var><sup class="power"><var>H</var></sup>)*<var>y</var></samp>. </p>
+<p>If <samp class="codeph"><var>itype</var> = 3</samp>, the generalized eigenproblem is <samp class="codeph"><var>B*A</var>*<var>z</var> = <var>lambda</var>*<var>z</var></samp></p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: <samp class="codeph"><var>C</var> = <var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>H</var></sup></samp>, <samp class="codeph"><var>z</var> = <var>U</var><sup class="power"><var>H</var></sup>*<var>y</var></samp>;</p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: <samp class="codeph"><var>C</var> = <var>L</var><sup class="power"><var>H</var></sup>*<var>A</var>*<var>L</var></samp>, <samp class="codeph"><var>z</var> = <var>L</var>*<var>y</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>ap</var> stores the packed upper triangle of <var>A</var>; you must supply <var>B</var> in the factored form <samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>H</var></sup><var>*U</var></samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>ap</var> stores the packed lower triangle of <var>A</var>; you must supply <var>B</var> in the factored form <samp class="codeph">B = <var>L*L</var><sup class="power"><var>H</var></sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrices <var>A</var> and <var>B</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span>, <span class="parmname">bp</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chpgst</span><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhpgst</span>. </p>
+<p>Arrays: </p>
+<p><var>ap</var><samp class="codeph">(*)</samp> contains the packed upper or lower triangle of <var>A</var>. </p>
+<p>The dimension of <var>a</var> must be at least max(1, <var>n</var>*(<var>n</var>+1)/2).</p>
+<p><var>bp</var><samp class="codeph">(*)</samp> contains the packed Cholesky factor of <var>B</var> (as returned by <span class="option">?pptrf</span> with the same <var>uplo</var> value). </p>
+<p>The dimension of <var>b</var> must be at least max(1, <var>n</var>*(<var>n</var>+1)/2).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-48CDDE51-8A38-4621-BDE5-49099696C313"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8DAAC8EB-4D5A-42EE-ABC6-48C19736F7A3"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>The upper or lower triangle of <var>A</var> is overwritten by the upper or lower triangle of <var>C</var>, as specified by the arguments <var>itype</var> and <var>uplo</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6F56FB6E-AC7D-4852-9D4A-169B6982A740"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hpgst</span> interface are the following:</p>
+<dl id="GUID-987558AE-C809-48ED-87E1-12C241F775B8"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p> Holds the array <var>A</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bp</span></dt>
+
+<dd><p> Holds the array <var>B</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p>Must be 1, 2, or 3. The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-9AF24DDD-3FD5-4018-9A9F-03123F6BAFA8"><h2 class="sectiontitle">Application Notes</h2><p>Forming the reduced matrix <var>C</var> is a stable procedure. However, it involves implicit multiplication by inv(<var>B</var>) (if <samp class="codeph"><var>itype</var> = 1</samp>) or <var>B</var> (if <samp class="codeph"><var>itype</var> = 2</samp> or 3). When the routine is used as a step in the computation of eigenvalues and eigenvectors of the original problem, there may be a significant loss of accuracy if <var>B</var> is ill-conditioned with respect to inversion.</p>
+<p>The approximate number of floating-point operations is <var>n</var><sup class="power">3</sup>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html">Generalized Symmetric-Definite Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sysv_aa"/>
+<meta name="abstract" content="Computes the solution to a system of linear equations A * X = B for symmetric matrices."/>
+<meta name="description" content="Computes the solution to a system of linear equations A * X = B for symmetric matrices."/>
+<meta name="DC.subject" content="?sysv_aa, ssysv_aa, csysv_aa, dsysv_aa, zsysv_aa, LAPACK routines"/>
+<meta name="keywords" content="?sysv_aa, ssysv_aa, csysv_aa, dsysv_aa, zsysv_aa, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E61D14A0-32F2-4CB9-8F79-927BF259E0C6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sysv_aa</title>
+
+</head>
+<body id="GUID-E61D14A0-32F2-4CB9-8F79-927BF259E0C6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sysv_aa</span></h1>
+<!--Computes the solution to a system of linear equations A * X = B for symmetric matrices.--><div><p class="shortdesc">Computes the solution to a system of linear equations A * X = B for symmetric matrices.</p>
+<div id="SYNTAX_54CD732F03B04906BA1FB0DC9B05ABC5"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssysv_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call csysv_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsysv_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zsysv_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DE5B0C96-5F72-468D-8F9E-ED098BE18253"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?sysv</span> routine computes the solution to a complex system of linear equations A * X = B, where A is an <span class="parmname">n</span>-by-<span class="parmname">n</span> symmetric matrix and X and B are <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> matrices.</p>
+<p>Aasen's algorithm is used to factor A as A = U * T * U<sup>T</sup>, if <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, or A = L * T * L<sup>T</sup>, if <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, where U (or L) is a product of permutation and unit upper (lower) triangular matrices, and T is symmetric tri-diagonal. The factored form of A is then used to solve the system of equations A * X= B.</p>
+</div>
+<div class="section" id="GUID-0F058468-9760-4741-B3ED-3A4D4F764E00"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7159626C-E378-4A98-8203-B43AE79799D7"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span></p>
+<ul id="GUID-893956A5-CE15-45F1-AD89-048B5E5ACB24"><li>= <samp class="codeph">'U'</samp>: The upper triangle of A is stored.</li>
+<li>= <samp class="codeph">'L'</samp>: The lower triangle of A is stored.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of linear equations; that is, the order of the matrix A. <span class="parmname">n</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of right-hand sides; that is, the number of columns of the matrix B. <span class="parmname">nrhs</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option"> ssysv_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsysv_aa</span></p>
+<p><span class="keyword"> COMPLEX</span> for <span class="option">csysv_aa</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsysv_aa</span></p>
+<p><span>Array, dimension (<span class="parmname">lda</span>,<span class="parmname">n</span>).</span> On entry, the symmetric matrix A. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of A contains the upper triangular part of the matrix A, and the strictly lower triangular part of A is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of A contains the lower triangular part of the matrix A, and the strictly upper triangular part of A is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">A</span>.<span><span class="parmname">lda</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option"> ssysv_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsysv_aa</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csysv_aa</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsysv_aa</span></p>
+<p><span>Array, dimension (<span class="parmname">ldb</span>,<span class="parmname">nrhs</span>).</span> On entry, the <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> right-hand side matrix B.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">B</span>. <span><span class="parmname">ldb</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The length of the array <span class="parmname">work</span>.</p>
+<p>If <span class="parmname">lwork</span> = <samp class="codeph"><var>-1</var></samp>, a workspace query is assumed; the routine calculates only the optimal size of the work array and returns this value as the first entry of the work array, and no error message related to <span class="parmname">lwork</span> is issued by XERBLA.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4A343189-459C-4468-B393-52204E46026B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A1392299-C8DF-4391-A0E5-1ABA7C1DCC93"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option"> ssysv_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option"> dsysv_aa</span></p>
+<p><span class="keyword"> COMPLEX</span> for <span class="option">csysv_aa</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsysv_aa</span></p>
+<p>On exit, if <span class="parmname">info</span> = 0, the tridiagonal matrix T and the multipliers used to obtain the factor U or L from the factorization A = U*T*U<sup>T</sup> or A = L*T*L<sup>T</sup> as computed by <span class="option">?sytrf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER </span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> On exit, it contains the details of the interchanges; that is, the row and column <var>k</var> of A were interchanged with the row and column ipiv(<var>k</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option"> ssysv_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytrs_aa</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csysv_aa</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsysv_aa</span></p>
+<p>On exit, if <span class="parmname">info</span> = 0, the <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> solution matrix X.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option"> ssysv_aa</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytrs_aa</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csysv_aa</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsysv_aa</span></p>
+<p>Array, dimension (MAX(1,<span class="parmname">lwork</span>)). On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span>(1) returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<ul id="GUID-6975A1AF-3D2E-45CB-BF2F-2835146B1DC3"><li>= 0: Successful exit.</li>
+<li>&lt; 0: If <span class="parmname">info</span> = <samp class="codeph"><var>-i</var></samp>, the <var>i</var><sup>th</sup> argument had an illegal value.</li>
+<li>&gt; 0: If <span class="parmname">info</span> = <var>i</var>, D(<var>i</var>,<var>i</var>) is exactly zero. The factorization has been completed, but the block diagonal matrix D is exactly singular, so the solution could not be computed.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

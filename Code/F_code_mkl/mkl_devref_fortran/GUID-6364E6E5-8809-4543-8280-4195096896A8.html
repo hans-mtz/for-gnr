@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?pbequ"/>
+<meta name="abstract" content="Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive-definite band matrix and reduce its condition number."/>
+<meta name="description" content="Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive-definite band matrix and reduce its condition number."/>
+<meta name="DC.subject" content="?pbequ, LAPACK routines, matrix equilibration"/>
+<meta name="keywords" content="?pbequ, LAPACK routines, matrix equilibration"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CA12B714-C79D-4598-B0A4-BF61F5B007BB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748.html#GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6364E6E5-8809-4543-8280-4195096896A8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?pbequ</title>
+
+</head>
+<body id="GUID-6364E6E5-8809-4543-8280-4195096896A8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?pbequ</span></h1>
+<!--Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive-definite band matrix and reduce its condition number.--><div><p class="shortdesc">Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive-definite band matrix and reduce its condition number.</p>
+<div class="section" id="GUID-06464888-0D04-4564-A019-43AB3055A756"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spbequ</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dpbequ</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cpbequ</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zpbequ</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pbequ</span><span class="delim">( </span><span class="var">ab</span><span class="sep">, </span><span class="var">s</span><span class="delim"> [</span><span class="sep">,</span><span class="var">scond</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">amax</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-BDBDEF6D-2EEA-48F4-A9B2-9A7DF4D9A1A6"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-4C9BE277-406C-4360-9C7E-934EF39E4499"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes row and column scalings intended to equilibrate a symmetric (Hermitian) positive definite band matrix <var>A</var> and reduce its condition number (with respect to the two-norm). <span>The output array <var>s</var> returns scale factors such that <samp class="codeph"><span class="parmname">s</span>(<var>i</var>)</samp><samp class="codeph"><span class="parmname">s</span>[<var>i</var> + 1]</samp> contains</span></p>
+<p><br/><div class="imagecenter"><img src="GUID-8C61FC11-4AFB-4B5B-A6ED-252CA0C1B59D-low.jpg" width="116" height="60" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>These factors are chosen so that the scaled matrix <var>B</var> with elements <samp class="codeph"><var>b</var><sub class="subb"><var>i</var><var>j</var></sub>=<var>s</var>(i)*<var>a</var><sub class="subb"><var>i</var><var>j</var></sub>*<var>s</var>(j)</samp> has diagonal elements equal to 1. This choice of <var>s</var> puts the condition number of <var>B</var> within a factor <var>n</var> of the smallest possible condition number over all possible diagonal scalings.</p>
+<p>See <a href="GUID-7AFADF87-109F-47EC-B3B7-20ABBB07C2A1.html#GUID-7AFADF87-109F-47EC-B3B7-20ABBB07C2A1"><span class="option">?laqsb</span></a> auxiliary function that uses scaling factors computed by <span class="option">?pbequ</span>.</p>
+</div>
+<div class="section" id="GUID-0249436F-14DC-4CE7-AF84-C69AD97FA156"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored in the array <var>ab</var>: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>ab</var> stores the upper triangular part of the matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>ab</var> stores the lower triangular part of the matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">kd</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of superdiagonals or subdiagonals in the matrix <var>A</var>; <var>kd</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">spbequ</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dpbequ</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpbequ</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpbequ</span>.</p>
+<p>Array, size <span><var>ldab</var> by *</span>.  </p>
+<p>The array <var>ap</var> contains either the upper or the lower triangular part of the matrix <var>A</var> (as specified by <var>uplo</var>) in <dfn class="term">band storage</dfn> (see <a class="allformats" href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>). </p>
+<p>The second dimension of <var>ab</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldab</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>ab</var>; <var>ldab</var><span class="eqsymbol">≥</span><var>kd</var> +1.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-51AD4F97-3C6D-4958-96C3-27C051E4A5BB"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">s</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Array, size  (<var>n</var>). </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the array <var>s</var> contains the scale factors for  <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">scond</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, <var>scond</var> contains the ratio of the smallest <samp class="codeph"><var>s</var>(i)</samp> to the largest <samp class="codeph"><var>s</var>(i)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">amax</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Absolute value of the largest element of the matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, the <var>i</var>-th diagonal element of <var>A</var> is nonpositive.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-2E8F569C-3595-4628-A147-7F1643712A6B"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">pbequ</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>A</var> of size (<samp class="codeph"><var>kd</var>+1,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">s</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-17542102-B8F7-496D-BFD1-856EA4BE4BFF"><h2 class="sectiontitle">Application Notes</h2><p>If <samp class="codeph"><var>scond</var><span class="eqsymbol">≥</span> 0.1</samp> and <var>amax</var> is neither too large nor too small, it is not worth scaling by <var>s</var>.</p>
+<p>If <var>amax</var> is very close to <span class="keyword">SMLNUM</span> or very close to <span class="keyword">BIGNUM</span>, the matrix <var>A</var> should be scaled.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CA12B714-C79D-4598-B0A4-BF61F5B007BB.html">Matrix Equilibration: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748.html#GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748">Error Analysis</a></div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

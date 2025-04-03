@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Supported Inspector-executor Sparse BLAS Operations"/>
+<meta name="DC.subject" content="Enter index keyword"/>
+<meta name="keywords" content="Enter index keyword"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5F55E186-B077-4FB8-827D-222793C5129D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-22D2B513-61B6-4231-8A7D-84B651130ECB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Supported Inspector-executor Sparse BLAS Operations</title>
+
+</head>
+<body id="GUID-22D2B513-61B6-4231-8A7D-84B651130ECB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"> Supported Inspector-executor Sparse BLAS Operations</h1>
+<div><p> The Inspector-executor Sparse BLAS API can perform several operations involving sparse matrices. These notations are used in the description of the operations: 
+    </p>
+<ul id="GUID-FC951656-5C34-4B05-B73A-8940B4CCC22B"><li><p><var>A</var>, 
+          <var>G</var>, 
+          <var>V</var> are sparse matrices 
+        </p>
+</li>
+<li><p><var>B</var> and 
+          <var>C</var> are dense matrices 
+        </p>
+</li>
+<li><p><var> x</var> and 
+          <var>y</var> are dense vectors 
+        </p>
+</li>
+<li><p><var> alpha</var> and 
+          <var>beta</var> are scalars 
+        </p>
+</li>
+</ul>
+<p><samp class="codeph">op(<var>A</var>)</samp> represents a possible transposition of matrix 
+      <var>A</var></p>
+<ul class="nobullet" id="GUID-7FB9DBC1-85DF-4D5F-BBF5-1B1697A63CF3"><li><p><samp class="codeph">op(<var>A</var>) = 
+            <var>A</var></samp></p>
+</li>
+<li><p><samp class="codeph">op(<var>A</var>) = 
+            <var>A</var><sup>T</sup></samp> - transpose of 
+          <var>A</var></p>
+</li>
+<li><p><samp class="codeph">op(<var>A</var>) = 
+            <var>A</var><sup>H</sup></samp> - conjugate transpose of 
+          <var>A</var></p>
+</li>
+</ul>
+<p><samp class="codeph">op(<var>A</var>)<sup>-1</sup></samp> denotes the inverse of 
+      <samp class="codeph">op(<var>A</var>)</samp>. 
+    </p>
+<p> The Inspector-executor Sparse BLAS routines support the following operations: 
+    </p>
+<ul id="GUID-CC2EA164-D529-4C9C-8D4D-D630E36AFB43"><li><p>computing the vector product between a sparse matrix and a dense vector: 
+          <pre><var>y</var> := <var>alpha</var>*op(<var>A</var>)*<var>x</var> + <var>beta</var>*<var>y</var></pre></p>
+</li>
+<li><p>solving a single triangular system: 
+          <pre><var>y</var> := <var>alpha</var>*<var>inv</var>(op(<var>A</var>))*<var>x</var></pre></p>
+</li>
+</ul>
+<ul id="GUID-6ACA7EA4-62BF-4628-A910-2A3CC549548F"><li><p>computing a product between a sparse matrix and a dense matrix: 
+          <pre><var>C</var> := <var>alpha</var>*op(<var>A</var>)*<var>B</var> + <var>beta</var>*<var>C</var></pre></p>
+</li>
+<li> computing a product between sparse matrices with a sparse result: 
+        <pre><var>V</var> := <var>alpha</var>*op(<var>A</var>)*op(<var>G</var>)</pre></li>
+<li> computing a product between sparse matrices with a dense result: 
+        <pre><var>C</var> := <var>alpha</var>*op(<var>A</var>)*op(<var>G</var>)</pre></li>
+<li>computing a sum of sparse matrices with a sparse result: 
+        <pre><var>V</var> := <var>alpha</var>*op(<var>A</var>) + <var>G</var></pre></li>
+<li><p>solving a sparse triangular system with multiple right-hand sides: 
+          <pre><var>C</var> := <var>alpha</var>*<var>inv</var>(op(<var>A</var>))*<var>B</var></pre></p>
+</li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5F55E186-B077-4FB8-827D-222793C5129D.html">Inspector-executor Sparse BLAS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dss_statistics"/>
+<meta name="abstract" content="Returns statistics about various phases of the solving process."/>
+<meta name="description" content="Returns statistics about various phases of the solving process."/>
+<meta name="DC.subject" content="Sparse Solver, direct sparse solver interface, dss_statistics"/>
+<meta name="keywords" content="Sparse Solver, direct sparse solver interface, dss_statistics"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-640CB61B-82AE-4E67-9A13-F509F3EF61C0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dss_statistics</title>
+
+</head>
+<body id="GUID-640CB61B-82AE-4E67-9A13-F509F3EF61C0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dss_statistics</span></h1>
+<!--Returns statistics about various phases of the solving process.--><div><p class="shortdesc">Returns statistics about various phases of the solving process.</p>
+<div class="section" id="GUID-5646EFB4-7E50-4919-AF06-EC1A15B4AE34"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_statistics</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">statArr</span><span class="sep">, </span><span class="var">retValues</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-601DA909-F119-4936-B8FC-E09B366EF14E"><h2 class="sectiontitle">Include Files</h2><ul id="d163e166"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_dss.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E22CF7CE-69B9-4EE2-9AC4-BB70C81ACBEF"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="keyword">dss_statistics</span> routine returns statistics about various phases of the solving process. This routine gathers the following statistics: <ul class="dash" id="GUID-D5434801-501E-4D5B-981A-C2B36A38AA20"><li><p>time taken to do reordering,</p>
+</li>
+<li><p>time taken to do factorization,</p>
+</li>
+<li><p>duration of problem solving,</p>
+</li>
+<li><p>determinant of the symmetric indefinite input matrix,</p>
+</li>
+<li><p>inertia of the symmetric indefinite input matrix,</p>
+</li>
+<li><p>number of floating point operations taken during factorization,</p>
+</li>
+<li><p>total peak memory needed during the analysis and symbolic factorization,</p>
+</li>
+<li><p>permanent memory needed from the analysis and symbolic factorization,</p>
+</li>
+<li><p>memory consumption for the factorization and solve phases.</p>
+</li>
+</ul>
+</p>
+<p>Statistics are returned in accordance with the input string specified by the parameter <span class="parmname">statArr</span>. The value of the statistics is returned in double precision in a return array, which you must allocate beforehand.</p>
+<p>For multiple statistics, multiple string constants separated by commas can be used as input. Return values are put into the return array in the same 
+order as specified in the input string.</p>
+<p>Statistics can only be requested at the appropriate stages of the solving process. For example, requesting <span class="keyword">FactorTime</span> before a matrix is factored leads to an error.</p>
+<p>The following table shows the point at which each individual statistics item can be requested:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL8-3" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Statistics Calling Sequences</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="20%" id="d734176e118">Type of Statistics</th>
+<th class="row-nocellborder" valign="top" width="80%" id="d734176e120">When to Call</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">ReorderTime</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_reorder</span> is completed successfully.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">FactorTime</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_factor_real</span> or <span class="keyword">dss_factor_complex</span> is completed successfully.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">SolveTime</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_solve_real</span> or <span class="keyword">dss_solve_complex</span> is completed successfully.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">Determinant</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_factor_real</span> or <span class="keyword">dss_factor_complex</span> is completed successfully.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">Inertia</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_factor_real</span> is completed successfully and the matrix is real, symmetric, and indefinite.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">Flops</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_factor_real</span> or <span class="keyword">dss_factor_complex</span> is completed successfully.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">Peakmem</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_reorder</span> is completed successfully.
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">Factormem</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_reorder</span> is completed successfully.
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d734176e118 "><span class="keyword">Solvemem</span></td>
+<td class="row-nocellborder" valign="top" width="80%" headers="d734176e120 ">After <span class="keyword">dss_factor_real</span> or <span class="keyword">dss_factor_complex</span> is completed successfully.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="GUID-FE37455D-9CD0-4727-9156-B7D9E14389F8"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">handle</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">TYPE (MKL_DSS_HANDLE)</span>, <span class="keyword">INTENT(IN)</span></p>
+<p> Pointer to the data structure storing internal DSS results (<span class="keyword">MKL_DSS_HANDLE</span>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">opt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Parameter to pass the DSS options.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">statArr</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Input string that defines the type of the returned statistics. The parameter can include one or more of the following string constants (case of the input string has no effect):
+</p>
+<p><dl id="GUID-0C44E95A-5FF4-465A-AC59-AFD18C05E632"><dt class="dlterm"><span class="keyword">ReorderTime </span></dt>
+
+<dd><p>Amount of time taken to do the reordering.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">FactorTime </span></dt>
+
+<dd><p>Amount of time taken to do the factorization.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">SolveTime </span></dt>
+
+<dd><p>Amount of time taken to solve the problem after factorization.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">Determinant </span></dt>
+
+<dd><p>Determinant of the matrix <var>A</var>. </p>
+<p>For real matrices:  the determinant is returned as <var class="varnamett">det_pow</var>, <var class="varnamett">det_base</var> in two consecutive return array locations, where <samp class="codeph">1.0 <span class="eqsymbol">≤</span> abs(<span class="parmname">det_base</span>) &lt; 10.0</samp> and <samp class="codeph"><span class="keyword">determinant</span> = <span class="parmname">det_base</span>*10<sup class="power">(<span class="parmname">det_pow</span>)</sup></samp>.</p>
+<p>For complex matrices: the determinant is returned as <span class="parmname">det_pow</span>, <span class="parmname">det_re</span>, <span class="parmname">det_im</span> in three consecutive return array locations, where <samp class="codeph">1.0 <span class="eqsymbol">≤</span>abs(<span class="parmname">det_re</span>) + abs(<span class="parmname">det_im</span>) &lt; 10.0</samp> and <samp class="codeph"><span class="keyword">determinant</span> = (<span class="parmname">det_re</span>, <span class="parmname">det_im</span>)*10<sup class="power">(<span class="parmname">det_pow</span>)</sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">Inertia</span></dt>
+
+<dd><p>Inertia of a real symmetric matrix is defined as a triplet of nonnegative integers <samp class="codeph">(<span class="parmname">p</span>,<span class="parmname">n</span>,<span class="parmname">z</span>)</samp>, where <span class="parmname">p</span> is the number of positive eigenvalues, <span class="parmname">n</span> is the number of negative eigenvalues, and <span class="parmname">z</span> is the number of zero eigenvalues.</p>
+<p><span class="keyword">Inertia</span> is returned as three consecutive return array locations  <span class="parmname">p</span>, <span class="parmname">n</span>, <span class="parmname">z</span>.</p>
+<p>Computing inertia can lead to incorrect results for matrixes with a cluster of eigenvalues which are near 0.</p>
+<p><span class="keyword">Inertia</span> of a <span class="parmname">k</span>-by-<span class="parmname">k</span> real symmetric positive definite matrix is always <samp class="codeph">(<span class="parmname">k</span>, 0, 0)</samp>. Therefore <span class="keyword">Inertia</span> is returned only in cases of real symmetric indefinite matrices. For all other matrix types, an error message is returned.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">Flops</span></dt>
+
+<dd><p>Number of floating point operations performed during the factorization.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">Peakmem</span></dt>
+
+<dd><p>Total peak memory in kilobytes that the solver needs during the analysis and symbolic factorization phase.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">Factormem</span></dt>
+
+<dd><p>Permanent memory in kilobytes that the solver needs from the analysis and symbolic factorization phase in the factorization and solve phases.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">Solvemem</span></dt>
+
+<dd><p>Total double precision memory consumption (kilobytes) of the solver for the factorization and solve phases.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr></table><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>To avoid problems in passing strings from Fortran to C, Fortran users must call the <span class="keyword">mkl_cvt_to_null_terminated_str</span> routine before calling <span class="keyword">dss_statistics</span>. Refer to the description of <a class="allformats" href="GUID-F7A8C06E-D63A-45F0-A459-85BCC471B4FA.html#GUID-F7A8C06E-D63A-45F0-A459-85BCC471B4FA"><span class="option">mkl_cvt_to_null_terminated_str</span></a> for details.</p>
+</div>
+</div>
+<div class="section" id="GUID-6931D7B8-98C1-4DBF-9F00-B16E04307057"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">retValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span></p>
+<p>Value of the statistics returned.</p>
+</td>
+</tr></table></div>
+<div class="section" id="CH8-EX1"><h2 class="sectiontitle">Finding 'time used to reorder' and 'inertia' of a matrix</h2><p>The example below illustrates the use of the <span class="keyword">dss_statistics</span> routine.</p>
+<p>To find the above values, call <span class="keyword">dss_statistics</span>(<span class="parmname">handle</span>, <span class="parmname">opt</span>, <span class="parmname">statArr</span>, <span class="parmname">retValue</span>), where <span class="parmname">staArr</span> is "<span class="keyword">ReorderTime</span>,<span class="keyword">Inertia</span>"</p>
+<p>In this example, <span class="parmname">retValue</span> has the following values:</p>
+<dl id="GUID-8CA332E5-70AE-407F-965F-1E898449271F"><dt class="dlterm"><samp class="codeph"><span class="parmname">retValue</span>[0]</samp></dt>
+
+<dd>Time to reorder.</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">retValue</span>[1]</samp></dt>
+
+<dd>Positive Eigenvalues.</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">retValue</span>[2]</samp></dt>
+
+<dd>Negative Eigenvalues.</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">retValue</span>[3]</samp></dt>
+
+<dd>Zero Eigenvalues.</dd>
+</dl>
+</div>
+<div class="section" id="RETURNVALUES_59A1E213DBE34235A64F2CF7ACF0EA44"><h2 class="sectiontitle">Return Values</h2><p><span class="keyword">MKL_DSS_SUCCESS</span></p>
+<p><span class="keyword">MKL_DSS_INVALID_OPTION</span></p>
+<p><span class="keyword">MKL_DSS_STATISTICS_INVALID_MATRIX</span></p>
+<p><span class="keyword">MKL_DSS_STATISTICS_INVALID_STATE</span></p>
+<p><span class="keyword">MKL_DSS_STATISTICS_INVALID_STRING</span></p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_TERM_LVL_ERR</span></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

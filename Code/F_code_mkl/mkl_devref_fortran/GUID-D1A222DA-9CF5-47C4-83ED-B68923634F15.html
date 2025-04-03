@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetrf_aa"/>
+<meta name="abstract" content="Computes the factorization of a complex hermitian matrix using Aasen's algorithm."/>
+<meta name="description" content="Computes the factorization of a complex hermitian matrix using Aasen's algorithm."/>
+<meta name="DC.subject" content="?hetrf_aa, chetrf_aa, zhetrf_aa, LAPACK routines"/>
+<meta name="keywords" content="?hetrf_aa, chetrf_aa, zhetrf_aa, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D1A222DA-9CF5-47C4-83ED-B68923634F15"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetrf_aa</title>
+
+</head>
+<body id="GUID-D1A222DA-9CF5-47C4-83ED-B68923634F15">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetrf_aa</span></h1>
+<!-- Computes the factorization of a complex hermitian matrix using Aasen's algorithm.--><div><p class="shortdesc"> Computes the factorization of a complex hermitian matrix using Aasen's algorithm.</p>
+<div id="SYNTAX_BFDE4A9E3EA44B0C8D9B8830AB99034E"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chetrf_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetrf_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_EE6274A89BC243A6B5299267DDA39AFA"><h2 class="sectiontitle">Description</h2><p><span class="option">?hetrf_aa</span> computes the factorization of a complex Hermitian matrix <var>A</var> using Aasen's algorithm. The form of the factorization is <var>A</var> = <var>U</var> * <var>T</var> * <var>U</var><sup>H</sup> or <span class="parmname">a</span> = L*T*L<sup>H</sup> where U (or L) is a product of permutation and unit upper (lower) triangular matrices, and T is a Hermitian tridiagonal matrix. This is the blocked version of the algorithm, calling Level 3 BLAS.</p>
+</div>
+<div class="section" id="ARGUMENTS_5C18BABCF37D4B0E8DDF3DE3B086EFC9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-80606A56-9AFE-4DDD-A2CF-879625A997EA"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>= 'U': Upper triangle of <var>A</var> is stored; = 'L': Lower triangle of <span class="parmname">a</span> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">chetrf_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zhetrf_aa</span></p>
+<p>Array of size <span>(<span class="parmname">lda</span>, <span class="parmname">n</span>)</span>. On entry, the Hermitian matrix <var>A</var>. </p>
+<p>If <span class="parmname">uplo</span> = 'U', the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of <span class="parmname">a</span> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <span class="parmname">a</span> is not referenced. </p>
+<p>If <span class="parmname">uplo</span> = 'L', the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of <span class="parmname">a</span> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <span class="parmname">a</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The length of <span class="parmname">work</span>. <span class="parmname">lwork</span><span class="eqsymbol">≥</span> 2*<span class="parmname">n</span>. For optimum performance <span class="parmname">lwork</span><span class="eqsymbol">≥</span><span class="parmname">n</span>*(1 + <var>nb</var>), where <var>nb</var> is the optimal block size. If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the routine only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by <span class="option">xerbla</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_F2135618940C40638EE1878C27D0205B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3EA99F5A-9055-4673-978E-EF1C3EBF080F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the tridiagonal matrix is stored in the diagonals and the subdiagonals of <span class="parmname">a</span> just below (or above) the diagonals, and <var>L</var> is stored below (or above) the subdiagonals, when <span class="parmname">uplo</span> is 'L' (or 'U').</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER </span>. </span>array, dimension (<span class="parmname">n</span>) On exit, it contains the details of the interchanges: the row and column <var>k</var> of <span class="parmname">a</span> were interchanged with the row and column <span class="parmname">ipiv</span><samp class="codeph">(<var>k</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">chetrf_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zhetrf_aa</span></p>
+<p>Array of size (max(1, <span class="parmname">lwork</span>)). On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <span class="parmname">info</span> = 0: successful exit &lt; 0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value,</p>
+<p>If <span class="parmname">info</span> &gt; 0: if <span class="parmname">info</span> = <var>i</var>, <var>D</var><sub><var>i</var>, <var>i</var></sub> is exactly zero. The factorization has been completed, but the block diagonal matrix <var>D</var> is exactly singular, and division by zero will occur if it is used to solve a system of equations.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

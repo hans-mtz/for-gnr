@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_get_dynamic"/>
+<meta name="abstract" content="Determines whether Intel&reg; oneAPI Math Kernel Library is enabled to dynamically change the number of OpenMP* threads."/>
+<meta name="description" content="Determines whether Intel&reg; oneAPI Math Kernel Library is enabled to dynamically change the number of OpenMP* threads."/>
+<meta name="DC.subject" content="threading control, mkl_get_dynamic, MKL_Get_Dynamic"/>
+<meta name="keywords" content="threading control, mkl_get_dynamic, MKL_Get_Dynamic"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C7B2A2A6-195C-43F3-A2EE-FA91F28BB069"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_get_dynamic</title>
+
+</head>
+<body id="GUID-C7B2A2A6-195C-43F3-A2EE-FA91F28BB069">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_get_dynamic</span></h1>
+<!--Determines whether Intel&reg; oneAPI Math Kernel Library is enabled to dynamically change the number of OpenMP* threads.--><div><p class="shortdesc">Determines whether Intel&reg; oneAPI Math Kernel Library is enabled to dynamically change the number of OpenMP* threads.</p>
+<div class="section" id="GUID-019289FF-ECD4-4BE0-BB9C-3D029EB4DD6A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">ret = mkl_get_dynamic</span><span class="sep">(</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7A40D630-A723-4787-A542-4F47C4D7A3D4"><h2 class="sectiontitle">Description</h2><p> This function returns the status of dynamic adjustment of the number of OpenMP* threads. To determine this status, the function inspects  the return value of the following function call and if it is undefined, inspects the  environment setting below:</p>
+<p><ul id="GUID-C1B3D4D1-ADAA-4CB5-928D-011B05DEFE34"><li><p>A  call to <a href="GUID-341B837A-9381-451D-B2BE-C049969CF545.html">mkl_set_dynamic</a></p>
+</li>
+<li><p>The <span class="keyword"> MKL_DYNAMIC</span> environment variable</p>
+</li>
+</ul>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> Dynamic adjustment of the number of threads is enabled  by default.</p>
+</div>
+<p>The dynamic adjustment works as follows.
+Suppose that  the <a href="GUID-87918C24-1FA2-411E-A27C-8413EACDB30F.html">mkl_get_max_threads</a>  function returns the number of threads equal to <var>N</var>. If dynamic adjustment is enabled, Intel&reg; oneAPI Math Kernel Library may request up to<var>N</var>threads, depending on the size of the problem. If dynamic adjustment is disabled, Intel&reg; oneAPI Math Kernel Library requests exactly<var>N</var> threads for
+internal parallel regions (provided it uses a threaded algorithm
+with at least <var>N</var>computations that can be done in parallel). However, the OpenMP* run-time library may be configured to supply fewer threads than Intel&reg; oneAPI Math Kernel Library requests, depending on the OpenMP* setting of dynamic adjustment.</p>
+</div>
+<div class="section" id="GUID-B73E925A-6E86-4C35-B284-4CB743E4916B"><h2 class="sectiontitle">Return Values</h2><p><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_13B3D675465F48FCA9E7E929287DC1FA" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1502406e125" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1502406e128" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1502406e131" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1502406e125"><p><span class="parmname">ret</span></p>
+</td>
+<td valign="top" headers="d1502406e128"><p><span class="keyword">INTEGER</span>*4</p>
+</td>
+<td valign="top" headers="d1502406e131"><p>0 - Dynamic adjustment of the number of threads is disabled.</p>
+<p>1 - Dynamic adjustment of the number of threads is enabled.</p>
+</td>
+</tr>
+</table>
+</p>
+</div>
+<div class="section" id="GUID-D9A6F918-33E2-440E-B2B0-8C6619837814"><h2 class="sectiontitle">Example</h2><pre>use mkl_service
+integer(4) :: nt
+…
+nt = mkl_get_max_threads()
+if (1 == <strong>mkl_get_dynamic()</strong>) then
+  print '("Intel MKL may use less than "I0" threads for a large problem")', nt
+else
+  print '("Intel MKL should use "I0" threads for a large problem")', nt
+end if
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html">Threading Control</a></div>
+</div>
+<div/>
+</body>
+</html>

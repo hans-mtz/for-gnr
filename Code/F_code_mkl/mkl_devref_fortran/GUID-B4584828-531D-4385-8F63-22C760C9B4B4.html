@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_?imatcopy"/>
+<meta name="abstract" content="Performs scaling and in-place transposition/copying of matrices."/>
+<meta name="description" content="Performs scaling and in-place transposition/copying of matrices."/>
+<meta name="DC.subject" content="mkl_?imatcopy, BLAS-like transposition routines"/>
+<meta name="keywords" content="mkl_?imatcopy, BLAS-like transposition routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B4584828-531D-4385-8F63-22C760C9B4B4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_?imatcopy</title>
+
+</head>
+<body id="GUID-B4584828-531D-4385-8F63-22C760C9B4B4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_?imatcopy</span></h1>
+<!--Performs scaling and in-place transposition/copying of matrices.--><div><p class="shortdesc">Performs scaling and in-place transposition/copying of matrices.</p>
+<div class="section" id="GUID-B916A999-21AB-49D0-83E8-5615DA444CF7"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call mkl_simatcopy</span><span class="delim">(</span><span class="var">ordering</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">rows</span><span class="sep">, </span><span class="var">cols</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call mkl_dimatcopy</span><span class="delim">(</span><span class="var">ordering</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">rows</span><span class="sep">, </span><span class="var">cols</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call mkl_cimatcopy</span><span class="delim">(</span><span class="var">ordering</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">rows</span><span class="sep">, </span><span class="var">cols</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call mkl_zimatcopy</span><span class="delim">(</span><span class="var">ordering</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">rows</span><span class="sep">, </span><span class="var">cols</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3D0F11F7-728F-4015-9682-1E03E3D90CFA"><h2 class="sectiontitle">Include Files</h2><ul id="d163e46"><li id="d163e47"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D36C8E4D-D2E0-4A28-883C-AC9C5093C5B8"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">mkl_?imatcopy</span> routine performs scaling and in-place transposition/copying of matrices.  A transposition operation can be a normal matrix copy, a transposition, a conjugate transposition, or just a conjugation. The operation is defined as follows:</p>
+<p><samp class="codeph"><var>AB</var> := <var>alpha</var>*op(<var>AB</var>).</samp></p>
+<p>Parameter descriptions are common for all implemented interfaces with the exception of data types that refer here to the FORTRAN 77 standard types. Data types specific to the different interfaces are described in the section 
+        <strong>"Interfaces"</strong> below. 
+      </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Different arrays must not overlap.</p>
+</div>
+</div>
+<div class="section" id="GUID-5985C2D2-4BDB-4979-A873-B1993A5255E3"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B3182840-5A85-4D2B-AE02-49C1FFCA0B8F"><dt class="dlterm"><span class="parmname">ordering</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Ordering of the matrix storage.</p>
+<p>If <span class="parmname">ordering</span> = <span class="keyword">'R'</span> or <span class="keyword">'r'</span>, the ordering is row-major.</p>
+<p>If <span class="parmname">ordering</span> = <span class="keyword">'C'</span> or <span class="keyword">'c'</span>, the ordering is column-major.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Parameter that specifies the operation type.</p>
+<p>If <span class="parmname">trans</span> = <span class="keyword">'N'</span> or <span class="keyword">'n'</span>, <samp class="codeph">op(<var>AB</var>)=<var>AB</var></samp> and the matrix <var>AB</var> is assumed unchanged on input.</p>
+<p>If <span class="parmname">trans</span> = <span class="keyword">'T'</span> or <span class="keyword">'t'</span>, it is assumed that <var>AB</var> should be transposed.</p>
+<p>If <span class="parmname">trans</span> = <span class="keyword">'C'</span> or <span class="keyword">'c'</span>, it is assumed that <var>AB</var> should be conjugate transposed.</p>
+<p>If <span class="parmname">trans</span> = <span class="keyword">'R'</span> or <span class="keyword">'r'</span>, it is assumed that <var>AB</var> should be only conjugated.</p>
+<p>If the data is real, then <span class="parmname">trans</span> = <span class="keyword">'R'</span>
+is the same as <span class="parmname">trans</span> = <span class="keyword">'N'</span>, and 
+<span class="parmname">trans</span> = <span class="keyword">'C'</span>
+is the same as <span class="parmname">trans</span> = <span class="keyword">'T'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rows</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in matrix <var>AB</var> before the transpose operation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cols</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in matrix <var>AB</var> before the transpose operation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">mkl_simatcopy</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">mkl_dimatcopy</span>.</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">mkl_cimatcopy</span>.</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">mkl_zimatcopy</span>.</p>
+<p>Array<span>, size <samp class="codeph"><var>ab</var>(<var>lda</var>,*)</samp></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">mkl_simatcopy</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">mkl_dimatcopy</span>.</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">mkl_cimatcopy</span>.</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">mkl_zimatcopy</span>.</p>
+<p>This parameter scales the input matrix by <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Distance between the first
+elements in adjacent columns (in the case of the column-major order) or rows (in the case of the row-major order) in the source matrix; measured in the number of elements.</p>
+<p>This parameter must be at least <var>rows</var>
+if <span class="parmname">ordering</span> = <span class="keyword">'C'</span> or <span class="keyword">'c'</span>, and <samp class="codeph">max(1,<var>cols</var>)</samp> otherwise.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Distance between the first
+elements in adjacent columns (in the case of the column-major order) or rows (in the case of the row-major order) in the destination matrix; measured in the number of elements.</p>
+<p>To determine the minimum value of <span class="parmname">ldb</span>
+on output, consider the following guideline:</p>
+<p>If <span class="parmname">ordering</span> = <span class="keyword">'C'</span> or <span class="keyword">'c'</span>, then</p>
+<p><ul id="GUID-85159BC6-8061-4A41-B45B-A11D66A854FF"><li><p>If <span class="parmname">trans</span> = <span class="keyword">'T'</span> or <span class="keyword">'t'</span> or 
+<span class="keyword">'C'</span> or <span class="keyword">'c'</span>,
+this parameter must be at least <samp class="codeph">max(1,<var>cols</var>)</samp></p>
+</li>
+<li><p>If <span class="parmname">trans</span> = <span class="keyword">'N'</span> or <span class="keyword">'n'</span> or 
+<span class="keyword">'R'</span> or <span class="keyword">'r'</span>,
+this parameter must be at least <samp class="codeph">max(1,<var>rows</var>)</samp></p>
+</li>
+</ul>
+</p>
+<p>If <span class="parmname">ordering</span> = <span class="keyword">'R'</span> or <span class="keyword">'r'</span>, then</p>
+<p><ul id="GUID-1A799B4A-78BE-40C9-AF78-D74AB10D2B28"><li><p>If <span class="parmname">trans</span> = <span class="keyword">'T'</span> or <span class="keyword">'t'</span> or 
+<span class="keyword">'C'</span> or <span class="keyword">'c'</span>,
+this parameter must be at least <samp class="codeph">max(1,<var>rows</var>)</samp></p>
+</li>
+<li><p>If <span class="parmname">trans</span> = <span class="keyword">'N'</span> or <span class="keyword">'n'</span> or 
+<span class="keyword">'R'</span> or <span class="keyword">'r'</span>,
+this parameter must be at least <samp class="codeph">max(1,<var>cols</var>)</samp></p>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D7778C79-FBE1-4149-9D60-C613F7FF7977"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E1EE3FCE-C443-4059-946D-6162BF05638B"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">mkl_simatcopy</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">mkl_dimatcopy</span>.</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">mkl_cimatcopy</span>.</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">mkl_zimatcopy</span>.</p>
+<p>Array<span>, size <samp class="codeph"><var>ab</var>(<var>ldb</var>,*)</samp></span>.</p>
+<p>Contains the matrix <var>AB</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-50A250E3-A4F3-4AC5-8D1A-0046A8D86BEF"><h2 class="sectiontitle">Interfaces</h2><div class="section" id="GUID-5DBD442A-0A88-4F69-9F26-3BD25D0E5A6C"><h2 class="sectiontitle">FORTRAN 77:</h2><pre>SUBROUTINE mkl_simatcopy ( ordering, trans, rows, cols, alpha, ab, lda, ldb )
+   CHARACTER*1 ordering, trans
+   INTEGER rows, cols, src_ld, dst_ld
+   REAL ab(*), alpha*</pre><p/>
+<pre>SUBROUTINE mkl_dimatcopy ( ordering, trans, rows, cols, alpha, ab, lda, ldb )
+   CHARACTER*1 ordering, trans
+   INTEGER rows, cols, src_ld, dst_ld
+   DOUBLE PRECISION ab(*), alpha*</pre><p/>
+<pre>SUBROUTINE mkl_cimatcopy ( ordering, trans, rows, cols, alpha, ab, lda, ldb )
+   CHARACTER*1 ordering, trans
+   INTEGER rows, cols, src_ld, dst_ld
+   COMPLEX ab(*), alpha*</pre><p/>
+<pre>SUBROUTINE mkl_zimatcopy ( ordering, trans, rows, cols, alpha, ab, lda, ldb )
+   CHARACTER*1 ordering, trans
+   INTEGER rows, cols, src_ld, dst_ld
+   DOUBLE COMPLEX ab(*), alpha*</pre></div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?amax"/>
+<meta name="abstract" content="Computes the global index of the element of a distributed vector with maximum absolute value."/>
+<meta name="description" content="Computes the global index of the element of a distributed vector with maximum absolute value."/>
+<meta name="DC.subject" content="p?amax, psamax, pdamax, pcamax, pzamax, PBLAS Level 1 functions, distributed vectors, global index of maximum element, global index of maximum element of a distributed vector"/>
+<meta name="keywords" content="p?amax, psamax, pdamax, pcamax, pzamax, PBLAS Level 1 functions, distributed vectors, global index of maximum element, global index of maximum element of a distributed vector"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97D8DD69-5008-4E67-B918-47BE1B36FEAE.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BC52A15B-A9D5-4063-AEC0-E71CBBB26E03"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?amax</title>
+
+</head>
+<body id="GUID-BC52A15B-A9D5-4063-AEC0-E71CBBB26E03">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?amax</span></h1>
+<!--Computes the global index of the element of a distributed vector
+ with maximum absolute value.--><div><p class="shortdesc">Computes the global index of the element of a distributed vector
+ with maximum absolute value.</p>
+<div class="section" id="GUID-59CBD204-B2CD-4D7D-85FD-F55458568843"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-94BDA981-2E01-4593-9A05-9D6E9C775DA2"><h2 class="sectiontitle">Include Files</h2><ul id="d163e233"><li id="d163e234"><span class="filepath">mkl_pblas.h</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B8C1E42D-F3DF-4D5B-9D24-A60B398F9E72"><h2 class="sectiontitle">Description</h2><p>The functions <span class="option">p?amax</span> compute global index of the maximum element in absolute value of a
+distributed vector
+<samp class="codeph">sub(<var>x</var>)</samp>,</p>
+<p>where <samp class="codeph">sub(<var>x</var>)</samp>
+denotes <samp class="codeph"><var>X</var>(<span class="parmname">ix</span>, <span class="parmname">jx</span>:<span class="parmname">jx</span>+<span class="parmname">n</span>-1)</samp> if <samp class="codeph"><span class="parmname">incx</span>=<span class="parmname">m_x</span></samp>, and <samp class="codeph"><var>X</var>(<span class="parmname">ix</span>: <span class="parmname">ix</span>+<span class="parmname">n</span>-1, <span class="parmname">jx</span>)</samp> if <samp class="codeph"><span class="parmname">incx</span>= 1</samp>.</p>
+</div>
+<div class="section" id="GUID-9FA0C05A-9A6A-448B-B389-8EF8E9DCE8D4"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-9769D538-BC8B-44FF-85E6-E38C12B1A225"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The length of distributed vector <samp class="codeph">sub(<var>x</var>)</samp>, <span class="parmname">n</span><span class="eqsymbol">≥</span>0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local)<span><span class="keyword"> REAL</span>  for <span class="option">psamax</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdamax</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcamax</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzamax</span></p>
+<p>Array, size
+		<samp class="codeph">(<span class="parmname">jx</span>-1)*<span class="parmname">m_x</span> + <span class="parmname">ix</span>+(<span class="parmname">n</span>-1)*abs(<span class="parmname">incx</span>))</samp>.</p>
+<p>This array contains the entries of the distributed vector <samp class="codeph">sub(<var>x</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span>, <span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>X</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>X</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>Specifies the increment for the elements of <samp class="codeph">sub(<var>x</var>)</samp>. Only two values are supported, namely 1 and <span class="parmname">m_x</span>. <span class="parmname">incx</span> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D6369BE1-57DD-4BB4-8D08-E09176F377C8"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AF249CA5-7B58-4A54-B136-3A5C2BCFD7A8"><dt class="dlterm"><span class="parmname">amax</span></dt>
+
+<dd><p>(global)<span><span class="keyword">REAL</span>  for <span class="option">psamax</span></span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdamax</span>.</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcamax</span>.</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzamax</span>.</p>
+<p>Maximum absolute value (magnitude) of elements of the distributed vector only in its scope.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The global index of the maximum element in absolute value of the
+distributed vector <samp class="codeph">sub(<var>x</var>)</samp> only in its scope.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-97D8DD69-5008-4E67-B918-47BE1B36FEAE.html">PBLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

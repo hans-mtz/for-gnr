@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Improving Performance for Small Size Problems"/>
+<meta name="DC.subject" content="kernel, in Intel&reg; Math Kernel Library, direct call to, performance improvement, for matrices of small sizes, improve performance, for matrices of small sizes, direct call, to Intel&reg; Math Kernel Library computational kernels"/>
+<meta name="keywords" content="kernel, in Intel&reg; Math Kernel Library, direct call to, performance improvement, for matrices of small sizes, improve performance, for matrices of small sizes, direct call, to Intel&reg; Math Kernel Library computational kernels"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7214C4EB-62E3-4BA2-A5FE-947F252EB8D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6DCF437C-6360-4432-8E0E-A651EEEAA7F7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-196E8282-8FA7-4A50-B31B-524C83AC2B33.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E8140254-4691-4A21-BFFF-0C0578B58C5F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-37597746-F7FE-47A8-9A9D-7521972A3A24"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Improving Performance for Small Size Problems</title>
+
+</head>
+<body id="GUID-37597746-F7FE-47A8-9A9D-7521972A3A24">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1"> Improving Performance for Small Size Problems </h1>
+<div id="GUID-D8F7B717-D1F5-49A7-BF30-755696A4A720"><p id="GUID-CAD82E90-C30A-4666-874A-2117FB339B7F">The overhead of calling an 
+      Intel&reg; oneAPI Math Kernel Library function for small problem sizes can be significant when the functionhas a large number of parameters or internally checks parameter errors. To reduce the performance overhead for these small size problems, the 
+      Intel&reg; oneAPI Math Kernel Library<em>direct call</em>feature works in conjunction with the compiler to preprocess the calling parameters to supported 
+      Intel&reg; oneAPI Math Kernel Library functions and directly call or inline special optimized small-matrix kernels that bypass error checking.For a list of functions supporting direct call, see 
+      <a href="GUID-E8140254-4691-4A21-BFFF-0C0578B58C5F.html">Limitations of the Direct Call</a>. 
+    </p>
+<p>To activate the feature, do the following: 
+    </p>
+<ul id="GUID-6B855267-C67E-4682-94BB-3933ED1A636E"><li><p>Compile your C or Fortran code with the preprocessor macro depending on whether a threaded or sequential mode of 
+          Intel&reg; oneAPI Math Kernel Library is required by supplying the compiler option as explained below:
+        </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-CF88C68F-465B-4065-9F11-D35CA472293E" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="NaN%" id="d6448e61"><p>Intel&reg; oneAPI Math Kernel Library Mode
+                  </p>
+</th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d6448e67"><p>Macro 
+                  </p>
+</th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d6448e70"><p>Compiler Option 
+                  </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="NaN%" headers="d6448e61 "><p>Threaded 
+                  </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d6448e67 "><span class="keyword"> MKL_DIRECT_CALL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d6448e70 "><span>-</span><span class="keyword">DMKL_DIRECT_CALL</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d6448e61 "><p>Sequential 
+                  </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d6448e67 "><span class="keyword">MKL_DIRECT_CALL_SEQ</span></td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d6448e70 "><span>-</span><span class="keyword">DMKL_DIRECT_CALL_SEQ</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p>For Fortran applications: 
+        </p>
+<ul id="GUID-9FD4593E-6483-433E-9CB5-BDF0D1630DB4"><li>Enable preprocessor by using the 
+            <span>-</span><span class="keyword">fpp</span> option for Intel&reg; Fortran Compiler. 
+          </li>
+<li>Include the 
+            Intel&reg; oneAPI Math Kernel Library Fortran include file<span class="filepath">mkl_direct_call.fi</span>. 
+          </li>
+</ul>
+</li>
+</ul>
+<p>Intel&reg; oneAPI Math Kernel Library skips error checking and intermediate function calls if the problem size is small enough (for example: a call to a function that supports direct call, such as<span class="option">dgemm</span>, with matrix ranks smaller than 50). 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-5CB3C690-2EED-483E-B460-D733BB864E8B" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d6448e131"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d6448e131 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7214C4EB-62E3-4BA2-A5FE-947F252EB8D9.html">Managing Performance and Memory</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-6DCF437C-6360-4432-8E0E-A651EEEAA7F7.html">Using MKL_DIRECT_CALL in C Applications</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-196E8282-8FA7-4A50-B31B-524C83AC2B33.html">Using MKL_DIRECT_CALL in Fortran Applications</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-E8140254-4691-4A21-BFFF-0C0578B58C5F.html">Limitations of the Direct Call</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

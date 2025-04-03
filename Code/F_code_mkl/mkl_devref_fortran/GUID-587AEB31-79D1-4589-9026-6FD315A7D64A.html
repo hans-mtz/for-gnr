@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lanv2"/>
+<meta name="abstract" content="Computes the Schur factorization of a real 2-by-2 nonsymmetric matrix in standard form."/>
+<meta name="description" content="Computes the Schur factorization of a real 2-by-2 nonsymmetric matrix in standard form."/>
+<meta name="DC.subject" content="?lanv2, LAPACK routines, auxiliary routines, 2-by-2 real nonsymmetric matrix, Schur factorization"/>
+<meta name="keywords" content="?lanv2, LAPACK routines, auxiliary routines, 2-by-2 real nonsymmetric matrix, Schur factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-587AEB31-79D1-4589-9026-6FD315A7D64A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lanv2</title>
+
+</head>
+<body id="GUID-587AEB31-79D1-4589-9026-6FD315A7D64A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lanv2</span></h1>
+<!--Computes the Schur factorization of a real 2-by-2 nonsymmetric matrix in standard form.--><div><p class="shortdesc">Computes the Schur factorization of a real 2-by-2 nonsymmetric matrix in standard form.</p>
+<div class="section" id="GUID-30159DCC-68A7-4C2B-89F1-F2788871262E"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slanv2</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">rt1r</span><span class="sep">, </span><span class="var">rt1i</span><span class="sep">, </span><span class="var">rt2r</span><span class="sep">, </span><span class="var">rt2i</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlanv2</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">rt1r</span><span class="sep">, </span><span class="var">rt1i</span><span class="sep">, </span><span class="var">rt2r</span><span class="sep">, </span><span class="var">rt2i</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-AB41F327-C360-4B24-B808-6B83653613E3"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-37734037-19EA-44B0-88C7-F581446E6B99"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the Schur factorization of a real 2-by-2 nonsymmetric matrix in standard form:</p>
+<p><br/><div class="imagecenter"><img src="GUID-D94281D6-5C9E-4336-A379-A99C3A939D6C-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where either</p>
+<ol id="GUID-F6248E8C-7F99-4A6D-86ED-EBF96A153616"><li><p><samp class="codeph"><var>cc</var> = 0</samp> so that <var>aa</var> and <var>dd</var> are real eigenvalues of the matrix, or</p>
+</li>
+<li><p><samp class="codeph"><var>aa</var> = <var>dd</var></samp> and <samp class="codeph"><var>bb</var>*<var>cc</var> &lt; 0</samp>, so that <samp class="codeph"><var>aa</var><span class="eqsymbol">±</span> sqrt(<var>bb</var>*<var>cc</var>)</samp> are complex conjugate eigenvalues.</p>
+</li>
+</ol>
+<p>The routine was adjusted to reduce the risk of cancellation errors, when computing real eigenvalues, and to ensure, if possible, that <samp class="codeph">abs(<var>rt1r</var>) <span class="eqsymbol">≥</span> abs(<var>rt2r</var>)</samp>.</p>
+</div>
+<div class="section" id="GUID-4FE95E88-E59D-4422-B382-B0423F4324D2"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B28CB0D4-261B-44F5-9214-E504F7CDA3F5"><dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span>, <span class="parmname">c</span>, <span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slanv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlanv2</span>.</p>
+<p>On entry, elements of the input matrix.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4109BD90-D10F-4B69-813A-046D961A7946"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F3B17DB5-9F45-4D29-85DC-55EA27D95EFA"><dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span>, <span class="parmname">c</span>, <span class="parmname">d</span></dt>
+
+<dd><p>On exit, overwritten by the elements of the standardized Schur form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rt1r</span>, <span class="parmname">rt1i</span>, <span class="parmname">rt2r</span>, <span class="parmname">rt2i</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slanv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlanv2</span>. </p>
+<p>The real and imaginary parts of the eigenvalues.</p>
+<p>If the eigenvalues are a complex conjugate pair, <samp class="codeph"><span class="parmname">rt1i</span> &gt; 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cs</span>, <span class="parmname">sn</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slanv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlanv2</span>.</p>
+<p>Parameters of the rotation matrix.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

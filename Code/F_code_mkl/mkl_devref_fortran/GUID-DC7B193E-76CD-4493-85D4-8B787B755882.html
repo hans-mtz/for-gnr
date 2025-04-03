@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larrk"/>
+<meta name="abstract" content="Computes one eigenvalue of a symmetric tridiagonal matrix T to suitable accuracy."/>
+<meta name="description" content="Computes one eigenvalue of a symmetric tridiagonal matrix T to suitable accuracy."/>
+<meta name="DC.subject" content="?larrk, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?larrk, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DC7B193E-76CD-4493-85D4-8B787B755882"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larrk</title>
+
+</head>
+<body id="GUID-DC7B193E-76CD-4493-85D4-8B787B755882">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larrk</span></h1>
+<!--Computes one eigenvalue of a symmetric tridiagonal
+matrix  T  to suitable accuracy.--><div><p class="shortdesc">Computes one eigenvalue of a symmetric tridiagonal
+matrix <var>T</var> to suitable accuracy.</p>
+<div class="section" id="GUID-19D0A643-84CD-4468-AE9F-B2AF8B694426"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarrk</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">iw</span><span class="sep">, </span><span class="var">gl</span><span class="sep">, </span><span class="var">gu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">reltol</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarrk</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">iw</span><span class="sep">, </span><span class="var">gl</span><span class="sep">, </span><span class="var">gu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">reltol</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-981DE4CA-F2EB-4590-808E-B4364F8B4712"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7866D835-E5DE-4542-859F-DE7CC96C7AEF"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes one eigenvalue of a symmetric tridiagonal matrix <var>T</var> to suitable accuracy. This is an auxiliary code to be called from <span class="option">?stemr</span>.
+</p>
+<p>To avoid overflow, the matrix must be scaled so that its largest element is no greater than <samp class="codeph">(overflow<sup>1/2</sup>*underflow<sup>1/4</sup>)</samp> in absolute value, and for greatest accuracy, it should not be much smaller than that.   For more details see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#KAHAN66">Kahan66</a>].</p>
+</div>
+<div class="section" id="GUID-663FB7CC-8D15-48DC-8B3A-0D621AE0434F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7C54F68B-8AC0-4AD6-A22F-413C58BD2655"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>T</var>. (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 1</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iw</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+The index of the eigenvalue to be returned.</dd>
+<dd class="ddexpand"><p/>
+</dd>
+<dt class="dlterm"><span class="parmname">gl</span>, <span class="parmname">gu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+An upper and a lower bound on the eigenvalue.</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>Contains <span class="parmname">n</span> diagonal elements of the matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<samp class="codeph"><var>n</var>-1</samp>).</p>
+<p>Contains <samp class="codeph">(<span class="parmname">n</span>-1)</samp> squared off-diagonal elements of the <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+<p>The minimum pivot in the Sturm sequence for the matrix  <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">reltol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+<p>The minimum relative width of an interval.  When an interval is narrower than <span class="parmname">reltol</span> times the larger (in magnitude) endpoint, then it is considered to be sufficiently small, that is converged. Note: this should always be at least <samp class="codeph"><var>radix</var>*<var>machine epsilon</var></samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7F14A3BA-6468-41E2-BB37-BE2F5518C0DE"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3788471C-3204-439C-AE2F-9DCBCF15EF79"><dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+<p>Contains the eigenvalue approximation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrk</span></p>
+<p>Contains the error bound on the corresponding eigenvalue approximation in <span class="parmname">w</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><samp class="codeph">= 0:</samp>       Eigenvalue converges</p>
+<p><samp class="codeph">= -1:</samp>      Eigenvalue does not converge</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

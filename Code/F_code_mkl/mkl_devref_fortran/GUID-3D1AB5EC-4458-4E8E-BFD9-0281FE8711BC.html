@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laebz"/>
+<meta name="abstract" content="Computes the number of eigenvalues of a real symmetric tridiagonal matrix which are less than or equal to a given value, and performs other tasks required by the routine ?stebz."/>
+<meta name="description" content="Computes the number of eigenvalues of a real symmetric tridiagonal matrix which are less than or equal to a given value, and performs other tasks required by the routine ?stebz."/>
+<meta name="DC.subject" content="?laebz, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary, real symmetric tridiagonal matrix"/>
+<meta name="keywords" content="?laebz, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary, real symmetric tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3D1AB5EC-4458-4E8E-BFD9-0281FE8711BC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laebz</title>
+
+</head>
+<body id="GUID-3D1AB5EC-4458-4E8E-BFD9-0281FE8711BC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laebz</span></h1>
+<!--Computes the number of eigenvalues of a real symmetric tridiagonal matrix which are less than or equal to a given value, and performs other tasks required by the routine  ?stebz .--><div><p class="shortdesc">Computes the number of eigenvalues of a real symmetric tridiagonal matrix which are less than or equal to a given value, and performs other tasks required by the routine <span class="option">?stebz</span>.</p>
+<div class="section" id="GUID-EF251378-96B0-49DE-8646-566DE265F598"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaebz</span><span class="delim">( </span><span class="var">ijob</span><span class="sep">, </span><span class="var">nitmax</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mmax</span><span class="sep">, </span><span class="var">minp</span><span class="sep">, </span><span class="var">nbmin</span><span class="sep">, </span><span class="var">abstol</span><span class="sep">, </span><span class="var">reltol</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">nval</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">mout</span><span class="sep">, </span><span class="var">nab</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaebz</span><span class="delim">( </span><span class="var">ijob</span><span class="sep">, </span><span class="var">nitmax</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mmax</span><span class="sep">, </span><span class="var">minp</span><span class="sep">, </span><span class="var">nbmin</span><span class="sep">, </span><span class="var">abstol</span><span class="sep">, </span><span class="var">reltol</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">nval</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">mout</span><span class="sep">, </span><span class="var">nab</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-3736ED7D-7C0E-4E99-8E4B-D52127EB6D40"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-688E4B56-E17D-4668-8C1F-CF7EBF0BE4EA"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="keyword">?laebz</span> contains the iteration loops which compute and use the function <var>n</var>(<var>w</var>), which is the count of eigenvalues of a symmetric tridiagonal matrix <var>T</var> less than or equal to its argument <var>w</var>. It performs a choice of two types of loops:</p>
+<dl id="GUID-41A0356B-FDFE-4740-A447-84C778B619B0"><dt class="dlterm"><span class="parmname">ijob</span></dt>
+
+<dd><p>=1, followed by</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ijob</span></dt>
+
+<dd><p>=2:  It takes as input a list of intervals and returns a list of sufficiently small intervals whose union contains the same eigenvalues as the union of the original intervals. The input intervals are <samp class="codeph">(<var>ab</var>(j,1),<var>ab</var>(j,2)], j=1,...,<var>minp</var></samp>. The output interval <samp class="codeph">(<var>ab</var>(j,1),<var>ab</var>(j,2)]</samp> will contain eigenvalues <samp class="codeph"><var>nab</var>(j,1)+1,...,<var>nab</var>(j,2)</samp>, where <samp class="codeph">1 ≤ j ≤ <var>mout</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ijob</span></dt>
+
+<dd><p>=3:  It performs a binary search in each input interval <samp class="codeph">(<var>ab</var>(j,1),<var>ab</var>(j,2)]</samp> for a point <var>w</var>(<var>j</var>) such that <samp class="codeph"><var>n</var>(<var>w</var>(<var>j</var>))=<var>nval</var>(<var>j</var>)</samp>, and uses <var>c</var>(<var>j</var>)  as the starting point of the search. If such a <var>w</var>(<var>j</var>) is found, then on output <samp class="codeph"><var>ab</var>(j,1)=<var>ab</var>(j,2)=<var>w</var></samp>. If no such <var>w</var>(<var>j</var>) is found, then on output <samp class="codeph">(<var>ab</var>(j,1),<var>ab</var>(j,2)]</samp> will be a small interval containing the point where <var>n</var>(<var>w</var>) jumps through <var>nval</var>(<var>j</var>), unless that point lies outside the initial interval.</p>
+</dd>
+</dl>
+<p>Note that the intervals are in all cases half-open intervals, that is, of the form <samp class="codeph">(<var>a</var>,<var>b</var>]</samp>, which includes <var>b</var> but not <var>a</var> .</p>
+<p>To avoid underflow, the matrix should be scaled so that its largest element is no greater than <samp class="codeph"><var>overflow</var><sup class="power">1/2</sup> * <var>overflow</var><sup class="power">1/4</sup></samp> in absolute value. To assure the most accurate computation of small eigenvalues, the matrix should be scaled to be not much smaller than that, either.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>In general, the arguments are not checked for unreasonable values.</p>
+</div>
+</div>
+<div class="section" id="GUID-E90F76E5-D7FC-4DE0-980F-79AF4E8DE32F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BC6A5601-43E5-4475-B2EF-E4FCF476A8E2"><dt class="dlterm"><span class="parmname">ijob</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Specifies what is to be done:</p>
+<p>= 1: Compute <var>nab</var> for the initial intervals.</p>
+<p>= 2: Perform bisection iteration to find eigenvalues of <var>T</var>.</p>
+<p>= 3: Perform bisection iteration to invert <var>n</var>(<var>w</var>), i.e., to find a point which has a specified number of eigenvalues of <var>T</var> to its left. Other values will cause <span class="option">?laebz</span> to return with <samp class="codeph"><var>info</var>=-1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nitmax</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The maximum number of "levels" of bisection to be performed, i.e., an interval of width <var>W</var> will not be made smaller than <samp class="codeph">2<sup class="power">-<span class="parmname">nitmax</span></sup>*<var>W</var></samp>. If not all intervals have converged after <var>nitmax</var> iterations, then <var>info</var> is set to the number of non-converged intervals.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The dimension <var>n</var> of the tridiagonal matrix <var>T</var>. It must be at least 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mmax</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The maximum number of intervals. If more than <var>mmax</var> intervals are generated, then <span class="option">?laebz</span> will quit with <samp class="codeph"><var>info</var>=<var>mmax</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">minp</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The initial number of intervals. It may not be greater than <var>mmax</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nbmin</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The smallest number of intervals that should be processed using a vector loop. If zero, then only the scalar loop will be used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">abstol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>The minimum (absolute) width of an interval. When an interval is narrower than <var>abstol</var>, or than <var>reltol</var> times the larger (in magnitude) endpoint, then it is considered to be sufficiently small, i.e., converged. This must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">reltol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>The minimum relative width of an interval. When an interval is narrower than <var>abstol</var>, or than <var>reltol</var> times the larger (in magnitude) endpoint, then it is considered to be sufficiently small, i.e., converged. Note: this should always be at least <samp class="codeph"><var>radix</var>*<var>machine</var><var>epsilon</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>The minimum absolute value of a "pivot" in the Sturm sequence loop. This value <strong>must</strong> be at least (<samp class="codeph">max |e(j)**2|*<var>safe_min</var></samp>) and at least <var>safe_min</var>, where <var>safe_min</var> is at least the smallest number that can divide one without overflow.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span>, <span class="parmname">e2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>Arrays, dimension (<var>n</var>) each. The array <var>d</var> contains the diagonal elements of the tridiagonal matrix <var>T</var>.</p>
+<p>The array <var>e</var> contains the off-diagonal elements of the tridiagonal matrix <var>T</var> in positions 1 through <var>n</var>-1. <var>e</var>(<var>n</var>)vis arbitrary.</p>
+<p>The array <var>e2</var> contains the squares of the off-diagonal elements of the tridiagonal matrix <var>T</var>. <var>e2</var>(<var>n</var>) is ignored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nval</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, dimension (<var>minp</var>).</p>
+<p>If <var>ijob</var>=1 or 2, not referenced. </p>
+<p>If <var>ijob</var>=3, the desired values of <var>n</var>(<var>w</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>Array, dimension (<var>mmax</var>,2) The endpoints of the intervals. <var>ab</var>(j,1) is <var>a</var>(<var>j</var>), the left endpoint of the <var>j</var>-th interval, and <var>ab</var>(j,2) is <var>b</var>(<var>j</var>), the right endpoint of the <var>j</var>-th interval. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>Array, dimension (<var>mmax</var>)</p>
+<p>If <var>ijob</var>=1, ignored. </p>
+<p>If <var>ijob</var>=2, workspace. </p>
+<p>If <var>ijob</var>=3, then on input <var>c</var>(<var>j</var>) should be initialized to the first search point in the binary search.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nab</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, dimension (<var>mmax</var>,2) </p>
+<p>If <var>ijob</var>=2, then on input, <var>nab</var>(i,j) should be set. It must satisfy the condition:</p>
+<p><samp class="codeph"><var>n</var>(<var>ab</var>(i,1)) ≤ <var>nab</var>(i,1) ≤ <var>nab</var>(i,2) ≤ <var>n</var>(<var>ab</var>(i,2))</samp>, which means that in interval i only eigenvalues <samp class="codeph"><var>nab</var>(i,1)+1,...,<var>nab</var>(i,2)</samp> are considered. Usually, <samp class="codeph"><var>nab</var>(i,j)=<var>n</var>(<var>ab</var>(i,j))</samp>, from a previous call to <span class="option">?laebz</span> with <var>ijob</var>=1. </p>
+<p>If <var>ijob</var>=3, normally, <var>nab</var> should be set to some distinctive value(s) before <span class="option">?laebz</span> is called.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaebz</span>. </p>
+<p>Workspace array, dimension (<var>mmax</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Workspace array, dimension (<var>mmax</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4A71E6D0-5518-4F36-93DE-C12089055421"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C2003B71-3C48-469D-9685-D81AD4098C00"><dt class="dlterm"><span class="parmname">nval</span></dt>
+
+<dd><p>The elements of <var>nval</var> will be reordered to correspond with the intervals in <var>ab</var>. Thus, <var>nval</var>(<var>j</var>) on output will not, in general be the same as <var>nval</var>(<var>j</var>) on input, but it will correspond with the interval (<samp class="codeph"><var>ab</var>(j,1),<var>ab</var>(j,2)]</samp> on output.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>The input intervals will, in general, be modified, split, and reordered by the calculation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mout</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <var>ijob</var>=1, the number of eigenvalues in the intervals. </p>
+<p>If <var>ijob</var>=2 or 3, the number of intervals output. </p>
+<p>If <var>ijob</var>=3, <var>mout</var> will equal <var>minp</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nab</span></dt>
+
+<dd><p>If <var>ijob</var>=1, then on output <var>nab</var>(i,j) will be set to <var>N</var>(<var>ab</var>(i,j)).</p>
+<p>If <var>ijob</var>=2, then on output, <var>nab</var>(i,j) will contain max(<var>na</var>(<var>k</var>, min(<var>nb</var>(<var>k</var>), <var>N</var>(<var>ab</var>(i,j)))), where <var>k</var> is the index of the input interval that the output interval (<var>ab</var>(j,1),<var>ab</var>(j,2)] came from, and <var>na</var>(<var>k</var>) and <var>nb</var>(<var>k</var>) are the input values of <var>nab</var>(<var>k</var>,1) and <var>nab</var>(<var>k</var>,2).</p>
+<p>If <var>ijob</var>=3, then on output, <var>nab</var>(i,j) contains <var>N</var>(<var>ab</var>(i,j)), unless <var>N</var>(<var>w</var>) &gt; <var>nval</var>(i) for all search points <var>w</var>, in which case <var>nab</var>(i,1) will not be modified, i.e., the output value will be the same as the input value (modulo reorderings, see <var>nval</var> and <var>ab</var>), or unless <var>N</var>(<var>w</var>) &lt; <var>nval</var>(i) for all search points <var>w</var>, in which case <var>nab</var>(i,2) will not be modified. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp> - all intervals converged</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 1--<span class="parmname">mmax</span></samp>  - the last <span class="parmname">info</span> interval did not converge.</p>
+<p>If <samp class="codeph">info = mmax+1</samp>   - more than <span class="parmname">mmax</span> intervals were generated</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B07B4DE5-605F-4D19-9CFA-8EC255D9D1B3"><h2 class="sectiontitle">Application Notes</h2><p>This routine is intended to be called only by other LAPACK routines, thus the interface is less user-friendly. It is intended for two purposes:</p>
+<p>(a) finding eigenvalues. In this case, <span class="option">?laebz</span> should have one or more initial intervals set up in <var>ab</var>, and <span class="option">?laebz</span> should be called with <var>ijob</var>=1. This sets up <var>nab</var>, and also counts the eigenvalues. Intervals with no eigenvalues would usually be thrown out at this point. Also, if not all the eigenvalues in an interval i are desired, <var>nab</var>(i,1) can be increased or <var>nab</var>(i,2) decreased. For example, set <var>nab</var>(i,1)=<var>nab</var>(i,2)-1 to get the largest eigenvalue. <span class="option">?laebz</span> is then called with <var>ijob</var>=2 and <var>mmax</var> no smaller than the value of <var>mout</var> returned by the call with <var>ijob</var>=1. After this (<var>ijob</var>=2) call, eigenvalues <var>nab</var>(i,1)+1 through <var>nab</var>(i,2) are approximately <var>ab</var>(i,1) (or <var>ab</var>(i,2)) to the tolerance specified by <var>abstol</var> and <var>reltol</var>.</p>
+<p>(b) finding an interval (<var>a</var>',<var>b</var>'] containing eigenvalues <var>w</var>(f),...,<var>w</var>(l). In this case, start with a Gershgorin interval (<var>a</var>,<var>b</var>). Set up <var>ab</var> to contain 2 search intervals, both initially (<var>a</var>,<var>b</var>). One <var>nval</var> element should contain f-1 and the other should contain l, while <var>c</var> should contain <var>a</var> and <var>b</var>, respectively. <var>nab</var>(i,1) should be -1 and <var>nab</var>(i,2) should be <var>n</var>+1, to flag an error if the desired interval does not lie in (<var>a</var>,<var>b</var>). <span class="option">?laebz</span> is then called with <var>ijob</var>=3. On exit, if <samp class="codeph"><var>w</var>(f-1) &lt; <var>w</var>(f)</samp>, then one of the intervals -- j -- will have <samp class="codeph"><var>ab</var>(j,1)=<var>ab</var>(j,2)</samp> and <samp class="codeph"><var>nab</var>(j,1)=<var>nab</var>(j,2)=f-1</samp>, while if, to the specified tolerance, <samp class="codeph"><var>w</var>(f-k)=...=<var>w</var>(f+r)</samp>, <samp class="codeph">k &gt; 0</samp> and <samp class="codeph">r <span class="eqsymbol">≥</span> 0</samp>, then the interval will have <samp class="codeph"><var>n</var>(<var>ab</var>(j,1))=<var>nab</var>(j,1)=f-k</samp> and <samp class="codeph"><var>n</var>(<var>ab</var>(j,2))=<var>nab</var>(j,2)=f+r</samp>. The cases <samp class="codeph"><var>w</var>(l) &lt; <var>w</var>(l+1)</samp> and <var>w</var>(l-r)=...=<var>w</var>(l+k) are handled similarly.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

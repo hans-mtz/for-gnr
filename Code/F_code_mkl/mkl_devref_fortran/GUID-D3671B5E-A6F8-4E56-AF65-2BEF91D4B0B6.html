@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?pbrfs"/>
+<meta name="abstract" content="Refines the solution of a system of linear equations with a band symmetric (Hermitian) positive-definite coefficient matrix and estimates its error."/>
+<meta name="description" content="Refines the solution of a system of linear equations with a band symmetric (Hermitian) positive-definite coefficient matrix and estimates its error."/>
+<meta name="DC.subject" content="?pbrfs, LAPACK routines, solution refinement and error estimation, refining solutions of linear equations, symmetric positive-definite matrix, band storage, Hermitian positive-definite matrix, errors in solutions of linear equations"/>
+<meta name="keywords" content="?pbrfs, LAPACK routines, solution refinement and error estimation, refining solutions of linear equations, symmetric positive-definite matrix, band storage, Hermitian positive-definite matrix, errors in solutions of linear equations"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D3671B5E-A6F8-4E56-AF65-2BEF91D4B0B6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?pbrfs</title>
+
+</head>
+<body id="GUID-D3671B5E-A6F8-4E56-AF65-2BEF91D4B0B6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?pbrfs</span></h1>
+<!--Refines the solution of a system of linear equations with a band symmetric (Hermitian) positive-definite coefficient matrix and estimates its error.--><div><p class="shortdesc">Refines the solution of a system of linear equations with a band symmetric (Hermitian) positive-definite coefficient matrix and estimates its error.</p>
+<div class="section" id="GUID-66874259-8796-4DB5-A988-FCB04CCFE23C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spbrfs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dpbrfs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cpbrfs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zpbrfs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pbrfs</span><span class="delim">( </span><span class="var">ab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">x</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ferr</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">berr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-137B3752-2333-499C-BB7F-F2585C493405"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-70739A60-3A40-4BBB-BA62-B3219F283086"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine performs an iterative refinement of the solution to a system of linear equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp> with a symmetric (Hermitian) positive definite band matrix <var>A</var>, with multiple right-hand sides. For each computed solution vector <var>x</var>, the routine computes the <dfn class="term">component-wise backward error</dfn><span class="eqsymbol">β</span>. This error is the smallest relative perturbation in elements of <var>A</var> and <var>b</var> such that <var>x</var> is the exact solution of the perturbed system:</p>
+<p><samp class="codeph">|<span class="eqsymbol">δ</span><var>a</var><sub class="subb"><var>i</var><var>j</var></sub>| <span class="eqsymbol">≤</span><span class="eqsymbol">β</span>|<var>a</var><sub class="subb"><var>i</var><var>j</var></sub>|, |<span class="eqsymbol">δ</span><var>b</var><sub class="subb"><var>i</var></sub>| <span class="eqsymbol">≤</span><span class="eqsymbol">β</span>|<var>b</var><sub class="subb"><var>i</var></sub>|</samp> such that <samp class="codeph">(<var>A</var> + <span class="eqsymbol">δ</span><var>A</var>)<var>x</var> = (<var>b</var> + <span class="eqsymbol">δ</span><var>b</var>)</samp>.</p>
+<p>Finally, the routine estimates the <dfn class="term">component-wise forward error</dfn> in the computed solution <samp class="codeph">||<var>x</var> - <var>x</var><sub><var>e</var></sub>||<sub><span class="eqsymbol">∞</span></sub>/||<var>x</var>||<sub><span class="eqsymbol">∞</span></sub></samp> (here <samp class="codeph"><var>x</var><sub><var>e</var></sub></samp> is the exact solution).</p>
+<p>Before calling this routine:</p>
+<ul id="GUID-5EA45907-6E96-4134-9402-F4B2B6B0831D"><li><p>call the factorization routine <a class="allformats" href="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html#GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D"><span class="option">?pbtrf</span></a></p>
+</li>
+<li><p>call the solver routine <a href="GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF.html#GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF"><span class="option">?pbtrs</span></a>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-E77825D6-D182-4F4D-8792-38750356FA7E"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates how the input matrix <var>A</var> has been factored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of <var>A</var> is stored. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of <var>A</var> is stored. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">kd</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of superdiagonals or subdiagonals in the matrix <var>A</var>; <var>kd</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nrhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides; <var>nrhs</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span>,<span class="parmname">afb</span>,<span class="parmname">b</span>,<span class="parmname">x</span>,<span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">spbrfs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dpbrfs</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpbrfs</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpbrfs</span>.</p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>ab</var>(<var>ldab</var>,*)</samp> contains the original band matrix <var>A</var>, as supplied to <a class="allformats" href="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html#GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D"><span class="option">?pbtrf</span></a>.</p>
+<p><samp class="codeph"><var>afb</var>(<var>ldafb</var>,*)</samp> contains the factored band matrix <var>A</var>, as returned by <a class="allformats" href="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html#GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D"><span class="option">?pbtrf</span></a>.</p>
+<p><samp class="codeph"><var>b</var>(<var>ldb</var>,*)</samp> contains the right-hand side matrix <var>B</var>.</p>
+<p><samp class="codeph"><var>x</var>(<var>ldx</var>,*)</samp> contains the solution matrix <var>X</var>.</p>
+<p><samp class="codeph"><var>work</var>(*)</samp> is a workspace array.</p>
+<p>The second dimension of <var>ab</var> and <var>afb</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>; the second dimension of <var>b</var> and <var>x</var> must be at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>; the dimension of <var>work</var> must be at least <samp class="codeph">max(1, 3*<var>n</var>)</samp> for real flavors and <samp class="codeph">max(1, 2*<var>n</var>)</samp> for complex flavors.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldab</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>ab</var>; <var>ldab</var><span class="eqsymbol">≥</span><var>kd</var> + 1.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldafb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>afb</var>; <var>ldafb</var><span class="eqsymbol">≥</span><var>kd</var> + 1.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldx</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>x</var>; <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">cpbrfs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zpbrfs</span>. </p>
+<p>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-C44C61C1-72FE-44DB-8014-DAA4CCAEF94F"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><p>The refined solution matrix <var>X</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ferr</span>, <span class="parmname">berr</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays, size at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>. Contain the component-wise forward and backward errors, respectively, for each solution vector.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <var>info</var> = 0, the execution is successful. </p>
+<p>If <var>info</var> = <var>-i</var>, the <var>i</var>-th parameter had an illegal value.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-43042216-66D3-4AC1-BA18-F0CCE69FCFE4"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">pbrfs</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span></p></td>
+
+<td valign="top" class="noborder"><p> Holds the array <var>A</var> of size (<var>kd</var>+1,<var> n</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">afb</span></p></td>
+
+<td valign="top" class="noborder"><p> Holds the array <var>AF</var> of size (<var>kd</var>+1,<var> n</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>B</var> of size (<var>n</var>,<var> nrhs</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>X</var> of size (<var>n</var>, <var>nrhs</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ferr</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>nrhs</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">berr</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>nrhs</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-40E2356C-A488-4965-BF70-049204EF6AE4"><h2 class="sectiontitle">Application Notes</h2><p>The bounds returned in <var>ferr</var> are not rigorous, but in practice they almost always overestimate the actual error.</p>
+<p>For each right-hand side, computation of the backward error involves a minimum of <samp class="codeph">8<var>n</var>*<var>kd</var></samp> floating-point operations (for real flavors) or <samp class="codeph">32<var>n</var>*<var>kd</var></samp> operations (for complex flavors). In addition, each step of iterative refinement involves <samp class="codeph">12<var>n</var>*<var>kd</var></samp> operations (for real flavors) or <samp class="codeph">48<var>n</var>*<var>kd</var></samp> operations (for complex flavors); the number of iterations may range from 1 to 5. </p>
+<p>Estimating the forward error involves solving a number of systems of linear equations <samp class="codeph"><var>A</var>*<var>x</var> = <var>b</var></samp>; the number is usually 4 or 5 and never more than 11. Each solution requires approximately <samp class="codeph">4<var>n</var>*<var>kd</var></samp> floating-point operations for real flavors or <samp class="codeph">16<var>n</var>*<var>kd</var></samp> for complex flavors.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D.html">Refining the Solution and Estimating Its Error: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lanhe"/>
+<meta name="abstract" content="Returns the value of the 1-norm, or the Frobenius norm, or the infinity norm, or the element of largest absolute value of a complex Hermitian matrix."/>
+<meta name="description" content="Returns the value of the 1-norm, or the Frobenius norm, or the infinity norm, or the element of largest absolute value of a complex Hermitian matrix."/>
+<meta name="DC.subject" content="?lanhe, LAPACK routines, auxiliary routines, complex Hermitian matrix, 1-norm value, LAPACK, Frobenius norm, infinity- norm, largest absolute value of element, infinity-norm"/>
+<meta name="keywords" content="?lanhe, LAPACK routines, auxiliary routines, complex Hermitian matrix, 1-norm value, LAPACK, Frobenius norm, infinity- norm, largest absolute value of element, infinity-norm"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-28C7A5F7-A4F3-40CA-9E42-BCA3302209CB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lanhe</title>
+
+</head>
+<body id="GUID-28C7A5F7-A4F3-40CA-9E42-BCA3302209CB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lanhe</span></h1>
+<!--Returns the value of the 1-norm, or the Frobenius norm, or the  infinity norm, or the element of  largest absolute value of a complex Hermitian matrix.--><div><p class="shortdesc">Returns the value of the 1-norm, or the Frobenius norm, or the  infinity norm, or the element of  largest absolute value of a complex Hermitian matrix.</p>
+<div class="section" id="GUID-CA343F5A-9C89-4558-977F-35FC9E761C9A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">clanhe</span><span class="delim">( </span><span class="var">norm</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">zlanhe</span><span class="delim">( </span><span class="var">norm</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-AE807471-994E-449A-BE9F-B8297FEAA9CC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5787C5CC-6801-4EAC-B32F-6273B1D9D010"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The function <span class="option">?lanhe</span> returns the value of the 1-norm, or the Frobenius norm, or the  infinity norm, or the  element of  largest absolute value  of a complex Hermitian matrix <var>A</var>.</p>
+</div>
+<div class="section" id="GUID-B86C2F37-FE79-4881-9276-ECA485DF2A22"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-7D1FF6F0-D789-4630-B4D6-999AA436C2F1"><dt class="dlterm"><span class="parmname">norm</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies the value to be returned by the routine:</p>
+<p> = <span class="keyword">'M'</span> or <span class="keyword">'m': </span><var>val</var> = <span class="keyword">max</span>(<span class="keyword">abs</span>(<var>A</var><sub class="subb"><var>i</var><var>j</var></sub>)), largest absolute value  of the matrix <var>A</var>.</p>
+<p>= <span class="keyword">'1'</span> or <span class="keyword">'O'</span> or <span class="keyword">'o': </span><var>val</var> = <span class="keyword">norm1</span>(<var>A</var>), 1-norm of the matrix <var>A</var> (maximum column sum),</p>
+<p>= <span class="keyword">'I'</span> or <span class="keyword">'i': </span><var>val</var> = <span class="keyword">normI</span>(<var>A</var>), infinity norm of the matrix <var>A</var> (maximum row sum),</p>
+<p>= <span class="keyword">'F'</span>, <span class="keyword">'f'</span>, <span class="keyword">'E'</span>  or <span class="keyword">'e': </span><var>val</var> = <span class="keyword">normF</span>(<var>A</var>), Frobenius norm of the matrix <var>A</var> (square root of sum of squares).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the Hermitian matrix <var>A</var> is to be referenced.</p>
+<p>= <span class="keyword">'U'</span>:  Upper triangular part of <var>A</var> is referenced.</p>
+<p>= <span class="keyword">'L'</span>:  Lower triangular part of <var>A</var> is referenced</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>. When <samp class="codeph"><var>n</var> = 0</samp>, <span class="option">?lanhe</span> is set to zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">clanhe</span>.</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlanhe</span>.</p>
+<p>Array, size <span>(<var>lda</var>,<var>n</var>)</span>. The Hermitian matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>a</var> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>a</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>a</var> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>a</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>a</var>. </p>
+<p><samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(<var>n</var>,1)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">clanhe</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlanhe</span>.</p>
+<p>Workspace array, <span class="keyword">DIMENSION</span><samp class="codeph">(max(1,<var>lwork</var>))</samp>, where </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var></samp> when <samp class="codeph"><var>norm</var> = <span class="keyword">'I'</span></samp> or <span class="keyword">'1'</span> or <span class="keyword">'O'</span>; otherwise, <var>work</var> is not referenced. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5F6AFB62-2D75-489E-9752-D84326FD067C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8BB5143E-B0EE-4D77-B833-1F9E56EDC0CD"><dt class="dlterm"><span class="parmname">val</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">clanhe</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlanhe</span>.</p>
+<p>Value returned by the function.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

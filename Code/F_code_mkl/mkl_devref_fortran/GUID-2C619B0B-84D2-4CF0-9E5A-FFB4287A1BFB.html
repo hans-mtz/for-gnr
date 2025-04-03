@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_INPUT_STRIDES, DFTI_OUTPUT_STRIDES"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-582557F0-6B08-4DC0-9026-C9010065E8CD.html#GUID-582557F0-6B08-4DC0-9026-C9010065E8CD"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3.html#GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2C619B0B-84D2-4CF0-9E5A-FFB4287A1BFB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_INPUT_STRIDES, DFTI_OUTPUT_STRIDES</title>
+
+</head>
+<body id="GUID-2C619B0B-84D2-4CF0-9E5A-FFB4287A1BFB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_INPUT_STRIDES, DFTI_OUTPUT_STRIDES</h1>
+<div><p> The FFT interface provides configuration parameters that define the layout of multidimensional data in the computer memory. For 
+      <var>d</var>-dimensional data set 
+      <var>X</var> defined by dimensions 
+      <var>N</var><sub>1</sub> x 
+      <var>N</var><sub>2</sub> x ... x 
+      <var>N</var><sub><var>d</var></sub>, the layout describes where a particular element 
+      <var>X</var>(<var>k</var><sub>1</sub>, 
+      <var>k</var><sub>2</sub>, ..., 
+      <var>k</var><sub><var>d</var></sub>) of the data set is located. The memory address of the element 
+      <var>X</var>(<var>k</var><sub>1</sub>, 
+      <var>k</var><sub>2</sub> , ..., 
+      <var>k</var><sub><var>d</var></sub>) is expressed by the formula, 
+    </p>
+<p>address of 
+      <var>X</var>(<var>k</var><sub>1</sub>, 
+      <var>k</var><sub>2</sub>, ..., 
+      <var>k</var><sub><var>d</var></sub>) = the pointer supplied to the compute function + 
+      <var>s</var><sub>0</sub> + 
+      <var>k</var><sub>1</sub>*<var>s</var><sub>1</sub> + 
+      <var>k</var><sub>2</sub>*<var>s</var><sub>2</sub> + ...+ 
+      <var>k</var><sub><var>d</var></sub>*<var>s</var><sub><var>d</var></sub>, 
+    </p>
+<p>where 
+      <var> s</var><sub><samp class="codeph">0</samp></sub> is the displacement and 
+      <var>s</var><sub>1</sub>, ...,<var> s</var><sub><var>d</var></sub> are generalized strides. The configuration parameters 
+      <span class="keyword">DFTI_INPUT_STRIDES</span> and 
+      <span class="keyword">DFTI_OUTPUT_STRIDES</span> enable you to get and set these values. The configuration value is an array of values (<var>s</var><sub>0</sub>, 
+      <var>s</var><sub>1</sub>, ...,<var> s</var><sub><var>d</var></sub>) of 
+      <span><span class="keyword">INTEGER</span> data type</span>. 
+    </p>
+<p> The offset is counted in elements of the data type (complex or real) defined by the descriptor configuration as tabulated below. The computation functions take pointers which are typed as real arrays regardless of the descriptor configuration. Specifically, the 
+      <span class="keyword">DFTI_FORWARD_DOMAIN, DFTI_COMPLEX_STORAGE, and DFTI_CONJUGATE_EVEN_STORAGE</span> configuration parameters define the type of the elements as shown in 
+      <a href="#TBL11-5">Table 
+        <span>"Assumed Element Types of the Input/Output Data"</span></a>: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL11-5" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Assumed Element Types of the Input/Output Data</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="70%" id="d349624e218"><p> Descriptor Configuration 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="15%" id="d349624e221"><p>Element Type in the Forward Domain 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="15%" id="d349624e224"><p>Element Type in the Backward Domain 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="70%" headers="d349624e218 "><p><span class="keyword">DFTI_FORWARD_DOMAIN=DFTI_COMPLEX 
+            </span><br/><span class="keyword">DFTI_COMPLEX_STORAGE=DFTI_COMPLEX_COMPLEX</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="15%" headers="d349624e221 "><p>Complex 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="15%" headers="d349624e224 "><p>Complex 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="70%" headers="d349624e218 "><p><span class="keyword">DFTI_FORWARD_DOMAIN=DFTI_COMPLEX 
+            </span><br/><span class="keyword">DFTI_COMPLEX_STORAGE=DFTI_REAL_REAL</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="15%" headers="d349624e221 "><p>Real 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="15%" headers="d349624e224 "><p>Real 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="70%" headers="d349624e218 "><p><span class="keyword">DFTI_FORWARD_DOMAIN=DFTI_REAL 
+            </span><br/><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE=DFTI_COMPLEX_REAL 
+            </span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="15%" headers="d349624e221 "><p>Real 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="15%" headers="d349624e224 "><p>Real 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="70%" headers="d349624e218 "><p><span class="keyword">DFTI_FORWARD_DOMAIN=DFTI_REAL 
+            </span><br/><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE=DFTI_COMPLEX_COMPLEX 
+            </span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="15%" headers="d349624e221 "><p>Real 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="15%" headers="d349624e224 "><p>Complex 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The 
+    <span class="keyword">DFTI_INPUT_STRIDES</span> configuration parameter defines the layout of the input data, while the element type is defined by the forward domain for the 
+    <a href="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html"><span class="option">DftiComputeForward</span></a> function and by the backward domain for the 
+    <a href="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html"><span class="option">DftiComputeBackward</span></a> function. The 
+    <span class="keyword">DFTI_OUTPUT_STRIDES</span> configuration parameter defines the layout of the output data, while the element type is defined by the backward domain for the 
+  <span class="option">DftiComputeForward</span> function and by the forward domain for 
+  <span class="option">DftiComputeBackward</span> function. 
+  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> The 
+      <span class="keyword">DFTI_INPUT_STRIDES</span> and 
+      <span class="keyword">DFTI_OUTPUT_STRIDES</span> configuration parameters define the layout of input and output data, and not the forward-domain and backward-domain data. If the data layouts in forward domain and backward domain differ, set 
+      <span class="keyword">DFTI_INPUT_STRIDES</span> and 
+      <span class="keyword">DFTI_OUTPUT_STRIDES</span> explicitly and then commit the descriptor before calling computation functions. 
+    </p>
+</div>
+<p> For in-place transforms (<span class="keyword">DFTI_PLACEMENT=DFTI_INPLACE</span>), the configuration set by 
+    <span class="keyword">DFTI_OUTPUT_STRIDES</span> is ignored when the element types in the forward and backward domains are the same. If they are different, set 
+    <span class="keyword">DFTI_OUTPUT_STRIDES</span> explicitly (even though the transform is in-place). Ensure a consistent configuration for in-place transforms, that is, the locations of the first elements on input and output must coincide in each dimension. 
+  </p>
+<p> The FFT interface supports both positive and negative stride values. If you use negative strides, set the displacement of the data as follows: 
+    </p>
+<p><span><img class="img-middle" src="equations/GUID-2C619B0B-84D2-4CF0-9E5A-FFB4287A1ee1.png"/></span></p>
+<p> The default setting of strides in a general multi-dimensional case assumes that the array that contains the data has no padding. The order of the strides depends on the programming language. For example: 
+  </p>
+<pre>
+INTEGER :: dims(d) = [n1, n2, …, nd]
+status = DftiCreateDescriptor( hand, precision, domain, d, dims)
+! The above call assumes data declaration:  type X(n1,n2,…,n<sub>d-1</sub>) 
+! Default strides are [ 0, 1, n1, n1*n2, …, n1*n2*…*n<sub>d-1</sub>]
+</pre><p> Note that in case of a real FFT (<span class="keyword">DFTI_FORWARD_DOMAIN=DFTI_REAL</span>), where different data layouts in the backward domain are available (see 
+    <a href="GUID-F65C2255-963E-429F-9E74-99DFBCE1526F.html"><span class="keyword">DFTI_PACKED_FORMAT</span></a>), the default value of the strides is not intuitive for the recommended CCE format (configuration setting 
+    <span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE=DFTI_COMPLEX_COMPLEX</span>). In case of an 
+    <em>in-place</em> real transform with the CCE format, set the strides explicitly, as follows: 
+  </p>
+<pre>
+INTEGER :: dims(d) = [n1, n2, …, nd]
+INTEGER :: rstrides(1+d) = [0, 1, 2*(n1/2+1), 2*(n1/2+1)*n2, …, 2*n<sub>d-1</sub>*…*n<sub>2</sub>*(n<sub>1</sub>/2+1)]
+INTEGER :: cstrides(1+d) = [0, 1, (n1/2+1), (n1/2+1)*n2, …, n<sub>d-1</sub>*…*n<sub>2</sub>*(n<sub>1</sub>/2+1) ]
+status = DftiCreateDescriptor( hand, precision, domain, d, dims)
+status = DftiSetValue( hand, DFTI_CONJUGATE_EVEN_STORAGE, DFTI_COMPLEX_COMPLEX)
+! Set the strides appropriately for forward/backward transform
+</pre><p>To better understand configuration of strides, you can also refer to these examples in your Intel&reg; oneAPI Math Kernel Library directory:</p>
+<p><span class="filepath">./examples/dftf/source/basic_sp_complex_dft_2d.f90</span></p>
+<p><span class="filepath">./examples/dftf/source/basic_sp_complex_dft_3d.f90</span></p>
+<p><span class="filepath">./examples/dftf/source/basic_dp_complex_dft_2d.f90</span></p>
+<p><span class="filepath">./examples/dftf/source/basic_dp_complex_dft_3d.f90</span></p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__BASIC_SP_REAL_DFT_2D_F90">./examples/dftf/source/basic_sp_real_dft_2d.f90</span></p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__BASIC_SP_REAL_DFT_3D_F90">./examples/dftf/source/basic_sp_real_dft_3d.f90</span></p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__BASIC_DP_REAL_DFT_2D_F90">./examples/dftf/source/basic_dp_real_dft_2d.f90</span></p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__BASIC_DP_REAL_DFT_3D_F90">./examples/dftf/source/basic_dp_real_dft_3d.f90</span></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-582557F0-6B08-4DC0-9026-C9010065E8CD.html#GUID-582557F0-6B08-4DC0-9026-C9010065E8CD"><span class="keyword">DFTI_FORWARD_DOMAIN</span></a> </div>
+<div><a href="GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3.html#GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3"><span class="keyword">DFTI_PLACEMENT</span></a> </div>
+<div><a href="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A.html">FFT Code Examples 
+        </a> </div>
+<div><a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> </div>
+<div><a href="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"><span class="option">DftiCommitDescriptor</span></a> </div>
+<div><a href="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"><span class="option">DftiComputeForward</span></a> </div>
+<div><a href="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"><span class="option">DftiComputeBackward</span></a> </div></div></div>
+</body>
+</html>

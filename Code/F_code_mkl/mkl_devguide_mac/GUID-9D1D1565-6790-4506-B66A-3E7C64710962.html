@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Interaction with the Message-passing Interface"/>
+<meta name="DC.subject" content="message-passing interface, Intel&reg; Math Kernel Library interaction with, MPI"/>
+<meta name="keywords" content="message-passing interface, Intel&reg; Math Kernel Library interaction with, MPI"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-961566D0-E177-467A-96F6-E0D6541430A0.html"/>
+<meta name="DC.Relation" scheme="URI" content="https://software.intel.com/en-us/articles/intel-software-technical-documentation/"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9D1D1565-6790-4506-B66A-3E7C64710962"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Interaction with the Message-passing Interface</title>
+
+</head>
+<body id="GUID-9D1D1565-6790-4506-B66A-3E7C64710962">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Interaction with the Message-passing Interface</h1>
+<div><p>To improve performance of cluster applications, it is critical for 
+      Intel&reg; oneAPI Math Kernel Library to use the optimal number of threads, as well as the correct thread affinity. Usually, the optimal number is the number of available cores per node divided by the number of MPI processes per node. You can set the number of threads using one of the available methods, described in<a href="GUID-DEEF0363-2B34-4BAB-87FA-A75DBE842040.html">Techniques to Set the Number of Threads</a>. 
+    </p>
+<p>If the number of threads is not set, 
+      Intel&reg; oneAPI Math Kernel Library checks whether it runs under MPI provided by the Intel&reg; MPI Library. If this is true, the following environment variables define 
+      Intel&reg; oneAPI Math Kernel Library threading behavior:
+    </p>
+<ul id="GUID-0EFE7257-79DA-4A19-8188-1CDD833DB212"><li><span class="keyword">I_MPI_THREAD_LEVEL</span></li>
+<li><span class="keyword">MKL_MPI_PPN</span></li>
+<li><span class="keyword">I_MPI_NUMBER_OF_MPI_PROCESSES_PER_NODE</span></li>
+<li><span class="keyword">I_MPI_PIN_MAPPING</span></li>
+<li><span class="keyword">OMPI_COMM_WORLD_LOCAL_SIZE</span></li>
+<li><span class="keyword">MPI_LOCALNRANKS</span></li>
+</ul>
+<p> The threading behavior depends on the value of 
+      <span class="keyword">I_MPI_THREAD_LEVEL</span> as follows: 
+    <ul id="GUID-2C1FC5E3-B12D-4A6F-963A-3E83DFFC45E7"><li><p>0 or undefined. 
+        </p>
+<p>Intel&reg; oneAPI Math Kernel Library considers that thread support level of Intel MPI Library is<span class="keyword">MPI_THREAD_SINGLE</span> and defaults to sequential execution. </p>
+</li>
+<li><p>1, 2, or 3. 
+        </p>
+<p>This value determines 
+          Intel&reg; oneAPI Math Kernel Library conclusion of the thread support level: 
+        </p>
+<ul id="GUID-796456D1-FD47-4725-B157-BCFF1AFBAC2A"><li> 1 - 
+            <span class="keyword">MPI_THREAD_FUNNELED</span></li>
+<li> 2 - 
+            <span class="keyword">MPI_THREAD_SERIALIZED</span></li>
+<li> 3 - 
+            <span class="keyword">MPI_THREAD_MULTIPLE</span></li>
+</ul>
+<p>In all these cases, 
+          Intel&reg; oneAPI Math Kernel Library determines the number of MPI processes per node using the other environment variables listed and defaults to the number of threads equal to the number of available cores per node divided by the number of MPI processes per node.
+        </p>
+</li>
+</ul>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p>Instead of relying on the discussed implicit settings, explicitly set the number of threads for 
+        Intel&reg; oneAPI Math Kernel Library.
+      </p>
+</div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d25e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d21682e122"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d21682e122 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-961566D0-E177-467A-96F6-E0D6541430A0.html">Working with the Intel&reg; oneAPI Math Kernel Library Cluster Software</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="https://software.intel.com/en-us/articles/intel-software-technical-documentation/" target="_blank">Intel&reg; Software Documentation Library 
+        </a> for more information on Intel MPI Library 
+        </div></div></div>
+</body>
+</html>

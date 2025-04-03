@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vRngGaussian"/>
+<meta name="abstract" content="Generates normally distributed random numbers."/>
+<meta name="description" content="Generates normally distributed random numbers."/>
+<meta name="DC.subject" content="vector statistics functions, Gaussian, VS routines, generator routines"/>
+<meta name="keywords" content="vector statistics functions, Gaussian, VS routines, generator routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D68AFDA3-7B43-4AF2-AD02-EEFAB9868738.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vRngGaussian</title>
+
+</head>
+<body id="GUID-63196F25-5013-4038-8BCD-2613C4EF3DE4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vRngGaussian</span></h1>
+<!--Generates normally distributed random numbers.--><div><p class="shortdesc">Generates normally distributed random numbers.</p>
+<div class="section" id="GUID-D1F58E4A-D95B-49A1-A6F4-5DC5B3F9942D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status</span><span class="delim"> = </span><span class="kwd">vsrnggaussian</span><span class="sep">( </span><span class="var">method</span><span class="sep">, </span><span class="var">stream</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">sigma</span><span class="sep"> )</span></p><p class="dlsyntaxpara"><span class="var">status</span><span class="delim"> = </span><span class="kwd">vdrnggaussian</span><span class="sep">( </span><span class="var">method</span><span class="sep">, </span><span class="var">stream</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">sigma</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-73AA0DC3-8F98-4345-97A3-5E22E37CADDB"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-CAAD2896-4573-491B-B3E9-9B309EDACDBE"><li id="LI_C0C44BD5CF004E6AB8ECB8671C1A272E"><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_vsl.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8DAB1CC1-54D5-4363-B1F1-2C49F48CA319"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">vRngGaussian</span> function generates random numbers with normal (Gaussian) distribution with mean value <span class="option">a</span> and standard deviation <span class="eqsymbol">σ</span>, where<pre>
+					<var>a</var>, <span class="eqsymbol">σ</span>
+					<span class="eqsymbol">∈</span>
+					<var>R</var> ; <span class="eqsymbol">σ</span> &gt; 0.</pre></p>
+<p>The probability density function is given by:</p>
+<p><br/><div class="imagecenter"><img id="IMAGE_364B0CD0BC16444B8DEC618EF1E56488" src="GUID-281DBA27-691A-4B62-A255-FC33EA28D8D5-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>The cumulative distribution function is as follows:</p>
+<p><br/><div class="imagecenter"><img id="IMAGE_FCA6C6FB43594A79ABAA6DE996781BC9" src="GUID-3A9C1154-2E42-416F-8865-06E7382A3AA7-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>The cumulative distribution function <samp class="codeph"><var>F</var><sub><var>a</var>,<span class="eqsymbol">σ</span></sub>(<var>x</var>)</samp> can be expressed in terms of standard normal distribution <samp class="codeph"><span class="eqsymbol">Φ</span>(<var>x</var>)</samp> as<pre>
+				<var>F</var>
+				<sub>
+					<var>a</var>,<span class="eqsymbol">σ</span>
+				</sub>(<var>x</var>) = <span class="eqsymbol">Φ</span>((<var>x</var> - <var>a</var>)/<span class="eqsymbol">σ</span>)</pre></p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d726868e224"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d726868e224 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-7D9477B0-7E9B-4142-8826-3706378A110A"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_1104D11EB20749ADB739F079DC4ACFD7" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d726868e239" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d726868e242" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d726868e245" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d726868e239"><p><span class="parmname">method</span></p>
+</td>
+<td valign="top" headers="d726868e242"><p><samp class="codeph">INTEGER, INTENT(IN)</samp></p>
+<p/>
+</td>
+<td valign="top" headers="d726868e245"><p>Generation method. The specific values are as follows: <pre>
+								VSL_RNG_METHOD_GAUSSIAN_BOXMULLER
+							</pre><pre>
+								VSL_RNG_METHOD_GAUSSIAN_BOXMULLER2
+							</pre><pre>
+								VSL_RNG_METHOD_GAUSSIAN_ICDF
+							</pre><span>See brief description of the methods <samp class="codeph">BOXMULLER</samp>,  <samp class="codeph">BOXMULLER2</samp>, and   <samp class="codeph">ICDF</samp> in <a href="GUID-497D6D91-5031-4DCC-AE46-82B7EEF65AFE.html#TBL10-1">Table <span>"Values of <samp class="codeph">&lt;<var>method</var>&gt;</samp> in <var>method</var> parameter"</span></a></span></p>
+</td>
+</tr>
+<tr><td valign="top" headers="d726868e239"><p><span class="parmname">stream</span></p>
+</td>
+<td valign="top" headers="d726868e242"><p><samp class="codeph">TYPE (VSL_STREAM_STATE), INTENT(IN)</samp></p>
+<p/>
+</td>
+<td valign="top" headers="d726868e245"><p>Descriptor of the stream state structure</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d726868e239"><p><span class="parmname">n</span></p>
+</td>
+<td valign="top" headers="d726868e242"><p><samp class="codeph">INTEGER, INTENT(IN)</samp></p>
+<p/>
+</td>
+<td valign="top" headers="d726868e245"><p>Number of random values to be generated.</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d726868e239"><p><span class="parmname">a</span></p>
+</td>
+<td valign="top" headers="d726868e242"><p><samp class="codeph">DOUBLE PRECISION</samp> for <samp class="codeph">vdrnggaussian</samp></p>
+<p><samp class="codeph">REAL
+							(KIND=4), INTENT(IN)</samp> for <samp class="codeph">vsrnggaussian</samp></p>
+<p><samp class="codeph">REAL
+							(KIND=8), INTENT(IN)</samp> for <samp class="codeph">vdrnggaussian</samp></p>
+<p/>
+</td>
+<td valign="top" headers="d726868e245"><p>Mean value <span class="eqsymbol"><var>a</var></span>.</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d726868e239"><p><span class="parmname">sigma</span></p>
+</td>
+<td valign="top" headers="d726868e242"><p><samp class="codeph">DOUBLE PRECISION</samp> for <samp class="codeph">vdrnggaussian</samp></p>
+<p><samp class="codeph">REAL
+							(KIND=4), INTENT(IN)</samp> for <samp class="codeph">vsrnggaussian</samp></p>
+<p><samp class="codeph">REAL
+							(KIND=8), INTENT(IN)</samp> for <samp class="codeph">vdrnggaussian</samp></p>
+</td>
+<td valign="top" headers="d726868e245"><p>Standard deviation<span class="eqsymbol"> σ</span>.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-22AD5C37-BF39-44DB-9526-70B7CF62EA0E"><h2 class="sectiontitle">Output Parameters</h2><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_0EE18B97842946C58C746B0D7377D386" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d726868e383" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d726868e386" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d726868e389" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d726868e383"><p><span class="parmname">r</span></p>
+</td>
+<td valign="top" headers="d726868e386"><p><samp class="codeph">DOUBLE PRECISION</samp> for <samp class="codeph">vdrnggaussian</samp></p>
+<p><samp class="codeph">REAL
+							(KIND=4), INTENT(OUT)</samp> for <samp class="codeph">vsrnggaussian</samp></p>
+<p><samp class="codeph">REAL
+							(KIND=8), INTENT(OUT)</samp> for <samp class="codeph">vdrnggaussian</samp></p>
+</td>
+<td valign="top" headers="d726868e389"><p>Vector of <samp class="codeph">n</samp> normally distributed random numbers.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="RETURNVALUES_44EE233AEBAD4FC18C7F0A7F173674FD"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-5B1F3B5F-6D52-4BB6-A273-21E53EA45AF5"><dt class="dlterm"><samp class="codeph">VSL_ERROR_OK, VSL_STATUS_OK
+					</samp></dt>
+
+<dd class="ddretval"><p>Indicates no error, execution is successful.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_ERROR_NULL_PTR</samp></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is a <samp class="codeph">NULL</samp> pointer.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_BAD_STREAM
+					</samp></dt>
+
+<dd class="ddretval"><p><var>stream</var> is not a valid random stream.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_BAD_UPDATE
+					</samp></dt>
+
+<dd class="ddretval"><p>Callback function for an abstract BRNG returns an invalid number of updated entries in a buffer, that is, <samp class="codeph">&lt; 0</samp> or <samp class="codeph">&gt; <samp class="codeph">nmax</samp></samp>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_NO_NUMBERS
+					</samp></dt>
+
+<dd class="ddretval"><p>Callback function for an abstract BRNG returns 0 as the number of updated entries in a buffer.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_QRNG_PERIOD_ELAPSED
+					</samp></dt>
+
+<dd class="ddretval"><p>Period of the generator has been exceeded.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_NONDETERM_NRETRIES_EXCEEDED
+					</samp></dt>
+
+<dd class="ddretval"><p>Number of retries to generate a random number by using non-deterministic random number generator exceeds threshold.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_ARS5_NOT_SUPPORTED 
+					</samp></dt>
+
+<dd class="ddretval"><p>ARS-5 random number generator is not supported on the CPU running the application.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D68AFDA3-7B43-4AF2-AD02-EEFAB9868738.html">Continuous Distributions</a></div>
+</div>
+<div/>
+</body>
+</html>

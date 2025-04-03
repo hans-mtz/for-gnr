@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="blacs_pinfo"/>
+<meta name="abstract" content="Returns the number of processes available for use."/>
+<meta name="description" content="Returns the number of processes available for use."/>
+<meta name="DC.subject" content="BLACS, blacs_pinfo"/>
+<meta name="keywords" content="BLACS, blacs_pinfo"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html#GUID-7336B11C-2B31-466B-8173-0F84835CC0BD"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BD0F736D-6E2F-4063-BC9F-78C6CCCB70A3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>blacs_pinfo</title>
+
+</head>
+<body id="GUID-BD0F736D-6E2F-4063-BC9F-78C6CCCB70A3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">blacs_pinfo</span></h1>
+<!--Returns the number of processes available for use. --><div><p class="shortdesc">Returns the number of processes available for use. </p>
+<div class="section" id="GUID-D563EB51-BA8A-4421-857F-94ED457D9AD5"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call blacs_pinfo</span><span class="sep">( </span><span class="var">mypnum</span><span class="sep">, </span><span class="var">nprocs</span><span class="sep"> )</span></p></div></div>
+<div class="section" id="GUID-F0B1E342-8136-4A56-907D-62712E7C67BC"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">mypnum</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.  An integer between 0 and (<span class="parmname">nprocs</span> - 1) that uniquely identifies each process.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nprocs</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.The number of processes available for BLACS use.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-7AACE0AD-4AAD-4E26-AF49-F1B52B524731"><h2 class="sectiontitle">Description</h2><p>This routine is used when some initial system information is required before the BLACS are set up. On all platforms except PVM, <var>nprocs</var> is the actual number of processes available for use, that is, <samp class="codeph"><var>nprows</var> * <var>npcols</var> &lt;= <var>nprocs</var></samp>. In PVM, the virtual machine may not have been set up before this call, and therefore no parallel machine exists. In this case, <var>nprocs</var> is returned as less than one. If a process has been spawned via the keyboard, it receives <var>mypnum</var> of 0, and all other processes get <var>mypnum</var> of -1. As a result, the user can distinguish between processes. Only after the virtual machine has been set up via a call to <span class="option">BLACS_SETUP</span>, this routine returns the correct values for <var>mypnum</var> and <var>nprocs</var>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html">Initialization Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html#GUID-7336B11C-2B31-466B-8173-0F84835CC0BD">Examples of BLACS Routines Usage</a></div></div></div>
+</body>
+</html>

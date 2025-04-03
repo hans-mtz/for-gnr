@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="zlag2c"/>
+<meta name="abstract" content="Converts a complex double precision matrix to a complex single precision matrix."/>
+<meta name="description" content="Converts a complex double precision matrix to a complex single precision matrix."/>
+<meta name="DC.subject" content="zlag2c, LAPACK routines, auxiliary routines, mixed precision iterative refinement subroutines"/>
+<meta name="keywords" content="zlag2c, LAPACK routines, auxiliary routines, mixed precision iterative refinement subroutines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E6DFC39D-CC29-4759-87B3-7E41E64ECE43"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>zlag2c</title>
+
+</head>
+<body id="GUID-E6DFC39D-CC29-4759-87B3-7E41E64ECE43">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">zlag2c</span></h1>
+<!--Converts a complex double precision matrix to a complex single precision matrix.--><div><p class="shortdesc">Converts a complex double precision matrix to a complex single precision matrix.</p>
+<div class="section" id="GUID-FE72122D-3CAF-41C6-AE5A-E3B902258644"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call zlag2c</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sa</span><span class="sep">, </span><span class="var">ldsa</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-CDE8A9D0-7731-405A-8891-922312A797CC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D1DBD7A1-9841-4869-8766-AD15E9CC25D6"><h2 class="sectiontitle">Description</h2><p>The routine converts a double precision complex matrix <var>SA</var> to a single precision complex matrix <var>A</var>.</p>
+<p><span class="keyword">RMAX</span> is the overflow for the single precision arithmetic. <span class="option">zlag2c</span> checks that all the entries of <var>A</var> are between <span class="keyword">-RMAX</span> and <span class="keyword">RMAX</span>. If not, the convertion is aborted and a flag is raised.</p>
+<p>This is an auxiliary routine so there is no argument checking.</p>
+</div>
+<div class="section" id="GUID-812E7CB6-4C81-4C51-B4F8-88F1652CEA76"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E3EA4ACB-DB48-415D-A566-8CD982469C28"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of lines of the matrix <var>A</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of columns in the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">DOUBLE COMPLEX</span> array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, contains the <var>m</var>-by-<var>n</var> coefficient matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>; <var>lda</var><span>≥</span> max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldsa</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>sa</var>; <var>ldsa</var><span>≥</span> max(1, <var>m</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-34451860-7EDD-4265-A09E-F8234B88EE9C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1A823C90-B1FF-48DE-8767-84C404C29BFF"><dt class="dlterm"><span class="parmname">sa</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> array, <span class="keyword">DIMENSION</span> (<var>ldsa</var>, <var>n</var>).</p>
+<p>On exit, if <span class="parmname">info</span> = 0,  contains the <var>m</var>-by-<var>n</var> coefficient matrix <var>SA</var>; if <span class="parmname">info</span> &gt; 0, the content of <span class="parmname">sa</span> is unspecified.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 1</samp>, an entry of the matrix <var>A</var> is greater than the single precision
+overflow threshold; in this case, the content of <span class="parmname">sa</span> on exit is
+unspecified.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

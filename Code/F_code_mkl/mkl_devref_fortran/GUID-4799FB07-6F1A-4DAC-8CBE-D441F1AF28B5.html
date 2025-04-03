@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larfy"/>
+<meta name="abstract" content="Applies an elementary reflector, or Householder matrix, H, to an n by n symmetric or Hermitian matrix C, from both the left and the right."/>
+<meta name="description" content="Applies an elementary reflector, or Householder matrix, H, to an n by n symmetric or Hermitian matrix C, from both the left and the right."/>
+<meta name="DC.subject" content="?larfy, slarfy, dlarfy, clarfy, zlarfy, LAPACK routines"/>
+<meta name="keywords" content="?larfy, slarfy, dlarfy, clarfy, zlarfy, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4799FB07-6F1A-4DAC-8CBE-D441F1AF28B5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larfy</title>
+
+</head>
+<body id="GUID-4799FB07-6F1A-4DAC-8CBE-D441F1AF28B5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larfy</span></h1>
+<!--Applies an elementary reflector, or Householder matrix, H, to an  n  by  n  symmetric or Hermitian matrix C, from both the left and the right.--><div><p class="shortdesc">Applies an elementary reflector, or Householder matrix, H, to an <var>n</var> by <var>n</var> symmetric or Hermitian matrix C, from both the left and the right.</p>
+<div><p/>
+<dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slarfy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarfy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call clarfy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarfy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C7C729D6-7409-4503-8B90-33D12618A61C"><h2 class="sectiontitle">Description</h2><p><span class="option">?larfy</span> applies an elementary reflector, or Householder matrix, H, to an <var>n</var> by <var>n</var> symmetric or Hermitian matrix C, from both the left and the right. H is represented in the form H = I - <var>tau</var> * <var>v</var> * <var>v</var><sup>T</sup> (for real flavors) or H = I - <var>tau</var> * <var>v</var> * <var>v</var><sup>H</sup> (for complex flavors), where tau is a scalar and <var>v</var> is a vector. If <var>tau</var> is zero, H is taken to be the unit matrix.</p>
+</div>
+<div class="section" id="GUID-2CCAD98E-3881-4ECE-82F4-AE9E69AB9206"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1437D480-79F6-4344-BC56-BF89057C2E72"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span></p>
+<p>Specifies whether the upper or lower triangular part of the symmetric or Hermitian matrix C is stored.</p>
+<ul id="GUID-E6FF81E4-9E93-4364-AF06-A6C0D5522E30"><li>= <samp class="codeph">'U'</samp>: Upper triangular part of C is stored.</li>
+<li>= <samp class="codeph">'L'</samp>: Lower triangular part of C is stored.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of rows and columns of the matrix C. <span class="parmname">n</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zlarfy</span></p>
+<p>Array, dimension (1 + (<span class="parmname">n</span><samp class="codeph">-</samp>1)*abs(<span class="parmname">incv</span>)). The vector <var>v</var> as described above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The increment between successive elements of v. <span class="parmname">incv</span> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zlarfy</span></p>
+<p>The value <var>tau</var> as described above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">C</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zlarfy</span></p>
+<p>Array, dimension (<span class="parmname">ldc</span>, <span class="parmname">n</span>). On entry, the matrix C.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">C</span>. <span class="parmname">ldc</span> ≥ max( 1, <span class="parmname">n</span> ).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-BCC2C2A9-CFB9-419A-8A80-51D5AD71F730"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F2392E60-73E2-4BED-80C2-4DA9CE18CCE7"><dt class="dlterm"><span class="parmname">C</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zlarfy</span></p>
+<p>On exit, <span class="parmname">C</span> is overwritten by H * <span class="parmname">C</span> * H<sup>T</sup> (for real flavors) or H * <span class="parmname">C</span> * H<sup>H</sup> (for complex flavors).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zlarfy</span></p>
+<p>Array, dimension (<span class="parmname">n</span>).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gemm_pack_get_size, gemm_*_pack_get_size"/>
+<meta name="abstract" content="Returns the number of bytes required to store the packed matrix."/>
+<meta name="description" content="Returns the number of bytes required to store the packed matrix."/>
+<meta name="DC.subject" content="sgemm_alloc, dgemm_alloc"/>
+<meta name="keywords" content="sgemm_alloc, dgemm_alloc"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CC62EC5B-F57F-4381-8781-16BCB783FE31.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gemm_pack_get_size, gemm_*_pack_get_size</title>
+
+</head>
+<body id="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gemm_pack_get_size</span>, <span class="option">gemm_*_pack_get_size</span></h1>
+<!--Returns the number of bytes required to store the packed matrix.--><div><p class="shortdesc">Returns the number of bytes required to store the packed matrix.</p>
+<div class="section" id="GUID-3C25E3C8-4A41-4B32-ACC8-EE85F910F9CB"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">dest = sgemm_pack_get_size</span><span class="delim"> (</span><span class="var">identifier</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">dest = dgemm_pack_get_size</span><span class="delim"> (</span><span class="var">identifier</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">dest = gemm_s8u8s32_pack_get_size</span><span class="delim"> (</span><span class="var">identifier</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">dest = gemm_s16s16s32_pack_get_size</span><span class="delim"> (</span><span class="var">identifier</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-E8739C24-0494-424A-BE29-2CA0708B2FFA"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-1C892FB2-25A8-4D38-A7CA-2E56DE08C339"><li><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C7084682-000C-46B0-BB86-1D68F8B1CC7F"><h2 class="sectiontitle">Description</h2><p> The <span class="option">?gemm_pack_get_size</span> and <span class="option">gemm_*_pack_get_size</span> routines belong to  a set of related routines
+that enable the use of an internal packed storage.
+Call the <span class="option">?gemm_pack_get_size</span> and <span class="option">gemm_*_pack_get_size</span> routines first to query the size of storage required for a packed matrix structure to be used in subsequent calls. Ultimately, the packed matrix structure is used to compute </p>
+<p id="GEMM_OP"><samp class="codeph"><var>C</var> := <var>alpha</var>*op(<var>A</var>)*op(<var>B</var>) + <var>beta</var>*<var>C</var></samp> for bfloat16, single and double precision or</p>
+<p><samp class="codeph"><var>C</var> := <var>alpha</var>*(op(<var>A</var>)+<var> A_offset</var>)*(op(<var>B</var>)+<var> B_offset</var>) + <var>beta</var>*<var>C</var> + <var>C_offset</var></samp> for integer type.</p>
+<p id="GEMM_LIST"> where:<ul class="simple"><li><samp class="codeph"> op(<var>X</var>)</samp> is one of the operations <samp class="codeph"> op(<var>X</var>) = <var>X</var></samp> or  <samp class="codeph"> op(<var>X</var>) = <var>X</var><sup>T</sup></samp></li>
+<li><var>alpha</var> and
+<var>beta</var> are scalars,</li>
+<li><var>A</var> ,  <var>A_offset</var>,<var>B</var>, <var>B_offset</var>,<var>C</var>, and
+<var>C_offset</var> are matrices</li>
+<li><samp class="codeph"> op(<var>A</var>)</samp> is an <span class="parmname">m</span>-by-<span class="parmname">k</span>
+matrix,</li>
+<li><samp class="codeph"> op(<var>B</var>)</samp> is a <span class="parmname">k</span>-by-<span class="parmname">n</span>
+matrix,</li>
+<li><var>C</var> is an
+<span class="parmname">m</span>-by-<span class="parmname">n</span> matrix.</li>
+<li><var>A_offset</var> is an
+<span class="parmname">m</span>-by-<span class="parmname">k</span> matrix.</li>
+<li><var>B_offset</var> is an
+<span class="parmname">k</span>-by-<span class="parmname">n</span> matrix.</li>
+<li><var>C_offset</var> is an
+<span class="parmname">m</span>-by-<span class="parmname">n</span> matrix.</li>
+</ul>
+</p>
+</div>
+<div class="section" id="GUID-6348E5D7-2950-4303-95E4-266BB7773D26"><h2 class="sectiontitle">Input Parameters</h2>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-059B97BB-365C-489C-9E4A-096CA88EBB86" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="26.041666666666668%" id="d1062121e323">Parameter</th>
+<th class="cellrowborder" valign="top" width="29.427083333333332%" id="d1062121e325">Type</th>
+<th class="cellrowborder" valign="top" width="44.53125%" id="d1062121e327">Description</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d1062121e323 "><span class="parmname">identifier</span></td>
+<td class="cellrowborder" valign="top" width="29.427083333333332%" headers="d1062121e325 "><span><span class="keyword">CHARACTER*1</span>. </span></td>
+<td class="cellrowborder" valign="top" width="44.53125%" headers="d1062121e327 "><p>Specifies which matrix is to be packed:</p>
+<p>If <span class="parmname">identifier</span> = <span><samp class="codeph">'A'</samp> or <samp class="codeph">'a'</samp></span>, the size returned is the size required to store matrix  <var>A</var> in an internal format.</p>
+<p>If <span class="parmname">identifier</span> = <span><samp class="codeph">'B'</samp> or <samp class="codeph">'b'</samp></span>, the size returned is the size required to store matrix  <var>B</var> in an internal format.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d1062121e323 "><span class="parmname">m</span></td>
+<td class="cellrowborder" valign="top" width="29.427083333333332%" headers="d1062121e325 "><span><span class="keyword">INTEGER</span>. </span></td>
+<td class="cellrowborder" valign="top" width="44.53125%" headers="d1062121e327 "><p>Specifies the number of rows of matrix op(<var>A</var>) and of the matrix <var>C</var>. The value of <span class="parmname">m</span> must be at least zero.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d1062121e323 "><span class="parmname">n</span></td>
+<td class="cellrowborder" valign="top" width="29.427083333333332%" headers="d1062121e325 "><span><span class="keyword">INTEGER</span>. </span></td>
+<td class="cellrowborder" valign="top" width="44.53125%" headers="d1062121e327 "><p>Specifies the number of columns of matrix op(<var>B</var>) and the number of columns of matrix <var>C</var>.  The value of <span class="parmname">n</span> must be at least zero.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d1062121e323 "><span class="parmname">k</span></td>
+<td class="cellrowborder" valign="top" width="29.427083333333332%" headers="d1062121e325 "><span><span class="keyword">INTEGER</span>. </span></td>
+<td class="cellrowborder" valign="top" width="44.53125%" headers="d1062121e327 "><p>Specifies the number of columns of matrix op(<var>A</var>) and the number of rows of matrix op(<var>B</var>).  The value of <span class="parmname">k</span> must be at least zero.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="GUID-E9CE2430-5922-4B70-9A79-9BEA736528D8"><h2 class="sectiontitle">Return Values</h2><p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-C305EA62-7000-4A33-91DB-7C5BC9613B58" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="26.041666666666668%" id="d1062121e444">Parameter</th>
+<th class="cellrowborder" valign="top" width="29.427083333333332%" id="d1062121e446">Type</th>
+<th class="cellrowborder" valign="top" width="44.53125%" id="d1062121e448">Description</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="26.041666666666668%" headers="d1062121e444 "><span class="parmname">size</span></td>
+<td class="cellrowborder" valign="top" width="29.427083333333332%" headers="d1062121e446 "><span><span class="keyword">INTEGER</span>. </span></td>
+<td class="cellrowborder" valign="top" width="44.53125%" headers="d1062121e448 "><p>Returns the size (in bytes) required to store the matrix when packed into the internal format of Intel&reg; oneAPI Math Kernel Library.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-7A014636-BCFB-4916-BF6F-D0DF2D42D0D3"><h2 class="sectiontitle">Example</h2><p>See the following examples in the MKL installation directory to understand the use of these routines:</p>
+<p> sgemm_pack_get_size: examples\blas\source\sgemm_computex.f</p>
+<p>dgemm_pack_get_size: examples\blas\source\dgemm_computex.f
+</p>
+<p>gemm_s8u8s32_pack_get_size: examples\blas\source\gemm_s8u8s32_computex.f
+</p>
+<p>gemm_s16s16s32_pack_get_size: examples\blas\source\gemm_s16s16s32_computex.f
+</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-CC62EC5B-F57F-4381-8781-16BCB783FE31.html"><span class="option">?gemm_pack</span> and <span class="option">gemm_*_pack</span></a>  to pack the matrix into a buffer allocated previously.</div>
+<div><a href="GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8.html"><span class="option">?gemm_compute</span> and <span class="option">?gemm_*_compute</span></a>  to compute a matrix-matrix product with general matrices (where one or both input matrices are stored in a packed data structure) and add the result to a scalar-matrix product.</div></div></div>
+</body>
+</html>

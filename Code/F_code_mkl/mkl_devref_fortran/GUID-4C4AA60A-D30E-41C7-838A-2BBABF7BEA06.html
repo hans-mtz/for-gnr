@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Calling FFTW3 Interface Wrappers from Fortran"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4C4AA60A-D30E-41C7-838A-2BBABF7BEA06"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Calling FFTW3 Interface Wrappers from Fortran</title>
+
+</head>
+<body id="GUID-4C4AA60A-D30E-41C7-838A-2BBABF7BEA06">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Calling FFTW3 Interface Wrappers from
+    Fortran</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library also provides Fortran 77 interfaces of the FFTW3 wrappers. The Fortran wrappers are available for all FFTW3 interface functions and are based on C interface of the FFTW3 wrappers. Therefore they have the same functionality and restrictions as the corresponding C interface wrappers.</p>
+<p> The Fortran wrappers use the default 
+      <span class="keyword">INTEGER</span> type for integer
+      arguments. The default 
+      <span class="keyword">INTEGER</span>is 32-bit in Intel&reg; oneAPI Math Kernel Library LP64 interfaces and 64-bit in ILP64 interfaces. Argument<span class="parmname">plan</span> in a
+      Fortran application must have type 
+      <span class="keyword">INTEGER*8</span>.
+    </p>
+<p> The wrappers that are double-precision subroutines have prefix 
+      <span class="keyword">dfftw_</span>, single-precision
+      subroutines have prefix 
+      <span class="keyword">sfftw_</span> and provide an
+      equivalent functionality. Long double subroutines (with prefix 
+      <span class="keyword">lfftw_</span>) are not provided.
+    </p>
+<p> The Fortran FFTW3 wrappers use the default Intel&reg; Fortran compiler
+      convention for name decoration. If your compiler uses a different convention,
+      or if you are using compiler options affecting the name decoration (such as 
+      <span class="keyword">/Qlowercase</span>), you may need to
+      compile the wrappers from sources, as described in section 
+      <a href="GUID-96706BDD-A9FB-4C2F-B8B3-E6F564BEBB20.html#GUID-96706BDD-A9FB-4C2F-B8B3-E6F564BEBB20">Building
+        Your Own Wrapper Library</a>.
+    </p>
+<p> For interoperability with C, the declaration of the Fortran FFTW3
+      interface is provided in header file 
+      <span class="filepath">include/fftw/fftw3_mkl_f77.h</span>.
+    </p>
+<p>You can call Fortran wrappers from a FORTRAN 77 or Fortran 90 application, although Intel&reg; oneAPI Math Kernel Library does not provide a Fortran 90 module for the wrappers. For a detailed description of the FFTW Fortran interface, refer to FFTW3 documentation (www.fftw.org).
+    </p>
+<p> The following example illustrates calling the FFTW3 wrappers from
+      Fortran:
+    </p>
+<pre>INTEGER*8 plan
+INTEGER N
+INCLUDE 'fftw3.f'
+COMPLEX*16 IN(*), OUT(*)
+!...initialize array IN
+CALL DFFTW_PLAN_DFT_1D(PLAN, N, IN, OUT, -1, FFTW_ESTIMATE)
+IF (PLAN .EQ. 0) STOP
+CALL DFFTW_EXECUTE
+!...result is in array OUT 
+</pre></div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html">FFTW3 Interface to Intel&reg; Math Kernel Library</a></div>
+</div>
+<div/>
+</body>
+</html>

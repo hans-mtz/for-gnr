@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?posvx"/>
+<meta name="abstract" content="Solves a symmetric or Hermitian positive definite system of linear equations."/>
+<meta name="description" content="Solves a symmetric or Hermitian positive definite system of linear equations."/>
+<meta name="DC.subject" content="p?posvx, ScaLAPACK routines, driver routines, linear equations, solving, symmetric positive-definite matrix, ScaLAPACK, Hermitian positive-definite matrix, error bounds, Cholesky factorization"/>
+<meta name="keywords" content="p?posvx, ScaLAPACK routines, driver routines, linear equations, solving, symmetric positive-definite matrix, ScaLAPACK, Hermitian positive-definite matrix, error bounds, Cholesky factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CF5CF672-F6FD-41A7-A0BC-CAAEFBD035EE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-EA3ABC01-7FE7-4886-AD2F-20992D9D6B05"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?posvx</title>
+
+</head>
+<body id="GUID-EA3ABC01-7FE7-4886-AD2F-20992D9D6B05">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?posvx</span></h1>
+<!--Solves a symmetric or Hermitian positive definite system of linear equations.--><div><p class="shortdesc">Solves a symmetric or Hermitian positive definite system of linear equations.</p>
+<div class="section" id="GUID-F40F76D2-7A6A-45B2-A9CE-872FDAD34E7D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psposvx</span><span class="delim">(</span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">iaf</span><span class="sep">, </span><span class="var">jaf</span><span class="sep">, </span><span class="var">descaf</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdposvx</span><span class="delim">(</span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">iaf</span><span class="sep">, </span><span class="var">jaf</span><span class="sep">, </span><span class="var">descaf</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcposvx</span><span class="delim">(</span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">iaf</span><span class="sep">, </span><span class="var">jaf</span><span class="sep">, </span><span class="var">descaf</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzposvx</span><span class="delim">(</span><span class="var">fact</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">iaf</span><span class="sep">, </span><span class="var">jaf</span><span class="sep">, </span><span class="var">descaf</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-4A7E9D35-CA8C-45C1-A5D8-756175857992"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-D773E933-53B8-469A-8E77-9846F965BCA7"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?posvx</span><span>routine </span>uses the Cholesky factorization <samp class="codeph"><var>A</var>=<var>U</var><sup class="power"><var>T</var></sup><var>*U</var></samp> or <samp class="codeph"><var>A</var>=<var>L*L</var><sup class="power"><var>T</var></sup></samp> to compute the solution to a real or complex system of linear equations</p>
+<p><samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1, <var>ja</var>:<var>ja</var>+<var>n</var>-1)*<var>X</var> = <var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1, <var>jb</var>:<var>jb</var>+<var>nrhs</var>-1)</samp>,</p>
+<p> where <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1, <var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> is a  <var>n</var>-by-<var>n</var> matrix and <var>X</var> and <samp class="codeph"><var>B</var>(<var>ib</var>:<var>ib</var>+<var>n</var>-1,<var>jb</var>:<var>jb</var>+<var>nrhs</var>-1)</samp> are <var>n</var>-by-<var>nrhs</var> matrices. </p>
+<p>Error bounds on the solution and a condition estimate are also provided.</p>
+<p>In the following comments <var>y</var> denotes <samp class="codeph"><var>Y</var>(<var>iy</var>:<var>iy</var>+<var>m</var>-1, <var>jy</var>:<var>jy</var>+<var>k</var>-1)</samp>, an <var>m</var>-by-<var>k</var> matrix where <var>y</var> can be <var>a</var>, <var>af</var>, <var>b</var> and <var>x</var>.</p>
+<p>The<span> routine </span><span class="option">p?posvx</span> performs the following steps:</p>
+<ol id="GUID-0B8B6C1F-65D9-4BBB-830B-2EB9ABCBA08B"><li><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>, real scaling factors <var>s</var> are computed to equilibrate the system:</p>
+<p><samp class="codeph">diag(<var>sr</var>)*<var>A</var>*diag(<var>sc</var>)*inv(diag(<var>sc</var>))*<var>X</var> = diag(<var>sr</var>)*B</samp></p>
+<p>Whether or not the system will be equilibrated depends on the scaling of the matrix <var>A</var>, but if equilibration is used, <var>A</var> is overwritten by <samp class="codeph">diag(<var>sr</var>)*<var>A</var>*diag(<var>sc</var>)</samp> and <var>B</var> by <samp class="codeph">diag(<var>sr</var>)*<var>B</var></samp> .</p>
+</li>
+<li><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>, the Cholesky decomposition is used to factor the matrix <var>A</var> (after equilibration if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>) as</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup><var>*U</var></samp>, if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, or </p>
+<p><samp class="codeph"><var>A</var> = <var>L*L</var><sup class="power"><var>T</var></sup></samp>, if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, </p>
+<p>where <var>U</var> is an upper triangular matrix and <var>L</var> is a lower triangular matrix.</p>
+</li>
+<li><p>The factored form of <var>A</var> is used to estimate the condition number of the matrix <var>A</var>. If the reciprocal of the condition number is less than machine precision, steps 4-6 are skipped</p>
+</li>
+<li><p>The system of equations is solved for <var>X</var> using the factored form of <var>A</var>.</p>
+</li>
+<li><p>Iterative refinement is applied to improve the computed solution matrix and calculate error bounds and backward error estimates for it.</p>
+</li>
+<li><p>If equilibration was used, the matrix <var>X</var> is premultiplied by diag(<var>sr</var>) so that it solves the original system before equilibration.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="GUID-8CA3A799-D10F-44EC-A96F-2DE231B15E4A"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-F5ADEE05-05C0-45DD-AD3C-20C0585EAD8B"><dt class="dlterm"><span class="parmname">fact</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'F'</span>, <span class="keyword">'N'</span>, or <span class="keyword">'E'</span>.</p>
+<p>Specifies whether or not the factored form of the matrix <var>A</var> is supplied on entry, and if not, whether the matrix <var>A</var> should be equilibrated before it is factored.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>: on entry, <var>af</var> contains the factored form of <var>A</var>. If <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, the matrix <var>A</var> has been equilibrated with scaling factors given by <var>s</var>. <var>a</var> and <var>af</var> will not be modified.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>, the matrix <var>A</var> will be copied to <var>af</var> and factored. </p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>, the matrix <var>A</var> will be equilibrated if necessary, then copied to <var>af</var> and factored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the distributed matrix sub(<var>A</var>) <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides; the number of columns of the distributed submatrices <var>B</var> and <var>X</var>. (<samp class="codeph"><var>nrhs</var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>. </p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. On entry, the symmetric/Hermitian matrix <var>A</var>, except if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, then <var>A</var> must contain the equilibrated matrix <samp class="codeph">diag(<var>sr</var>)*<var>A</var>*diag(<var>sc</var>)</samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>A</var> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>A</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>A</var> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>A</var> is not referenced. <var>A</var> is not modified if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> or <span class="keyword">'N'</span>, or if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp> on exit. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the submatrix <var>A</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">af</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>. </p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_af</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. </p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>, then <var>af</var> is an input argument and on entry  contains the triangular factor <var>U</var> or <var>L</var> from the Cholesky  factorization <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>A</var> = <var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp>, in the same storage format as <var>A</var>. If <samp class="codeph"><var>equed</var> ≠ <span class="keyword">'N'</span></samp>, then <var>af</var> is the factored form of the equilibrated matrix <samp class="codeph">diag(<var>sr</var>)*<var>A</var>*diag(<var>sc</var>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">iaf</span>, <span class="parmname">jaf</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>AF</var> indicating the first row and the first column of the submatrix <var>AF</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descaf</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>AF</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">equed</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'Y'</span>. </p>
+<p><var>equed</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>. It specifies the form of equilibration that was done: </p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp>, no equilibration was done (always true if <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>);</p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, equilibration was done and <var>A</var> has been replaced by <samp class="codeph">diag(<var>sr</var>)*<var>A</var>*diag(<var>sc</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sr</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>. </p>
+<p>Array of size <var>lld_a</var>. </p>
+<p>The array <var>s</var> contains the scale factors for <var>A</var>. This array is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> only; otherwise it is an output argument. </p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp>, <var>s</var> is not accessed.   </p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, each element of <var>s</var> must be positive.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>. </p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_b</var>, <var>LOCc</var>(<var>jb</var>+<var>nrhs</var>-1))</samp>. On entry, the <var>n</var>-by-<var>nrhs</var> right-hand side matrix <var>B</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ib</span>, <span class="parmname">jb</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>B</var> indicating the first row and the first column of the submatrix <var>B</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descb</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span>. </span>Array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>. </p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_x</var>, <var>LOCc</var>(<var>jx</var>+<var>nrhs</var>-1))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span>, <span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>X</var> indicating the first row and the first column of the submatrix <var>X</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>. </p>
+<p>Workspace array of size <var>lwork</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The size of the array <var>work</var>. <var>lwork</var> is local input and must be at least <samp class="codeph"><var>lwork</var> = <span class="keyword">max</span>(<span class="option">p?pocon</span>(<var>lwork</var>), <span class="option">p?porfs</span>(<var>lwork</var>))  + <var>LOCr</var>(<var>n_a</var>)</samp>. </p>
+<p><samp class="codeph"><var>lwork</var> = 3*<var>desca</var><span>(<var>lld_</var>)</span></samp>.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <var>lwork</var> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>.  </p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>Workspace array of size <var>liwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local or global)</p>
+<p><span><span class="keyword">INTEGER</span>. </span>The size of the array <var>iwork</var>. <var>liwork</var> is local input and must be at least <samp class="codeph"><var>liwork</var> = <var>desca</var><span>(<var>lld_</var>)</span><var>liwork</var> = <var>LOCr</var>(<var>n_a</var>)</samp>. </p>
+<p>If <samp class="codeph"><var>liwork</var> = -1, then <var>liwork</var></samp> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>.  </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E36F45D9-1EFD-4448-8527-D2BEE413384A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0D7E478D-E462-4517-8CC0-9D84CBC47341"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, <var>a</var> is overwritten by <samp class="codeph">diag(<var>sr</var>)*<var>a</var>*diag(<var>sc</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">af</span></dt>
+
+<dd><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>, then <var>af</var> is an output argument and on exit  returns the triangular factor <var>U</var> or <var>L</var> from the Cholesky factorization <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>A</var> = <var>L*L</var><sup class="power"><var>T</var></sup></samp> of the original  matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>, then <var>af</var> is an output argument and on exit returns the triangular factor <var>U</var> or <var>L</var> from the Cholesky factorization <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>A</var> = <var>L*L</var><sup class="power"><var>T</var></sup></samp> of the equilibrated matrix <var>A</var> (see the description of <var>A</var> for the form of the equilibrated matrix).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">equed</span></dt>
+
+<dd><p>If <samp class="codeph"><var>fact</var><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp> , then <var>equed</var> is an output argument. It specifies the form of equilibration that was done (see the description of <var>equed</var> in <em>Input Arguments</em> section). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">sr</span></dt>
+
+<dd><p>This array  is an output argument if <samp class="codeph"><var>fact</var><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp>. </p>
+<p>See the description of <var>sr</var> in <em>Input Arguments</em> section.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sc</span></dt>
+
+<dd><p>This array is an output argument if <samp class="codeph"><var>fact</var><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp>. </p>
+<p>See the description of <var>sc</var> in <em>Input Arguments</em> section.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp>, <var>b</var> is not modified; if <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp> or <span class="keyword">'B'</span>, <var>b</var> is overwritten by <samp class="codeph">diag(<var>r</var>)*<var>b</var></samp>; if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <span class="keyword">'C'</span> and <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp> or <span class="keyword">'B'</span>, <var>b</var> is overwritten by <samp class="codeph">diag(<var>c</var>)*<var>b</var></samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psposvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdposvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcposvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzposvx</span>.</p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp> the <var>n</var>-by-<var>nrhs</var> solution matrix <var>X</var> to the original system of equations. </p>
+<p>Note that <var>A</var> and <var>B</var> are modified on exit if <samp class="codeph"><var>equed</var><span class="eqsymbol">≠</span><span class="keyword">'N'</span></samp>, and the solution to the equilibrated system is </p>
+<p><samp class="codeph">inv(diag(<var>sc</var>))*<var>X</var></samp>   if <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp> or <span class="keyword">'B'</span>, or</p>
+<p><samp class="codeph">inv(diag(<var>sr</var>))*<var>X</var></samp> if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <span class="keyword">'C'</span> and <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp> or <span class="keyword">'B'</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">rcond</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for single precision flavors. </p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>An estimate of the reciprocal condition number of the matrix <var>A</var> after equilibration (if done). If <var>rcond</var> is less than the machine precision (in particular, if <samp class="codeph"><var>rcond</var>=0</samp>), the matrix is singular to working precision. This condition is indicated by a return code of <samp class="codeph"><var>info</var> &gt; 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ferr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors. </p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays of size at least <samp class="codeph">max(<var>LOC</var>,<var>n_b</var>)</samp>. The estimated forward error bounds for each solution vector <var>X</var>(<var>j</var>) (the <var>j</var>-th column of the solution matrix <var>X</var>). If <var>xtrue</var> is the true solution, <var>ferr</var><samp class="codeph">(<var>j</var>)</samp> bounds the magnitude of the largest entry in <samp class="codeph">(<var>X</var>(<var>j</var>) - <var>xtrue</var>)</samp> divided by the magnitude of the largest entry in <var>X</var>(<var>j</var>). The quality of the error bound depends on the quality of the estimate of <samp class="codeph">norm(inv(<var>A</var>))</samp> computed in the code; if the estimate of <samp class="codeph">norm(inv(<var>A</var>))</samp> is accurate, the error bound is guaranteed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">berr</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for single precision flavors. </p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays of size at least <samp class="codeph">max(<var>LOC</var>,<var>n_b</var>)</samp>. The componentwise relative backward error of each solution vector <var>X</var>(<var>j</var>) (the smallest relative change in any entry of <var>A</var> or <var>B</var> that makes <var>X</var>(<var>j</var>) an exact solution).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>(local) On exit, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the minimal and optimal <var>liwork</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful. </p>
+<p><samp class="codeph">&lt; 0</samp>: if <samp class="codeph"><var>info</var> = -<var>i</var></samp>, the <var>i</var>-th argument had an illegal value </p>
+<p><samp class="codeph">&gt; 0</samp>: if <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <var>i</var> is <samp class="codeph">≤ <var>n</var></samp>: if <samp class="codeph"><var>info</var> = <var>i</var></samp>, the leading minor of order <var>i</var> of <var>a</var> is not positive definite, so the factorization could not be completed, and the solution and error bounds could not be computed. </p>
+<p><samp class="codeph">= <var>n</var>+1</samp>: <var>rcond</var> is less than machine precision. The factorization has been completed, but the matrix is singular to working precision, and the solution and error bounds have not been computed. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CF5CF672-F6FD-41A7-A0BC-CAAEFBD035EE.html">ScaLAPACK Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

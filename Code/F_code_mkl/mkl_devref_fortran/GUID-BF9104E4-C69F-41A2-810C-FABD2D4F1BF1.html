@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lartg"/>
+<meta name="abstract" content="Generates a plane rotation with real cosine and real/complex sine."/>
+<meta name="description" content="Generates a plane rotation with real cosine and real/complex sine."/>
+<meta name="DC.subject" content="?lartg, LAPACK routines, auxiliary routines, plane rotation"/>
+<meta name="keywords" content="?lartg, LAPACK routines, auxiliary routines, plane rotation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BF9104E4-C69F-41A2-810C-FABD2D4F1BF1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lartg</title>
+
+</head>
+<body id="GUID-BF9104E4-C69F-41A2-810C-FABD2D4F1BF1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lartg</span></h1>
+<!--Generates a plane rotation with real cosine and real/complex sine.--><div><p class="shortdesc">Generates a plane rotation with real cosine and real/complex sine.</p>
+<div class="section" id="GUID-767DA510-D62C-4D61-8D82-FF2934EA9A8C"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slartg</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlartg</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clartg</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlartg</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-A0246A89-56C3-415B-B31D-154869418ABE"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D16C68A8-B772-4F98-9B23-2EE6C270247D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine generates a plane rotation so that</p>
+<p><br/><div class="imagecenter"><img src="GUID-FD9A21EF-F538-46AB-8D87-B3F2DEACBF93-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <samp class="codeph"><var>cs</var><sup class="power"><var>2</var></sup> + |<var>sn</var>|<sup class="power"><var>2</var></sup> = 1</samp></p>
+<p>This is a slower, more accurate version of the BLAS Level 1 routine <a href="GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23.html#GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23"><span class="option">?rotg</span></a>, except for the following differences.</p>
+<p>For <span class="option">slartg</span>/<span class="option">dlartg</span>:</p>
+<p><var>f</var> and <var>g</var> are unchanged on return;</p>
+<p>If <samp class="codeph"><var>g</var>=0</samp>, then <var>cs</var>=1 and <var>sn</var>=0;</p>
+<p>If <samp class="codeph"><var>f</var>=0</samp> and <samp class="codeph"><var>g</var><span class="eqsymbol">≠</span> 0</samp>, then <samp class="codeph"><var>cs</var>=0</samp> and <samp class="codeph"><var>sn</var>=1</samp> without doing any floating point operations (saves work in <span class="option">?bdsqr</span> when there are zeros on the diagonal);</p>
+<p>If <var>f</var> exceeds <var>g</var> in magnitude, <var>cs</var> will be positive.</p>
+<p>For <span class="option">clartg</span>/<span class="option">zlartg</span>:</p>
+<p><var>f</var> and <var>g</var> are unchanged on return;</p>
+<p>If <samp class="codeph"><var>g</var>=0</samp>, then <samp class="codeph"><var>cs</var>=1</samp> and <samp class="codeph"><var>sn</var>=0</samp>;</p>
+<p>If <samp class="codeph"><var>f</var>=0</samp>, then <samp class="codeph"><var>cs</var>=0</samp> and <var>sn</var> is chosen so that <var>r</var> is real.</p>
+</div>
+<div class="section" id="GUID-559C76ED-8183-4C51-8247-EDB7E13F8EE7"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A97646BA-9375-472A-B8FC-57DDCF417026"><dt class="dlterm"><span class="parmname">f</span>, <span class="parmname">g</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartg</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clartg</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlartg</span></p>
+<p>The first and second component of vector to be rotated.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-95E73BCA-3D3C-43B1-BF4B-6847BF78918E"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A34175B7-E536-4349-BC1E-E394B5DD5F15"><dt class="dlterm"><span class="parmname">cs</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartg</span>/<span class="option">clartg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartg</span>/<span class="option">zlartg</span></p>
+<p>The cosine of the rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sn</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartg</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clartg</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlartg</span></p>
+<p>The sine of the rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartg</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clartg</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlartg</span></p>
+<p>The nonzero component of the rotated vector.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_?getrfnpi"/>
+<meta name="abstract" content="Performs LU factorization (complete or incomplete) of a general matrix without pivoting."/>
+<meta name="description" content="Performs LU factorization (complete or incomplete) of a general matrix without pivoting."/>
+<meta name="DC.subject" content="mkl_sgetrfnpi, mkl_dgetrfnpi, mkl_cgetrfnpi, mkl_zgetrfnpi"/>
+<meta name="keywords" content="mkl_sgetrfnpi, mkl_dgetrfnpi, mkl_cgetrfnpi, mkl_zgetrfnpi"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-70978EF9-49CB-4475-9CDE-DEFB1B9DF910"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_?getrfnpi</title>
+
+</head>
+<body id="GUID-70978EF9-49CB-4475-9CDE-DEFB1B9DF910">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_?getrfnpi</span></h1>
+<!--Performs LU factorization (complete or incomplete) of a general matrix without pivoting.--><div><p class="shortdesc">Performs LU factorization (complete or incomplete) of a general matrix without pivoting.</p>
+<div class="section" id="GUID-6964C3E6-0748-4C9C-9393-F2AC9988512C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call mkl_sgetrfnpi</span><span class="delim"> (</span><span class="var">m</span><span class="sep">, </span><span class="var"> n</span><span class="sep">, </span><span class="var"> nfact</span><span class="sep">, </span><span class="var"> a</span><span class="sep">, </span><span class="var"> lda</span><span class="sep">, </span><span class="var"> info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call mkl_dgetrfnpi</span><span class="delim"> (</span><span class="var">m</span><span class="sep">, </span><span class="var"> n</span><span class="sep">, </span><span class="var"> nfact</span><span class="sep">, </span><span class="var"> a</span><span class="sep">, </span><span class="var"> lda</span><span class="sep">, </span><span class="var"> info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call mkl_cgetrfnpi</span><span class="delim"> (</span><span class="var">m</span><span class="sep">, </span><span class="var"> n</span><span class="sep">, </span><span class="var"> nfact</span><span class="sep">, </span><span class="var"> a</span><span class="sep">, </span><span class="var"> lda</span><span class="sep">, </span><span class="var"> info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call mkl_zgetrfnpi</span><span class="delim"> (</span><span class="var">m</span><span class="sep">, </span><span class="var"> n</span><span class="sep">, </span><span class="var">nfact</span><span class="sep">, </span><span class="var"> a</span><span class="sep">, </span><span class="var"> lda</span><span class="sep">, </span><span class="var"> info </span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call mkl_getrfnpi</span><span class="delim"> (</span><span class="var"> a </span><span class="delim">[</span><span class="sep">, </span><span class="var">nfact</span><span class="delim">] [</span><span class="sep">, </span><span class="var">info</span><span class="delim">] </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-303CD4D0-9AAB-4393-8139-852BFD3D3B3D"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-38D25105-F191-4873-89CD-BB2D4C17520E"><li><span class="filepath">mkl.fi, lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5EF6DDD0-BDC7-4AAB-8DC1-5BC46F4261AF"><h2 class="sectiontitle">Description</h2><p>The routine computes the LU factorization of a general <var>m</var>-by-<var>n</var> matrix <var>A</var> without using pivoting. It  supports incomplete factorization. The factorization has the form:</p>
+<p><samp class="codeph"><var>A</var> = <var>L</var>*<var>U</var></samp>,</p>
+<p>where <var>L</var> is lower triangular with unit diagonal elements (lower trapezoidal if <var>m</var> &gt; <var>n</var>) and <var>U</var> is upper triangular (upper trapezoidal if <var>m</var> &lt; <var>n</var>). </p>
+<p>Incomplete factorization has the form: </p>
+<p><img src="GUID-60693A62-A916-439D-AFB4-345CB472DC9A-low.gif" width="98" height="26"/></p>
+<p>where <var>L</var> is lower trapezoidal with unit diagonal elements, <var>U</var> is upper trapezoidal, and <img src="GUID-A4BBFF63-E817-42A0-92B7-45CF39469174-low.gif" width="24" height="26"/> is the unfactored part of matrix <var>A</var>. See the application notes section for further details.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Use <a href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">?getrf</span></a> if it is possible  that the matrix is not diagonal dominant.</p>
+</div>
+</div>
+<div class="section" id="GUID-B63AFD5D-1529-4F29-8274-5FC07C4AD671"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-E23D7734-BE5A-4960-865A-9DE22097F607"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span>INTEGER. </span>The number of rows in matrix <var>A</var>; <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span>INTEGER. </span>The number of columns in matrix <var>A</var>; <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nfact</span></dt>
+
+<dd><p><span>INTEGER. </span>The number of rows and columns to factor; 0 <span class="eqsymbol">≤</span><span class="parmname">nfact</span><span class="eqsymbol">≤</span> min(<var>m</var>, <var>n</var>). Note that if <span class="parmname">nfact</span> &lt; min(<var>m</var>, <var>n</var>), incomplete factorization is performed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">mkl_sgetrfnpi</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">mkl_dgetrfnpi</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">mkl_cgetrfnpi</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">mkl_zgetrfnpi</span></p>
+<p>Array of size <samp class="codeph">(<span class="parmname">lda</span>,*)</samp>. Contains the matrix <var>A</var>.<span> The second dimension of <span class="parmname">a</span> must be at least max(1, <var>n</var>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span>INTEGER. </span>The leading dimension of array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1, <span class="parmname">m</span>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-BA0E8BBE-456A-4B1B-B974-715D0E21D5AD"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-30238412-A845-49D8-AE7F-7AD219339E9C"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by <var>L</var> and <var>U</var>. The unit diagonal elements of <var>L</var> are not stored. </p>
+<p>When incomplete factorization is specified by setting <span class="parmname">nfact</span> &lt; min(<span class="parmname">m</span>, <span class="parmname">n</span>), <span class="parmname">a</span> also contains the unfactored submatrix <img src="GUID-2FFC3945-B3A7-4A4F-B07C-6206386372A8-low.gif" width="24" height="26"/>. See the application notes section for further details. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>INTEGER. If <span class="parmname">info</span>=0, the execution is successful.</p>
+<p>If <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <span class="parmname">info</span> = <var>i</var>, <var>u</var><sub><var>ii</var></sub> is 0. The requested factorization has been completed, but <var>U</var> is exactly singular. Division by 0 will occur if factorization is completed and factor <var>U</var> is used for solving a system of linear equations.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6BE5EDAD-4D85-4B19-ABD9-8F8ECE31711E"><h2 class="sectiontitle">Fortran 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">Fortran 95  Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">getrf</span> interface are as follows:</p>
+<dl id="GUID-B0CB6A87-ED22-429F-884A-02BAE3FE1DA1"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size  (<samp class="codeph"><var>m</var>,<var>n</var></samp>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-25B2F2E6-986B-43E5-8D64-42740B17CD41"><h2 class="sectiontitle">Application Notes</h2><p>The computed <var>L</var> and <var>U</var> are the exact factors of a perturbed matrix <var>A</var> + <var>E</var>, with  </p>
+<p><pre>|<var>E</var>| <span class="eqsymbol">≤</span> <var>c</var>(min(<var>m</var>, <var>n</var>))<span class="eqsymbol">ε</span> <var/>|<var>L</var>||<var>U</var>|</pre></p>
+<p>where <samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modest linear function of <var>n</var>, and <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>The approximate number of floating-point operations for real flavors is</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>(2/3)<var>n</var><sup class="power">3</sup></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var> = <var>n</var></samp> = <span class="parmname">nfact</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(1/3)<var>n</var><sup class="power">2</sup>(3<var>m</var>-<var>n</var>)</p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var><span class="eqsymbol">&gt;</span><var>n</var> = <span class="parmname">nfact</span></samp></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(1/3)<var>m</var><sup class="power">2</sup>(3<var>n</var>-<var>m</var>)</p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var> = <span class="parmname">nfact</span><span class="eqsymbol">&lt;</span><var>n</var></samp></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(2/3)<var>n</var><sup class="power">3</sup> - (<var>n</var>-<var>nfact</var>)<sup class="power">3</sup></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var> = <var>n</var>,<span class="parmname">nfact</span><span class="eqsymbol">&lt;</span> min(<var>m</var>, <var>n</var>)</samp></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(1/3)(<var>n</var><sup class="power">2</sup>(3<var>m</var>-<var>n</var>) - (<var>n</var>-<span class="parmname">nfact</span>)<sup class="power">2</sup>(3<var>m</var> - 2<span class="parmname">nfact</span> - <var>n</var>))</p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var><span class="eqsymbol">&gt;</span><var>n</var> &gt; <span class="parmname">nfact</span></samp></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(1/3)(<var>m</var><sup class="power">2</sup>(3<var>n</var>-<var>m</var>) - (<var>m</var>-<span class="parmname">nfact</span>)<sup class="power">2</sup>(3<var>n</var> - 2<span class="parmname">nfact</span> - <var>m</var>))</p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><span class="parmname">nfact</span> &lt; <var>m</var> &lt; <var>n</var></samp></p>
+</td>
+</tr></table><p>The number of operations for complex flavors is four times greater.</p>
+<p>When  incomplete factorization is specified, the first <span class="parmname">nfact</span> rows and columns are factored, with the  update of the remaining rows and columns of <var>A</var> as follows:</p>
+<p><img src="GUID-18500915-3868-421C-BB4F-AAEE8CDAE10F-low.png"/></p>
+<p>If matrix <var>A</var> is represented as a block 2-by-2 matrix:</p>
+<p><img src="GUID-3DF7CBC4-8691-4B92-A85C-466ABF671B3A-low.gif"/></p>
+<p>where</p>
+<ul id="GUID-858F2E30-B6F0-4473-A20F-160E453A5C8A"><li><p><var>A</var><sub>11</sub> is a square matrix of order <span class="parmname">nfact</span>,</p>
+</li>
+<li><p><var>A</var><sub>21</sub> is an  (<span class="parmname">m</span> -   <span class="parmname">nfact</span>)-by-<span class="parmname">nfact</span> matrix, </p>
+</li>
+<li><p><var>A</var><sub>12</sub> is an  <span class="parmname">nfact</span>-by-(<span class="parmname">n</span> - <span class="parmname">nfact</span>) matrix, and </p>
+</li>
+<li><p><var>A</var><sub>22</sub> is an  (<span class="parmname">m</span> -   <span class="parmname">nfact</span>)-by-(<span class="parmname">n</span> - <span class="parmname">nfact</span>) matrix.</p>
+</li>
+</ul>
+<p>The result is</p>
+<p><img src="GUID-4546E2A3-E84D-441A-809B-612FF74D5D04-low.gif"/></p>
+<p><var>L</var><sub>1</sub> is a lower triangular square matrix of order <span class="parmname">nfact</span> with unit diagonal and <var>U</var><sub>1</sub> is an upper triangular square matrix of order <span class="parmname">nfact</span>. <var>L</var><sub>1</sub> and <var>U</var><sub>1</sub> result from LU factorization of matrix <var>A</var><sub>11</sub>: <var>A</var><sub>11</sub> = <var>L</var><sub>1</sub><var>U</var><sub>1</sub>. </p>
+<p><var>L</var><sub>2</sub> is an (<span class="parmname">m</span> -   <span class="parmname">nfact</span>)-by-<span class="parmname">nfact</span> matrix and <var>L</var><sub>2</sub> = <var>A</var><sub>21</sub><var>U</var><sub>1</sub><sup>-1</sup>. <var>U</var><sub>2</sub> is an <span class="parmname">nfact</span>-by-(<span class="parmname">n</span> - <span class="parmname">nfact</span>) matrix and <var>U</var><sub>2</sub> = <var>L</var><sub>1</sub><sup>-1</sup><var>A</var><sub>12</sub>.</p>
+<p><img src="GUID-2FFC3945-B3A7-4A4F-B07C-6206386372A8-low.gif" width="24" height="26"/> is an (<span class="parmname">m</span> -   <span class="parmname">nfact</span>)-by-(<span class="parmname">n</span> - <span class="parmname">nfact</span>) matrix and <img src="GUID-2FFC3945-B3A7-4A4F-B07C-6206386372A8-low.gif" width="24" height="26"/> = <var>A</var><sub>22</sub> - <var>L</var><sub>2</sub><var>U</var><sub>2</sub>.</p>
+<p>On exit, elements of the upper triangle <var>U</var><sub>1</sub>  are stored in place of the upper triangle of block <var>A</var><sub>11</sub> in array <span class="parmname">a</span>; elements of the lower triangle <var>L</var><sub>1</sub> are stored in the  lower triangle of block <var>A</var><sub>11</sub> in array <span class="parmname">a</span>  (unit diagonal elements are not stored). Elements of <var>L</var><sub>2</sub> replace elements of <var>A</var><sub>21</sub>;  <var>U</var><sub>2</sub> replaces  elements of <var>A</var><sub>12</sub> and <img src="GUID-2FFC3945-B3A7-4A4F-B07C-6206386372A8-low.gif" width="24" height="26"/> replaces elements of  <var>A</var><sub>22</sub>.</p>
+<p><img src="GUID-A1605053-7E62-4442-9662-99D01ADB6BE2-low.png"/></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

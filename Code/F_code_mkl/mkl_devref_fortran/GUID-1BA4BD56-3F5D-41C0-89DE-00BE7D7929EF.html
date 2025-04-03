@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="VM Error Diagnostics"/>
+<meta name="DC.subject" content="error diagnostics, in VM, xerbla, error reporting routine, error handling, xerbla"/>
+<meta name="keywords" content="error diagnostics, in VM, xerbla, error reporting routine, error handling, xerbla"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-12BD6750-FF76-49B2-A578-B9BD88C10CE8.html#GUID-12BD6750-FF76-49B2-A578-B9BD88C10CE8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BB4D1935-5955-40C0-8298-D1359C6D6439.html#GUID-BB4D1935-5955-40C0-8298-D1359C6D6439"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FE27C565-2303-4E7A-B858-EC3836A32734.html#GUID-FE27C565-2303-4E7A-B858-EC3836A32734"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CCD9240B-E4C0-4BC8-BBE9-57FDB9207500.html#GUID-CCD9240B-E4C0-4BC8-BBE9-57FDB9207500"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-29E47894-5A77-4895-995A-398B0F39384E.html#GUID-29E47894-5A77-4895-995A-398B0F39384E"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-65C14244-1314-4AD3-9D72-76C5ABA1272F.html#GUID-65C14244-1314-4AD3-9D72-76C5ABA1272F"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-31AB6406-63B6-461E-9331-8FCA6EE2A39E.html#GUID-31AB6406-63B6-461E-9331-8FCA6EE2A39E"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E.html#GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1BA4BD56-3F5D-41C0-89DE-00BE7D7929EF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>VM Error Diagnostics</title>
+
+</head>
+<body id="GUID-1BA4BD56-3F5D-41C0-89DE-00BE7D7929EF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">VM Error Diagnostics</h1>
+<div><p>The VM mathematical functions incorporate the error handling mechanism, which is controlled by the following service functions: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-9E6CB3C8-0386-40F2-A596-46EBD265215E" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"> </span></caption><tbody><tr><td class="cellrowborder" valign="top" width="35%"><p><span class="option">vmlgeterrstatus</span>, 
+          <span class="option">vmlseterrstatus</span>, 
+          <span class="option">vmlclearerrstatus</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%"><p> These functions operate with a global variable called VM Error Status. The VM Error Status flags an error, a warning, or a successful execution of a VM function. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%"><p><span class="option">vmlgeterrcallback</span>, 
+          <span class="option">vmlseterrcallback</span>, 
+          <span class="option">vmlclearerrcallback</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%"><p> These functions enable you to customize the error handling. For example, you can identify a particular argument in a vector where an error occurred or that caused a warning. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%"><p><span class="option">vmlsetmode</span>, 
+          <span class="option">vmlgetmode</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%"><p> These functions get and set a VM mode. If you set a new VM mode using the 
+          <span class="option">vmlsetmode</span> function, you can store the previous VM mode returned by the routine and restore it at any point of your application. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> If both an error and a warning situation occur during the function call, the VM Error Status variable keeps only the value of the error code. 
+    <span>See 
+      <a href="GUID-BB4D1935-5955-40C0-8298-D1359C6D6439.html#TBL9-16">Table 
+        <span>"Values of the VM Error Status"</span></a></span> for possible values. If a VM function does not encounter errors or warnings, it sets the VM Error Status to 
+    <span class="keyword">VML_STATUS_OK</span>. 
+  </p>
+<p>If you use incorrect input arguments to a VM function (<span class="keyword">VML_STATUS_BADSIZE</span> and 
+    <span class="keyword">VML_STATUS_BADMEM</span>), the function calls 
+  <span class="option">xerbla</span> to report errors. 
+  <span>See 
+    <a href="GUID-BB4D1935-5955-40C0-8298-D1359C6D6439.html#TBL9-16">Table 
+      <span>"Values of the VM Error Status"</span></a> for details</span>. 
+  </p>
+<p>You can use the 
+  <span class="option">vmlsetmode</span> and 
+  <span class="option">vmlgetmode</span> functions to modify error handling behavior. Depending on the VM mode, the error handling behavior includes the following operations: 
+  </p>
+<ul class="bullet" id="GUID-9A0E5517-C096-480A-87DE-BA6A9E767F04"><li><p>setting the VM Error Status to a value corresponding to the observed error or warning 
+      </p>
+</li>
+<li><p>writing error text information to the 
+        <span class="parmname">stderr</span> stream 
+      </p>
+</li>
+<li><p>raising the appropriate exception on an error, if necessary 
+      </p>
+</li>
+<li><p>calling the additional error handler callback function that is set by 
+  <span class="option">vmlseterrorcallback</span>. 
+  </p>
+</li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html">Vector Mathematical Functions</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-12BD6750-FF76-49B2-A578-B9BD88C10CE8.html#GUID-12BD6750-FF76-49B2-A578-B9BD88C10CE8"><span class="option">vmlgeterrstatus</span></a> Gets the VM Error Status. </div>
+<div><a href="GUID-BB4D1935-5955-40C0-8298-D1359C6D6439.html#GUID-BB4D1935-5955-40C0-8298-D1359C6D6439"><span class="option">vmlseterrstatus</span></a> Sets the new VM Error Status according to err and stores the previous VM Error Status to olderrSets the global VM Status according to new values and returns the previous VM Status.</div>
+<div><a href="GUID-FE27C565-2303-4E7A-B858-EC3836A32734.html#GUID-FE27C565-2303-4E7A-B858-EC3836A32734"><span class="option">vmlclearerrstatus</span></a> Sets the VM Error Status to VML_STATUS_OK and stores the previous VM Error Status to olderr.</div>
+<div><a href="GUID-CCD9240B-E4C0-4BC8-BBE9-57FDB9207500.html#GUID-CCD9240B-E4C0-4BC8-BBE9-57FDB9207500"><span class="option">vmlseterrorcallback</span></a> Sets the additional error handler callback function and gets the old callback function.</div>
+<div><a href="GUID-29E47894-5A77-4895-995A-398B0F39384E.html#GUID-29E47894-5A77-4895-995A-398B0F39384E"><span class="option">vmlgeterrorcallback</span></a> Gets the additional error handler callback function.</div>
+<div><a href="GUID-65C14244-1314-4AD3-9D72-76C5ABA1272F.html#GUID-65C14244-1314-4AD3-9D72-76C5ABA1272F"><span class="option">vmlclearerrorcallback</span></a> Deletes the additional error handler callback function and retrieves the former callback function.</div>
+<div><a href="GUID-31AB6406-63B6-461E-9331-8FCA6EE2A39E.html#GUID-31AB6406-63B6-461E-9331-8FCA6EE2A39E"><span class="option">vmlgetmode</span></a> Gets the VM mode. </div>
+<div><a href="GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E.html#GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E"><span class="option">vmlsetmode</span></a> Sets a new mode for VM functions according to the mode parameter and stores the previous VM mode to oldmode.</div></div></div>
+</body>
+</html>

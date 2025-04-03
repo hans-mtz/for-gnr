@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Task Execution Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5EEF77C6-7BB3-4C82-ABB3-8E77ED04BA07.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5D760027-CCED-4344-B520-DB14AA8E417A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0507F1A6-57D2-4900-A48E-65A07181573C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7DC81BC4-B020-4D87-A636-6AF3954413FA.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2A9852DA-DAF2-41B2-8A2B-E3632386A237"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Task Execution Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-2A9852DA-DAF2-41B2-8A2B-E3632386A237">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Task Execution Routines</h1>
+<div><p>Task execution routines compute convolution or correlation results based on parameters held by the task descriptor and on the user data supplied for input vectors.
+    </p>
+<p>After you create and adjust a task, you can execute it multiple times by applying to different input/output data of the same type, precision, and shape.
+    </p>
+<p>Intel&reg; oneAPI Math Kernel Library provides the following forms of convolution/correlation execution routines:</p>
+<ul id="GUID-8F11CCB3-083D-4FD1-9F48-B65E8A37386D"><li><p><strong>General form</strong> executors that use the task descriptor created by the general form constructor and expect to get two source data arrays 
+          <var>x</var> and 
+          <var>y</var> on input
+        </p>
+</li>
+<li><p><strong>X-form</strong> executors that use the task descriptor created by the X-form constructor and expect to get only one source data array 
+          <var>y</var> on input because the first array 
+          <var>x</var> has been already specified on the construction stage
+        </p>
+</li>
+</ul>
+<p>When the task is executed for the first time, the execution routine includes a task commitment operation, which involves two basic steps: parameters consistency check and preparation of auxiliary data (for example, this might be the calculation of Fourier transform for input data).
+    </p>
+<p>Each execution routine has an associated one-dimensional version that provides algorithmic and computational benefits.
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can use the 
+        <span class="keyword">NULL</span> task pointer in calls to execution routines. In this case, the routine is terminated and no system crash occurs.
+      </p>
+</div>
+<p>If the task is executed successfully, the execution routine returns the zero status code. If an error is detected, the execution routine returns an error code which signals that a specific error has occurred. In particular, an error status code is returned in the following cases:
+    </p>
+<ul class="bullet" id="GUID-0FB3E43B-4CA6-46BF-961E-B6930B3A8480"><li><p>if the task pointer is 
+          <span class="keyword">NULL</span></p>
+</li>
+<li><p>if the task descriptor is corrupted
+        </p>
+</li>
+<li><p>if calculation has failed for some other reason.
+        </p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Intel<span>&reg;</span> MKL does not control floating-point errors, like overflow or gradual underflow, or operations with NaNs, etc.
+      </p>
+</div>
+<p>If an error occurs, the task descriptor stores the error code.
+    </p>
+<p>The table below lists all task execution routines.
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-18" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Task Execution Routines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="37.17472118959108%" id="d337830e91"><p>Routine
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="62.825278810408925%" id="d337830e94"><p>Description
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="37.17472118959108%" headers="d337830e91 "><p><a href="GUID-5EEF77C6-7BB3-4C82-ABB3-8E77ED04BA07.html#GUID-5EEF77C6-7BB3-4C82-ABB3-8E77ED04BA07"><span class="option">vslConvExec</span>/<span class="option">vslCorrExec</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="62.825278810408925%" headers="d337830e94 "><p>Computes convolution or correlation for a multidimensional case.
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="37.17472118959108%" headers="d337830e91 "><p><a href="GUID-5D760027-CCED-4344-B520-DB14AA8E417A.html#GUID-5D760027-CCED-4344-B520-DB14AA8E417A"><span class="option">vslConvExec1D</span>/<span class="option">vslCorrExec1D</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="62.825278810408925%" headers="d337830e94 "><p>Computes convolution or correlation for a one-dimensional case.
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="37.17472118959108%" headers="d337830e91 "><p><a href="GUID-0507F1A6-57D2-4900-A48E-65A07181573C.html#GUID-0507F1A6-57D2-4900-A48E-65A07181573C"><span class="option">vslConvExecX</span>/<span class="option">vslCorrExecX</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="62.825278810408925%" headers="d337830e94 "><p>Computes convolution or correlation as X-form for a multidimensional case.
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="37.17472118959108%" headers="d337830e91 "><p><a href="GUID-7DC81BC4-B020-4D87-A636-6AF3954413FA.html#GUID-7DC81BC4-B020-4D87-A636-6AF3954413FA"><span class="option">vslConvExecX1D</span>/<span class="option">vslCorrExecX1D</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="62.825278810408925%" headers="d337830e94 "><p>Computes convolution or correlation as X-form for a one-dimensional case.
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

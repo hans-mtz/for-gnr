@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?laqsy"/>
+<meta name="abstract" content="Scales a symmetric/Hermitian matrix, using scaling factors computed by p?poequ ."/>
+<meta name="description" content="Scales a symmetric/Hermitian matrix, using scaling factors computed by p?poequ ."/>
+<meta name="DC.subject" content="p?laqsy, ScaLAPACK routines, auxiliary routines, symmetric matrix, scaling, Hermitian matrix, symmetric/Hermitian matrix"/>
+<meta name="keywords" content="p?laqsy, ScaLAPACK routines, auxiliary routines, symmetric matrix, scaling, Hermitian matrix, symmetric/Hermitian matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-281C43CD-E7A9-4F0D-84B6-F6C7C2AA453E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?laqsy</title>
+
+</head>
+<body id="GUID-281C43CD-E7A9-4F0D-84B6-F6C7C2AA453E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?laqsy</span></h1>
+<!--Scales a symmetric/Hermitian matrix, using scaling factors computed by  p?poequ  .--><div><p class="shortdesc">Scales a symmetric/Hermitian matrix, using scaling factors computed by <span class="option">p?poequ</span> .</p>
+<div class="section" id="GUID-94CB1BAF-0D2B-46B2-82C2-AA771015532E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslaqsy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">equed</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlaqsy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">equed</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclaqsy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">equed</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlaqsy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">equed</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-9313F806-317B-4D72-8C9A-D038B0106A75"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?laqsy</span><span>routine </span>equilibrates a symmetric distributed matrix sub(<var>A</var>) = <var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> using the scaling factors in the vectors <var>sr</var> and <var>sc</var>. The scaling factors are computed by <a href="GUID-34074084-8CE7-4B20-8C44-9CF9F486B63F.html#GUID-34074084-8CE7-4B20-8C44-9CF9F486B63F"><span class="option">p?poequ</span></a>.</p>
+</div>
+<div class="section" id="GUID-7E76F337-21A4-4D42-8A01-1C4448C2E5D3"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A0A190B8-762E-4159-8369-581E7F1AEA10"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Specifies the upper or lower triangular part of the symmetric distributed matrix <samp class="codeph">sub(<var>A</var>)</samp> is to be referenced: </p>
+<p>= <span class="keyword">'U'</span>:   Upper triangular part; </p>
+<p>= <span class="keyword">'L'</span>:  Lower triangular part.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The order of the distributed matrix sub(<var>A</var>). <samp class="codeph"><var>n </var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslaqsy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqsy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaqsy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaqsy</span>. </p>
+<p>Pointer into the local memory to an array of size  <span>(<var>lld_a</var>,<var> LOCc</var>(<var>ja</var>+<var>n</var>-1))</span>. </p>
+<p>On entry, this array contains the local pieces of the distributed matrix sub(<var>A</var>). On entry, the local pieces of the distributed symmetric matrix sub(<var>A</var>). </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of sub(<var>A</var>) contains the upper triangular part of the matrix, and the strictly lower triangular part of sub(<var>A</var>) is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of sub(<var>A</var>) contains the lower triangular part of the matrix, and the strictly upper triangular part of sub(<var>A</var>) is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix A.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sr</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslaqsy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqsy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaqsy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaqsy</span>. </p>
+<p>Array of size <var>LOCr</var>(<var>m_a</var>). The scale factors for  <var>A</var>(<var>ia</var>:<var>ia</var>+<var>m</var>-1, <var>ja</var>:<var>ja</var>+<var>n</var>-1). <span class="parmname">sr</span> is aligned with the distributed matrix <var>A</var>, and replicated across every process column. <span class="parmname">sr</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sc</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslaqsy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqsy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaqsy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaqsy</span>. </p>
+<p>Array of size <var>LOCc</var>(<var>m_a</var>). The scale factors for <var>A</var> (<var>ia</var>:<var>ia</var>+<var>m</var>-1, <var>ja</var>:<var>ja</var>+<var>n</var>-1). <span class="parmname">sc</span> is aligned with the distributed matrix <var>A</var>, and replicated across every process column. <span class="parmname">sc</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scond</span></dt>
+
+<dd><p>(global). <span><span class="keyword">REAL</span> for <span class="option">pslaqsy</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqsy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaqsy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaqsy</span>. </p>
+<p>Ratio of the smallest <span class="parmname">sr</span><span>(<var>i</var>)</span> (respectively <span class="parmname">sc</span><span>(<var>j</var>)</span>) to the  largest <span class="parmname">sr</span><span>(<var>i</var>)</span> (respectively <span class="parmname">sc</span><span>(<var>j</var>)</span>), with <span><span class="parmname">ia</span> ≤ <var>i</var> ≤ <span class="parmname">ia</span>+<span class="parmname">n</span>-1 and <span class="parmname">ja</span> ≤ <var>j</var> ≤ <span class="parmname">ja</span>+<span class="parmname">n</span>-1</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">amax</span></dt>
+
+<dd><p>(global). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslaqsy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqsy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaqsy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaqsy</span>. </p>
+<p>Absolute value of largest distributed submatrix entry.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2FDE01F2-3D16-40A1-9158-83AF2369D17E"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8163BA93-6166-4F11-8876-26BD03CDC0F9"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, </p>
+<p>if <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, the equilibrated matrix: </p>
+<p><samp class="codeph">diag(<var>sr</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1)) * sub(<var>A</var>) * diag(<var>sc</var>(<var>ja</var>:<var>ja</var>+<var>n</var>-1))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">equed</span></dt>
+
+<dd><p>(global)<span><span class="keyword">CHARACTER*1</span></span>.</p>
+<p>Specifies whether or not equilibration was done. </p>
+<p>= <span class="keyword">'N'</span>:  No equilibration. </p>
+<p>= <span class="keyword">'Y'</span>:  Equilibration was done, that is, sub(<var>A</var>) has been replaced by: </p>
+<p><samp class="codeph">diag(<var>sr</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1)) * sub(<var>A</var>) * diag(<var>sc</var>(<var>ja</var>:<var>ja</var>+<var>n</var>-1))</samp>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

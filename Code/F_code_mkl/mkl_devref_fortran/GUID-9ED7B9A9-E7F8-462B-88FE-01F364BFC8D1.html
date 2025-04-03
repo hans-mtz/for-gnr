@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?bdsvdx"/>
+<meta name="abstract" content="Computes the SVD of a bidiagonal matrix."/>
+<meta name="description" content="Computes the SVD of a bidiagonal matrix."/>
+<meta name="DC.subject" content="sbdsvdx, dbdsvdx"/>
+<meta name="keywords" content="sbdsvdx, dbdsvdx"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BDA281B1-921F-4A41-B381-DCD341B0774A.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9ED7B9A9-E7F8-462B-88FE-01F364BFC8D1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?bdsvdx</title>
+
+</head>
+<body id="GUID-9ED7B9A9-E7F8-462B-88FE-01F364BFC8D1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?bdsvdx</span></h1>
+<!--Computes  the SVD of a bidiagonal matrix.--><div><p class="shortdesc">Computes  the SVD of a bidiagonal matrix.</p>
+<div class="section" id="GUID-FC1B3896-6942-4F21-A6D8-64EED51E7EFA"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sbdsvdx</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">jobz</span><span class="sep">, </span><span class="var">range</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">ns</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dbdsvdx</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">jobz</span><span class="sep">, </span><span class="var">range</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">ns</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-551E1F8B-BBBE-430F-B3FF-E3FD046268EA"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-08884903-9FEF-418F-8F24-A2B65A69E0F2"><h2 class="sectiontitle">Description</h2><p><span class="option">?bdsvdx</span> computes the singular value decomposition (SVD) of a real <var>n</var>-by-<var>n</var> (upper or lower) bidiagonal matrix <var>B</var>, <var>B</var> = <var>U</var> * <var>S</var> * <var>VT</var>, where <var>S</var> is a diagonal matrix with non-negative diagonal elements (the singular values of <var>B</var>), and <var>U</var> and <var>VT</var> are orthogonal matrices of left and right singular vectors, respectively.</p>
+<p>  Given an upper bidiagonal <var>B</var> with diagonal <span class="parmname">d</span> = [<var>d</var><sub>1</sub><var>d</var><sub>2</sub> ... <var>d</var><sub><var>n</var></sub>] and superdiagonal <span class="parmname">e</span> = [<var>e</var><sub>1</sub><var>e</var><sub>2</sub> ... <var>e</var><sub><var>n</var> - 1</sub>], <span class="option">?bdsvdx</span> computes the singular value decompositon of <var>B</var> through the eigenvalues and eigenvectors of the <var>n</var>*2-by-<var>n</var>*2 tridiagonal matrix</p>
+<p><span><img class="img-middle" src="equations/GUID-9ED7B9A9-E7F8-462B-88FE-01F364BFCee1.png"/></span></p>
+<p>  If (<var>s</var>,<var>u</var>,<var>v</var>) is a singular triplet of <var>B</var> with ||<var>u</var>|| = ||<var>v</var>|| = 1, then (<span class="eqsymbol">±</span><var>s</var>,<var>q</var>), ||<var>q</var>|| = 1, are eigenpairs of TGK, with <span><img class="img-middle" src="equations/GUID-9ED7B9A9-E7F8-462B-88FE-01F364BFCee2.png"/></span>, and <span><img class="img-middle" src="equations/GUID-9ED7B9A9-E7F8-462B-88FE-01F364BFCee3.png"/></span>.  </p>
+<p>Given a TGK matrix, one can either </p>
+<ol id="GUID-F2A3F03C-C18A-4EE5-886F-B482DEA4F2B4"><li><p>compute -<var>s</var>, -<var>v</var> and change signs so that the singular values (and corresponding vectors) are already in descending order (as in<span class="option"> ?gesvd</span>/<span class="option">?gesdd</span>) or</p>
+</li>
+<li><p>compute <var>s</var>, <var>v</var> and reorder the values (and corresponding vectors). </p>
+</li>
+</ol>
+<p><span class="option">?bdsvdx</span> implements (1)  by calling <span class="option">?stevx</span> (bisection plus inverse iteration, to be replaced with a version of the Multiple Relative Robust Representation algorithm. (See P. Willems and B. Lang, A framework for the MR^3 algorithm: theory and implementation, SIAM J. Sci. Comput., 35:740-766, 2013.)</p>
+</div>
+<div class="section" id="GUID-A7796683-B04D-4979-AF79-22CEFD3BE2CC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C6CC9607-9C34-4217-9C40-9015D23DA879"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span>CHARACTER*1. </span>= 'U': <var>B</var> is upper bidiagonal;</p>
+<p> = 'L': B is lower bidiagonal.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span>CHARACTER*1. </span>= 'N': Compute singular values only;</p>
+<p> = 'V': Compute singular values and singular vectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">range</span></dt>
+
+<dd><p><span>CHARACTER*1. </span>= 'A': Find all singular values. </p>
+<p>= 'V': all singular values in the half-open interval [<span class="parmname">vl</span>,<span class="parmname">vu</span>) are found.</p>
+<p> = 'I': the <span class="parmname">il</span>-th through <span class="parmname">iu</span>-th singular values are found.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span>INTEGER. </span>The order of the bidiagonal matrix.</p>
+<p><span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p>Array, size <span class="parmname">n</span>.</p>
+<p> The <span class="parmname">n</span> diagonal elements of the bidiagonal matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p>Array, size (max(1,<span class="parmname">n</span> - 1))</p>
+<p> The (<span class="parmname">n</span> - 1) superdiagonal elements of the bidiagonal matrix <var>B</var> in elements 1 to <span class="parmname">n</span> - 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p><span class="parmname">vl</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p>If <span class="parmname">range</span>='V', the lower and upper bounds of the interval to be searched for singular values. <span class="parmname">vu</span> &gt; <span class="parmname">vl</span>. </p>
+<p>Not referenced if <span class="parmname">range</span> = 'A' or 'I'.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">il</span>, <span class="parmname">iu</span></dt>
+
+<dd><p><span>INTEGER. </span>If <span class="parmname">range</span>='I', the indices (in ascending order) of the smallest and largest singular values to be returned.</p>
+<p> 1 <span class="eqsymbol">≤</span><span class="parmname">il</span><span class="eqsymbol">≤</span><span class="parmname">iu</span><span class="eqsymbol">≤</span> min(<var>m</var>,<span class="parmname">n</span>), if min(<var>m</var>,<span class="parmname">n</span>) &gt; 0.</p>
+<p> Not referenced if <span class="parmname">range</span> = 'A' or 'V'.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span>INTEGER. </span>The leading dimension of the array <span class="parmname">z</span>.</p>
+<p><span class="parmname">ldz</span><span class="eqsymbol">≥</span> 1, and if <span class="parmname">jobz</span> = 'V', <span class="parmname">ldz</span><span class="eqsymbol">≥</span> max(2,<span class="parmname">n</span>*2).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C57AA35F-5B57-42B1-8AC0-8E43B77CA6FA"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ns</span></p></td>
+
+<td valign="top" class="noborder"><p><span>INTEGER. </span>The total number of singular values found. 0 <span class="eqsymbol">≤</span><span class="parmname">ns</span><span class="eqsymbol">≤</span><span class="parmname">n</span>. </p>
+<p>If <span class="parmname">range</span> = 'A', <span class="parmname">ns</span> = <span class="parmname">n</span>, and if <span class="parmname">range</span> = 'I', <span class="parmname">ns</span> = <span class="parmname">iu</span> - <span class="parmname">il</span> + 1.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">s</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p>Array, size (<span class="parmname">n</span>) </p>
+<p>The first <span class="parmname">ns</span> elements contain the selected singular values in ascending order.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">z</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p>Array, size <span>(2*<span class="parmname">n</span>, <var>k</var>)</span></p>
+<p>If <span class="parmname">jobz</span> = 'V', then if <span class="parmname">info</span> = 0 the first <span class="parmname">ns</span> columns of <span class="parmname">z</span> contain the singular vectors of the matrix <var>B</var> corresponding to the selected singular values, with <var>U</var> in rows 1 to <span class="parmname">n</span> and <var>V</var> in rows <span class="parmname">n</span>+1 to <span class="parmname">n</span>*2, i.e.</p>
+<p><span class="parmname">z</span> = <span><img class="img-middle" src="equations/GUID-9ED7B9A9-E7F8-462B-88FE-01F364BFCee4.png"/></span></p>
+<p> If <span class="parmname">jobz</span> = 'N', then <span class="parmname">z</span> is not referenced.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Make sure that at least <var>k</var> = <span class="parmname">ns</span>+1 columns are supplied in the array <span class="parmname">z</span>; if <span class="parmname">range</span> = 'V', the exact value of <span class="parmname">ns</span> is not known in advance and an upper bound must be used.</p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sbdsvdx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dbdsvdx</span></p>
+<p>Array, size (14*<span class="parmname">n</span>)</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span>INTEGER. </span>Array, size (12*<span class="parmname">n</span>).</p>
+<p> If <span class="parmname">jobz</span> = 'V', then if <span class="parmname">info</span> = 0, the first <span class="parmname">ns</span> elements of <span class="parmname">iwork</span> are zero. If <span class="parmname">info</span> &gt; 0, then <span class="parmname">iwork</span> contains the indices of the eigenvectors that failed to converge in <span class="option">?stevx</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span>INTEGER. </span>= 0: successful exit.</p>
+<p> &lt; 0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value. </p>
+<p>&gt; 0:</p>
+<p> if <span class="parmname">info</span> = <var>i</var>, then <var>i</var> eigenvectors failed to converge in <span class="option">?stevx</span>. The indices of the eigenvectors (as returned by <span class="option">?stevx</span>) are stored in the array <span class="parmname">iwork</span>.</p>
+<p>if <span class="parmname">info</span> = <span class="parmname">n</span>*2 + 1, an internal error occurred.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BDA281B1-921F-4A41-B381-DCD341B0774A.html">Singular Value Decomposition: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

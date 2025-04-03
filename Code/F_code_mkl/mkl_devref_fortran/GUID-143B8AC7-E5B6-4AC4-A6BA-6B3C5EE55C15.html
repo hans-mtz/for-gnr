@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?geevx"/>
+<meta name="abstract" content="Computes the eigenvalues and left and right eigenvectors of a general matrix, with preliminary matrix balancing, and computes reciprocal condition numbers for the eigenvalues and right eigenvectors."/>
+<meta name="description" content="Computes the eigenvalues and left and right eigenvectors of a general matrix, with preliminary matrix balancing, and computes reciprocal condition numbers for the eigenvalues and right eigenvectors."/>
+<meta name="DC.subject" content="?geevx, LAPACK routines, driver routines, nonsymmetric eigenproblems"/>
+<meta name="keywords" content="?geevx, LAPACK routines, driver routines, nonsymmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B21D6430-F478-4811-8DE0-3E0DBDE18723.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-143B8AC7-E5B6-4AC4-A6BA-6B3C5EE55C15"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?geevx</title>
+
+</head>
+<body id="GUID-143B8AC7-E5B6-4AC4-A6BA-6B3C5EE55C15">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?geevx</span></h1>
+<!--Computes the eigenvalues and left and right eigenvectors of a general matrix, with preliminary matrix balancing, and computes reciprocal condition numbers for the eigenvalues and right eigenvectors.--><div><p class="shortdesc">Computes the eigenvalues and left and right eigenvectors of a general matrix, with preliminary matrix balancing, and computes reciprocal condition numbers for the eigenvalues and right eigenvectors.</p>
+<div class="section" id="GUID-FF475247-6EBF-4F8A-ACA0-5A3FFCC4DDE8"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgeevx</span><span class="delim">(</span><span class="var">balanc</span><span class="sep">, </span><span class="var">jobvl</span><span class="sep">, </span><span class="var">jobvr</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">ldvl</span><span class="sep">, </span><span class="var">vr</span><span class="sep">, </span><span class="var">ldvr</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">abnrm</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgeevx</span><span class="delim">(</span><span class="var">balanc</span><span class="sep">, </span><span class="var">jobvl</span><span class="sep">, </span><span class="var">jobvr</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">ldvl</span><span class="sep">, </span><span class="var">vr</span><span class="sep">, </span><span class="var">ldvr</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">abnrm</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgeevx</span><span class="delim">(</span><span class="var">balanc</span><span class="sep">, </span><span class="var">jobvl</span><span class="sep">, </span><span class="var">jobvr</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">ldvl</span><span class="sep">, </span><span class="var">vr</span><span class="sep">, </span><span class="var">ldvr</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">abnrm</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgeevx</span><span class="delim">(</span><span class="var">balanc</span><span class="sep">, </span><span class="var">jobvl</span><span class="sep">, </span><span class="var">jobvr</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">ldvl</span><span class="sep">, </span><span class="var">vr</span><span class="sep">, </span><span class="var">ldvr</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">abnrm</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call geevx</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="delim"> [</span><span class="sep">,</span><span class="var">vl</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">vr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">balanc</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ilo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ihi</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">scale</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">abnrm</span><span class="delim">] </span><span class="delim">[</span><span class="sep">, </span><span class="var">rconde</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rcondv</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call geevx</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">vl</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">vr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">balanc</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ilo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ihi</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">scale</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">abnrm</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rconde</span><span class="delim">] </span><span class="delim">[</span><span class="sep">, </span><span class="var">rcondv</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0AABF238-8462-41E2-9B9E-BD0734D2D580"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A393A0DD-75C2-4166-9574-94F138A708ED"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes for an <var>n</var>-by-<var>n</var> real/complex nonsymmetric matrix <var>A</var>, the eigenvalues and, optionally, the left and/or right eigenvectors.</p>
+<p>Optionally also, it computes a balancing transformation to improve the conditioning of the eigenvalues and eigenvectors (<var>ilo</var>, <var>ihi</var>, <var>scale</var>, and <var>abnrm</var>), reciprocal condition numbers for the eigenvalues (<var>rconde</var>), and reciprocal condition numbers for the right eigenvectors (<var>rcondv</var>).</p>
+<p>The right eigenvector <samp class="codeph"><var>v</var></samp> of <var>A</var> satisfies</p>
+<p><var>A</var><span class="eqsymbol">·</span><var>v</var> = <span class="eqsymbol">λ</span><span class="eqsymbol">·</span><var>v</var></p>
+<p>where <samp class="codeph"><span class="eqsymbol">λ</span></samp> is its eigenvalue. </p>
+<p>The left eigenvector <samp class="codeph"><var>u</var></samp> of <var>A</var> satisfies</p>
+<p><samp class="codeph"><var>u</var><sup class="power"><var>H</var></sup><var>A</var> = <span class="eqsymbol">λ</span><var>u</var><sup class="power"><var>H</var></sup></samp></p>
+<p>where <samp class="codeph"><var>u</var><sup class="power"><var>H</var></sup></samp> denotes the conjugate transpose of <samp class="codeph"><var>u</var></samp>. The computed eigenvectors are normalized to have Euclidean norm equal to 1 and largest component real.</p>
+<p>Balancing a matrix means permuting the rows and columns to make it more nearly upper triangular, and applying a diagonal similarity transformation <var>D</var><var>*A</var>*inv(<var>D</var>), where <var>D</var> is a diagonal matrix, to make its rows and columns closer in norm and the condition numbers of its eigenvalues and eigenvectors smaller. The computed reciprocal condition numbers correspond to the balanced matrix. Permuting rows and columns will not change the condition numbers in exact arithmetic) but diagonal scaling will. For further explanation of balancing, see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LUG">LUG</a>], Section 4.10.</p>
+</div>
+<div class="section" id="GUID-B61AC4CA-F2DA-4AA5-BD71-F512CE06704C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-EB3ABB0A-9A7B-4628-A575-E96B1DAFD743"><dt class="dlterm"><span class="parmname">balanc</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span>, <span class="keyword">'P'</span>, <span class="keyword">'S'</span>, or <span class="keyword">'B'</span>. Indicates how the input matrix should be diagonally scaled and/or permuted to improve the conditioning of its eigenvalues.</p>
+<p>If <samp class="codeph"><var>balanc</var> = <span class="keyword">'N'</span></samp>, do not diagonally scale or permute; </p>
+<p>If <samp class="codeph"><var>balanc</var> = <span class="keyword">'P'</span></samp>, perform permutations to make the matrix more nearly upper triangular. Do not diagonally scale; </p>
+<p>If <samp class="codeph"><var>balanc</var> = <span class="keyword">'S'</span></samp>, diagonally scale the matrix, i.e. replace <var>A</var> by <var>D</var>*<var>A</var>*<samp class="codeph">inv(<var>D</var>)</samp>, where <var>D</var> is a diagonal matrix chosen to make the rows and columns of <var>A</var> more equal in norm. Do not permute; </p>
+<p>If <samp class="codeph"><var>balanc</var> = <span class="keyword">'B'</span></samp>, both diagonally scale and permute <var>A</var>.</p>
+<p>Computed reciprocal condition numbers will be for the matrix after balancing and/or permuting. Permuting does not change condition numbers (in exact arithmetic), but balancing does.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobvl</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobvl</var> = <span class="keyword">'N'</span></samp>, left eigenvectors of <var>A</var> are not computed; </p>
+<p>If <samp class="codeph"><var>jobvl</var> = <span class="keyword">'V'</span></samp>, left eigenvectors of <var>A</var> are computed. </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp> or <span class="keyword">'B'</span>, then <var>jobvl</var> must be <span class="keyword">'V'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobvr</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobvr</var> = <span class="keyword">'N'</span></samp>, right eigenvectors of <var>A</var> are not computed; </p>
+<p>If <samp class="codeph"><var>jobvr</var> = <span class="keyword">'V'</span></samp>, right eigenvectors of <var>A</var> are computed. </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp> or <span class="keyword">'B'</span>, then <var>jobvr</var> must be <span class="keyword">'V'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sense</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span>, <span class="keyword">'E'</span>, <span class="keyword">'V'</span>, or <span class="keyword">'B'</span>. Determines which reciprocal condition number are computed.</p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp>, none are computed; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp>, computed for eigenvalues only; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp>, computed for right eigenvectors only; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'B'</span></samp>, computed for eigenvalues and right eigenvectors.</p>
+<p>If <var>sense</var> is <span class="keyword">'E'</span> or <span class="keyword">'B'</span>, both left and right eigenvectors must also be computed (<samp class="codeph"><var>jobvl</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>jobvr</var> = <span class="keyword">'V'</span></samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeevx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeevx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeevx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeevx</span>. </p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span> is an array containing the <var>n</var>-by-<var>n</var> matrix <var>A</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>a</var>. Must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldvl</span>, <span class="parmname">ldvr</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimensions of the output arrays <var>vl</var> and <var>vr</var>, respectively. </p>
+<p>Constraints:</p>
+<p><samp class="codeph"><var>ldvl</var><span class="eqsymbol">≥</span> 1</samp>; <samp class="codeph"><var>ldvr</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>jobvl</var> = <span class="keyword">'V'</span></samp>, <samp class="codeph"><var>ldvl</var><span class="eqsymbol">≥</span> max</samp>(1, <var>n</var>); </p>
+<p>If <samp class="codeph"><var>jobvr</var> = <span class="keyword">'V'</span></samp>, <samp class="codeph"><var>ldvr</var><span class="eqsymbol">≥</span> max</samp>(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>. </p>
+<p><em>For real flavors</em>:</p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, 2<var>n</var>)</samp>, and if <samp class="codeph"><var>jobvl</var> = <span class="keyword">'V'</span></samp> or <samp class="codeph"><var>jobvr</var> = <span class="keyword">'V'</span></samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 3<var>n</var></samp>; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var>*(<var>n</var>+6)</samp>. </p>
+<p>For good performance, <var>lwork</var> must generally be larger.</p>
+<p><em>For complex flavors</em>:</p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp>or <span class="keyword">'E'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max</samp>(1, 2<var>n</var>); </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var><sup class="power">2</sup>+2<var>n</var></samp>. 	For good performance, <var>lwork</var> must generally be larger.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cgeevx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zgeevx</span></p>
+<p>Workspace array, size at least max(1, 2<var>n</var>). Used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Workspace array, size at least max(1, 2<var>n</var>-2). Used in real flavors only. Not referenced if <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-FD8E9755-ADF9-4486-A6A1-981F674E7EFF"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-BBD82F06-1B39-4053-A2AA-4960F83942B0"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, this array is overwritten. </p>
+<p>If <samp class="codeph"><var>jobvl</var> = <span class="keyword">'V'</span></samp> or <samp class="codeph"><var>jobvr</var> = <span class="keyword">'V'</span></samp>, it contains the real-Schur/Schur form of the balanced version of the input matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeevx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeevx</span></p>
+<p>Arrays, size at least max (1, <var>n</var>) each. Contain the real and imaginary parts, respectively, of the computed eigenvalues. Complex conjugate pairs of eigenvalues appear consecutively with the eigenvalue having positive imaginary part first. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cgeevx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeevx</span>. </p>
+<p>Array, size at least max(1, <var>n</var>). Contains the computed eigenvalues. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span>, <span class="parmname">vr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeevx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeevx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeevx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeevx</span>. </p>
+<p>Arrays:</p>
+<p><samp class="codeph"><span class="parmname">vl</span></samp><span>(<var>ldvl</var>,*)</span><span>; the second dimension of <span class="parmname">vl</span> must be at least <samp class="codeph">max(1, <span class="parmname">n</span>)</samp></span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobvl</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">vl</span> is not referenced. </p>
+<p><em>For real flavors</em>:</p>
+<p>If the <var>j</var>-th eigenvalue is real,<span> then <samp class="codeph"><var>u</var><sub><var>j</var></sub> = <span class="parmname">vl</span>(:,<var>j</var>)</samp>, the <var>j</var>-th column of <span class="parmname">vl</span></span>. </p>
+<p>If the <var>j</var>-th and (<var>j</var>+1)-st eigenvalues form a complex conjugate pair, then  for <samp class="codeph">i = sqrt(-1)</samp>, <span><samp class="codeph"><var>u</var><sub><var>j</var></sub> = <span class="parmname">vl</span>(:,<var>j</var>) + <var>i</var>*<span class="parmname">vl</span>(:,<var>j</var>+1)</samp> and <samp class="codeph"><var>u</var><sub><var>j + 1</var></sub> = <span class="parmname">vl</span>(:,<var>j</var>)- <var>i</var>*<span class="parmname">vl</span>(:,<var>j</var>+1)</samp></span>.</p>
+<p><em>For complex flavors</em>: </p>
+<p><samp class="codeph"><var>u</var><sub><var>j</var></sub> = <span class="parmname">vl</span>(:,<var>j</var>)</samp>, the <var>j</var>-th column of <span class="parmname">vl</span>.</p>
+<p><span class="parmname">vr</span><span>(<var>ldvr</var>,*)</span><span>; the second dimension of <span class="parmname">vr</span> must be at least <samp class="codeph">max(1, <span class="parmname">n</span>)</samp></span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobvr</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">vr</span> is not referenced. </p>
+<p><em>For real flavors</em>:</p>
+<p>If the <var>j</var>-th eigenvalue is real, then <span><samp class="codeph"><var>v</var><sub><var>j</var></sub> = <span class="parmname">vr</span>(:,<var>j</var>)</samp>, the <var>j</var>-th column of <span class="parmname">vr</span></span>. </p>
+<p>If the <var>j</var>-th and (<var>j</var>+1)-st eigenvalues form a complex conjugate pair, then for <samp class="codeph"><var>i</var> = sqrt(-1)</samp>, <span><samp class="codeph"><var>v</var><sub><var>j</var></sub> = <span class="parmname">vr</span>(:,<var>j</var>) + <var>i</var>*<span class="parmname">vr</span>(:,<var>j</var>+1)</samp> and <samp class="codeph"><var>v</var><sub><var>j </var> + 1</sub> = <span class="parmname">vr</span>(:,<var>j</var>) - <var>i</var>*<span class="parmname">vr</span>(:,<var>j</var>+1)</samp></span>.</p>
+<p/>
+<p><em>For complex flavors</em>: </p>
+<p><samp class="codeph"><var>v</var><sub><var>j</var></sub> = <span class="parmname">vr</span>(:,<var>j</var>)</samp>, the <var>j</var>-th column of <span class="parmname">vr</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><var>ilo</var> and <var>ihi</var> are integer values determined when <var>A</var> was balanced. </p>
+<p>The balanced <samp class="codeph"><var>A</var>(i,j) = 0</samp> if <samp class="codeph">i &gt; j</samp> and <samp class="codeph">j = 1,..., <var>ilo</var>-1</samp> or <samp class="codeph">i = <var>ihi</var>+1,..., <var>n</var></samp>. </p>
+<p>If <samp class="codeph"><var>balanc</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'S'</span>, <samp class="codeph"><var>ilo</var> = 1</samp> and <samp class="codeph"><var>ihi</var> = <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+<p>Array, size at least max(1, <var>n</var>). Details of the permutations and scaling factors applied when balancing <var>A</var>. </p>
+<p>If <span><var>P</var>(<var>j</var>)</span> is the index of the row and column interchanged with row and column <var>j</var>, and <span><var>D</var>(<var>j</var>)</span> is the scaling factor applied to row and column <var>j</var>, then</p>
+<p><samp class="codeph"><var>scale</var><span>(<var>j</var>)</span> = <span><var>P</var>(<var>j</var>)</span></samp>, for <samp class="codeph"><var>j</var> = 1,...,<var>ilo</var>-1</samp></p>
+<p><samp class="codeph">= <span><var>D</var>(<var>j</var>)</span></samp>, for <samp class="codeph"><var>j</var> = <var>ilo</var>,...,<var>ihi</var></samp></p>
+<p><samp class="codeph">= <span><var>P</var>(<var>j</var>)</span></samp> for <samp class="codeph"><var>j</var> = <var>ihi</var>+1,..., <var>n</var></samp>.</p>
+<p> The order in which the interchanges are made is <var>n</var> to <var>ihi</var>+1, then 1 to <var>ilo</var>-1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">abnrm</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors.</p>
+<p>The one-norm of the balanced matrix (the maximum of the sum of absolute values of elements of any column).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rconde</span>, <span class="parmname">rcondv</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors <span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays, size at least max(1, <var>n</var>) each.</p>
+<p><var>rconde</var><span>(<var>j</var>)</span> is the reciprocal condition number of the <var>j</var>-th eigenvalue.</p>
+<p><var>rcondv</var><span>(<var>j</var>)</span> is the reciprocal condition number of the <var>j</var>-th right eigenvector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work(1)</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work(1)</var> returns the required minimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, 	the <var>QR</var> algorithm failed to compute all the eigenvalues, and no eigenvectors or condition numbers have been computed; elements 1:<var>ilo</var>-1 and <var>i</var>+1:<var>n</var> of <var>wr</var> and <var>wi</var> (for real flavors) or <var>w</var> (for complex flavors) contain eigenvalues which have converged.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0B921614-3BEE-426E-B9D7-F36C7C969E00"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">geevx</span> interface are the following:</p>
+<dl id="GUID-9D3F52E7-0712-4338-9B06-B75795D93339"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wi</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span></dt>
+
+<dd><p>Holds the matrix <var>VL</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vr</span></dt>
+
+<dd><p>Holds the matrix <var>VR</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rconde</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rcondv</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">balanc</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'B'</span>, <span class="keyword">'P'</span> or <span class="keyword">'S'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobvl</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>vl</var> as follows: </p>
+<p><samp class="codeph"><var>jobvl</var> = <span class="keyword">'V'</span></samp>, if <var>vl</var> is present, </p>
+<p><samp class="codeph"><var>jobvl</var> = <span class="keyword">'N'</span></samp>, if <var>vl</var> is omitted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobvr</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>vr</var> as follows: </p>
+<p><samp class="codeph"><var>jobvr</var> = <span class="keyword">'V'</span></samp>, if <var>vr</var> is present, </p>
+<p><samp class="codeph"><var>jobvr</var> = <span class="keyword">'N'</span></samp>, if <var>vr</var> is omitted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sense</span></dt>
+
+<dd><p>Restored based on the presence of arguments <var>rconde</var> and <span class="keyword">rcondv</span> as follows: </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'B'</span></samp>, if both <var>rconde</var> and <var>rcondv</var> are present, </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp>, if <var>rconde</var> is present and <var>rcondv</var> omitted, </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp>, if <var>rconde</var> is omitted and <var>rcondv</var> present, </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp>, if both <var>rconde</var> and <var>rcondv</var> are omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-45514205-EB38-423D-8ACB-600123FCA969"><h2 class="sectiontitle">Application Notes</h2><p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B21D6430-F478-4811-8DE0-3E0DBDE18723.html">Nonsymmetric Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Generalized Symmetric-Definite Eigenvalue Problems: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="eigenvalue problems, generalized form, symmetric matrix, generalized eigenvalue problems, Hermitian matrix, generalized eigenvalue problems, generalized eigenvalue problems, See also LAPACK routines, generalized eigenvalue problems, symmetric matrix"/>
+<meta name="keywords" content="eigenvalue problems, generalized form, symmetric matrix, generalized eigenvalue problems, Hermitian matrix, generalized eigenvalue problems, generalized eigenvalue problems, See also LAPACK routines, generalized eigenvalue problems, symmetric matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-094ED6E6-3512-4BAC-B1B6-C723E4F142F4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FF604945-F79E-44A6-8894-F6D166E49E07.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E239BC55-E2C8-4E2E-A3B8-8027A5A76CA3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-417A645A-CF05-4998-AC62-3A99DA520723.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F52443B0-8063-4E7B-A7ED-4A7905D58A11.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-85306E5E-A6A8-4EA7-949D-E1ABD828DD22.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-5BECF668-947E-4144-B825-2796C91ABECF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Generalized Symmetric-Definite Eigenvalue Problems: LAPACK Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-5BECF668-947E-4144-B825-2796C91ABECF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Generalized Symmetric-Definite Eigenvalue
+    Problems: LAPACK Computational Routines</h1>
+<div><p><dfn class="term">Generalized
+        symmetric-definite eigenvalue problems</dfn> are as follows: find the
+      eigenvalues 
+      <span class="eqsymbol">λ</span> and the
+      corresponding eigenvectors 
+      <var>z</var> that satisfy
+      one of these equations: 
+    </p>
+<p><samp class="codeph"><var>Az</var> = 
+        <span class="eqsymbol">λ</span><var>Bz</var></samp>, 
+      <samp class="codeph"><var>ABz</var> = 
+        <span class="eqsymbol">λ</span>z</samp>, or 
+      <samp class="codeph"><var>B</var><var>A</var><var>z</var>
+        = 
+        <span class="eqsymbol">λ</span><var>z</var></samp>, 
+    </p>
+<p>where 
+      <var>A</var> is an 
+      <var>n</var>-by-<var>n</var> symmetric or Hermitian
+      matrix, and 
+      <var>B</var> is an 
+      <var>n</var>-by-<var>n</var> symmetric positive-definite
+      or Hermitian positive-definite matrix. 
+    </p>
+<p>In these problems, there exist 
+      <var>n</var> real
+      eigenvectors corresponding to real eigenvalues (even for complex Hermitian
+      matrices 
+      <var>A</var> and 
+      <var>B</var>). 
+    </p>
+<p>Routines described in this 
+      <span>topic 
+      </span> allow you to reduce the above generalized problems to standard
+      symmetric eigenvalue problem 
+      <samp class="codeph"><var>Cy</var> = 
+        <span class="eqsymbol">λ</span><var>y</var></samp>, which you can solve
+      by calling LAPACK routines described earlier in this chapter (see 
+      <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html#GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F">Symmetric Eigenvalue Problems</a>).
+      
+    </p>
+<p>Different routines allow the matrices to be stored
+      either conventionally or in packed storage. Prior to reduction, the
+      positive-definite matrix 
+      <var>B</var> must first be
+      factorized using either 
+      <a href="GUID-15A9E907-2600-430B-BF11-DFA0A375711B.html#GUID-15A9E907-2600-430B-BF11-DFA0A375711B">potrf</a> or 
+      <a href="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF.html#GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF">pptrf</a>. 
+    </p>
+<p>The reduction routine for the banded matrices 
+      <var>A</var> and 
+      <var>B</var> uses a split
+      Cholesky factorization for which a specific routine 
+      <a class="allformats" href="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html#GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E">pbstf</a> is provided. This refinement halves the
+      amount of work required to form matrix 
+      <var>C</var>. 
+    </p>
+<p><a href="#TBL4-4">Table 
+        <span>"Computational Routines for Reducing
+          Generalized Eigenproblems to Standard Problems"</span></a> lists LAPACK
+      routines that can be used to solve generalized symmetric-definite eigenvalue
+      problems.<span> The corresponding routine names in
+        the Fortran 95 interface are without the first symbol. 
+      </span></p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL4-4" class="NoLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Reducing Generalized
+    Eigenproblems to Standard Problems</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.000000000000002%" id="d689813e193"><p>Matrix type 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="24%" id="d689813e196"><p>Reduce to standard problems (full storage) 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="24%" id="d689813e199"><p>Reduce to standard problems (packed storage) 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="24%" id="d689813e202"><p>Reduce to standard problems (band matrices) 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="14.000000000000002%" id="d689813e205"><p>Factorize band matrix 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="14.000000000000002%" headers="d689813e193 "><p>real symmetric matrices 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="24%" headers="d689813e196 "><p><a href="GUID-094ED6E6-3512-4BAC-B1B6-C723E4F142F4.html#GUID-094ED6E6-3512-4BAC-B1B6-C723E4F142F4">sygst</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24%" headers="d689813e199 "><p><a href="GUID-E239BC55-E2C8-4E2E-A3B8-8027A5A76CA3.html#GUID-E239BC55-E2C8-4E2E-A3B8-8027A5A76CA3">spgst</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24%" headers="d689813e202 "><p><a href="GUID-F52443B0-8063-4E7B-A7ED-4A7905D58A11.html#GUID-F52443B0-8063-4E7B-A7ED-4A7905D58A11">sbgst</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="14.000000000000002%" headers="d689813e205 "><p><a class="allformats" href="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html#GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E">pbstf</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.000000000000002%" headers="d689813e193 "><p>complex Hermitian matrices 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="24%" headers="d689813e196 "><p><a href="GUID-FF604945-F79E-44A6-8894-F6D166E49E07.html#GUID-FF604945-F79E-44A6-8894-F6D166E49E07">hegst</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24%" headers="d689813e199 "><p><a href="GUID-417A645A-CF05-4998-AC62-3A99DA520723.html#GUID-417A645A-CF05-4998-AC62-3A99DA520723">hpgst</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24%" headers="d689813e202 "><p><a href="GUID-85306E5E-A6A8-4EA7-949D-E1ABD828DD22.html#GUID-85306E5E-A6A8-4EA7-949D-E1ABD828DD22">hbgst</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="14.000000000000002%" headers="d689813e205 "><p><a class="allformats" href="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html#GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E">pbstf</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

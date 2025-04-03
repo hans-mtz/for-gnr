@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?dttrsv"/>
+<meta name="abstract" content="Solves a general tridiagonal system of linear equations using the LU factorization computed by ?dttrf."/>
+<meta name="description" content="Solves a general tridiagonal system of linear equations using the LU factorization computed by ?dttrf."/>
+<meta name="DC.subject" content="ScaLAPACK routines, auxiliary routines, ?dttrsv, solving linear equations, linear equations, solving, tridiagonal matrix, ScaLAPACK auxiliary, systems of linear equations, linear equations, solving systems of linear equations, ScaLAPACK"/>
+<meta name="keywords" content="ScaLAPACK routines, auxiliary routines, ?dttrsv, solving linear equations, linear equations, solving, tridiagonal matrix, ScaLAPACK auxiliary, systems of linear equations, linear equations, solving systems of linear equations, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-408CCF11-7138-4242-A84F-6124C5C85EB6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?dttrsv</title>
+
+</head>
+<body id="GUID-408CCF11-7138-4242-A84F-6124C5C85EB6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?dttrsv</span></h1>
+<!--Solves a general tridiagonal system of linear equations using the LU factorization computed by  ?dttrf .--><div><p class="shortdesc">Solves a general tridiagonal system of linear equations using the LU factorization computed by <span class="option">?dttrf</span>.</p>
+<div class="section" id="GUID-0D6BE199-97B1-4D1E-B8C4-722609EF9A80"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sdttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ddttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cdttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zdttrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-B5F9CB27-2A99-4723-9EE0-3B7E9FC97FAF"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">?dttrsv</span><span>routine </span>solves one of the following systems of linear equations:</p>
+<p><samp class="codeph"><var>L*X</var> = <var>B</var></samp>,               <samp class="codeph"><var>L</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var></samp>,      or       <samp class="codeph"><var>L</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var></samp>, </p>
+<p><samp class="codeph"><var>U*X</var> = <var>B</var></samp>,               <samp class="codeph"><var>U</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var></samp>,     or       <samp class="codeph"><var>U</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var></samp></p>
+<p>with factors of the tridiagonal matrix <var>A </var> from the <var>LU</var> factorization computed by <a href="GUID-A7E8460C-9CE1-436E-928D-64F634BC0E59.html#GUID-A7E8460C-9CE1-436E-928D-64F634BC0E59"><span class="option">?dttrf</span></a>.</p>
+</div>
+<div class="section" id="GUID-0D0817C7-A874-403B-AB48-20460FFC0B0D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-CD3A31FB-B92A-43EF-8BBB-B242978DE6EF"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether to solve with <var>L</var> or <var>U</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span> or <span class="keyword">'C'</span>.</p>
+<p>Indicates the form of the equations:</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, then <samp class="codeph"><samp class="codeph"><var>A</var>*<var>X</var>=<var>B</var></samp></samp> is solved for <var>X</var> (no transpose).</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, then <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup>*<var>X</var> = <var>B</var></samp> is solved for <var>X</var> (transpose).</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, then <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup>*<var>X</var> = <var>B</var></samp> is solved for <var>X</var> (conjugate transpose).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var><samp class="codeph">(<var>n</var><span class="eqsymbol"> ≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides, that is, the number of columns in the matrix <var>B</var><samp class="codeph">(<var>nrhs</var><span class="eqsymbol"> ≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">dl</span>,<span class="parmname">d</span>,<span class="parmname">du</span>,<span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sdttrsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">ddttrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cdttrsv</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zdttrsv</span>.</p>
+<p>The array <span class="parmname">dl</span> of size (<var>n</var> - 1) contains the (<var>n</var> - 1) multipliers that define the matrix <var>L</var> from the <var>LU</var> factorization of <var>A</var>. </p>
+<p>The array <span class="parmname">d</span> of size <var>n</var> contains <var>n</var> diagonal elements of the upper triangular matrix <var>U</var> from the <var>LU</var> factorization of <var>A</var>. </p>
+<p>The array <span class="parmname">du</span> of size (<var>n</var> - 1) contains the (<var>n</var> - 1) elements of the first super-diagonal of <var>U</var>. </p>
+<p>On entry, the array <span class="parmname">b</span> of size <span>(<var>ldb</var>,<var>nrhs</var>)</span> contains the right-hand side of matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>b</var>; <samp class="codeph"><var>ldb </var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E2283E97-92D4-4B0C-B0FE-33EBFD5AD026"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-B8145BE1-FE1F-49EA-8E5C-1337E35C9D0E"><dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>Overwritten by the solution matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

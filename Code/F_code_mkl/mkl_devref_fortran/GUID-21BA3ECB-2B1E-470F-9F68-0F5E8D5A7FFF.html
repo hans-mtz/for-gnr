@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?syequb"/>
+<meta name="abstract" content="Computes row and column scaling factors intended to equilibrate a symmetric indefinite matrix and reduce its condition number."/>
+<meta name="description" content="Computes row and column scaling factors intended to equilibrate a symmetric indefinite matrix and reduce its condition number."/>
+<meta name="DC.subject" content="?syequb, LAPACK routines, symmetric indefinite matrix equilibration"/>
+<meta name="keywords" content="?syequb, LAPACK routines, symmetric indefinite matrix equilibration"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CA12B714-C79D-4598-B0A4-BF61F5B007BB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748.html#GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-21BA3ECB-2B1E-470F-9F68-0F5E8D5A7FFF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?syequb</title>
+
+</head>
+<body id="GUID-21BA3ECB-2B1E-470F-9F68-0F5E8D5A7FFF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?syequb</span></h1>
+<!--Computes row and column scaling factors intended to equilibrate a symmetric indefinite matrix and reduce its condition number.--><div><p class="shortdesc">Computes row and column scaling factors intended to equilibrate a symmetric indefinite matrix and reduce its condition number.</p>
+<div class="section" id="GUID-22F19DB4-1ABF-4AE3-8F54-5418850031FE"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssyequb</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dsyequb</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call csyequb</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zsyequb</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-EA8F0B54-290F-44CB-BE69-ED458145093D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9B179A32-6AE3-4578-844C-5BF1B3322E64"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes row and column scalings intended to equilibrate a symmetric indefinite matrix <var>A</var> and reduce its condition number (with respect to the two-norm).</p>
+<p>The array <span class="parmname">s</span> contains the scale factors, <samp class="codeph"><span class="parmname">s</span><span>(<var>i</var>)</span> = 1/sqrt(A(i,i))</samp>.
+These factors are chosen so that the scaled matrix <var>B</var> with  elements <samp class="codeph"><var>b</var>(<var>i</var>,<var>j</var>)=<var>s</var>(i)*<var>a</var>(<var>i</var>,<var>j</var>)*<var>s</var>(j)</samp> has ones on the diagonal.</p>
+<p>This choice of <span class="parmname">s</span> puts the condition number of <var>B</var> within a factor <span class="parmname">n</span> of the smallest possible condition number over all possible diagonal scalings.</p>
+</div>
+<div class="section" id="GUID-FE594DB4-121D-4CDF-A1D7-65E5B4439B8A"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>a</var> stores the upper triangular part of the matrix <var>A</var>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>a</var> stores the lower triangular part of the matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">ssyequb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyequb</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csyequb</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsyequb</span>.</p>
+<p>Array <span class="parmname">a</span>: <span><var>lda</var> by *</span>.</p>
+<p>Contains the <span class="parmname">n</span>-by-<span class="parmname">n</span> symmetric indefinite matrix <var>A</var> whose scaling factors are to be computed. Only the diagonal elements of <var>A</var> are referenced.<span> The second dimension of <span class="parmname">a</span> must be at least <samp class="codeph">max(1,<span class="parmname">n</span>)</samp>.</span></p>
+<p><span class="parmname">work(*)</span> is a workspace array. The dimension of <span class="parmname">work</span> is at least <samp class="codeph">max(1,3*<var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <span class="parmname">a</span>; <samp class="codeph"><span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1, <span class="parmname">m</span>)</samp>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-71C71BB0-0672-48B5-8ABC-430F485B762E"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">s</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size  (<span class="parmname">n</span>).</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the array <span class="parmname">s</span> contains the scale factors for  <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">scond</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, <var>scond</var> contains the ratio of the smallest <samp class="codeph"><var>s</var>(i)</samp> to the largest <samp class="codeph"><var>s</var>(i)</samp>. If <samp class="codeph"><span class="parmname">scond</span><span class="eqsymbol">≥</span> 0.1</samp>, and 
+<span class="parmname">amax</span> is neither too large nor too small,
+ it is not worth scaling by <span class="parmname">s</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">amax</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Absolute value of the largest element of the matrix <var>A</var>. If <span class="parmname">amax</span> is very close to <span class="keyword">SMLNUM</span> or <span class="keyword">BIGNUM</span>, the matrix should be scaled.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>i</var></samp>, the <var>i</var>-th diagonal element of <var>A</var> is nonpositive.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CA12B714-C79D-4598-B0A4-BF61F5B007BB.html">Matrix Equilibration: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748.html#GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748">Error Analysis</a></div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?geqr2"/>
+<meta name="abstract" content="Computes the QR factorization of a general rectangular matrix using an unblocked algorithm."/>
+<meta name="description" content="Computes the QR factorization of a general rectangular matrix using an unblocked algorithm."/>
+<meta name="DC.subject" content="?geqr2, LAPACK routines, auxiliary routines, general rectangular matrix, QR factorization, LAPACK"/>
+<meta name="keywords" content="?geqr2, LAPACK routines, auxiliary routines, general rectangular matrix, QR factorization, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B280F74F-4F92-4D91-AE1A-A23A60589514"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?geqr2</title>
+
+</head>
+<body id="GUID-B280F74F-4F92-4D91-AE1A-A23A60589514">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?geqr2</span></h1>
+<!--Computes the QR factorization of a general rectangular matrix using an unblocked algorithm.--><div><p class="shortdesc">Computes the QR factorization of a general rectangular matrix using an unblocked algorithm.</p>
+<div class="section" id="GUID-420ECD76-7E13-4B04-98E9-5CE9017582C0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgeqr2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgeqr2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgeqr2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgeqr2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-AF1E8B60-5D43-4BAD-BE60-90AECEBECEA8"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-84A5D592-E5AA-4B4C-A507-C741B3C56316"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes a <var>QR</var> factorization of a real/complex <var>m</var>-by-<var>n</var> matrix <var>A</var> as <samp class="codeph"><var>A</var> = <var>Q</var>*<var>R</var></samp>. </p>
+<p>The routine does not form the matrix <var>Q</var> explicitly. Instead, <var>Q</var> is represented as a product of min(<var>m</var>, <var>n</var>) <dfn class="term">elementary reflectors</dfn> :</p>
+<p><samp class="codeph"><var>Q</var> = <var>H</var>(1)<var>*H</var>(2)* ... <var>*H</var>(k)</samp>, where <samp class="codeph"><var>k</var> =  min(<var>m</var>, <var>n</var>)</samp></p>
+<p>Each <var>H</var>(i) has the form</p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup><var>T</var></sup></samp> for real flavors, or</p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup><var>H</var></sup></samp> for complex flavors</p>
+<p>where <var>tau</var> is a real/complex scalar stored in <var>tau</var><samp class="codeph">(<var>i</var>)</samp>, and <var>v</var> is a real/complex vector with <samp class="codeph"><var>v</var><sub>1:i-1</sub> = 0</samp> and <samp class="codeph"><var>v</var><sub>i</sub> = 1</samp>. </p>
+<p>On exit, <samp class="codeph"><var>v</var><sub>i+1:<var>m</var></sub></samp> is stored in <samp class="codeph"><var>a</var>(i+1:<var>m</var>, i)</samp>.</p>
+</div>
+<div class="section" id="GUID-16729B74-1100-4CAE-9776-171C59995074"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-45BC6F79-8F80-4C70-8C97-79CE6B760AC8"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>A</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqr2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqr2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeqr2</span>.</p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>a</var>(<var>lda</var>,*)</samp> contains the <var>m</var>-by-<var>n</var> matrix <var>A</var>. </p>
+<p>The second dimension of <var>a</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><var>work</var>(<var>n</var>) is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>m</var>) .</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E1DBA547-5DFF-436A-8DAD-35C8B9212C2C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-90754B81-802F-41A4-84C7-B4E60758910C"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the factorization data as follows:</p>
+<p>on exit, the elements on and above the diagonal of the array <var>a</var> contain the min(<var>n</var>,<var>m</var>)-by-<var>n</var> upper trapezoidal matrix <var>R</var> (<var>R</var> is upper triangular if <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>n</var></samp>); the elements below the diagonal, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeqr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeqr2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeqr2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeqr2</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, min(<var>m</var>, <var>n</var>))</samp>. </p>
+<p>Contains scalar factors of the elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p><samp class="codeph">If <var>info</var> = -1011</samp>, memory allocation error occurred.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

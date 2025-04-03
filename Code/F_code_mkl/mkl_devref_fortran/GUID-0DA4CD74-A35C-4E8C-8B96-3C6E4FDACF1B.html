@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hesv_rk"/>
+<meta name="abstract" content="?hesv_rk computes the solution to a system of linear equations A * X = B for Hermitian matrices."/>
+<meta name="description" content="?hesv_rk computes the solution to a system of linear equations A * X = B for Hermitian matrices."/>
+<meta name="DC.subject" content="?hesv_rk, chesv_rk, zhesv_rk, LAPACK routines"/>
+<meta name="keywords" content="?hesv_rk, chesv_rk, zhesv_rk, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0DA4CD74-A35C-4E8C-8B96-3C6E4FDACF1B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hesv_rk</title>
+
+</head>
+<body id="GUID-0DA4CD74-A35C-4E8C-8B96-3C6E4FDACF1B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hesv_rk</span></h1>
+<!--?hesv_rk  computes the solution to a system of linear equations A * X = B for Hermitian matrices.--><div><p class="shortdesc"><span class="option">?hesv_rk</span> computes the solution to a system of linear equations A * X = B for Hermitian matrices.</p>
+<div id="SYNTAX_C2CE61CF56E64D5CA4D4096692EB0C13"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chesv_rk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhesv_rk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-276BF151-FFEE-4211-B91B-860592E22A80"><h2 class="sectiontitle">Description</h2><p><span class="option">?hesv_rk</span> computes the solution to a complex system of linear equations A * X = B, where A is an <span class="parmname">n</span>-by-<span class="parmname">n</span> Hermitian matrix and X and B are <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> matrices.</p>
+<p>The bounded Bunch-Kaufman (rook) diagonal pivoting method is used to factor A as A = P*U*D*(U<sup>H</sup>)*(P<sup>T</sup>), if <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, or A = P*L*D*(L<sup>H</sup>)*(P<sup>T</sup>), if <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, where U (or L) is unit upper (or lower) triangular matrix, U<sup>H</sup> (or L<sup>H</sup>) is the conjugate of U (or L), P is a permutation matrix, P<sup>T</sup> is the transpose of P, and D is Hermitian and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.</p>
+<p><span class="option">?hetrf_rk</span> is called to compute the factorization of a complex Hermitian matrix. The factored form of A is then used to solve the system of equations A * X = B by calling BLAS3 routine <span class="option">?hetrs_3</span>.</p>
+</div>
+<div class="section" id="GUID-D66BECB8-5E9B-4D43-AB07-1C897EBF84BF"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4E0953F1-6B79-42AD-8204-498674E492A6"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span></p>
+<p>Specifies whether the upper or lower triangular part of the Hermitian matrix A is stored:</p>
+<ul id="GUID-BB43E667-7E6F-43F0-B61F-1CC8CC4BFA00"><li>= <samp class="codeph">'U'</samp>: The upper triangle of A is stored.</li>
+<li>= <samp class="codeph">'L'</samp>: The lower triangle of A is stored.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of linear equations; that is, the order of the matrix A. <span class="parmname">n</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of right-hand sides; that is, the number of columns of the matrix B. <span class="parmname">nrhs</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesv_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhesv_rk</span></p>
+<p><span>Array, dimension (<span class="parmname">lda</span>,<span class="parmname">n</span>).</span> On entry, the Hermitian matrix A. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>: the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of A contains the upper triangular part of the matrix A, and the strictly lower triangular part of A is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>: the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of A contains the lower triangular part of the matrix A, and the strictly upper triangular part of A is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">A</span>.<span><span class="parmname">lda</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesv_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhesv_rk</span></p>
+<p>On entry, the <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> right-hand side matrix B.</p>
+<p>The second dimension of <span class="parmname">B</span> must be at least max(1, <span class="parmname">nrhs</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">B</span>. <span><span class="parmname">ldb</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The length of the array <span class="parmname">work</span>.</p>
+<p>If <span class="parmname">lwork</span> = <samp class="codeph">-</samp>1, a workspace query is assumed; the routine calculates only the optimal size of the <span class="parmname">work</span> array for the factorization stage and returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by XERBLA.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F3D24141-FED9-43DF-BDE0-F183D9E95A4F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-24107DCB-2A94-4698-B883-BBE8B7EFACBE"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesv_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhesv_rk</span></p>
+<p>On exit, if <span class="parmname">info</span> = 0, diagonal of the block diagonal matrix D and factors U or L as computed by <span class="option">?hetrf_rk</span>:</p>
+<ul id="GUID-D8C393EC-EC38-462C-AE11-0C11150C7F5E"><li><p><em>Only</em> diagonal elements of the Hermitian block diagonal matrix D on the diagonal of A; that is, D(<var>k</var>,<var>k</var>) = <span class="parmname">A</span>(<var>k</var>,<var>k</var>); (superdiagonal (or subdiagonal) elements of D are stored on exit in array <span class="parmname">e</span>).</p>
+<p><em>—and—</em></p>
+</li>
+<li>If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, factor U in the superdiagonal part of A. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, factor L in the subdiagonal part of A.</li>
+</ul>
+<p>For more information, see the description of the <span class="option">?hetrf_rk</span> routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesv_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhesv_rk</span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> On exit, contains the output computed by the factorization routine <span class="option">?hetrf_rk</span>; that is, the superdiagonal (or subdiagonal) elements of the Hermitian block diagonal matrix D with 1-by-1 or 2-by-2 diagonal blocks:</p>
+<ul id="GUID-52A0CE7C-9D96-460D-A6F6-413A3C12DA33"><li>If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, e(<var>i</var>) = D(<var>i</var>-1,<var>i</var>), <var>i</var>=2:N, e(1) is set to 0.</li>
+<li>If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, e(<var>i</var>) = D(<var>i</var>+1,<var>i</var>), <var>i</var>=1:N-1, e(<span class="parmname">n</span>) is set to 0.</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> For a 1-by-1 diagonal block D(<var>k</var>), where 1 ≤ <var>k</var> ≤ <span class="parmname">n</span>, the element e(<var>k</var>) is set to 0 in both the <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp> and <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp> cases.</div>
+<p>For more information, see the description of the <span class="option">?hetrf_rk</span> routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER </span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> Details of the interchanges and the block structure of D, as determined by <span class="option">?hetrf_rk</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesv_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhesv_rk</span></p>
+<p>On exit, if <span class="parmname">info</span> = 0, the <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> solution matrix X.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chesv_rk</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhesv_rk</span></p>
+<p>Array, dimension ( MAX(1,<span class="parmname">lwork</span>) ). Work array used in the factorization stage. On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span>(1) returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<ul id="GUID-34BD4C2F-DF34-45FC-A98E-90FC77185F08"><li>= 0: Successful exit.</li>
+<li>&lt; 0: If <span class="parmname">info</span> = <samp class="codeph"><var>-k</var></samp>, the <var>k</var><sup>th</sup> argument had an illegal value.</li>
+<li>&gt; 0: If <span class="parmname">info</span> = <var>k</var>, the matrix A is singular. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, column <var>k</var> in the upper triangular part of A contains all zeros. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, column <var>k</var> in the lower triangular part of A contains all zeros. Therefore D(<var>k</var>,<var>k</var>) is exactly zero, and superdiagonal elements of column <var>k</var> of U (or subdiagonal elements of column <var>k</var> of L ) are all zeros. The factorization has been completed, but the block diagonal matrix D is exactly singular, and division by zero will occur if it is used to solve a system of equations.</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <span class="parmname">info</span> stores only the first occurrence of a singularity; any subsequent occurrence of singularity is not stored in <span class="parmname">info</span> even though the factorization always completes.</div>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

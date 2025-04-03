@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vslSkipAheadStream"/>
+<meta name="abstract" content="Initializes a stream using the block-splitting method."/>
+<meta name="description" content="Initializes a stream using the block-splitting method."/>
+<meta name="DC.subject" content="vector statistics functions, SkipAheadStream, VS routines, service routines"/>
+<meta name="keywords" content="vector statistics functions, SkipAheadStream, VS routines, service routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-98F24234-4CEF-46F1-AF12-E5C88ADD2EA8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vslSkipAheadStream</title>
+
+</head>
+<body id="GUID-98F24234-4CEF-46F1-AF12-E5C88ADD2EA8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vslSkipAheadStream</span></h1>
+<!--Initializes a stream using the block-splitting method.--><div><p class="shortdesc">Initializes a stream using the block-splitting method.</p>
+<div class="section" id="GUID-9E40F47F-122A-4194-A64E-786CD0A54B27"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status</span><span class="delim"> = </span><span class="kwd">vslskipaheadstream</span><span class="sep">( </span><span class="var">stream</span><span class="sep">, </span><span class="var">nskip</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-937C9C5E-3A33-433C-925A-61D69D2348C6"><h2 class="sectiontitle">Include Files</h2><ul id="d163e194"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_vsl.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E1BFA2C2-387B-4664-BE44-2344C6AC0A89"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1145392e68" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1145392e71" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1145392e74" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1145392e68"><p><span class="parmname">stream</span></p>
+</td>
+<td valign="top" headers="d1145392e71"><p><span class="keyword">TYPE(VSL_STREAM_STATE)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d1145392e74"><p>Descriptor of the stream to which block-splitting method is applied</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1145392e68"><p><span class="parmname">nskip</span></p>
+</td>
+<td valign="top" headers="d1145392e71"><p><span class="keyword">INTEGER(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d1145392e74"><p>Number of skipped elements</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-425A6B4F-F9FE-4699-A3B2-16EDDF19B988"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">vslSkipAheadStream</span> function skips a given number of elements in a <span>random stream</span>. This feature is particularly useful in distributing random numbers from original <span>random stream</span> across different computational nodes. If the largest number of random numbers used by a computational node is <span class="parmname">nskip</span>, then the original random sequence may be split by <span class="option">vslSkipAheadStream</span> into non-overlapping blocks of <span class="parmname">nskip</span> size so that each block corresponds to the respective computational node. The number of computational nodes is unlimited. This method is known as the block-splitting method or as the skip-ahead method. (see <a href="#SF_FIG10-2">Figure <span>"Block-Splitting Method"</span></a>).</p>
+<div class="figtop" id="SF_FIG10-2"><span class="figcap">Block-Splitting Method</span><p><br/><div class="imagecenter"><img src="GUID-AAD3F58C-8887-4262-A42F-6C8E1B33C763-low.jpg" alt="Block-Splitting Method" align="center"/></div><br/></p>
+<p><br/><div class="imagecenter"><img src="GUID-AAD3F58C-8887-4262-A42F-6C8E1B33C763-low.jpg" width="450" height="160" alt="Block-Splitting Method" align="center"/></div><br/></p>
+</div>
+<p>The skip-ahead method is supported only for those basic generators that allow skipping elements by the skip-ahead method, which is more efficient than simply generating them by generator with subsequent manual skipping. See  <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a> for details.</p>
+<p>Please note that for quasi-random basic generators the skip-ahead method works with components of quasi-random vectors rather than with whole quasi-random vectors. Therefore, to skip <span class="keyword">NS</span> quasi-random vectors, set the <span class="parmname">nskip</span> parameter equal to the <span class="keyword">NS*DIMEN</span>, where <span class="keyword">DIMEN</span> is the dimension of the quasi-random vector. <span>If this operation results in exceeding the period of the quasi-random number generator,  which is 2<sup class="power">32</sup>-1, the library returns the <span class="keyword">VSL_RNG_ERROR_QRNG_PERIOD_ELAPSED</span> error code.</span></p>
+<p>The following code illustrates how to initialize three independent streams using the  <span class="option">vslSkipAheadStream</span> function:</p>
+<div class="tbstyle(tblExampleStandard)" id="CH10EX10-3"><h2 class="sectiontitle">Code for Block-Splitting Method</h2><pre>...
+type(VSL_STREAM_STATE)  ::stream1
+type(VSL_STREAM_STATE)  ::stream2
+type(VSL_STREAM_STATE)  ::stream3
+
+! Creating the 1st stream
+status = vslnewstream(stream1, VSL_BRNG_MCG31, 174)
+
+! Skipping ahead by 7 elements the 2nd stream 
+status = vslcopystream(stream2, stream1);
+status = vslskipaheadstream(stream2, 7);
+
+! Skipping ahead by 7 elements the 3rd stream 
+status = vslcopystream(stream3, stream2);
+status = vslskipaheadstream(stream3, 7);
+
+! Generating random numbers 
+...
+! Deleting the streams 
+status = vsldeletestream(stream1)
+status = vsldeletestream(stream2)
+status = vsldeletestream(stream3)
+...</pre></div>
+</div>
+<div class="section" id="RETURNVALUES_2B26FF2C241E4A68B7D5E944E60D34C5"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-241FA606-17BE-4E5F-8280-76EE244181A2"><dt class="dlterm"><span class="keyword">VSL_ERROR_OK</span>, <span class="keyword">VSL_STATUS_OK</span></dt>
+
+<dd class="ddretval"><p>Indicates no error, execution is successful.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_ERROR_NULL_PTR</span></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is a <span class="keyword">NULL</span> pointer.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_BAD_STREAM</span></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is not a valid random stream.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_SKIPAHEAD_UNSUPPORTED</span></dt>
+
+<dd class="ddretval"><p>BRNG does not support the Skip-Ahead method.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_QRNG_PERIOD_ELAPSED</span></dt>
+
+<dd class="ddretval"><p>Period of the quasi-random number generator is exceeded.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html">Service Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

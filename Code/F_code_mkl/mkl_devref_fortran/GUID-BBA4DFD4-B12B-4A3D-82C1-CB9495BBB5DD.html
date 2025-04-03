@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larra"/>
+<meta name="abstract" content="Computes the splitting points with the specified threshold."/>
+<meta name="description" content="Computes the splitting points with the specified threshold."/>
+<meta name="DC.subject" content="?larra, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?larra, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BBA4DFD4-B12B-4A3D-82C1-CB9495BBB5DD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larra</title>
+
+</head>
+<body id="GUID-BBA4DFD4-B12B-4A3D-82C1-CB9495BBB5DD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larra</span></h1>
+<!--Computes the splitting points with the specified threshold.--><div><p class="shortdesc">Computes the splitting points with the specified threshold.</p>
+<div class="section" id="GUID-E897BD70-A546-44DF-9AEA-DA6952CC6EB2"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarra</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">spltol</span><span class="sep">, </span><span class="var">tnrm</span><span class="sep">, </span><span class="var">nsplit</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarra</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">spltol</span><span class="sep">, </span><span class="var">tnrm</span><span class="sep">, </span><span class="var">nsplit</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-090E5DCB-148C-4A3A-AD41-9FA41AE4465C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-4248ECCB-D5C4-481F-94B9-310DA5441B54"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the splitting points with the specified threshold and sets any "small" off-diagonal elements to zero. </p>
+</div>
+<div class="section" id="GUID-CB627733-7D29-4599-B730-B9C22C60EDC9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8D1A3F1E-A5F5-42F5-BA16-ED7299BEA698"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix (<samp class="codeph"><var>n</var><span class="eqsymbol">&gt;</span> 1</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarra</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarra</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>Contains <span class="parmname">n</span> diagonal elements of the tridiagonal matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarra</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarra</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>First <samp class="codeph">(<span class="parmname">n</span>-1)</samp> entries contain the subdiagonal elements of the tridiagonal matrix <var>T</var>; <samp class="codeph"><span class="parmname">e</span>(<span class="parmname">n</span>)</samp> need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarra</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarra</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>First <samp class="codeph">(<span class="parmname">n</span>-1)</samp> entries contain the squares of the subdiagonal elements of the tridiagonal matrix <var>T</var>; <samp class="codeph"><span class="parmname">e2</span>(<span class="parmname">n</span>)</samp> need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">spltol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarra</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarra</span></p>
+<p>The threshold for splitting. Two criteria can be used: <samp class="codeph"><span class="parmname">spltol</span>&lt;0</samp> : criterion based on absolute off-diagonal value; <span class="parmname">spltol</span>&gt;0 : criterion that preserves relative accuracy.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tnrm</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarra</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarra</span></p>
+<p> The norm of the matrix.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-91C167A0-E151-457A-9EA5-EC7560BCD89A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E3B267DB-C7B9-4693-ABB5-9E0A39647D16"><dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, the entries <samp class="codeph"><span class="parmname">e</span>(<span class="parmname">isplit</span>(i)), 1 ≤ i ≤ <span class="parmname">nsplit</span></samp>, are set to zero, the other entries of <span class="parmname">e</span> are untouched.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e2</span></dt>
+
+<dd>On exit, the entries <samp class="codeph"><span class="parmname">e2</span>(<span class="parmname">isplit</span>(i)), 1 ≤ i ≤ <span class="parmname">nsplit</span></samp>, are set to zero.</dd>
+<dt class="dlterm"><span class="parmname">nsplit</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The number of blocks the matrix <var>T</var> splits into. <samp class="codeph">1 ≤<span class="parmname"> nsplit</span> ≤<span class="parmname"> n</span></samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">isplit</span></dt>
+
+<dd><span class="keyword">INTEGER</span>. <p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The splitting points, at which <var>T</var> breaks up into blocks. The first block consists of rows/columns <samp class="codeph">1</samp> to <samp class="codeph"><span class="parmname">isplit</span>(1)</samp>,  the second of rows/columns <samp class="codeph"><span class="parmname">isplit</span>(1)+1</samp> through <samp class="codeph"><span class="parmname">isplit</span>(2)</samp>, and so on, and the <span class="parmname">nsplit</span>-th consists of rows/columns <samp class="codeph"><span class="parmname">isplit</span>(<span class="parmname">nsplit</span>-1)+1</samp> through <samp class="codeph"><span class="parmname">isplit</span>(<span class="parmname">nsplit</span>)=<span class="parmname">n</span></samp>.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><samp class="codeph">= 0</samp>:  successful exit.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

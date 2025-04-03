@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Computing Cluster FFT"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-16933772-8860-4EAA-8EF5-67FD8B467467"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Computing Cluster FFT</title>
+
+</head>
+<body id="GUID-16933772-8860-4EAA-8EF5-67FD8B467467">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Computing Cluster FFT</h1>
+<div><p>The 
+      <span>Intel&reg; oneAPI Math Kernel Library</span>cluster FFT functions 
+      are provided with Fortran and C interfaces. 
+      <span>Fortran stands for Fortran 95. 
+      </span></p>
+<p>Cluster FFT computation is performed by 
+      <a href="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618.html#GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618"><span class="option">DftiComputeForwardDM</span></a> and 
+      <a href="GUID-23EBC314-CD93-44B9-A456-C867DF0BD984.html#GUID-23EBC314-CD93-44B9-A456-C867DF0BD984"><span class="option">DftiComputeBackwardDM</span></a>functions, called in a program using MPI, which will be referred to as MPI program. After an MPI program starts, a number of processes are created. MPI identifies each process by its rank. The processes are independent of one another and communicate via MPI. A function called in an MPI program is invoked in all the processes. Each process manipulates data according to its rank. Input or output data for a cluster FFT transform is a sequence of real or complex values. A cluster FFT computation function operates on the local part of the input data, that is, some part of the data to be operated in a particular process, as well as generates local part of the output data. While each process performs its part of computations, running in parallel and communicating through MPI, the processes perform the entire FFT computation. FFT computations using the Intel&reg; oneAPI Math Kernel Library cluster FFT functions are typically effected by a number of steps listed below:</p>
+<ol id="GUID-CFAC610F-97D9-4290-BA2B-308BFB8819EB"><li>Initiate MPI by calling 
+  <span class="option">MPI_INIT</span> (the function must be called prior to calling any FFT function and any MPI function). 
+  </li>
+<li>Allocate memory for the descriptor and create it by calling 
+    <a href="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3.html#GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"><span class="option">DftiCreateDescriptorDM</span></a>. 
+  </li>
+<li>Specify one of several values of configuration parameters by one or more calls to 
+    <a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15"><span class="option">DftiSetValueDM</span></a>. 
+  </li>
+<li>Obtain values of configuration parameters needed to create local data arrays; the values are retrieved by calling 
+    <a href="GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594.html#GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594"><span class="option">DftiGetValueDM</span></a>. 
+  </li>
+<li>Initialize the descriptor for the FFT computation by calling 
+    <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a>. 
+  </li>
+<li>Create arrays for local parts of input and output data and fill the local part of input data with values. (For more information, see 
+    <a href="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17.html#GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17">Distributing Data among Processes</a>.) 
+  </li>
+<li>Compute the transform by calling 
+    <a href="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618.html#GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618"><span class="option">DftiComputeForwardDM</span></a> or 
+    <a href="GUID-23EBC314-CD93-44B9-A456-C867DF0BD984.html#GUID-23EBC314-CD93-44B9-A456-C867DF0BD984"><span class="option">DftiComputeBackwardDM</span></a>. 
+  </li>
+<li>Gather local output data into the global array using MPI functions. (This step is optional because you may need to immediately employ the data differently.) 
+  </li>
+<li>Release memory allocated for the descriptor by calling 
+    <a href="GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB.html#GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB"><span class="option">DftiFreeDescriptorDM</span></a>. 
+  </li>
+<li>Finalize communication through MPI by calling 
+  <span class="option">MPI_FINALIZE</span> (the function must be called after the last call to a cluster FFT function and the last call to an MPI function). 
+  </li>
+</ol>
+<p>Several code examples in 
+    <a href="GUID-5D5475C9-854A-426B-82CB-3BBE271D215E.html#GUID-5D5475C9-854A-426B-82CB-3BBE271D215E">Examples for Cluster FFT Functions</a> in the Code Examples appendix illustrate cluster FFT computations. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html">Cluster FFT Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

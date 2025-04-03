@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laed6"/>
+<meta name="abstract" content="Used by sstedc/dstedc. Computes one Newton step in solution of the secular equation."/>
+<meta name="description" content="Used by sstedc/dstedc. Computes one Newton step in solution of the secular equation."/>
+<meta name="DC.subject" content="?laed6, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="keywords" content="?laed6, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-520BDF48-B609-4155-9E33-1BFAEDA70A2F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laed6</title>
+
+</head>
+<body id="GUID-520BDF48-B609-4155-9E33-1BFAEDA70A2F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laed6</span></h1>
+<!--Used by  sstedc / dstedc . Computes one Newton step in solution of the secular equation.--><div><p class="shortdesc">Used by <span class="option">sstedc</span>/<span class="option">dstedc</span>. Computes one Newton step in solution of the secular equation.</p>
+<div class="section" id="GUID-33E9C0FA-526E-4D4E-8F1B-5F2F35FAED8D"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaed6</span><span class="delim">( </span><span class="var">kniter</span><span class="sep">, </span><span class="var">orgati</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">finit</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaed6</span><span class="delim">( </span><span class="var">kniter</span><span class="sep">, </span><span class="var">orgati</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">finit</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-93989E86-08A6-4F2D-B1EC-2A8A1E8DE6ED"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-295F993C-079C-441D-A7BC-C4E281FF197D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the positive or negative root (closest to the origin) of</p>
+<p><br/><div class="imagecenter"><img src="GUID-ADE4C6AA-B124-49ED-8A83-2624F8E1CC23-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>It is assumed that if <samp class="codeph"><var>orgati</var> = <span class="keyword">.TRUE.</span></samp> the root is between <var>d</var>(2) and <var>d</var>(3);otherwise it is between <var>d</var>(1) and <var>d</var>(2) This routine is called by <span class="option">?laed4</span> when necessary. In most cases, the root sought is the smallest in magnitude, though it might not be in some extremely rare situations.</p>
+</div>
+<div class="section" id="GUID-ADE9D4EB-8EC3-412D-ADBC-AD2A8EF7EB6D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BDFD56EF-7724-4997-864D-2337AA142B11"><dt class="dlterm"><span class="parmname">kniter</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Refer to <span class="option">?laed4</span> for its significance.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">orgati</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>orgati</var> = <span class="keyword">.TRUE.</span></samp>, the needed root is between <var>d</var>(2) and <var>d</var>(3); otherwise it is between <var>d</var>(1) and <var>d</var>(2). See <span class="option">?laed4</span> for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed6</span></p>
+<p>Refer to the equation for <var>f</var>(<var>x</var>) above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed6</span></p>
+<p>Arrays, dimension (3) each.</p>
+<p>The array <var>d</var> satisfies <samp class="codeph"><var>d</var>(1) &lt; <var>d</var>(2) &lt; <var>d</var>(3)</samp>.</p>
+<p>Each of the elements in the array <var>z</var> must be positive.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">finit</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed6</span></p>
+<p>The value of <var>f</var>(<var>x</var>) at 0. It is more accurate than the one evaluated inside this routine (if someone wants to do so).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D1075FF2-5341-4929-A330-30049599353F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7E0B04E0-4DF1-4B9C-8D0C-968468BC3914"><dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed6</span></p>
+<p>The root of the equation for <var>f</var>(<var>x</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, failure to converge.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

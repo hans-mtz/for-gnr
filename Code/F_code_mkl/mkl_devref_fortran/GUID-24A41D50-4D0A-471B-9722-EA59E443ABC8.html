@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Direct Sparse Solver (DSS) Interface Routines"/>
+<meta name="DC.subject" content="Direct Sparse Solver (DSS) Interface Routines"/>
+<meta name="keywords" content="Direct Sparse Solver (DSS) Interface Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-ABAE9E65-45F3-40F3-B117-2B5AFE364F9F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C0597F4-2C11-47C6-B341-A54092469472.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-24A41D50-4D0A-471B-9722-EA59E443ABC8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Direct Sparse Solver (DSS) Interface Routines</title>
+
+</head>
+<body id="GUID-24A41D50-4D0A-471B-9722-EA59E443ABC8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Direct Sparse Solver (DSS) Interface Routines</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library supports the DSS interface, an alternative to the 
+      Intel&reg; oneAPI Math Kernel Library PARDISO interface for the direct sparse solver. The DSS interface implements a group of user-callable routines that are used in the step-by-step solving process and utilizes the general scheme described in<a href="GUID-0B8132E3-4DDB-451C-83DC-1EB9C8DE75FC.html#GUID-0B8132E3-4DDB-451C-83DC-1EB9C8DE75FC">Appendix A Linear Solvers Basics</a> for solving sparse systems of linear equations. This interface also includes one routine for gathering statistics related to the solving process<span> and an auxiliary routine for passing character strings from Fortran routines to C routines</span>. 
+    </p>
+<p>The DSS interface also supports the out-of-core (OOC) mode. 
+    </p>
+<p><a href="#TBL8-1">Table 
+        <span>"DSS Interface Routines"</span></a> lists the names of the routines and describes their general use. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL8-1" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">DSS Interface Routines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="44%" id="d291482e51">Routine 
+        </th>
+<th class="row-nocellborder" valign="top" width="56.00000000000001%" id="d291482e53">Description 
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-D896A4FB-CED1-422B-BD40-260AFDFC6BB1.html#GUID-D896A4FB-CED1-422B-BD40-260AFDFC6BB1"><span class="keywordtt">dss_create</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Initializes the solver and creates the basic data structures necessary for the solver. This routine must be called before any other DSS routine. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC.html#GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC"><span class="keywordtt">dss_define_structure</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Informs the solver of the locations of the non-zero elements of the matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-F0D0BC19-B6ED-412C-AC4A-FC594FE4AEA0.html#GUID-F0D0BC19-B6ED-412C-AC4A-FC594FE4AEA0"><span class="keywordtt">dss_reorder</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Based on the non-zero structure of the matrix, computes a permutation vector to reduce fill-in during the factoring process. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-535C3E47-52B6-4EFC-8BCA-72DCE1DE2A13.html#GUID-535C3E47-52B6-4EFC-8BCA-72DCE1DE2A13"><span class="keywordtt">dss_factor_real, dss_factor_complex</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Computes the 
+            <var>LU</var>, 
+            <var>LDL</var><sup><var>T</var></sup> or 
+            <var>LL</var><sup><var>T</var></sup> factorization of a real or complex matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-5391461F-446B-49E9-BE39-4B82452A70FC.html#GUID-5391461F-446B-49E9-BE39-4B82452A70FC"><span class="keywordtt">dss_solve_real, dss_solve_complex</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Computes the solution vector for a system of equations based on the factorization computed in the previous phase. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-F2A5CDE3-B3C5-4307-8A07-DD6DDDA2D19D.html#GUID-F2A5CDE3-B3C5-4307-8A07-DD6DDDA2D19D"><span class="keywordtt">dss_delete</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Deletes all data structures created during the solving process. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-640CB61B-82AE-4E67-9A13-F509F3EF61C0.html#GUID-640CB61B-82AE-4E67-9A13-F509F3EF61C0"><span class="keywordtt">dss_statistics</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Returns statistics about various phases of the solving process. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d291482e51 "><a href="GUID-F7A8C06E-D63A-45F0-A459-85BCC471B4FA.html#GUID-F7A8C06E-D63A-45F0-A459-85BCC471B4FA"><span class="keywordtt">mkl_cvt_to_null_terminated_str</span></a></td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d291482e53 "><p>Passes character strings from Fortran routines to C routines. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To find a single solution vector for a single system of equations with a single right-hand side, invoke the 
+    Intel&reg; oneAPI Math Kernel Library DSS interface routines in this order:
+  </p>
+<ol id="GUID-DD7258CD-9FAE-49F2-86D1-41F8AFC9492D"><li>dss_create 
+    </li>
+<li>dss_define_structure 
+    </li>
+<li>dss_reorder 
+    </li>
+<li>dss_factor_real, dss_factor_complex 
+    </li>
+<li>dss_solve_real, dss_solve_complex 
+    </li>
+<li>dss_delete 
+    </li>
+</ol>
+<p>However, in certain applications it is necessary to produce solution vectors for multiple right-hand sides for a given factorization and/or factor several matrices with the same non-zero structure. Consequently, it is sometimes necessary to invoke the 
+    Intel&reg; oneAPI Math Kernel Library sparse routines in an order other than that listed, which is possible using the DSS interface. The solving process is conceptually divided into six phases.<a href="#SSR_FIG8-2">Figure 
+      <span>"Typical order for invoking DSS interface routines"</span></a> indicates the typical order in which the DSS interface routines can be invoked. 
+  </p>
+<div class="figtop" id="SSR_FIG8-2"><span class="figcap">Typical order for invoking DSS interface routines</span></div>
+<p/>
+<p><span><br/><div class="imagecenter"><img src="GUID-CBE0200E-CCB2-49EF-8B4A-14E3966DD13B-low.gif" width="353" alt="Typical order for invoking DSS interface routines" align="center"/></div><br/></span></p>
+<p>See the code examples that use the DSS interface routines to solve systems of linear equations in the 
+    Intel&reg; oneAPI Math Kernel Library installation directory (<span class="filepath">dss_*.f</span> 
+    ). 
+  </p>
+<ul id="GUID-D093BEE3-4C22-43DB-A7BA-36BA2477BF71"><li><span class="filepath">examples/solverf/source</span></li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html">Sparse Solver Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-ABAE9E65-45F3-40F3-B117-2B5AFE364F9F.html">DSS Interface Description</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-4C0597F4-2C11-47C6-B341-A54092469472.html">DSS Implementation Details</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

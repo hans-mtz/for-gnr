@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?opgtr"/>
+<meta name="abstract" content="Generates the real orthogonal matrix Q determined by ?sptrd."/>
+<meta name="description" content="Generates the real orthogonal matrix Q determined by ?sptrd."/>
+<meta name="DC.subject" content="?opgtr, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?opgtr, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B04CE909-CD95-448A-A9F2-FBCC9DFBDD8D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?opgtr</title>
+
+</head>
+<body id="GUID-B04CE909-CD95-448A-A9F2-FBCC9DFBDD8D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?opgtr</span></h1>
+<!--Generates the real orthogonal matrix Q determined by  ?sptrd .--><div><p class="shortdesc">Generates the real orthogonal matrix Q determined by <span class="option">?sptrd</span>.</p>
+<div class="section" id="GUID-9F327FBC-4500-4255-B4E3-D6F3B39849BB"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sopgtr</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dopgtr</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call opgtr</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">q</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-AB73C86A-5D32-476A-92D6-9187DD4993EF"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-4D76D206-DCE4-4117-AD27-1828CAB0AAC7"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine explicitly generates the <var>n</var>-by-<var>n</var> orthogonal matrix <var>Q</var> formed by <a href="GUID-3C4516C4-705C-4362-A3B9-C1C5FA0966EB.html#GUID-3C4516C4-705C-4362-A3B9-C1C5FA0966EB">sptrd</a> when reducing a packed real symmetric matrix <var>A</var> to tridiagonal form: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>T</var></sup></samp>. Use this routine after a call to <span class="option">?sptrd</span>. </p>
+</div>
+<div class="section" id="GUID-EC64B7A6-48AF-479F-877A-A130AC2E8B5C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0C84ECDE-6BAF-4411-99F7-1BF3F22382A5"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. Use the same <var>uplo</var> as supplied to <span class="option">?sptrd</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>Q</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span>, <span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sopgtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dopgtr</span>.</p>
+<p>Arrays <var>ap</var> and <var>tau</var>, as returned by <span class="option">?sptrd</span>. </p>
+<p>The size of <var>ap</var> must be at least max(1, <var>n</var>(<var>n</var>+1)/2). </p>
+<p>The size of <var>tau</var> must be at least max(1, <var>n</var>-1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldq</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>q</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sopgtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dopgtr</span>.</p>
+<p>Workspace array, size at least max(1, <var>n</var>-1).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D316606E-31CA-49DB-AFF3-666BE9BE9814"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-FD36D94C-0C62-4497-9C97-9BDA8CF4D06B"><dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sopgtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dopgtr</span>. </p>
+<p>Array, size <span>(<var>ldq</var>,*)</span>
+. </p>
+<p>Contains the computed matrix <var>Q</var>. </p>
+<p>The second dimension of <var>q</var> must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-196A9D81-46E0-46D5-83FD-075218276B1E"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">opgtr</span> interface are the following:</p>
+<dl id="GUID-A42B2E1B-71C8-4F48-B882-D528C273E8E9"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Holds the array <var>A</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var> - 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>Holds the matrix <var>Q</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A3B8262D-90E0-4DDC-8BB7-DFA0304526AA"><h2 class="sectiontitle">Application Notes</h2><p>The computed matrix <var>Q</var> differs from an exactly orthogonal matrix by a matrix <var>E</var> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)</samp>, where <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>The approximate number of floating-point operations is <samp class="codeph">(4/3)<var>n</var><sup class="power">3</sup></samp>.</p>
+<p>The complex counterpart of this routine is <a href="GUID-EDCE0EF0-7E02-4287-9A2A-53668140F604.html#GUID-EDCE0EF0-7E02-4287-9A2A-53668140F604">upgtr</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

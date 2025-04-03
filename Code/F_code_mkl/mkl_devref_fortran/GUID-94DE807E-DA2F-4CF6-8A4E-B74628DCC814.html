@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Vector Arguments in BLAS"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FF74FCC9-69BE-400B-B483-ECF09454CD22.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-94DE807E-DA2F-4CF6-8A4E-B74628DCC814"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Vector Arguments in BLAS</title>
+
+</head>
+<body id="GUID-94DE807E-DA2F-4CF6-8A4E-B74628DCC814">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Vector Arguments in BLAS</h1>
+<div><p>Vector 
+      arguments are passed in one-dimensional arrays. The 
+      array 
+      dimension (length) and vector 
+      increment are passed as integer variables. The length determines the number of elements in the vector. The increment (also called stride) determines the spacing between vector elements and the order of the elements in the array in which the vector is passed. 
+    </p>
+<p>A vector of 
+      length 
+      <var>n</var> and increment 
+      <var>incx</var> is passed in a one-dimensional array 
+      <var>x</var> whose values are defined as 
+      <pre><var>x</var>(1), <var>x</var>(1+|<var>incx</var>|), ..., <var>x</var>(1+(<var>n</var>-1)* |<var>incx</var>|)</pre></p>
+<p>If 
+      <var>incx</var> is positive, then the elements in array 
+      <var>x</var> are stored in increasing order. If 
+      <var>incx</var> is negative, the elements in array 
+      <var>x</var> are stored in decreasing order with the first element defined as 
+      <samp class="codeph"><var>x</var>(1+(<var>n</var>-1)* |<var>incx</var>|)</samp>. If 
+      <var>incx</var> is zero, then all elements of the vector have the same value, 
+      <samp class="codeph"><var>x</var>(1)</samp>. The size of the one-dimensional array that stores the vector must always be at least 
+      <pre><var>idimx</var> = 1 + (<var>n</var>-1)* |<var>incx</var> |</pre></p>
+<div class="example" id="APPB-EXB-1"><h2 class="sectiontitle"><span>Example. 
+        </span>One-dimensional Real Array</h2><p>Let 
+        <samp class="codeph"><var>x</var>(1:7)</samp> be the one-dimensional real array 
+        <pre><var>x</var> = <span><span>(</span></span>1.0, 3.0, 5.0, 7.0, 9.0, 11.0, 13.0<span><span>)</span></span>.</pre></p>
+<p>If 
+        <samp class="codeph"><var>incx</var> =2</samp> and 
+        <samp class="codeph"><var>n</var> = 3</samp>, then the vector argument with elements in order from first to last is 
+        <samp class="codeph"><span><span>(</span></span>1.0, 5.0, 9.0<span><span>)</span></span></samp>. 
+      </p>
+<p>If 
+        <samp class="codeph"><var>incx</var> = -2</samp> and 
+        <samp class="codeph"><var>n</var> = 4</samp>, then the vector elements in order from first to last is 
+        <samp class="codeph"><span><span>(</span></span>13.0, 9.0, 5.0, 1.0<span><span>)</span></span></samp>. 
+      </p>
+<p>If 
+        <samp class="codeph"><var>incx</var> = 0</samp> and 
+        <samp class="codeph"><var>n</var> = 4</samp>, then the vector elements in order from first to last is 
+        <samp class="codeph"><span><span>(</span></span>1.0, 1.0, 1.0, 1.0<span><span>)</span></span></samp>. 
+      </p>
+<p>One-dimensional substructures of a matrix, such as the rows, columns, and diagonals, can be passed as 
+        vector arguments with the starting address and increment specified. 
+      </p>
+<p>In Fortran, storing the 
+        <samp class="codeph"><var>m</var>-by-<var>n</var></samp> matrix is based on 
+        column-major ordering where the increment between elements in the same column is 
+        <samp class="codeph">1</samp>, the increment between elements in the same row is 
+        <var>m</var>, and the increment between elements on the same diagonal is 
+        <samp class="codeph"><var>m</var> + 1</samp>. 
+      </p>
+</div>
+<div class="example" id="APPB-EXB-2"><h2 class="sectiontitle"><span>Example. 
+        </span>Two-dimensional Real Matrix</h2><p>Let 
+        <var>a</var> be a real 5 x 4 matrix declared as 
+        <samp class="codeph">REAL A (5,4)</samp><samp class="codeph">float a[5*4];</samp>. 
+      </p>
+<p>To scale the third column of 
+        <var>a</var> by 2.0, use the BLAS routine 
+      <span class="option">sscal</span> with the following calling sequence: 
+      <pre><span class="keyword">call </span><span class="option">sscal</span> (5, 2.0, a(1,3), 1)</pre></p>
+<p>To scale the second row, use the statement: 
+        <pre><span class="keyword">call </span><span class="option">sscal</span> (4, 2.0, a(2,1), 5)</pre></p>
+<p>To scale the main diagonal of 
+        <var>a</var> by 2.0, use the statement: 
+        <pre><span class="keyword">call </span><span class="option">sscal</span> (5, 2.0, a(1,1), 6)</pre></p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The default vector argument is assumed to be 1.</p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FF74FCC9-69BE-400B-B483-ECF09454CD22.html">Appendix B: Routine and Function Arguments</a></div>
+</div>
+<div/>
+</body>
+</html>

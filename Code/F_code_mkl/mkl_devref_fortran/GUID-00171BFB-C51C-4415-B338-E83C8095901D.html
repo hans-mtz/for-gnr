@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Threading Control"/>
+<meta name="DC.subject" content="Threading Control"/>
+<meta name="keywords" content="Threading Control"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-70C9CE2A-3213-467D-8CCA-5798FCC803A2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D808F69D-5741-4DF6-950E-5B30A32D9B44.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-341B837A-9381-451D-B2BE-C049969CF545.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-87918C24-1FA2-411E-A27C-8413EACDB30F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-25C06475-A097-4292-804C-F2F9A21AE5D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C7B2A2A6-195C-43F3-A2EE-FA91F28BB069.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-85993EAF-32E9-4AA0-90C5-5DF44D86E7CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3E423CCE-3748-47C0-9D27-DC17A983F048.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-00171BFB-C51C-4415-B338-E83C8095901D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Threading Control</title>
+
+</head>
+<body id="GUID-00171BFB-C51C-4415-B338-E83C8095901D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Threading Control</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library provides functions for OpenMP* threading control, discussed in this section.
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p>If 
+        Intel&reg; oneAPI Math Kernel Library operates within the Intel&reg; Threading Building Blocks (Intel&reg; TBB) execution environment, the environment variables for OpenMP* threading control, such as<span class="keyword">OMP_NUM_THREADS</span>, and 
+        Intel&reg; oneAPI Math Kernel Library functions discussed in this section have no effect. If the Intel TBB threading technology is used, control the number of threads through the Intel TBB application programming interface. Read the documentation for the<span class="keyword">tbb::task_scheduler_init</span> class at 
+        https://www.threadingbuildingblocks.org/documentation to find out how to specify the number of Intel TBB threads. 
+      </p>
+</div>
+<p>If 
+      Intel&reg; oneAPI Math Kernel Library operates within an OpenMP* execution environment, you can control the number of threads for 
+      Intel&reg; oneAPI Math Kernel Library using OpenMP* run-time library routines and environment variables (see the OpenMP* specification for details). Additionally 
+      Intel&reg; oneAPI Math Kernel Library provides<em>optional</em>threading control functions and environment variables that enable you to specify the number of threads for 
+      Intel&reg; oneAPI Math Kernel Library and to control dynamic adjustment of the number of threads<em>independently</em>of the OpenMP* settings. The settings made with the 
+      Intel&reg; oneAPI Math Kernel Library threading control functions and environment variables do not affect OpenMP* settings but take precedence over them.
+    </p>
+<p>If none of the threading control functions is used, 
+      Intel&reg; oneAPI Math Kernel Library environment variables may control 
+      Intel&reg; oneAPI Math Kernel Library threading. For details of those environment variables, see the<em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em>. 
+    </p>
+<p>You can specify the number of threads for 
+      Intel&reg; oneAPI Math Kernel Library function domains with the<a href="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67.html">mkl_set_num_threads</a> or 
+      <a href="GUID-D808F69D-5741-4DF6-950E-5B30A32D9B44.html">mkl_domain_set_num_threads</a> function. While 
+  <span class="option">mkl_set_num_threads</span>specifies the number of threads for the entire 
+  Intel&reg; oneAPI Math Kernel Library,<span class="option">mkl_domain_set_num_threads</span> does it for a specific function domain. The following table lists the function domains that support independent threading control. The table also provides named constants to pass to threading control functions as a parameter that specifies the function domain. 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-BA946DFB-85E7-4289-94AD-311454A6D366" frame="border" border="1" cellspacing="0" rules="all"><caption><span class="tablecap"><span>oneMKL</span> Function Domains</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="66.66666666666666%" id="d27e132"><p>Function Domain 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d27e135"><p>Named Constant 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="66.66666666666666%" headers="d27e132 "><p> Basic Linear Algebra Subroutines (BLAS) 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d27e135 "><p><span class="keyword"> MKL_DOMAIN_BLAS</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="66.66666666666666%" headers="d27e132 "><p>Fast Fourier Transform (FFT) functions, except Cluster FFT functions 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d27e135 "><p><span class="keyword"> MKL_DOMAIN_FFT</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="66.66666666666666%" headers="d27e132 "><p> Vector Math (VM) functions 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d27e135 "><p><span class="keyword"> MKL_DOMAIN_VML</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="66.66666666666666%" headers="d27e132 "><p> Parallel Direct Solver (PARDISO) functions 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d27e135 "><p><span class="keyword"> MKL_DOMAIN_PARDISO</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="66.66666666666666%" headers="d27e132 "><p>All 
+            Intel&reg; oneAPI Math Kernel Library functions except the functions from thedomains where the number of threads is set explicitly 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d27e135 "><p><span class="keyword"> MKL_DOMAIN_ALL</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Warning</h3> <p> Do not increase the number of OpenMP threads used for cluster_sparse_solver between the first call and the factorization or solution phase. Because the minimum amount of memory required for out-of-core execution depends on the number of OpenMP threads, increasing it after the initial call can cause incorrect results.</p>
+</div>
+<p>Both 
+  <span class="option">mkl_set_num_threads</span> and 
+  <span class="option">mkl_domain_set_num_threads</span>functions set the number of threads for all subsequent calls to 
+  Intel&reg; oneAPI Math Kernel Library from all applications threads. Use the<a href="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70.html">mkl_set_num_threads_local</a>function to specify different numbers of threads for 
+  Intel&reg; oneAPI Math Kernel Library on different execution threads of your application. The thread-local settings take precedence over the global settings. However, the thread-local settings may have undesirable side effects (see the description of the<span class="option">mkl_set_num_threads_local</span> function for details). 
+  </p>
+<p>By default, 
+    Intel&reg; oneAPI Math Kernel Library canadjust the specified number of threads dynamically. For example, 
+    Intel&reg; oneAPI Math Kernel Library may use fewer threads if the size of the computation is not big enough or not create parallel regions when running within an OpenMP* parallel region. Although 
+    Intel&reg; oneAPI Math Kernel Library may actually use a different number of threads from the number specified, the library does not create parallel regions with more threads than specified. If dynamic adjustment of the number of threads is disabled, 
+    Intel&reg; oneAPI Math Kernel Library attempts to use the specified number of threads in internal parallel regions (for more information, see the<em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em>). Use the 
+    <a href="GUID-341B837A-9381-451D-B2BE-C049969CF545.html">mkl_set_dynamic</a> function to control dynamic adjustment of the number of threads. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-70C9CE2A-3213-467D-8CCA-5798FCC803A2.html">Support Functions</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67.html">mkl_set_num_threads</a><br/>
+Specifies the number of OpenMP* threads to use.</li>
+<li class="ulchildlink"><a href="GUID-D808F69D-5741-4DF6-950E-5B30A32D9B44.html">mkl_domain_set_num_threads</a><br/>
+Specifies the number of OpenMP* threads for a particular function domain.</li>
+<li class="ulchildlink"><a href="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70.html">mkl_set_num_threads_local</a><br/>
+Specifies the number of OpenMP* threads for all Intel&reg; oneAPI Math Kernel Library functions on the current execution thread.</li>
+<li class="ulchildlink"><a href="GUID-341B837A-9381-451D-B2BE-C049969CF545.html">mkl_set_dynamic</a><br/>
+Enables Intel&reg; oneAPI Math Kernel Library to dynamically change the number of OpenMP* threads.</li>
+<li class="ulchildlink"><a href="GUID-87918C24-1FA2-411E-A27C-8413EACDB30F.html">mkl_get_max_threads</a><br/>
+Gets the number of OpenMP* threads targeted for  parallelism.</li>
+<li class="ulchildlink"><a href="GUID-25C06475-A097-4292-804C-F2F9A21AE5D9.html">mkl_domain_get_max_threads</a><br/>
+Gets the number of OpenMP* threads targeted for parallelism for a particular function domain.</li>
+<li class="ulchildlink"><a href="GUID-C7B2A2A6-195C-43F3-A2EE-FA91F28BB069.html">mkl_get_dynamic</a><br/>
+Determines whether Intel&reg; oneAPI Math Kernel Library is enabled to dynamically change the number of OpenMP* threads.</li>
+<li class="ulchildlink"><a href="GUID-85993EAF-32E9-4AA0-90C5-5DF44D86E7CF.html">mkl_set_num_stripes</a><br/>
+Specifies the number of partitions along the leading dimension of the output matrix for parallel <span class="option">?GEMM</span> functions.</li>
+<li class="ulchildlink"><a href="GUID-3E423CCE-3748-47C0-9D27-DC17A983F048.html">mkl_get_num_stripes</a><br/>
+Gets the number of partitions along the leading dimension of the output matrix for parallel <span class="option">?GEMM</span> functions.</li>
+</ul>
+</div>
+</body>
+</html>

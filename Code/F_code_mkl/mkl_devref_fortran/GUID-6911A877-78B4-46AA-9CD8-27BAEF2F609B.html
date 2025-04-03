@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetri_3"/>
+<meta name="abstract" content="Computes the inverse of a complex Hermitian matrix using the factorization computed by ?hetrf_rk."/>
+<meta name="description" content="Computes the inverse of a complex Hermitian matrix using the factorization computed by ?hetrf_rk."/>
+<meta name="DC.subject" content="?hetri_3, chetri_3, zhetri_3, LAPACK routines"/>
+<meta name="keywords" content="?hetri_3, chetri_3, zhetri_3, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6911A877-78B4-46AA-9CD8-27BAEF2F609B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetri_3</title>
+
+</head>
+<body id="GUID-6911A877-78B4-46AA-9CD8-27BAEF2F609B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetri_3</span></h1>
+<!--Computes the inverse of a complex Hermitian matrix using the factorization computed by  ?hetrf_rk .--><div><p class="shortdesc">Computes the inverse of a complex Hermitian matrix using the factorization computed by <span class="option">?hetrf_rk</span>.</p>
+<div id="SYNTAX_6A2F1199ECBA474C93EBDF668A608E28"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chetri_3</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetri_3</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-CE63DA64-B78E-4028-BD70-F450AA7FD3A5"><h2 class="sectiontitle">Description</h2><p><span class="option">?hetri_3</span> computes the inverse of a complex Hermitian matrix A using the factorization computed by <span class="option">?hetrf_rk</span>: A = P*U*D*(U<sup>H</sup>)*(P<sup>T</sup>) or A = P*L*D*(L<sup>H</sup>)*(P<sup>T</sup>), where U (or L) is a unit upper (or lower) triangular matrix, U<sup>H</sup> (or L<sup>H</sup>) is the conjugate of U (or L), P is a permutation matrix, P<sup>T</sup> is the transpose of P, and D is a Hermitian and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.</p>
+<p><span class="option">?hetri_3</span> sets the leading dimension of the workspace before calling <span class="option">?hetri_3x</span>, which actually computes the inverse.</p>
+<p>This is the blocked version of the algorithm, calling Level-3 BLAS.</p>
+</div>
+<div class="section" id="GUID-B8D5916D-3A73-4F55-A4F4-CAE4672C2E3D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-9F2199B5-703A-484D-B367-9779754D1E4E"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span></p>
+<p>Specifies whether the details of the factorization are stored as an upper or lower triangular matrix.</p>
+<ul id="GUID-DE81E94F-BD5D-4475-96EF-5F1F8216CFED"><li>= <samp class="codeph">'U'</samp>: The upper triangle of A is stored.</li>
+<li>= <samp class="codeph">'L'</samp>: The lower triangle of A is stored.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix A. <span class="parmname">n</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhetri_3</span></p>
+<p><span>Array, dimension (<span class="parmname">lda</span>,<span class="parmname">n</span>).</span> On entry, diagonal of the block diagonal matrix D and factor U or L as computed by <span class="option">?hetrf_rk</span>:</p>
+<ul id="GUID-7C34D543-CFCE-49FA-8573-038AB0099FD9"><li><em>Only</em> diagonal elements of the Hermitian block diagonal matrix D on the diagonal of A; that is, D(<var>k</var>,<var>k</var>) = A(<var>k</var>,<var>k</var>). Superdiagonal (or subdiagonal) elements of D should be provided on entry in array <span class="parmname">e</span>.</li>
+<li>If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, factor U in the superdiagonal part of A. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, factor L is the subdiagonal part of A.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">A</span>.<span><span class="parmname">lda</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhetri_3</span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> On entry, contains the superdiagonal (or subdiagonal) elements of the Hermitian block diagonal matrix D with 1-by-1 or 2-by-2 diagonal blocks. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, e(<var>i</var>) = D(<var>i</var><samp class="codeph">-</samp>1,<var>i</var>), <var>i</var>=2:N, and e(1) is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, e(<var>i</var>) = D(<var>i</var>+1,<var>i</var>), <var>i</var>=1:N<samp class="codeph">-</samp>1, and e(<span class="parmname">n</span>) is not referenced.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> For 1-by-1 diagonal block D(<var>k</var>), where 1 ≤ <var>k</var> ≤ <span class="parmname">n</span>, the element <span class="parmname">e</span>(<var>k</var>) is not referenced in both the <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp> and <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp> cases.</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER </span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> Details of the interchanges and the block structure of D as determined by <span class="option">?hetrf_rk</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The length of the array <span class="parmname">work</span>.</p>
+<p>If <var>LDWORK</var> = <samp class="codeph">-</samp>1, a workspace query is assumed; the routine calculates only the optimal size of the <span class="parmname">work</span> array and returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by XERBLA.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B586C6B6-FC4F-4AA7-81B5-3C4FEE378564"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-148C0EC8-9EF1-438A-BDC5-B395592D45A9"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhetri_3</span></p>
+<p>On exit, if <span class="parmname">info</span> = 0, the Hermitian inverse of the original matrix. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, the upper triangular part of the inverse is formed and the part of A below the diagonal is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, the lower triangular part of the inverse is formed and the part of A above the diagonal is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhetri_3</span></p>
+<p>Array, dimension (<span class="parmname">n</span>+<var>NB</var>+1)*(<var>NB</var>+3). On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span>(1) returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<ul id="GUID-AB617B6D-1DBB-4B71-B226-2E653644CBF9"><li>= 0: Successful exit.</li>
+<li>&lt; 0: If <span class="parmname">info</span> = <samp class="codeph"><var>-i</var></samp>, the i<sup>th</sup> argument had an illegal value.</li>
+<li>&gt; 0: If <span class="parmname">info</span> = <var>i</var>, D(<var>i</var>,<var>i</var>) = 0; the matrix is singular and its inverse could not be computed.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html">Matrix Inversion: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

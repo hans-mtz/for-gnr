@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DSS Interface Description"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-24A41D50-4D0A-471B-9722-EA59E443ABC8.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-ABAE9E65-45F3-40F3-B117-2B5AFE364F9F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DSS Interface Description</title>
+
+</head>
+<body id="GUID-ABAE9E65-45F3-40F3-B117-2B5AFE364F9F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DSS Interface Description</h1>
+<div><p>Each DSS routine reads from or writes to a data object called a 
+      <em>handle</em>. Refer to 
+      <a href="GUID-4C0597F4-2C11-47C6-B341-A54092469472.html#MEMORYALLOCATIONHANDLES">Memory Allocation and Handles</a> to determine the correct method for declaring a handle argument for each language. For simplicity, the descriptions in DSS routines refer to the data type as 
+      <span class="keyword">MKL_DSS_HANDLE</span>. 
+    </p>
+<div class="level3" id="ROUTINEOPTIONS"><h2 class="sectiontitle">Routine Options</h2><p>The DSS routines have an integer argument (referred below to as 
+        <span class="parmname">opt</span>) for passing various options to the routines. The permissible values for 
+        <span class="parmname">opt</span> should be specified using only the symbol constants defined in the language-specific header files (see 
+        <a href="GUID-4C0597F4-2C11-47C6-B341-A54092469472.html#GUID-4C0597F4-2C11-47C6-B341-A54092469472">Implementation Details</a>).<span> The routines accept options for setting the message and termination levels as described in 
+          <a href="#TBL8-2">Table 
+            <span>"Symbolic Names for the Message and Termination Levels Options"</span></a>. 
+        </span> Additionally, each routine accepts the option 
+        <span class="keywordtt">MKL_DSS_DEFAULTS</span> that sets the default values (as documented) for 
+        <span class="parmname">opt</span> to the routine. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL8-2" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Symbolic Names for the Message and Termination Levels Options</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="49%" id="d1277929e67">Message Level 
+            </th>
+<th class="row-nocellborder" valign="top" width="51%" id="d1277929e69">Termination Level 
+            </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="49%" headers="d1277929e67 "><span class="keywordtt">MKL_DSS_MSG_LVL_SUCCESS</span></td>
+<td class="row-nocellborder" valign="top" width="51%" headers="d1277929e69 "><span class="keywordtt">MKL_DSS_TERM_LVL_SUCCESS</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="49%" headers="d1277929e67 "><span class="keywordtt">MKL_DSS_MSG_LVL_INFO</span></td>
+<td class="row-nocellborder" valign="top" width="51%" headers="d1277929e69 "><span class="keywordtt">MKL_DSS_TERM_LVL_INFO</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="49%" headers="d1277929e67 "><span class="keywordtt">MKL_DSS_MSG_LVL_WARNING</span></td>
+<td class="row-nocellborder" valign="top" width="51%" headers="d1277929e69 "><span class="keywordtt">MKL_DSS_TERM_LVL_WARNING</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="49%" headers="d1277929e67 "><span class="keywordtt">MKL_DSS_MSG_LVL_ERROR</span></td>
+<td class="row-nocellborder" valign="top" width="51%" headers="d1277929e69 "><span class="keywordtt">MKL_DSS_TERM_LVL_ERROR</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="49%" headers="d1277929e67 "><span class="keywordtt">MKL_DSS_MSG_LVL_FATAL</span></td>
+<td class="row-nocellborder" valign="top" width="51%" headers="d1277929e69 "><span class="keywordtt">MKL_DSS_TERM_LVL_FATAL</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The settings for message and termination levels can be set on any call to a DSS routine. However, once set to a particular level, they remain at that level until they are changed in another call to a DSS routine. 
+      </p>
+<p>You can specify both message and termination level for a DSS routine by adding the options together. For example, to set the message level to 
+        <samp class="codeph">debug</samp> and the termination level to 
+        <samp class="codeph">error</samp> for all the DSS routines, use the following call: 
+        <pre><span class="keyword">CALL </span><span class="keyword">dss_create</span>( <span class="keyword">handle</span>, <span class="keyword">MKL_DSS_MSG_LVL_INFO</span> + <span class="keyword">MKL_DSS_TERM_LVL_ERROR</span>)</pre></p>
+</div>
+<div class="level3" id="GUID-542A9B1C-B106-4DC7-AD33-BC84FE1E8743"><h2 class="sectiontitle">User Data Arrays</h2><p>Many of the DSS routines take arrays of user data as input. For example, 
+        user arrays are passed to the routine 
+      <span class="keywordtt">dss_define_structure</span> to describe the location of the non-zero entries in the matrix. 
+      </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>Do not modify the contents of these arrays after they are passed to one of the solver routines. 
+        </p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-24A41D50-4D0A-471B-9722-EA59E443ABC8.html">Direct Sparse Solver (DSS) Interface Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

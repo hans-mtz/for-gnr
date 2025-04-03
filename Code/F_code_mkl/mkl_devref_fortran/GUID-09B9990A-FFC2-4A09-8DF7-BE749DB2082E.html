@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larrv2"/>
+<meta name="abstract" content="Computes the eigenvectors of the tridiagonal matrix T = L*D*LT given L, D and the eigenvalues of L*D*LT."/>
+<meta name="description" content="Computes the eigenvectors of the tridiagonal matrix T = L*D*LT given L, D and the eigenvalues of L*D*LT."/>
+<meta name="DC.subject" content="slarrv2, dlarrv2, ScaLAPACK routines, auxiliary routines, tridiagonal matrix, eigenvectors"/>
+<meta name="keywords" content="slarrv2, dlarrv2, ScaLAPACK routines, auxiliary routines, tridiagonal matrix, eigenvectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-09B9990A-FFC2-4A09-8DF7-BE749DB2082E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larrv2</title>
+
+</head>
+<body id="GUID-09B9990A-FFC2-4A09-8DF7-BE749DB2082E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larrv2</span></h1>
+<!-- Computes the eigenvectors of the tridiagonal matrix   T  =  L * D * L T  given  L ,  D  and the eigenvalues of  L * D * L T .--><div><p class="shortdesc"> Computes the eigenvectors of the tridiagonal matrix  <var>T</var> = <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup> given <var>L</var>, <var>D</var> and the eigenvalues of <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup>.</p>
+<div class="section" id="GUID-1513EF06-1736-403C-95C6-89A9D8B91D34"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slarrv2</span><span class="delim">(</span><span class="var"> n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">needil</span><span class="sep">, </span><span class="var">neediu</span><span class="sep">, </span><span class="var">minrgp</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">sdiam</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">vstart</span><span class="sep">, </span><span class="var">finish</span><span class="sep">, </span><span class="var">maxcls</span><span class="sep">, </span><span class="var">ndepth</span><span class="sep">, </span><span class="var">parity</span><span class="sep">, </span><span class="var">zoffset</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarrv2</span><span class="delim">(</span><span class="var"> n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">needil</span><span class="sep">, </span><span class="var">neediu</span><span class="sep">, </span><span class="var">minrgp</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">sdiam</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">vstart</span><span class="sep">, </span><span class="var">finish</span><span class="sep">, </span><span class="var">maxcls</span><span class="sep">, </span><span class="var">ndepth</span><span class="sep">, </span><span class="var">parity</span><span class="sep">, </span><span class="var">zoffset</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-57C65167-E7B7-423D-9470-7E61AC3AE5C6"><h2 class="sectiontitle">Description</h2><p><span class="option">?larrv2</span> computes the eigenvectors of the tridiagonal matrix <span><var>T</var> = <var>L</var><var>D</var><var>L</var><sup>T</sup></span> given <var>L</var>, <var>D</var> and approximations to the eigenvalues of <span><var>L</var><var>D</var><var>L</var><sup>T</sup></span>. The input eigenvalues should have been computed by <a href="GUID-5B18E679-23D2-45CF-B15E-D97698E3130E.html">larre2a</a>  or by previous calls to <span class="option">?larrv2</span>. </p>
+<p>The major difference between the parallel and the sequential construction of the representation tree is that in the parallel case, not all eigenvalues of a given cluster might be computed locally. Other processors might "own" and refine part of an eigenvalue cluster. This is crucial for scalability.  Thus there might be communication necessary before the current level of the  representation tree can be parsed.  </p>
+<p>Please note: </p>
+<ul id="GUID-BB5C7C1B-6577-4E84-B08B-3523318A8909"><li><p>The calling sequence has two additional integer parameters,  <span class="parmname">dol</span> and <span class="parmname">dou</span>, that should satisfy <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">dou</span><span class="eqsymbol">≥</span><span class="parmname">dol</span><span class="eqsymbol">≥</span>1.  These parameters are only relevant when both eigenvalues and eigenvectors are computed (<span class="option">stegr2b</span> parameter <span class="parmname">jobz</span> = 'V'). <span class="option">?larrv2</span>  only computes the eigenvectors  corresponding to eigenvalues <span class="parmname">dol</span> through <span class="parmname">dou</span> in <span class="parmname">w</span>. (That is, instead of computing the eigenvectors belonging to <span><span class="parmname">w</span>(1)  through <span class="parmname">w</span>(<span class="parmname">m</span>)</span>, only the eigenvectors belonging to eigenvalues <span><span class="parmname">w</span>(<span class="parmname">dol</span>) through <span class="parmname">w</span>(<span class="parmname">dou</span>)</span> are computed. In this case, only the eigenvalues <span class="parmname">dol</span>:<span class="parmname">dou</span> are guaranteed to be accurately refined to all figures by Rayleigh-Quotient iteration. </p>
+</li>
+<li><p>The additional arguments <span class="parmname">vstart</span>, <span class="parmname">finish</span>, <span class="parmname">ndepth</span>, <span class="parmname">parity</span>, <span class="parmname">zoffset</span>  are included as a thread-safe implementation equivalent to save variables. These variables store details about the local representation tree which is computed layerwise. For scalability reasons, eigenvalues belonging to the  locally relevant representation tree might be computed on other processors. These need to be communicated before the inspection of the RRRs can proceed on any given layer.            Note that only when the variable <span class="parmname">finish</span> is <span>true</span>, the computation has ended. All eigenpairs between <span class="parmname">dol</span> and <span class="parmname">dou</span> have been computed. <span class="parmname">m</span> is set to <span class="parmname">dou</span> - <span class="parmname">dol</span> + 1. </p>
+</li>
+<li><p><span class="option">?larrv2</span> needs more workspace in <span class="parmname">z</span> than the sequential <span class="option">slarrv</span>.  It is used to store the conformal embedding of the local representation tree.   </p>
+</li>
+</ul>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d76910e557"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d76910e557 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-D4D58FAF-671C-45E6-A7FF-64417AD6A04B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B75DF7C5-3E07-4E7B-B384-B342A7EF23FC"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix.  <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span>, <span class="parmname">vu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Lower and upper bounds of the interval that contains the desired eigenvalues. <span class="parmname">vl</span> &lt; <span class="parmname">vu</span>. Needed to compute gaps on the left or right end of the extremal eigenvalues in the desired range. <span class="parmname">vu</span> is currently not used but kept as parameter in case needed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The <span class="parmname">n</span> diagonal elements of the diagonal matrix <span class="parmname">d</span>. On exit, <span class="parmname">d</span> is overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The (<span class="parmname">n</span>-1) subdiagonal elements of the unit bidiagonal matrix <var>L</var> are in elements <span>1 to <span class="parmname">n</span>-1</span> of <span class="parmname">l</span> (if the matrix is not split.) At the end of each block is stored the corresponding shift as given by <a href="GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74.html"><span class="option">?larre</span></a>. On exit, <span class="parmname">l</span> is overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span></p>
+<p>The minimum pivot allowed in the sturm sequence.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">isplit</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The splitting points, at which <var>T</var> breaks up into blocks. <span>The first block consists of rows/columns 1 to <span class="parmname">isplit</span>( 1 ), the second of rows/columns <span class="parmname">isplit</span>( 1 ) + 1 through <span class="parmname">isplit</span>( 2 ), etc.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The total number of input eigenvalues.  0 <span class="eqsymbol">≤</span><span class="parmname">m</span><span class="eqsymbol">≤</span><span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dol</span>, <span class="parmname">dou</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>If you want to compute only selected eigenvectors from all the eigenvalues supplied, you can specify an index range <span class="parmname">dol</span>:<span class="parmname">dou</span>. Or else the setting <span class="parmname">dol</span>=1, <span class="parmname">dou</span>=<span class="parmname">m</span> should be applied. Note that <span class="parmname">dol</span> and <span class="parmname">dou</span> refer to the order in which the eigenvalues are stored in <span class="parmname">w</span>. If you want to compute only selected eigenpairs, the columns <span class="parmname">dol</span>-1 to <span class="parmname">dou</span>+1 of the eigenvector space <span class="parmname">z</span> contain the computed eigenvectors. All other columns of <span class="parmname">z</span> are set to zero.</p>
+<p>If <span class="parmname">dol</span> &gt; 1, then <var/><span class="parmname">z</span>(:,<span class="parmname">dol</span>-1-<span class="parmname">zoffset</span>) is used.</p>
+<p>If <span class="parmname">dou</span> &lt; <span class="parmname">m</span>, then <var/><span class="parmname">z</span>(:,<span class="parmname">dou</span>+1-<span class="parmname">zoffset</span>) is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">needil</span>, <span class="parmname">neediu</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Describe which are the left and right outermost eigenvalues that still need to be included in the computation. These indices indicate whether eigenvalues from other processors are needed to correctly compute the conformally embedded representation tree.</p>
+<p>When <span class="parmname">dol</span><span class="eqsymbol">≤</span><span class="parmname">needil</span><span class="eqsymbol">≤</span><span class="parmname">neediu</span><span class="eqsymbol">≤</span><span class="parmname">dou</span>, all required eigenvalues are local to the processor and no communication is required to compute its part of the representation tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">minrgp</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>The minimum relative gap threshold to decide whether an eigenvalue or a cluster boundary is reached.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rtol1</span>, <span class="parmname">rtol2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Parameters for bisection. An interval [<var>left</var>,<var>right</var>] has converged if <var>right</var>-<var>left</var> &lt; max( <span class="parmname">rtol1</span>*<var>gap</var>, <span class="parmname">rtol2</span>*max(|<var>left</var>|,|<var>right</var>|) )</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The first <span class="parmname">m</span> elements of <span class="parmname">w</span> contain the approximate eigenvalues for which eigenvectors are to be computed. The eigenvalues should be grouped by split-off block and ordered from smallest to largest within the block. (The output array <span class="parmname">w</span> from <span class="option">?stegr2a</span> is expected here.) Furthermore, they are with respect to the shift of the corresponding root representation for their block. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The first <span class="parmname">m</span> elements contain the semiwidth of the uncertainty interval of the corresponding eigenvalue in <span class="parmname">w</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The separation from the right neighbor eigenvalue in <span class="parmname">w</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iblock</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>Array of size <span class="parmname">n</span></p>
+<p>The indices of the blocks (submatrices) associated with the corresponding eigenvalues in <span class="parmname">w</span>; <span><span class="parmname">iblock</span>(<var>i</var>)=1 if eigenvalue <span class="parmname">w</span>(<var>i</var>) belongs to the first block from the top, <span class="parmname">iblock</span>(<var>i</var>)=2 if <span class="parmname">w</span>(<var>i</var>) belongs to the second block, and so on</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indexw</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>Array of size <span class="parmname">n</span></p>
+<p>The indices of the eigenvalues within each block (submatrix). For example: <span><span class="parmname">indexw</span>(<var>i</var>)= 10 and <span class="parmname">iblock</span>(<var>i</var>)=2 imply that the <var>i</var>-th eigenvalue <span class="parmname">w</span>(<var>i</var>) is the 10th eigenvalue in block 2</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">gers</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size 2*<span class="parmname">n</span></p>
+<p>The <span class="parmname">n</span> Gerschgorin intervals (the <var>i</var>-th Gerschgorin interval is <span>(<span class="parmname">gers</span>(2*<var>i</var>-1), <span class="parmname">gers</span>(2*<var>i</var>))</span>). The Gerschgorin intervals should be computed from the original unshifted matrix.</p>
+<p>Not used but kept as parameter for possible future use.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sdiam</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The spectral diameters for all unreduced blocks.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">z</span>.  <span class="parmname">ldz</span><span class="eqsymbol">≥</span> 1, and if <span class="option">stegr2b</span> parameter <span class="parmname">jobz</span> = 'V', <span class="parmname">ldz</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>(workspace)             array of size 12*<span class="parmname">n</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(workspace) <span><span class="keyword">INTEGER</span></span>Array of size 7*<span class="parmname">n</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">vstart</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span></p>
+<p><span class="keyword">.TRUE.</span> on initialization, set to <span class="keyword">.FALSE.</span> afterwards.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">finish</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span></p>
+<p>A flag that indicates whether all eigenpairs have been computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">maxcls</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The largest cluster worked on by this processor in the representation tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ndepth</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The current depth of the representation tree. Set to zero on initial pass, changed when the deeper levels of the representation tree are generated. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">parity</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>An internal parameter needed for the storage of the clusters on the current level of the representation tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">zoffset</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Offset for storing the eigenpairs when <span class="parmname">z</span> is distributed in 1D-cyclic fashion.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F26FBE52-2F73-4B8D-946E-9F8D294A2821"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-B16066CB-209C-409A-A7E3-0D10357757E0"><dt class="dlterm"><span class="parmname">needil</span>, <span class="parmname">neediu</span></dt>
+
+<dd><p/>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Unshifted eigenvalues for which eigenvectors have already been computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p>Contains refined values of its input approximations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p>Contains refined values of its input approximations. Very small gaps are changed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrv2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrv2</span></p>
+<p>Array<span>, dimension (<span class="parmname">ldz</span>, max(1,<span class="parmname">m</span>) )</span></p>
+<p>If <span class="parmname">info</span> = 0, the first <span class="parmname">m</span> columns of <span class="parmname">z</span> contain the orthonormal eigenvectors of the matrix <var>T</var> corresponding to the input eigenvalues, with the <var>i</var>-th column of <span class="parmname">z</span> holding the eigenvector associated with <span><span class="parmname">w</span>(<var>i</var>)</span>.</p>
+<p>In the distributed version, only a subset of columns is accessed, see <span class="parmname">dol</span>,<span class="parmname"> dou</span>, and <span class="parmname">zoffset</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">isuppz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span></p>
+<p>Array of size 2*max(1,<span class="parmname">m</span>)</p>
+<p>The support of the eigenvectors in <span class="parmname">z</span>, i.e., the indices indicating the non-zero elements in <span class="parmname">z</span>. The <var>i</var>-th eigenvector is non-zero only in elements <span><span class="parmname">isuppz</span>( 2*<var>i</var>-1 ) through <span class="parmname">isuppz</span>( 2*<var>i</var> )</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vstart</span></dt>
+
+<dd><p><span class="keyword">.TRUE.</span> on initialization, set to <span class="keyword">.FALSE.</span> afterwards.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">finish</span></dt>
+
+<dd><p>A flag that indicates whether all eigenpairs have been computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">maxcls</span></dt>
+
+<dd><p>The largest cluster worked on by this processor in the representation tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ndepth</span></dt>
+
+<dd><p>The current depth of the representation tree. Set to zero on initial pass, changed when the deeper levels of the representation tree are generated. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">parity</span></dt>
+
+<dd><p>An internal parameter needed for the storage of the clusters on the current level of the representation tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>= 0:  successful exit</p>
+<p>&gt; 0:  A problem occured in <span class="option">?larrv2</span>.</p>
+<p>&lt; 0:  One of the called <span>subroutine</span>s signaled an internal problem. </p>
+<p>Needs inspection of the corresponding parameter <span class="parmname">info</span> for further information.</p>
+<p>=-1:  Problem in <a href="GUID-94A50590-0FF8-4B80-9F45-34AA69D398F2.html"><span class="option">?larrb2</span></a> when refining a child's eigenvalues.</p>
+<p>=-2:  Problem in <a href="GUID-363D9FAC-F45F-45B5-8301-E682D87C57BD.html#GUID-363D9FAC-F45F-45B5-8301-E682D87C57BD"><span class="option">?larrf2</span></a> when computing the RRR of a child. When a child is inside a tight cluster, it can be difficult to find an RRR. A partial remedy from the user's point of view is to make the parameter <span class="parmname">minrgp</span> smaller and recompile. However, as the orthogonality of the computed vectors is proportional to 1/<span class="parmname">minrgp</span>, be aware that decreasing <span class="parmname">minrgp</span>  might be reduce precision.</p>
+<p>=-3:  Problem in <span class="option">?larrb2</span> when refining a single eigenvalue after the Rayleigh correction was rejected.</p>
+<p>= 5:  The Rayleigh Quotient Iteration failed to converge to full accuracy.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?stevd"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, all eigenvectors of a real symmetric tridiagonal matrix using divide and conquer algorithm."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, all eigenvectors of a real symmetric tridiagonal matrix using divide and conquer algorithm."/>
+<meta name="DC.subject" content="?stevd, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="keywords" content="?stevd, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-258D5408-0894-424A-83B2-33DE708A319C.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DD5BDE05-39A4-40EA-994A-8F1893D60B09"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?stevd</title>
+
+</head>
+<body id="GUID-DD5BDE05-39A4-40EA-994A-8F1893D60B09">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?stevd</span></h1>
+<!--Computes all eigenvalues and, optionally, all eigenvectors of a real symmetric tridiagonal matrix using divide and conquer algorithm.--><div><p class="shortdesc">Computes all eigenvalues and, optionally, all eigenvectors of a real symmetric tridiagonal matrix using divide and conquer algorithm.</p>
+<div class="section" id="GUID-77CE7C98-19D2-4462-80E9-DC8945BC18AD"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sstevd</span><span class="delim">(</span><span class="var">job</span><span class="sep">z, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dstevd</span><span class="delim">(</span><span class="var">job</span><span class="sep">z, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call stevd</span><span class="delim">(</span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="delim"> [</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-65D952E2-71DF-406B-A946-7CDE2D0E1D21"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5CB3522C-CE69-4CA0-8BA8-30C14E2D4B85"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all the eigenvalues, and optionally all the eigenvectors, of a real symmetric tridiagonal matrix <var>T</var>. In other words, the routine can compute the spectral factorization of <var>T</var> as: <samp class="codeph"><var>T</var> = <var>Z</var>*<span class="eqsymbol">Λ</span>*<var>Z</var><sup class="power"><var>T</var></sup></samp>. </p>
+<p>Here <span class="eqsymbol">Λ</span> is a diagonal matrix whose diagonal elements are the eigenvalues <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>, and <var>Z</var> is the orthogonal matrix whose columns are the eigenvectors <var>z</var><sub class="subb"><var>i</var></sub>. Thus, </p>
+<p><samp class="codeph"><var>T</var>*<var>z</var><sub class="subb"><var>i</var></sub> = <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>*<var>z</var><sub class="subb"><var>i</var></sub></samp> for <samp class="codeph"><var>i</var> = 1, 2, ..., <var>n</var></samp>.</p>
+<p>If the eigenvectors are requested, then this routine uses a divide and conquer algorithm to compute eigenvalues and eigenvectors. However, if only eigenvalues are required, then it uses the Pal-Walker-Kahan variant of the <var>QL</var> or <var>QR</var> algorithm. </p>
+<p>There is no complex analogue of this routine.</p>
+</div>
+<div class="section" id="GUID-92BDEA75-073F-4F10-8241-7F10A6B13EB9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-27D57C6A-6338-4325-B0F5-95E3BBAFD740"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then only eigenvalues are computed. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then eigenvalues and eigenvectors are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>T</var> (<samp class="codeph"><var>n </var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstevd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstevd</span>. </p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>d</var></samp><samp class="codeph">(*)</samp> contains the <var>n</var> diagonal elements of the tridiagonal matrix <var>T</var>. </p>
+<p>The dimension of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p><samp class="codeph"><var>e</var></samp><samp class="codeph">(*)</samp> contains the <var>n</var>-1 off-diagonal elements of <var>T</var>. </p>
+<p>The dimension of <var>e</var> must be at least max(1, <var>n</var>). The <var>n-</var>th element of this array is used as workspace.</p>
+<p><var>work</var>(*) is a workspace array. </p>
+<p>The dimension of <var>work</var> must be at least <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>z</var>. Constraints:</p>
+<p><samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp> if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>;</p>
+<p><samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>. </p>
+<p>Constraints: </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp> or <samp class="codeph"><var>n </var><span class="eqsymbol">≤</span> 1</samp>, then <samp class="codeph"><var>lwork </var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>n</var> &gt; 1</samp>, then <samp class="codeph"><var>lwork </var><span class="eqsymbol">≥</span><var>n</var><sup class="power">2 </sup>+ 4*<var>n</var> + 1</samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the required sizes of the <var>work</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">liwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>iwork</var>. </p>
+<p>Constraints: </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp> or <samp class="codeph"><var>n </var><span class="eqsymbol">≤</span> 1</samp>, then <samp class="codeph"><var>liwork </var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>n</var> &gt; 1</samp>, then <samp class="codeph"><var>liwork </var><span class="eqsymbol">≥</span> 5<var>*n</var>+3</samp>.</p>
+<p>If <samp class="codeph"><var>liwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the required sizes of the <var>work</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>liwork</var> is 
+issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A6911335-7533-49D5-8E18-CE5F06D02559"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-16167D3E-A50F-4BE8-8988-BF2921CB3719"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, contains the eigenvalues of the matrix <var>T</var> in ascending order. </p>
+<p>See also <var>info</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstevd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstevd</span></p>
+<p>Array, size <span>(<var>ldz</var>,*)</span>
+. </p>
+<p>The second dimension of <var>z</var> must be:</p>
+<p> at least 1 if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>;</p>
+<p>at least max(1, <var>n</var>) if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>.</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then this array is overwritten by the orthogonal matrix <var>Z</var> which contains the eigenvectors of <var>T</var>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, this array is overwritten with intermediate results.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>lwork</var> &gt; 0</samp>, then <var>work</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>liwork</var> &gt; 0</samp>, then <var>iwork</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>liwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, then the algorithm failed to converge; <var>i</var> indicates the number of elements of an intermediate tridiagonal form which did not converge to zero. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1F2A8B8D-3312-444A-B429-C9F61471EF61"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">stevd</span> interface are the following:</p>
+<dl id="GUID-DDB2F3AC-A5C9-48FF-AC77-9C298D4C612D"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>Holds the matrix <var>Z</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>z</var> as follows: </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, if <var>z</var> is present, </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, if <var>z</var> is omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-8A0C96A7-941D-43F7-A1D7-70E900FFFB68"><h2 class="sectiontitle">Application Notes</h2><p>The computed eigenvalues and eigenvectors are exact for a matrix <samp class="codeph"><var>T</var>+<var>E</var></samp> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)*||<var>T</var>||<sub>2</sub></samp>, where <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>If <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub> is an exact eigenvalue, and <span class="eqsymbol">μ</span><sub class="subb"><var>i</var></sub> is the corresponding computed value, then </p>
+<p><samp class="codeph">|<span class="eqsymbol">μ</span><sub class="subb"><var>i</var></sub> - <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>| <span class="eqsymbol">≤</span><var> c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>T</var>||<sub>2</sub></samp></p>
+<p>where <samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modestly increasing function of <var>n</var>. </p>
+<p>If <var>z</var><sub class="subb"><var>i</var></sub> is the corresponding exact eigenvector, and <var>w</var><sub class="subb"><var>i</var></sub> is the corresponding computed vector, then the angle <samp class="codeph"><span class="eqsymbol">θ</span>(<var>z</var><sub class="subb"><var>i</var></sub>, <var>w</var><sub class="subb"><var>i</var></sub>)</samp> between them is bounded as follows: </p>
+<p><samp class="codeph"><span class="eqsymbol">θ</span>(<var>z</var><sub class="subb"><var>i</var></sub>, <var>w</var><sub class="subb"><var>i</var></sub>) <span class="eqsymbol">≤</span><var> c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>T</var>||<sub>2</sub> / min <sub><var>i</var><span class="eqsymbol">≠</span><var>j</var></sub>|<span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub> - <span class="eqsymbol">λ</span><sub class="subb"><var>j</var></sub>|</samp>. </p>
+<p>Thus the accuracy of a computed eigenvector depends on the gap between its eigenvalue and all the other eigenvalues.</p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> (or <var>liwork</var>) for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>). </p>
+<p>If <var>lwork</var> (or <var>liwork</var>) has any of admissible sizes, which is no less than the minimal value described, then the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>) on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>, <samp class="codeph"><var>iwork</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>), then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> (<var>liwork</var>) is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-258D5408-0894-424A-83B2-33DE708A319C.html">Symmetric Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

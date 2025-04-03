@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_?_spmmd"/>
+<meta name="abstract" content="Computes the product of two sparse matrices and stores the result as a dense matrix."/>
+<meta name="description" content="Computes the product of two sparse matrices and stores the result as a dense matrix."/>
+<meta name="DC.subject" content="mkl_sparse_s_spmmd, mkl_sparse_d_spmmd, mkl_sparse_c_spmmd, mkl_sparse_z_spmmd"/>
+<meta name="keywords" content="mkl_sparse_s_spmmd, mkl_sparse_d_spmmd, mkl_sparse_c_spmmd, mkl_sparse_z_spmmd"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-FDC8230D-C816-4457-8588-07122BADE984"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_?_spmmd</title>
+
+</head>
+<body id="GUID-FDC8230D-C816-4457-8588-07122BADE984">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_?_spmmd</span></h1>
+<!--Computes the product of two sparse matrices and stores the result as a dense matrix.--><div><p class="shortdesc">Computes the product of two sparse matrices and stores the result as a dense matrix.</p>
+<div class="section" id="GUID-EF374AEC-3EE6-47C1-B8DF-2DBE5B3CA21E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_s_spmmd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_d_spmmd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_c_spmmd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_z_spmmd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-06A7CC0F-6D8E-4F9A-83A4-FC21B0F88EAD"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-1A681494-0351-40E4-877E-142E49FF307C"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A8238FD6-4F4F-43C8-93AF-882D9504C323"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_sparse_?_spmmd</span> routine performs a matrix-matrix operation:<pre><var>C</var> := op(<var>A</var>)*<var>B</var></pre></p>
+<p>where <var>A</var> and <var>B</var> are sparse matrices, <var>op</var> is a matrix modifier for matrix <var>A</var>, and <var>C</var> is a dense matrix.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> This routine is not supported for sparse matrices in the COO format. For sparse matrices in BSR format, these combinations of  (<span class="parmname">indexing</span>, <span class="parmname">block_layout</span>) are supported: <ul id="GUID-83554503-93EC-4B1B-9D76-28D05971399B"><li><p>(<span class="keyword">SPARSE_INDEX_BASE_ZERO</span>, <span class="keyword">SPARSE_LAYOUT_ROW_MAJOR</span>) </p>
+</li>
+<li><p>(<span class="keyword">SPARSE_INDEX_BASE_ONE</span>, <span class="keyword">SPARSE_LAYOUT_COLUMN_MAJOR</span>) </p>
+</li>
+</ul>
+</p>
+</div>
+</div>
+<div class="section" id="GUID-85DC610A-9FBD-4DAE-BADE-303E41E4F458"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A5DA18D5-43C6-4570-BCAD-EFA75D1F85FC"><dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><samp class="codeph">C_INT</samp>. 
+          </p>
+<p>Specifies operation 
+            <samp class="codeph">op()</samp> on input matrix. 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_NON_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Non-transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>T</sup></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_CONJUGATE_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Conjugate transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>H</sup></samp>. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">layout</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Describes the storage scheme for the dense matrix: </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_LAYOUT_COLUMN_MAJOR 
+                </tt></p></td>
+
+<td valign="top" class="noborder"><p>Storage of elements uses column major layout. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_LAYOUT_ROW_MAJOR 
+                </tt></p></td>
+
+<td valign="top" class="noborder"><p>Storage of elements uses row major layout. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">ldC</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Leading dimension of matrix <var>C</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-54294E1A-CEDC-47CD-8E8B-8F3EDF42D082"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D60E8859-733D-4EFC-8F8F-5247358224EB"><dt class="dlterm"><span class="parmname">C</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_spmmd</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_spmmd</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_spmmd</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_spmmd</span></p>
+<p>Resulting dense matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stat</span></dt>
+
+<dd><p><samp class="codeph">INTEGER</samp></p>
+<p>Value indicating whether the operation was successful or not, and why: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p>The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html">Inspector-Executor Sparse BLAS Execution Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

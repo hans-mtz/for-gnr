@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?spmv"/>
+<meta name="abstract" content="Computes a matrix-vector product with a symmetric packed matrix."/>
+<meta name="description" content="Computes a matrix-vector product with a symmetric packed matrix."/>
+<meta name="DC.subject" content="?spmv, BLAS Level 2 routines, symmetric matrix, matrix-vector product, packed storage, product:matrix-vector, real symmetric matrix, matrix-vector operation:product"/>
+<meta name="keywords" content="?spmv, BLAS Level 2 routines, symmetric matrix, matrix-vector product, packed storage, product:matrix-vector, real symmetric matrix, matrix-vector operation:product"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9D76CD84-55F7-468B-9446-6CCB5A7A127C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?spmv</title>
+
+</head>
+<body id="GUID-9D76CD84-55F7-468B-9446-6CCB5A7A127C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?spmv</span></h1>
+<!--Computes a matrix-vector product with a symmetric packed matrix.--><div><p class="shortdesc">Computes a matrix-vector product with a symmetric packed matrix.</p>
+<div class="section" id="GUID-BCC82B03-92EB-4D73-B69C-8AE8646FBEAC"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sspmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dspmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spmv</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">alpha</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">beta</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3B3A9AD6-EFC1-4693-B7C3-CDD0B19A944D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-017299C3-D702-4276-9B3E-B4374E41A838"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?spmv</span> routines perform a matrix-vector operation defined as <pre><var>y</var> := <var>alpha</var>*<var>A</var>*<var>x</var> + <var>beta</var>*<var>y</var>,</pre></p>
+<p>where:</p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><var>x</var> and <var>y</var> are <var>n</var>-element vectors,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> symmetric matrix, supplied in packed form.</p>
+</div>
+<div class="section" id="GUID-B21E47DC-3397-44AA-812C-30EBE1A85070"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8576E92A-9ED1-40C8-940C-E9671F79EEA8"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the matrix  <var>A</var> is supplied in the packed array <span class="parmname">ap</span>.</p>
+<p>If <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, then the upper triangular part of the matrix  <var>A</var> is supplied in the packed array <span class="parmname">ap</span> .</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, then the low triangular part of the matrix  <var>A</var> is supplied in the packed array <span class="parmname">ap</span> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspmv</span></p>
+<p>Specifies the scalar <var>alpha</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspmv</span></p>
+<p>Array, size at least <samp class="codeph">((n*(n + 1))/2)</samp>.</p>
+<p>Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, the array <var>ap</var> must contain the upper triangular part of the symmetric matrix packed sequentially, column-by-column, so that <span><samp class="codeph"><var>ap</var>(1)</samp> contains <samp class="codeph"><var>a</var>(1,1)</samp>, <samp class="codeph"><var>ap</var>(2)</samp> and <samp class="codeph"><var>ap</var>(3)</samp> contain <samp class="codeph"><var>a</var>(1,2)</samp> and <samp class="codeph"><var>a</var>(2, 2)</samp></span> respectively, and so on. Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the array <var>ap</var> must contain the lower triangular part of the symmetric matrix packed sequentially, column-by-column, so that <span><samp class="codeph"><var>ap</var>(1)</samp> contains <samp class="codeph"><var>a</var>(1,1)</samp>, <samp class="codeph"><var>ap</var>(2)</samp> and <samp class="codeph"><var>ap</var>(3)</samp> contain <samp class="codeph"><var>a</var>(2,1)</samp> and <samp class="codeph"><var>a</var>(3,1)</samp></span> respectively, and so on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspmv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of <var>incx</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspmv</span></p>
+<p>Specifies the scalar <var>beta</var>.</p>
+<p>When <var>beta</var> is supplied as zero, then <var>y</var> need not be set on input.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspmv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incy</var>))</samp>. Before entry, the incremented array <var>y</var> must contain the <var>n</var>-element vector <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>y</var>.</p>
+<p>The value of <var>incy</var> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-23FF1F5C-5560-40B6-807D-B6352FA320D6"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-05772695-5AB9-4F82-8EAD-BD3DA4BD2DE1"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Overwritten by the updated vector <var>y</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E38F0A30-873D-4947-9D58-24510C74E560"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">spmv</span> interface are the following:</p>
+<dl id="GUID-E3FFA051-38DB-4678-B921-03C3E801D191"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Holds the array <var>ap</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>The default value is 0.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

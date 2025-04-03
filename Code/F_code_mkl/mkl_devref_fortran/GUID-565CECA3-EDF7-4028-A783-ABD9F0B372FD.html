@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?unmtr"/>
+<meta name="abstract" content="Multiplies a complex matrix by the complex unitary matrix Q determined by ?hetrd."/>
+<meta name="description" content="Multiplies a complex matrix by the complex unitary matrix Q determined by ?hetrd."/>
+<meta name="DC.subject" content="?unmtr, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?unmtr, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-565CECA3-EDF7-4028-A783-ABD9F0B372FD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?unmtr</title>
+
+</head>
+<body id="GUID-565CECA3-EDF7-4028-A783-ABD9F0B372FD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?unmtr</span></h1>
+<!--Multiplies a complex matrix by the complex unitary matrix Q determined by  ?hetrd . --><div><p class="shortdesc">Multiplies a complex matrix by the complex unitary matrix Q determined by <span class="option">?hetrd</span>. </p>
+<div class="section" id="GUID-D89B0E48-3A4E-47F4-B51F-834297BD7620"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cunmtr</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zunmtr</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call unmtr</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="delim"> [</span><span class="sep">,</span><span class="var">side</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-15EEA0FA-15B3-49BD-9545-02C41B23D115"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-34264668-20E3-4AB0-B24F-776357284A13"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine multiplies a complex matrix <var>C</var> by <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup>, where <var>Q</var> is the unitary matrix <var>Q</var> formed by <span><a href="GUID-1371B572-C7DA-4F0F-AAD5-246AED285650.html#GUID-1371B572-C7DA-4F0F-AAD5-246AED285650"><samp class="codeph">?hetrd</samp></a></span><span/> when reducing a complex Hermitian matrix <var>A</var> to tridiagonal form: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>H</var></sup></samp>. Use this routine after a call to <span><a href="GUID-1371B572-C7DA-4F0F-AAD5-246AED285650.html#GUID-1371B572-C7DA-4F0F-AAD5-246AED285650"><samp class="codeph">?hetrd</samp></a></span><span/>.</p>
+<p>Depending on the parameters <span><var>side</var></span> and <span class="parmname">trans</span>, the routine can form one of the matrix products <var>Q*C</var>, <var>Q</var><sup class="power"><var>H</var></sup><var>*C</var>, <var>C*Q</var>, or <var>C*Q</var><sup class="power"><var>H</var></sup> (overwriting the result on <var>C</var>).</p>
+</div>
+<div class="section" id="GUID-C3468D17-9D0D-4B91-A72B-7F3878CB88A5"><h2 class="sectiontitle">Input Parameters</h2><p>In the descriptions below, <var>r</var> denotes the order of <var>Q</var>: </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>r</var> = <var>m</var></samp>; if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>r</var> = <var>n</var></samp>.</p>
+<dl id="GUID-EF192654-546B-4254-A81C-C93D07538083"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be either <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup> is applied to <var>C</var> from the left. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup> is applied to <var>C</var> from the right.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. </p>
+<p>Use the same <var>uplo</var> as supplied to <span class="option">?hetrd</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be either <span class="keyword">'N'</span> or <span class="keyword">'T'</span>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, the routine multiplies <var>C</var> by <var>Q</var>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, the routine multiplies <var>C</var> by <var>Q</var><sup class="power"><var>H</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>C</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>C</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">c</span>, <span class="parmname">tau</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cunmtr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zunmtr</span>.</p>
+<p><var>a</var><span>(<var>lda</var>,*)</span>
+ and <var>tau</var> are the arrays returned by <span class="option">?hetrd</span>.</p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>r</var>). </p>
+<p>The dimension of <var>tau</var> must be at least max(1, <var>r</var>-1).</p>
+<p><var>c</var><span>(<var>ldc</var>,*)</span> contains the matrix <var>C</var>.</p>
+<p>The second dimension of <var>c</var> must be at least max(1, <var>n</var>)</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>r</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>c</var>; <samp class="codeph"><var>ldc</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>
+.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array. Constraints: </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-57271E30-DC54-4E0D-BBB8-5BE954D9D36A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-5EBE6993-3294-4D42-AE50-8DD67BF4B6A5"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the product <var>Q*C</var>, <var>Q</var><sup class="power"><var>H</var></sup><var>*C</var>, <var>C*Q</var>, or <var>C*Q</var><sup class="power"><var>H</var></sup> (as specified by <var>side</var> and <span class="parmname">trans</span>).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-56FD01D0-3B82-4C59-B706-DC30DA4E83A2"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">unmtr</span> interface are the following:</p>
+<dl id="GUID-2DA84234-EDE1-452D-86DD-0C623B1DF031"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>r,r</var>).</p>
+<p><samp class="codeph"><var>r</var> = <var>m</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>.</p>
+<p><samp class="codeph"><var>r</var> = <var>n</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length (<var>r-</var>1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Holds the matrix <var>C</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>Must be <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. The default value is <span class="keyword">'L'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'C'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B19E31D8-64C2-41DF-AA0D-4C90921469D6"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp> (for <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>) or <samp class="codeph"><var>lwork</var> = <var>m</var>*<var>blocksize</var></samp> (for <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>) where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>In first case the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The computed product differs from the exact product by a matrix <var>E</var> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)*||<var>C</var>||<sub>2</sub></samp>, where <span class="eqsymbol">ε</span> is 
+the machine precision.</p>
+<p>The total number of floating-point operations is approximately <samp class="codeph">8*<var>m</var><sup class="power">2</sup>*<var>n</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> or <samp class="codeph">8*<var>n</var><sup class="power">2</sup>*<var>m</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+<p>The real counterpart of this routine is <a href="GUID-92482E77-3157-416C-990D-25243005DE7A.html#GUID-92482E77-3157-416C-990D-25243005DE7A">ormtr</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

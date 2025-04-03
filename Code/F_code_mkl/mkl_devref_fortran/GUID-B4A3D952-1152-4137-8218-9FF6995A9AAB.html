@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="blacs_set"/>
+<meta name="abstract" content="Sets values that BLACS use for internal defaults."/>
+<meta name="description" content="Sets values that BLACS use for internal defaults."/>
+<meta name="DC.subject" content="BLACS, blacs_set"/>
+<meta name="keywords" content="BLACS, blacs_set"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B4A3D952-1152-4137-8218-9FF6995A9AAB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>blacs_set</title>
+
+</head>
+<body id="GUID-B4A3D952-1152-4137-8218-9FF6995A9AAB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">blacs_set</span></h1>
+<!--Sets values that BLACS use for internal defaults. --><div><p class="shortdesc">Sets values that BLACS use for internal defaults. </p>
+<div class="section" id="GUID-42EDF52C-6F14-4F17-A18C-0E86283E779A"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call blacs_set</span><span class="sep">( </span><span class="var">icontxt</span><span class="sep">, </span><span class="var">what</span><span class="sep">, </span><span class="var">val</span><span class="sep"> )</span></p></div></div>
+<div class="section" id="GUID-A66513FB-C12D-4A14-8D9F-6C56AC86D5F7"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">icontxt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.  For values of  <span class="parmname">what</span> that are tied to a particular context, this parameter is the integer handle indicating the context. Otherwise, ignored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">what</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>. Indicates what BLACS internal(s) should be set. Present values are:</p>
+<ul id="GUID-344D37F5-20A4-4E1F-9557-60CF9AD2626A"><li id="LI_0ADEE4F3DD32475AAE49A8CB6F16BDBA"> 1 = Set the BLACS message ID range</li>
+<li id="LI_DA23D94ACB484398B82CF47E293058CD"> 11 = Number of rings for multiring broadcast topology to use</li>
+<li id="LI_FC2E727B37AE41A5B3119A5417E25A55"> 12 = Number of branches for general tree broadcast topology to use</li>
+<li> 13 = Number of rings for multiring combine topology to use</li>
+<li> 14 = Number  of branches for general tree combine topology to use</li>
+<li id="LI_3779959ADAEB4FD7BA2F03C46D71C7B4">15 = Force topologies to be repeatable or not</li>
+<li id="LI_15C9EEC881764786B3BA149076033248">16 = Force topologies to be heterogenous coherent or not</li>
+</ul>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">val</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>. Array of dimension (*). Indicates the value(s) the internals should be set to. The specific meanings depend on <span class="parmname">what</span> values.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-91F6B584-DEEA-4253-9E76-C9DB1EEBC582"><h2 class="sectiontitle">Description</h2><p>This routine sets the BLACS internal defaults depending on <span class="parmname">what</span> values:</p>
+<dl id="GUID-ADE33B1C-F3FE-4E7A-8D5F-B2EF1BECE179"><dt class="dlterm"><span class="parmname">what</span> = 1</dt>
+
+<dd><p>Setting the BLACS message ID range.</p>
+<p>If you wish to mix the BLACS with other message-passing packages, restrict the BLACS to a certain message ID range not to be used by the non-BLACS routines. The message ID range must be set before the first call to <a class="allformats" href="GUID-F74017DD-C068-4C53-B5CD-63EEE1970FD8.html#GUID-F74017DD-C068-4C53-B5CD-63EEE1970FD8"><span class="option">blacs_gridinit</span></a> or <a class="allformats" href="GUID-C6316B45-360E-4AA7-B0C3-F83B16E50F3D.html#GUID-C6316B45-360E-4AA7-B0C3-F83B16E50F3D"><span class="option">blacs_gridmap</span></a>. Subsequent calls will have no effect. Because the message ID range is not tied to a particular context, the parameter <span class="parmname">icontxt</span> is ignored, and <var>val</var> is defined as: </p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (2)</p>
+<p>    <samp class="codeph">VAL(1)</samp> : The smallest message ID (also called message type or message tag) the BLACS should use.</p>
+<p>    <samp class="codeph">VAL(2)</samp> : The largest message ID (also called message type or message tag) the BLACS should use.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">what</span> = 11</dt>
+
+<dd><p>Set number of rings for <samp class="codeph">TOP = 'M'</samp> (multiring broadcast).This quantity is tied to a context, so <span class="parmname">icontxt</span> is used, and <var>val</var> is defined as:</p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (1)</p>
+<p>    <samp class="codeph">VAL(1)</samp> : The number of rings for multiring topology to use.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">what</span> = 12</dt>
+
+<dd><p>Set number of branches for <samp class="codeph">TOP = 'T'</samp> (general tree broadcast). This quantity is tied to a context, so <span class="parmname">icontxt</span> is used, and <var>val</var> is defined as:</p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (1)</p>
+<p>    <samp class="codeph">VAL(1)</samp> : The number of branches for general tree topology to use.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">what</span> = 13</dt>
+
+<dd><p>Set number of rings for <samp class="codeph">TOP = 'M'</samp> (multiring combine).This quantity is tied to a context, so <span class="parmname">icontxt</span> is used, and <var>val</var> is defined as:</p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (1)</p>
+<p>    <samp class="codeph">VAL(1)</samp> : The number of rings for multiring topology to use. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">what</span> = 14</dt>
+
+<dd><p>Set number of branches for <samp class="codeph">TOP = 'T'</samp> (general tree gather). This quantity is tied to a context, so <span class="parmname">icontxt</span> is used, and <var>val</var> is defined as:</p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (1)</p>
+<p>    <samp class="codeph">VAL(1)</samp> : The number of branches for general tree topology to use.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">what</span> = 15</dt>
+
+<dd><p>Force topologies to be repeatable or not (see <a href="GUID-896F8C19-5C04-4519-832D-FBC8100676CD.html">Repeatability and Coherence</a> for more information about repeatability).</p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (1)</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph">VAL(1) = 0</samp> (default)</p></td>
+
+<td valign="top" class="noborder"><p>Topologies are not required to be repeatable. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph">VAL(1) <span class="eqsymbol">≠</span> 0</samp></p></td>
+
+<td valign="top" class="noborder"><p>All used topologies are required to be repeatable, which might degrade performance.</p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">what</span> = 16</dt>
+
+<dd><p>Force topologies to be heterogenous coherent or not (see <a href="GUID-896F8C19-5C04-4519-832D-FBC8100676CD.html">Repeatability and Coherence</a> for more information about coherence).</p>
+<p><samp class="codeph">VAL (input) <span class="keyword">INTEGER</span></samp> array of dimension (1)</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph">VAL(1) = 0</samp> (default)</p></td>
+
+<td valign="top" class="noborder"><p>Topologies are not required to be heterogenous coherent. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph">VAL(1) <span class="eqsymbol">≠</span> 0</samp></p></td>
+
+<td valign="top" class="noborder"><p>All used topologies are required to be heterogenous coherent, which might degrade performance.</p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html">Initialization Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

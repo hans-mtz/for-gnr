@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Fortran 95 Interface Conventions for LAPACK Routines"/>
+<meta name="DC.subject" content="Fortran 95 interface conventions, LAPACK"/>
+<meta name="keywords" content="Fortran 95 interface conventions, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-949509C0-481F-48E7-9602-CA07EC2139A4.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Fortran 95 Interface Conventions for LAPACK Routines</title>
+
+</head>
+<body id="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Fortran 95 Interface Conventions for LAPACK
+    Routines</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library implements the Fortran 95 interface to LAPACK through wrappers that call respective FORTRAN 77 routines. This interface uses such Fortran 95 features as assumed-shape arrays and optional arguments to provide simplified calls to LAPACK routines with fewer arguments.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For LAPACK, Intel&reg; oneAPI Math Kernel Library offers two types of the Fortran 95 interfaces:<ul id="GUID-E85F7F7C-384B-4B9B-B64E-EE34D355D630"><li>using 
+          <span class="filepath">mkl_lapack.fi</span>
+          only through the 
+          <samp class="tt">include
+            'mkl_lapack.fi'</samp> statement. Such interfaces allow you to make use of
+          the original LAPACK routines with all their arguments 
+        </li>
+<li>using 
+          <span class="filepath">lapack.f90</span>
+          that includes improved interfaces. This file is used to generate the module
+          files 
+          <span class="filepath">lapack95.mod</span>
+          and 
+          <span class="filepath">f95_precision.mod</span>. See also the
+          section "Fortran 95 interfaces and wrappers to LAPACK and BLAS" of the 
+          <em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em> for
+          details. The module files are used to process the FORTRAN use clauses
+          referencing the LAPACK interface: 
+          <samp class="codeph">use lapack95</samp> and 
+          <samp class="codeph">use f95_precision</samp>. </li>
+</ul>
+</p>
+</div>
+<p>The main conventions for the Fortran 95 interface are
+      as follows: 
+    </p>
+<ul id="GUID-B943AA4A-F9AF-4A7C-B54D-36A2FD54880D"><li><p>The names of arguments used in Fortran 95 call
+          are typically the same as for the respective generic (FORTRAN 77) interface. In
+          rare cases, formal argument names may be different. For instance, 
+          <span class="parmname">select</span>
+          instead of 
+          <span class="parmname">selctg</span>. 
+        </p>
+</li>
+<li><p>Input arguments such as array dimensions are not
+          required in Fortran 95 and are skipped from the calling sequence. Array
+          dimensions are reconstructed from the user data that must exactly follow the
+          required array shape. 
+        </p>
+<p>Another type of generic arguments that are
+          skipped in the Fortran 95 interface are arguments that represent workspace
+          arrays (such as 
+          <span class="parmname">work</span>, 
+          <span class="parmname">rwork</span>,
+          and so on). The only exception are cases when workspace arrays return
+          significant information on output. 
+        </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Internally, workspace arrays are allocated by the Fortran 95
+            interface wrapper, and are of optimal size for the best performance of the
+            routine. 
+          </p>
+</div>
+<p>An argument can also be skipped if its value is
+          completely defined by the presence or absence of another argument in the
+          calling sequence, and the restored value is the only meaningful value for the
+          skipped argument. 
+        </p>
+</li>
+<li><p>Some generic arguments are declared as optional
+          in the Fortran 95 interface and may or may not be present in the calling
+          sequence. An argument can be declared optional if it meets one of the following
+          conditions: 
+        </p>
+<ul class="dash" id="GUID-FE9EF947-5B1E-4C9F-94EE-14BE04E94CE0"><li><p>If an argument value is completely defined by
+              the presence or absence of another argument in the calling sequence, it can be
+              declared optional. The difference from the skipped argument in this case is
+              that the optional argument can have some meaningful values that are distinct
+              from the value reconstructed by default. For example, if some argument (like 
+              <span class="parmname">jobz</span>)
+              can take only two values and one of these values directly implies the use of
+              another argument, then the value of 
+              <span class="parmname">jobz</span>
+              can be uniquely reconstructed from the actual presence or absence of this
+              second argument, and 
+              <span class="parmname">jobz</span>
+              can be omitted. 
+            </p>
+</li>
+<li><p>If an input argument can take only a few
+              possible values, it can be declared as optional. The default value of such
+              argument is typically set as the first value in the list and all exceptions to
+              this rule are explicitly stated in the routine description. 
+            </p>
+</li>
+<li><p>If an input argument has a natural default
+              value, it can be declared as optional. The default value of such optional
+              argument is set to its natural default value. 
+            </p>
+</li>
+</ul>
+</li>
+<li><p>Argument 
+          <span class="parmname">info</span> is
+          declared as optional in the Fortran 95 interface. If it is present in the
+          calling sequence, the value assigned to 
+          <span class="parmname">info</span> is
+          interpreted as follows: 
+        </p>
+<ul class="dash" id="GUID-081088F3-3999-4388-8F7D-EEECEACFEE98"><li><p>If this value is more than -1000, its meaning
+              is the same as in the FORTRAN 77 routine. 
+            </p>
+</li>
+<li><p>If this value is equal to -1000, it means
+              that there is not enough work memory. 
+            </p>
+</li>
+<li><p>If this value is equal to -1001, incompatible
+              arguments are present in the calling sequence. 
+            </p>
+</li>
+<li><p>If this value is equal to -<var>i</var>, the 
+              <var>i</var>th
+              parameter (counting parameters in the FORTRAN 77 interface, not the Fortran 95
+              interface) had an illegal value. 
+            </p>
+</li>
+</ul>
+</li>
+<li><p>Optional arguments are given in square brackets
+          in the Fortran 95 call syntax. 
+        </p>
+</li>
+</ul>
+<p>The "Fortran 95 Notes" subsection at the end of the
+      topic describing each routine details concrete rules for reconstructing the
+      values of the omitted optional parameters. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html">LAPACK Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-949509C0-481F-48E7-9602-CA07EC2139A4.html">Intel&reg; MKL Fortran 95 Interfaces for LAPACK Routines vs. Netlib Implementation</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

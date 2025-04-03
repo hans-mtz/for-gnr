@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_set_num_threads_local"/>
+<meta name="abstract" content="Specifies the number of OpenMP* threads for all Intel&reg; oneAPI Math Kernel Library functions on the current execution thread."/>
+<meta name="description" content="Specifies the number of OpenMP* threads for all Intel&reg; oneAPI Math Kernel Library functions on the current execution thread."/>
+<meta name="DC.subject" content="threading control, mkl_set_num_threads_local, MKL_Set_Num_Threads_Local"/>
+<meta name="keywords" content="threading control, mkl_set_num_threads_local, MKL_Set_Num_Threads_Local"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_set_num_threads_local</title>
+
+</head>
+<body id="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_set_num_threads_local</span></h1>
+<!--Specifies the number of OpenMP* threads for all Intel&reg; oneAPI Math Kernel Library functions on the current execution thread.--><div><p class="shortdesc">Specifies the number of OpenMP* threads for all Intel&reg; oneAPI Math Kernel Library functions on the current execution thread.</p>
+<div class="section" id="GUID-9D25982E-59BA-4012-9E3E-EB64A072AF33"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">save_nt</span><span class="kwd"> = mkl_set_num_threads_local</span><span class="sep">( </span><span class="var">nt</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FB99EF31-9035-4B99-9971-FE6ADA53240B"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1169937e65" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1169937e68" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1169937e71" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1169937e65"><p><span class="parmname">nt</span></p>
+</td>
+<td valign="top" headers="d1169937e68"><p><span class="keyword">INTEGER</span>*4</p>
+</td>
+<td valign="top" headers="d1169937e71"><p><span class="parmname">nt</span>&gt; 0 - The number of threads for Intel&reg; oneAPI Math Kernel Library functions to use on the current execution thread.</p>
+<p><span class="parmname">nt</span> = 0 -   A request to reset the thread-local number of threads and use the global number.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-A9859C45-A28A-46DB-BC13-6189B4D10A43"><h2 class="sectiontitle">Description</h2><p>This function sets the number of OpenMP threads that Intel&reg; oneAPI Math Kernel Library functions should request for parallel computation. The number of threads is thread-local, which means that it only affects the current execution thread of the application. If the thread-local number is not set or if this number is set to zero in a call to this function, Intel&reg; oneAPI Math Kernel Library functions use the global number of threads. You can set the global number of threads using the<a href="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67.html">mkl_set_num_threads</a> or <a href="GUID-D808F69D-5741-4DF6-950E-5B30A32D9B44.html">mkl_domain_set_num_threads</a> function.</p>
+<p> The thread-local number of threads takes precedence over the global number: if the
+thread-local number is non-zero, changes to the global number
+of threads have no effect on the current thread.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p> If your application is threaded with OpenMP* andparallelization of Intel&reg; oneAPI Math Kernel Library is based on nested OpenMP parallelism,different OpenMP parallel regions reuse OpenMP threads. Therefore a thread-local setting in one OpenMP parallel region may continue to affect not only the master thread after the parallel region ends, but also subsequent parallel regions. To avoid performance implications of this side effect, reset the thread-local number of threads before leaving the OpenMP parallel region (see <a href="#EXAMPLE">Examples</a>  for how to do it).</p>
+</div>
+</div>
+<div class="section" id="GUID-B73E925A-6E86-4C35-B284-4CB743E4916B"><h2 class="sectiontitle">Return Values</h2><p><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_13B3D675465F48FCA9E7E929287DC1FA" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1169937e141" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1169937e144" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1169937e147" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1169937e141"><p><span class="parmname">save_nt</span></p>
+</td>
+<td valign="top" headers="d1169937e144"><p><span class="keyword">INTEGER</span>*4</p>
+</td>
+<td valign="top" headers="d1169937e147"><p>The value of the thread-local number of threads that was used before this function  call. Zero means that the global number of threads was used.</p>
+</td>
+</tr>
+</table>
+</p>
+</div>
+<div class="section" id="EXAMPLE"><h2 class="sectiontitle">Examples</h2><p>This example shows how to avoid the side effect of a thread-local number of threads by reverting to the global setting:</p>
+<pre>use omp_lib
+use mkl_service
+integer(4) :: dummy
+…
+call mkl_set_num_threads(16)
+call my_compute_using_mkl()	! Intel MKL functions use up to 16 threads
+!$omp parallel num_threads(2)
+  if (0 == omp_get_thread(num))  <strong>dummy = mkl_set_num_threads_local(4)</strong>
+  if (1 == omp_get_thread(num))  <strong>dummy = mkl_set_num_threads_local(12)</strong>
+  call my_compute_using_mkl()	! Intel MKL functions use up to 4 threads on thread 0
+					!   and up to 12 threads on thread 1
+!$omp end parallel
+call my_compute_using_mkl()	! Intel MKL functions use up to 4 threads (!)
+<strong>dummy = mkl_set_num_threads_local(0)	! make master thread use global setting</strong>
+call my_compute_using_mkl()	! Now Intel MKL functions use up to 16 threads
+</pre><p> This example shows how to avoid the side effect of a thread-local number of threads by saving and restoring the existing setting:</p>
+<pre>subroutine my_compute(nt)
+	use mkl_service
+	integer(4) :: nt, save
+<strong>save = mkl_set_num_threads_local( nt ) ! save the Intel&reg; oneAPI Math Kernel Library number of threads</strong>
+	call my_compute_using_mkl()	! Intel MKL functions use up to nt threads on this thread
+<strong>save = mkl_set_num_threads_local( save ) ! restore the Intel&reg; oneAPI Math Kernel Library number of threads</strong>
+end subroutine my_compute
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html">Threading Control</a></div>
+</div>
+<div/>
+</body>
+</html>

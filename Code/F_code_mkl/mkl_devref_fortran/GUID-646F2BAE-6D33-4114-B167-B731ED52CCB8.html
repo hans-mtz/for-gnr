@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gehd2"/>
+<meta name="abstract" content="Reduces a general square matrix to upper Hessenberg form using an unblocked algorithm."/>
+<meta name="description" content="Reduces a general square matrix to upper Hessenberg form using an unblocked algorithm."/>
+<meta name="DC.subject" content="?gehd2, LAPACK routines, auxiliary routines, general square matrix, reduction to upper Hessenberg form"/>
+<meta name="keywords" content="?gehd2, LAPACK routines, auxiliary routines, general square matrix, reduction to upper Hessenberg form"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-646F2BAE-6D33-4114-B167-B731ED52CCB8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gehd2</title>
+
+</head>
+<body id="GUID-646F2BAE-6D33-4114-B167-B731ED52CCB8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gehd2</span></h1>
+<!--Reduces a general square matrix to upper Hessenberg form using an unblocked algorithm.--><div><p class="shortdesc">Reduces a general square matrix to upper Hessenberg form using an unblocked algorithm.</p>
+<div class="section" id="GUID-F0F081DD-192C-4D9E-AE22-CD90B7DDEBDF"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call sgehd2</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgehd2</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgehd2</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgehd2</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-09A110C7-95B7-4DE9-808D-D04651EB0D35"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-20D5271C-FF57-4926-8E96-F1440A477763"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces a real/complex general matrix <var>A</var> to upper Hessenberg form <var>H</var> by an orthogonal or unitary similarity transformation <samp class="codeph"><var>Q</var><sup><var>T</var></sup>*<var>A</var>*<var>Q</var> = <var>H</var></samp> (for real flavors) or <samp class="codeph"><var>Q</var><sup><var>H</var></sup>*<var>A</var>*<var>Q</var> = <var>H</var></samp> (for complex flavors). </p>
+<p>The routine does not form the matrix <var>Q</var> explicitly. Instead, <var>Q</var> is represented as a product of <dfn class="term">elementary reflectors</dfn>. </p>
+</div>
+<div class="section" id="GUID-EF673889-4FCA-49AB-9FBE-038769A8D83B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-01280AC5-B0E6-49E5-AA54-33428A4AB89F"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. It is assumed that <var>A</var> is already upper triangular in rows and columns <samp class="codeph">1:<var>ilo</var> -1</samp> and <samp class="codeph"><var>ihi</var>+1:<var>n</var></samp>. </p>
+<p>If <var>A</var> has been output by <span class="option">?gebal</span>, then </p>
+<p><var>ilo</var> and <var>ihi</var> must contain the values returned by that routine. Otherwise they should be set to <samp class="codeph"><var>ilo</var> = 1</samp> and <samp class="codeph"><var>ihi</var> = <var>n</var></samp>. Constraint: <samp class="codeph">1 ≤ <var>ilo</var> ≤ <var>ihi</var> ≤ max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgehd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgehd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgehd2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgehd2</span>.</p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>a</var> (<var>lda</var>,*)</samp> contains the <var>n</var>-by-<var>n</var> matrix <var>A</var> to be reduced. The second dimension of <var>a</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><var>work</var> (<var>n</var>) is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>a</var>; at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-630CD84D-B619-4989-92C9-EFE2FDE10327"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-FEC0B1D1-0793-4493-B1A1-00A005DDE4FE"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the upper triangle and the first subdiagonal of <var>A</var> are overwritten with the upper Hessenberg matrix <var>H</var> and the elements below the first subdiagonal, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors. <span>See <em>Application Notes</em> below.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgehd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgehd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgehd2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgehd2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> at least <samp class="codeph">max (1, <var>n</var>-1)</samp>. </p>
+<p>Contains the scalar factors of elementary reflectors. See <em>Application Notes</em> below.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <var>info</var> = -<var>i</var>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D276D8B9-7D53-4794-9D5D-D0480649B958"><h2 class="sectiontitle">Application Notes</h2><p>The matrix <var>Q</var> is represented as a product of (<var>ihi</var> - <var>ilo</var>) elementary reflectors</p>
+<p><samp class="codeph"><var>Q</var> = <var>H</var>(<var>ilo</var>)*<var>H</var>(<var>ilo</var> +1)*...*<var>H</var>(<var>ihi</var> -1)</samp></p>
+<p>Each <var>H</var>(i) has the form</p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup><var>T</var></sup></samp> for real flavors, or </p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup><var>H</var></sup></samp> for complex flavors</p>
+<p>where <var>tau</var> is a real/complex scalar, and <var>v</var> is a real/complex vector with <samp class="codeph"><var>v</var>(1:i) = 0</samp>, <samp class="codeph"><var>v</var>(i+1) = 1</samp> and <samp class="codeph"><var>v</var>(<var>ihi</var>+1:<var>n</var>) = 0</samp>.</p>
+<p>On exit, <samp class="codeph"><var>v</var>(i+2:<var>ihi</var>)</samp> is stored in <samp class="codeph"><var>a</var>(i+2:<var>ihi</var>, i)</samp> and <var>tau</var> in <samp class="codeph"><var>tau</var>(i)</samp>. </p>
+<p>The contents of <var>a</var> are illustrated by the following example, with <samp class="codeph"><var>n</var> = 7</samp>, <samp class="codeph"><var>ilo</var> = 2</samp> and <samp class="codeph"><var>ihi</var> = 6</samp>: </p>
+<p><br/><div class="imagecenter"><img src="GUID-03DFB0B5-0784-49E9-9155-1140D853284A-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <var>a</var> denotes an element of the original matrix <var>A</var>, <var>h</var> denotes a modified element of the upper Hessenberg matrix <var>H</var>, and <var>v</var><sub class="subb"><var>i</var></sub> denotes an element of the vector defining <var>H</var>(i).</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

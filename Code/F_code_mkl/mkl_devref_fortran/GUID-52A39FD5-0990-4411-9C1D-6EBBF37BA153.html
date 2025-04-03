@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gbsvx"/>
+<meta name="abstract" content="Computes the solution to the real or complex system of linear equations with a band coefficient matrix A and multiple right-hand sides, and provides error bounds on the solution."/>
+<meta name="description" content="Computes the solution to the real or complex system of linear equations with a band coefficient matrix A and multiple right-hand sides, and provides error bounds on the solution."/>
+<meta name="DC.subject" content="?gbsvx, sgbsvx, dgbsvx, cgbsvx, zgbsvx, gbsvx, LAPACK routines, driver routines, solving linear equations, linear equations, solving, band matrix, LAPACK, multiple right-hand sides, square matrix, error bounds"/>
+<meta name="keywords" content="?gbsvx, sgbsvx, dgbsvx, cgbsvx, zgbsvx, gbsvx, LAPACK routines, driver routines, solving linear equations, linear equations, solving, band matrix, LAPACK, multiple right-hand sides, square matrix, error bounds"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-52A39FD5-0990-4411-9C1D-6EBBF37BA153"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gbsvx</title>
+
+</head>
+<body id="GUID-52A39FD5-0990-4411-9C1D-6EBBF37BA153">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gbsvx</span></h1>
+<!--Computes the solution to the real or complex system of linear equations with a band coefficient matrix A and multiple right-hand sides, and provides error bounds on the solution.--><div><p class="shortdesc">Computes the solution to the real or complex system of linear equations with a band coefficient matrix A and multiple right-hand sides, and provides error bounds on the solution.</p>
+<div class="section" id="GUID-C48B9435-38C9-4FBC-8DC8-62821A897218"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgbsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgbsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgbsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgbsvx</span><span class="delim">( </span><span class="var">fact</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">ferr</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call gbsvx</span><span class="delim">( </span><span class="var">ab</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">x</span><span class="delim"> [</span><span class="sep">,</span><span class="var">kl</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">afb</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ipiv</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">fact</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">trans</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">equed</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">r</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">c</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ferr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">berr</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rcond</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">rpvgrw</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-63853EAF-ACBB-47D0-B707-22CF2C84EB07"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-6A3EA39A-B99A-4FA9-BAE0-62DA7EC1D66A"><h2 class="sectiontitle">Description</h2><p>The routine uses the <var>LU</var> factorization to compute the solution to a real or complex system of linear equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>, <var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var>, or <var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var>, where <var>A</var> is a band matrix of order <var>n</var> with <var>kl</var> subdiagonals and <var>ku</var> superdiagonals, the columns of matrix <var>B</var> are individual right-hand sides, and the columns of <var>X</var> are the corresponding solutions.</p>
+<p>Error bounds on the solution and a condition estimate are also provided.</p>
+<p>The routine <span class="option">?gbsvx</span> performs the following steps:</p>
+<ol id="GUID-F280D7F2-4748-4576-91D0-06F4EAAC2B06"><li><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>, real scaling factors <var>r</var> and <var>c</var> are computed to equilibrate the system:</p>
+<p><samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>:    <samp class="codeph"><var>diag</var>(<var>r</var>)*<var>A</var>*<var>diag</var>(<var>c</var>) *inv(<var>diag</var>(<var>c</var>))*<var>X</var> = <var>diag</var>(<var>r</var>)*<var>B</var></samp></p>
+<p><samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>:   <samp class="codeph">(<var>diag</var>(<var>r</var>)*<var>A</var>*<var>diag</var>(<var>c</var>))<sup class="power"><var>T</var></sup> *inv(<var>diag</var>(<var>r</var>))*<var>X</var> = <var>diag</var>(<var>c</var>)*<var>B</var></samp></p>
+<p><samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>:   <samp class="codeph">(<var>diag</var>(<var>r</var>)*<var>A</var>*<var>diag</var>(<var>c</var>))<sup class="power"><var>H</var></sup> *inv(<var>diag</var>(<var>r</var>))*<var>X</var> = <var>diag</var>(<var>c</var>)*<var>B</var></samp></p>
+<p>Whether the system will be equilibrated depends on the scaling of the matrix <var>A</var>, but if equilibration is used, <var>A</var> is overwritten by <samp class="codeph"><var>diag</var>(<var>r</var>)*<var>A</var>*<var>diag</var>(<var>c</var>)</samp> and <samp class="codeph"><var>B</var> by <var>diag</var>(<var>r</var>)*<var>B</var></samp> (if <var>trans</var>=<span class="keyword">'N'</span>) or <samp class="codeph"><var>diag</var>(<var>c</var>)*<var>B</var></samp> (if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>or <span class="keyword">'C'</span>).</p>
+</li>
+<li><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>or <span class="keyword">'E'</span>, the <var>LU</var> decomposition is used to factor the  matrix <var>A</var> (after equilibration if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>) as <var>A</var> =  <var>L*U</var>, where <var>L</var> is a product of permutation and unit lower triangular matrices with <var>kl</var> subdiagonals, and <var>U</var> is upper triangular with <var>kl</var>+<var>ku</var> superdiagonals.</p>
+</li>
+<li><p>If some <samp class="codeph"><var>U</var><sub><var>i</var>,<var>i</var></sub></samp> = 0, so that <var>U</var> is exactly singular, then the routine returns with <samp class="codeph"><var>info</var> = <var>i</var></samp>. Otherwise, the factored form of <var>A</var> is used to estimate the condition number of the matrix <var>A</var>. If the reciprocal of the condition number is less than machine precision, <samp class="codeph"><var>info</var> = <var>n</var> + 1</samp> is returned as a warning, but the routine still goes on to solve for <var>X</var> and compute error bounds as described below.</p>
+</li>
+<li><p>The system of equations is solved for <var>X</var> using the factored form of <var>A</var>.</p>
+</li>
+<li><p>Iterative refinement is applied to improve the computed solution matrix and calculate error bounds and backward error estimates for it.</p>
+</li>
+<li><p>If equilibration was used, the matrix <var>X</var> is premultiplied by <samp class="codeph"><var>diag</var>(<var>c</var>)</samp> (if <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>) or <samp class="codeph"><var>diag</var>(<var>r</var>)</samp> (if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <span class="keyword">'C'</span>) so that it solves the original system before equilibration.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="GUID-D7736C43-6169-4FBD-B570-0F6A5123EEB4"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">fact</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'F'</span>, <span class="keyword">'N'</span>, or <span class="keyword">'E'</span>.</p>
+<p>Specifies whether the factored form of the matrix <var>A</var> is supplied on entry, and if not, whether the matrix <var>A</var> should be equilibrated before it is factored.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>:  on entry, <var>afb</var> and <var>ipiv</var> contain the factored form of <var>A</var>. If <var>equed</var> is not <span class="keyword">'N'</span>, the matrix <var>A</var> is equilibrated with scaling factors given by <var>r</var> and <var>c</var>.<br/><var>ab</var>, <var>afb</var>, and <var>ipiv</var> are not modified.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>, the matrix <var>A</var> will be copied to <var>afb</var> and factored.</p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>, the matrix <var>A</var> will be equilibrated if necessary, then copied to <var>afb</var> and factored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">trans</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span>, <span class="keyword">'T'</span>, or <span class="keyword">'C'</span>.</p>
+<p>Specifies the form of the system of equations:</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, the system has the form <samp class="codeph"><var>A</var>*<var>X</var> = <var>B</var></samp> (No transpose).</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, the system has the form <var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var> (Transpose).</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, the system has the form <var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var> (Transpose for real flavors, conjugate transpose for complex flavors).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of linear equations,  the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">kl</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of subdiagonals within the band of <var>A</var>; <var>kl</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ku</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of superdiagonals within the band of <var>A</var>; <var>ku</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nrhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of right hand sides, the number of columns of the matrices <var>B</var> and <var>X</var>; <var>nrhs</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span>, <span class="parmname">afb</span>, <span class="parmname">b</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sgbsvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgbsvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgbsvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgbsvx</span>.</p>
+<p>Arrays: <samp class="codeph"><var>ab</var><span>(<var>ldab</var>,*)</span></samp>, <samp class="codeph"><var>afb</var><span>(<var>ldafb</var>,*)</span></samp>, <samp class="codeph"><var>b</var></samp><samp class="codeph"><span>(size <var>ldb</var> by *)</span></samp><span>, <samp class="codeph"><var>work</var>(*)</samp></span>.</p>
+<p>The array <var>ab</var> contains the matrix <var>A</var> in band storage (see <a class="allformats" href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>).<span> The second dimension of  <var>ab</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</span> If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> and <var>equed</var> is not <span class="keyword">'N'</span>, then <var>A</var> must have been equilibrated by the scaling factors in <var>r</var> and/or <var>c</var>.</p>
+<p> The array <var>afb</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>.<span> The second dimension of  <var>afb</var> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</span> It contains the factored form of the matrix <var>A</var>, that is, the factors <var>L</var> and <var>U</var> from the factorization <samp class="codeph"><var>A</var> = <var>P*L*U</var></samp> as computed by <a class="allformats" href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">?gbtrf</span></a>. <var>U</var> is stored as an upper triangular band matrix with <var>kl</var> + <var>ku</var> superdiagonals<span>  in the first 1 + <var>kl</var> + <var>ku</var> rows of <var>afb</var>. The multipliers used during the factorization are stored in the next <var>kl</var> rows</span>. If <var>equed</var> is not <span class="keyword">'N'</span>, then <var>afb</var> is the factored form of the equilibrated matrix <var>A</var>.</p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations.<span> The second dimension of  <var>b</var> must be at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>.</span></p>
+<p><var>work(*)</var> is a workspace array. The dimension of <var>work</var> must be at least <samp class="codeph">max(1,3*<var>n</var>)</samp> for real flavors, and at least <samp class="codeph">max(1,2*<var>n</var>)</samp> for complex flavors.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldab</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>ab</var>; <var>ldab</var><span class="eqsymbol">≥</span><var>kl</var>+<var>ku</var>+1.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldafb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>afb</var>; <var>ldafb</var><span class="eqsymbol">≥</span> 2*<var>kl</var>+<var>ku</var>+1.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. The array <var>ipiv</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>. It contains  the pivot indices from the factorization <samp class="codeph"><var>A</var> = <var>P*L*U</var></samp> as computed by <a class="allformats" href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">?gbtrf</span></a>;  row <var>i</var> of the matrix was interchanged with row <span><var>ipiv</var>(<var>i</var>)</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">equed</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span>, <span class="keyword">'R'</span>, <span class="keyword">'C'</span>, or <span class="keyword">'B'</span>.</p>
+<p><var>equed</var> is an input argument if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>. It specifies the form of equilibration that was done: </p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp>, no equilibration was done (always true if <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>). </p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp>, row equilibration was done, that is, <var>A</var> has been premultiplied by <samp class="codeph"><var>diag</var>(<var>r</var>)</samp>.</p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp>, column equilibration was done, that is, <var>A</var> has been postmultiplied by <samp class="codeph"><var>diag</var>(<var>c</var>)</samp>. </p>
+<p>if <samp class="codeph"><var>equed</var> = <span class="keyword">'B'</span></samp>, both row and column equilibration was done, that is, <var>A</var> has been replaced by <samp class="codeph"><var>diag</var>(<var>r</var>)*<var>A</var>*<var>diag</var>(<var>c</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">r</span>, <span class="parmname">c</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays: <var>r</var> (size <var>n</var>), <samp class="codeph"><var>c</var> (size <var>n</var>)</samp>. </p>
+<p>The array <var>r</var> contains the row scale factors for <var>A</var>, and the array <var>c</var> contains the column scale factors for <var>A</var>. These arrays are input arguments if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> only; otherwise they are output arguments. </p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp>or <span class="keyword">'B'</span>, <var>A</var> is multiplied on the left by <samp class="codeph"><var>diag</var>(<var>r</var>)</samp>; if <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'C'</span>, <var>r</var> is not accessed.   </p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp> or <span class="keyword">'B'</span>, each element of <var>r</var> must be positive.</p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp>or <span class="keyword">'B'</span>, <var>A</var> is multiplied on the right by <samp class="codeph"><var>diag</var>(<var>c</var>)</samp>; if <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp>or <span class="keyword">'R'</span>, <var>c</var> is not accessed. </p>
+<p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp>or <span class="keyword">'B'</span>, each element of <var>c</var> must be positive.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldx</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>x</var>; <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>; used in real flavors only. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>; used in complex flavors only. </p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-18AB5983-2C3E-44B5-96DE-22EA3C5FEF4C"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sgbsvx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgbsvx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgbsvx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgbsvx</span>.</p>
+<p>Array, size <span><var>ldx</var> by *</span>.</p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp> or <samp class="codeph"><var>info</var> = <var>n</var>+1</samp>, the array <var>x</var> contains the solution matrix <var>X</var> to the <em>original</em> system of equations.  Note that <var>A</var> and <var>B</var> are modified on exit if <samp class="codeph"><var>equed</var><span class="eqsymbol">≠</span><span class="keyword">'N'</span></samp>, and the solution to the <dfn class="term">equilibrated</dfn> system is: <samp class="codeph">inv(<var>diag</var>(<var>c</var>))*<var>X</var></samp>, if <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp>or <span class="keyword">'B'</span>; <samp class="codeph">inv(<var>diag</var>(<var>r</var>))*<var>X</var></samp>, 
+if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <span class="keyword">'C'</span> and <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp> or <span class="keyword">'B'</span>.</p>
+<p>The second dimension of <var>x</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span></p></td>
+
+<td valign="top" class="noborder"><p>Array <var>ab</var> is not modified on exit if <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp> or <span class="keyword">'N'</span>, or if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp> and <var>equed</var> = <span class="keyword">'N'</span>.</p>
+<p>If <samp class="codeph"><var>equed</var><span class="eqsymbol">≠</span><span class="keyword">'N'</span></samp>, <var>A</var> is scaled on exit as follows:</p>
+<p><var>equed</var> = <span class="keyword">'R'</span>:   <samp class="codeph"><var>A</var> = <var>diag</var>(<var>r</var>)*<var>A</var></samp></p>
+<p><var>equed</var> = <span class="keyword">'C'</span>: <samp class="codeph"><var>A</var> = <var>A</var>*<var>diag</var>(<var>c</var>)</samp></p>
+<p><var>equed</var> = <span class="keyword">'B'</span>:   <samp class="codeph"><var>A</var> = <var>diag</var>(<var>r</var>)*<var>A</var>*<var>diag</var>(<var>c</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">afb</span></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>, then <var>afb</var> is an output argument  and on exit returns  details of the <var>LU</var> factorization of the original matrix <var>A </var>(if <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>) or of the equilibrated matrix <var>A</var> (if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>). See the description of <var>ab</var> for the form of the equilibrated matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by <samp class="codeph"><var>diag</var>(<var>r</var>)*<var>b</var></samp> if <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'R'</span></samp> or <samp class="codeph"><span class="keyword">'B'</span></samp>; </p>
+<p>overwritten by <samp class="codeph"><var>diag</var>(<var>c</var>)*<var>b</var></samp>  if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <samp class="codeph"><span class="keyword">'C'</span></samp> and <samp class="codeph"><var>equed</var> = <span class="keyword">'C'</span></samp> or <samp class="codeph"><span class="keyword">'B'</span></samp>;</p>
+<p>not changed  if  <var>equed</var> = <span class="keyword">'N'</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">r</span>, <span class="parmname">c</span></p></td>
+
+<td valign="top" class="noborder"><p>These arrays are output arguments if <samp class="codeph"><var>fact</var><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp>. See the description of <var>r</var>, <var>c</var> in <em>Input Arguments</em> section.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rcond</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>An estimate of the reciprocal condition number of the matrix <var>A</var> after equilibration (if done).</p>
+<p>If <var>rcond</var> is less than the machine precision (in particular, if <var>rcond</var> =0), the matrix is singular to working precision.  This condition is indicated by a return code of <var>info</var>&gt;0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ferr</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>. Contains the estimated forward error bound for each solution vector <samp class="codeph"><var>x</var>(<var>j</var>)</samp> (the <var>j</var>-th column of the solution matrix <var>X</var>).   If <var>xtrue</var> is the true solution corresponding to <samp class="codeph"><var>x</var>(<var>j</var>)</samp>, <samp class="codeph"><var>ferr</var>(<var>j</var>)</samp>  is an estimated upper bound for the magnitude of the largest element in <samp class="codeph">(<var>x</var>(<var>j</var>) - <var>xtrue</var>)</samp> divided by the magnitude of the largest element in <samp class="codeph"><var>x</var>(<var>j</var>)</samp>. The estimate is as reliable as the estimate for <span class="parmname">rcond</span>, and is almost always a slight overestimate of the true error.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">berr</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for 
+single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>. Contains the component-wise relative backward error for each solution vector <samp class="codeph"><var>x</var>(<var>j</var>)</samp>, that is, the smallest relative change in any element of <var>A</var> or <var>B</var> that makes <samp class="codeph"><var>x</var>(<var>j</var>)</samp> an exact solution.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>, then <var>ipiv</var> is an output argument  and on exit contains the pivot indices from the factorization <var>A</var> =  <var>L*U</var> of the original matrix <var>A</var> (if <samp class="codeph"><var>fact</var> = <span class="keyword">'N'</span></samp>) or of the equilibrated matrix <var>A</var> (if <samp class="codeph"><var>fact</var> = <span class="keyword">'E'</span></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, then <span><var>U</var>(<var>i</var>, <var>i</var>)</span> is exactly zero. The factorization has been completed, but the factor <var>U</var> is exactly singular, so the solution  and error bounds could not be computed; <var>rcond</var> = 0 is returned. If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><var>i</var> = <var>n</var>+1</samp>, then <var>U</var> is nonsingular, but <var>rcond</var> is less than machine precision, meaning that the matrix is singular to working precision. Nevertheless, the  solution and error bounds are computed because there are a number of situations where the  computed solution can be more accurate than the value of <var>rcond</var> would suggest.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">equed</span></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>fact</var><span class="eqsymbol">≠</span><span class="keyword">'F'</span></samp>, then <var>equed</var> is an output argument. It specifies the form of equilibration that was done (see the description of <var>equed</var> in <em>Input Arguments</em> section).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span>, <span class="parmname">rwork</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, <samp class="codeph"><span class="parmname">work</span>(1)</samp> for real flavors, or <samp class="codeph"><span class="parmname">rwork</span>(1)</samp> for complex flavors, contains the reciprocal pivot growth factor norm(<var>A</var>)/norm(<var>U</var>). The "max absolute element" norm is used. If <samp class="codeph"><var>work</var>(1)</samp> for real flavors, or <samp class="codeph"><var>rwork</var>(1)</samp> for complex flavors is much less than 1, then the stability of the <var>LU</var> factorization of the (equilibrated) matrix <var>A</var> could be poor. This also means that the solution <var>x</var>, condition estimator <var>rcond</var>, and forward error bound <var>ferr</var> could be unreliable. If factorization fails with <samp class="codeph">0 &lt; <var>info</var><span class="eqsymbol">≤</span><var>n</var></samp>, then <samp class="codeph"><var>work</var>(1)</samp> for real flavors, or <samp class="codeph"><var>rwork</var>(1)</samp> for complex flavors contains the reciprocal pivot growth factor for the leading <var>info</var> columns of <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, then <span><var>U</var>(<var>i</var>, <var>i</var>)</span> is exactly zero. The factorization has been completed, but the factor <var>U</var> is exactly singular, so the solution  and error bounds could not be computed; <var>rcond</var> = 0 is returned. If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><var>i</var> = <var>n</var>+1</samp>, then <var>U</var> is nonsingular, but <var>rcond</var> is less than machine precision, meaning that the matrix is singular to working precision. Nevertheless, the  solution and error bounds are computed because there are a number of situations where the  computed solution can be more accurate than the value of <var>rcond</var> would suggest.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-C5520219-09E3-436E-A679-30411A5E633C"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gbsvx</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ab</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>A</var> of size (<samp class="codeph"><var>kl</var>+<var>ku</var>+1,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>B</var> of size (<samp class="codeph"><var>n</var>,<var>nrhs</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>X</var> of size (<samp class="codeph"><var>n</var>,<var>nrhs</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">afb</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>AF</var> of size (<samp class="codeph">2*<var>kl</var>+<var>ku</var>+1,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">r</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>. Default value for each element is <samp class="codeph"><var>r</var>(<var>i</var>) = 1.0_WP</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">c</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>. Default value for each element is <samp class="codeph"><var>c</var>(<var>i</var>) =  1.0_WP</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ferr</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>nrhs</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">berr</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>nrhs</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">trans</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'C'</span>, or <span class="keyword">'T'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">equed</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'B'</span>, <span class="keyword">'C'</span>, or <span class="keyword">'R'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">fact</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'E'</span>, or <span class="keyword">'F'</span>. The default value is <span class="keyword">'N'</span>. If <samp class="codeph"><var>fact</var> = <span class="keyword">'F'</span></samp>, then both arguments <var>af</var> and <var>ipiv</var> must be present; otherwise, an error is returned.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rpvgrw</span></p></td>
+
+<td valign="top" class="noborder"><p>Real value that contains the reciprocal pivot growth factor norm(<var>A</var>)/norm(<var>U</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">kl</span></p></td>
+
+<td valign="top" class="noborder"><p>If omitted, assumed <samp class="codeph"><var>kl</var> = <var>ku</var></samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ku</span></p></td>
+
+<td valign="top" class="noborder"><p>Restored as <samp class="codeph"><var>ku</var> = <var>lda</var>-<var>kl</var>-1</samp>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

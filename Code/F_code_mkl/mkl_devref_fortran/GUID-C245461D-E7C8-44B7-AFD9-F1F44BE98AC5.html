@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Orthogonal Factorizations: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="LQ factorization, QR factorization, factorization, orthogonal, LAPACK"/>
+<meta name="keywords" content="LQ factorization, QR factorization, factorization, orthogonal, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6019C910-FF09-4A60-9AD3-29EC5991254E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CE598666-7770-485C-9C9A-AE5BA8C7A7F3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-280BB03B-34FC-4FBD-AC59-6E244E77808F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DA73EE8-A2CB-445A-AF71-A5CE403017CB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E2CB414B-855F-4C4B-988D-8A9A3A9C4BB7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4326D19C-246A-4A7B-9728-03D371FB39AD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-58268D68-68D4-4F4D-A91D-EB0B380CCF3D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-53EF3389-3F3B-40ED-A02C-618C98F72A36.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE377403-F989-4EA1-8DC0-5655CFFDCCDA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-39170E6B-6859-47AF-BDCA-F688BE2211EF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6B0E54F0-D2C1-4761-85BD-741CF46EF12E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DB41E56-9761-4986-A92C-6D6E6A434F90.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-831D8E1B-5B61-414E-B085-9F90070D2746.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-994190C2-6E77-41A2-81FF-4E304663A9C6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-86F90DFA-22CF-4114-9820-4EFFC0F59617.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0E3F5CB3-9812-489D-BE79-957D9EB193E6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4D522855-9FC7-499A-81AB-AB8D7A110A72.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-908FFBB1-0F9C-4B4D-BE96-3A3AD65CA9E4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-13237152-FC00-4E7F-B378-E2D4963FC1BF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2F6C1A0F-36CE-4CA8-92F8-D8759B8C47DA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-646B3EEB-C76F-4A89-A982-7F8A6495A836.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-16699C72-8847-435C-AFC3-9CDFFC28AA7D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00CFF189-6553-4534-ABEC-3964F0736597.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-218F8C40-BF6A-4C4C-827B-1B1FA409C378.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-009DF030-771D-46F4-B9F6-01CBC0746003.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-43A1749C-F74A-494E-8C63-2443784D7B13.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-03CEF981-FB66-44F6-8AAD-A0DF4E87687B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-61D86E35-5103-471F-A1C0-4BA1B243303F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4E76B45F-A4E9-4282-BA5E-463F6FD28B56.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-46CC24AC-BDE1-498A-9413-BFB82BEA60E8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A0AFD439-22A7-46EE-A06A-9E0D635CC27F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0706DA86-C75D-4B21-BFC5-754F0950EBB6.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Orthogonal Factorizations: LAPACK Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Orthogonal Factorizations: LAPACK Computational
+	 Routines</h1>
+<div><p>This 
+		<span>topic 
+		</span> describes the LAPACK routines for the 
+		<var>QR (RQ)</var> and 
+		<var>LQ (QL)</var>
+		factorization of matrices. Routines for the 
+		<var>RZ</var> factorization
+		as well as for generalized 
+		<var>QR</var> and 
+		<var>RQ</var>
+		factorizations are also included. 
+	 </p>
+<p id="QRFACTOR"><strong>QR
+		  Factorization.</strong> Assume that 
+		<var>A</var> is an 
+		<var>m</var>-by-<var>n</var> matrix to be factored. 
+	 </p>
+<p>If 
+		<var>m</var><span class="eqsymbol">≥</span><var>n</var>, the 
+		<var>QR</var> factorization
+		is given by<br/><div class="imagecenter"><img id="IMAGE_B0F00EBDDF2B48F2ADAAF64512044C8B" src="GUID-0662FDC4-8C50-4BAE-BA1A-48E60082DDBF-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where 
+		<var>R</var> is an 
+		<var>n</var>-by-<var>n</var> upper triangular matrix with
+		real diagonal elements, and 
+		<var>Q</var> is an 
+		<var>m</var>-by-<var>m</var> orthogonal (or unitary)
+		matrix. 
+	 </p>
+<p>You can use the 
+		<var>QR</var> factorization
+		for solving the following least squares problem: minimize 
+		<samp class="codeph">||<var>Ax</var> - 
+		  <var>b</var>||<sup>2</sup></samp> where 
+		<var>A</var> is a full-rank
+		
+		<var>m</var>-by-<var>n</var> matrix (<samp class="codeph"><var>m</var>≥<var>n</var></samp>). After factoring
+		the matrix, compute the solution 
+		<var>x</var> by solving 
+		<samp class="codeph"><var>Rx</var> = (<var>Q</var><sub>1</sub>)<sup><var>T</var></sup><var>b</var></samp>. 
+	 </p>
+<p>If 
+		<samp class="codeph"><var>m</var> &lt; 
+		  <var>n</var></samp>,
+		the 
+		<var>QR</var> factorization
+		is given by 
+	 </p>
+<p><samp class="codeph"><var>A</var> = 
+		  <var>QR</var> = 
+		  <var>Q</var>(<var>R</var><sub>1</sub><var>R</var><sub>2</sub>)</samp></p>
+<p>where 
+		<var>R</var> is
+		trapezoidal, 
+		<var>R</var><sub>1</sub> is upper triangular and 
+		<var>R</var><sub>2</sub> is rectangular. 
+	 </p>
+<p><var>Q</var> is represented as a product
+		of min(<var>m</var>, 
+		<var>n</var>) 
+		<dfn class="term">elementary reflectors</dfn>. Routines are
+		provided to work with 
+		<var>Q</var> in this
+		representation. 
+	 </p>
+<p id="LQFACTOR"><strong>LQ
+		  Factorization</strong> LQ factorization of an 
+		<var>m</var>-by-<var>n</var> matrix 
+		<var>A</var> is as follows.
+		If 
+		<var>m</var><span class="eqsymbol">≤</span><var>n</var>, 
+	 </p>
+<p><br/><div class="imagecenter"><img id="IMAGE_81B5C16536354CB1A58685F93D996B56" src="GUID-BBFF42AD-4091-4521-812D-8950BA7B4C0A-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where 
+		<var>L</var> is an 
+		<var>m</var>-by-<var>m</var> lower triangular matrix with
+		real diagonal elements, and 
+		<var>Q</var> is an 
+		<var>n</var>-by-<var>n</var> orthogonal (or unitary)
+		matrix. 
+	 </p>
+<p>If 
+		<samp class="codeph"><var>m</var> &gt; 
+		  <var>n</var></samp>,
+		the 
+		<var>LQ</var> factorization
+		is 
+	 </p>
+<p><br/><div class="imagecenter"><img id="IMAGE_44BE3741CFF245A6BAB108F5FCE742C3" src="GUID-095F590C-3520-4DA9-8920-D3AE9085C65D-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where 
+		<var>L</var><sub>1</sub> is an 
+		<var>n</var>-by-<var>n</var> lower triangular matrix, 
+		<var>L</var><sub>2</sub> is rectangular, and 
+		<var>Q</var> is an 
+		<var>n</var>-by-<var>n</var> orthogonal (or unitary)
+		matrix. 
+	 </p>
+<p>You can use the 
+		<var>LQ</var> factorization
+		to find the minimum-norm solution of an underdetermined system of linear
+		equations 
+		<samp class="codeph"><var>Ax</var> = 
+		  <var>b</var></samp>
+		where 
+		<var>A</var> is an 
+		<var>m</var>-by-<var>n</var> matrix of rank 
+		<samp class="codeph"><var>m</var> (<var>m</var> &lt; 
+		  <var>n</var>)</samp>.
+		After factoring the matrix, compute the solution vector 
+		<var>x</var> as follows:
+		solve 
+		<samp class="codeph"><var>Ly</var> = 
+		  <var>b</var></samp> for
+		
+		<var>y</var>, and then
+		compute 
+		<samp class="codeph"><var>x</var> = (<var>Q</var><sub>1</sub>)<sup><var>H</var></sup><var>y</var></samp>. 
+	 </p>
+<p><a href="#TBL4-1">Table 
+		  <span>"Computational Routines for Orthogonal
+			 Factorization"</span></a> lists LAPACK routines that perform orthogonal
+		factorization of matrices. 
+	 </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL4-1" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Orthogonal
+	 Factorization</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="35.35353535353536%" id="d1468817e373"><p>Matrix type, factorization 
+			 </p>
+</th>
+<th class="cellrowborder" valign="top" width="21.21212121212121%" id="d1468817e376"><p>Factorize without pivoting 
+			 </p>
+</th>
+<th class="cellrowborder" valign="top" width="17.17171717171717%" id="d1468817e379"><p>Factorize with pivoting 
+			 </p>
+</th>
+<th class="cellrowborder" valign="top" width="14.14141414141414%" id="d1468817e382"><p>Generate matrix Q 
+			 </p>
+</th>
+<th class="row-nocellborder" valign="top" width="12.121212121212121%" id="d1468817e385"><p>Apply matrix Q 
+			 </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>general matrices, QR factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a class="allformats" href="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A.html#GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A">geqrf</a></p>
+<p><a class="allformats" href="GUID-6019C910-FF09-4A60-9AD3-29EC5991254E.html#GUID-6019C910-FF09-4A60-9AD3-29EC5991254E">geqr</a></p>
+<p><a class="allformats" href="GUID-CE598666-7770-485C-9C9A-AE5BA8C7A7F3.html#GUID-CE598666-7770-485C-9C9A-AE5BA8C7A7F3">geqrfp</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p><a href="GUID-E2CB414B-855F-4C4B-988D-8A9A3A9C4BB7.html#GUID-E2CB414B-855F-4C4B-988D-8A9A3A9C4BB7">geqpf</a></p>
+<p><a href="GUID-4326D19C-246A-4A7B-9728-03D371FB39AD.html#GUID-4326D19C-246A-4A7B-9728-03D371FB39AD">geqp3</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p><a href="GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2.html#GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2">orgqr</a>  
+			 </p>
+<p><a href="GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7.html#GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7">ungqr</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-58268D68-68D4-4F4D-A91D-EB0B380CCF3D.html#GUID-58268D68-68D4-4F4D-A91D-EB0B380CCF3D">ormqr</a>  
+			 </p>
+<p><a href="GUID-BE377403-F989-4EA1-8DC0-5655CFFDCCDA.html#GUID-BE377403-F989-4EA1-8DC0-5655CFFDCCDA">unmqr</a></p>
+<p><a class="allformats" href="GUID-53EF3389-3F3B-40ED-A02C-618C98F72A36.html#GUID-53EF3389-3F3B-40ED-A02C-618C98F72A36">gemqr</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>general matrices, blocked QR factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-280BB03B-34FC-4FBD-AC59-6E244E77808F.html#GUID-280BB03B-34FC-4FBD-AC59-6E244E77808F">geqrt</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p>  
+			 </p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-3DA73EE8-A2CB-445A-AF71-A5CE403017CB.html#GUID-3DA73EE8-A2CB-445A-AF71-A5CE403017CB">gemqrt</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>general matrices, RQ factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-2F6C1A0F-36CE-4CA8-92F8-D8759B8C47DA.html#GUID-2F6C1A0F-36CE-4CA8-92F8-D8759B8C47DA">gerqf</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p><a href="GUID-646B3EEB-C76F-4A89-A982-7F8A6495A836.html#GUID-646B3EEB-C76F-4A89-A982-7F8A6495A836">orgrq</a>  
+			 </p>
+<p><a href="GUID-16699C72-8847-435C-AFC3-9CDFFC28AA7D.html#GUID-16699C72-8847-435C-AFC3-9CDFFC28AA7D">ungrq</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-00CFF189-6553-4534-ABEC-3964F0736597.html#GUID-00CFF189-6553-4534-ABEC-3964F0736597">ormrq</a>  
+			 </p>
+<p><a href="GUID-218F8C40-BF6A-4C4C-827B-1B1FA409C378.html#GUID-218F8C40-BF6A-4C4C-827B-1B1FA409C378">unmrq</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>general matrices, LQ factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a class="allformats" href="GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE.html#GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE">gelqf</a></p>
+<p><a class="allformats" href="GUID-39170E6B-6859-47AF-BDCA-F688BE2211EF.html#GUID-39170E6B-6859-47AF-BDCA-F688BE2211EF">gelq</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p><a href="GUID-831D8E1B-5B61-414E-B085-9F90070D2746.html#GUID-831D8E1B-5B61-414E-B085-9F90070D2746">orglq</a>  
+			 </p>
+<p><a href="GUID-994190C2-6E77-41A2-81FF-4E304663A9C6.html#GUID-994190C2-6E77-41A2-81FF-4E304663A9C6">unglq</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D.html#GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D">ormlq</a>  
+			 </p>
+<p><a href="GUID-86F90DFA-22CF-4114-9820-4EFFC0F59617.html#GUID-86F90DFA-22CF-4114-9820-4EFFC0F59617">unmlq</a></p>
+<p><a class="allformats" href="GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9.html#GUID-47D21D57-A20E-4619-8D5E-DF19FE0CE8F9">gemlq</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>general matrices, blocked LQ factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a class="allformats" href="GUID-6B0E54F0-D2C1-4761-85BD-741CF46EF12E.html#GUID-6B0E54F0-D2C1-4761-85BD-741CF46EF12E">gelqt</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "> </td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "> </td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a class="allformats" href="GUID-3DB41E56-9761-4986-A92C-6D6E6A434F90.html#GUID-3DB41E56-9761-4986-A92C-6D6E6A434F90">gemlqt</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>general matrices, QL factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D.html#GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D">geqlf</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p><a href="GUID-0E3F5CB3-9812-489D-BE79-957D9EB193E6.html#GUID-0E3F5CB3-9812-489D-BE79-957D9EB193E6">orgql</a>  
+			 </p>
+<p><a href="GUID-4D522855-9FC7-499A-81AB-AB8D7A110A72.html#GUID-4D522855-9FC7-499A-81AB-AB8D7A110A72">ungql</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-908FFBB1-0F9C-4B4D-BE96-3A3AD65CA9E4.html#GUID-908FFBB1-0F9C-4B4D-BE96-3A3AD65CA9E4">ormql</a>  
+			 </p>
+<p><a href="GUID-13237152-FC00-4E7F-B378-E2D4963FC1BF.html#GUID-13237152-FC00-4E7F-B378-E2D4963FC1BF">unmql</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>trapezoidal matrices, RZ factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-009DF030-771D-46F4-B9F6-01CBC0746003.html#GUID-009DF030-771D-46F4-B9F6-01CBC0746003">tzrzf</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p>  
+			 </p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC.html#GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC">ormrz</a>  
+			 </p>
+<p><a href="GUID-43A1749C-F74A-494E-8C63-2443784D7B13.html#GUID-43A1749C-F74A-494E-8C63-2443784D7B13">unmrz</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>pair of matrices, generalized QR factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-03CEF981-FB66-44F6-8AAD-A0DF4E87687B.html#GUID-03CEF981-FB66-44F6-8AAD-A0DF4E87687B">ggqrf</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p>  
+			 </p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p>  
+			 </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>pair of matrices, generalized RQ factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-61D86E35-5103-471F-A1C0-4BA1B243303F.html#GUID-61D86E35-5103-471F-A1C0-4BA1B243303F">ggrqf</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p>  
+			 </p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p>  
+			 </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>triangular-pentagonal matrices, blocked QR factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a href="GUID-4E76B45F-A4E9-4282-BA5E-463F6FD28B56.html#GUID-4E76B45F-A4E9-4282-BA5E-463F6FD28B56">tpqrt</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "><p>  
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "><p>  
+			 </p>
+</td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a href="GUID-46CC24AC-BDE1-498A-9413-BFB82BEA60E8.html#GUID-46CC24AC-BDE1-498A-9413-BFB82BEA60E8">tpmqrt</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35.35353535353536%" headers="d1468817e373 "><p>triangular-pentagonal matrices, blocked LQ factorization 
+			 </p>
+</td>
+<td class="cellrowborder" valign="top" width="21.21212121212121%" headers="d1468817e376 "><p><a class="allformats" href="GUID-A0AFD439-22A7-46EE-A06A-9E0D635CC27F.html#GUID-A0AFD439-22A7-46EE-A06A-9E0D635CC27F">tplqt</a></p>
+</td>
+<td class="cellrowborder" valign="top" width="17.17171717171717%" headers="d1468817e379 "> </td>
+<td class="cellrowborder" valign="top" width="14.14141414141414%" headers="d1468817e382 "> </td>
+<td class="row-nocellborder" valign="top" width="12.121212121212121%" headers="d1468817e385 "><p><a class="allformats" href="GUID-0706DA86-C75D-4B21-BFC5-754F0950EBB6.html#GUID-0706DA86-C75D-4B21-BFC5-754F0950EBB6">tpmlqt</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

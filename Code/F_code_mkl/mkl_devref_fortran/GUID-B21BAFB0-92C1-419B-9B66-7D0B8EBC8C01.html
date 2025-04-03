@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Convolution and Correlation Task Status and Error Reporting"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B21BAFB0-92C1-419B-9B66-7D0B8EBC8C01"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Convolution and Correlation Task Status and Error Reporting</title>
+
+</head>
+<body id="GUID-B21BAFB0-92C1-419B-9B66-7D0B8EBC8C01">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Convolution and Correlation Task Status and
+    Error Reporting</h1>
+<div><p>The task status is an integer value, which is zero if
+      no error has been detected while processing the task, or a specific non-zero
+      error code otherwise. Negative status values indicate errors, and positive
+      values indicate warnings. 
+    </p>
+<p>An error can be caused by invalid parameter values, a
+      system fault like a memory allocation failure, or can be an internal error
+      self-detected by the software. 
+    </p>
+<p>Each task descriptor contains the current status of
+      the task. When creating a task object, the constructor assigns the 
+      <span class="keyword">VSL_STATUS_OK</span> status to the
+      task. When processing the task afterwards, other routines such as editors or
+      executors can change the task status if an error occurs and write a
+      corresponding error code into the task status field. 
+    </p>
+<p>Note that at the stage of creating a task or editing
+      its parameters, the set of parameters may be inconsistent. The parameter
+      consistency check is only performed during the task commitment operation, which
+      is implicitly invoked before task execution or task copying. If an error is
+      detected at this stage, task execution or task copying is terminated and the
+      task descriptor saves the corresponding error code. Once an error occurs, any
+      further attempts to process that task descriptor is terminated and the task
+      keeps the same error code. 
+    </p>
+<p>Normally, every convolution or correlation function
+      (except 
+  <span class="option">DeleteTask</span>) returns the
+  status assigned to the task while performing the function operation. 
+  </p>
+<p>The header files define symbolic names for the status
+    codes. 
+    <span>These names 
+      are defined as integer constants via the 
+      <span class="keyword">PARAMETER</span> operators. 
+    </span></p>
+<p>If there is no error, the 
+    <span class="keyword">VSL_STATUS_OK</span> status is
+    returned, which is defined as zero: 
+  </p>
+<dl id="GUID-BACDDCB2-50DF-4688-80CF-655B677E0FDA"><dt class="dlterm"><samp class="codeph">F90/F95:</samp></dt>
+
+<dd><pre>INTEGER(KIND=4) VSL_STATUS_OK
+PARAMETER(VSL_STATUS_OK = 0)</pre></dd>
+</dl>
+<p>In case of an error, a non-zero error code is returned,
+    which indicates the origin of the failure. The following status codes for the
+    convolution/correlation error codes are pre-defined in the header files. 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-13A" class="AllLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Convolution/Correlation Status Codes</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="45%" id="d1330071e64"><p>Status Code 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="55.00000000000001%" id="d1330071e67"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_NOT_IMPLEMENTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Requested functionality is not implemented. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_ALLOCATION_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Memory allocation failure. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_BAD_DESCRIPTOR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Task descriptor is corrupted. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_SERVICE_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>A service function has failed. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_EDIT_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Failure while editing the task. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_EDIT_PROHIBITED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>You cannot edit this parameter. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_COMMIT_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Task commitment has failed. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_COPY_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Failure while copying the task. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_DELETE_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Failure while deleting the task. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_BAD_ARGUMENT</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad argument or task parameter. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_JOB</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">job</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">SL_CC_ERROR_KIND</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">kind</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_MODE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">mode</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_METHOD</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">method</span>.
+            
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_TYPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">type</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_EXTERNAL_PRECISION</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">external_precision</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_INTERNAL_PRECISION</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">internal_precision</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_PRECISION</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Incompatible external/internal precisions. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_DIMS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">dims</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_XSHAPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">xshape</span>.
+            
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_YSHAPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">yshape</span>.
+            
+          </p>
+<p>Callback function for an abstract BRNG returns
+            an invalid number of updated entries in a buffer, that is, &lt; 0 or
+            &gt;<span class="keyword">nmax</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_ZSHAPE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">zshape</span>.
+            
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_XSTRIDE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">xstride</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_YSTRIDE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">ystride</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_ZSTRIDE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">zstride</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_X</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">x</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_Y</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">y</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_Z</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">z</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_START</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">start</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_DECIMATION</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Bad parameter: 
+            <span class="parmname">decimation</span>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="45%" headers="d1330071e64 "><p><span class="keyword">VSL_CC_ERROR_OTHER</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="55.00000000000001%" headers="d1330071e67 "><p>Another error. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html">Convolution and Correlation</a></div>
+</div>
+<div/>
+</body>
+</html>

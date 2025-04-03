@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Extended Eigensolver RCI Interface Description"/>
+<meta name="DC.subject" content="Extended Eigensolvers"/>
+<meta name="keywords" content="Extended Eigensolvers"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-180975E0-6096-41D3-8755-88FD21839E42.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-513B2C82-1A36-4556-A275-EB5F5027DD32"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Extended Eigensolver RCI Interface Description</title>
+
+</head>
+<body id="GUID-513B2C82-1A36-4556-A275-EB5F5027DD32">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Extended Eigensolver RCI Interface
+    Description</h1>
+<div><p>The Extended Eigensolver RCI interfaces can be used to solve standard or
+      generalized eigenvalue problems, and are independent of the format of the
+      matrices. As mentioned earlier, the Extended Eigensolver algorithm is based on
+      the contour integration techniques of the matrix resolvent 
+      <span><var>G</var>(<var class="varname">σ</var> )=
+        (<var class="varname">σ</var><var>B</var> - 
+        <var>A</var>)<sup>-1</sup></span> over a circle. For solving a
+      generalized eigenvalue problem, Extended Eigensolver has to perform one or more
+      of the following operations at each contour point denoted below by 
+      <span><var>Z</var><sub><var>e</var></sub></span> : 
+    </p>
+<ul id="GUID-D0AE9A07-0466-450C-8FA2-9A8CED756EE4"><li><p>Factorize the matrix 
+          <span>(<span><var>Z</var><sub><var>e</var></sub></span>
+            *<var>B</var> - 
+            <var>A</var>)</span></p>
+</li>
+<li><p>Solve the linear system 
+          <span>(<span><var>Z</var><sub><var>e</var></sub></span>
+            *<var>B</var> - 
+            <var>A</var>)<var>X</var> = 
+            <var>Y</var></span> or 
+          <span>(<span><var>Z</var><sub><var>e</var></sub></span>
+            *<var>B</var> - 
+            <var>A</var>)<sup>H</sup><var>X</var> = 
+            <var>Y</var></span> with multiple right hand sides, where H
+          means transpose conjugate 
+        </p>
+</li>
+<li><p>Matrix-matrix multiply 
+          <span><var>B</var><var>X</var> = 
+            <var>Y</var></span> or 
+          <span><var>A</var><var>X</var> = 
+            <var>Y</var></span></p>
+</li>
+</ul>
+<p>For solving a standard eigenvalue problem, replace the matrix 
+      <var>B</var> with the identity matrix 
+      <var>I</var>. 
+    </p>
+<p>The primary aim of RCI interfaces is to isolate these operations: the
+      linear system solver, factorization of the matrix resolvent at each contour
+      point, and matrix-matrix multiplication. This gives universality to RCI
+      interfaces as they are independent of data structures and the specific
+      implementation of the operations like matrix-vector multiplication or inner
+      system solvers. However, this approach requires some additional effort when
+      calling the interface. In particular, operations listed above are performed by
+      routines that you supply on data structures that you find most appropriate for
+      the problem at hand. 
+    </p>
+<p>To initialize an Extended Eigensolver RCI routine, set the job indicator
+      (<span class="parmname">ijob</span>) parameter to the value -1. When the routine
+      requires the results of an operation, it generates a special value of 
+      <span class="parmname">ijob</span> to indicate the operation that needs to be
+      performed. The routine also returns 
+      <span class="parmname">ze</span>, the coordinate along the complex contour, the
+      values of array 
+      <span class="parmname">work</span> or 
+      <span class="parmname">workc</span>, and the number of columns to be used. Your
+      subroutine then must perform the operation at the given contour point 
+      <span class="parmname">ze</span>, store the results in prescribed array, and
+      return control to the Extended Eigensolver RCI routine. 
+    </p>
+<p>The following pseudocode shows the general scheme for using the Extended
+      Eigensolver RCI functionality for a real symmetric problem: 
+    </p>
+<pre>     Ijob=-1 ! initialization
+    do while (ijob/=0)
+       call  ?feast_srci(ijob, N, Ze, work1, work2, Aq,  Bq,
+                   &amp;fpm, epsout, loop, Emin, Emax, M0, E, lambda, q, res, info)
+
+       select case(ijob)
+       case(10) !! Factorize the complex matrix (ZeB-A)
+ . . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+     
+       case(11) !! Solve the complex linear system (ZeB-A)x=work2(1:N,1:M0) result in work2
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+
+       case(30) !! Perform multiplication A*q(1:N,i:j) result in work1(1:N,i:j)
+                !!  where i=fpm(24) and j=fpm(24)+fpm(25)−1
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+       case(40) !! Perform multiplication B*q(1:N,i:j) result in work1(1:N,i:j)
+                !!  where i=fpm(24) and j=fpm(24)+fpm(25)−1
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+
+    end select
+end do
+</pre><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The 
+        <samp class="codeph">?</samp> option in 
+        <span class="keyword">?feast</span> in the pseudocode given above should be
+        replaced by either 
+        <span class="keyword">s</span> or 
+        <span class="keyword">d</span>, depending on the matrix data type of the
+        eigenvalue system. 
+      </p>
+</div>
+<p>The next pseudocode shows the general scheme for using the Extended
+      Eigensolver RCI functionality for a complex Hermitian problem: 
+    </p>
+<pre>    Ijob=-1 ! initialization
+    do while (ijob/=0)
+       call  ?feast_hrci(ijob, N, Ze, work1, work2, Aq,  Bq,
+                   &amp;fpm, epsout, loop, Emin, Emax, M0, E, lambda, q, res, info)
+
+       select case(ijob)
+       case(10) !! Factorize the complex matrix (ZeB-A)
+ . . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+       case (11)!! Solve the linear system (ZeB−A)y=work2 (1:N, 1:M0) result in work2
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+       case (20)!! Factorize ( if needed by case (21)) the complex matrix     (ZeB−A)ˆH
+	!!ATTENTION: This option requires additional memory storage
+	!! (i.e . the resulting matrix from case (10) cannot be overwritten)
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+       case (21) !! Solve the linear system (ZeB−A)ˆHy=work2(1:N, 1:M0) result in  work2
+	!!REMARK: case (20) becomes obsolete if this solve can be performed
+	!! using the factorization in case (10)
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+       case(30) !! Perform multiplication A*q(1:N,i:j) result in work1(1:N,i:j)
+                !!  where i=fpm(24) and j=fpm(25)+fpm(24)−1
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+       case(40) !! Perform multiplication B*q(1:N,i:j) result in work1(1:N,i:j)
+                !!  where i=fpm(24) and j=fpm(25)+fpm(24)−1
+. . . . . . . . . . . . . . . . &lt;&lt;&lt; user entry
+
+    end select
+end do
+</pre><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The 
+        <samp class="codeph">?</samp> option in 
+        <span class="keyword">?feast</span> in the pseudocode given above should be
+        replaced by either 
+        <span class="keyword">c</span> or 
+        <span class="keyword">z</span>, depending on the matrix data type of the
+        eigenvalue system. 
+      </p>
+<p>If 
+        <samp class="codeph">case(20)</samp> can be avoided, performance
+        could be up to twice as fast, and Extended Eigensolver functionality would use
+        half of the memory. 
+      </p>
+</div>
+<p>If an iterative solver is used along with a preconditioner, the
+      factorization of the preconditioner could be performed with 
+      <span><span class="parmname">ijob</span> = 10</span> (and 
+      <span><span class="parmname">ijob</span> = 20</span> if applicable) for a given value
+      of 
+      <span><var>Z</var><sub><var>e</var></sub></span>, and the
+      associated iterative solve would then be performed with 
+      <span><span class="parmname">ijob</span> = 11</span> (and 
+      <span><span class="parmname">ijob</span> = 21</span> if applicable). 
+    </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d616166e241"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d616166e241 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-180975E0-6096-41D3-8755-88FD21839E42.html">Extended Eigensolver RCI Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

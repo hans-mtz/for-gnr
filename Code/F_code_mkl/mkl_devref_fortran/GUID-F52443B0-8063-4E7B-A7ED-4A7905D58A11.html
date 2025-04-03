@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sbgst"/>
+<meta name="abstract" content="Reduces a real symmetric-definite generalized eigenproblem for banded matrices to the standard form using the factorization performed by ?pbstf."/>
+<meta name="description" content="Reduces a real symmetric-definite generalized eigenproblem for banded matrices to the standard form using the factorization performed by ?pbstf."/>
+<meta name="DC.subject" content="?sbgst, LAPACK routines, generalized eigenvalue problems, real symmetric-definite problem, band storage"/>
+<meta name="keywords" content="?sbgst, LAPACK routines, generalized eigenvalue problems, real symmetric-definite problem, band storage"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F52443B0-8063-4E7B-A7ED-4A7905D58A11"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sbgst</title>
+
+</head>
+<body id="GUID-F52443B0-8063-4E7B-A7ED-4A7905D58A11">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sbgst</span></h1>
+<!--Reduces a real symmetric-definite generalized eigenproblem for banded matrices to the standard form using the factorization performed by  ?pbstf .--><div><p class="shortdesc">Reduces a real symmetric-definite generalized eigenproblem for banded matrices to the standard form using the factorization performed by <span class="option">?pbstf</span>.</p>
+<div class="section" id="GUID-898CDB72-27FD-4A8C-A54B-EAF21D758BAA"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssbgst</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ka</span><span class="sep">, </span><span class="var">kb</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">bb</span><span class="sep">, </span><span class="var">ldbb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsbgst</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ka</span><span class="sep">, </span><span class="var">kb</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">bb</span><span class="sep">, </span><span class="var">ldbb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sbgst</span><span class="delim">(</span><span class="var">ab</span><span class="sep">, </span><span class="var">bb</span><span class="delim"> [</span><span class="sep">,</span><span class="var">x</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3E13263D-9796-4502-80FC-3D37FFF3F1F8"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C35E1D83-D5F4-400B-B05A-BB174CE9EE9F"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>To reduce the real symmetric-definite generalized eigenproblem <samp class="codeph"><var>A</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>B</var>*<var>z</var></samp> to the standard form <samp class="codeph"><var>C</var>*<var>y</var>=<span class="eqsymbol">λ</span>*<var>y</var></samp>, where <var>A</var>, <var>B</var> and <var>C</var> are banded, this routine must be preceded by a call to <a class="allformats" href="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html#GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E">pbstf</a>, which computes the split Cholesky factorization of the positive-definite matrix <samp class="codeph"><var>B</var>: <var>B</var>=<var>S</var><sup class="power"><var>T</var></sup>*<var>S</var></samp>. The split Cholesky factorization, compared with the ordinary Cholesky factorization, allows the work to be approximately halved.</p>
+<p>This routine overwrites <var>A</var> with <samp class="codeph"><samp class="codeph"><var>C</var> = <var>X</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>X</var></samp></samp>, where <samp class="codeph"><var>X</var> = inv(<var>S</var>)*<var>Q</var></samp> and <var>Q</var> is an orthogonal matrix chosen (implicitly) to preserve the bandwidth of <var>A</var>. The routine also has an option to allow the accumulation of <var>X</var>, and then, if <var>z</var> is an eigenvector of <var>C</var>, <samp class="codeph"><var>X</var>*<var>z</var></samp> is an eigenvector of the original system.</p>
+</div>
+<div class="section" id="GUID-C37D3431-E820-4C38-837D-55C8331AC702"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-567E3976-B2CE-4A26-A771-DA852459C707"><dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>.</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, then matrix <var>X</var> is not returned;</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, then matrix <var>X</var> is returned.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>ab</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>ab</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrices <var>A</var> and <var>B</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ka</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of super- or sub-diagonals in <var>A</var></p>
+<p>(<samp class="codeph"><var>ka</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">kb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of super- or sub-diagonals in <var>B</var></p>
+<p>(<samp class="codeph"><var>ka</var><span class="eqsymbol">≥</span><var>kb</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span>, <span class="parmname">bb</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbgst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbgst</span></p>
+<p><var>ab</var><span>(<var>ldab</var>,*)</span>  is an array containing either upper or lower triangular part of the symmetric matrix <var>A</var> (as specified by <var>uplo</var>) in band storage format. </p>
+<p>The second dimension of the array <var>ab</var> must be at least max(1, <var>n</var>).</p>
+<p><var>bb</var><span>(<var>ldbb</var>,*)</span> is an array containing the banded split Cholesky factor of <var>B</var> as specified by <var>uplo</var>, <var>n</var> and <var>kb</var> and returned by <a class="allformats" href="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html#GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E">pbstf</a>/<a class="allformats" href="GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E.html#GUID-9CD5CAD1-BECB-45C9-A917-F258038E127E">pbstf</a>. </p>
+<p>The second dimension of the array <var>bb</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work(*)</var> is a workspace array, <span class="keyword">dimension</span> at least max(1, 2*<var>n</var>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>ab</var>; must be at least <var>ka</var>+1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldbb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>bb</var>; must be at least <var>kb</var>+1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldx</span></dt>
+
+<dd><p>The leading dimension of the output array x. Constraints: if <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, then <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, then <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D9A85B7B-A01D-4524-93CF-BCBF0A317DDA"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-B8900C09-9F38-4E1C-93D8-EE62ED4F22C2"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>On exit, this array is overwritten by the upper or lower triangle of <var>C</var> as specified by <var>uplo</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbgst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbgst</span></p>
+<p>Array. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, then <var>x</var><span>(<var>ldx</var>,*)</span> 
+contains the <var>n</var>-by-<var>n</var> matrix <samp class="codeph"><var>X</var> = inv(<var>S</var>)*<var>Q</var></samp>.</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, then <var>x</var> is not referenced. </p>
+<p>The second dimension of x must be: </p>
+<p>at least max(1, <var>n</var>), if <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>;</p>
+<p>at least 1, if <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-FE4F2DC0-9AB2-4D09-A8F7-E657F4CB9934"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">sbgst</span> interface are the following:</p>
+<dl id="GUID-E34DE4EB-39F2-40E5-AFEC-3C8F89278A42"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p> Holds the array <var>A</var> of size (<var>ka+1,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bb</span></dt>
+
+<dd><p>Holds the array <var>B</var> of size (<var>kb+1,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the matrix <var>X</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>x</var> as follows: </p>
+<p><samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, if <var>x</var> is present, </p>
+<p><samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, if <var>x</var> is omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5F3E4E54-E9A2-49D0-87EA-5F9BE66FDED5"><h2 class="sectiontitle">Application Notes</h2><p>Forming the reduced matrix <var>C</var> involves implicit multiplication by <samp class="codeph">inv(<var>B</var>)</samp>. When the routine is used as a step in the computation of eigenvalues and eigenvectors of the original problem, there may be a significant loss of accuracy if <var>B</var> is ill-conditioned with respect to inversion. </p>
+<p>If <var>ka</var> and <var>kb</var> are much less than <var>n</var> then the total number of floating-point operations is approximately <samp class="codeph">6<var>n</var><sup class="power">2</sup>*<var>kb</var></samp>, when <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>. Additional <samp class="codeph">(3/2)<var>n</var><sup class="power">3</sup>*(<var>kb/ka</var>)</samp> operations are required when <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html">Generalized Symmetric-Definite Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

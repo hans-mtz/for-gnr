@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_?_mv"/>
+<meta name="abstract" content="Computes a sparse matrix- vector product."/>
+<meta name="description" content="Computes a sparse matrix- vector product."/>
+<meta name="DC.subject" content="mkl_sparse_s_mv, mkl_sparse_d_mv, mkl_sparse_c_mv, mkl_sparse_z_mv"/>
+<meta name="keywords" content="mkl_sparse_s_mv, mkl_sparse_d_mv, mkl_sparse_c_mv, mkl_sparse_z_mv"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1FAA1369-97A7-4F13-87B2-3FE4425D876D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_?_mv</title>
+
+</head>
+<body id="GUID-1FAA1369-97A7-4F13-87B2-3FE4425D876D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_?_mv</span></h1>
+<!--Computes  a sparse matrix- vector product. 
+		--><div><p class="shortdesc">Computes  a sparse matrix- vector product. 
+		</p>
+<div class="section" id="GUID-8FF718C9-D9AE-42A7-9A2A-A47DCEBB13D4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_s_mv</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_d_mv</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_c_mv</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_z_mv</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-EB0E1F5F-7AF1-48F7-946A-2FB6153B65D6"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-F20DD391-8F79-4344-AC00-089768EDDFF9"><li id="LI_B1FEA54B90534702B36BB7F982C8BF80"><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-0F77A69F-5390-4BD3-8B16-DF87424C8334"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_sparse_?_mv</span>
+				 routine computes a sparse matrix-vector product defined as <pre>
+					<var>y</var> := <var>alpha</var>*op(<var>A</var>)*<var>x</var> + <var>beta</var>*<var>y</var>
+				</pre></p>
+<p>where: </p>
+<p><var> alpha</var> and <var>beta</var> are scalars, <var>x</var> and <var>y</var> are <span>vectors, and <var>A</var> is a sparse matrix handle of a matrix with <var>m</var> rows and <var>k</var> columns, and <span class="keyword">op</span> is a matrix modifier for matrix <var>A</var>.</span></p>
+</div>
+<div class="section" id="GUID-2E916BF3-C345-4D50-82AA-751EBE276D18"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E032CB00-64A7-43C3-8EF8-0C2486DE8F0F"><dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><samp class="codeph">C_INT</samp>. 
+          </p>
+<p>Specifies operation 
+            <samp class="codeph">op()</samp> on input matrix. 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_NON_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Non-transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>T</sup></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_CONJUGATE_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Conjugate transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>H</sup></samp>. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><samp class="codeph">C_FLOAT</samp> for <span class="option">mkl_sparse_s_mv</span></p>
+<p><samp class="codeph">C_DOUBLE</samp> for <span class="option">mkl_sparse_d_mv</span></p>
+<p><samp class="codeph">C_FLOAT_COMPLEX</samp> for <span class="option">mkl_sparse_c_mv</span></p>
+<p><samp class="codeph">C_DOUBLE_COMPLEX</samp> for <span class="option">mkl_sparse_z_mv</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><samp class="codeph">SPARSE_MATRIX_T</samp>.</p>
+<p>Handle which contains the input matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descr</span></dt>
+
+<dd><p><samp class="codeph">MATRIX_DESCR</samp>. 
+          </p>
+<p>Descriptor specifying sparse matrix properties. 
+          </p>
+<p><var>type</var> - Specifies the type of a sparse matrix: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_GENERAL 
+                </tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is processed as is. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_SYMMETRIC</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is symmetric (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_HERMITIAN</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is Hermitian (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is triangular (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is diagonal (only diagonal elements are processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_BLOCK_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-triangular (only requested triangle is processed). Applies to BSR format only.
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_BLOCK_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-diagonal (only diagonal blocks are processed). Applies to BSR format only.
+                </p>
+</td>
+</tr></table><p><var>mode</var> - Specifies the triangular matrix part for symmetric, Hermitian, triangular, and block-triangular matrices: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_FILL_MODE_LOWER</tt></p></td>
+
+<td valign="top" class="noborder"><p> The lower triangular matrix part is processed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_FILL_MODE_UPPER</tt></p></td>
+
+<td valign="top" class="noborder"><p>The upper triangular matrix part is processed. 
+                </p>
+</td>
+</tr></table><p><var>diag</var> - Specifies diagonal type for non-general matrices: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_DIAG_NON_UNIT</tt></p></td>
+
+<td valign="top" class="noborder"><p>Diagonal elements might not be equal to one. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_DIAG_UNIT</tt></p></td>
+
+<td valign="top" class="noborder">Diagonal elements are equal to one. 
+              </td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><samp class="codeph">C_FLOAT</samp> for <span class="option">mkl_sparse_s_mv</span></p>
+<p><samp class="codeph">C_DOUBLE</samp> for <span class="option">mkl_sparse_d_mv</span></p>
+<p><samp class="codeph">C_FLOAT_COMPLEX</samp> for <span class="option">mkl_sparse_c_mv</span></p>
+<p><samp class="codeph">C_DOUBLE_COMPLEX</samp> for <span class="option">mkl_sparse_z_mv</span></p>
+<p><span>Array of size equal to the number of columns, <var>k</var></span> of <var>A</var> if <samp class="codeph"><span class="parmname">operation</span> = SPARSE_OPERATION_NON_TRANSPOSE</samp> and at least the number of  rows, <var>m</var>,  of <var>A</var> otherwise. On entry, the array must contain the vector <span class="parmname">x</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><samp class="codeph">C_FLOAT</samp> for <span class="option">mkl_sparse_s_mv</span></p>
+<p><samp class="codeph">C_DOUBLE</samp> for <span class="option">mkl_sparse_d_mv</span></p>
+<p><samp class="codeph">C_FLOAT_COMPLEX</samp> for <span class="option">mkl_sparse_c_mv</span></p>
+<p><samp class="codeph">C_DOUBLE_COMPLEX</samp> for <span class="option">mkl_sparse_z_mv</span></p>
+<p>Specifies the scalar <var>beta</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><samp class="codeph">C_FLOAT</samp> for <span class="option">mkl_sparse_s_mv</span></p>
+<p><samp class="codeph">C_DOUBLE</samp> for <span class="option">mkl_sparse_d_mv</span></p>
+<p><samp class="codeph">C_FLOAT_COMPLEX</samp> for <span class="option">mkl_sparse_c_mv</span></p>
+<p><samp class="codeph">C_DOUBLE_COMPLEX</samp> for <span class="option">mkl_sparse_z_mv</span></p>
+<p><span>Array with size at least <var>m</var> if <samp class="codeph"><span class="parmname">operation</span>=SPARSE_OPERATION_NON_TRANSPOSE</samp> and at least <var>k</var> otherwise. On entry, the array <span class="parmname">y</span> must contain the vector <var>y</var></span>.
+							<span>Array of size equal to the number of rows, <var>m</var></span> of <var>A</var> if <samp class="codeph"><span class="parmname">operation</span> = SPARSE_OPERATION_NON_TRANSPOSE</samp> and at least the number of  columns, <var>k</var>,  of <var>A</var> otherwise. On entry, the <span>array <span class="parmname">y</span></span>
+							 must contain the vector <span class="parmname">y</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2D7BA49D-E937-40A4-AC2F-19685DC4E918"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F883910F-825A-4FFD-89DD-96CEEBD031BB"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><samp class="codeph">C_FLOAT</samp> for <span class="option">mkl_sparse_s_mv</span></p>
+<p><samp class="codeph">C_DOUBLE</samp> for <span class="option">mkl_sparse_d_mv</span></p>
+<p><samp class="codeph">C_FLOAT_COMPLEX</samp> for <span class="option">mkl_sparse_c_mv</span></p>
+<p><samp class="codeph">C_DOUBLE_COMPLEX</samp> for <span class="option">mkl_sparse_z_mv</span></p>
+<p>Overwritten by the updated vector <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stat</span></dt>
+
+<dd><p><samp class="codeph">INTEGER</samp></p>
+<p>Value indicating whether the operation was successful or not, and why: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p>The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html">Inspector-Executor Sparse BLAS Execution Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

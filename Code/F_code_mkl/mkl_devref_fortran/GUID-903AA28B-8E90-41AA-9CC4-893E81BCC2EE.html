@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Limitations of the FFTW2 Interface to Intel&reg; oneAPI Math Kernel Library"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFDB66B3-34EE-41BF-88B7-C9B1802F39B5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-903AA28B-8E90-41AA-9CC4-893E81BCC2EE"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Limitations of the FFTW2 Interface to Intel&reg; oneAPI Math Kernel Library</title>
+
+</head>
+<body id="GUID-903AA28B-8E90-41AA-9CC4-893E81BCC2EE">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"> Limitations of the FFTW2 Interface to 
+    Intel&reg; oneAPI Math Kernel Library</h1>
+<div><p>The FFTW2 wrappers implement the functionality of only those FFTW functions that 
+      Intel&reg; oneAPI Math Kernel Library can reasonably support. Other functions are provided as no-operation functions, whose only purpose is to satisfy link-time symbol resolution. Specifically, no-operation functions include:
+    </p>
+<ul id="GUID-C3D7AD99-61CB-451B-8ABB-BC88287EAA85"><li><p>Real-to-half-complex and respective backward transforms 
+        </p>
+</li>
+<li><p>Print plan functions 
+        </p>
+</li>
+<li><p>Functions for importing/exporting/forgetting wisdom 
+        </p>
+</li>
+<li><p>Most of the FFTW functions not covered by the original FFTW2 documentation 
+        </p>
+</li>
+</ul>
+<p>Because the 
+      Intel&reg; oneAPI Math Kernel Library implementation of FFTW2 wrappers does not use plan and plan node structures declared in<span class="filepath">fftw.h</span>, the behavior of an application that relies on the internals of the plan structures defined in that header file is undefined. 
+    </p>
+<p>FFTW2 wrappers define plan as a set of attributes, such as strides, used to commit the 
+      Intel&reg; oneAPI Math Kernel Library FFT descriptor structure. If an FFTW2 computational function is called with attributes different from those recorded in the plan, the function attempts to adjust the attributes of the plan and recommit the descriptor. So, repeated calls of a computational function with the same plan but different strides, distances, and other parameters may be performance inefficient.
+    </p>
+<p> Plan creation functions disregard most planner flags passed through the 
+      <span class="parmname">flags</span> parameter. These functions take into account only the following values of 
+      <span class="parmname">flags</span>: 
+    </p>
+<ul id="GUID-3580D97D-7CF5-452F-9042-F2A96FD5D58B"><li><p><span class="keyword">FFTW_IN_PLACE</span></p>
+<p>If this value of 
+          <span class="parmname">flags</span> is supplied, the plan is marked so that computational functions using that plan ignore the parameters related to output (<span class="parmname">out</span>, 
+          <span class="parmname">ostride</span>, and 
+          <span class="parmname">odist</span>). Unlike the original FFTW interface, the wrappers never use the 
+          <span class="parmname">out</span> parameter as a scratch space for in-place transforms. 
+        </p>
+</li>
+<li><p><span class="keyword">FFTW_THREADSAFE</span></p>
+<p>If this value of 
+          <span class="parmname">flags</span> is supplied, the plan is marked read-only. An attempt to change attributes of a read-only plan aborts the application. 
+        </p>
+</li>
+</ul>
+<p> FFTW wrappers are generally not thread safe. Therefore, do not use the same plan in parallel user threads simultaneously. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FFDB66B3-34EE-41BF-88B7-C9B1802F39B5.html">FFTW2 Interface to Intel&reg; Math Kernel Library</a></div>
+</div>
+<div/>
+</body>
+</html>

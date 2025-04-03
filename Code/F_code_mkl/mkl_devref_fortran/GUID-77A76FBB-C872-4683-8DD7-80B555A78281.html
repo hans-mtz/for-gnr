@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lag2"/>
+<meta name="abstract" content="Computes the eigenvalues of a 2-by-2 generalized eigenvalue problem, with scaling as necessary to avoid over-/underflow."/>
+<meta name="description" content="Computes the eigenvalues of a 2-by-2 generalized eigenvalue problem, with scaling as necessary to avoid over-/underflow."/>
+<meta name="DC.subject" content="?lag2, LAPACK routines, auxiliary routines, 2-by-2 generalized eigenvalue problem"/>
+<meta name="keywords" content="?lag2, LAPACK routines, auxiliary routines, 2-by-2 generalized eigenvalue problem"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-77A76FBB-C872-4683-8DD7-80B555A78281"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lag2</title>
+
+</head>
+<body id="GUID-77A76FBB-C872-4683-8DD7-80B555A78281">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lag2</span></h1>
+<!--Computes the eigenvalues of a 2-by-2 generalized eigenvalue problem, with scaling as necessary to avoid over-/underflow.--><div><p class="shortdesc">Computes the eigenvalues of a 2-by-2 generalized eigenvalue problem, with scaling as necessary to avoid over-/underflow.</p>
+<div class="section" id="GUID-ABBB4857-ACD0-454F-BD20-8F7729E32793"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slag2</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">safmin</span><span class="sep">, </span><span class="var">scale1</span><span class="sep">, </span><span class="var">scale2</span><span class="sep">, </span><span class="var">wr1</span><span class="sep">, </span><span class="var">wr2</span><span class="sep">, </span><span class="var">wi</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlag2</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">safmin</span><span class="sep">, </span><span class="var">scale1</span><span class="sep">, </span><span class="var">scale2</span><span class="sep">, </span><span class="var">wr1</span><span class="sep">, </span><span class="var">wr2</span><span class="sep">, </span><span class="var">wi</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-9AD6287C-C526-42E1-B6C0-8A79897F606A"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A5FE3F3B-DC9B-4EB1-8B63-B31DA3DC219C"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the eigenvalues of a 2 x 2 generalized eigenvalue problem <var>A</var> - <var>w</var><var>*B</var>, with scaling as necessary to avoid over-/underflow. The scaling factor, <var>s</var>, results in a modified eigenvalue equation</p>
+<p><samp class="codeph"><var>s</var>*<var>A</var> - <var>w</var>*<var>B</var></samp>,</p>
+<p>where <var>s</var> is a non-negative scaling factor chosen so that <var>w</var>, <var>w</var>*<var>B</var>, and <var>s</var>*<var>A</var> do not overflow and, if possible, do not underflow, either.</p>
+</div>
+<div class="section" id="GUID-CC0E1B89-F202-446A-9D85-1DA068C6B544"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-906D08F7-6335-4817-AF87-386DCCDB1870"><dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span></p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>a</var>(<var>lda</var>,2)</samp> contains, on entry, the 2 x 2 matrix <var>A</var>. It is assumed that its 1-norm is less than <samp class="codeph">1/<var>safmin</var></samp>. Entries less than <samp class="codeph"><span class="keyword">sqrt</span>(<var>safmin</var>)*norm(<var>A</var>)</samp> are subject to being treated as zero.</p>
+<p><var>b</var>(<var>ldb</var>,2) contains, on entry, the 2 x 2 upper triangular matrix <var>B</var>. It is assumed that the one-norm of <var>B</var> is less than 1/<var>safmin</var>. The diagonals should be at least <span class="keyword">sqrt</span>(<var>safmin</var>) times the largest element of <var>B</var> (in absolute value); if a diagonal is smaller than that, then <samp class="codeph">+/- <span class="keyword">sqrt</span>(<var>safmin</var>)</samp> will be used instead of that diagonal.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>a</var>; <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> 2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>b</var>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> 2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">safmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span>.</p>
+<p>The smallest positive number such that <samp class="codeph">1/<var>safmin</var></samp> does not overflow. (This should always be <span class="option">?lamch</span>('S') - it is an argument in order to avoid having to call <span class="option">?lamch</span> frequently.)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-21AAEEBF-F3B5-4B2B-BA8D-82337419375F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A73CD041-C309-4246-971C-B1ED20729ED5"><dt class="dlterm"><span class="parmname">scale1</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span>.</p>
+<p>A scaling factor used to avoid over-/underflow in the eigenvalue equation which defines the first eigenvalue. If the eigenvalues are complex, then the eigenvalues are <samp class="codeph">(<span class="parmname">wr1</span> +/-  <span class="parmname">wi</span><var>i</var>)/<var>scale1</var></samp> (which may lie outside the exponent range of the machine), <samp class="codeph"><var>scale1</var>=<var>scale2</var></samp>, and <var>scale1</var> will always be positive. </p>
+<p>If the eigenvalues are real, then the first (real) eigenvalue is <samp class="codeph"><var>wr1</var>/<var>scale1</var></samp>, but this may overflow or underflow, and in fact, <var>scale1</var> may be zero or less than the underflow threshhold if the exact eigenvalue is sufficiently large.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span>.</p>
+<p>A scaling factor used to avoid over-/underflow in the eigenvalue equation which defines the second eigenvalue. If the eigenvalues are complex, then <samp class="codeph"><var>scale2</var>=<var>scale1</var></samp>. If the eigenvalues are real, then the second (real) eigenvalue is <samp class="codeph"><var>wr2</var>/<var>scale2</var></samp>, but this may overflow or underflow, and in fact, <var>scale2</var> may be zero or less than the underflow threshold if the exact eigenvalue is sufficiently large.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr1</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span>.</p>
+<p>If the eigenvalue is real, then <var>wr1</var> is <var>scale1</var> times the eigenvalue closest to the (2,2) element of <var>A*</var><samp class="codeph">inv(<var>B</var>)</samp>. </p>
+<p>If the eigenvalue is complex, then <samp class="codeph"><var>wr1</var>=<var>wr2</var></samp> is <var>scale1</var> times the real part of the eigenvalues.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span>.</p>
+<p>If the eigenvalue is real, then <var>wr2</var> is <var>scale2</var> times the other eigenvalue. If the eigenvalue is complex, then <samp class="codeph"><var>wr1</var>=<var>wr2</var></samp> is <var>scale1</var> times the real part of the eigenvalues.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slag2</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlag2</span>.</p>
+<p>If the eigenvalue is real, then <var>wi</var> is zero. If the eigenvalue is complex, then <var>wi</var> is <var>scale1</var> times the imaginary part of the eigenvalues. <var>wi</var> will always be non-negative.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

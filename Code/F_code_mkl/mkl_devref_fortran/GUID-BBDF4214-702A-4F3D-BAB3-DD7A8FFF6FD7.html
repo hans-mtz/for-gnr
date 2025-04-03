@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetrf_rook"/>
+<meta name="abstract" content="Computes the bounded Bunch-Kaufman factorization of a complex Hermitian matrix."/>
+<meta name="description" content="Computes the bounded Bunch-Kaufman factorization of a complex Hermitian matrix."/>
+<meta name="DC.subject" content="?hetrf_rook, LAPACK routines, triangular factorization, Hermitian matrix, Bunch-Kaufman factorization"/>
+<meta name="keywords" content="?hetrf_rook, LAPACK routines, triangular factorization, Hermitian matrix, Bunch-Kaufman factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetrf_rook</title>
+
+</head>
+<body id="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetrf_rook</span></h1>
+<!--Computes the bounded Bunch-Kaufman factorization of a complex Hermitian matrix.--><div><p class="shortdesc">Computes the bounded Bunch-Kaufman factorization of a complex Hermitian matrix.</p>
+<div class="section" id="GUID-11275A7D-DBD4-4324-AEDC-808D99F038C5"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chetrf_rook</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetrf_rook</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hetrf_rook</span><span class="delim">( </span><span class="var">a</span><span class="delim"> [</span><span class="sep">, </span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ipiv</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-34CBB1F0-B836-4531-9023-2C666465C1B2"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-477620FF-44B8-4BF2-9C6F-41CC8D6C05BB"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the factorization of a complex Hermitian matrix <var>A</var>
+using   the bounded Bunch-Kaufman diagonal pivoting method:</p>
+<ul class="nobullet" id="GUID-3E39BB93-F20B-4B6B-94C8-9162C701C3E8"><li><p>     if <samp class="codeph"><var>uplo</var>=<span class="keyword">'U'</span></samp>, <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power">H</sup></samp></p>
+</li>
+<li><p>     if <samp class="codeph"><var>uplo</var>=<span class="keyword">'L'</span></samp>, <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power">H</sup>,</samp></p>
+</li>
+</ul>
+<p>where <var>A</var> is the input matrix, <var>U</var>  (or <var>L</var> ) is a  product of permutation and unit upper ( or lower)  triangular matrices, and <var>D</var> is a Hermitian block-diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks. </p>
+<p>This is the blocked version of the algorithm, calling Level 3 BLAS.</p>
+</div>
+<div class="section" id="GUID-431255BD-C6C6-4FDA-9FB4-4318D4693102"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>a</var> stores the upper triangular part of the matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>a</var> stores the lower triangular part of the matrix <var>A</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chetrf_rook</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhetrf_rook</span>.</p>
+<p>Array <span class="parmname">a</span>, size    <samp class="codeph">(<var>lda</var>,n)</samp>. </p>
+<p>The array <var>a</var> contains the upper or the lower triangular part of the matrix <var>A</var> (see <var>uplo</var>). </p>
+<p>If <span class="parmname">uplo</span> = 'U', the leading          <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of <span class="parmname">a</span> contains the upper          triangular part of the matrix <var>A</var>, and the strictly lower          triangular part of <span class="parmname">a</span> is not referenced.  If <span class="parmname">uplo</span> = 'L', the          leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of <span class="parmname">a</span> contains the lower          triangular part of the matrix <var>A</var>, and the strictly upper          triangular part of <span class="parmname">a</span> is not referenced.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chetrf_rook</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zhetrf_rook</span>.</p>
+<p>Array <samp class="codeph"><var>work</var>(*)</samp>. </p>
+<p><samp class="codeph"><var>work</var>(*)</samp> is a workspace array of dimension at least <samp class="codeph">max(1, <var>lwork</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array (<var>lwork</var><span class="eqsymbol">≥</span><var>n</var>).</p>
+<p>          The length of <span class="parmname">work</span>.  <span class="parmname">lwork</span><span class="eqsymbol">≥</span> 1.  For best performance          <span class="parmname">lwork</span><span class="eqsymbol">≥</span><span class="parmname">n</span>*<var>nb</var>, where <var>nb</var> is the block size returned by <a href="GUID-DD46DAED-D0DE-4B58-A602-BE1E4E7D50F1.html">ilaenv</a>.</p>
+<p>          If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the routine          only calculates the optimal size of the <span class="parmname">work</span> array, returns          this value as the first entry of the <span class="parmname">work</span> array, and no error          message related to <span class="parmname">lwork</span> is issued by <a href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html">xerbla</a>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-03EC9DB0-5607-4EC4-9FA2-53E6052A1B3C"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p/>
+<p>The block diagonal matrix <var>D</var> and the multipliers used          to obtain the factor <var>U</var> or <var>L</var> (see Application Notes for further details).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph"><span class="parmname">work</span>(1)</samp></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. Contains details of the interchanges and the block structure of <var>D</var>.</p>
+<ul id="GUID-274ED324-0FCD-4743-8CA9-3FA85EA2E7DF"><li><p>If <var>uplo</var> = <span class="keyword">'U'</span>:</p>
+<p>If <samp class="codeph"><span class="parmname">ipiv</span>(<var>k</var>) &gt; 0</samp>, then rows and columns <var>k</var> and <samp class="codeph"><span class="parmname">ipiv</span>(<var>k</var>)</samp> were interchanged and <var>D</var><sub><var>k</var>, <var>k</var></sub> is a 1-by-1 diagonal block. </p>
+<p>If <span class="parmname">ipiv</span>(<var>k</var>) &lt; 0 and <span class="parmname">ipiv</span>(<var>k</var> - 1) &lt; 0, then rows and             columns <var>k</var> and -<span class="parmname">ipiv</span>(<var>k</var>) were interchanged and rows and             columns <var>k</var> - 1 and -<span class="parmname">ipiv</span>(<var>k</var> - 1) were interchanged,             <var>D</var><sub><var>k</var> - 1:<var>k</var>,<var>k</var> - 1:<var>k</var></sub> is a 2-by-2 diagonal block.</p>
+</li>
+<li><p>If <var>uplo</var> = <span class="keyword">'L'</span>:</p>
+<p>             If <span class="parmname">ipiv</span>(<var>k</var>) &gt; 0, then rows and columns <var>k</var> and <span class="parmname">ipiv</span>(<var>k</var>)             were interchanged and <var>D</var><sub><var>k</var>,<var>k</var></sub> is a 1-by-1 diagonal block.</p>
+<p>             If <span class="parmname">ipiv</span>(<var>k</var>) &lt; 0 and <span class="parmname">ipiv</span>(<var>k</var> + 1) &lt; 0, then rows and             columns <var>k</var> and -<span class="parmname">ipiv</span>(<var>k</var>) were interchanged and rows and             columns <var>k</var> + 1 and -<span class="parmname">ipiv</span>(<var>k</var> + 1) were interchanged,             <var>D</var><sub><var>k</var>:<var>k</var> + 1,<var>k</var>:<var>k</var> + 1</sub> is a 2-by-2 diagonal block.</p>
+</li>
+</ul>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info </var>= 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, <samp class="codeph"><var>D</var><sub class="subb"><var>i</var><var>i</var></sub></samp> is exactly 0. The factorization has been completed, but the block diagonal matrix <var>D</var> is exactly singular, and division by 0 will occur if you use <var>D</var> for solving a system of linear equations.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-F7070A09-666F-493C-9CDE-E4DB712C4657"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hetrf_rook</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>holds the matrix <var>A</var> of size (<var>n</var>, <var>n</var>)</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>holds the vector of length <var>n</var></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="HETRFAPN"><h2 class="sectiontitle">Application Notes</h2><p/>
+<p>  If <span class="parmname">uplo</span> = 'U', then<samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power">H</sup></samp>, where</p>
+<p><var>U</var> = <var>P</var>(<var>n</var>)*<var>U</var>(<var>n</var>)* ... *<var>P</var>(<var>k</var>)<var>U</var>(<var>k</var>)* ...,</p>
+<p>  i.e., <var>U</var> is a product of terms <var>P</var>(<var>k</var>)*<var>U</var>(<var>k</var>), where <var>k</var> decreases from <var>n</var> to  1 in steps of 1 or 2, and <var>D</var> is a block diagonal matrix with 1-by-1  and 2-by-2 diagonal blocks <var>D</var>(<var>k</var>).  <var>P</var>(<var>k</var>) is a permutation matrix as  defined by <span class="parmname">ipiv</span>(<var>k</var>), and <var>U</var>(<var>k</var>) is a unit upper triangular matrix, such  that if the diagonal block <var>D</var>(<var>k</var>) is of order <var>s</var> (<var>s</var> = 1 or 2), then</p>
+<p><span><img class="img-middle" src="equations/GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6ee1.png"/></span></p>
+<p>  If <var>s</var> = 1, <var>D</var>(<var>k</var>) overwrites <var>A</var>(<var>k</var>,<var>k</var>), and <var>v</var> overwrites <var>A</var>(1:<var>k</var>-1,<var>k</var>).</p>
+<p>  If <var>s</var> = 2, the upper triangle of <var>D</var>(<var>k</var>) overwrites <var>A</var>(<var>k</var>-1,<var>k</var>-1), <var>A</var>(<var>k</var>-1,<var>k</var>),  and <var>A</var>(<var>k</var>,<var>k</var>), and <var>v</var> overwrites <var>A</var>(1:<var>k</var>-2,<var>k</var>-1:<var>k</var>).</p>
+<p>  If <span class="parmname">uplo</span> = 'L', then <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power">H</sup></samp>, where</p>
+<p><var>L</var> = <var>P</var>(1)*<var>L</var>(1)* ... *<var>P</var>(<var>k</var>)*<var>L</var>(<var>k</var>)* ...,</p>
+<p>  i.e., <var>L</var> is a product of terms <var>P</var>(<var>k</var>)*<var>L</var>(<var>k</var>), where <var>k</var> increases from 1 to  <var>n</var> in steps of 1 or 2, and <var>D</var> is a block diagonal matrix with 1-by-1  and 2-by-2 diagonal blocks <var>D</var>(<var>k</var>).  <var>P</var>(<var>k</var>) is a permutation matrix as  defined by <span class="parmname">ipiv</span>(<var>k</var>), and <var>L</var>(<var>k</var>) is a unit lower triangular matrix, such  that if the diagonal block <var>D</var>(<var>k</var>) is of order <var>s</var> (<var>s</var> = 1 or 2), then</p>
+<p><span><img class="img-middle" src="equations/GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6ee2.png"/></span></p>
+<p>  If <var>s</var> = 1, <var>D</var>(<var>k</var>) overwrites <var>A</var>(<var>k</var>,<var>k</var>), and <var>v</var> overwrites <var>A</var>(<var>k</var>+1:<var>n</var>,<var>k</var>).</p>
+<p>  If <var>s</var> = 2, the lower triangle of <var>D</var>(<var>k</var>) overwrites <var>A</var>(<var>k</var>,<var>k</var>), <var>A</var>(<var>k</var>+1,<var>k</var>),  and <var>A</var>(<var>k</var>+1,<var>k</var>+1), and <var>v</var> overwrites <var>A</var>(<var>k</var>+2:<var>n</var>,<var>k</var>:<var>k</var>+1).</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"><span class="option">mkl_progress</span></a> </div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

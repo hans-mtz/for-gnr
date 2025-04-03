@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="PBLAS Routine Naming Conventions"/>
+<meta name="DC.subject" content="naming conventions, PBLAS, routine name conventions"/>
+<meta name="keywords" content="naming conventions, PBLAS, routine name conventions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6A825383-D03C-4DFD-A0DB-A86ADC479BDB.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E936F8B0-9489-464B-A638-62998627FBEA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>PBLAS Routine Naming Conventions</title>
+
+</head>
+<body id="GUID-E936F8B0-9489-464B-A638-62998627FBEA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">PBLAS Routine Naming Conventions</h1>
+<div><p>The naming convention for PBLAS routines is similar
+      to that used for BLAS routines (see 
+      <a href="GUID-53D40640-F03A-4A36-8C75-66D9763BE91B.html#GUID-53D40640-F03A-4A36-8C75-66D9763BE91B">Routine Naming Conventions</a>). A general rule is that each routine name in PBLAS, which has a
+      BLAS equivalent, is simply the BLAS name prefixed by initial letter 
+      <span class="keyword">p</span> that stands for "parallel".
+    </p>
+<p>The Intel&reg; oneAPI Math Kernel Library PBLAS routine names have the following structure:<pre>    p &lt;<var>character</var>&gt; &lt;<var>name</var>&gt; &lt;<var>mod</var>&gt; ( )</pre></p>
+<p>The &lt;<var>character</var>&gt; field indicates
+      the Fortran data type:
+    </p>
+<dl id="GUID-D02F94F2-8917-4144-8B54-99FABB9BCCA6"><dt class="dlterm"><tt>s</tt></dt>
+
+<dd><p>real, single precision
+          </p>
+</dd>
+<dt class="dlterm"><tt>c</tt></dt>
+
+<dd><p>complex, single precision
+          </p>
+</dd>
+<dt class="dlterm"><tt>d</tt></dt>
+
+<dd><p>real, double precision
+          </p>
+</dd>
+<dt class="dlterm"><tt>z</tt></dt>
+
+<dd><p>complex, double precision
+          </p>
+</dd>
+<dt class="dlterm"><tt>i</tt></dt>
+
+<dd><p>integer
+          </p>
+</dd>
+</dl>
+<p>Some routines and functions can have combined
+      character codes, such as 
+      <tt>sc</tt> or 
+      <tt>dz</tt>.
+    </p>
+<p>For example, the function 
+  <span class="option">pscasum</span> uses a complex
+  input array and returns a real value.
+  </p>
+<p>The 
+    <var>&lt;name&gt;</var>
+    field, in PBLAS level 1, indicates the operation type. For example, the PBLAS
+    level 1 routines 
+  <span class="option">p?dot</span>, 
+  <span class="option">p?swap</span>, 
+  <span class="option">p?copy</span> compute a vector
+  dot product, vector swap, and a copy vector, respectively.
+  </p>
+<p>In PBLAS level 2 and 3, 
+    <var>&lt;name&gt;</var>
+    reflects the matrix argument type:
+  </p>
+<dl id="GUID-556E76B2-A8BC-4996-93E8-DCF3C084A624"><dt class="dlterm"><tt>ge</tt></dt>
+
+<dd><p>general matrix
+        </p>
+</dd>
+<dt class="dlterm"><tt>sy</tt></dt>
+
+<dd><p>symmetric matrix
+        </p>
+</dd>
+<dt class="dlterm"><tt>he</tt></dt>
+
+<dd><p>Hermitian matrix
+        </p>
+</dd>
+<dt class="dlterm"><tt>tr</tt></dt>
+
+<dd><p>triangular matrix
+        </p>
+</dd>
+</dl>
+<p>In PBLAS level 3, the 
+    <samp class="codeph"><var>&lt;name&gt;</var>=<tt><span class="keyword">tran</span></tt></samp> indicates the
+    transposition of the matrix.
+  </p>
+<p>The 
+    <var>&lt;mod&gt;</var> field,
+    if present, provides additional details of the operation. The PBLAS level 1
+    names can have the following characters in the 
+    <var>&lt;mod&gt;</var> field:
+  </p>
+<dl id="GUID-69940090-C581-42CB-95EF-80FF8CF03A9E"><dt class="dlterm"><tt>c</tt></dt>
+
+<dd><p>conjugated vector
+        </p>
+</dd>
+<dt class="dlterm"><tt>u</tt></dt>
+
+<dd><p>unconjugated vector
+        </p>
+</dd>
+</dl>
+<p>The PBLAS level 2 names can have the following
+    additional characters in the 
+    <var>&lt;mod&gt;</var> field:
+  </p>
+<dl id="GUID-A28DA6FA-95E1-4DD3-9987-1E2124A1FBEB"><dt class="dlterm"><tt>mv</tt></dt>
+
+<dd><p>matrix-vector product 
+        </p>
+</dd>
+<dt class="dlterm"><tt>sv</tt></dt>
+
+<dd><p>solving a system of linear equations with
+          matrix-vector operations
+        </p>
+</dd>
+<dt class="dlterm"><tt>r</tt></dt>
+
+<dd><p>rank-1 update of a matrix
+        </p>
+</dd>
+<dt class="dlterm"><tt>r2</tt></dt>
+
+<dd><p>rank-2 update of a matrix.
+        </p>
+</dd>
+</dl>
+<p>The PBLAS level 3 names can have the following
+    additional characters in the 
+    <var>&lt;mod&gt;</var> field:
+  </p>
+<dl id="GUID-D3ABECE8-AB24-4C27-895E-F0F065FCBAB1"><dt class="dlterm"><tt>mm</tt></dt>
+
+<dd><p>matrix-matrix product
+        </p>
+</dd>
+<dt class="dlterm"><tt>sm</tt></dt>
+
+<dd><p>solving a system of linear equations with
+          matrix-matrix operations
+        </p>
+</dd>
+<dt class="dlterm"><tt>rk</tt></dt>
+
+<dd><p>rank-<var>k</var> update of a matrix
+        </p>
+</dd>
+<dt class="dlterm"><tt>r2k</tt></dt>
+
+<dd><p>rank-2<var>k</var> update of a matrix.
+        </p>
+</dd>
+</dl>
+<p>The examples below show how to interpret PBLAS routine
+    names:
+  </p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>pddot</tt></p></td>
+
+<td valign="top" class="noborder"><p><tt>&lt;p&gt;
+            &lt;d&gt; &lt;dot&gt;</tt>: double-precision real distributed vector-vector dot
+          product
+        </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>pcdotc</tt></p></td>
+
+<td valign="top" class="noborder"><p><tt>&lt;p&gt;
+            &lt;c&gt; &lt;dot&gt; &lt;c&gt;</tt>: complex distributed vector-vector dot
+          product, conjugated
+        </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>pscasum</tt></p></td>
+
+<td valign="top" class="noborder"><p><tt>&lt;p&gt;
+            &lt;sc&gt; &lt;asum&gt;</tt>: sum of magnitudes of distributed vector elements,
+          single precision real output and single precision complex input
+        </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>pcdotu</tt></p></td>
+
+<td valign="top" class="noborder"><p><tt>&lt;p&gt;
+            &lt;c&gt; &lt;dot&gt; &lt;u&gt;</tt>: distributed vector-vector dot product,
+          unconjugated, complex
+        </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>psgemv</tt></p></td>
+
+<td valign="top" class="noborder"><p><tt>&lt;p&gt;
+            &lt;s&gt; &lt;ge&gt; &lt;mv&gt;</tt>: distributed matrix-vector product,
+          general matrix, single precision
+        </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>pztrmm</tt></p></td>
+
+<td valign="top" class="noborder"><p><tt>&lt;p&gt;
+            &lt;z&gt; &lt;tr&gt; &lt;mm&gt;</tt>: distributed matrix-matrix product,
+          triangular matrix, double-precision complex.
+        </p>
+</td>
+</tr></table><p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1743738e323"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1743738e323 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-6A825383-D03C-4DFD-A0DB-A86ADC479BDB.html">PBLAS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

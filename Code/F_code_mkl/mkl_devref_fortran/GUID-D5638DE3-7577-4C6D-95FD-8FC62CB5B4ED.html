@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Reproducibility Conditions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-48D42214-B574-4DE9-BC8A-0F2A80C12D0B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0F5F874C-6EE9-4E26-B3E1-CB5A11B3FDA7.html#GUID-0F5F874C-6EE9-4E26-B3E1-CB5A11B3FDA7"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-686E0773-8277-4261-B1C1-193B40303090.html#GUID-686E0773-8277-4261-B1C1-193B40303090"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D5638DE3-7577-4C6D-95FD-8FC62CB5B4ED"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Reproducibility Conditions</title>
+
+</head>
+<body id="GUID-D5638DE3-7577-4C6D-95FD-8FC62CB5B4ED">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Reproducibility Conditions</h1>
+<div><div class="section" id="GUID-2A73F6B1-6013-411A-B810-AB4718BA9974"><p>To get reproducible results from run to run, ensure that the number of threads is fixed and constant. Specifically: 
+      </p>
+<ul id="d334188e27"><li>If you are running your program with OpenMP* parallelization on different processors, explicitly specify the number of threads. 
+        </li>
+<li>To ensure that your application has deterministic behavior with OpenMP* parallelization and does not adjust the number of threads dynamically at run time, set 
+          <span class="keyword">MKL_DYNAMIC</span> and 
+          <span class="keyword">OMP_DYNAMIC</span> to FALSE. This is especially needed if you are running your program on different systems. 
+        </li>
+<li> If you are running your program with the Intel&reg; Threading Building Blocks parallelization, numerical reproducibility is not guaranteed. 
+        </li>
+</ul>
+</div>
+<div class="section" id="STRICT_CNR_MODE"><h2 class="sectiontitle">Strict CNR Mode</h2><p>In strict CNR mode, Intel&reg; oneAPI Math Kernel Library provides bitwise reproducible results for a limited set of functions and code branches even when the number of threads changes. These routines and branches support strict CNR mode (64-bit libraries only):</p>
+<p><ul id="GUID-97B0D725-B2D7-4677-9F78-7AB5E2133941"><li><a href="https://software.intel.com/en-us/mkl-developer-reference-fortran-gemm" target="_blank"><span class="option">?gemm</span></a>, 
+          <a href="https://software.intel.com/en-us/mkl-developer-reference-fortran-symm" target="_blank"><span class="option">?symm</span></a>, 
+          <a href="https://software.intel.com/en-us/mkl-developer-reference-fortran-hemm" target="_blank"><span class="option">?hemm</span></a>, 
+          <a href="https://software.intel.com/en-us/mkl-developer-reference-fortran-trsm" target="_blank"><span class="option">?trsm</span></a> and their CBLAS equivalents (<a href="https://software.intel.com/en-us/mkl-developer-reference-c-cblas-gemm" target="_blank"><span class="option">cblas_?gemm</span></a>, 
+          <a href="https://software.intel.com/en-us/mkl-developer-reference-c-cblas-symm" target="_blank"><span class="option">cblas_?symm</span></a>, 
+          <a href="https://software.intel.com/en-us/mkl-developer-reference-c-cblas-hemm" target="_blank"><span class="option">cblas_?hemm</span></a>, and 
+          <a href="https://software.intel.com/en-us/mkl-developer-reference-c-cblas-trsm" target="_blank"><span class="option">cblas_?trsm</span></a>). 
+        </li>
+<li> Intel&reg; Advanced Vector Extensions 2 (Intel&reg; AVX2) or Intel&reg; Advanced Vector Extensions 512 (Intel&reg; AVX-512). 
+        </li>
+</ul>
+</p>
+<p>When using other routines or CNR branches, Intel&reg; oneAPI Math Kernel Library operates in standard (non-strict) CNR mode, subject to the restrictions described above. Enabling strict CNR mode can reduce performance.</p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <ul id="d334188e108"><li><p>As usual, you should align your data, even in CNR mode, to obtain the best possible performance. While CNR mode also fully supports unaligned input and output data, the use of it might reduce the performance of some 
+            oneAPI Math Kernel Library functions on earlier Intel processors. 
+            To ensure proper alignment of arrays, allocate memory for them using 
+      <span class="option">mkl_malloc</span>/<span class="option">mkl_calloc</span>. 
+      </p>
+</li>
+<li><p>Conditional Numerical Reproducibility does not ensure that bitwise-identical NaN values are generated when the input data contains NaN values. 
+        </p>
+</li>
+<li><p>If dynamic memory allocation fails on one run but succeeds on another run, you may fail to get reproducible results between these two runs. 
+        </p>
+</li>
+</ul>
+</div>
+<p id="P_CF_12869800235462">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1590972e118"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1590972e118 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-48D42214-B574-4DE9-BC8A-0F2A80C12D0B.html">Conditional Numerical Reproducibility Control</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-0F5F874C-6EE9-4E26-B3E1-CB5A11B3FDA7.html#GUID-0F5F874C-6EE9-4E26-B3E1-CB5A11B3FDA7"><span class="option">mkl_malloc</span></a> </div>
+<div><a href="GUID-686E0773-8277-4261-B1C1-193B40303090.html#GUID-686E0773-8277-4261-B1C1-193B40303090"><span class="option">mkl_calloc</span></a> </div></div></div>
+</body>
+</html>

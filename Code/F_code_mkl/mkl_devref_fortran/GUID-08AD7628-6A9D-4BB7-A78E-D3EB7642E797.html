@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?sum1"/>
+<meta name="abstract" content="Forms the 1-norm of a complex vector similar to Level 1 PBLAS p?asum, but using the true absolute value."/>
+<meta name="description" content="Forms the 1-norm of a complex vector similar to Level 1 PBLAS p?asum, but using the true absolute value."/>
+<meta name="DC.subject" content="p?sum1, ScaLAPACK routines, auxiliary routines, complex vector, 1-norm using true absolute value, ScaLAPACK"/>
+<meta name="keywords" content="p?sum1, ScaLAPACK routines, auxiliary routines, complex vector, 1-norm using true absolute value, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-08AD7628-6A9D-4BB7-A78E-D3EB7642E797"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?sum1</title>
+
+</head>
+<body id="GUID-08AD7628-6A9D-4BB7-A78E-D3EB7642E797">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?sum1</span></h1>
+<!--Forms the 1-norm of a complex vector similar to Level 1 PBLAS  p?asum , but using the true absolute value.--><div><p class="shortdesc">Forms the 1-norm of a complex vector similar to Level 1 PBLAS <span class="option">p?asum</span>, but using the true absolute value.</p>
+<div class="section" id="GUID-74A6F021-B60A-4878-B608-A0D768753F9B"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pscsum1</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">asum</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdzsum1</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">asum</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-00003206-B124-47B3-983E-5FB85AB5CAEB"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?sum1</span><span>routine </span>returns the sum of absolute values of a complex distributed vector sub(<var>x</var>) in <var>asum</var>, where sub(<var>x</var>) denotes <samp class="codeph"><var>X</var>(<var>ix</var>:<var>ix</var>+<var>n</var>-1, <var>jx</var>:<var>jx</var>)</samp>, if <samp class="codeph"><var>incx</var> = 1</samp>, <samp class="codeph"><var>X</var>(<var>ix</var>:<var>ix</var>, <samp class="codeph"><var>jx</var>:<var>jx</var>+<var>n</var>-1)</samp></samp>, if <samp class="codeph"><var>incx</var> = <var>m_x</var></samp>.</p>
+<p>Based on <span class="option">p?asum</span> from the Level 1 PBLAS. The change is to use the 'genuine' absolute value.</p>
+</div>
+<div class="section" id="GUID-8FF4FBDA-A927-4B3A-9D34-5E2B54BDD091"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-78ACB9CE-BBB3-457A-AF86-C38A57E764BE"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)<span> pointer to <span class="keyword">INTEGER</span></span>. The number of components of the distributed vector sub(<var>x</var>). <var>n </var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local ) <span><span class="keyword">COMPLEX</span> for <span class="option">pscsum1</span></span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pdzsum1</span>. </p>
+<p>Pointer into the local memory to an array of size <span>(<var>lld_x</var>, <var>LOCc</var>(<span class="parmname">jx</span>+<span class="parmname">n</span>-1))</span>. This array contains the local pieces of the  distributed vector  sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.</span>The row index in the global matrix <var>X</var> indicating the first row of sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The column index in the global matrix <var>X</var> indicating the  first column of sub(<var>X</var>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>Array of size <var>dlen_</var>=9. The array descriptor for the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.</span>The global increment for the elements of <var>X</var>. Only two values of <span class="parmname">incx</span> are supported in this version, namely 1 and <var>m_x</var>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3F26628C-B4D5-4A5C-8A3C-C06C4A784200"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-82739DDE-35AE-441D-9973-C5DB6DC150CD"><dt class="dlterm"><span class="parmname">asum</span></dt>
+
+<dd><p>(local) </p>
+<p><span>Pointer to <span class="keyword">REAL</span>. </span>The sum of absolute values of the distributed vector sub(<var>X</var>) only in its scope.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

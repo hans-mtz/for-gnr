@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?tfsm"/>
+<meta name="abstract" content="Solves a matrix equation (one operand is a triangular matrix in RFP format)."/>
+<meta name="description" content="Solves a matrix equation (one operand is a triangular matrix in RFP format)."/>
+<meta name="DC.subject" content="?tfsm, BLAS Level 3 routines, matrix equation, AX = B"/>
+<meta name="keywords" content="?tfsm, BLAS Level 3 routines, matrix equation, AX = B"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2CB6BB96-5197-451E-A572-FB3133764957"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?tfsm</title>
+
+</head>
+<body id="GUID-2CB6BB96-5197-451E-A572-FB3133764957">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?tfsm</span></h1>
+<!--Solves a matrix equation (one operand is a triangular matrix in RFP format).--><div><p class="shortdesc">Solves a matrix equation (one operand is a triangular matrix in RFP format).</p>
+<div class="section" id="GUID-63A4F84F-58EB-4353-8C48-41E112098F9F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call stfsm</span><span class="delim">(</span><span class="var">transr</span><span class="sep">, </span><span class="var">side</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtfsm</span><span class="delim">(</span><span class="var">transr</span><span class="sep">, </span><span class="var">side</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctfsm</span><span class="delim">(</span><span class="var">transr</span><span class="sep">, </span><span class="var">side</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztfsm</span><span class="delim">(</span><span class="var">transr</span><span class="sep">, </span><span class="var">side</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-5AB13D4D-9FD6-4323-84CE-FF9043240013"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-ED81D077-28BA-4A85-BA97-3A89409FC345"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?tfsm</span> routines solve one of the following matrix equations: </p>
+<p><pre>op(<var>A</var>)*<var>X</var> = <var>alpha</var>*<var>B</var>,</pre></p>
+<p>or</p>
+<p><pre><var>X</var>*op(<var>A</var>) = <var>alpha</var>*<var>B</var>,</pre></p>
+<p>where:</p>
+<p><var>alpha</var> is a scalar,</p>
+<p><var>X</var> and <var>B</var> are <var>m</var>-by-<var>n</var> matrices,</p>
+<p><var>A</var> is a unit, or non-unit, upper or lower triangular matrix in <a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">rectangular full packed
+
+(RFP) format</a>.</p>
+<p><samp class="codeph">op(<var>A</var>)</samp> can be one of the following:</p>
+<p><ul id="GUID-3366603A-D22F-4CB3-AD27-221170A63BD5"><li><p><samp class="codeph">op(<var>A</var>) = <var>A</var></samp> or <samp class="codeph">op(<var>A</var>) = <var>A</var><sup class="power"><var>T</var></sup></samp> for real flavors</p>
+</li>
+<li><p><samp class="codeph">op(<var>A</var>) = <var>A</var></samp> or <samp class="codeph">op(<var>A</var>) = <var>A</var><sup class="power"><var>H</var></sup></samp> for complex flavors</p>
+</li>
+</ul>
+</p>
+<p>The matrix <var>B</var>  is overwritten by the solution matrix <var>X</var>.</p>
+</div>
+<div class="section" id="GUID-DEDACC53-BA24-43CE-8F7A-1F168820499D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7302D6D4-A661-4D4F-8CFD-A9A140C770E7"><dt class="dlterm"><span class="parmname">transr</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>if <samp class="codeph"><span class="parmname">transr</span> = 'N'</samp> or <samp class="codeph">'n'</samp>, the normal form of RFP <var>A</var> is stored;</p>
+<p>if <samp class="codeph"><span class="parmname">transr </span>= 'T'</samp> or <samp class="codeph">'t'</samp>, the transpose form of RFP <var>A</var> is stored;</p>
+<p>if <samp class="codeph"><span class="parmname">transr </span>= 'C'</samp> or <samp class="codeph">'c'</samp>, the conjugate-transpose form of RFP <var>A</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether <samp class="codeph">op(<var>A</var>)</samp> appears on the left or right of <var>X</var> in the equation:</p>
+<p>if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, then <samp class="codeph">op(<var>A</var>)*<var>X</var> = <var>alpha</var>*<var>B</var></samp>;</p>
+<p>if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp> or <span class="keyword">'r'</span>, then  <samp class="codeph"><var> X</var>*op(<var>A</var>) = <var>alpha</var>*<var>B</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the RFP matrix <var>A</var> is upper or lower triangular:</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, then the matrix is upper  triangular;</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, then the matrix is low  triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies the form of <samp class="codeph">op(<var>A</var>)</samp> used in the matrix multiplication:</p>
+<p>if <samp class="codeph"><span class="parmname">trans</span> = 'N'</samp> or <samp class="codeph">'n'</samp>, then <samp class="codeph">op(<var>A</var>) = <var>A</var></samp>;</p>
+<p>if <samp class="codeph"><span class="parmname">trans </span>= 'T'</samp> or <samp class="codeph">'t'</samp>, then <samp class="codeph">op(<var>A</var>) = <var>A</var>'</samp>;</p>
+<p>if <samp class="codeph"><span class="parmname">trans</span> = 'C'</samp> or <samp class="codeph">'c'</samp>, then <samp class="codeph">op(<var>A</var>) = conjg(<var>A</var>')</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the RFP matrix <var>A</var> is unit triangular:</p>
+<p>if <samp class="codeph"><var>diag</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>  then the matrix is unit triangular;</p>
+<p>if <samp class="codeph"><var>diag</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span>, then the matrix is not unit triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of rows of <var>B</var>. The value of <var>m</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of columns of <var>B</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stfsm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtfsm</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctfsm</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztfsm</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+<p>When <var>alpha</var> is zero, then <var>a</var> is not referenced and <var>b</var> need not be set before entry.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stfsm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtfsm</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctfsm</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztfsm</span></p>
+<p>Array, size <samp class="codeph"><samp class="codeph">(<span class="parmname">n</span>*(<span class="parmname">n</span>+1)/2)</samp></samp>. Contains the matrix <var>A</var> in <a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">RFP format</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stfsm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtfsm</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctfsm</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztfsm</span></p>
+<p>Array, size <samp class="codeph">(1, <var>ldb</var>*<var>n</var>)</samp></p>
+<p><span> Before entry, the leading <var>m</var>-by-<var>n</var> part of the array <var>b</var> must contain the right-hand side matrix <var>B</var></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>b</var> as declared in the calling (sub)program. The value of <var>ldb</var> must be at least <samp class="codeph">max(1, <var>m</var></samp>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-27DFC8B6-C58B-4E61-906B-8098C89420BA"><h2 class="sectiontitle">Output  Parameters</h2><dl id="GUID-57C7E75D-AFF7-4D42-9313-33AFE1DA6530"><dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>Overwritten by the solution matrix  <var>X</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

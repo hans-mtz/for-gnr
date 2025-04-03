@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLAS-like Extensions"/>
+<meta name="DC.subject" content="Transposition and General Memory Movement Routines, BLAS-like extensions"/>
+<meta name="keywords" content="Transposition and General Memory Movement Routines, BLAS-like extensions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-707FB65C-D0D9-418A-B22E-CBDEFB163C02.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-032F3F14-0681-42F1-BD97-E81AAEDFF312.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D2F71377-B47A-4BA9-B94E-4962AF1956D1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9312C7-B3FD-42A3-A501-C7C3C1B0ACC0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2926A791-7E01-45F7-A457-A545E8DA3F2F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DC94778C-BE75-4E11-8B61-195F439CC574.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C31C9585-6B7E-4EF3-8C70-01BDA0A54B77.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FA59BFC-ACEE-4736-8B27-2AA76C7A6AD8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D797E8FA-B0CE-417C-98F1-896CDFB4FC35.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AB5E3057-0824-46C7-A61A-C9E3C9DEE5AA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C438A81E-F7FC-42CC-8CEF-F492B0A1F182.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D352DB8F-BC76-4A5E-A7CA-5B4CAAA90CA5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-41ACC32C-DB4C-478D-8CC8-640BF7D34A2B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B4584828-531D-4385-8F63-22C760C9B4B4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2C5C30E9-2B33-4F4E-AD5D-94398CA57FAD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D6A3F880-70E5-4459-B4CD-DD664A821E7C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BFE70E82-A78D-4544-8AD8-2381AF7428CD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CC62EC5B-F57F-4381-8781-16BCB783FE31.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-16188573-1301-4078-8837-95670AF6FF48.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-964535E4-74AC-4612-81D3-11D6F5B89CBA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F026EAA4-1AD8-4226-B4D2-0DD2A617C73C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-99570BC2-4F4E-4211-A06F-40BAE927EB12.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-25EA8F03-1E87-4A6B-BD1D-0724ED18BA45.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9CB32849-1D3D-4F7A-94DA-AA4D5C4E95CA.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-723C9818-01C2-4825-912B-343F445DDB96"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLAS-like Extensions</title>
+
+</head>
+<body class="no-rel-links" id="GUID-723C9818-01C2-4825-912B-343F445DDB96">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLAS-like Extensions</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library provides C and Fortran routines to extend the functionality of the BLAS routines. These include routines to compute vector products, matrix-vector products, and matrix-matrix products. 
+    </p>
+<p>Intel&reg; oneAPI Math Kernel Library also provides routines to perform certain data manipulation, including matrix in-place and out-of-place transposition operations combined with simple matrix arithmetic operations. Transposition operations are Copy As Is, Conjugate transpose, Transpose, and Conjugate. Each routine adds the possibility of scaling during the transposition operation by giving some 
+      <span class="parmname">alpha</span> and/or 
+      <span class="parmname">beta</span> parameters. Each routine supports both row-major orderings and column-major orderings. 
+    </p>
+<p><a href="#TBL2-10">Table 
+        <span>“BLAS-like Extensions”</span></a> lists these routines. 
+    </p>
+<p>The 
+      <samp class="codeph">&lt;<span class="parmname">?</span>&gt;</samp> symbol in the routine short names is a precision prefix that indicates the data type: 
+    </p>
+<dl id="GUID-BFC04A24-37F1-48C9-8E03-2F60564D46D5"><dt class="dlterm"><b class="parmname">:
+                                            </b></dt><dd><p> </p></dd><dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">DOUBLE COMPLEX</span></p>
+</dd>
+</dl>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL2-10" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"> BLAS-like Extensions</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="24%" id="d827579e95"><p>Routine 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="20%" id="d827579e98"><p>Data Types 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="56.00000000000001%" id="d827579e101"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-032F3F14-0681-42F1-BD97-E81AAEDFF312.html#GUID-032F3F14-0681-42F1-BD97-E81AAEDFF312"><span class="option">?axpy_batch</span></a></p>
+<p><a href="GUID-D2F71377-B47A-4BA9-B94E-4962AF1956D1.html"><span class="option">?axpy_batch_strided</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Computes groups of vector-scalar products added to a vector. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-AF9312C7-B3FD-42A3-A501-C7C3C1B0ACC0.html#GUID-AF9312C7-B3FD-42A3-A501-C7C3C1B0ACC0"><span class="option">?axpby</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Scales two vectors, adds them to one another and stores result in the vector (routines). 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-2926A791-7E01-45F7-A457-A545E8DA3F2F.html#GUID-2926A791-7E01-45F7-A457-A545E8DA3F2F"><span class="option">?gem2vu</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Two matrix-vector products using a general matrix, real data. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-DC94778C-BE75-4E11-8B61-195F439CC574.html#GUID-DC94778C-BE75-4E11-8B61-195F439CC574"><span class="option">?gem2vc</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Two matrix-vector products using a general matrix, complex data. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-C31C9585-6B7E-4EF3-8C70-01BDA0A54B77.html"><span class="option">?gemmt</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p> Computes a matrix-matrix product with general matrices but updates only the upper or lower triangular part of the result matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-0FA59BFC-ACEE-4736-8B27-2AA76C7A6AD8.html#GUID-0FA59BFC-ACEE-4736-8B27-2AA76C7A6AD8"><span class="option">?gemm3m</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Computes a scalar-matrix-matrix product using matrix multiplications and adds the result to a scalar-matrix product. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-D797E8FA-B0CE-417C-98F1-896CDFB4FC35.html#GUID-D797E8FA-B0CE-417C-98F1-896CDFB4FC35"><span class="option">?gemm_batch</span></a></p>
+<p><a href="GUID-AB5E3057-0824-46C7-A61A-C9E3C9DEE5AA.html"><span class="option">?gemm_batch_strided</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Computes scalar-matrix-matrix products and adds the results to scalar matrix products for groups of general matrices.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-C438A81E-F7FC-42CC-8CEF-F492B0A1F182.html#GUID-C438A81E-F7FC-42CC-8CEF-F492B0A1F182"><span class="option">?gemm3m_batch</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Computes a scalar-matrix-matrix product using matrix multiplications and adds the result to a scalar-matrix product. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-D352DB8F-BC76-4A5E-A7CA-5B4CAAA90CA5.html#GUID-D352DB8F-BC76-4A5E-A7CA-5B4CAAA90CA5"><span class="option">?trsm_batch</span></a></p>
+<p><a href="GUID-41ACC32C-DB4C-478D-8CC8-640BF7D34A2B.html"><span class="option">?trsm_batch_strided</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><span id="TRSM_BATCH">Solves a triangular matrix equation for a group of matrices.</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-B4584828-531D-4385-8F63-22C760C9B4B4.html#GUID-B4584828-531D-4385-8F63-22C760C9B4B4"><span class="option">mkl_?imatcopy</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Performs scaling and in-place transposition/copying of matrices. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-2C5C30E9-2B33-4F4E-AD5D-94398CA57FAD.html#GUID-2C5C30E9-2B33-4F4E-AD5D-94398CA57FAD"><span class="option">mkl_?omatcopy</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Performs scaling and out-of-place transposition/copying of matrices. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-D6A3F880-70E5-4459-B4CD-DD664A821E7C.html#GUID-D6A3F880-70E5-4459-B4CD-DD664A821E7C"><span class="option">mkl_?omatcopy2</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Performs two-strided scaling and out-of-place transposition/copying of matrices. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-BFE70E82-A78D-4544-8AD8-2381AF7428CD.html#GUID-BFE70E82-A78D-4544-8AD8-2381AF7428CD"><span class="option">mkl_?omatadd</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d, c, z 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Performs scaling and sum of two matrices including their out-of-place transposition/copying. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><a href="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4.html"><span class="option">?gemm_pack_get_size</span></a></td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Returns the number of bytes required to store the packed matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><a href="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4.html"><span class="option">gemm_*_pack_get_size</span></a></td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>Integer, 
+             
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p>Returns the number of bytes required to store the packed matrix. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-CC62EC5B-F57F-4381-8781-16BCB783FE31.html#GUID-CC62EC5B-F57F-4381-8781-16BCB783FE31"><span class="option">?gemm_pack</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p><span id="SHORTDESC">Performs scaling and packing of the matrix into the previously allocated buffer.</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><a href="GUID-16188573-1301-4078-8837-95670AF6FF48.html"><span class="option">gemm_*_pack</span></a></td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>Integer, 
+             
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p><span>Pack the matrix into the buffer allocated previously.</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8.html#GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8"><span class="option">?gemm_compute</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>s, d 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p><span>Computes a matrix-matrix product with general matrices where one or both input matrices are stored in a packed data structure and adds the result to a scalar-matrix product.</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><a href="GUID-964535E4-74AC-4612-81D3-11D6F5B89CBA.html"><span class="option">gemm_*_compute</span></a></td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>integer 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p><span> Computes a matrix-matrix product with general integer matrices where one or both input matrices are stored in a packed data structure and adds the result to a scalar-matrix product.</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24%" headers="d827579e95 "><p><a href="GUID-F026EAA4-1AD8-4226-B4D2-0DD2A617C73C.html#GUID-F026EAA4-1AD8-4226-B4D2-0DD2A617C73C"><span class="option">gemm_*</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d827579e98 "><p>integer 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d827579e101 "><p><span> Computes a matrix-matrix product with general integer matrices.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

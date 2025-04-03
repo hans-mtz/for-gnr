@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_PACKED_FORMAT"/>
+<meta name="abstract" content=""/>
+<meta name="description" content=""/>
+<meta name="DC.subject" content="Packed formats"/>
+<meta name="keywords" content="Packed formats"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F65C2255-963E-429F-9E74-99DFBCE1526F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_PACKED_FORMAT</title>
+
+</head>
+<body id="GUID-F65C2255-963E-429F-9E74-99DFBCE1526F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_PACKED_FORMAT</h1>
+<!----><div><p class="shortdesc"/>
+<p>The result of the forward transform of real data is a conjugate-even sequence. Due to the symmetry property, only a part of the complex-valued sequence is stored in memory. The 
+      <span class="keyword">DFTI_PACKED_FORMAT</span> configuration parameter defines how the data is packed. Possible values of 
+      <span class="keyword">DFTI_PACKED_FORMAT</span> depend on the values of the 
+      <a href="GUID-F4B8BEC6-70DD-4AB9-BBBB-DE95EBB67FA8.html#CONJUGATE_EVEN_STORAGE"><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE</span></a> configuration parameter: 
+    </p>
+<ul id="GUID-201D3D62-113E-4FBE-92C2-EF5E4701669A"><li><p><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE</span>=<span class="keyword">DFTI_COMPLEX_COMPLEX</span>. 
+        </p>
+<p>The only value of 
+          <span class="keyword">DFTI_PACKED_FORMAT</span> can be 
+          <span class="keyword">DFTI_CCE_FORMAT</span>. You can use this value with transforms of any dimension. For a description of the corresponding packed format, see 
+          <a href="GUID-F4B8BEC6-70DD-4AB9-BBBB-DE95EBB67FA8.html#CONJUGATE_EVEN_STORAGE"><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE</span></a>. 
+        </p>
+</li>
+<li><p><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE</span>=<span class="keyword">DFTI_COMPLEX_REAL</span>. 
+        </p>
+<p><span class="keyword">DFTI_PACKED_FORMAT</span> can be 
+          <a href="#CCS_1"><span class="keyword">DFTI_CCS_FORMAT</span></a>, 
+          <a href="#PACK_1"><span class="keyword">DFTI_PACK_FORMAT</span></a>, or 
+          <a href="#PERM_1"><span class="keyword">DFTI_PERM_FORMAT</span></a>. You can use these values with one- and two-dimensional transforms only. The corresponding packed formats are described below. 
+        </p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> Although 
+        <span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE=DFTI_COMPLEX_REAL</span> is the default setting for the 
+        <span class="keyword">DFTI_REAL</span> forward domain, avoid using this storage scheme because it is supported only for one- and two-dimensional transforms, is incompatible with storage schemes of other FFT libraries, and will be deprecated in future. 
+      </p>
+</div>
+<div class="section" id="CCS_1"><h2 class="sectiontitle">DFTI_CCS_FORMAT for One-dimensional Transforms</h2><p>The following figure illustrates the storage of a one-dimensional (1D) size-<var>N</var> conjugate-even sequence in a real array for the CCS, PACK, and PERM packed formats. The CCS format requires an array of size 
+        <var>N</var>+2, while the other formats require an array of size 
+        <var>N</var>. Zero-based indexing is used. 
+        <div class="fignone" id="PACKED_FORMATS_1D"><span class="figcap">Storage of a 1D Size-<var>N</var> Conjugate-even Sequence in a Real Array</span><br/><img id="IMAGE_9FB4C49A626F4536BFC0B7C51FCDE9CB" src="GUID-305021C6-2C18-49F1-A521-7F6A3611BFEC-low.jpg" width="618" height="247"/><br/></div>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> For storage of a one-dimensional conjugate-even sequence in a real array, CCS is in the same format as CCE. 
+      </div>
+<p> The real and imaginary parts of the complex-valued conjugate-even sequence 
+        <var>Z</var><sub><var>k</var></sub> are located in a real-valued array 
+        <samp class="codeph">AC</samp> as illustrated by figure 
+        <a href="#PACKED_FORMATS_1D">"Storage of a 1D Size-<var>N</var> Conjugate-even Sequence in a Real Array" 
+        </a> and can be used to reconstruct the whole conjugate-even sequence as follows: 
+      </p>
+<pre>real :: AR(N), AC(N+2)
+...
+status = DftiSetValue( desc, DFTI_PACKED_FORMAT, DFTI_CCS_FORMAT )
+...
+! on input:  R{k} = AR(k)
+status = DftiComputeForward( desc, AR, AC )  ! real-to-complex FFT
+! on output:
+! for k=1 … N/2+1: Z{k} = cmplx( AC(1 + (2*(k-1)+0)),
+!                                AC(1 + (2*(k-1)+1)) )
+! for k=N/2+2 … N: Z{k} = cmplx( AC(1 + (2*mod(N-k+1,N)+0)),
+!                               -AC(1 + (2*mod(N-k+1,N)+1)))
+</pre></div>
+<div class="section" id="CCS_2"><h2 class="sectiontitle">DFTI_CCS_FORMAT for Two-dimensional Transforms</h2><div class="Note"><h3 class="NoteTipHead">Note</h3> The storage pf a two-dimensional (2D) sequence in a packed format is deprecated.
+      </div>
+<p>The following figure illustrates the storage of a two-dimensional (2D) 
+        <var>M</var>-by-<var>N</var> conjugate-even sequence in a real array for the CCS packed format. This format requires an array of size (<var>M</var>+2)-by-(<var>N</var>+2). Row-major layout and zero-based indexing are used. Different colors mark logically separate parts of the result. "n/u" means "not used". 
+      </p>
+<div class="fignone" id="PACKED_FORMATS_CCS"><span class="figcap">Storage of a 2D 
+          <var>M</var>-by-<var>N</var> Conjugate-even Sequence in a Real Array for the CCS Format</span><br/><img id="IMAGE_C7B81A78BF694689831B2B2DFC6A83FA" src="GUID-B123FA08-2C21-4427-86BA-320EB3130F72-low.jpg" width="701" height="713"/><br/></div>
+<br/><img id="IMAGE_7B81F26C0B8045BFA8A775E7579D7CCA" src="GUID-EC3E37E4-DB76-45FD-8016-936C9EF9B02B-low.jpg" width="715" height="802"/><br/><p>The real and imaginary parts of the complex-valued conjugate-even sequence 
+        <var>Z</var><sub><var>k1,k2 
+          </var></sub> are located in a real-valued array 
+        <samp class="codeph">AC</samp> as illustrated by figure 
+        <a href="#PACKED_FORMATS_CCS">"Storage of a 2D M-by-N Conjugate-even Sequence in a Real Array for the CCS Format"</a> and can be used to reconstruct the whole sequence as follows: 
+      </p>
+<pre>real :: AR(N1,N2), AC(N1+2,N2+2)
+...
+status = DftiSetValue( desc, DFTI_PACKED_FORMAT, DFTI_CCS_FORMAT )
+...
+! on input:  R{k1,k2} = AR(k1,k2)
+status = DftiComputeForward( desc, AR(:,1) AC(:,1) )  ! real-to-complex FFT
+! on output: Z{k1,k2} = cmplx( re, im ), where
+!  if (k2 == 1) then
+!    if (k1 &lt;= N1/2+1) then
+!      re =  AC(1+2*(k1-1)+0, 1)
+!      im =  AC(1+2*(k1-1)+1, 1)
+!    else
+!      re =  AC(1+2*(N1-k1+1)+0, 1)
+!      im = -AC(1+2*(N1-k1+1)+1, 1)
+!    end if
+!  else if (k1 == 1) then
+!    if (k2 &lt;= N2/2+1) then
+!      re =  AC(1, 1+2*(k2-1)+0)
+!      im =  AC(1, 1+2*(k2-1)+1)
+!    else
+!      re =  AC(1, 1+2*(N2-k2+1)+0)
+!      im = -AC(1, 1+2*(N2-k2+1)+1)
+!    end if
+!  else if (k1-1 == N1-k1+1) then
+!    if (k2 &lt;= N2/2+1) then
+!      re =  AC(N1+1, 1+2*(k2-1)+0)
+!      im =  AC(N1+1, 1+2*(k2-1)+1)
+!    else
+!      re =  AC(N1+1, 1+2*(N2-k2+1)+0)
+!      im = -AC(N1+1, 1+2*(N2-k2+1)+1)
+!    end if
+!  else if (k1 &lt;= N1/2+1) then
+!    re =  AC(1+2*(k1-1)+0, k2)
+!    im =  AC(1+2*(k1-1)+1, k2)
+!  else
+!    re =  AC(1+2*(N1-k1+1)+0, 1+N2-k2+1)
+!    im = -AC(1+2*(N1-k1+1)+1, 1+N2-k2+1)
+!  end if
+</pre></div>
+<div class="section" id="PACK_1"><h2 class="sectiontitle">DFTI_PACK_FORMAT for One-dimensional Transforms</h2><p> The real and imaginary parts of the complex-valued conjugate-even sequence 
+        <var>Z</var><sub><var>k</var></sub> are located in a real-valued array 
+        <samp class="codeph">AC</samp> as illustrated by figure 
+        <a href="#PACKED_FORMATS_1D">"Storage of a 1D Size-<var>N</var> Conjugate-even Sequence in a Real Array" 
+        </a> and can be used to reconstruct the whole conjugate-even sequence as follows: 
+      </p>
+<pre>real :: AR(N), AC(N)
+...
+status = DftiSetValue( desc, DFTI_PACKED_FORMAT, DFTI_PACK_FORMAT )
+...
+! on input:  R{k} = AR(k)
+status = DftiComputeForward( desc, AR, AC )  ! real-to-complex FFT
+! on output: Z{k} = cmplx( re, im ), where
+!  if (k == 1) then
+!    re =  AC(1)
+!    im =  0
+!  else if (k-1 == N-k+1) then
+!    re =  AC(2*(k-1))
+!    im =  0
+!  else if (k &lt;= N/2+1) then
+!    re =  AC(2*(k-1)+0)
+!    im =  AC(2*(k-1)+1)
+!  else
+!    re =  AC(2*(N-k+1)+0)
+!    im = -AC(2*(N-k+1)+1)
+!  end if
+
+</pre></div>
+<div class="section" id="SECTION_AA761E49933A4988B88080DA876535C0"><h2 class="sectiontitle"> DFTI_PACK_FORMAT for Two-dimensional Transforms</h2><p>The following figure illustrates the storage of a 2D 
+        <var>M</var>-by-<var>N</var> conjugate-even sequence in a real array for the PACK packed format. This format requires an array of size 
+        <var>M</var>-by-<var>N</var>. Row-major layout and zero-based indexing are used. Different colors mark logically separate parts of the result. 
+      </p>
+<div class="fignone" id="PACKED_FORMATS_PACK"><span class="figcap">Storage of a 2D 
+          <var>M</var>-by-<var>N</var> Conjugate-even Sequence in a Real Array for the PACK Format</span><br/><img id="IMAGE_1BEB6BF2593B4A209C943F73F884C6A0" src="GUID-98392AD5-D9BA-4BDD-BF4E-9C8047E0DCB2-low.jpg" width="793" height="440"/><br/></div>
+<p> The real and imaginary parts of the complex-valued conjugate-even sequence 
+        <var>Z</var><sub><var>k1,k2 
+          </var></sub> are located in a real-valued array 
+        <samp class="codeph">AC</samp> as illustrated by figure 
+        <a href="#PACKED_FORMATS_PACK">"Storage of a 2D 
+          <var>M</var>-by-<var>N</var> Conjugate-even Sequence in a Real Array for the PACK Format" 
+        </a> and can be used to reconstruct the whole sequence as follows: 
+      </p>
+<pre>real :: AR(N1,N2), AC(N1,N2)
+...
+status = DftiSetValue( desc, DFTI_PACKED_FORMAT, DFTI_PACK_FORMAT )
+...
+! on input:  R{k1,k2} = AR(k1,k2)
+status = DftiComputeForward( desc, AR(:,1) AC(:,1) )  ! real-to-complex FFT
+! on output: Z{k1,k2} = cmplx( re, im ), where
+!  if (k2 == 1) then
+!    if (k1 == 1) then
+!      re =  AC(1,1)
+!      im =  0
+!    else if (k1-1 == N1-k1+1) then
+!      re =  AC(2*(k1-1),1)
+!      im =  0
+!    else if (k1 &lt;= N1/2+1) then
+!      re =  AC(2*(k1-1)+0,1)
+!      im =  AC(2*(k1-1)+1,1)
+!    else
+!      re =  AC(2*(N1-k1+1)+0,1)
+!      im = -AC(2*(N1-k1+1)+1,1)
+!    end if
+!  else if (k1 == 1) then
+!    if (k2-1 == N2-k2+1) then
+!      re =  AC(1,N2)
+!      im =  0
+!    else if (k2 &lt;= N2/2+1) then
+!      re =  AC(1,2*(k2-1)+0)
+!      im =  AC(1,2*(k2-1)+1)
+!    else
+!      re =  AC(1,2*(N2-k2+1)+0)
+!      im = -AC(1,2*(N2-k2+1)+1)
+!    endif
+!  else if (k1-1 == N1-k1+1) then
+!    if (k2-1 == N2-k2+1) then
+!      re =  AC(N1,N2)
+!      im =  0
+!    else if (k2 &lt;= N2/2+1) then
+!      re =  AC(N1,2*(k2-1)+0)
+!      im =  AC(N1,2*(k2-1)+1)
+!    else
+!      re =  AC(N1,2*(N2-k2+1)+0)
+!      im = -AC(N1,2*(N2-k2+1)+1)
+!    end if
+!  else if (k1 &lt;= N1/2+1) then
+!    re =  AC(2*(k1-1)+0,1+k2-1)
+!    im =  AC(2*(k1-1)+1,1+k2-1)
+!  else
+!    re =  AC(2*(N1-k1+1)+0,1+N2-k2+1)
+!    im = -AC(2*(N1-k1+1)+1,1+N2-k2+1)
+!  end if
+</pre></div>
+<div class="section" id="PERM_1"><h2 class="sectiontitle"> DFTI_PERM_FORMAT for One-dimensional Transforms</h2><p>The real and imaginary parts of the complex-valued conjugate-even sequence Z<sub>k</sub> are located in real-valued array 
+        <samp class="codeph">AC</samp> as illustrated by figure 
+        <a href="#PACKED_FORMATS_1D">"Storage of a 1D Size-<var>N</var> Conjugate-even Sequence in a Real Array"</a> and can be used to reconstruct the whole conjugate-even sequence as follows: 
+      </p>
+<pre>real :: AR(N), AC(N)
+...
+status = DftiSetValue( desc, DFTI_PACKED_FORMAT, DFTI_PERM_FORMAT )
+...
+! on input:  R{k} = AR(k)
+status = DftiComputeForward( desc, AR, AC )  ! real-to-complex FFT
+! on output: Z{k} = cmplx( re, im ), where
+! if (k == 1) then
+!   re =  AC(1)
+!   im =  0
+! else if (k-1 == N-k+1) then
+!   re =  AC(2)
+!   im =  0
+! else if (k &lt;= N/2+1) then
+!   re =  AC(1+2*(k-1)+0-mod(N,2))
+!   im =  AC(1+2*(k-1)+1-mod(N,2))
+! else
+!   re =  AC(1+2*(N-k+1)+0-mod(N,2))
+!   im = -AC(1+2*(N-k+1)+1-mod(N,2))
+! end if
+</pre></div>
+<div class="section" id="SECTION_350EAAEE76EE422FB00085672AF6E4A2"><h2 class="sectiontitle"> DFTI_PERM_FORMAT for Two-dimensional Transforms</h2><p> The following figure illustrates the storage of a 2D 
+        <var>M</var>-by-<var>N</var> conjugate-even sequence in a real array for the PERM packed format. This format requires an array of size 
+        <var>M</var>-by-<var>N</var>. Row-major layout and zero-based indexing are used. Different colors mark logically separate parts of the result. 
+      </p>
+<div class="fignone" id="PACKED_FORMATS_PERM"><span class="figcap">Storage of a 2D 
+          <var>M</var>-by-<var>N</var> Conjugate-Even Sequence in a Real Array for the PERM Format</span><br/><img id="IMAGE_BF0CD3EF6FBD495DA1BEE4947405857C" src="GUID-26B65F49-D6D1-468B-869E-226ABA3E7508-low.jpg" width="791" height="440"/><br/></div>
+<p> The real and imaginary parts of the complex-valued conjugate-even sequence 
+        <var>Z</var><sub><var>k1,k2 
+          </var></sub> are located in real-valued array 
+        <samp class="codeph">AC</samp> as illustrated by figure 
+        <a href="#PACKED_FORMATS_PERM">"Storage of a 2D 
+          <var>M</var>-by-<var>N</var> Conjugate-even Sequence in a Real Array for the PERM Format" 
+        </a> and can be used to reconstruct the whole sequence as follows: 
+      </p>
+<pre>real :: AR(N1,N2), AC(N1,N2)
+...
+status = DftiSetValue( desc, DFTI_PACKED_FORMAT, DFTI_PERM_FORMAT )
+...
+! on input:  R{k1,k2} = AR(k1,k2)
+status = DftiComputeForward( desc, AR(:,1) AC(:,1) )  ! real-to-complex FFT
+! on output: Z{k1,k2} = cmplx( re, im ), where
+!  if (k2 == 1) then
+!    if (k1 == 1) then
+!      re =  AC(1,1)
+!      im =  0
+!    else if (k1-1 == N1-k1+1) then
+!      re =  AC(2,1)
+!      im =  0
+!    else if (k1 &lt;= N1/2+1) then
+!      re =  AC(1+2*(k1-1)+0 - mod(N1,2),1)
+!      im =  AC(1+2*(k1-1)+1 - mod(N1,2),1)
+!    else
+!      re =  AC(1+2*(N1-k1+1)+0 - mod(N1,2),1)
+!      im = -AC(1+2*(N1-k1+1)+1 - mod(N1,2),1)
+!    end if
+!  else if (k1 == 1) then
+!    if (k2-1 == N2-k2+1) then
+!      re =  AC(1,2)
+!      im =  0
+!    else if (k2 &lt;= N2/2+1) then
+!      re =  AC(1,1+2*(k2-1)+0 - mod(N2,2))
+!      im =  AC(1,1+2*(k2-1)+1 - mod(N2,2))
+!    else
+!      re =  AC(1,1+2*(N2-k2+1)+0 - mod(N2,2))
+!      im = -AC(1,1+2*(N2-k2+1)+1 - mod(N2,2))
+!    endif
+!  else if (k1-1 == N1-k1+1) then
+!    if (k2-1 == N2-k2+1) then
+!      re =  AC(2,2)
+!      im =  0
+!    else if (k2 &lt;= N2/2+1) then
+!      re =  AC(2,1+2*(k2-1)+0-mod(N2,2))
+!      im =  AC(2,1+2*(k2-1)+1-mod(N2,2))
+!    else
+!      re =  AC(2,1+2*(N2-k2+1)+0-mod(N2,2))
+!      im = -AC(2,1+2*(N2-k2+1)+1-mod(N2,2))
+!    end if
+!  else if (k1 &lt;= N1/2+1) then
+!    re =  AC(1+2*(k1-1)+0-mod(N1,2),1+k2-1)
+!    im =  AC(1+2*(k1-1)+1-mod(N1,2),1+k2-1)
+!  else
+!    re =  AC(1+2*(N1-k1+1)+0-mod(N1,2),1+N2-k2+1)
+!    im = -AC(1+2*(N1-k1+1)+1-mod(N1,2),1+N2-k2+1)
+!  end if
+</pre></div>
+<p>To better understand packed formats for two-dimensional transforms, see these examples in your Intel&reg; oneAPI Math Kernel Library directory:</p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__CONFIG_CONJUGATE_EVEN_STORAGE_F90">./examples/dftf/source/config_conjugate_even_storage.f90</span></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> </div></div></div>
+</body>
+</html>

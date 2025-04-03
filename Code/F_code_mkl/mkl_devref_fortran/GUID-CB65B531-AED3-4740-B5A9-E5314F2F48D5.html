@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hesv"/>
+<meta name="abstract" content="Computes the solution to the system of linear equations with a Hermitian matrix A and multiple right-hand sides."/>
+<meta name="description" content="Computes the solution to the system of linear equations with a Hermitian matrix A and multiple right-hand sides."/>
+<meta name="DC.subject" content="?hesv, LAPACK routines, driver routines, solving linear equations, linear equations, solving, multiple right-hand sides, Hermitian matrix"/>
+<meta name="keywords" content="?hesv, LAPACK routines, driver routines, solving linear equations, linear equations, solving, multiple right-hand sides, Hermitian matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-CB65B531-AED3-4740-B5A9-E5314F2F48D5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hesv</title>
+
+</head>
+<body id="GUID-CB65B531-AED3-4740-B5A9-E5314F2F48D5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hesv</span></h1>
+<!--Computes the solution to the system of linear equations with a Hermitian matrix A and multiple right-hand sides.--><div><p class="shortdesc">Computes the solution to the system of linear equations with a Hermitian matrix A and multiple right-hand sides.</p>
+<div class="section" id="GUID-7418455C-B47F-4658-B1F2-AD0C4D053CD7"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chesv</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhesv</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hesv</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ipiv</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-85235648-34E7-4ADC-BD41-32EB41778F3A"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-977F6DEA-DC10-4BE8-8EB0-20AA45E1B5CE"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine solves for <var>X</var> the complex system of linear equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>, where <var>A</var> is an <var>n</var>-by-<var>n</var> symmetric  matrix, the columns of matrix <var>B</var> are individual right-hand sides, and the columns of <var>X</var> are the corresponding solutions.</p>
+<p>The diagonal pivoting method is used to factor <var>A</var> as <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power"><var>H</var></sup></samp> or <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>H</var></sup></samp>, where <var>U</var> (or <var>L</var>) is a product of permutation and unit upper (lower) triangular matrices, and <var>D</var> is Hermitian and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.  </p>
+<p>The factored form of <var>A</var> is then used to solve the system of equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>.</p>
+</div>
+<div class="section" id="GUID-A7817A55-2FC3-4D6A-A67E-264C87DC3D37"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored and how <var>A</var> is factored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>a</var> stores the upper triangular part of the matrix <var>A</var>, and <var>A</var> is factored as <samp class="codeph"><var>U*D*U</var><sup class="power"><var>H</var></sup></samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>a</var> stores the lower triangular part of the matrix <var>A</var>, and  <var>A</var> is factored as <samp class="codeph"><var>L*D*L</var><sup class="power"><var>H</var></sup></samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nrhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides, the number of columns in <samp class="codeph"><var>B</var>; <var>nrhs</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span>, <span class="parmname">b</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chesv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhesv</span>. </p>
+<p>Arrays: <var>a</var><span>(size <var>lda</var> by *)</span>, <var>b</var><samp class="codeph"><var>b</var><span>(size <var>ldb</var> by *)</span></samp><span>, <samp class="codeph"><var>work</var>(*)</samp></span>. The array <var>a</var> contains the upper or the lower triangular part of the Hermitian matrix <var>A</var> (see <var>uplo</var>).<span> The second dimension of  <var>a</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>. </span></p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations.<span> The second dimension of  <var>b</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp>. </span></p>
+<p><var>work</var> is a workspace array, dimension at least <samp class="codeph">max(1,<var>lwork</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lwork</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array (<var>lwork</var><span class="eqsymbol">≥</span> 1). </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <span class="option">xerbla</span>. <span>See <em>Application Notes</em> below for details and for the suggested value of <var>lwork</var>.</span></p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-0CBD296E-6558-4838-A6EE-749A8EBAB19E"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>info</var> = 0</samp>, <var>a</var> is overwritten by the block-diagonal matrix <var>D</var> and the multipliers used to obtain the factor <var>U</var> (or <var>L</var>) from the factorization of <var>A</var> as computed by <a class="allformats" href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"><span class="option">?hetrf</span></a>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>info</var> = 0</samp>, <var>b</var> is overwritten by the solution matrix <var>X</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. Contains details of the interchanges and the block structure of <var>D</var>, as determined by <a class="allformats" href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"><span class="option">?hetrf</span></a>. </p>
+<p>If <samp class="codeph"><var>ipiv</var>(<var>i</var>) = <var>k</var> &gt; 0</samp>, then <samp class="codeph"><var>d</var><sub class="subb"><var>i</var><var>i</var></sub></samp> is a 1-by-1 diagonal block, and the <var>i</var>-th row and column of <var>A</var> was interchanged with the <var>k</var>-th row and column. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>and <var>ipiv</var>(<var>i</var>) =<var>ipiv</var>(<var>i</var>-1) = -<var>m</var> &lt; 0, then <var>D</var> has a 2-by-2 block in rows/columns <var>i</var> and <samp class="codeph"><var>i</var>-1</samp>, and <samp class="codeph">(<var>i</var>-1)</samp>-th row and column of <var>A</var> was interchanged with the <var>m</var>-th row and column. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>and <var>ipiv</var>(<var>i</var>) =<var>ipiv</var>(<var>i</var>+1) = -<var>m</var> &lt; 0, then <var>D</var> has a 2-by-2 block in rows/columns <var>i</var> and <samp class="codeph"><var>i</var>+1</samp>, and <samp class="codeph">(<var>i</var>+1)-</samp>th row and column of <var>A</var> was interchanged with the <var>m</var>-th row and column. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph"><span class="parmname">work</span>(1)</samp></p></td>
+
+<td valign="top" class="noborder"><p>If <var>info</var> = 0, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent 
+runs.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, <samp class="codeph"><var>d</var><sub class="subb"><var>i</var><var>i</var></sub></samp> is 0. The factorization has been completed, but <var>D</var> is exactly singular, so the solution could not be computed.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-A42FC65B-14CF-4FA9-B758-8854CA479311"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hesv</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>A</var> of size (<samp class="codeph"><var>n</var>,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>B</var> of size (<samp class="codeph"><var>n</var>,<var>nrhs</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-47D36678-DE40-419F-AA69-D4C8C88078BD"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp>, where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>.</p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

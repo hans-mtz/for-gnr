@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laed3"/>
+<meta name="abstract" content="Used by sstedc/dstedc. Finds the roots of the secular equation and updates the eigenvectors. Used when the original matrix is tridiagonal."/>
+<meta name="description" content="Used by sstedc/dstedc. Finds the roots of the secular equation and updates the eigenvectors. Used when the original matrix is tridiagonal."/>
+<meta name="DC.subject" content="?laed3, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="keywords" content="?laed3, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8258F8C3-CAB7-4A84-834E-09DC0B3B7AE7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laed3</title>
+
+</head>
+<body id="GUID-8258F8C3-CAB7-4A84-834E-09DC0B3B7AE7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laed3</span></h1>
+<!--Used by  sstedc / dstedc . Finds the roots of the secular equation and updates the eigenvectors. Used when the original matrix is tridiagonal.--><div><p class="shortdesc">Used by <span class="option">sstedc</span>/<span class="option">dstedc</span>. Finds the roots of the secular equation and updates the eigenvectors. Used when the original matrix is tridiagonal.</p>
+<div class="section" id="GUID-314F0ADE-4182-4B68-9759-A7457A0C2A5E"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaed3</span><span class="delim">( </span><span class="var">k</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dlamda</span><span class="sep">, </span><span class="var">q2</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">ctot</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaed3</span><span class="delim">( </span><span class="var">k</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dlamda</span><span class="sep">, </span><span class="var">q2</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">ctot</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-FC493732-16C8-41C6-AC42-017E24D53BFC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-03599913-4D0B-4CE2-A962-5D4F1A1F7AB5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?laed3</span> finds the roots of the secular equation, as defined by the values in <var>d</var>, <var>w</var>, and <var>rho</var>, between 1 and <var>k</var>. </p>
+<p>It makes the appropriate calls to <span class="option">?laed4</span> and then updates the eigenvectors by multiplying the matrix of eigenvectors of the pair of eigensystems being combined by the matrix of eigenvectors of the <var>k</var>-by-<var>k</var> system which is solved here.</p>
+<p>This code makes very mild assumptions about floating point arithmetic. It will work on machines with a guard digit in add/subtract, or on those binary machines without guard digits which subtract like the Cray X-MP, Cray Y-MP, Cray C-90, or Cray-2. It could conceivably fail on hexadecimal or decimal machines without guard digits, but none are known.</p>
+</div>
+<div class="section" id="GUID-65AFC5D7-141D-410E-A748-AF33C4E01C67"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A704A35E-07B2-4477-93BC-08DDEC27AE9E"><dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of terms in the rational function to be solved by <span class="option">?laed4</span>  (<samp class="codeph"><var>k</var><span class="eqsymbol">≥</span> 0</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of rows and columns in the <var>q</var> matrix. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span><var>k</var></samp> (deflation may result in <samp class="codeph"><var>n</var> &gt;<var>k</var></samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n1</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The location of the last eigenvalue in the leading sub-matrix; <samp class="codeph">min(1,<var>n</var>) ≤ <var>n1</var> ≤ <var>n</var></samp><span class="keyword">/</span>2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed3</span>. </p>
+<p>Array <samp class="codeph"><var>q</var>(<var>ldq</var>, *)</samp>. The second dimension of <var>q</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>. </p>
+<p>Initially, the first <var>k</var> columns of this array are used as workspace.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldq</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>q</var>; <samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed3</span>. </p>
+<p>The value of the parameter in the rank one update equation. <samp class="codeph"><var>rho</var><span class="eqsymbol">≥</span> 0</samp> required.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dlamda</span>, <span class="parmname">q2</span>, <span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed3</span>. </p>
+<p>Arrays: <samp class="codeph"><span class="parmname">dlamda</span>(<span class="parmname">k</span>), <span class="parmname">q2</span>(<var>ldq2</var>, *), <span class="parmname">w</span>(<span class="parmname">k</span>)</samp>.</p>
+<p>The first <var>k</var> elements of the array <var>dlamda</var> contain the old roots of the deflated updating problem. These are the poles of the secular equation.</p>
+<p>The first <var>k</var> columns of the array <var>q2</var> contain the non-deflated eigenvectors for the split problem. The second dimension of <var>q2</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p>The first <var>k</var> elements of the array <var>w</var> contain the components of the deflation-adjusted updating vector. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, dimension (<var>n</var>).</p>
+<p>The permutation used to arrange the columns of the deflated <var>q</var> matrix into three groups (see <span class="option">?laed2</span>).</p>
+<p>The rows of the eigenvectors found by <span class="option">?laed4</span> must be likewise permuted before the matrix multiply can take place.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ctot</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, dimension (4).</p>
+<p>A count of the total number of the various types of columns in <var>q</var>, as described in <var>indx</var>. The fourth column type is any column which has been deflated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed3</span>. </p>
+<p>Workspace array, dimension (<var>n1</var>+1)*<var>k</var> . </p>
+<p>Will contain the eigenvectors of the repaired matrix which will be multiplied by the previously accumulated eigenvectors to update the system.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-67C2E042-06F5-4258-901D-6B9DEDC87014"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-48D7F396-1C02-48D6-9126-212520A56623"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed3</span>. </p>
+<p>Array, dimension at least <samp class="codeph">max(1, <var>n</var>)</samp>. </p>
+<p><var>d</var>(i) contains the updated eigenvalues for <samp class="codeph">1 ≤ i ≤ <var>k</var></samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>On exit, the columns 1 to <var>k</var> of <var>q</var> contain the updated eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dlamda</span></dt>
+
+<dd><p>May be changed on output by having lowest order bit set to zero on Cray X-MP, Cray Y-MP, Cray-2, or Cray C-90, as described above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Destroyed on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, an eigenvalue did not converge.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

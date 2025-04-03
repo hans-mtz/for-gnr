@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vsliNewAbstractStream"/>
+<meta name="abstract" content="Creates and initializes an abstract random stream for integer arrays."/>
+<meta name="description" content="Creates and initializes an abstract random stream for integer arrays."/>
+<meta name="DC.subject" content="vector statistics functions, iNewAbstractStream, VS routines, service routines"/>
+<meta name="keywords" content="vector statistics functions, iNewAbstractStream, VS routines, service routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DBD5A2AE-C38D-485F-BB9C-8DC08790B36A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vsliNewAbstractStream</title>
+
+</head>
+<body id="GUID-DBD5A2AE-C38D-485F-BB9C-8DC08790B36A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vsliNewAbstractStream</span></h1>
+<!--Creates and initializes an abstract random stream for integer arrays.--><div><p class="shortdesc">Creates and initializes an abstract random stream for integer arrays.</p>
+<div class="section" id="GUID-BD9EE298-95E7-4EC0-BF17-AE7A44E0E2F9"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status</span><span class="delim"> = </span><span class="kwd">vslinewabstractstream</span><span class="sep">( </span><span class="var">stream</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ibuf</span><span class="sep">, </span><span class="var">icallback</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-45D47F6E-2751-49E0-A3E8-ED665338C3D5"><h2 class="sectiontitle">Include Files</h2><ul id="d163e194"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_vsl.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B5D02F88-726B-4618-AB8C-279E73D76CF6"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1644480e76" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1644480e79" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1644480e82" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1644480e76"><p><span class="parmname">n</span></p>
+</td>
+<td valign="top" headers="d1644480e79"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d1644480e82"><p>Size of the array <var>ibuf</var></p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1644480e76"><p><span class="parmname">ibuf</span></p>
+</td>
+<td valign="top" headers="d1644480e79"><p><span class="keyword">INTEGER</span><span class="keyword">(KIND=4)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d1644480e82"><p>Array of <var>n</var> 32-bit integers</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1644480e76"><p><span class="parmname">icallback</span></p>
+</td>
+<td valign="top" headers="d1644480e79"><p>See <em>Note</em> below</p>
+</td>
+<td valign="top" headers="d1644480e82"><p>Address of the callback function used for <var>ibuf</var> update</p>
+</td>
+</tr>
+</table>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Format of the callback function in FORTRAN 77: <pre>INTEGER FUNCTION IUPDATEFUNC( stream, n, ibuf, nmin, nmax, idx )</pre><pre>INTEGER*4 stream(2)</pre><pre>INTEGER n</pre><pre>INTEGER*4 ibuf(n)</pre><pre>INTEGER nmin</pre><pre>INTEGER nmax</pre><pre>INTEGER idx</pre></p>
+<p>Format of the callback function in Fortran 90: <pre>INTEGER FUNCTION IUPDATEFUNC[C]( stream, n, ibuf, nmin, nmax, idx )</pre><pre>TYPE(VSL_STREAM_STATE),POINTER :: stream[reference]</pre><pre>INTEGER(KIND=4),INTENT(IN)     :: n[reference]</pre><pre>INTEGER(KIND=4),INTENT(OUT)    :: ibuf[reference](0:n-1)</pre><pre>INTEGER(KIND=4),INTENT(IN)     :: nmin[reference]</pre><pre>INTEGER(KIND=4),INTENT(IN)     :: nmax[reference]</pre><pre>INTEGER(KIND=4),INTENT(IN)     :: idx[reference]</pre></p>
+</div>
+<p>The callback function returns the number of elements in the array actually updated by the function.<span><a href="#TBL10-5">Table <span><span class="option">icallback</span> Callback Function Parameters</span></a> gives the description of the callback function parameters.</span></p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-5" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap"><span class="option">icallback</span> Callback Function Parameters</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="40%" id="d1644480e193"><p>Parameters</p>
+</th>
+<th class="row-nocellborder" valign="top" width="60%" id="d1644480e196"><p>Short Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="40%" headers="d1644480e193 "><p><span class="parmname">stream</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d1644480e196 "><p>Abstract random stream descriptor</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d1644480e193 "><p><span class="parmname">n</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d1644480e196 "><p>Size of <var>ibuf</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d1644480e193 "><p><span class="parmname">ibuf</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d1644480e196 "><p>Array of random numbers associated with the stream <var>stream</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d1644480e193 "><p><span class="parmname">nmin</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d1644480e196 "><p>Minimal quantity of numbers to update</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d1644480e193 "><p><span class="parmname">nmax</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d1644480e196 "><p>Maximal quantity of numbers that can be updated</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d1644480e193 "><p><span class="parmname">idx</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d1644480e196 "><p>Position in cyclic buffer <var>ibuf</var> to start update <samp class="codeph">0<span class="eqsymbol">≤</span><var>idx</var>&lt;<var>n</var></samp>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="GUID-55540DB3-685B-4683-B93E-8CF7C98D8F32"><h2 class="sectiontitle">Output Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1644480e268" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1644480e271" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1644480e274" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1644480e268"><p><span class="parmname">stream</span></p>
+</td>
+<td valign="top" headers="d1644480e271"><p><span class="keyword">TYPE(VSL_STREAM_STATE)</span>, <span class="keyword">TINTENT(OUT)</span></p>
+</td>
+<td valign="top" headers="d1644480e274"><p>Descriptor of the stream state structure</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-6B4834B3-DE8D-48F7-9162-57B1319B8095"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">vsliNewAbstractStream</span> function creates a new abstract stream and associates it with an integer array <var>ibuf</var> and your callback function <span class="parmname">icallback</span> that is intended for updating of <var>ibuf</var> content.</p>
+</div>
+<div class="section" id="RETURNVALUES_290EC748EFC34C3783C044812378F2C7"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-3ABDD59B-BDF6-42A2-BFEC-A2B14F36FF2D"><dt class="dlterm"><span class="keyword">VSL_ERROR_OK</span>, <span class="keyword">VSL_STATUS_OK</span></dt>
+
+<dd class="ddretval"><p>Indicates no error, execution is successful.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_ERROR_BADARGS</span></dt>
+
+<dd class="ddretval"><p>Parameter <span class="parmname">n</span> is not positive.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_ERROR_MEM_FAILURE</span></dt>
+
+<dd class="ddretval"><p>System cannot allocate memory for <span class="parmname">stream</span>.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_ERROR_NULL_PTR</span></dt>
+
+<dd class="ddretval"><p>Either buffer or callback function parameter is a <span class="keyword">NULL</span> pointer.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html">Service Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

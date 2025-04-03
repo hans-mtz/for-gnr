@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Singular Value Decomposition: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="singular value decomposition, LAPACK, SVD (singular value decomposition), singular value decomposition, See also LAPACK routines, singular value decomposition, bidiagonal matrix, orthogonal matrix, unitary matrix"/>
+<meta name="keywords" content="singular value decomposition, LAPACK, SVD (singular value decomposition), singular value decomposition, See also LAPACK routines, singular value decomposition, bidiagonal matrix, orthogonal matrix, unitary matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-56A16635-89A1-4D37-AD19-359E09778CA5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-793811F1-006B-41C4-ACC9-84805F6B446C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE0A97C9-5EF6-411F-B9CC-1477B612542D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DBD590BD-86E0-4A78-927F-C8D85B7BC388.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Singular Value Decomposition: LAPACK Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Singular Value Decomposition: LAPACK
+    Computational Routines</h1>
+<div><p>This 
+      <span>topic 
+      </span> describes LAPACK routines for computing the 
+      <dfn class="term">singular value decomposition</dfn> (SVD) of
+      a general 
+      <var>m</var>-by-<var>n</var> matrix 
+      <var>A</var>: 
+    </p>
+<p><samp class="codeph"><var>A</var> = 
+        <var>U</var><span class="eqsymbol">Σ</span><var>V</var><sup><var>H</var></sup></samp>. 
+    </p>
+<p>In this decomposition, 
+      <var>U</var> and 
+      <var>V</var> are unitary
+      (for complex 
+      <var>A</var>) or orthogonal
+      (for real 
+      <var>A</var>); 
+      <span class="eqsymbol">Σ</span> is an 
+      <var>m</var>-by-<var>n</var> diagonal matrix with real
+      diagonal elements 
+      <span class="eqsymbol">σ</span><sub>i</sub>: 
+    </p>
+<p><samp class="codeph"><span class="eqsymbol">σ</span><sub>1</sub><span class="eqsymbol">≥</span><span class="eqsymbol">σ</span><sub>2</sub><span class="eqsymbol">≥</span> ... 
+        <span class="eqsymbol">≥</span><span class="eqsymbol">σ</span><sub>min(<var>m</var>, 
+          <var>n</var>)</sub><span class="eqsymbol">≥</span> 0</samp>. 
+    </p>
+<p>The diagonal elements 
+      <span class="eqsymbol">σ</span><sub>i</sub> are 
+      <dfn class="term">singular values</dfn> of 
+      <var>A</var>. The first 
+      <samp class="codeph">min(<var>m</var>, 
+        <var>n</var>)</samp>
+      columns of the matrices 
+      <var>U</var> and 
+      <var>V</var> are,
+      respectively, 
+      <dfn class="term">left</dfn> and 
+      <dfn class="term">right singular vectors</dfn> of 
+      <var>A</var>. The singular
+      values and singular vectors satisfy 
+    </p>
+<p><samp class="codeph"><var>Av</var><sub><var>i</var></sub> = 
+        <span class="eqsymbol">σ</span><sub>i</sub><var>u</var><sub><var>i</var></sub></samp> and 
+      <samp class="codeph"><var>A</var><sup><var>H</var></sup><var>u</var><sub><var>i</var></sub> = 
+        <span class="eqsymbol">σ</span><sub>i</sub><var>v</var><sub><var>i</var></sub></samp></p>
+<p>where 
+      <var>u</var><sub>i</sub> and 
+      <var>v</var><sub>i</sub> are the 
+      <var>i</var>-th columns of 
+      <var>U</var> and 
+      <var>V</var>, respectively.
+      
+    </p>
+<p>To find the SVD of a general matrix 
+      <var>A</var>, call the
+      LAPACK routine 
+  <span class="option">?gebrd</span> or 
+  <span class="option">?gbbrd</span> for reducing 
+  <var>A</var> to a bidiagonal
+  matrix 
+  <var>B</var> by a unitary
+  (orthogonal) transformation: 
+  <samp class="codeph"><var>A</var> = 
+    <var>QBP</var><sup><var>H</var></sup></samp>. Then call 
+  <span class="option">?bdsqr</span>, which forms the
+  SVD of a bidiagonal matrix: 
+  <samp class="codeph"><var>B</var> = 
+    <var>U</var><sub><var>1</var></sub><span class="eqsymbol">Σ</span><var>V</var><sub><var>1</var></sub><sup><var>H</var></sup></samp>. 
+  </p>
+<p>Thus, the sought-for SVD of 
+    <var>A</var> is given by 
+    <samp class="codeph"><var>A</var> = 
+      <var>U</var><span class="eqsymbol">Σ</span><var>V</var><sup><var>H</var></sup> =(<var>QU</var><sub><var>1</var></sub>)<span class="eqsymbol">Σ</span>(<var>V</var><sub><var>1</var></sub><sup><var>H</var></sup><var>P</var><sup><var>H</var></sup>)</samp>. 
+  </p>
+<p><a href="#TBL4-2">Table 
+      <span>"Computational Routines for Singular Value
+        Decomposition (SVD)"</span></a> lists LAPACK routines<span> (FORTRAN 77 interface)</span> that perform
+    singular value decomposition of matrices.<span>
+      The corresponding routine names in the Fortran 95 interface are the same except
+      that the first character is removed. 
+    </span></p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL4-2" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Singular Value
+    Decomposition (SVD)</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="46%" id="d383456e343"><p>Operation 
+          </p>
+</th>
+<th class="cellrowborder" valign="top" width="26%" id="d383456e346"><p>Real matrices 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="28.000000000000004%" id="d383456e349"><p>Complex matrices 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="46%" headers="d383456e343 "><p>Reduce 
+            <var>A</var> to a
+            bidiagonal matrix 
+            <var>B</var>: 
+            <samp class="codeph"><var>A</var> = 
+              <var>QBP</var><sup><var>H</var></sup></samp> (full storage)
+            
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="26%" headers="d383456e346 "><p><a href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B">?gebrd</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d383456e349 "><p><a href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B">?gebrd</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="46%" headers="d383456e343 "><p>Reduce 
+            <var>A</var> to a
+            bidiagonal matrix 
+            <var>B</var>: 
+            <samp class="codeph"><var>A</var> = 
+              <var>QBP</var><sup><var>H</var></sup></samp> (band storage)
+            
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="26%" headers="d383456e346 "><p><a href="GUID-56A16635-89A1-4D37-AD19-359E09778CA5.html#GUID-56A16635-89A1-4D37-AD19-359E09778CA5">?gbbrd</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d383456e349 "><p><a href="GUID-56A16635-89A1-4D37-AD19-359E09778CA5.html#GUID-56A16635-89A1-4D37-AD19-359E09778CA5">?gbbrd</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="46%" headers="d383456e343 "><p>Generate the orthogonal (unitary) matrix 
+            <var>Q</var> or P 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="26%" headers="d383456e346 "><p><a href="GUID-793811F1-006B-41C4-ACC9-84805F6B446C.html#GUID-793811F1-006B-41C4-ACC9-84805F6B446C">?orgbr</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d383456e349 "><p><a href="GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04.html#GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04">?ungbr</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="46%" headers="d383456e343 "><p>Apply the orthogonal (unitary) matrix 
+            <var>Q</var> or P 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="26%" headers="d383456e346 "><p><a href="GUID-BE0A97C9-5EF6-411F-B9CC-1477B612542D.html#GUID-BE0A97C9-5EF6-411F-B9CC-1477B612542D">?ormbr</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d383456e349 "><p><a href="GUID-DBD590BD-86E0-4A78-927F-C8D85B7BC388.html#GUID-DBD590BD-86E0-4A78-927F-C8D85B7BC388">?unmbr</a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="46%" headers="d383456e343 "><p>Form singular value decomposition of the
+            bidiagonal matrix 
+            <var>B</var>: 
+            <samp class="codeph"><var>B</var> = 
+              <var>U</var><span class="eqsymbol">Σ</span><var>V</var><sup><var>H</var></sup></samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="26%" headers="d383456e346 "><p><a href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C">?bdsqr</a>  
+            <a href="GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5.html#GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5">?bdsdc</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d383456e349 "><p><a href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C">?bdsqr</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="figimgmap"><strong> Decision Tree: Singular Value Decomposition</strong><div id="LSE_CRSVD_FIG4-1"><img usemap="#d383456e562" border="0" src="GUID-51312D74-7A18-48BD-A770-0D3507AC4615-low.jpg" alt="Decision Tree: Singular Value Decomposition"/>
+<map name="d383456e562" id="d383456e562">
+<area href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B" alt="gebrd" title="gebrd" shape="rect" coords="476,29,529,43"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="531,29,586,43"/>
+<area href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B" alt="gebrd" title="gebrd" shape="rect" coords="354,104,410,116"/>
+<area href="GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04.html#GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04" alt="ungbr" title="ungbr" shape="rect" coords="354,122,411,133"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="354,138,409,150"/>
+<area href="GUID-56A16635-89A1-4D37-AD19-359E09778CA5.html#GUID-56A16635-89A1-4D37-AD19-359E09778CA5" alt="gbbrd" title="gbbrd" shape="rect" coords="182,88,237,100"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="182,104,237,116"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="184,185,235,195"/>
+<area href="GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5.html#GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5" alt="bdsdc" title="bdsdc" shape="rect" coords="256,184,310,197"/>
+<area href="GUID-56A16635-89A1-4D37-AD19-359E09778CA5.html#GUID-56A16635-89A1-4D37-AD19-359E09778CA5" alt="gbbrd" title="gbbrd" shape="rect" coords="184,243,239,254"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="184,258,239,270"/>
+<area href="GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5.html#GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5" alt="bdsdc" title="bdsdc" shape="rect" coords="256,259,309,271"/>
+<area href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B" alt="gebrd" title="gebrd" shape="rect" coords="180,321,235,334"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="181,338,235,350"/>
+<area href="GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5.html#GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5" alt="bdsdc" title="bdsdc" shape="rect" coords="254,338,310,351"/>
+<area href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B" alt="gebrd" title="gebrd" shape="rect" coords="30,404,85,417"/>
+<area href="GUID-793811F1-006B-41C4-ACC9-84805F6B446C.html#GUID-793811F1-006B-41C4-ACC9-84805F6B446C" alt="orgbr" title="orgbr" shape="rect" coords="30,421,85,434"/>
+<area href="GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C.html#GUID-3E51F1C1-B9F4-4531-A2DC-C6F648705E8C" alt="bdsqr" title="bdsqr" shape="rect" coords="30,438,85,450"/>
+<area href="GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5.html#GUID-D5735EB5-5DFB-471F-A171-22FF49F778B5" alt="bdsdc" title="bdsdc" shape="rect" coords="105,437,160,450"/>
+</map></div></p>
+<p>Figure "Decision Tree: Singular Value Decomposition"
+    presents a decision tree that helps you choose the right sequence of routines
+    for SVD, depending on whether you need singular values only or singular vectors
+    as well, whether 
+    <var>A</var> is real or
+    complex, and so on. 
+  </p>
+<p>You can use the SVD to find a minimum-norm solution to
+    a (possibly) rank-deficient least squares problem of minimizing 
+    <samp class="codeph">||<var>Ax</var> - 
+      <var>b</var>||<sup>2</sup></samp>. The effective rank 
+    <var>k</var> of the matrix 
+    <var>A</var> can be
+    determined as the number of singular values which exceed a suitable threshold.
+    The minimum-norm solution is 
+  </p>
+<p><samp class="codeph"><var>x</var> = 
+      <var>V</var><sub><var>k</var></sub>(<span class="eqsymbol">Σ</span><sub><var>k</var></sub>)<sup>-1</sup><var>c</var></samp></p>
+<p>where 
+    <span class="eqsymbol">Σ</span><sub><var>k</var></sub> is the leading 
+    <var>k</var>-by-<var>k</var> submatrix of 
+    <span class="eqsymbol">Σ</span>, the matrix 
+    <var>V</var><sub><var>k</var></sub> consists of the first 
+    <var>k</var> columns of 
+    <samp class="codeph"><var>V</var> = 
+      <var>PV</var><sub><var>1</var></sub></samp>, and the
+    vector 
+    <var>c</var> consists of the
+    first 
+    <var>k</var> elements of 
+    <samp class="codeph"><var>U</var><sup><var>H</var></sup><var>b</var> = 
+      <var>U</var><sub><var>1</var></sub><sup><var>H</var></sup><var>Q</var><sup><var>H</var></sup><var>b</var></samp>. 
+  </p>
+</div>
+<div/>
+</body>
+</html>

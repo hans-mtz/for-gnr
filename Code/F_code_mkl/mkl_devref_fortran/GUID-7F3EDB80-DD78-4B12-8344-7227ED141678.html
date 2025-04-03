@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="i?amax"/>
+<meta name="abstract" content="Finds the index of the element with maximum absolute value."/>
+<meta name="description" content="Finds the index of the element with maximum absolute value."/>
+<meta name="DC.subject" content="i?amax, BLAS Level 1 routines, finding, element of a vector with the largest absolute value, vectors, element with the largest absolute value, absolute value of a vector element, largest"/>
+<meta name="keywords" content="i?amax, BLAS Level 1 routines, finding, element of a vector with the largest absolute value, vectors, element with the largest absolute value, absolute value of a vector element, largest"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A050F064-A146-49F7-B22E-BBB1E1DD6B3F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7F3EDB80-DD78-4B12-8344-7227ED141678"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>i?amax</title>
+
+</head>
+<body id="GUID-7F3EDB80-DD78-4B12-8344-7227ED141678">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">i?amax</span></h1>
+<!--Finds the index of the element with maximum absolute value.--><div><p class="shortdesc">Finds the index of the element with maximum absolute value.</p>
+<div class="section" id="GUID-D1ABF76D-DB39-4C23-A217-EA2C7C6D1325"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">index</span><span class="oper"> = </span><span class="kwd">isamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">index</span><span class="oper"> = </span><span class="kwd">idamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">index</span><span class="oper"> = </span><span class="kwd">icamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">index</span><span class="oper"> = </span><span class="kwd">izamax</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">index</span><span class="oper"> = </span><span class="kwd">iamax</span><span class="delim">(</span><span class="var">x</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-11AAD5CB-1854-47BB-BD55-9423B10D7033"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-822D7950-256E-406D-9305-61F761080E69"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given a vector <var>x</var>, the <span class="option">i?amax</span> functions return the position of the vector element <samp class="codeph"><var>x</var>(<var>i</var>)</samp> that has the largest absolute value for real flavors, or the largest sum <samp class="codeph">|Re(<var>x</var>[<var>i</var>])|+|Im(<var>x</var>[<var>i</var>])|</samp> for complex flavors. </p>
+<p>If either <var>n</var> or <var>incx</var> are  not positive, the routine returns <samp class="codeph">0</samp>. </p>
+<p>If more than one vector element is found with the same largest absolute value, the index of the first one encountered is returned.</p>
+<p>If the vector contains <samp class="codeph">NaN</samp> values, then the routine returns the index of the first <samp class="codeph">NaN</samp>.</p>
+</div>
+<div class="section" id="GUID-CE43FE84-2066-4095-BB7E-0691CD045443"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-109E4FA6-411E-40A9-A07B-45757FFF4458"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><span>Specifies the number of elements in vector <var>x</var>. </span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">isamax</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">idamax</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">icamax</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">izamax</span></p>
+<p>Array, size at least <samp class="codeph">(1+(<var>n</var>-1)*abs(<var>incx</var>))</samp>.  </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><span>Specifies the increment for the elements of <var>x</var>.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-45014ED3-A86D-4789-96F2-99E771891A0B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0D80A2A1-CC22-4208-B6D5-C008877391E8"><dt class="dlterm"><span class="parmname">index</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Contains the position of vector element   that has the largest absolute value  such that <samp class="codeph"><var>x</var>(<var>index</var>)</samp> has the largest absolute value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-729857D4-6615-4EE2-94C8-23CCD99DEE88"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Functions and routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the function <span class="option">iamax</span> interface are the following:</p>
+<dl id="GUID-F802B4A6-679D-4796-B476-0E3CA60F9722"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A050F064-A146-49F7-B22E-BBB1E1DD6B3F.html">BLAS Level 1 Routines and Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sparse BLAS Skyline Matrix Storage Format"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-5ECFE944-B19A-42F8-9B44-BE00406238A5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sparse BLAS Skyline Matrix Storage Format</title>
+
+</head>
+<body id="GUID-5ECFE944-B19A-42F8-9B44-BE00406238A5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Sparse BLAS Skyline Matrix Storage
+    Format</h1>
+<div><p>The skyline storage format is important for the
+      direct sparse solvers, and it is well suited for Cholesky or LU decomposition
+      when no pivoting is required. 
+    </p>
+<p>The skyline storage format accepted in Intel&reg; oneAPI Math Kernel Library can store only triangular matrix or triangular part of a matrix. This format is specified by two arrays:<var>values</var> and 
+      <var>pointers</var>. The
+      following table describes these arrays: 
+    </p>
+<dl id="GUID-B30808F3-FAAD-4630-B37F-3222619B80F4"><dt class="dlterm"><var>values</var></dt>
+
+<dd><p>A scalar array. For a lower triangular matrix
+            it contains the set of elements from each row of the matrix starting from the
+            first non-zero element to and including the diagonal element. For an upper
+            triangular matrix it contains the set of elements from each column of the
+            matrix starting with the first non-zero element down to and including the
+            diagonal element. Encountered zero elements are included in the sets. 
+          </p>
+</dd>
+<dt class="dlterm"><var>pointers</var></dt>
+
+<dd><p>An integer array
+            with dimension 
+            <samp class="codeph">(<var>m</var>+1)</samp>, where 
+            <var>m</var> is the
+            number of rows for lower triangle (columns for the upper triangle). 
+            <samp class="codeph"><var>pointers</var>(<var>i</var>) - 
+              <var>pointers</var>(1)+1</samp> gives
+            the index of element in 
+            <var>values</var>
+            that is first non-zero element in row (column) 
+            <var>i</var>. The
+            value of 
+            <samp class="codeph"><var>pointers</var>(<var>m</var>+1)</samp> is set to 
+            <samp class="codeph"><var>nnz</var>+<var>pointers</var>(1)</samp>, where 
+            <var>nnz</var> is the
+            number of elements in the array 
+            <var>values</var>. 
+          </p>
+</dd>
+</dl>
+<p>For example, consider the matrix 
+      <var>C</var>:
+    </p>
+<p><br/><img src="equations/GUID-5ECFE944-B19A-42F8-9B44-BE0040623ee1.png"/><br/></p>
+<p>The low triangle of the matrix 
+      <var>C</var> given above
+      can be stored as follows: 
+    </p>
+<pre>
+				<var>values</var>  =  ( 1  -2   5   4  -4   0   2   7   8   0   0   -5 )
+				<var>pointers</var> = ( 1   2   4   5   9   13 )</pre><p>and the upper triangle of this matrix 
+      <var>C</var> can be stored
+      as follows: 
+    </p>
+<pre>
+				<var>values</var>   = ( 1  -1   5  -3   0   4   6   7  4   0   -5 )
+				<var>pointers</var> = ( 1   2   4   7   9   12 )</pre><p>This storage format is supported by the NIST Sparse
+      BLAS library [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#REM05">Rem05</a>]. 
+    </p>
+<p>Note that the Intel&reg; oneAPI Math Kernel Library Sparse BLAS routines operating with the skyline storage format do not support general matrices.</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html">Sparse Matrix Storage Formats</a></div>
+</div>
+<div/>
+</body>
+</html>

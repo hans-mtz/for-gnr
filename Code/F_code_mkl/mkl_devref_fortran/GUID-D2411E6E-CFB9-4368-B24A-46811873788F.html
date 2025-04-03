@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lahrd"/>
+<meta name="abstract" content="Reduces the first nb columns of a general rectangular matrix A so that elements below the k-th subdiagonal are zero, by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A."/>
+<meta name="description" content="Reduces the first nb columns of a general rectangular matrix A so that elements below the k-th subdiagonal are zero, by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A."/>
+<meta name="DC.subject" content="p?lahrd, ScaLAPACK routines, auxiliary routines, general rectangular matrix, reduction of first columns, ScaLAPACK"/>
+<meta name="keywords" content="p?lahrd, ScaLAPACK routines, auxiliary routines, general rectangular matrix, reduction of first columns, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D2411E6E-CFB9-4368-B24A-46811873788F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lahrd</title>
+
+</head>
+<body id="GUID-D2411E6E-CFB9-4368-B24A-46811873788F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lahrd</span></h1>
+<!--Reduces the first  nb  columns of a general rectangular matrix A so that elements below the k  -th subdiagonal are zero, by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A.--><div><p class="shortdesc">Reduces the first <var>nb</var> columns of a general rectangular matrix A so that elements below the k<sup><var/></sup>-th subdiagonal are zero, by an orthogonal/unitary transformation, and returns auxiliary matrices that are needed to apply the transformation to the unreduced part of A.</p>
+<div class="section" id="GUID-3F335F14-685E-4299-91E4-5BEA02BD8B68"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslahrd</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlahrd</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclahrd</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlahrd</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0B668C88-6408-49AE-818F-6DAA35F3E3C1"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?lahrd</span><span>routine </span>reduces the first <var>nb</var> columns of a real general <var>n</var>-by-(<var>n-k</var>+1) distributed matrix <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1 , <var>ja</var>:<var>ja</var>+<var>n-k</var>)</samp> so that elements below the <var>k</var>-th subdiagonal are zero. The reduction is performed by an orthogonal/unitary similarity transformation <var>Q'*A*Q</var>. The <span>routine </span>returns the matrices <var>V</var> and <var>T</var> which determine <var>Q</var> as a block reflector <samp class="codeph"><var>I</var>-<var>V*T*V'</var></samp>, and also the matrix <samp class="codeph"><var>Y</var> = <var>A*V*T</var></samp>.</p>
+<p>This is an auxiliary <span>routine </span>called by <a href="GUID-9E48BAB2-2BB8-40B6-9C0B-D068026A6286.html#GUID-9E48BAB2-2BB8-40B6-9C0B-D068026A6286"><span class="option">p?gehrd</span></a>. In the following comments sub(<var>A</var>) denotes <var>A</var><samp class="codeph">(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp>.</p>
+</div>
+<div class="section" id="GUID-DED5FD95-A401-4318-B730-11FF3732F486"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-9EFFC159-8C99-411F-BF4C-B40297279B2F"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The order of the distributed matrix sub(<var>A</var>). <samp class="codeph"><var>n </var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The offset for the reduction. Elements below the <var>k</var>-th subdiagonal in the first <var>nb</var> columns are reduced to zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of columns to be reduced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslahrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlahrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclahrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlahrd</span>. </p>
+<p>Pointer into the local memory to an array of size <span>(<var>lld_a</var>, <var>LOCc</var>(<samp class="codeph"><var>ja</var>+<var>n-k</var></samp>))<var/></span>. On entry, this array contains the local pieces of the <span class="parmname">n</span>-by-(<span class="parmname">n-k</span>+1) general distributed matrix  <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n-k</var></samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iy</span>, <span class="parmname">jy</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>Y</var> indicating the first row and the first column of the matrix sub(<var>Y</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descy</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>Y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslahrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlahrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclahrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlahrd</span>. </p>
+<p>Array of size <var>nb</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DB9F9D03-82D8-403D-A8BE-7A814C879A0F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3EF74A67-715B-4CB1-A6A3-A50886871A58"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, the elements on and above  the <var>k</var>-th subdiagonal in the first <var>nb</var> columns are overwritten with the corresponding elements of the reduced distributed matrix; the elements below the <var>k</var>-th subdiagonal, with the array <var>tau</var>, represent the matrix <var>Q</var> as a product of elementary reflectors. The other columns of <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n-k</var></samp>) are  unchanged.<span> (See <em>Application Notes</em> below.)</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslahrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlahrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclahrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlahrd</span>. </p>
+<p>Array of size<var> LOCc</var>(<samp class="codeph"><var>ja</var>+<var>n</var></samp>-2). The scalar factors of the elementary reflectors (see <em>Application Notes</em> below). <var>tau</var> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p>(local) <span><span class="keyword">REAL</span> for <span class="option">pslahrd</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlahrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclahrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlahrd</span>. </p>
+<p>Array of size <var>nb_a</var><span>by </span><var>nb_a</var>. The upper triangular matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslahrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlahrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclahrd</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlahrd</span>. </p>
+<p>Pointer into the local memory to an array of size <var>lld_y</var><span>by </span><var>nb_a</var>. On exit, this array contains the local pieces of the <var>n</var>-by-<var>nb</var> distributed matrix <var>Y</var>. <var>lld_y</var><span class="eqsymbol"> ≥</span><var> LOCr</var>(<samp class="codeph"><var>ia</var>+<var>n</var></samp>-1).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-34D952D7-3357-4C01-B74B-74819E4F4890"><h2 class="sectiontitle">Application Notes</h2><p>The matrix <var>Q</var> is represented as a product of <var>nb</var> elementary reflectors</p>
+<p><samp class="codeph"><var>Q</var> = <var>H</var>(1)*<var>H</var>(2)*...*<var>H</var>(<var>nb</var>)</samp>.</p>
+<p>Each <samp class="codeph"><var>H</var>(<var>i</var>)</samp> has the form</p>
+<p><samp class="codeph"><var>H</var>(<var>i</var>) = <var>i</var>-<var>tau</var>*<var>v</var>*<var>v'</var></samp>,</p>
+<p>where <var>tau</var> is a real/complex scalar, and <var>v</var> is a real/complex vector with <var>v</var>(1: <var>i</var>+<var>k</var>-1)= 0, <var>v</var>(<var>i</var>+<var>k</var>)= 1; <var>v</var>(<var>i</var>+<var>k</var>+1:<var>n</var>) is stored on exit in <var>A</var>(<var>ia</var>+<var>i</var>+<var>k</var>:<var>ia</var>+<var>n</var>-1, <var>ja</var>+<var>i</var>-1), and <var>tau</var> in <span class="parmname">tau</span><span>(<span class="parmname">ja</span>+<var>i</var>-1)</span>.</p>
+<p>The elements of the vectors <var>v</var> together form the (<var>n-k</var>+1)-by-<var>nb</var> matrix <var>V </var> which is needed, with <var>T</var> and <var>Y</var>, to apply the transformation to the unreduced part of the matrix, using an update of the form:  <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <var>ja</var>:<var>ja</var>+<var>n-k</var>) := (<var>I-V*T*V'</var>)*(<var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1, <var>ja</var>:<var>ja</var>+<var>n-k</var>)-<var>Y*V'</var>). <span>The contents of <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <var>ja</var>:<var>ja</var>+<var>n-k</var>) on exit are illustrated by the following example with <samp class="codeph"><var>n</var> = 7</samp>, <samp class="codeph"><var>k</var> = 3</samp>, and <samp class="codeph"><var>nb</var> = 2</samp>:</span></p>
+<p><span><br/><div class="imagecenter"><img src="GUID-A3EA9557-EACF-4802-B47B-720D34BF856A-low.jpg" width="171" height="210" alt="Equation" align="center" class=".eq"/></div><br/></span></p>
+<p>where <var>a</var> denotes an element of the original matrix <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n-k</var></samp>), <var>h</var> denotes a modified element of the upper Hessenberg matrix <var>H</var>, and <var>vi</var> denotes an element of the vector  defining <samp class="codeph"><var>H</var>(<var>i</var>)</samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

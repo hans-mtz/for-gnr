@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?stedc"/>
+<meta name="abstract" content="Computes all eigenvalues and eigenvectors of a symmetric tridiagonal matrix in parallel."/>
+<meta name="description" content="Computes all eigenvalues and eigenvectors of a symmetric tridiagonal matrix in parallel."/>
+<meta name="DC.subject" content="psstedc, pdstedc"/>
+<meta name="keywords" content="psstedc, pdstedc"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-496E5BE2-2984-40AA-A2C1-DF1E25A7D275"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?stedc</title>
+
+</head>
+<body id="GUID-496E5BE2-2984-40AA-A2C1-DF1E25A7D275">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?stedc</span></h1>
+<!--Computes all eigenvalues and eigenvectors of a  symmetric tridiagonal matrix in parallel.--><div><p class="shortdesc">Computes all eigenvalues and eigenvectors of a  symmetric tridiagonal matrix in parallel.</p>
+<div class="section" id="GUID-F7B45D5D-0473-491C-86FF-F03EBD6F1A1A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psstedc</span><span class="delim"> (</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">iq</span><span class="sep">, </span><span class="var">jq</span><span class="sep">, </span><span class="var">descq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdstedc</span><span class="delim"> (</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">iq</span><span class="sep">, </span><span class="var">jq</span><span class="sep">, </span><span class="var">descq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-6C452FC4-3D22-451D-8771-4046CFA3DFC5"><h2 class="sectiontitle">Description</h2><p><span class="option">p?stedc</span> computes all eigenvalues and eigenvectors of a  symmetric tridiagonal matrix in parallel, using the divide and  conquer algorithm.</p>
+</div>
+<div class="section" id="GUID-80598F0A-52B5-4AA7-A2E6-E317F74B38BF"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C565B28A-D719-43D3-A63A-C5AB5476BA51"><dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p>CHARACTER*1. </p>
+<p>= 'N':  Compute eigenvalues only.    (NOT IMPLEMENTED YET)</p>
+<p>= 'I':  Compute eigenvectors of tridiagonal matrix also.</p>
+<p>= 'V':  Compute eigenvectors of original dense symmetric                  matrix also.  On entry, <var>Z</var> contains the orthogonal                  matrix used to reduce the original matrix to                  tridiagonal form.            (NOT IMPLEMENTED YET)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The order of the tridiagonal matrix <var>T</var>.  <span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstedc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstedc</span></p>
+<p>Array, size (<span class="parmname">n</span>)</p>
+<p>On entry, the diagonal elements of the tridiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstedc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstedc</span></p>
+<p>Array, size (<span class="parmname">n</span>-1).</p>
+<p>On entry, the subdiagonal elements of the tridiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iq</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p><var>Q</var>'s global row index, which points to the beginning of the          submatrix which is to be operated on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jq</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p><var>Q</var>'s global column index, which points to the beginning of          the submatrix which is to be operated on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descq</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstedc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstedc</span></p>
+<p>Array,          size (<span class="parmname">lwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local)</p>
+<p>INTEGER. </p>
+<p>The size of the array <span class="parmname">work</span>.</p>
+<p><span class="parmname">lwork</span> = 6*<span class="parmname">n</span> + 2*NP*NQ</p>
+<p>NP = <span class="option">numroc</span>( <span class="parmname">n</span>, NB, MYROW, DESCQ( <var>rsrc_</var> ), NPROW )</p>
+<p>NQ = <span class="option">numroc</span>( <span class="parmname">n</span>, NB, MYCOL, DESCQ( <var>csrc_</var> ), NPCOL )</p>
+<p><span class="option">numroc</span> is a ScaLAPACK tool function.</p>
+<p>If <span class="parmname">lwork</span> = -1, the <span class="parmname">lwork</span> is global input and a workspace          query is assumed; the routine only calculates the minimum          size for the <span class="parmname">work</span> array.  The required workspace is returned          as the first element of <span class="parmname">work</span> and no error message is issued          by <span class="option">pxerbla</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local)</p>
+<p>INTEGER. </p>
+<p>Array, size (<span class="parmname">liwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>INTEGER. </p>
+<p>The size of the array <span class="parmname">iwork</span>.</p>
+<p><span class="parmname">liwork</span> = 2 + 7*<span class="parmname">n</span> + 8*NPCOL</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3CFC9CAF-F82D-4AC6-8A14-533748DF7B28"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, if <span class="parmname">info</span> = 0, the eigenvalues in descending order.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">q</span></p></td>
+
+<td valign="top" class="noborder"><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstedc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstedc</span></p>
+<p>Array,          local size ( <var>lld_q</var>, LOCc(<span class="parmname">jq</span>+<span class="parmname">n</span>-1))</p>
+<p><span class="parmname">q</span>  contains the orthonormal eigenvectors of the symmetric          tridiagonal matrix.</p>
+<p>On output, <span class="parmname">q</span> is distributed across the P processes in block          cyclic format.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p>On output, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the workspace needed.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, if <span class="parmname">liwork</span> &gt; 0, <span class="parmname">iwork</span><samp class="codeph">(1)</samp> returns the optimal <span class="parmname">liwork</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p>(global)</p>
+<p>INTEGER. </p>
+<p>= 0:  successful exit.</p>
+<p>&lt; 0:  If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had                an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>), if the <var>i</var>-th                argument is a scalar and had an illegal value, then                <span class="parmname">info</span> = -<var>i</var>.</p>
+<p>&gt; 0:  The algorithm failed to compute the <span class="parmname">info</span>/(<span class="parmname">n</span>+1)-th                eigenvalue while working on the submatrix lying in                global rows and columns mod(<span class="parmname">info</span>,<span class="parmname">n</span>+1).</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html">Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

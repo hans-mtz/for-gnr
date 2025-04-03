@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laexc"/>
+<meta name="abstract" content="Swaps adjacent diagonal blocks of a real upper quasi-triangular matrix in Schur canonical form, by an orthogonal similarity transformation."/>
+<meta name="description" content="Swaps adjacent diagonal blocks of a real upper quasi-triangular matrix in Schur canonical form, by an orthogonal similarity transformation."/>
+<meta name="DC.subject" content="?laexc, LAPACK routines, auxiliary routines, real upper quasi-triangular matrix, orthogonal similarity transformation, swapping adjacent diagonal blocks"/>
+<meta name="keywords" content="?laexc, LAPACK routines, auxiliary routines, real upper quasi-triangular matrix, orthogonal similarity transformation, swapping adjacent diagonal blocks"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2797D1D3-CECF-4468-9FF9-CA98B772387B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laexc</title>
+
+</head>
+<body id="GUID-2797D1D3-CECF-4468-9FF9-CA98B772387B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laexc</span></h1>
+<!--Swaps adjacent diagonal blocks of a real upper quasi-triangular matrix in Schur canonical form, by an orthogonal similarity transformation.--><div><p class="shortdesc">Swaps adjacent diagonal blocks of a real upper quasi-triangular matrix in Schur canonical form, by an orthogonal similarity transformation.</p>
+<div class="section" id="GUID-256FB49B-F44D-4246-A5A9-603F86E3ABB7"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaexc</span><span class="delim">( </span><span class="var">wantq</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">n2</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaexc</span><span class="delim">( </span><span class="var">wantq</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">n2</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-A5ACBA76-E161-4689-A317-65796777C1B9"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-607588E6-20AD-4BC3-9916-071EF95B0D92"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine swaps adjacent diagonal blocks <var>T</var><sub class="subnb">11</sub> and <var>T</var><sub>22</sub> of order 1 or 2 in an upper quasi-triangular matrix <var>T</var> by an orthogonal similarity transformation. </p>
+<p><var>T</var> must be in Schur canonical form, that is, block upper triangular with 1-by-1 and 2-by-2 diagonal blocks; each 2-by-2 diagonal block has its diagonal elements equal and its off-diagonal elements of opposite sign.</p>
+</div>
+<div class="section" id="GUID-D6E65A5E-0E2B-4916-A57F-C6067459001E"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7B9D6A65-8C57-41A4-986F-9AB1A5C44196"><dt class="dlterm"><span class="parmname">wantq</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>wantq</var> = <span class="keyword">.TRUE.</span></samp>, accumulate the transformation in the matrix <var>Q</var>;</p>
+<p>If <samp class="codeph"><var>wantq</var> = <span class="keyword">.FALSE.</span></samp>, do not accumulate the transformation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>T</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span>, <span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaexc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaexc</span></p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>t</var>(<var>ldt</var>,*)</samp> contains on entry the upper quasi-triangular matrix <var>T</var>, in Schur canonical form. </p>
+<p>The second dimension of <var>t</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><samp class="codeph"><var>q</var>(<var>ldq</var>,*)<var/></samp> contains on entry, if <samp class="codeph"><var>wantq</var> = <span class="keyword">.TRUE.</span></samp>, the orthogonal matrix <var>Q</var>. If <samp class="codeph"><var>wantq</var> = <span class="keyword">.FALSE.</span></samp>, <var>q</var> is not referenced. The second dimension of <var>q</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>t</var>; at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldq</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>q</var>; </p>
+<p>If <samp class="codeph"><var>wantq</var> = <span class="keyword">.FALSE.</span></samp>, then <samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>wantq</var> = <span class="keyword">.TRUE.</span></samp>, then <samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">j1</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The index of the first row of the first block <var>T</var><sub class="subnb">11</sub>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n1</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the first block <var>T</var><sub class="subnb">11</sub></p>
+<p>(<samp class="codeph"><var>n1</var> = 0, 1, or 2</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n2</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the second block <var>T</var><sub class="subnb">22</sub></p>
+<p>(<samp class="codeph"><var>n2</var> = 0, 1, or 2</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword"> REAL</span> for <span class="option">slaexc</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaexc</span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6B8AA7F5-7B0E-49A2-8D5D-C3DCFE27FC31"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-27FBEB1A-37E2-4D99-8115-8B6D703657F7"><dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p>On exit, the updated matrix <var>T</var>, again in Schur canonical form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>wantq</var> = <span class="keyword">.TRUE.</span></samp>, the updated matrix <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, the transformed matrix <var>T</var> would be too far from Schur form; the blocks are not swapped and <var>T</var> and <var>Q</var> are unchanged.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?rotm"/>
+<meta name="abstract" content="Performs modified Givens rotation of points in the plane."/>
+<meta name="description" content="Performs modified Givens rotation of points in the plane."/>
+<meta name="DC.subject" content="?rotm, BLAS Level 1 routines, points rotation, in the modified plane, rotation, of points in the modified plane, vectors, rotation of points in the modified plane"/>
+<meta name="keywords" content="?rotm, BLAS Level 1 routines, points rotation, in the modified plane, rotation, of points in the modified plane, vectors, rotation of points in the modified plane"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A050F064-A146-49F7-B22E-BBB1E1DD6B3F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-608D9BA6-827F-48DE-A01F-0EE5991F769A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?rotm</title>
+
+</head>
+<body id="GUID-608D9BA6-827F-48DE-A01F-0EE5991F769A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?rotm</span></h1>
+<!--Performs modified Givens rotation of points in the plane.--><div><p class="shortdesc">Performs modified Givens rotation of points in the plane.</p>
+<div class="section" id="GUID-F8F2E2EB-1704-454D-BE45-C055D6F4E7D6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call srotm</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">param</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call drotm</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">param</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call rotm</span><span class="delim">(</span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">param</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-666EAFF9-CE82-4A37-8832-05CC07422D73"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-856650C6-2998-4452-A34A-DF6CB801087D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given two vectors <var>x</var> and <var>y</var>, each vector element of these vectors is replaced as follows: </p>
+<p><br/><img src="equations/GUID-608D9BA6-827F-48DE-A01F-0EE5991F7ee1.png"/><br/></p>
+<p>for <var>i</var>=1 to <var>n</var>, where <var>H</var> is a modified Givens transformation matrix whose values are stored in the <samp class="codeph"><var>param</var>(2)</samp> through <samp class="codeph"><var>param</var>(5)</samp> array. See discussion on the <var>param</var> argument.</p>
+</div>
+<div class="section" id="GUID-CC061A3E-493B-447E-95D1-B7C0E66860A0"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-D98072A6-E339-4733-9885-D8BDA7AD8E0E"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of elements in vectors <var>x</var> and <var>y</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">srotm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">drotm</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> -1)*abs(<var>incx</var>))</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">srotm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">drotm</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> -1)*abs(<var>incy</var>))</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">param</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">srotm</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">drotm</span></p>
+<p>Array, size 5.</p>
+<p>The elements of the <var>param</var> array are:</p>
+<p><samp class="codeph"><var>param</var>(1)</samp> contains a switch, <var>flag</var>. <samp class="codeph"><var>param</var>(2-5)</samp> contain <var>h</var><sub>11</sub>, <var>h</var><sub>21</sub>, <var>h</var><sub>12</sub>, and <var>h</var><sub>22</sub>, respectively, the components of the array <var>H</var>.</p>
+<p>Depending on the values of <var>flag</var>, the components of <var>H</var> are set as follows:</p>
+<p><samp class="codeph"><var>flag</var> = </samp><samp class="codeph">-1.0</samp>: <span><img class="img-middle" src="equations/GUID-608D9BA6-827F-48DE-A01F-0EE5991F7ee2.png"/></span></p>
+<p><samp class="codeph"><var>flag</var> = </samp><samp class="codeph">0.0</samp>: <span><img class="img-middle" src="equations/GUID-608D9BA6-827F-48DE-A01F-0EE5991F7ee3.png"/></span></p>
+<p><samp class="codeph"><var>flag</var> = </samp><samp class="codeph">1.0</samp>: <span><img class="img-middle" src="equations/GUID-608D9BA6-827F-48DE-A01F-0EE5991F7ee4.png"/></span></p>
+<p><samp class="codeph"><var>flag</var> = </samp><samp class="codeph">-2.0</samp>: <span><img class="img-middle" src="equations/GUID-608D9BA6-827F-48DE-A01F-0EE5991F7ee5.png"/></span></p>
+<p>In the last three cases, the matrix entries of 1.0, -1.0, and 0.0  are assumed based on the value of <var>flag</var> and are not required to be set in the <var>param</var> vector.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-14D37DBA-685B-46B9-90F9-EE2D8757619E"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-119B55B2-62E6-4CC4-8F8E-44C59C6F84FC"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Each element <samp class="codeph">x(i)</samp> is replaced by <samp class="codeph"><var>h</var><sub>11</sub>*<samp class="codeph">x(i)</samp> + <var>h</var><sub>12</sub>*<samp class="codeph">y(i)</samp></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Each element <samp class="codeph">y(i)</samp> is replaced by <samp class="codeph"><var>h</var><sub>21</sub>*<samp class="codeph">x(i)</samp> + <var>h</var><sub>22</sub>*</samp><samp class="codeph">y(i)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-163DBDED-E45F-4EDC-97B7-13A71E9C5B28"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">rotm</span> interface are the following:</p>
+<dl id="GUID-631F9A74-0EC5-4688-AC90-498B7E466C7B"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A050F064-A146-49F7-B22E-BBB1E1DD6B3F.html">BLAS Level 1 Routines and Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

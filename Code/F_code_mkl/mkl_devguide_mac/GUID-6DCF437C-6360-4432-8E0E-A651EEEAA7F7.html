@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Using MKL_DIRECT_CALL in C Applications"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37597746-F7FE-47A8-9A9D-7521972A3A24.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6DCF437C-6360-4432-8E0E-A651EEEAA7F7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Using MKL_DIRECT_CALL in C Applications</title>
+
+</head>
+<body id="GUID-6DCF437C-6360-4432-8E0E-A651EEEAA7F7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Using MKL_DIRECT_CALL in C
+    Applications</h1>
+<div id="GUID-D8F7B717-D1F5-49A7-BF30-755696A4A720"><p id="GUID-CAD82E90-C30A-4666-874A-2117FB339B7F">The following examples of code and link lines show how to activate direct calls to Intel&reg; oneAPI Math Kernel Library kernels in C applications:</p>
+<ul id="GUID-05D3A20B-E1EB-449C-9F43-6DD8BAF9364E"><li><p>Include the 
+          <span class="filepath">mkl.h</span> header file: 
+        </p>
+<pre><code class="language-clike">#include "mkl.h" 
+int main(void) {
+    
+// Call Intel MKL DGEMM 
+    
+return 0;
+}
+</code></pre></li>
+<li><p>For multi-threaded Intel&reg; oneAPI Math Kernel Library, compile with<span class="keyword">MKL_DIRECT_CALL</span> preprocessor macro: 
+        </p>
+<pre>icc –DMKL_DIRECT_CALL -std=c99 your_application.c $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a <br/>$(MKLROOT)/lib/intel64/libmkl_core.a $(MKLROOT)/lib/intel64/libmkl_intel_thread.a -lpthread –lm -openmp -I$(MKLROOT)/include</pre></li>
+<li><p>To use Intel&reg; oneAPI Math Kernel Library in the sequential mode, compile with<span class="keyword">MKL_DIRECT_CALL_SEQ</span> preprocessor macro: 
+        </p>
+<pre>icc –DMKL_DIRECT_CALL_SEQ -std=c99 your_application.c $(MKLROOT)/lib/intel64/libmkl_intel_lp64.a <br/>$(MKLROOT)/lib/intel64/libmkl_core.a $(MKLROOT)/lib/intel64/libmkl_sequential.a -lpthread –lm -I$(MKLROOT)/include</pre></li>
+</ul>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-A10E3648-56A4-4F60-BC8C-1806075B7F21" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d16808e78"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d16808e78 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37597746-F7FE-47A8-9A9D-7521972A3A24.html">Improving Performance for Small Size Problems</a></div>
+</div>
+<div/>
+</body>
+</html>

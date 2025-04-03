@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?steqr"/>
+<meta name="abstract" content="Computes all eigenvalues and eigenvectors of a symmetric or Hermitian matrix reduced to tridiagonal form (QR algorithm)."/>
+<meta name="description" content="Computes all eigenvalues and eigenvectors of a symmetric or Hermitian matrix reduced to tridiagonal form (QR algorithm)."/>
+<meta name="DC.subject" content="?steqr, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?steqr, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DA4091CD-31BA-487A-9447-D6C9B3772989"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?steqr</title>
+
+</head>
+<body id="GUID-DA4091CD-31BA-487A-9447-D6C9B3772989">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?steqr</span></h1>
+<!--Computes all eigenvalues and eigenvectors of a symmetric or Hermitian matrix reduced to tridiagonal form (QR algorithm).--><div><p class="shortdesc">Computes all eigenvalues and eigenvectors of a symmetric or Hermitian matrix reduced to tridiagonal form (QR algorithm).</p>
+<div class="section" id="GUID-9401D417-C0EB-43D0-8312-3F3B7B21AD55"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssteqr</span><span class="delim">(</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsteqr</span><span class="delim">(</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call csteqr</span><span class="delim">(</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zsteqr</span><span class="delim">(</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call rsteqr</span><span class="delim">(</span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="delim"> [</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">compz</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call steqr</span><span class="delim">(</span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="delim"> [</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">compz</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0E541033-C37C-44B5-A168-BE69DD5395AD"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A7E56878-990A-48C3-B81C-6F43CBF09200"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all the eigenvalues and (optionally) all the eigenvectors of a real symmetric tridiagonal matrix <var>T</var>. In other words, the routine can compute the spectral factorization: <samp class="codeph"><var>T</var> = <var>Z</var>*<span class="eqsymbol">Λ</span>*<var>Z</var><sup class="power"><var>T</var></sup></samp>. Here <span class="eqsymbol">Λ</span> is a diagonal matrix whose diagonal elements are the eigenvalues <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>; <var>Z</var> is an orthogonal matrix whose columns are eigenvectors. Thus, </p>
+<p><samp class="codeph"><var>T</var>*<var>z</var><sub class="subb"><var>i</var></sub> = <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>*<var>z</var><sub class="subb"><var>i</var></sub></samp> for <samp class="codeph"><var>i</var> = 1, 2, ..., <var>n</var></samp>.</p>
+<p>The routine normalizes the eigenvectors so that <samp class="codeph">||z<sub class="subb"><var>i</var></sub>||<sub>2</sub> = 1</samp>.</p>
+<p>You can also use the routine for computing the eigenvalues and eigenvectors of an arbitrary real symmetric (or complex Hermitian) matrix <var>A</var> reduced to tridiagonal form <var>T</var>: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>H</var></sup></samp>. In this case, the spectral factorization is as follows: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>H</var></sup> = (<var>Q*Z</var>)*<span class="eqsymbol">Λ</span>*(<var>Q*Z</var>)<sup class="power"><var>H</var></sup></samp>. Before calling <span class="option">?steqr</span>, you must reduce <var>A</var> to tridiagonal form and generate the explicit matrix <var>Q</var> by calling the following routines:</p>
+<table cellpadding="4" cellspacing="0" summary="" id="TBL4-I" border="1" class="simpletableborder"><tr><th valign="bottom" align="left" id="d1627091e442" width="33.333333333333336%"><p> </p>
+</th>
+<th valign="bottom" align="left" id="d1627091e445" width="33.333333333333336%"><p>for real matrices:</p>
+</th>
+<th valign="bottom" align="left" id="d1627091e448" width="33.333333333333336%"><p>for complex matrices:</p>
+</th>
+</tr>
+<tr><td valign="top" id="d1627091e452" headers="d1627091e442"><strong><p>full storage</p>
+</strong></td>
+<td valign="top" headers="d1627091e445 d1627091e452"><p><span class="option">?sytrd</span>, <span class="option">?orgtr</span></p>
+</td>
+<td valign="top" headers="d1627091e448 d1627091e452"><p><span class="option">?hetrd</span>, <span class="option">?ungtr</span></p>
+</td>
+</tr>
+<tr><td valign="top" id="d1627091e470" headers="d1627091e442"><strong><p>packed storage</p>
+</strong></td>
+<td valign="top" headers="d1627091e445 d1627091e470"><p><span class="option">?sptrd</span>, <span class="option">?opgtr</span></p>
+</td>
+<td valign="top" headers="d1627091e448 d1627091e470"><p><span class="option">?hptrd</span>, <span class="option">?upgtr</span></p>
+</td>
+</tr>
+<tr><td valign="top" id="d1627091e488" headers="d1627091e442"><strong><p>band storage</p>
+</strong></td>
+<td valign="top" headers="d1627091e445 d1627091e488"><p><span class="option">?sbtrd</span><var>(vect</var>=<span class="keyword">'V'</span>) </p>
+</td>
+<td valign="top" headers="d1627091e448 d1627091e488"><p><span class="option">?hbtrd</span><var>(vect</var>=<span class="keyword">'V'</span>) </p>
+</td>
+</tr>
+</table>
+<p>If you need eigenvalues only, it<span class="eqsymbol">'</span>s more efficient to call <a href="GUID-608AF230-E51B-408B-B6C0-591C4AC7A1E7.html#GUID-608AF230-E51B-408B-B6C0-591C4AC7A1E7">sterf</a>. If <var>T</var> is positive-definite, <a href="GUID-35A30999-183A-4DCD-A6A7-86E2E82F6718.html#GUID-35A30999-183A-4DCD-A6A7-86E2E82F6718">pteqr</a> can compute small eigenvalues more accurately than <span class="option">?steqr</span>. </p>
+<p>To solve the problem by a single call, use one of the divide and conquer routines <a href="GUID-DD5BDE05-39A4-40EA-994A-8F1893D60B09.html#GUID-DD5BDE05-39A4-40EA-994A-8F1893D60B09">stevd</a>, <a href="GUID-93809AA2-7D58-425A-94D6-BF1BA14468F2.html#GUID-93809AA2-7D58-425A-94D6-BF1BA14468F2">syevd</a>, <a href="GUID-E89FFCFD-4B13-4A7A-957F-4FCD33552C1E.html#GUID-E89FFCFD-4B13-4A7A-957F-4FCD33552C1E">spevd</a>, or <a href="GUID-9D740942-A5F1-47C4-B3C2-4CDDD6DBAF45.html#GUID-9D740942-A5F1-47C4-B3C2-4CDDD6DBAF45">sbevd</a> for real symmetric matrices or <a href="GUID-9AD3B5B7-DC35-4DF7-A126-9A8730FE98CA.html#GUID-9AD3B5B7-DC35-4DF7-A126-9A8730FE98CA">heevd</a>, <a href="GUID-8BB672EA-453B-4354-AF79-E3752722CDBC.html#GUID-8BB672EA-453B-4354-AF79-E3752722CDBC">hpevd</a>, or <a href="GUID-65F4BF3F-A175-48B3-9397-2842E09382BF.html#GUID-65F4BF3F-A175-48B3-9397-2842E09382BF">hbevd</a> for complex Hermitian matrices. </p>
+</div>
+<div class="section" id="GUID-2C164CEF-5949-4744-9E41-6B1F06697959"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-5CA228E1-EDBD-4951-B3A6-A45BA40008D0"><dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'I'</span> or <span class="keyword">'V'</span>.</p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, the routine computes eigenvalues only. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, the routine computes the eigenvalues and eigenvectors of the tridiagonal matrix <var>T</var>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp>, the routine computes the eigenvalues and eigenvectors of the original symmetric matrix.  On entry, <span class="parmname">z</span> must contain the orthogonal matrix used to reduce the original matrix to tridiagonal form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>T</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single-precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double-precision flavors. </p>
+<p>Arrays: </p>
+<p><var>d</var><span>(*)</span> contains the diagonal elements of <var>T</var>. </p>
+<p>The size of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p><var>e</var><span>(*)</span> contains the off-diagonal elements of <var>T</var>. </p>
+<p>The size of <var>e</var> must be at least max(1, <var>n</var>-1).</p>
+<p><var>work</var><span>(*)</span> is a workspace array. </p>
+<p>The size of <var>work</var> must be: </p>
+<p>at least 1 if <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>;</p>
+<p>at least max(1, 2*<var>n</var>-2) if <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'I'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssteqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsteqr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csteqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsteqr</span>. </p>
+<p>Array, size <span>(<var>ldz</var>, *)</span>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'I'</span>, <var>z</var> need not be set. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, <var>z</var> must contain the orthogonal matrix used in the reduction to tridiagonal form. </p>
+<p>The second dimension of <var>z</var> must be: </p>
+<p>at least 1 if <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>;</p>
+<p>at least max(1, <var>n</var>) if <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'I'</span>.</p>
+<p><var>work</var> (<var>lwork</var>) is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>z</var>. Constraints:</p>
+<p><samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp> if <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>;</p>
+<p><samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'I'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7C6F9F91-5274-43DC-8E21-9EF5B36D0239"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F97D1A6B-5E5F-407A-AB6A-ECA7A9C98390"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>The <var>n</var> eigenvalues in ascending order, unless <var>info</var> &gt; 0. </p>
+<p>See also <var>info</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, the array is overwritten; see <var>info</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, contains the <var>n</var>-by-<var>n</var> matrix the columns of which are orthonormal eigenvectors (the <var>i</var>-th column corresponds to the <var>i</var>-th eigenvalue).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, the algorithm failed to find all the eigenvalues after 30<var>n</var> iterations: <var>i</var> off-diagonal elements have not converged to zero. On exit, <var>d</var> and <var>e</var> contain, respectively, the diagonal and off-diagonal elements of a tridiagonal matrix orthogonally similar to <var>T</var>. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-FE2193D7-CD6D-43AF-8C87-91DDC1457559"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">steqr</span> interface are the following:</p>
+<dl id="GUID-BB630A68-976E-4224-BD8B-26E20A2E227F"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>Holds the vector of length (<var>n-</var>1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>Holds the matrix <var>Z</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p>If omitted, this argument is restored based on the presence of argument <var>z</var> as follows: </p>
+<p><samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, if <var>z</var> is present, </p>
+<p><samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, if <var>z</var> is omitted. </p>
+<p>If present, <var>compz</var> must be equal to <span class="keyword">'I'</span> or <span class="keyword">'V'</span> and the argument <var>z</var> must also be present. Note that there will be an error condition if <var>compz</var> is present and <var>z</var> omitted.</p>
+<p>Note that two variants of Fortran 95 interface for <span class="keyword">steqr</span> routine are needed because of an ambiguous choice between real and complex cases appear when <var>z</var> is omitted. Thus, the name <span class="keyword">rsteqr</span> is used in real cases (single or double precision), and the name <span class="keyword">steqr</span> is used in complex cases (single or double precision).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-437A36B6-C57E-4EFE-B572-7BFB6D83C6E8"><h2 class="sectiontitle">Application Notes</h2><p>The computed eigenvalues and eigenvectors are exact for a matrix <samp class="codeph"><var>T</var>+<var>E</var></samp> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)*||<var>T</var>||<sub>2</sub></samp>, where <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>If <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub> is an exact eigenvalue, and <span class="eqsymbol">μ</span><sub class="subb"><var>i</var></sub> is the corresponding computed value, then </p>
+<p>|<samp class="codeph"><span class="eqsymbol">μ</span><sub class="subb"><var>i</var></sub> - <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>| <span class="eqsymbol">≤</span><var>c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>T</var>||<sub>2</sub></samp></p>
+<p>where <samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modestly increasing function of <var>n</var>. </p>
+<p>If <var>z</var><sub class="subb"><var>i</var></sub> is the corresponding exact eigenvector, and <var>w</var><sub class="subb"><var>i</var></sub> is the corresponding computed vector, then the angle <samp class="codeph"><span class="eqsymbol">θ</span>(<var>z</var><sub class="subb"><var>i</var></sub>, <var>w</var><sub class="subb"><var>i</var></sub>)</samp> between them is bounded as follows: </p>
+<p><samp class="codeph"><span class="eqsymbol">θ</span>(<var>z</var><sub class="subb"><var>i</var></sub>, <var>w</var><sub class="subb"><var>i</var></sub>) <span class="eqsymbol">≤</span><var>c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>T</var>||<sub>2</sub> / min<sub><var>i</var><span class="eqsymbol">≠</span><var>j</var></sub>|<span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub> - <span class="eqsymbol">λ</span><sub class="subb"><var>j</var></sub>|</samp>. </p>
+<p>The total number of floating-point operations depends on how rapidly the algorithm converges. Typically, it is about</p>
+<p><samp class="codeph">24<var>n</var><sup class="power">2</sup> if <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>;</samp></p>
+<p><samp class="codeph">7<var>n</var><sup class="power">3</sup></samp> (for complex flavors, <samp class="codeph">14<var>n</var><sup class="power">3</sup></samp>) if <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'I'</span>. </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

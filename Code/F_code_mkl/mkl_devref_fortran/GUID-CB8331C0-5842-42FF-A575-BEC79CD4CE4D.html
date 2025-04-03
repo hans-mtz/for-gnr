@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?la_syrcond"/>
+<meta name="abstract" content="Estimates the Skeel condition number for a symmetric indefinite matrix."/>
+<meta name="description" content="Estimates the Skeel condition number for a symmetric indefinite matrix."/>
+<meta name="DC.subject" content="?la_syrcond, sla_syrcond, dla_syrcond, la_syrcond"/>
+<meta name="keywords" content="?la_syrcond, sla_syrcond, dla_syrcond, la_syrcond"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-CB8331C0-5842-42FF-A575-BEC79CD4CE4D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?la_syrcond</title>
+
+</head>
+<body id="GUID-CB8331C0-5842-42FF-A575-BEC79CD4CE4D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?la_syrcond</span></h1>
+<!--Estimates the Skeel condition number for a symmetric indefinite matrix.--><div><p class="shortdesc">Estimates the Skeel condition number for a symmetric indefinite matrix.</p>
+<div class="section" id="GUID-B5A08A3B-1335-49FC-A845-664D6C4707CA"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sla_syrcond</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">cmode</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dla_syrcond</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">cmode</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-150DE050-1DC1-4BFD-B943-E8C83EE6411C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D433E68F-8E0A-457C-86D1-FCB2A416F53A"><h2 class="sectiontitle">Description</h2><p>The function estimates the Skeel condition number of</p>
+<p><samp class="codeph">op(<var>A</var>) * op2(<var>C</var>)</samp></p>
+<p>where</p>
+<p>the <span class="parmname">cmode</span> parameter determines <samp class="codeph">op2</samp> as follows:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-1B" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="d1521863e178"><p><span class="parmname">cmode</span> Value</p>
+</th>
+<th class="row-nocellborder" align="center" valign="top" width="50%" id="d1521863e183"><p>op2(C)</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d1521863e178 "><p>1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d1521863e183 "><p><var>C</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d1521863e178 "><p>0</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d1521863e183 "><p><var>I</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d1521863e178 "><p>-1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d1521863e183 "><p><samp class="codeph">inv(<var>C</var>)</samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Skeel condition number</p>
+<p><samp class="codeph">cond(<var>A</var>) = norminf(|inv(<var>A</var>)||<var>A</var>|)</samp></p>
+<p>  is computed by computing scaling factors <var>R</var> such that</p>
+<p><samp class="codeph">diag(<var>R</var>)*<var>A</var>*op2(<var>C</var>)</samp></p>
+<p> is row equilibrated and by computing the standard infinity-norm condition number.</p>
+</div>
+<div class="section" id="GUID-3B165353-5A1C-4633-9F91-3A3043D023BF"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DE65B30F-FB2B-447B-A3D6-B6DF72F6DF69"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.  Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Specifies the triangle of A to store:</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of  <var>A</var> is stored,</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of  <var>A</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of linear equations, that is, the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">af, c, work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sla_syrcond</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dla_syrcond</span></p>
+<p>Arrays:</p>
+<p><span class="parmname">ab </span>(<span class="parmname">lda</span>,*) contains the <span class="parmname">n</span>-by-<span class="parmname">n</span> matrix <var>A</var>.</p>
+<p><span class="parmname">af </span>(<span class="parmname">ldaf</span>,*) contains the  The block diagonal matrix D and the multipliers used to obtain the factor <span class="keyword">L</span> or <span class="keyword">U </span>as computed by <span class="option">?sytrf</span>.</p>
+<p>The second dimension of <span class="parmname">a</span> and <span class="parmname">af</span> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><span class="parmname">c</span>, <span class="keyword">DIMENSION</span><var>n</var>. The vector <samp class="codeph"><var>C</var></samp> in the formula  <samp class="codeph">op(<var>A</var>) * op2(<var>C</var>)</samp>.</p>
+<p><span class="parmname">work</span> is a workspace array of <span class="keyword">DIMENSION</span> (3*<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>ab</var>. <span class="parmname">lda</span><span class="eqsymbol">≥</span><samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldaf</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The leading dimension of <span class="parmname">af</span>. <span class="parmname">ldaf</span><span class="eqsymbol">≥</span><samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array with <span class="keyword">DIMENSION</span><var>n</var>.  Details of the interchanges and the block
+structure of D as determined by <span class="option">?sytrf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cmode</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Determines  <samp class="codeph">op2(<var>C</var>)</samp> in the formula <samp class="codeph">op(<var>A</var>) * op2(<var>C</var>)</samp> as follows:</p>
+<p>If <samp class="codeph"><span class="parmname">cmode</span> = 1</samp>, <samp class="codeph">op2(<var>C</var>)</samp> = <samp class="codeph"><var>C</var></samp>.</p>
+<p>If <samp class="codeph"><span class="parmname">cmode</span> = 0</samp>, <samp class="codeph">op2(<var>C</var>)</samp> = <samp class="codeph"><var>I</var></samp>.</p>
+<p>If <samp class="codeph"><span class="parmname">cmode</span> = -1</samp>, <samp class="codeph">op2(<var>C</var>)</samp> = <samp class="codeph">inv(<var>C</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Workspace array with <span class="keyword">DIMENSION</span><var>n</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B3EA3F56-B17D-4639-B5F1-A084BCC60175"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7A5A3C0C-2E76-4EB5-8154-3B579F32D82E"><dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful.</p>
+<p>If <var>i</var> &gt; 0, the <var>i</var>-th parameter is invalid.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">?sytrf</span></a> </div></div></div>
+</body>
+</html>

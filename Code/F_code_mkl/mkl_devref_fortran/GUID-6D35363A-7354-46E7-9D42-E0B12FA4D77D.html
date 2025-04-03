@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lasrt"/>
+<meta name="abstract" content="Sorts the numbers in an array and the corresponding vectors in increasing order."/>
+<meta name="description" content="Sorts the numbers in an array and the corresponding vectors in increasing order."/>
+<meta name="DC.subject" content="pslasrt, pdlasrt"/>
+<meta name="keywords" content="pslasrt, pdlasrt"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6D35363A-7354-46E7-9D42-E0B12FA4D77D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lasrt</title>
+
+</head>
+<body id="GUID-6D35363A-7354-46E7-9D42-E0B12FA4D77D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lasrt</span></h1>
+<!-- Sorts the numbers  in an array and the  corresponding vectors in increasing order.--><div><p class="shortdesc"> Sorts the numbers  in an array and the  corresponding vectors in increasing order.</p>
+<div class="section" id="GUID-EE03C9C0-1B4C-46FE-BF35-13A67A77D409"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslasrt</span><span class="delim"> (</span><span class="var">id</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">iq</span><span class="sep">, </span><span class="var">jq</span><span class="sep">, </span><span class="var">descq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlasrt</span><span class="delim"> (</span><span class="var">id</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">iq</span><span class="sep">, </span><span class="var">jq</span><span class="sep">, </span><span class="var">descq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-135E97C7-C895-4B96-84F7-C7E4A05DABAE"><h2 class="sectiontitle">Description</h2><p><span class="option">p?lasrt</span> sorts the numbers in <span class="parmname">d</span> and the  corresponding vectors in <span class="parmname">q</span> in increasing order.</p>
+</div>
+<div class="section" id="GUID-5D724810-BDC8-46C6-995E-CC4855883996"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DBA622E4-247E-4062-9A49-3D6527014C2B"><dt class="dlterm"><span class="parmname">id</span></dt>
+
+<dd><p>(global)</p>
+<p>CHARACTER*1. </p>
+<p>= 'I': sort <span class="parmname">d</span> in increasing order;</p>
+<p>= 'D': sort <span class="parmname">d</span> in decreasing order. (NOT IMPLEMENTED YET)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of columns to be operated on i.e the number of          columns of the distributed submatrix sub( <var>Q</var> ). <span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslasrt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlasrt</span></p>
+<p>Array, size (<span class="parmname">n</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslasrt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlasrt</span></p>
+<p>Pointer into the local memory          to an array of size <samp class="codeph">(<var>lld_q</var>,<var>LOCc</var>(<var>jq</var>+<var>n</var>-1))</samp>
+.</p>
+<p>This array          contains the local pieces of the distributed matrix sub( <var>A</var> )          to be copied from.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iq</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The row index in the global array A indicating the first          row of sub( <var>Q</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jq</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The column index in the global array A indicating the          first column of sub( <var>Q</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descq</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslasrt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlasrt</span></p>
+<p>Array, size (<span class="parmname">lwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local)</p>
+<p>INTEGER. </p>
+<p>The size of the array <span class="parmname">work</span>.</p>
+<p><span class="parmname">lwork</span> = MAX( <span class="parmname">n</span>, NP * ( NB + NQ )), where          NP = <span class="option">numroc</span>( <span class="parmname">n</span>, NB, MYROW, IAROW, NPROW ),          NQ = <span class="option">numroc</span>( <span class="parmname">n</span>, NB, MYCOL, DESCQ( <var>csrc_</var> ), NPCOL ).</p>
+<p><span class="option">numroc</span> is a ScaLAPACK tool function.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local)</p>
+<p>INTEGER. </p>
+<p>Array,                                                  size (<span class="parmname">liwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local)</p>
+<p>INTEGER. </p>
+<p>The size of the array <span class="parmname">iwork</span>.</p>
+<p><span class="parmname">liwork</span> = <span class="parmname">n</span> + 2*NB + 2*NPCOL</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4D5CA41A-0068-4597-98EE-684F0C273FAB"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, the numbers in <span class="parmname">d</span> are sorted in increasing order.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p>(global)</p>
+<p>INTEGER. </p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had                an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>), if the <var>i</var>-th                argument is a scalar and had an illegal value, then                <span class="parmname">info</span> = -<var>i</var>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

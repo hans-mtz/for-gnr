@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pxerbla"/>
+<meta name="abstract" content="Error handling routine called by ScaLAPACK routines."/>
+<meta name="description" content="Error handling routine called by ScaLAPACK routines."/>
+<meta name="DC.subject" content="ScaLAPACK routines, utility functions and routines, pxerbla, error handling"/>
+<meta name="keywords" content="ScaLAPACK routines, utility functions and routines, pxerbla, error handling"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E2315BB6-B642-4D41-BDAB-6614940D36A3.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E523C816-D553-4D4E-8458-5404828CC07B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pxerbla</title>
+
+</head>
+<body id="GUID-E523C816-D553-4D4E-8458-5404828CC07B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pxerbla</span></h1>
+<!--Error handling routine called by ScaLAPACK routines.--><div><p class="shortdesc">Error handling routine called by ScaLAPACK routines.</p>
+<div class="section" id="GUID-47B5AA86-BFE2-41F9-B069-4B214541E328"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd"> call pxerbla </span><span class="delim">(</span><span class="var">ictxt</span><span class="sep">, </span><span class="var">srname</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-AC908F37-F233-40D1-A31F-802B49F07859"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-7916E631-B39D-4884-ACAE-0614B6CBCCBC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E39D4FCB-B09F-4EB1-8588-9CA0D07332D6"><dt class="dlterm"><span class="parmname">ictxt</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">INTEGER</span></p>
+<p>The BLACS context handle, indicating the global context of the operation. The context itself is global.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">srname</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">CHARACTER*(*)</span></p>
+<p>The name of the routine that called <span class="option">pxerbla</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">INTEGER</span></p>
+<p>The position of the invalid parameter in the parameter list of the calling routine.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-CE4B7CB1-9F5F-4674-BB97-74CFB7DC62F9"><h2 class="sectiontitle">Description</h2><p>This routine is an error handler for the <em>ScaLAPACK</em> routines. It is called if an input parameter has an invalid value. A message is printed and program execution continues. For ScaLAPACK driver and computational routines, a <span class="keyword">RETURN</span> statement is issued following the call to <span class="option">pxerbla</span>. </p>
+<p>Control returns to the higher-level calling routine, and you can determine how the program should proceed. However, in the specialized low-level ScaLAPACK routines (auxiliary routines that are Level 2 equivalents of computational routines), the call to <span class="option">pxerbla()</span> is immediately followed by a call to <span class="keyword">BLACS_ABORT()</span> to terminate program execution since recovery from an error at this level in the computation is not possible. </p>
+<p>It is always good practice to check for a non-zero value of <var>info</var> on return from a ScaLAPACK routine. Installers may consider modifying this routine in order to call system-specific exception-handling facilities.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-E2315BB6-B642-4D41-BDAB-6614940D36A3.html">Error Handling for Linear Algebra Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

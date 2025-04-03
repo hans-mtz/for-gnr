@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laed4"/>
+<meta name="abstract" content="Used by sstedc/dstedc. Finds a single root of the secular equation."/>
+<meta name="description" content="Used by sstedc/dstedc. Finds a single root of the secular equation."/>
+<meta name="DC.subject" content="?laed4, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="keywords" content="?laed4, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-08891D48-80E5-40C7-84FD-D538434481ED"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laed4</title>
+
+</head>
+<body id="GUID-08891D48-80E5-40C7-84FD-D538434481ED">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laed4</span></h1>
+<!--Used by  sstedc / dstedc . Finds a single root of the secular equation.--><div><p class="shortdesc">Used by <span class="option">sstedc</span>/<span class="option">dstedc</span>. Finds a single root of the secular equation.</p>
+<div class="section" id="GUID-1B030F48-AD42-459F-8CC7-358AE77F3877"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaed4</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dlam</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaed4</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dlam</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-F2564807-AC90-43D7-96A8-07D5C1555A9E"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-767DC972-67E6-4E9C-A5D3-901BCA165F2F"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>This routine computes the <var>i</var>-th updated eigenvalue of a symmetric rank-one modification to a diagonal matrix whose elements are given in the array <var>d</var>, and that</p>
+<p><samp class="codeph"><var>D</var>(i) &lt; <var>D</var>(<var>j</var>) for <samp class="codeph"><var>i</var> &lt; <var>j</var></samp></samp></p>
+<p>and that <samp class="codeph"><var>rho</var> &gt; 0</samp>. This is arranged by the calling routine, and is no loss in generality. The rank-one modified system is thus</p>
+<p><samp class="codeph">diag(<var>D</var>)  +  <var>rho</var>*<var>Z</var>  * transpose(<var>Z</var>)</samp>.</p>
+<p>where we assume the Euclidean norm of <var>Z</var> is 1.</p>
+<p>The method consists of approximating the rational functions in the secular equation by simpler interpolating rational functions.</p>
+</div>
+<div class="section" id="GUID-DC7A3C0D-5734-440C-93DE-DC9F57E1A524"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-610DE102-0AD5-4910-87D4-3C39A682D430"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The length of all arrays.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">i</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The index of the eigenvalue to be computed; <samp class="codeph">1 ≤ i ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed4</span></p>
+<p>Arrays, dimension (<var>n</var>) each. The array <var>d</var> contains the original eigenvalues. It is assumed that they are in order, <samp class="codeph"><var>d</var>(i) &lt; <var>d</var>(<var>j</var>) for <samp class="codeph"><var>i</var> &lt; <var>j</var></samp></samp>.</p>
+<p>The array <var>z</var> contains the components of the updating vector <var>Z</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed4</span></p>
+<p>The scalar in the symmetric updating formula.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-969703B0-29C3-43B5-B309-7D990FB700C7"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-5E143B41-A1B8-430A-9BAE-90DD6334E485"><dt class="dlterm"><span class="parmname">delta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed4</span></p>
+<p>Array, dimension (<var>n</var>). </p>
+<p>If <samp class="codeph"><var>n</var><span class="eqsymbol">≠</span> 1</samp>, <var>delta</var> contains (<samp class="codeph"><var>d</var>(<var>j</var>) - <var>lambda_i</var></samp>) in its <var>j</var>-th component. If <samp class="codeph"><var>n</var> = 1</samp>, then <samp class="codeph"><var>delta</var>(1) = 1</samp>. The vector <var>delta</var> contains the information necessary to construct the eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dlam</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed4</span></p>
+<p>The computed <var>lambda_i</var>, the <var>i</var>-th updated eigenvalue.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, the updating process failed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

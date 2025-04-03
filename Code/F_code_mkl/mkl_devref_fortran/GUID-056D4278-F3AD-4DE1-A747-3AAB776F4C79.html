@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_peak_mem_usage"/>
+<meta name="abstract" content="Reports the peak memory allocated by the Intel&reg; oneAPI Math Kernel Library Memory Allocator."/>
+<meta name="description" content="Reports the peak memory allocated by the Intel&reg; oneAPI Math Kernel Library Memory Allocator."/>
+<meta name="DC.subject" content="support functions, mkl_peak_mem_usage"/>
+<meta name="keywords" content="support functions, mkl_peak_mem_usage"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C44DA051-9CF1-416C-B935-C844C0707BA1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B46596A9-7EF0-4613-B749-E277466B55A4.html#GUID-B46596A9-7EF0-4613-B749-E277466B55A4"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0998110C-2760-4A00-B0A7-709ECFD0C0CB.html#GUID-0998110C-2760-4A00-B0A7-709ECFD0C0CB"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-056D4278-F3AD-4DE1-A747-3AAB776F4C79"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_peak_mem_usage</title>
+
+</head>
+<body id="GUID-056D4278-F3AD-4DE1-A747-3AAB776F4C79">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_peak_mem_usage</span></h1>
+<!--Reports the peak memory allocated by the Intel&reg; oneAPI Math Kernel Library Memory Allocator.--><div><p class="shortdesc">Reports the peak memory allocated by the Intel&reg; oneAPI Math Kernel Library Memory Allocator.</p>
+<div class="section" id="GUID-050FA803-71F3-498E-B852-F7A7DFF5022E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">AllocatedBytes</span><span class="delim"> = </span><span class="kwd">mkl_peak_mem_usage</span><span class="delim">( </span><span class="var">mode</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2F8F9889-5C7A-4325-AF8F-9B3B0E282450"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d46609e64" width="24.793388429752067%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d46609e67" width="28.925619834710744%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d46609e70" width="46.28099173553719%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d46609e64"><p><span class="parmname">mode</span></p>
+</td>
+<td valign="top" headers="d46609e67"><p><span class="keyword">INTEGER*4</span></p>
+</td>
+<td valign="top" headers="d46609e70"><p>Requested mode of the function's operation.  Possible values:</p>
+<ul id="GUID-A063EE17-A530-454F-B4B3-563284FED1EC"><li><p><span class="keyword">MKL_PEAK_MEM_ENABLE</span> - start gathering the peak
+memory data</p>
+</li>
+<li><p><span class="keyword">MKL_PEAK_MEM_DISABLE</span> - stop gathering the peak
+memory data</p>
+</li>
+<li><p><span class="keyword">MKL_PEAK_MEM</span> - return the peak memory</p>
+</li>
+<li><p><span class="keyword">MKL_PEAK_MEM_RESET</span> - return the peak memory and
+reset the counter to start gathering the peak memory data from scratch</p>
+</li>
+</ul>
+<p/>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-F2F9707E-E1B1-4896-875B-DEBEE2960302"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_peak_mem_usage</span>function reports the peak memory allocated by the Intel&reg; oneAPI Math Kernel Library Memory Allocator.</p>
+<p> Gathering the peak memory data is turned off by
+default. If you need to know the peak memory, explicitly turn the data gathering mode on by calling the function with
+the <span class="keyword">MKL_PEAK_MEM_ENABLE</span> value of the parameter. Use the  <span class="keyword">MKL_PEAK_MEM</span> and <span class="keyword">MKL_PEAK_MEM_RESET</span> values only when the data gathering mode is turned on. Otherwise the function returns -1. The data gathering mode leads to performance degradation, so when the mode is turned on, you can turn it  off by calling the function with the <span class="keyword">MKL_PEAK_MEM_DISABLE</span> value of the parameter.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <ul id="GUID-11B92283-D7FB-4426-B549-BC864859C2BF"><li><p>If Intel&reg; oneAPI Math Kernel Library is running in a threaded mode, the<span class="option">mkl_peak_mem_usage</span> function may return different amounts of memory from run to run.</p>
+</li>
+<li><p>The function reports the peak memory for the entire application, not just for the calling thread.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="GUID-9653B72C-652C-46F8-B8FA-7C24E7167263"><h2 class="sectiontitle">Return Values</h2><p><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d46609e150" width="24.793388429752067%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d46609e153" width="28.925619834710744%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d46609e156" width="46.28099173553719%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d46609e150"><p><span class="parmname">AllocatedBytes</span></p>
+</td>
+<td valign="top" headers="d46609e153"><p><span class="keyword">INTEGER*8</span></p>
+</td>
+<td valign="top" headers="d46609e156"><p>The peak memory allocated by the Memory Allocator (in bytes) or -1 in case of errors.</p>
+</td>
+</tr>
+</table>
+</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C44DA051-9CF1-416C-B935-C844C0707BA1.html">Memory Management</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-B46596A9-7EF0-4613-B749-E277466B55A4.html#GUID-B46596A9-7EF0-4613-B749-E277466B55A4">Usage Examples for the Memory Functions</a></div>
+<div><a href="GUID-0998110C-2760-4A00-B0A7-709ECFD0C0CB.html#GUID-0998110C-2760-4A00-B0A7-709ECFD0C0CB">Using a Fortran Interface Module for Support Functions 
+		  </a></div></div></div>
+</body>
+</html>

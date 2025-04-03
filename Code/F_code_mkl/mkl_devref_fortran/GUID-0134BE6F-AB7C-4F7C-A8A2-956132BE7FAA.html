@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pmpim2"/>
+<meta name="abstract" content="Computes the eigenpair range assignments for all processes."/>
+<meta name="description" content="Computes the eigenpair range assignments for all processes."/>
+<meta name="DC.subject" content="pmpim2, ScaLAPACK routines, auxiliary routines, Hermitian matrix, eigenvalues and eigenvectors"/>
+<meta name="keywords" content="pmpim2, ScaLAPACK routines, auxiliary routines, Hermitian matrix, eigenvalues and eigenvectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0134BE6F-AB7C-4F7C-A8A2-956132BE7FAA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pmpim2</title>
+
+</head>
+<body id="GUID-0134BE6F-AB7C-4F7C-A8A2-956132BE7FAA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pmpim2</span></h1>
+<!-- Computes the eigenpair range assignments for all processes. --><div><p class="shortdesc"> Computes the eigenpair range assignments for all processes. </p>
+<div class="section" id="GUID-5E1B242D-1387-4DC0-B8CC-3ADECCAC0838"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pmpim2</span><span class="delim">(</span><span class="var"> il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">nprocs</span><span class="sep">, </span><span class="var">pmyils</span><span class="sep">, </span><span class="var">pmyius </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C9F3A623-0E8A-4173-BB96-296E9E5D1534"><h2 class="sectiontitle">Description</h2><p><span class="option">pmpim2</span> is the scheduling <span>subroutine</span>. It computes for all processors the eigenpair range assignments. </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d7577e77"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d7577e77 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-2E432037-0826-442F-9E89-C3A8B63FA27B"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">il</span>, <span class="parmname">iu</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span></p>
+<p>The range of eigenpairs to be computed.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nprocs</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span></p>
+<p>The total number of processors available.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-5AE1E64D-1F47-479A-8EDD-4834E917A1DC"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">pmyils</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span></span> array</p>
+<p>For each processor <var>p</var>,  <span class="parmname">pmyils</span><span>(<var>p</var>)</span> is the index of the first eigenvalue in a cluster to be computed.</p>
+<p><span class="parmname">pmyils</span><span>(<var>p</var>)</span> equals zero if <var>p</var> stays idle.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">pmyius</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span></span> array</p>
+<p>For each processor <var>p</var>,  <span class="parmname">pmyius</span><span>(<var>p</var>)</span> is the index of the last eigenvalue in a cluster to be computed.</p>
+<p><span class="parmname">pmyius</span><span>(<var>p</var>)</span> equals zero if <var>p</var> stays idle.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

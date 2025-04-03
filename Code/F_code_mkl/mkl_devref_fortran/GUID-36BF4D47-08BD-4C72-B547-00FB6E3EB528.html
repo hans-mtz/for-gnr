@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasd6"/>
+<meta name="abstract" content="Computes the SVD of an updated upper bidiagonal matrix obtained by merging two smaller ones by appending a row. Used by ?bdsdc."/>
+<meta name="description" content="Computes the SVD of an updated upper bidiagonal matrix obtained by merging two smaller ones by appending a row. Used by ?bdsdc."/>
+<meta name="DC.subject" content="?lasd6, LAPACK routines, auxiliary routines, updated upper bidiagonal matrix, SVD"/>
+<meta name="keywords" content="?lasd6, LAPACK routines, auxiliary routines, updated upper bidiagonal matrix, SVD"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-36BF4D47-08BD-4C72-B547-00FB6E3EB528"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasd6</title>
+
+</head>
+<body id="GUID-36BF4D47-08BD-4C72-B547-00FB6E3EB528">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasd6</span></h1>
+<!--Computes the SVD of an updated upper bidiagonal matrix obtained by merging two smaller ones by appending a row. Used by  ?bdsdc .--><div><p class="shortdesc">Computes the SVD of an updated upper bidiagonal matrix obtained by merging two smaller ones by appending a row. Used by <span class="option">?bdsdc</span>.</p>
+<div class="section" id="GUID-86F765EC-E6A5-49D6-8241-67FD17482FD8"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasd6</span><span class="delim">( </span><span class="var">icompq</span><span class="sep">, </span><span class="var">nl</span><span class="sep">, </span><span class="var">nr</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">vf</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">idxq</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">givptr</span><span class="sep">, </span><span class="var">givcol</span><span class="sep">, </span><span class="var">ldgcol</span><span class="sep">, </span><span class="var">givnum</span><span class="sep">, </span><span class="var">ldgnum</span><span class="sep">, </span><span class="var">poles</span><span class="sep">, </span><span class="var">difl</span><span class="sep">, </span><span class="var">difr</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasd6</span><span class="delim">( </span><span class="var">icompq</span><span class="sep">, </span><span class="var">nl</span><span class="sep">, </span><span class="var">nr</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">vf</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">idxq</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">givptr</span><span class="sep">, </span><span class="var">givcol</span><span class="sep">, </span><span class="var">ldgcol</span><span class="sep">, </span><span class="var">givnum</span><span class="sep">, </span><span class="var">ldgnum</span><span class="sep">, </span><span class="var">poles</span><span class="sep">, </span><span class="var">difl</span><span class="sep">, </span><span class="var">difr</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-C9A20B8B-5AAE-49F2-9447-75B40C8BF43C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-42E76E1D-C9F0-411A-BB9D-2BC58FC27643"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?lasd6</span> computes the <var>SVD</var> of an updated upper bidiagonal matrix <var>B</var> obtained by merging two smaller ones by appending a row. This routine is used only for the problem which requires all singular values and optionally singular vector matrices in factored form. <var>B</var> is an <var>n</var>-by-<var>m</var> matrix with <samp class="codeph"><var>n</var> = <var>nl</var> + <var>nr</var> + 1</samp> and <samp class="codeph"><var>m</var> = <var>n</var> + <var>sqre</var></samp>. A related subroutine, <a href="GUID-93A1A83C-3B63-4D71-B979-42342CB69023.html#GUID-93A1A83C-3B63-4D71-B979-42342CB69023"><span class="option">?lasd1</span></a>, handles the case in which all singular values and singular vectors of the bidiagonal matrix are desired. <span class="option">?lasd6</span> computes the <var>SVD</var> as follows:</p>
+<p><br/><div class="imagecenter"><img src="GUID-E9FDC76C-934F-49FC-A5CE-5A90624DCCFE-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p><samp class="codeph">= <var>U</var>(out)*(<var>D</var>(out)*<var>VT</var>(<var>out</var>)</samp></p>
+<p>where <samp class="codeph"><var>Z</var>' = (<var>Z1</var>' <var>a</var><var>Z2</var>'  <var>b</var>) = <var>u</var>'*<var>VT</var>'</samp>, and <var>u</var> is a vector of dimension <var>m</var> with <var>alpha</var> and <var>beta</var> in the <var>nl</var>+1 and <var>nl</var>+2-th entries and zeros elsewhere; and the entry b is empty if <samp class="codeph"><var>sqre</var> = 0</samp>.</p>
+<p>The singular values of <var>B</var> can be computed using <var>D1</var>, <var>D2</var>, the first components of all the right singular vectors of the lower block, and the last components of all the right singular vectors of the upper block. These components are stored and updated in <var>vf</var> and <var>vl</var>, respectively, in <span class="option">?lasd6</span>. Hence <var>U</var> and <var>VT</var> are not explicitly referenced. </p>
+<p>The singular values are stored in <var>D</var>. The algorithm consists of two stages:</p>
+<ol id="GUID-506EAE44-0717-4B87-84DA-60AA9AA9C8E8"><li><p>The first stage consists of deflating the size of the problem when there are multiple singular values or if there is a zero in the <var>Z</var> vector. For each such occurrence the dimension of the secular equation problem is reduced by one. This stage is performed by the routine <a href="GUID-020CC0E2-37E2-48D1-86C3-67B98FBC8BCA.html#GUID-020CC0E2-37E2-48D1-86C3-67B98FBC8BCA"><span class="option">?lasd7</span></a>.</p>
+</li>
+<li><p>The second stage consists of calculating the updated singular values. This is done by finding the roots of the secular equation via the routine <a href="GUID-BF713616-3313-4C41-A6F4-0799F477D2B5.html#GUID-BF713616-3313-4C41-A6F4-0799F477D2B5"><span class="option">?lasd4</span></a> (as called by <a href="GUID-3698F05A-16EA-4F2D-BCFD-DB187FE2864F.html#GUID-3698F05A-16EA-4F2D-BCFD-DB187FE2864F"><span class="option">?lasd8</span></a>). This routine also updates <var>vf</var> and <var>vl</var> and computes the distances between the updated singular values and the old singular values. <span class="option">?lasd6</span> is called from <a href="GUID-3AAA7AE9-4796-4296-9BFD-185F7A5D7EC8.html#GUID-3AAA7AE9-4796-4296-9BFD-185F7A5D7EC8"><span class="option">?lasda</span></a>.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="GUID-C0FC51C8-E088-4105-893C-95E7BC882A23"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1DB04B44-54C0-489F-B5DD-1CD518982B2B"><dt class="dlterm"><span class="parmname">icompq</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> Specifies whether singular vectors are to be computed in  factored form: </p>
+<p>= 0: Compute singular values only </p>
+<p>= 1: Compute singular vectors in factored form as well.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nl</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The row dimension of the upper block. </p>
+<p><samp class="codeph"><var>nl</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nr</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The row dimension of the lower block. </p>
+<p><samp class="codeph"><var>nr</var><span class="eqsymbol">≥</span> 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sqre</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>= 0: the lower block is an <var>nr</var>-by-<var>nr</var> square matrix. </p>
+<p>= 1: the lower block is an <var>nr</var>-by-(<var>nr</var>+1) rectangular matrix. </p>
+<p>The bidiagonal matrix has row dimension <samp class="codeph"><var>n</var>=<var>nl</var>+<var>nr</var>+1</samp>, and column dimension <samp class="codeph"><var>m</var> = <var>n</var> + <var>sqre</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> ( <var>nl</var>+<var>nr</var>+1 ). On entry <var>d</var>(1:<var>nl</var>,1:<var>nl</var>) contains the singular values of the upper block, and <var>d</var>(<var>nl</var>+2:<var>n</var>) contains the singular values  of the lower block. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">vf</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> ( <var>m</var> ).</p>
+<p>On entry, <var>vf</var>(1:<var>nl</var>+1) contains the first components of all right singular vectors of the upper block; and <var>vf</var>(<var>nl</var>+2:<var>m</var>)</p>
+<p> contains the first components of all right singular vectors of the lower block. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> ( <var>m</var> ).</p>
+<p>On entry, <var>vl</var>(1:<var>nl</var>+1) contains the  last components of all right singular vectors of the upper block; and <var>vl</var>(<var>nl</var>+2:<var>m</var>) contains the last components of all right singular vectors of the lower block.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Contains the diagonal element associated with the added row.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Contains the off-diagonal element associated with the added row.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldgcol</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span>The leading dimension <var>of</var> the output array <var>givcol</var>, must be at least <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldgnum</span></dt>
+
+<dd><span><span class="keyword">INTEGER</span></span><p>The leading dimension of the output arrays <var>givnum</var> and <var>poles</var>, must be at least <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Workspace array, <span class="keyword">dimension</span> ( 4<var>m</var> ). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span></p>
+<p>Workspace array, <span class="keyword">dimension</span> ( 3<var>n</var> ). </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-597CEEBF-9971-4CBC-B8C3-31109E189C2A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C0117110-CAC6-4DB9-8901-88B8B6FD64D4"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit <var>d</var>(1:<var>n</var>) contains the singular values of the modified matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vf</span></dt>
+
+<dd><p>On exit, <var>vf</var> contains the first components  of all right singular vectors of the bidiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span></dt>
+
+<dd><p>On exit, <var>vl</var> contains the last components of all right singular vectors of the bidiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>On exit, the diagonal element associated with the added row deflated by <samp class="codeph">max(abs(<span class="parmname">alpha</span>), abs(<span class="parmname">beta</span>), abs(D(I)))</samp>, <samp class="codeph">I = 1,n</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>On exit, the off-diagonal element associated with the added row deflated by <samp class="codeph">max(abs(<span class="parmname">alpha</span>), abs(<span class="parmname">beta</span>), abs(D(I)))</samp>, <samp class="codeph">I = 1,n</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">idxq</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> .</p>
+<p>Array, <span class="keyword">dimension</span> (<var>n</var>). This contains the permutation which will reintegrate the subproblem just solved back into sorted order, that is, <samp class="codeph"><var>d</var>( <var>idxq</var>( <var>i</var> = 1, <var>n</var> ) )</samp> will be in ascending order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">perm</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> .</p>
+<p>Array, <span class="keyword">dimension</span> (<var>n</var>). The permutations (from deflation and sorting) to be applied to each block. Not referenced if <samp class="codeph"><var>icompq</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">givptr</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The number of Givens rotations which took place in this subproblem. Not referenced if <samp class="codeph"><var>icompq</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">givcol</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> .</p>
+<p>Array, <span class="keyword">dimension</span> ( <var>ldgcol</var>, 2 ). Each pair of numbers indicates a pair of columns to take place in a Givens rotation. Not referenced if <samp class="codeph"><var>icompq</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">givnum</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> ( <var>ldgnum</var>, 2 ). Each number indicates the <var>C</var> or <var>S</var> value to be used in the  corresponding Givens rotation. Not referenced if <samp class="codeph"><var>icompq</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">poles</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> ( <var>ldgnum</var>, 2 ). On exit, <var>poles</var>(1,*) is an array containing the new singular values obtained from solving the secular equation, and <var>poles</var>(2,*) is an array containing the poles in the secular equation. Not referenced if <samp class="codeph"><var>icompq</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">difl</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> (<var>n</var>). On exit, <var>difl</var>(<var>i</var>) is the distance between <var>i</var>-th updated (undeflated) singular value and the <var>i</var>-th (undeflated) old singular value.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">difr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> (<var>ldgnum</var>, 2 ) if <samp class="codeph"><var>icompq</var> = 1</samp> and <span class="keyword">dimension</span> (<var>n</var>) if <samp class="codeph"><var>icompq</var> = 0</samp>. </p>
+<p>On exit, <var>difr</var>(<var>i</var>, 1) is the distance between <var>i</var>-th updated (undeflated) singular value and the <var>i</var>+1-th (undeflated) old  singular value. If <samp class="codeph"><var>icompq</var> = 1, <var>difr</var>(1: <var>k</var>, 2)</samp> is an array containing the normalizing factors for the right singular vector matrix.</p>
+<p>See <span class="option">?lasd8</span> for details on <var>difl</var> and <var>difr</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p>Array, <span class="keyword">dimension</span> ( <var>m</var> ). </p>
+<p>The first elements of this array contain the components of the deflation-adjusted updating row vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span>  Contains the dimension of the non-deflated matrix. This is the order of the related secular equation. <samp class="codeph">1 ≤ <var>k</var> ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p><var>c</var> contains garbage if <samp class="codeph"><var>sqre</var> =0</samp> and the <var>C</var>-value of a Givens rotation related to the right null space if <samp class="codeph"><var>sqre</var> = 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd6</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd6</span></p>
+<p><var>s</var> contains garbage if <samp class="codeph"><var>sqre</var> =0</samp> and the <var>S</var>-value of a Givens  rotation related to the right null space if <samp class="codeph"><var>sqre</var> = 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> .</p>
+<p>= 0:  successful exit.</p>
+<p>&lt; 0:  if <samp class="codeph"><var>info</var> = -<var>i</var></samp>, the <var>i</var>-th argument had an illegal value.</p>
+<p>&gt; 0: if <samp class="codeph"><var>info</var> = 1</samp>, an singular value did not converge</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

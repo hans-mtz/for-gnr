@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larrc"/>
+<meta name="abstract" content="Computes the number of eigenvalues of the symmetric tridiagonal matrix."/>
+<meta name="description" content="Computes the number of eigenvalues of the symmetric tridiagonal matrix."/>
+<meta name="DC.subject" content="?larrc, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?larrc, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-712C3EC7-47B0-413F-A4F9-9E00FCD07211"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larrc</title>
+
+</head>
+<body id="GUID-712C3EC7-47B0-413F-A4F9-9E00FCD07211">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larrc</span></h1>
+<!--Computes the number of eigenvalues of the symmetric tridiagonal matrix.--><div><p class="shortdesc">Computes the number of eigenvalues of the symmetric tridiagonal matrix.</p>
+<div class="section" id="GUID-6D072522-CED4-495F-90CB-3043B29C2BF1"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarrc</span><span class="delim">( </span><span class="var">jobt</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">eigcnt</span><span class="sep">, </span><span class="var">lcnt</span><span class="sep">, </span><span class="var">rcnt</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarrc</span><span class="delim">( </span><span class="var">jobt</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">eigcnt</span><span class="sep">, </span><span class="var">lcnt</span><span class="sep">, </span><span class="var">rcnt</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-46B8DBA0-BCD6-49A0-BE74-9B7497A323D0"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8BD4BB1D-A387-4D23-87D4-0BE7F068FBEC"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine finds the number of eigenvalues of the symmetric tridiagonal matrix <var>T</var> or of its factorization <samp class="codeph"><var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup></samp>  in the specified interval. </p>
+</div>
+<div class="section" id="GUID-99CB3001-F166-4811-A3B4-9F45F07C8757"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-46A91F3C-06BE-4E9B-971C-EA8AA0390238"><dt class="dlterm"><span class="parmname">jobt</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<samp class="codeph">= 'T'</samp>:  computes Sturm count for matrix <var>T</var>.
+<p><samp class="codeph">= 'L'</samp>:  computes Sturm count for matrix <samp class="codeph"><var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The order of the matrix. (<samp class="codeph"><var>n </var><span class="eqsymbol">&gt;</span> 1</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span>,<span class="parmname">vu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrc</span></p>
+The lower and upper bounds for the eigenvalues.</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrc</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>If <samp class="codeph"><span class="parmname">jobt</span>= 'T'</samp>: contains the <span class="parmname">n</span> diagonal elements of the tridiagonal matrix <var>T</var>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobt</span>= 'L'</samp>: contains the <span class="parmname">n</span> diagonal elements of the diagonal matrix <var>D</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrc</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>If <samp class="codeph"><span class="parmname">jobt</span>= 'T'</samp>: contains the <samp class="codeph">(<span class="parmname">n</span>-1)</samp>offdiagonal elements of the matrix  <var>T</var>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobt</span>= 'L'</samp>: contains the <samp class="codeph">(<span class="parmname">n</span>-1)</samp>offdiagonal elements of the matrix <var>L</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrc</span></p>
+<p>The minimum pivot in the Sturm sequence for the matrix  <var>T</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-00525795-FA98-4332-90EA-AEF6BB3AC761"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9B556B7A-D55B-425D-87F0-3028EB995CD0"><dt class="dlterm"><span class="parmname">eigcnt</span></dt>
+
+<dd><span class="keyword">INTEGER</span>. <p>The number of eigenvalues of the symmetric tridiagonal matrix  <var>T</var> that are in the half-open interval <samp class="codeph">(<span class="parmname">vl</span>,<span class="parmname">vu</span>]</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lcnt</span>,<span class="parmname">rcnt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The left and right negcounts of the interval.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Now it is not used and always is set to 0.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

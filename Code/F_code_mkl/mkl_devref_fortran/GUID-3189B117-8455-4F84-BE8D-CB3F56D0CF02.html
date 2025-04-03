@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Matrix Shapes"/>
+<meta name="DC.subject" content="BLACS routines, matrix shapes"/>
+<meta name="keywords" content="BLACS routines, matrix shapes"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3189B117-8455-4F84-BE8D-CB3F56D0CF02"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Matrix Shapes</title>
+
+</head>
+<body id="GUID-3189B117-8455-4F84-BE8D-CB3F56D0CF02">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Matrix Shapes</h1>
+<div><p>The BLACS routines recognize the two most common classes of matrices for dense linear algebra. The first of these classes consists of general rectangular matrices, which in machine storage are 2D arrays consisting of 
+      <var>m</var> rows and 
+      <var>n</var> columns, with a leading dimension, 
+      <var>lda</var>, that determines the distance between successive columns in memory.
+    </p>
+<p>The 
+      <dfn class="term">general rectangular</dfn> matrices take the following parameters as input when determining what array to operate on:
+    </p>
+<p><dl id="GUID-AD60BFA0-F4F0-4472-9526-82A82FD61A33"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(input) 
+            <span class="keyword">INTEGER</span>. The number of matrix rows to be operated on.
+          </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(input) 
+            <span class="keyword">INTEGER</span>. The number of matrix columns to be operated on.
+          </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(input/output) 
+            <span class="keyword">TYPE</span> (depends on routine), array of dimension 
+            <samp class="codeph">(<span class="parmname">lda</span>,<span class="parmname">n</span>)</samp>. 
+          </p>
+<p>A pointer to the beginning of the (sub)array to be sent.
+          </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p>(input) 
+            <span class="keyword">INTEGER</span>. The distance between two elements in matrix row.
+          </p>
+</dd>
+</dl>
+</p>
+<p>The second class of matrices recognized by the BLACS are 
+      <dfn class="term">trapezoidal</dfn> matrices (triangular matrices are a sub-class of trapezoidal). Trapezoidal arrays are defined by 
+      <span class="parmname">m</span>, 
+      <span class="parmname">n</span>, and 
+      <span class="parmname">lda</span>, as above, but they have two additional parameters as well. These parameters are:
+    </p>
+<p><dl id="GUID-6C00A4D6-F117-4C55-95FE-F19C534F8A92"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(input) 
+            <span class="keyword">CHARACTER*1 
+            </span>. Indicates whether the matrix is upper or lower trapezoidal, as discussed below.
+          </p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p>(input) 
+            <span class="keyword">CHARACTER*1 
+            </span>. Indicates whether the diagonal of the matrix is unit diagonal (will not be operated on) or otherwise (will be operated on). 
+          </p>
+</dd>
+</dl>
+</p>
+<p>The shape of the trapezoidal arrays is determined by these parameters as follows:
+    </p>
+<div class="figtop" id="BLACS_FIG16-1"><span class="figcap">Trapezoidal Arrays Shapes</span><br/><div class="imagecenter"><img src="GUID-9BF00EA7-8A3F-48EF-ACE1-3BDE8596A70F-low.gif" alt="Trapezoidal Arrays Shapes" align="center"/></div><br/></div>
+<p>The packing of arrays, if required, so that they may be sent efficiently is hidden, allowing the user to concentrate on the logical matrix, rather than on how the data is organized in the system memory.
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html">BLACS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

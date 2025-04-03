@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?sygst"/>
+<meta name="abstract" content="Reduces a real symmetric-definite generalized eigenvalue problem to the standard form."/>
+<meta name="description" content="Reduces a real symmetric-definite generalized eigenvalue problem to the standard form."/>
+<meta name="DC.subject" content="p?sygst, ScaLAPACK routines, generalized eigenvalue problems, real symmetric-definite problem, reducing generalized eigenvalue problems, ScaLAPACK"/>
+<meta name="keywords" content="p?sygst, ScaLAPACK routines, generalized eigenvalue problems, real symmetric-definite problem, reducing generalized eigenvalue problems, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F2CB94C5-CE8C-4AD7-9032-A675E4AF5C5F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-31035C9A-E008-4748-A846-A0152FE62035"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?sygst</title>
+
+</head>
+<body id="GUID-31035C9A-E008-4748-A846-A0152FE62035">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?sygst</span></h1>
+<!--Reduces a real symmetric-definite generalized eigenvalue problem to the standard form.--><div><p class="shortdesc">Reduces a real symmetric-definite generalized eigenvalue problem to the standard form.</p>
+<div class="section" id="GUID-D624D423-3B66-434A-B171-94D04892DC76"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pssygst</span><span class="delim">(</span><span class="var">ibtype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdsygst</span><span class="delim">(</span><span class="var">ibtype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C251D784-493E-4D9F-A558-3B119A3B6D70"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-440D4889-A4A1-498B-BB75-233D78CCF363"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?sygst</span><span>routine </span>reduces real symmetric-definite generalized eigenproblems  to the standard form.</p>
+<p>In the following sub(<var>A</var>) denotes <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1) and sub(<var>B</var>) denotes <var>B</var>(<span class="parmname">ib</span>:<span class="parmname">ib</span>+<span class="parmname">n</span>-1, <span class="parmname">jb</span>:<span class="parmname">jb</span>+<span class="parmname">n</span>-1). </p>
+<p>If <samp class="codeph"><var>ibtype</var> = 1</samp>, the problem is</p>
+<p>            sub(<var>A</var>)*<var>x</var> = <span class="eqsymbol">λ*</span>sub(<var>B</var>)*<var>x</var>, </p>
+<p>and sub(<var>A</var>) is overwritten by inv(<var>U</var><sup class="power"><var>T</var></sup>)*sub(<var>A</var>)*inv(<var>U</var>), or inv(<var>L</var>)*sub(<var>A</var>)*inv(<var>L</var><sup class="power"><var>T</var></sup>).</p>
+<p>If <samp class="codeph"><var>ibtype</var> = 2</samp> or 3, the problem is </p>
+<p>            sub(<var>A</var>)*sub(<var>B</var>)*<var>x</var> = <span class="eqsymbol">λ*</span><var>x</var>, or sub(<var>B</var>)*sub(<var>A</var>)*<var>x</var> = <span class="eqsymbol">λ*</span><var>x</var>, </p>
+<p>and sub(<var>A</var>) is overwritten by <var>U</var>*sub(<var>A</var>)*<var>U</var><sup class="power"><var>T</var></sup>, or <var>L</var><sup class="power"><var>T</var></sup>*sub(<var>A</var>)<var>*L</var>. </p>
+<p>sub(<var>B</var>) must have been previously factorized as <var>U</var><sup class="power"><var>T</var></sup><var>*U</var> or <var>L*L</var><sup class="power"><var>T</var></sup> by <span class="option">p?potrf</span>. </p>
+</div>
+<div class="section" id="GUID-D7F333F4-967E-4A43-A33E-B1B1D3292DD7"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B564EC92-18B8-4251-83B1-B5A8E28F4471"><dt class="dlterm"><span class="parmname">ibtype</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Must be 1 or 2 or 3. </p>
+<p>If <samp class="codeph"><var>itype</var> = 1</samp>, compute inv(<var>U</var><sup class="power"><var>T</var></sup>)*sub(<var>A</var>)*inv(<var>U</var>), or inv(<var>L</var>)*sub(<var>A</var>)*inv(<var>L</var><sup class="power"><var>T</var></sup>); </p>
+<p>If <samp class="codeph"><var>itype</var> = 2 or 3</samp>, compute <var>U</var>*sub(<var>A</var>)*<var>U</var><sup class="power"><var>T</var></sup>, or  <var>L</var><sup class="power"><var>T</var></sup>*sub(<var>A</var>)*<var>L</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of sub(<var>A</var>) is stored and sub (<var>B</var>) is factored as <var>U</var><sup class="power"><var>T</var></sup><var>*U</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of sub(<var>A</var>) is stored and sub (<var>B</var>) is factored as <var>L*L</var><sup class="power"><var>T</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the matrices sub (<var>A</var>) and sub (<var>B</var>) <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssygst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsygst</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. On entry, the array contains the local pieces of the <span class="parmname">n</span>-by-<span class="parmname">n</span> symmetric distributed matrix sub(<var>A</var>). </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of sub(<var>A</var>) contains the upper triangular part of the matrix, and its strictly lower triangular part is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of sub(<var>A</var>) contains the lower triangular part of the matrix, and its strictly upper triangular part is not referenced. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the submatrix <var>A</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssygst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsygst</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_b</var>,<var>LOCc</var>(<var>jb</var>+<var>n</var>-1))</samp>. On entry, the array contains the local pieces of the triangular factor from the Cholesky factorization of sub (<var>B</var>) as returned by <span class="option">p?potrf</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ib</span>, <span class="parmname">jb</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>B</var> indicating the first row and the first column of the submatrix <var>B</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descb</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix B.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6066DF86-7B5E-4DB6-B764-F61EC6C03D91"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-19AAEDDF-A24F-4137-B89C-5B22E19D760A"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, the transformed matrix, stored in the same format as sub(<var>A</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssygst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsygst</span>. </p>
+<p>Amount by which the eigenvalues should be scaled to compensate for the scaling performed in this <span>routine</span>. At present, <span class="parmname">scale</span> is always returned as 1.0, it is returned here to allow for future enhancement. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful. If <samp class="codeph"><var>info</var> &lt; 0</samp>, if the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>.  </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F2CB94C5-CE8C-4AD7-9032-A675E4AF5C5F.html">Generalized Symmetric-Definite Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_jit_get_?gemm_ptr"/>
+<meta name="abstract" content="Return the GEMM kernel associated with a jitter previously created with mkl_jit_create_?gemm."/>
+<meta name="description" content="Return the GEMM kernel associated with a jitter previously created with mkl_jit_create_?gemm."/>
+<meta name="DC.subject" content="mkl_jit_get_?gemm_ptr"/>
+<meta name="keywords" content="mkl_jit_get_?gemm_ptr"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-25EA8F03-1E87-4A6B-BD1D-0724ED18BA45"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_jit_get_?gemm_ptr</title>
+
+</head>
+<body id="GUID-25EA8F03-1E87-4A6B-BD1D-0724ED18BA45">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_jit_get_?gemm_ptr</span></h1>
+<!--Return the GEMM kernel associated with a jitter previously created with  mkl_jit_create_?gemm .--><div><p class="shortdesc">Return the GEMM kernel associated with a jitter previously created with <span class="option">mkl_jit_create_?gemm</span>.</p>
+<div class="section" id="GUID-EBB08B57-1328-49DB-A83D-F8574FCE76DB"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">c_func </span><span class="oper">= </span><span class="kwd">mkl_jit_get_sgemm_ptr</span><span class="delim">(</span><span class="var">jitter</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">c_func </span><span class="oper">= </span><span class="kwd">mkl_jit_get_dgemm_ptr</span><span class="delim">(</span><span class="var">jitter</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">c_func </span><span class="oper">= </span><span class="kwd">mkl_jit_get_cgemm_ptr</span><span class="delim">(</span><span class="var">jitter</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">c_func </span><span class="oper">= </span><span class="kwd">mkl_jit_get_zgemm_ptr</span><span class="delim">(</span><span class="var">jitter</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-477B2979-56C0-45D2-8BF2-98358B96292A"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-D68898AE-EDBE-44DE-909A-BD4D298CB4EF"><li><span class="filepath">mkl_blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9D2A2681-CF71-43A8-8860-A08064AE067B"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_jit_get_?gemm_ptr</span> functions belong to a set of related routines that enable use of just-in-time code generation.</p>
+<p>The <span class="option">mkl_jit_get_?gemm_ptr</span> functions take as input a jitter previously created with <span class="option">mkl_jit_create_?gemm</span>, and return the GEMM kernel associated with that jitter. The returned GEMM kernel computes a scalar-matrix-matrix product and adds the result to a scalar-matrix product, with general matrices. The operation is defined as follows:</p>
+<pre>C := alpha*op(A)*op(B) + beta*C</pre><p>Where:</p>
+<ul id="GUID-64DBEC62-1A0C-47B9-AE60-397A3ADB9ACF"><li><samp class="codeph">op(X)</samp> is one of <samp class="codeph">op(X) = X</samp> or <samp class="codeph">op(X) = X<sup>T</sup></samp> or <samp class="codeph">op(X) = X<sup>H</sup></samp></li>
+<li><samp class="codeph">alpha</samp> and <samp class="codeph">beta</samp> are scalars</li>
+<li><samp class="codeph">A</samp>, <samp class="codeph">B</samp>, and <samp class="codeph">C</samp> are matrices</li>
+<li><samp class="codeph">op(A)</samp> is an <samp class="codeph">m</samp>-by-<samp class="codeph">k</samp> matrix</li>
+<li><samp class="codeph">op(B)</samp> is a <samp class="codeph">k</samp>-by-<samp class="codeph">n</samp> matrix</li>
+<li>C is an <samp class="codeph">m</samp>-by-<samp class="codeph">n</samp> matrix</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Generating a new kernel with <span class="option">mkl_jit_create_?gemm</span> involves moderate runtime overhead. To benefit from JIT code generation, use this feature when you need to call the generated kernel many times (for example, several hundred calls).</p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The JIT API requires Fortran 90 and the ISO_C_BINDING module.</p>
+</div>
+</div>
+<div class="section" id="GUID-0B55C161-3E46-482F-9FC1-163C69DE9D79"><h2 class="sectiontitle">Input Parameter</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">jitter</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">TYPE(C_PTR), VALUE</samp></p>
+<p>Handle to the code generator.</p>
+</td>
+</tr></table></div>
+<div class="section" id="FUNC"><h2 class="sectiontitle">Return Values</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><samp class="codeph">c_func</samp></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">TYPE(C_FUNPTR)</samp></p>
+<p>Returns a C function pointer to a GEMM kernel. The returned C function pointer must be converted to a Fortran procedure pointer (of abstract interface <span class="option">?gemm_jit_kernel_t</span>) using <samp class="codeph">C_F_PROCPOINTER</samp>. The GEMM kernel can then be called with four parameters: the jitter, and the three matrices <var>a</var>, b, and <var>c</var>.</p>
+</td>
+</tr></table><p>If <span class="parmname">transa</span>, <span class="parmname">transb</span>, <span class="parmname">m</span>, <span class="parmname">n</span>, <span class="parmname">k</span>, <span class="parmname">lda</span>, <span class="parmname">ldb</span>, and <span class="parmname">ldc</span> are the parameters used during the creation of the input jitter, then:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>a</p></td>
+
+<td valign="top" class="noborder"><table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder"><tr><th valign="bottom" align="left" id="d301994e275"><span class="parmname">transa</span> = <samp class="codeph">'N'</samp></th>
+<th valign="bottom" align="left" id="d301994e281"><span class="parmname">transa</span> = <samp class="codeph">'T'</samp> or <span class="parmname">transa</span> = <samp class="codeph">'C'</samp></th>
+</tr>
+<tr><td valign="top" headers="d301994e275"><p>Array of size <span class="parmname">lda</span>*<span class="parmname">k</span></p>
+<p>Before calling the returned function pointer, the leading <span class="parmname">m</span>-by-<span class="parmname">k</span> part of the array <var>a</var> must contain the matrix A.</p>
+</td>
+<td valign="top" headers="d301994e281"><p>Array of size <span class="parmname">lda</span>*<span class="parmname">m</span></p>
+<p>Before calling the returned function pointer, the leading <span class="parmname">k</span>-by-<span class="parmname">m</span> part of the array <var>a</var> must contain the matrix A.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>b</p></td>
+
+<td valign="top" class="noborder"><table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder"><tr><th valign="bottom" align="left" id="d301994e338"><span class="parmname">transb</span> = <samp class="codeph">'N'</samp></th>
+<th valign="bottom" align="left" id="d301994e344"><span class="parmname">transb</span> = <samp class="codeph">'T'</samp> or <span class="parmname">transb</span> = <samp class="codeph">'C'</samp></th>
+</tr>
+<tr><td valign="top" headers="d301994e338"><p>Array of size <span class="parmname">ldb</span>*<span class="parmname">n</span></p>
+<p>Before calling the returned function pointer, the leading <span class="parmname">k</span>-by-<span class="parmname">n</span> part of the array <var>b</var> must contain the matrix B.</p>
+</td>
+<td valign="top" headers="d301994e344"><p>Array of size <span class="parmname">ldb</span>*<span class="parmname">k</span></p>
+<p>Before calling the returned function pointer, the leading <span class="parmname">n</span>-by-<span class="parmname">k</span> part of the array <var>b</var> must contain the matrix B.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>c</p></td>
+
+<td valign="top" class="noborder"><p>Array of size <span class="parmname">ldc</span>*<span class="parmname">n</span></p>
+<p>Before calling the returned function pointer, the leading <span class="parmname">m</span>-by-<span class="parmname">n</span> part of the array <var>c</var> must contain the matrix C.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div/>
+</body>
+</html>

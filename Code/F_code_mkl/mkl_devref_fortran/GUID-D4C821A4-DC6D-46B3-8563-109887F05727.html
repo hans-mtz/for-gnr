@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vslSkipAheadStreamEx"/>
+<meta name="abstract" content="Initializes a stream using the block-splitting method with partitioned number of skipped elements."/>
+<meta name="description" content="Initializes a stream using the block-splitting method with partitioned number of skipped elements."/>
+<meta name="DC.subject" content="vector statistics functions, SkipAheadStreamEx, VS routines, service routines"/>
+<meta name="keywords" content="vector statistics functions, SkipAheadStreamEx, VS routines, service routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D4C821A4-DC6D-46B3-8563-109887F05727"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vslSkipAheadStreamEx</title>
+
+</head>
+<body id="GUID-D4C821A4-DC6D-46B3-8563-109887F05727">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vslSkipAheadStreamEx</span></h1>
+<!--Initializes a stream using the block-splitting method with partitioned number of skipped elements.--><div><p class="shortdesc">Initializes a stream using the block-splitting method with partitioned number of skipped elements.</p>
+<div class="section" id="GUID-9E40F47F-122A-4194-A64E-786CD0A54B27"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status</span><span class="delim"> = </span><span class="kwd">vslskipAheadstreamEx</span><span class="sep">( </span><span class="var">stream</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nskip</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-937C9C5E-3A33-433C-925A-61D69D2348C6"><h2 class="sectiontitle">Include Files</h2><ul id="d163e194"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_vsl.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E1BFA2C2-387B-4664-BE44-2344C6AC0A89"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1585634e71" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1585634e74" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1585634e77" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1585634e71"><p><span class="parmname">stream</span></p>
+</td>
+<td valign="top" headers="d1585634e74"><p><span class="keyword">TYPE(VSL_STREAM_STATE)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d1585634e77"><p>Pointer to the stream state structure to which block-splitting method is applied</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1585634e71"><p><span class="parmname">n</span></p>
+</td>
+<td valign="top" headers="d1585634e74"><p><span><span class="keyword"> INTEGER</span>, <span class="keyword"> INTENT(IN)</span></span></p>
+</td>
+<td valign="top" headers="d1585634e77"><p> Number of summands in
+<span class="parmname">nskip</span></p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1585634e71"><p><span class="parmname">nskip</span></p>
+</td>
+<td valign="top" headers="d1585634e74"><p><span class="keyword">INTEGER(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+</td>
+<td valign="top" headers="d1585634e77"><p>Partitioned number of skipped elements</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-425A6B4F-F9FE-4699-A3B2-16EDDF19B988"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">vslSkipAheadStreamEx</span> function skips a given number of elements in a random stream. This feature is particularly useful in distributing random numbers from original random stream across different computational nodes. If the largest number of random numbers used by a computational node is <span class="parmname">nskip</span>, then the original random sequence may be split by <span class="option">vslSkipAheadStreamEx</span> into non-overlapping blocks of <span class="parmname">nskip</span> size so that each block corresponds to the respective computational node. The number of computational nodes is unlimited. This method is known as the block-splitting method or as the skip-ahead method. See <a href="https://software.intel.com/en-us/mkl-vsnotes-independent-streams-leapfrogging-and-block-splitting" target="_blank">Notes for Intel&reg; MKL Vector Statistics</a>for more details.</p>
+<p>Use this function when the number of elements to skip in a random stream is greater than 2<sup>63</sup>. Prior calls to the function represent the number of skipped elements with array of size <var>n</var> as shown below:</p>
+<p><span class="parmname">nskip</span>[0]+ <span class="parmname">nskip</span>[1]*2<sup>64</sup>+<span class="parmname">nskip</span>[2]* 2<sup>128</sup>+ … +<span class="parmname">nskip</span>[n-1]*2<sup>(64*(n-1) )</sup>;</p>
+<p> When the number of skipped elements is less than  2<sup>63</sup> you can use either  <span class="option">vslSkipAheadtreamEx</span> or <span class="option">vslSkipAheadStream</span>. The following code illustrates how to initialize three independent streams using the <span class="option">vslSkipAheadStreamEx</span> function:</p>
+<p><pre>...
+type(VSL_STREAM_STATE) ::stream1 type(VSL_STREAM_STATE) ::stream2 type(VSL_STREAM_STATE) ::stream3
+
+! Creating the 1st stream
+status = vslnewstream(stream1, VSL_BRNG_MRG32K3A, 174)
+
+! To skip 2^64 elements in the random stream skipaheadstreamEx(nskip) function should !	be called with nskip represented as nskip = 2^64 = 0 + 1 * 2^64
+integer(kind=8) nskip(2) 
+nskip(1) = 0
+nskip(2) = 1
+
+! Skipping ahead by 2^64 elements the 2nd stream
+status = vslcopystream(stream2, stream1)
+status = vslskipaheadstreamex (stream2, 2, nskip)
+
+! Skipping ahead by 2^64 elements the 3rd stream
+status = vslcopystream(stream3, stream2)
+status = vslskipaheadstreamex (stream3, 2, nskip)
+
+! Generating random numbers
+...
+
+! Deleting the streams
+status = vsldeletestream(stream1)
+status = vsldeletestream(stream2)
+status = vsldeletestream(stream3)
+...
+</pre></p>
+</div>
+<div class="section" id="RETURNVALUES_2B26FF2C241E4A68B7D5E944E60D34C5"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-241FA606-17BE-4E5F-8280-76EE244181A2"><dt class="dlterm"><span class="keyword">VSL_ERROR_OK</span>, <span class="keyword">VSL_STATUS_OK</span></dt>
+
+<dd class="ddretval"><p>Indicates no error, execution is successful.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_ERROR_NULL_PTR</span></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is a <span class="keyword">NULL</span> pointer.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_BAD_STREAM</span></dt>
+
+<dd class="ddretval"><p><span class="parmname">stream</span> is not a valid random stream.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">VSL_RNG_ERROR_SKIPAHEADEX_UNSUPPORTED</span></dt>
+
+<dd class="ddretval"><p>BRNG does not support the advanced Skip-Ahead method.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html">Service Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

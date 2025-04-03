@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Poisson Solver Implementation Details"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5985E9DC-AA77-4663-95E6-1A8A22BACCDA.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-234B9969-B1F3-4BFB-BD72-DFE0DD57C9B0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Poisson Solver Implementation Details</title>
+
+</head>
+<body id="GUID-234B9969-B1F3-4BFB-BD72-DFE0DD57C9B0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Poisson Solver Implementation Details</h1>
+<div><p>Several aspects of the Intel&reg; oneAPI Math Kernel Library Poisson Solver interface are platform-specific and language-specific. To promote portability of the Intel&reg; oneAPI Math Kernel Library Poisson Solver interface across platforms and ease of use across different languages, Intel&reg; oneAPI Math Kernel Library provides you with the Poisson Solver language-specific header file to
+      include in your code: 
+    </p>
+<ul id="GUID-6CDE254E-7C6A-4DA2-8067-251669DCE93D"><li><span class="filepath">mkl_poisson.f90</span>, to be used
+        together with 
+        <span class="filepath">mkl_dfti.f90</span>. 
+      </li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><ul id="GUID-30F0419C-BE2A-4CFD-832D-7B26468FDA1A"><li>Intel&reg; oneAPI Math Kernel Library Poisson Solver interface supports Fortran versions starting with Fortran 90.</li>
+<li>Use of the Intel&reg; oneAPI Math Kernel Library Poisson Solver software without including the above language-specific header files is not supported.</li>
+</ul>
+</p>
+</div>
+<div class="section" id="GUID-10D8DA8F-A8C3-4542-9FC8-25EDF110B3A4"><h2 class="sectiontitle">Header File</h2><p>The 
+        header file defines the following function prototypes for the
+        Cartesian solver: 
+      </p>
+<pre>SUBROUTINE D_INIT_HELMHOLTZ_2D (AX, BX, AY, BY, NX, NY, BCTYPE, Q, IPAR, DPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NX, NY, STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION AX, BX, AY, BY, Q 
+   DOUBLE PRECISION DPAR(*) 
+   CHARACTER(4) BCTYPE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_COMMIT_HELMHOLTZ_2D (F, BD_AX, BD_BX, BD_AY, BD_BY, XHANDLE, IPAR, DPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION F(IPAR(11)+1,*)    
+   DOUBLE PRECISION DPAR(*)  
+   DOUBLE PRECISION BD_AX(*), BD_BX(*), BD_AY(*), BD_BY(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_HELMHOLTZ_2D (F, BD_AX, BD_BX, BD_AY, BD_BY, XHANDLE, IPAR, DPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION F(IPAR(11)+1,*)    
+   DOUBLE PRECISION DPAR(*)  
+   DOUBLE PRECISION BD_AX(*), BD_BX(*), BD_AY(*), BD_BY(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_INIT_HELMHOLTZ_2D (AX, BX, AY, BY, NX, NY, BCTYPE, Q, IPAR, SPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NX, NY, STAT 
+   INTEGER IPAR(*) 
+   REAL AX, BX, AY, BY, Q 
+   REAL SPAR(*) 
+   CHARACTER(4) BCTYPE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_COMMIT_HELMHOLTZ_2D (F, BD_AX, BD_BX, BD_AY, BD_BY, XHANDLE, IPAR, SPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL F(IPAR(11)+1,*)    
+   REAL SPAR(*)  
+   REAL BD_AX(*), BD_BX(*), BD_AY(*), BD_BY(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_HELMHOLTZ_2D (F, BD_AX, BD_BX, BD_AY, BD_BY, XHANDLE, IPAR, SPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL F(IPAR(11)+1,*)    
+   REAL SPAR(*)  
+   REAL BD_AX(*), BD_BX(*), BD_AY(*), BD_BY(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE FREE_HELMHOLTZ_2D (XHANDLE, IPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE 
+END SUBROUTINE 
+    
+    
+    
+SUBROUTINE D_INIT_HELMHOLTZ_3D (AX, BX, AY, BY, AZ, BZ, NX, NY, NZ, BCTYPE, Q, IPAR, DPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NX, NY, NZ, STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION AX, BX, AY, BY, AZ, BZ, Q 
+   DOUBLE PRECISION DPAR(*)  
+   CHARACTER(6) BCTYPE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_COMMIT_HELMHOLTZ_3D (F, BD_AX, BD_BX, BD_AY, BD_BY, BD_AZ, BD_BZ, XHANDLE, YHANDLE, IPAR, DPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION F(IPAR(11)+1,IPAR(12)+1,*) 
+   DOUBLE PRECISION DPAR(*) 
+   DOUBLE PRECISION BD_AX(IPAR(12)+1,*), BD_BX(IPAR(12)+1,*), BD_AY(IPAR(11)+1,*) 
+   DOUBLE PRECISION BD_BY(IPAR(11)+1,*), BD_AZ(IPAR(11)+1,*), BD_BZ(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE, YHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_HELMHOLTZ_3D (F, BD_AX, BD_BX, BD_AY, BD_BY, BD_AZ, BD_BZ, XHANDLE, YHANDLE, IPAR, DPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION F(IPAR(11)+1,IPAR(12)+1,*) 
+   DOUBLE PRECISION DPAR(*) 
+   DOUBLE PRECISION BD_AX(IPAR(12)+1,*), BD_BX(IPAR(12)+1,*), BD_AY(IPAR(11)+1,*) 
+   DOUBLE PRECISION BD_BY(IPAR(11)+1,*), BD_AZ(IPAR(11)+1,*), BD_BZ(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE, YHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_INIT_HELMHOLTZ_3D (AX, BX, AY, BY, AZ, BZ, NX, NY, NZ, BCTYPE, Q, IPAR, SPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NX, NY, NZ, STAT 
+   INTEGER IPAR(*) 
+   REAL AX, BX, AY, BY, AZ, BZ, Q 
+   REAL SPAR(*)  
+   CHARACTER(6) BCTYPE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_COMMIT_HELMHOLTZ_3D (F, BD_AX, BD_BX, BD_AY, BD_BY, BD_AZ, BD_BZ, XHANDLE, YHANDLE, IPAR, SPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL F(IPAR(11)+1,IPAR(12)+1,*) 
+   REAL SPAR(*) 
+   REAL BD_AX(IPAR(12)+1,*), BD_BX(IPAR(12)+1,*), BD_AY(IPAR(11)+1,*) 
+   REAL BD_BY(IPAR(11)+1,*), BD_AZ(IPAR(11)+1,*), BD_BZ(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE, YHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_HELMHOLTZ_3D (F, BD_AX, BD_BX, BD_AY, BD_BY, BD_AZ, BD_BZ, XHANDLE, YHANDLE, IPAR, SPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL F(IPAR(11)+1,IPAR(12)+1,*) 
+   REAL SPAR(*) 
+   REAL BD_AX(IPAR(12)+1,*), BD_BX(IPAR(12)+1,*), BD_AY(IPAR(11)+1,*) 
+   REAL BD_BY(IPAR(11)+1,*), BD_AZ(IPAR(11)+1,*), BD_BZ(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE, YHANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE FREE_HELMHOLTZ_3D (XHANDLE, YHANDLE, IPAR, STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: XHANDLE, YHANDLE 
+END SUBROUTINE
+</pre><p/>
+<p>The 
+        header file defines the following function prototypes for the
+        spherical solver: 
+      </p>
+<pre>SUBROUTINE D_INIT_SPH_P(AP,BP,AT,BT,NP,NT,Q,IPAR,DPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NP, NT, STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION AP,BP,AT,BT,Q 
+   DOUBLE PRECISION DPAR(*)  
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_COMMIT_SPH_P(F,HANDLE_S,HANDLE_C,IPAR,DPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION DPAR(*)  
+   DOUBLE PRECISION F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE_C, HANDLE_S 
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_SPH_P(F,HANDLE_S,HANDLE_C,IPAR,DPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION DPAR(*)  
+   DOUBLE PRECISION F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE_C, HANDLE_S 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_INIT_SPH_P(AP,BP,AT,BT,NP,NT,Q,IPAR,SPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NP, NT, STAT 
+   INTEGER IPAR(*) 
+   REAL AP,BP,AT,BT,Q 
+   REAL SPAR(*)  
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_COMMIT_SPH_P(F,HANDLE_S,HANDLE_C,IPAR,SPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL SPAR(*)  
+   REAL F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE_C, HANDLE_S 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_SPH_P(F,HANDLE_S,HANDLE_C,IPAR,SPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL SPAR(*)  
+   REAL F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE_C, HANDLE_S 
+END SUBROUTINE 
+    
+    
+SUBROUTINE FREE_SPH_P(HANDLE_S,HANDLE_C,IPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE_S, HANDLE_C 
+END SUBROUTINE 
+    
+    
+    
+SUBROUTINE D_INIT_SPH_NP(AP,BP,AT,BT,NP,NT,Q,IPAR,DPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NP, NT, STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION AP,BP,AT,BT,Q 
+   DOUBLE PRECISION DPAR(*)  
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_COMMIT_SPH_NP(F,HANDLE,IPAR,DPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION DPAR(*)  
+   DOUBLE PRECISION F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE D_SPH_NP(F,HANDLE,IPAR,DPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   DOUBLE PRECISION DPAR(*)  
+   DOUBLE PRECISION F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_INIT_SPH_NP(AP,BP,AT,BT,NP,NT,Q,IPAR,SPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER NP, NT, STAT 
+   INTEGER IPAR(*) 
+   REAL AP,BP,AT,BT,Q 
+   REAL SPAR(*)  
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_COMMIT_SPH_NP(F,HANDLE,IPAR,SPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL SPAR(*)  
+   REAL F(IPAR(11)+1,*) 
+     TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE S_SPH_NP(F,HANDLE,IPAR,SPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   REAL SPAR(*)  
+   REAL F(IPAR(11)+1,*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE 
+END SUBROUTINE 
+    
+    
+SUBROUTINE FREE_SPH_NP(HANDLE,IPAR,STAT) 
+   USE MKL_DFTI 
+    
+   INTEGER STAT 
+   INTEGER IPAR(*) 
+   TYPE(DFTI_DESCRIPTOR), POINTER :: HANDLE 
+END SUBROUTINE</pre><p/>
+<p>Fortran specifics of the Poisson Solver routines usage are similar for all Intel&reg; oneAPI Math Kernel Library PDE support tools and described in<a href="GUID-8FEC7AA1-4319-41C7-AED3-2325C947BDA3.html#GUID-8FEC7AA1-4319-41C7-AED3-2325C947BDA3">Calling PDE Support Routines from
+          Fortran</a>. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5985E9DC-AA77-4663-95E6-1A8A22BACCDA.html">Fast Poisson Solver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?org2l/?ung2l"/>
+<meta name="abstract" content="Generates all or part of the orthogonal/unitary matrix Q from a QL factorization determined by ?geqlf (unblocked algorithm)."/>
+<meta name="description" content="Generates all or part of the orthogonal/unitary matrix Q from a QL factorization determined by ?geqlf (unblocked algorithm)."/>
+<meta name="DC.subject" content="?org2l/?ung2l, sorg2l, dorg2l, cung2l, zung2l, LAPACK routines, auxiliary routines, orthogonal matrix, from QL factorization, LAPACK, unitary matrix"/>
+<meta name="keywords" content="?org2l/?ung2l, sorg2l, dorg2l, cung2l, zung2l, LAPACK routines, auxiliary routines, orthogonal matrix, from QL factorization, LAPACK, unitary matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F76382EC-8D6A-44B0-9AD9-978454ECEE82"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?org2l/?ung2l</title>
+
+</head>
+<body id="GUID-F76382EC-8D6A-44B0-9AD9-978454ECEE82">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?org2l/?ung2l</span></h1>
+<!--Generates all or part of the orthogonal/unitary matrix Q from a QL factorization determined by  ?geqlf  (unblocked algorithm).--><div><p class="shortdesc">Generates all or part of the orthogonal/unitary matrix Q from a QL factorization determined by <span class="option">?geqlf</span> (unblocked algorithm).</p>
+<div class="section" id="GUID-B45D8768-F148-4187-879F-D02F8C4BD945"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call sorg2l</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dorg2l</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cung2l</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zung2l</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-27E38153-B063-4C83-8D9F-993E1121C974"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-53A5EA90-0F31-4424-96C6-068008E02A08"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?org2l</span>/<span class="option">?ung2l</span> generates an <var>m</var>-by-<var>n</var> real/complex matrix <var>Q</var> with orthonormal columns, which is defined as the last <var>n</var> columns of a product of <var>k</var> elementary reflectors of order <var>m</var>: </p>
+<p><samp class="codeph"><var>Q</var>  =  <var>H</var>(<var>k</var>)*...*<var>H</var>(2)*<var>H</var>(1)</samp>  as returned by <a href="GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D.html#GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D"><span class="option">?geqlf</span></a>.</p>
+</div>
+<div class="section" id="GUID-BB2E67A7-9E79-4F35-B582-23FD6A39D2EC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-54ED79A3-CB10-471C-A1DE-F479D04A53E8"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of rows of the matrix <var>Q</var>. <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of columns of the matrix <var>Q</var>. <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of elementary reflectors whose product defines the matrix <var>Q</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span><var>k</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sorg2l</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dorg2l</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cung2l</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zung2l</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>,<var>n</var>). </p>
+<p>On entry, the (<var>n</var><var>-k</var>+<var>i</var>)-th column must contain the vector which defines the elementary reflector <var>H</var>(<var>i</var>), for <var>i</var> = 1,2,..., <var>k</var>, as returned by <span class="option">?geqlf</span> in the last <var>k</var> columns of its array argument <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1,<var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sorg2l</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dorg2l</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cung2l</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zung2l</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>k</var>). </p>
+<p><var>tau</var>(<var>i</var>) must contain the scalar factor of the elementary reflector <var>H</var>(<var>i</var>), as returned by <span class="option">?geqlf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sorg2l</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dorg2l</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cung2l</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zung2l</span>.</p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E9DDC749-C431-4915-AB48-DF786BC52DBB"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-08729287-2364-47F1-847A-EE3F898A1E7E"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the <var>m</var>-by-<var>n</var> matrix <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0: successful exit</p>
+<p>&lt; 0: if <samp class="codeph"><var>info</var> = -<var>i</var></samp>, the <var>i</var>-th argument has an illegal value</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

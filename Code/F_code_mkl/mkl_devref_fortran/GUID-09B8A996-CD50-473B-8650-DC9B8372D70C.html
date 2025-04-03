@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?unmrz"/>
+<meta name="abstract" content="Multiplies a general matrix by the unitary transformation matrix from a reduction to upper triangular form determined by p?tzrzf."/>
+<meta name="description" content="Multiplies a general matrix by the unitary transformation matrix from a reduction to upper triangular form determined by p?tzrzf."/>
+<meta name="DC.subject" content="p?unmrz, ScaLAPACK routines, RZ factorization"/>
+<meta name="keywords" content="p?unmrz, ScaLAPACK routines, RZ factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-09B8A996-CD50-473B-8650-DC9B8372D70C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?unmrz</title>
+
+</head>
+<body id="GUID-09B8A996-CD50-473B-8650-DC9B8372D70C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?unmrz</span></h1>
+<!--Multiplies a general matrix by the unitary transformation matrix from a reduction to upper triangular form determined by  p?tzrzf .--><div><p class="shortdesc">Multiplies a general matrix by the unitary transformation matrix from a reduction to upper triangular form determined by <span class="option">p?tzrzf</span>.</p>
+<div class="section" id="GUID-9F0D4007-3177-4A63-BBDB-BB4FF9BB7D26"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pcunmrz</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzunmrz</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3221AC95-24C4-4283-BBBB-7EA6C1102F57"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-5C108C22-9AD2-4530-8B65-2CF5F8FA29FA"><h2 class="sectiontitle">Description</h2><p><span/>This<span> routine </span>overwrites the general complex  <span class="parmname">m</span>-by-<span class="parmname">n</span> distributed matrix sub (<var>C</var>) = <var>C</var>(<span class="parmname">iс</span>:<span class="parmname">iс</span>+<span class="parmname">m</span>-1,<span class="parmname">jс</span>:<span class="parmname">jс</span>+<span class="parmname">n</span>-1) with</p>
+<table cellpadding="4" cellspacing="0" summary="" id="TBL6-X" border="0" class="simpletablenoborder"><tr><td valign="top" width="26.31578947368421%"> </td>
+<td valign="top" width="36.84210526315789%"><var>side</var> =<span class="keyword">'L'</span></td>
+<td valign="top" width="36.84210526315789%"><var>side</var> =<span class="keyword">'R'</span></td>
+</tr>
+<tr><td valign="top"><var>trans</var> = <span class="keyword">'N'</span>:</td>
+<td valign="top"><var>Q</var>*sub(<var>C</var>)</td>
+<td valign="top">sub(<var>C</var>)*<var>Q</var></td>
+</tr>
+<tr><td valign="top"><var>trans</var> = <span class="keyword">'C'</span>:</td>
+<td valign="top"><var>Q</var><sup class="power"><var>H</var></sup>*sub(<var>C</var>)</td>
+<td valign="top">sub(<var>C</var>)*<var>Q</var><sup class="power"><var>H</var></sup></td>
+</tr>
+</table>
+<p>where <var>Q</var> is a complex unitary distributed matrix defined as the product of <span class="parmname">k</span> elementary reflectors</p>
+<p><var>Q</var> = <var>H</var>(1)' <var>H</var>(2)'... <var>H</var>(<span class="parmname">k</span>)' </p>
+<p>as returned by <span class="option">pctzrzf</span>/<span class="option">pztzrzf</span>. <var>Q</var> is of order  <span class="parmname">m</span> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> and of order <span class="parmname">n</span> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</div>
+<div class="section" id="GUID-65C8F7A1-884E-46D9-B734-FC57E147B054"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A58C7C1C-27CD-4FE8-AA79-804992844378"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>(global) <span class="keyword">CHARACTER</span></p>
+<p><samp class="codeph">=<span class="keyword">'L'</span></samp>: <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup> is applied from the left. </p>
+<p><samp class="codeph">=<span class="keyword">'R'</span></samp>: <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup> is applied from the right.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>(global) <span class="keyword">CHARACTER</span></p>
+<p><samp class="codeph">=<span class="keyword">'N'</span></samp>, no transpose, <var>Q</var> is applied. </p>
+<p><samp class="codeph">=<span class="keyword">'C'</span></samp>, conjugate transpose, <var>Q</var><sup class="power"><var>H</var></sup> is applied.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of rows in the distributed matrix sub(<var>C</var>), <samp class="codeph">(<var>m</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of columns in the distributed matrix sub(<var>C</var>), <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of elementary reflectors whose product defines the matrix <var>Q</var>. Constraints: </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>m</var>≥<var>k</var>≥0</samp></p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>n</var>≥<var>k</var>≥0</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The columns of the distributed matrix sub(<var>A</var>) containing the meaningful part of the Householder reflectors.</p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>m</var>≥<var>l</var>≥0</samp></p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>n</var>≥<var>l</var>≥0</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcunmrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzunmrz</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>m</var>-1))</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, and <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, where <samp class="codeph"><var>lld_a</var> ≥ <span class="keyword">max</span>(1, <var>LOCr</var>(<var>ja</var>+<var>k</var>-1))</samp>. The <var>i</var>-th row must contain the vector that defines the elementary reflector <var>H</var>(<var>i</var>), <span class="parmname">ia</span>≤<var>i</var>≤<span class="parmname">ia</span>+<span class="parmname">k</span>-1, as returned by <a class="allformats" href="GUID-67EC72B2-AC47-4767-BDF9-77FF3FBEA778.html#GUID-67EC72B2-AC47-4767-BDF9-77FF3FBEA778"><span class="option">p?gerqf</span></a> in the <span class="parmname">k</span> rows of its distributed matrix argument <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">k</span>-1, <span class="parmname">ja</span>:*). <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">k</span>-1, <span class="parmname">ja</span>:*) is modified by the<span> routine </span>but restored on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the submatrix <var>A</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcunmrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzunmrz</span></p>
+<p>Array of size <samp class="codeph"><var>LOCc</var>(<var>ia</var>+<var>k</var>-1)</samp>. </p>
+<p>Contains the scalar factor <span class="parmname">tau</span><span>(<var>i</var>)</span> of elementary reflectors <var>H</var><span>(<var>i</var>)</span> as returned by <a href="GUID-67EC72B2-AC47-4767-BDF9-77FF3FBEA778.html#GUID-67EC72B2-AC47-4767-BDF9-77FF3FBEA778"><span class="option">p?gerqf</span></a>. <span class="parmname">tau</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcunmrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzunmrz</span>. </p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_c</var>,<var>LOCc</var>(<var>jc</var>+<var>n</var>-1))</samp>. </p>
+<p>Contains the local pieces of the distributed matrix sub(<var>C</var>) to be factored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ic</span>, <span class="parmname">jc</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>C</var> indicating the first row and the first column of the submatrix <var>C</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descc</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcunmrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzunmrz</span>. </p>
+<p>Workspace array of size <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>, </span>size of <span class="parmname">work</span>, must be at least:  </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>,</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><span class="keyword">max</span>((<var>mb_a</var>*(<var>mb_a</var>-1))/2, (<var>mpc</var>0+<span class="keyword">max</span>(<var>mqa</var>0+<span class="keyword">numroc</span>(<span class="keyword">numroc</span>(<var>n</var>+<var>iroffc</var>, <var>mb_a</var>, 0, 0, <span class="keyword">NPROW</span>), <var>mb_a</var>, 0, 0, <var>lcmp</var>), <var>nqc</var>0))*<var>mb_a</var>) + <var>mb_a</var>*<var>mb_a</var></samp></p>
+<p> else if <samp class="codeph"><var>side</var> =<span class="keyword">'R'</span></samp>,</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><span class="keyword">max</span>((<var>mb_a</var>*(<var>mb_a</var>-1))/2, (<var>mpc</var>0+<var>nqc</var>0)*<var>mb_a</var>) + <var>mb_a</var>*<var>mb_a</var></samp></p>
+<p>end if </p>
+<p>where </p>
+<p><samp class="codeph"><var>lcmp</var> = <var>lcm</var>/<span class="keyword">NPROW</span> with <var>lcm</var> = <span class="keyword">ilcm</span>(<span class="keyword">NPROW</span>, <span class="keyword">NPCOL</span>)</samp>, </p>
+<p><samp class="codeph"><var>iroffa</var> = <span class="keyword">mod</span>(<var>ia</var>-1, <var>mb_a</var>)</samp>, </p>
+<p><samp class="codeph"><var>icoffa</var> = <span class="keyword">mod</span>(<var>ja</var>-1, <var>nb_a</var>)</samp>, </p>
+<p><samp class="codeph"><var>iacol</var> = <span class="keyword">indxg2p</span>(<var>ja</var>, <var>nb_a</var>, <span class="keyword">MYCOL</span>, <var>csrc_a</var>, <span class="keyword">NPCOL</span>)</samp>, </p>
+<p><samp class="codeph"><var>mqa</var>0 = <span class="keyword">numroc</span>(<var>m</var>+<var>icoffa</var>, <var>nb_a</var>, <span class="keyword">MYCOL</span>, <var>iacol</var>, <span class="keyword">NPCOL</span>)</samp>, </p>
+<p><samp class="codeph"><var>iroffc</var> = <span class="keyword">mod</span>(<var>ic</var>-1, <var>mb_c</var>)</samp>, </p>
+<p><samp class="codeph"><var>icoffc</var> = <var>mod</var>(<var>jc</var>-1, <var>nb_c</var>)</samp>, </p>
+<p><samp class="codeph"><var>icrow</var> = <span class="keyword">indxg2p</span>(<var>ic</var>, <var>mb_c</var>, <span class="keyword">MYROW</span>, <var>rsrc_c</var>, <span class="keyword">NPROW</span>)</samp>, </p>
+<p><samp class="codeph"><var>iccol</var> = <span class="keyword">indxg2p</span>(<var>jc</var>, <var>nb_c</var>, <span class="keyword">MYCOL</span>, <var>csrc_c</var>, <span class="keyword">NPCOL</span>)</samp>, </p>
+<p><samp class="codeph"><var>mpc</var>0 = <span class="keyword">numroc</span>(<var>m</var>+<var>iroffc</var>, <var>mb_c</var>, <span class="keyword">MYROW</span>, <var>icrow</var>, <span class="keyword">NPROW</span>)</samp>, </p>
+<p><samp class="codeph"><var>nqc</var>0 = <span class="keyword">numroc</span>(<var>n</var>+<var>icoffc</var>, <var>nb_c</var>, <span class="keyword">MYCOL</span>, <var>iccol</var>, <span class="keyword">NPCOL</span>)</samp>, </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><samp class="codeph">mod(<var>x</var>,<var>y</var>)</samp> is the integer remainder of <samp class="codeph"><var>x</var>/<var>y</var></samp>.</p>
+</div>
+<p><span class="keyword">ilcm</span>, <span class="keyword">indxg2p</span> and <span class="keyword">numroc</span> are ScaLAPACK tool functions; <span class="keyword">MYROW</span>, <span class="keyword">MYCOL</span>, <span class="keyword">NPROW</span> and <span class="keyword">NPCOL</span> can be determined by calling the <span>subroutine </span><span class="option">blacs_gridinfo</span>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <span class="parmname">lwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0F4CCA7D-636B-466F-B266-0A5FD8DE2956"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-4E7BDE15-7F91-4395-861A-F4415559ACBE"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the product <var>Q</var>* sub(<var>C</var>), or <var>Q'</var>*sub (<var>C</var>), or sub(<var>C</var>)*<var>Q'</var>, or sub(<var>C</var>)*<var>Q</var></p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span><span>(1)</span></samp></dt>
+
+<dd><p>On exit <samp class="codeph"><span class="parmname">work</span><span>(1)</span></samp> contains the minimum value of <span class="parmname">lwork</span> required for optimum performance.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p><samp class="codeph">= 0</samp>: the execution is successful.</p>
+<p><samp class="codeph">&lt; 0</samp>: if the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html">Orthogonal Factorizations: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

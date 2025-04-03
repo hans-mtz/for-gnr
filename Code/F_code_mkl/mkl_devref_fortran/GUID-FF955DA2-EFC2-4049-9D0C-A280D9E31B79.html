@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gelqt3"/>
+<meta name="abstract" content="?gelqt3 recursively computes a LQ factorization of a general real or complex M-by-N matrix A, using the compact WY representation of Q."/>
+<meta name="description" content="?gelqt3 recursively computes a LQ factorization of a general real or complex M-by-N matrix A, using the compact WY representation of Q."/>
+<meta name="DC.subject" content="?gelqt3, sgelqt3, dgelqt3, cgelqt3, zgelqt3, LAPACK routines"/>
+<meta name="keywords" content="?gelqt3, sgelqt3, dgelqt3, cgelqt3, zgelqt3, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-FF955DA2-EFC2-4049-9D0C-A280D9E31B79"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gelqt3</title>
+
+</head>
+<body id="GUID-FF955DA2-EFC2-4049-9D0C-A280D9E31B79">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gelqt3</span></h1>
+<!--?gelqt3  recursively computes a LQ factorization of a general real or complex M-by-N matrix  A , using the compact WY representation of  Q . --><div><p class="shortdesc"><span class="option">?gelqt3</span> recursively computes a LQ factorization of a general real or complex M-by-N matrix <var>A</var>, using the compact WY representation of <var>Q</var>. </p>
+<div id="SYNTAX_4693CB8AB64145A9BA10035610A9A810"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgelqt3</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgelqt3</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgelqt3</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgelqt3</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_D92E5C4802CF48368134E6AA40931EB5"><h2 class="sectiontitle">Description</h2><p><span class="option">?gelqt3</span> recursively computes a LQ factorization of a real or complex <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>, using the compact WY representation of <var>Q</var>. Based on the algorithm of Elmroth and Gustavson <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#ELMROTH00">[ELMROTH00]</a>.</p>
+<p>The matrix <var>V</var> stores the elementary reflectors <var>H</var>(<var>i</var>) in the <var>i</var>-th row above the diagonal. For example, if <span class="parmname">m</span>=5 and <span class="parmname">n</span>=3, the matrix <var>V</var> is </p>
+<p><pre>
+V = ( 1 v<sub>1</sub> v<sub>1</sub> v<sub>1</sub> v<sub>1</sub> ) 
+    (    1 v<sub>2</sub> v<sub>2</sub> v<sub>2</sub> ) 
+    (       1 v<sub>3</sub> v<sub>3</sub> ) </pre></p>
+<p>where the <var>v</var><sub><var>i</var></sub>s represent the vectors which define <var>H</var>(<var>i</var>), which are returned in the array <span class="parmname">a</span>. The 1 elements along the diagonal of <var>V</var> are not stored in <span class="parmname">a</span>. The block reflector <var>H</var> is then given by </p>
+<p><var>H</var> = I - <var>V</var> * <var>T</var> * <var>V</var><sup>T</sup> for real matrices, or</p>
+<p><var>H</var> = I - <var>V</var> * <var>T</var> * <var>V</var><sup>H</sup> for complex matrices.</p>
+</div>
+<div class="section" id="ARGUMENTS_B119B8C95D9F4C4996101F8B7FB3091C"><h2 class="sectiontitle">Input Parameters</h2><p/>
+<dl id="GUID-6428DDC2-988E-4BC6-86CA-E1CAE4F02319"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>A</var>. <span class="parmname">m</span><span class="eqsymbol">≤</span><span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of the matrix <var>A</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelqt3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelqt3</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelqt3</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelqt3</span></p>
+<p>Array of size  (<span class="parmname">lda</span>,<span class="parmname">n</span>). On entry, the real or complex <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">t</span>. <span class="parmname">ldt</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_D0B8038F5CAF466D96903443E41529F6"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AF0ACC26-CF5E-4321-99DE-927FDD8E4A8E"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the elements on and below the diagonal contain the <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular matrix <var>L</var>; the elements above the diagonal are the rows of <var>V</var>. See Description for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelqt3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelqt3</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelqt3</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelqt3</span></p>
+<p>Array of size (<span class="parmname">ldt</span>,<span class="parmname">n</span>). The <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular factor of the block reflector. The elements on and above the diagonal contain the block reflector <var>T</var>; the elements below the diagonal are not used. See Description for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><span class="parmname">info</span> =  0: successful exit.</p>
+<p><span class="parmname">info</span> &lt;  0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

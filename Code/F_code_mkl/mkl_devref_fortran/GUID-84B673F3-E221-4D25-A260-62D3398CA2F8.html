@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="CG Interface Description"/>
+<meta name="DC.subject" content="RCI CG Interface"/>
+<meta name="keywords" content="RCI CG Interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-702D8969-5678-4B7D-9EF0-797335F79CA9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>CG Interface Description</title>
+
+</head>
+<body id="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">CG Interface Description</h1>
+<div><p>All types in this documentation refer to the common Fortran types, 
+      <span class="keyword">INTEGER</span>, and 
+      <span class="keyword">DOUBLE PRECISION</span>. 
+    </p>
+<p>Each routine for the RCI CG solver is implemented in two versions: for a system of equations with a single right-hand side (SRHS), and for a system of equations with multiple right-hand sides (MRHS). The names of routines for a system with MRHS contain the suffix 
+      <samp class="codeph"><span class="option">mrhs</span></samp>. 
+    </p>
+<div class="level3" id="RCI_ID_ROUTINESOPTIONS"><h2 class="sectiontitle">Routine Options</h2><p>All of the RCI CG routines have common parameters for passing various options to the routines (see 
+        <a href="#RCI_ID_COMMONPARAMETERS">CG Common Parameters</a>). The values for these parameters can be changed during computations. 
+      </p>
+</div>
+<div class="level3" id="RCI_ID_USERDATAARRAYS"><h2 class="sectiontitle">User Data Arrays</h2><p>Many of the RCI CG routines take arrays of user data as input. For example, user arrays are passed to the routine 
+      <span class="option">dcg</span>to compute the solution of a system of linear algebraic equations. The Intel&reg; oneAPI Math Kernel Library RCI CG routines do not make copies of the user input arrays to minimize storage requirements and improve overall run-time efficiency.</p>
+</div>
+<div class="level3" id="RCI_ID_COMMONPARAMETERS"><h2 class="sectiontitle">CG Common Parameters</h2><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The default and initial values listed below are assigned to the parameters by calling the 
+        <span class="option">dcg_init</span>/<span class="option">dcgmrhs_init</span> routine. 
+        </p>
+</div>
+<dl id="GUID-6F350E96-1EDC-408D-9ADE-88139566DC23"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>, this parameter sets the size of the problem in the 
+            <span class="option">dcg_init</span>/<span class="option">dcgmrhs_init</span> routine. All the other routines use the 
+            <span><span class="parmname">ipar</span><samp class="codeph">(1)</samp></span> parameter instead. Note that the coefficient matrix 
+            <var>A</var> is a square matrix of size 
+            <span class="parmname">n</span>*<span class="parmname">n</span>. 
+            </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array of size 
+              <span class="parmname">n</span> for SRHS, or matrix of size (<span class="parmname">n</span>*<span class="parmname">nrhs</span>) for MRHS. This parameter contains the current approximation to the solution. Before the first call to the 
+            <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine, it contains the initial approximation to the solution. 
+            </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>, this parameter sets the number of right-hand sides for MRHS routines. 
+            </p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array containing a single right-hand side vector, or matrix of size 
+              <samp class="codeph"><span class="parmname">n</span>*<span class="parmname">nrhs</span></samp> containing right-hand side vectors. 
+            </p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>, this parameter gives information about the result of work of the RCI CG routines. Negative values of the parameter indicate that the routine completed with errors or warnings. The 0 value indicates successful completion of the task. Positive values mean that you must perform specific actions: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 1 
+                </p></td>
+
+<td valign="top" class="noborder"><p>multiply the matrix by 
+                    <span class="parmname">tmp</span><samp class="codeph"> (1:<span class="parmname">n</span>,1)</samp>, put the result in 
+                    <span class="parmname">tmp</span><samp class="codeph">(1:<span class="parmname">n</span>,2)</samp>, and return the control to the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine; 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 2 
+                </p></td>
+
+<td valign="top" class="noborder"><p>to perform the stopping tests. If they fail, return the control to the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine. If the stopping tests succeed, it indicates that the solution is found and stored in the 
+                  <span class="parmname">x</span> array; 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 3 
+                </p></td>
+
+<td valign="top" class="noborder"><p>for SRHS: apply the preconditioner to 
+                    <span class="parmname">tmp</span><samp class="codeph">(1:<span class="parmname">n</span>,3)</samp>, put the result in 
+                    <span class="parmname">tmp</span><samp class="codeph">(1:<span class="parmname">n</span>,4)</samp>, and return the control to the 
+                  <span class="option">dcg</span> routine; 
+                  </p>
+<p>for MRHS: apply the preconditioner to 
+                    <span class="parmname">tmp</span><samp class="codeph">(:,3+<span class="parmname">ipar</span><span class="parmnamen">(3)</span>)</samp>, put the result in 
+                    <span class="parmname">tmp</span><samp class="codeph">(:,3)</samp>, and return the control to the 
+                  <span class="option">dcgmrhs</span> routine. 
+                  </p>
+</td>
+</tr></table><p>Note that the 
+            <span class="option">dcg_get</span>/<span class="option">dcgmrhs_get</span> routine does not change the parameter 
+            <span class="parmname">RCI_request</span>. This enables use of this routine inside the 
+            <em>reverse communication</em> computations. 
+            </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> array, of size 
+              <span class="parmnamen">128</span> for SRHS, and of size 
+              <samp class="codeph">(128+2*<span class="parmname">nrhs</span>)</samp> for MRHS. This parameter specifies the integer set of data for the RCI CG computations: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(1)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the size of the problem. The 
+                  <span class="option">dcg_init</span>/<span class="option">dcgmrhs_init</span> routine assigns 
+                  <span><span class="parmname">ipar</span><samp class="codeph">(1)</samp></span>=<var>n</var>. All the other routines use this parameter instead of 
+                  <span class="parmname">n</span>. There is no default value for this parameter. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(2)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the type of output for error and warning messages generated by the RCI CG routines. The default value 6 means that all messages are displayed on the screen. Otherwise, the error and warning messages are written to the newly created files 
+                    <span class="filepath">dcg_errors.txt</span> and 
+                    <span class="filepath">dcg_check_warnings.txt</span>, respectively. Note that if 
+                    <span><span class="parmname">ipar</span><samp class="codeph">(6)</samp></span> and 
+                    <span><span class="parmname">ipar</span><samp class="codeph">(7)</samp></span> parameters are set to 0, error and warning messages are not generated at all. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(3)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> for SRHS: contains the current stage of the RCI CG computations. The initial value is 1; 
+                  </p>
+<p> for MRHS: contains the number of the right-hand side for which the calculations are currently performed. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>Avoid altering this variable during computations. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(4)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> contains the current iteration number. The initial value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(5)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the maximum number of iterations. The default value is 
+                    <samp class="codeph">min(150, 
+                      <span class="parmname">n</span>)</samp>. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(6)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p>if the value is not equal to 0, the routines output error messages in accordance with the parameter 
+                    <span><span class="parmname">ipar</span><samp class="codeph">(2)</samp></span>. Otherwise, the routines do not output error messages at all, but return a negative value of the parameter 
+                    <span class="parmname">RCI_request</span>. The default value is 1. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(7)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not equal to 0, the routines output warning messages in accordance with the parameter 
+                    <span><span class="parmname">ipar</span><samp class="codeph">(2)</samp></span>. Otherwise, the routines do not output warning messages at all, but they return a negative value of the parameter 
+                    <span class="parmname">RCI_request</span>. The default value is 1. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(8)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not equal to 0, the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine performs the stopping test for the maximum number of iterations: 
+                  <span><span class="parmname">ipar</span><samp class="codeph">(4)</samp></span><span class="eqsymbol"> ≤ 
+                  </span><span><span class="parmname">ipar</span><samp class="codeph">(5)</samp></span>. Otherwise, the method is stopped and the corresponding value is assigned to the 
+                  <span class="parmname">RCI_request</span>. If the value is 0, the routine does not perform this stopping test. The default value is 1. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(9)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not equal to 0, the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine performs the residual stopping test: 
+                  <samp class="codeph"><span class="parmname">dpar</span>(5)<span class="eqsymbol"> ≤ 
+                    </span><span class="parmname">dpar</span>(4)= 
+                    <span class="parmname">dpar</span>(1)*<span class="parmname">dpar</span>(3)+ 
+                    <span class="parmname">dpar</span>(2)</samp>. Otherwise, the method is stopped and corresponding value is assigned to the 
+                  <span class="parmname">RCI_request</span>. If the value is 0, the routine does not perform this stopping test. The default value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(10)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not equal to 0, the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine requests a user-defined stopping test by setting the output parameter 
+                  <span class="parmname">RCI_request</span>=2. If the value is 0, the routine does not perform the user defined stopping test. The default value is 1. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>At least one of the parameters 
+                      <span><span class="parmname">ipar</span><samp class="codeph">(8)</samp></span>-<span><span class="parmname">ipar</span><samp class="codeph">(10)</samp></span> must be set to 1. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">ipar</span><samp class="codeph">(11)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> if the value is equal to 0, the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine runs the non-preconditioned version of the corresponding CG method. Otherwise, the routine runs the preconditioned version of the CG method, and by setting the output parameter 
+                  <span class="parmname">RCI_request</span>=3, indicates that you must perform the preconditioning step. The default value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(12:128)</samp></p></td>
+
+<td valign="top" class="noborder"><p> are reserved and not used in the current RCI CG SRHS and MRHS routines. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For future compatibility, you must declare the array 
+                      <span class="parmname">ipar</span> with length 128 for a single right-hand side. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><span class="parmnamen">(12:128+2*<span class="parmname">nrhs</span>)</span></p></td>
+
+<td valign="top" class="noborder"><p> are reserved for internal use in the current RCI CG SRHS and MRHS routines. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For future compatibility, you must declare the array 
+                      <span class="parmname">ipar</span> with length 128+2*<span class="parmname">nrhs</span> for multiple right-hand sides. 
+                    </p>
+</div>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array, for SRHS of size 
+              <span class="parmnamen">128</span>, for MRHS of size 
+              <samp class="codeph">(128+2*<span class="parmname">nrhs</span>)</samp>; this parameter is used to specify the double precision set of data for the RCI CG computations, specifically: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(1)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the relative tolerance. The default value is 1.0X10<sup>-6</sup>. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(2)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p>specifies the absolute tolerance. The default value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(3)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the square norm of the initial residual (if it is computed in the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine). The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(4)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> service variable equal to 
+                    <samp class="codeph"><span><span class="parmname">dpar</span><samp class="codeph">(1)</samp></span>*<span><span class="parmname">dpar</span><samp class="codeph">(3)</samp></span>+<span><span class="parmname">dpar</span><samp class="codeph">(2)</samp></span></samp> (if it is computed in the 
+                  <span class="option">dcg</span>/<span class="option">dcgmrhs</span> routine). The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(5)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p>specifies the square norm of the current residual. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(6)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the square norm of residual from the previous iteration step (if available). The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(7)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> contains the 
+                    <em>alpha</em> parameter of the CG method. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span><span class="parmname">dpar</span><samp class="codeph">(8)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> contains the 
+                    <em>beta</em> parameter of the CG method, it is equal to 
+                    <span><span class="parmname">dpar</span><samp class="codeph">(5)</samp></span>/<span><span class="parmname">dpar</span><samp class="codeph">(6)</samp></span> The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(9:128)</samp></p></td>
+
+<td valign="top" class="noborder"><p> are reserved and not used in the current RCI CG SRHS and MRHS routines. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For future compatibility, you must declare the array 
+                      <span class="parmname">dpar</span> with length 128 for a single right-hand side. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmnamen"><span class="parmname">dpar</span>(9:128+2*<span class="parmname">nrhs</span>)<samp class="codeph">(9:128 + 2*<span class="parmname">nrhs</span>)</samp></span></p></td>
+
+<td valign="top" class="noborder"><p> are reserved for internal use in the current RCI CG SRHS and MRHS routines. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For future compatibility, you must declare the array 
+                      <span class="parmname">dpar</span> with length 128+2*<span class="parmname">nrhs</span> for multiple right-hand sides. 
+                    </p>
+</div>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array of size 
+              <span class="parmnamen">(<span class="parmname">n</span><span>,</span>4)</span>for SRHS, and 
+              <span class="parmnamen">(<span class="parmname">n</span><span>,</span>(3+<span class="parmname">nrhs</span>))</span>for MRHS. This parameter is used to supply the double precision temporary space for the RCI CG computations, specifically: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmnamen">(<span class="parmnamen">:</span>,1)</span></p></td>
+
+<td valign="top" class="noborder"><p> specifies the current search direction. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmnamen">(<span class="parmnamen">:</span>,2)</span></p></td>
+
+<td valign="top" class="noborder"><p> contains the matrix multiplied by the current search direction. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmnamen">(<span class="parmnamen">:</span>,3)</span></p></td>
+
+<td valign="top" class="noborder"><p> contains the current residual. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmnamen">(<span class="parmnamen">:</span>,4)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the inverse of the preconditioner applied to the current residual for the SRHS version of CG. There is no initial value for this parameter. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmnamen">(<span class="parmnamen">:</span>,4:3+<span class="parmname">nrhs</span>)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the inverse of the preconditioner applied to the current residual for the MRHS version of CG. There is no initial value for this parameter. 
+                  </p>
+</td>
+</tr></table><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can define this array in the code using RCI CG SRHS as 
+                <span class="keyword">DOUBLE PRECISION</span><span class="parmname">tmp</span><span class="parmnamen">(<span class="parmname">n</span>,3)</span> if you run only non-preconditioned CG iterations. 
+              </p>
+</div>
+</dd>
+</dl>
+</div>
+<p/>
+<div class="section" id="GUID-1F568424-9CE1-4F7D-8AFA-ABC267A1D238"><h2 class="sectiontitle">Schemes of Using the RCI CG Routines </h2><p>The following pseudocode shows the general schemes of using the RCI CG routines for the SRHS case. The MRHS is similar (see the example code for more details). 
+      </p>
+<p>... 
+      </p>
+<p>generate matrix 
+        <span class="parmname">A</span></p>
+<p>generate preconditioner 
+        <span class="parmname">C</span> (optional) 
+      </p>
+<p>    call 
+        <samp class="codeph"><span class="option">dcg_init</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <var>tmp</var>)</samp></p>
+<p>    change parameters in 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">dpar</span> if necessary 
+      </p>
+<p>    call 
+        <samp class="codeph"><span class="option">dcg_check</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <var>tmp</var>)</samp></p>
+<p>1   call 
+        <samp class="codeph"><span class="option">dcg</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <var>tmp</var>)</samp></p>
+<p>    if 
+        <samp class="codeph">(<var>RCI_request</var>.eq.1)</samp> then 
+      </p>
+<p>     multiply the matrix 
+        <span class="parmname">A</span> by 
+        <samp class="codeph"><var>tmp</var>(1:<var>n</var>,1)</samp> and put the result in 
+        <samp class="codeph"><var>tmp</var>(1:<var>n</var>,2)</samp></p>
+<p>    It is possible to use 
+        <a href="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html#GUID-0FDAE661-C4A2-43F6-A288-52667018D255">MKL Sparse BLAS Level 2</a> subroutines for this operation 
+      </p>
+<p><samp class="codeph">c  proceed with CG iterations</samp></p>
+<p>        <samp class="codeph">goto 1</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.2)then</samp></p>
+<p>      <samp class="codeph">do the stopping test</samp></p>
+<p>      <samp class="codeph">if (test not passed) then</samp></p>
+<p><samp class="codeph">c  proceed with CG iterations</samp></p>
+<p>        <samp class="codeph">go to 1</samp></p>
+<p>      <samp class="codeph">else</samp></p>
+<p><samp class="codeph">c  stop CG iterations</samp></p>
+<p>        <samp class="codeph">goto 2</samp></p>
+<p>      <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.3)</samp> then (optional) 
+      </p>
+<p>    apply the preconditioner 
+        <span class="parmname">C</span> inverse to 
+        <samp class="codeph"><var>tmp</var>(1:<var>n</var>,3)</samp> and put the result in 
+        <samp class="codeph"><var>tmp</var>(1:<var>n</var>,4)</samp></p>
+<p><samp class="codeph">c  proceed with CG iterations</samp></p>
+<p>      <samp class="codeph">goto 1</samp></p>
+<p>    <samp class="codeph">end</samp></p>
+<p>2  call<samp class="codeph"><span class="option">dcg_get</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">tmp</span>, 
+          <var>itercount</var>)</samp></p>
+<p>  current iteration number is in 
+        <span class="parmname">itercount</span></p>
+<p>  the computed approximation is in the array 
+        <span class="parmname">x</span></p>
+<p/>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-702D8969-5678-4B7D-9EF0-797335F79CA9.html">Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS)</a></div>
+</div>
+<div/>
+</body>
+</html>

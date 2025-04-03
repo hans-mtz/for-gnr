@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sequence of Invoking Poisson Solver Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5985E9DC-AA77-4663-95E6-1A8A22BACCDA.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BEC5700F-FE70-4F25-ACC2-E2D48EE470BA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sequence of Invoking Poisson Solver Routines</title>
+
+</head>
+<body id="GUID-BEC5700F-FE70-4F25-ACC2-E2D48EE470BA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Sequence of Invoking Poisson Solver Routines</h1>
+<div><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This description always shows the solution process for the Helmholtz problem, because Fast Poisson Solvers and Fast Laplace Solvers are special cases of Fast Helmholtz Solvers (see 
+        <a href="GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62.html#GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62">Poisson Solver Implementation</a>). 
+      </p>
+</div>
+<p>The Poisson Solver interface enables you to compute a solution of the Helmholtz problem in four steps. Each step is performed by a dedicated routine. 
+      <a href="#TBL13-5">Table 
+        <span>"Poisson Solver Interface Routines"</span></a> lists the routines and briefly describes their purpose. 
+    </p>
+<p>Most Poisson Solver routines have versions operating with single-precision and double-precision data. Names of such routines begin respectively with "<samp class="codeph">s</samp>" and "<samp class="codeph">d</samp>". The wildcard "<span class="keyword">?</span>" stands for either of these symbols in routine names. The routines for the Cartesian coordinate system have 2D and 3D versions. Their names end respectively in "<samp class="codeph">2D</samp>" and "<samp class="codeph">3D</samp>". The routines for spherical coordinate system have periodic and non-periodic versions. Their names end respectively in "<samp class="codeph">p</samp>" and "<samp class="codeph">np</samp>". 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL13-5" class="AllLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap"><span>Poisson Solver Interface Routines</span></span></caption><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="57.99999999999999%" id="d1421390e68"><p>Routine 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="42%" id="d1421390e71"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="57.99999999999999%" headers="d1421390e68 "><p><a href="GUID-A136A543-BD61-4D81-AEE6-0580130E91D2.html#GUID-A136A543-BD61-4D81-AEE6-0580130E91D2"><span class="option">?_init_Helmholtz_2D/?_init_Helmholtz_3D</span></a>/<a href="GUID-89C1F318-7802-41F5-96F8-4245F4476BF1.html#GUID-89C1F318-7802-41F5-96F8-4245F4476BF1"><span class="option">?_init_sph_p/?_init_sph_np</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="42%" headers="d1421390e71 "><p>Initializes basic data structures for Fast Helmholtz Solver in the 2D/3D/periodic/non-periodic case, respectively. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="57.99999999999999%" headers="d1421390e68 "><p><a href="GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868.html#GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868"><span class="option">?_commit_Helmholtz_2D/?_commit_Helmholtz_3D</span></a>/<a href="GUID-C79A67EC-E804-440B-8075-B7E86509A247.html#GUID-C79A67EC-E804-440B-8075-B7E86509A247"><span class="option">?_commit_sph_p/?_commit_sph_np</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="42%" headers="d1421390e71 "><p>Checks consistency and correctness of input data and initializes data structures for the solver, including those used by the Intel&reg; oneAPI Math Kernel Library FFT interface<a href="#FOOTNOTE"><sup><sup>1</sup></sup></a>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="57.99999999999999%" headers="d1421390e68 "><p><a href="GUID-C6F60AC1-C8FB-459C-A717-F7B9EA8FF5C8.html#GUID-C6F60AC1-C8FB-459C-A717-F7B9EA8FF5C8"><span class="option">?_Helmholtz_2D/?_Helmholtz_3D</span></a>/<a href="GUID-EA5DC817-5607-40B6-B864-2859CFBF557E.html#GUID-EA5DC817-5607-40B6-B864-2859CFBF557E"><span class="option">?_sph_p/?_sph_np</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="42%" headers="d1421390e71 "><p>Computes an approximate solution of the 2D/3D/periodic/non-periodic Helmholtz problem (see 
+            <a href="GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62.html#GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62">Poisson Solver Implementation</a>) specified by the parameters. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="57.99999999999999%" headers="d1421390e68 "><p><a href="GUID-B9715158-234D-4B2B-B8D1-ABECEC726D83.html#GUID-B9715158-234D-4B2B-B8D1-ABECEC726D83"><span class="option">free_Helmholtz_2D/free_Helmholtz_3D</span></a>/<a href="GUID-0A51A70C-20FF-42BC-8A9E-DD15FCB467B7.html#GUID-0A51A70C-20FF-42BC-8A9E-DD15FCB467B7"><span class="option">free_sph_p/free_sph_np</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="42%" headers="d1421390e71 "><p>Releases the memory used by the data structures needed for calling the Intel&reg; oneAPI Math Kernel Library FFT interface<a href="#FOOTNOTE"><sup><sup>1</sup></sup></a>. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="footnote" id="FOOTNOTE"><sup>1</sup>Poisson Solver routines call the Intel&reg; oneAPI Math Kernel Library FFT interface for better performance.</p>
+<p>To find an approximate solution of Helmholtz problem only once, the Intel&reg; oneAPI Math Kernel Library Poisson Solver interface routines are normally invoked in the order in which they are listed in<a href="#TBL13-5">Table 
+      <span>"Poisson Solver Interface Routines"</span></a>. 
+  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Though the order of invoking Poisson Solver routines may be changed, it is highly recommended to follow the above order of routine calls. 
+    </p>
+</div>
+<p>The diagram in 
+    <a href="#FIG13-3">Figure 
+      <span>"Typical Order of Invoking Poisson Solver Routines"</span></a> indicates the typical order in which Poisson Solver routines can be invoked in a general case. 
+  </p>
+<div class="figtop" id="FIG13-3"><span class="figcap">Typical Order of Invoking Poisson Solver Routines</span><br/><img src="GUID-046D0C1A-9F71-4357-AD4B-ABC18B592BB3-low.jpg" width="281" height="245"/><br/></div>
+<p>A general scheme of using Poisson Solver routines for double-precision computations in a 3D Cartesian case is shown below. You can change this scheme to a scheme for single-precision computations by changing the initial letter of the Poisson Solver routine names from "d" to "s". You can also change the scheme below from the 3D to 2D case by changing the ending of the Poisson Solver routine names. 
+  </p>
+<pre>...
+d_init_Helmholtz_3D(&amp;ax, &amp;bx, &amp;ay, &amp;by, &amp;az, &amp;bz, &amp;nx, &amp;ny, &amp;nz, BCtype, ipar, dpar, &amp;stat);
+/* change parameters in ipar and/or dpar if necessary. */
+/* note that the result of the Fast Helmholtz Solver will be in f. If you want to keep the data
+that is stored in f, save it to another location before the function call below */
+d_commit_Helmholtz_3D(f, bd_ax, bd_bx, bd_ay, bd_by, bd_az, bd_bz, &amp;xhandle, &amp;yhandle, ipar, dpar, &amp;stat);
+d_Helmholtz_3D(f, bd_ax, bd_bx, bd_ay, bd_by, bd_az, bd_bz, &amp;xhandle, &amp;yhandle, ipar, dpar, &amp;stat);
+free_Helmholtz_3D (&amp;xhandle, &amp;yhandle, ipar, &amp;stat);
+/* here you may clean the memory used by f, dpar, ipar */
+...</pre><p>A general scheme of using Poisson Solver routines for double-precision computations in a spherical periodic case is shown below. You can change this scheme to a scheme for single-precision computations by changing the initial letter of the Poisson Solver routine names from "d" to "s". You can also change the scheme below to a scheme for a non-periodic case by changing the ending of the Poisson Solver routine names from "p" to "np". 
+  </p>
+<pre>...
+d_init_sph_p(&amp;ap,&amp;bp,&amp;at,&amp;bt,&amp;np,&amp;nt,&amp;q,ipar,dpar,&amp;stat);
+/* change parameters in ipar and/or dpar if necessary. */
+/* note that the result of the Fast Helmholtz Solver will be in f. If you want to keep the data
+that is stored in f, save it to another location before the function call below */
+d_commit_sph_p(f,&amp;handle_s,&amp;handle_c,ipar,dpar,&amp;stat);
+d_sph_p(f,&amp;handle_s,&amp;handle_c,ipar,dpar,&amp;stat);
+free_sph_p(&amp;handle_s,&amp;handle_c,ipar,&amp;stat);
+/* here you may clean the memory used by f, dpar, ipar */
+...</pre><p>You can find examples of 
+    code that uses Poisson Solver routines to solve Helmholtz problem (in both Cartesian and spherical cases) in the 
+    <span class="filepath">examples\pdepoissonf\source</span> 
+     folderin your Intel&reg; oneAPI Math Kernel Library directory.</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5985E9DC-AA77-4663-95E6-1A8A22BACCDA.html">Fast Poisson Solver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

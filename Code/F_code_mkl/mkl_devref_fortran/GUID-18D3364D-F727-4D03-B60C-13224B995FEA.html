@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasq1"/>
+<meta name="abstract" content="Computes the singular values of a real square bidiagonal matrix. Used by ?bdsqr."/>
+<meta name="description" content="Computes the singular values of a real square bidiagonal matrix. Used by ?bdsqr."/>
+<meta name="DC.subject" content="?lasq1, LAPACK routines, auxiliary routines, real square bidiagonal matrix, singular values"/>
+<meta name="keywords" content="?lasq1, LAPACK routines, auxiliary routines, real square bidiagonal matrix, singular values"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-18D3364D-F727-4D03-B60C-13224B995FEA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasq1</title>
+
+</head>
+<body id="GUID-18D3364D-F727-4D03-B60C-13224B995FEA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasq1</span></h1>
+<!--Computes the singular values of a real square bidiagonal matrix. Used by  ?bdsqr .--><div><p class="shortdesc">Computes the singular values of a real square bidiagonal matrix. Used by <span class="option">?bdsqr</span>.</p>
+<div class="section" id="GUID-D6339CD7-1B67-488C-AB8A-0F949BD3EDEC"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasq1</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasq1</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-52C7E72C-0256-4DDD-9E4A-B699979577B4"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-DD5EB00D-4254-471C-B613-03C48E4F861C"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?lasq1</span> computes the singular values of a real <var>n</var>-by-<var>n</var> bidiagonal  matrix <var>Z</var> with diagonal <span class="parmname">d</span> and off-diagonal <span class="parmname">e</span>. The singular values are computed to high relative accuracy, in the absence of  denormalization, underflow and overflow. </p>
+</div>
+<div class="section" id="GUID-3460187E-1DDF-4001-AFC3-A8A5F108A19C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0402A881-C659-4158-AF75-12A45AF0E3F4"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.The number of rows and columns in the matrix. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq1</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>).</p>
+<p> On entry, <var>d</var> contains the diagonal elements of the bidiagonal matrix whose <var>SVD</var> is desired. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq1</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>).</p>
+<p>On entry, elements <samp class="codeph"><var>e</var>(1:<var>n</var>-1)</samp> contain the off-diagonal elements  of the bidiagonal matrix whose <var>SVD</var> is desired.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq1</span>.</p>
+<p>Workspace array, <span class="keyword">DIMENSION</span><samp class="codeph">(4<var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3A92EF28-2A0A-4649-9941-ABFAB1B3C244"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A7B4E3AF-CE4B-479C-8E0F-B58A7FAACF3C"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On normal exit, <var>d</var> contains the singular values in decreasing order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, <var>e</var> is overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0: successful exit;</p>
+<p>&lt; 0: if <samp class="codeph"><var>info</var> = -<var>i</var></samp>, the <var>i</var>-th argument had an illegal value; </p>
+<p>&gt; 0: the algorithm failed: </p>
+<p>= 1, a split was marked by a positive value in <var>e</var>;</p>
+<p>= 2, current block of <var>Z</var> not diagonalized after 100<var>n</var> iterations (in inner while loop) -  on exit the current contents of <span class="parmname">d</span> and <span class="parmname">e</span> represent a matrix with the same singular
+values as the matrix with which <span class="keyword">?lasq1</span> was originally called, and which the calling subroutine could use to
+finish the computation, or even feed back into
+<span class="keyword">?lasq1</span>;</p>
+<p>= 3, termination criterion of outer while loop not met  (program created more than <var>n</var> unreduced blocks.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

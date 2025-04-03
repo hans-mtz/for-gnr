@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Functions Threaded with Intel&reg; Threading Building Blocks"/>
+<meta name="DC.subject" content="threaded functions, with Intel&reg; Threading Building Blocks, Intel&reg; Threading Building Blocks, functions threaded with"/>
+<meta name="keywords" content="threaded functions, with Intel&reg; Threading Building Blocks, Intel&reg; Threading Building Blocks, functions threaded with"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A09C5398-D263-42F8-95E2-772C3C1FE79C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-42F2398B-94C3-45CD-8F20-C823CF830DDA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Functions Threaded with Intel&reg; Threading Building Blocks</title>
+
+</head>
+<body id="GUID-42F2398B-94C3-45CD-8F20-C823CF830DDA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Functions Threaded with Intel&reg; Threading Building Blocks</h1>
+<div id="GUID-612A498D-99A7-46FD-80D8-4097FC9C7541"><p id="GUID-335FD5F7-706A-417A-A277-8A0C703D1DF3">In this section, 
+      <samp class="codeph" id="GUID-870AAADA-2089-4F1E-AE9F-BB1DEB367B31">?</samp> stands for a precision prefix or suffix of the routine name and may have the value of 
+      <samp class="codeph" id="GUID-6880C83E-9D50-485C-AC9F-45CFDC45F9E9">s, d, c</samp>, or 
+      <samp class="codeph" id="GUID-17EE6FA7-3169-4B1E-A867-21A72E006AA0">z</samp>. 
+    </p>
+<p id="GUID-18AF131C-5C93-4D03-8D32-99069252C58C">The following 
+      Intel&reg; oneAPI Math Kernel Library function domains are threaded with Intel&reg; Threading Building Blocks (Intel&reg; TBB):
+    </p>
+<ul id="GUID-E3F8A448-C29A-4370-AEA0-9031E5FE0889"><li><p id="GUID-EF3ED8B9-AB11-486D-B48E-B5E05D6EC44A">LAPACK. 
+        </p>
+<p>For a list of threaded routines, see 
+          <a href="#LAPACK">LAPACK Routines</a>. 
+        </p>
+</li>
+<li><p id="GUID-5BC1FC60-A665-42F8-BB2F-B23DC57AF034">Entire Level3 BLAS. 
+        </p>
+</li>
+<li><p id="GUID-78BF7D96-93EB-4F27-8008-5DD87157AF5B"> Fast Poisson, Laplace, and Helmholtz Solver (Poisson Library). 
+        </p>
+</li>
+<li><p> All Vector Mathematics functions (except service functions). 
+        </p>
+</li>
+<li><p>Intel&reg; oneAPI Math Kernel Library PARDISO, a direct sparse solver based on Parallel Direct Sparse Solver (PARDISO*).
+        </p>
+<p>For details, see 
+          <a href="#PARDISO_STEPS"><span>oneMKL</span> PARDISO Steps</a>. 
+        </p>
+</li>
+<li><p>Sparse BLAS. 
+        </p>
+<p>For a list of threaded routines, see 
+          <a href="#SPARSE_BLAS">Sparse BLAS Routines</a>. 
+        </p>
+</li>
+</ul>
+<p id="P_CF_128818738294849">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d25e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d7571e85"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d7571e85 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+<div class="section" id="LAPACK"><h2 class="sectiontitle">LAPACK Routines</h2><p id="GUID-C19B0D9C-EEA4-4CB3-8CC5-0A82B15308EF">The following LAPACK routines are threaded with Intel TBB: 
+        <br/><span class="option">?geqrf</span>, 
+      <span class="option">?gelqf</span>, 
+      <span class="option">?getrf</span>, 
+      <span class="option">?potrf</span>, 
+      <span class="option">?unmqr*</span>, 
+      <span class="option">?ormqr*</span>, 
+      <span class="option">?unmrq*</span>, 
+      <span class="option">?ormrq*</span>, 
+      <span class="option">?unmlq*</span>, 
+      <span class="option">?ormlq*</span>, 
+      <span class="option">?unmql*</span>, 
+      <span class="option">?ormql*</span>, 
+      <span class="option">?sytrd</span>, 
+      <span class="option">?hetrd</span>, 
+      <span class="option">?syev</span>, 
+      <span class="option">?heev</span>, and 
+      <span class="option">?latrd</span>. 
+      </p>
+<p id="GUID-56B90F2C-FE73-4070-876C-5DC9E845D09E">A number of other LAPACK routines, which are based on threaded LAPACK or BLAS routines, make effective use of Intel TBB threading: 
+        <br/><span class="option">?getrs</span>, 
+      <span class="option">?gesv</span>, 
+      <span class="option">?potrs</span>, 
+      <span class="option">?bdsqr</span>, and 
+      <span class="option">?gels</span>. 
+      </p>
+</div>
+<div class="section" id="PARDISO_STEPS"><h2 class="sectiontitle"><span>oneMKL</span> PARDISO Steps</h2><p>Intel&reg; oneAPI Math Kernel Library PARDISO is threaded with Intel TBB in the reordering and factorization steps. However, routines performing the solving step are still called sequentially when using Intel TBB.
+      </p>
+</div>
+<div class="section" id="SPARSE_BLAS"><h2 class="sectiontitle">Sparse BLAS Routines</h2><p>The Sparse BLAS inspector-executor application programming interface routines 
+      <span class="option">mkl_sparse_?_mv</span> are threaded with Intel TBB for the general compressed sparse row (CSR) and block sparse row (BSR) formats. 
+      </p>
+<p>The following Sparse BLAS inspector-executor application programming routines are threaded with Intel TBB: 
+      </p>
+<ul id="GUID-26EA8440-0B75-4DE3-BF37-EB33E19244B3"><li><p><span class="option">mkl_sparse_?_mv</span> using the general compressed sparse row (CSR) and block sparse row (BSR) matrix formats. 
+      </p>
+</li>
+<li><p><span class="option">mkl_sparse_?_mm</span> using the general CSR sparse matrix format and both row and column major storage formats for the dense matrix. 
+      </p>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A09C5398-D263-42F8-95E2-772C3C1FE79C.html">Improving Performance with Threading</a></div>
+</div>
+<div/>
+</body>
+</html>

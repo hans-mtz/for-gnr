@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?laswp"/>
+<meta name="abstract" content="Performs a series of row interchanges on a general rectangular matrix."/>
+<meta name="description" content="Performs a series of row interchanges on a general rectangular matrix."/>
+<meta name="DC.subject" content="p?laswp, ScaLAPACK routines, auxiliary routines, general rectangular matrix, row interchanges, ScaLAPACK"/>
+<meta name="keywords" content="p?laswp, ScaLAPACK routines, auxiliary routines, general rectangular matrix, row interchanges, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B06F6628-8EF9-4E03-B680-A8C3AF122FB5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?laswp</title>
+
+</head>
+<body id="GUID-B06F6628-8EF9-4E03-B680-A8C3AF122FB5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?laswp</span></h1>
+<!--Performs a series of row interchanges on a general rectangular matrix.--><div><p class="shortdesc">Performs a series of row interchanges on a general rectangular matrix.</p>
+<div class="section" id="GUID-17767155-59B9-4ADA-BF43-BBB365FCCC57"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslaswp</span><span class="delim">(</span><span class="var">direc</span><span class="sep">, </span><span class="var">rowcol</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">k1</span><span class="sep">, </span><span class="var">k2</span><span class="sep">, </span><span class="var">ipiv</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlaswp</span><span class="delim">(</span><span class="var">direc</span><span class="sep">, </span><span class="var">rowcol</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">k1</span><span class="sep">, </span><span class="var">k2</span><span class="sep">, </span><span class="var">ipiv</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclaswp</span><span class="delim">(</span><span class="var">direc</span><span class="sep">, </span><span class="var">rowcol</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">k1</span><span class="sep">, </span><span class="var">k2</span><span class="sep">, </span><span class="var">ipiv</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlaswp</span><span class="delim">(</span><span class="var">direc</span><span class="sep">, </span><span class="var">rowcol</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">k1</span><span class="sep">, </span><span class="var">k2</span><span class="sep">, </span><span class="var">ipiv</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-D07C8298-C1F5-43FA-9DDD-594F57B65F0C"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?laswp</span><span>routine </span>performs a series of row or column interchanges on the distributed matrix <samp class="codeph">sub(<var>A</var>)=<var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1, <var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp>. One interchange is initiated for each of rows or columns <var>k1</var> through <var>k2</var> of sub(<var>A</var>). This <span>routine </span>assumes that the pivoting information has already been broadcast along the process row or column. Also note that this <span>routine </span>will only work for <var>k1-k2</var> being in the same <var>mb</var> (or <var>nb</var>) block. If you want to pivot a full matrix, use <a href="GUID-17D841FA-705E-4D8C-9684-1235A84B8C91.html#GUID-17D841FA-705E-4D8C-9684-1235A84B8C91"><span class="option">p?lapiv</span></a>. </p>
+</div>
+<div class="section" id="GUID-8A175485-EE52-4755-A406-832B042AF37A"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-167EC822-641E-49ED-8D7E-C140C768BAFF"><dt class="dlterm"><span class="parmname">direc</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span></p>
+<p>Specifies in which order the permutation is applied:</p>
+<p>= <span class="keyword">'F'</span> - forward, </p>
+<p>= <span class="keyword">'B'</span> - backward.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rowcol</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span></p>
+<p>Specifies if the rows or columns are permuted: </p>
+<p>= <span class="keyword">'R'</span> - rows, </p>
+<p>= <span class="keyword">'C'</span> - columns.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.</span></p>
+<p>If <samp class="codeph"><var>rowcol</var>=<span class="keyword">'R'</span></samp>, the length of the rows of the distributed matrix <samp class="codeph"><var>A</var>(*, <var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> to be permuted;</p>
+<p>If <samp class="codeph"><var>rowcol</var>=<span class="keyword">'C'</span></samp>, the length of the columns of the distributed matrix <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1 , *)</samp> to be permuted;</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslaswp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaswp</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaswp</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaswp</span>. </p>
+<p>Pointer into the local memory to an array of size  <span>(<var>lld_a</var>, *)</span>. On entry, this array contains the local pieces of the distributed matrix to which the row/columns interchanges will be applied.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row index in the global matrix <var>A</var> indicating the first row of sub(<var>A</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The column index in the global matrix <var>A</var> indicating the first column of sub(<var>A</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. </p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k1</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The first element of <var>ipiv</var> for which a row or column interchange will be done.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k2</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The last element of <var>ipiv</var> for which a row or column interchange will be done.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p>(local) </p>
+<p><span><span class="keyword">INTEGER</span>. </span>Array of size <samp class="codeph"><var>LOCr</var>(<var>m_a</var>)+<var>mb_a</var></samp> for row pivoting and <samp class="codeph"><var>LOCr</var>(<var>n_a</var>)+<var>nb_a</var></samp> for column pivoting. This array is tied to the matrix <var>A</var>, <samp class="codeph"><var>ipiv</var><span>(<var>k</var>)</span>=<var>l</var></samp> implies rows (or columns) <var>k</var> and <var>l</var> are to be interchanged.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C3999500-70E9-4AC9-B544-A56CBC699CB8"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-BC67357D-1D5D-400E-A28B-A6C090903E30"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslaswp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaswp</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclaswp</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlaswp</span>. </p>
+<p>On exit, the permuted distributed matrix.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

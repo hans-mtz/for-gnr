@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Linking with Threading Libraries"/>
+<meta name="DC.subject" content="linking with, threading libraries, threading libraries, linking with, libraries to link with, threading"/>
+<meta name="keywords" content="linking with, threading libraries, threading libraries, linking with, libraries to link with, threading"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A5E2525D-9FE2-4BDB-ACF8-56F81E5918AA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-45FE75D8-E55C-44A4-BE8F-9CC0F1805F46.html#GUID-45FE75D8-E55C-44A4-BE8F-9CC0F1805F46"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9870FD98-79EE-4006-8129-C5A0C5285B31.html#GUID-9870FD98-79EE-4006-8129-C5A0C5285B31"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C0722BEE-12B8-4034-8152-35FEE9DB150D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Linking with Threading Libraries</title>
+
+</head>
+<body id="GUID-C0722BEE-12B8-4034-8152-35FEE9DB150D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Linking with Threading Libraries</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library threading layer defines how 
+      Intel&reg; oneAPI Math Kernel Library functions utilize multiple computing cores of the system that the application runs on. You must link your application with one appropriate 
+      Intel&reg; oneAPI Math Kernel Library library in this layer, as explained below. Depending on whether this is a threading or a sequential library, 
+      Intel&reg; oneAPI Math Kernel Library runs in a parallel or sequential mode, respectively. 
+    </p>
+<p>In the 
+      <em>parallel mode</em>, 
+      Intel&reg; oneAPI Math Kernel Library utilizes multiple processor cores available on your system, uses the OpenMP*<span>or Intel TBB 
+      </span>threading technology, and requires a proper 
+      <span>threading 
+      </span>run-time library (RTL) to be linked with your application. Independently of use of 
+      Intel&reg; oneAPI Math Kernel Library, the application may also require a threading RTL. You should link not more than one<span>threading 
+      </span>RTL to your application. 
+      <span>Threading RTLs are 
+      </span>provided by your compiler. 
+      Intel&reg; oneAPI Math Kernel Library provides several threading libraries, each dependent on the<span>threading 
+      </span>RTL of a certain compiler, and your choice of the 
+      Intel&reg; oneAPI Math Kernel Library threading library must be consistent with the<span>threading 
+      </span>RTL that you use in your application. 
+    </p>
+<p>The OpenMP RTL of the Intel&reg; compiler is the 
+      <samp class="codeph">libiomp5<span>.dylib</span></samp> library, located under 
+      <span class="filepath"><var>&lt;parent directory&gt;</var></span><span class="filepath">/</span><span class="filepath">compiler</span><span class="filepath">/</span><span class="filepath">lib</span>. 
+      <span>This RTL is compatible with the GNU* compilers (gcc and gfortran). 
+      </span>You can find additional information about the Intel OpenMP RTL at 
+      https://www.openmprtl.org. 
+    </p>
+<p> The Intel TBB RTL of the Intel&reg; compiler is the 
+      <samp class="codeph">lib</samp><samp class="codeph">tbb<span>.dylib</span></samp> library, located under 
+      <span class="filepath"><var>&lt;parent directory&gt;</var></span><span class="filepath">/</span><span class="filepath">tbb</span><span class="filepath">/</span><span class="filepath">lib</span>. You can find additional information about the Intel TBB RTL at 
+      https://www.threadingbuildingblocks.org. 
+    </p>
+<p>In the 
+      <em>sequential mode</em>, 
+      Intel&reg; oneAPI Math Kernel Library runs unthreaded code, does not require an<span>threading 
+      </span>RTL, and does not respond to environment variables and functions controlling the number of threads. Avoid using the library in the sequential mode unless you have a particular reason for that, such as the following: 
+    </p>
+<ul id="GUID-AC0B612E-15EF-4587-8393-E165FA948B70"><li>Your application needs 
+        <span>a threading 
+        </span>RTL that none of 
+        Intel&reg; oneAPI Math Kernel Library threading libraries is compatible with 
+      </li>
+<li>Your application is already threaded at a top level, and using parallel 
+        Intel&reg; oneAPI Math Kernel Library only degrades the application performance by interfering with that threading 
+      </li>
+<li>Your application is intended to be run on a single thread, like a message-passing Interface (MPI) application 
+      </li>
+</ul>
+<p>It is critical to link the application with the proper RTL. The table below explains what library in the 
+      Intel&reg; oneAPI Math Kernel Library threading layer and what<span>threading 
+      </span>RTL you should choose under different scenarios: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-418224EB-133C-4A1F-8DF8-E3034EAD263B" width="100%" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="d26552e183"><p>Application 
+              </p>
+</th>
+<th class="cellrowborder" colspan="2" valign="top" id="d26552e186"><p>Intel&reg; oneAPI Math Kernel Library</p>
+</th>
+<th class="row-nocellborder" rowspan="2" valign="top" width="28.000000000000004%" id="d26552e191"><p>RTL Required 
+              </p>
+</th>
+</tr>
+<tr><th class="cellrowborder" valign="top" width="12%" id="d26552e195">Uses OpenMP 
+            </th>
+<th class="cellrowborder" valign="top" width="15%" id="d26552e197">Compiled with 
+            </th>
+<th class="cellrowborder" valign="top" width="20%" id="d26552e199"><p>Execution Mode 
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="25%" id="d26552e202"><p>Threading Layer 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="12%" headers="d26552e183 d26552e195 "><p>no 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15%" headers="d26552e183 d26552e197 "><p>any compiler 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d26552e186 d26552e199 "><p>parallel 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d26552e186 d26552e202 "><p>Static linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_intel_</span><span class="filepath">thread.</span><span class="filepath">a</span></p>
+<p>Dynamic linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_intel_</span><span class="filepath">thread</span><span class="filepath">.dylib</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d26552e191 "><p><span class="filepath">libiomp5</span>.<span class="filepath">dylib</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="12%" headers="d26552e183 d26552e195 "><p>no 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15%" headers="d26552e183 d26552e197 "><p>any compiler 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d26552e186 d26552e199 "><p>parallel 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d26552e186 d26552e202 "><p>Static linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_tbb_</span><span class="filepath">thread.</span><span class="filepath">a</span></p>
+<p>Dynamic linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_tbb_</span><span class="filepath">thread</span><span class="filepath">.dylib</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d26552e191 "><span class="filepath">lib</span><span class="filepath">tbb</span>.<span class="filepath">dylib</span></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="12%" headers="d26552e183 d26552e195 "><p>no 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15%" headers="d26552e183 d26552e197 "><p>any compiler 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d26552e186 d26552e199 "><p>sequential 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d26552e186 d26552e202 "><p>Static linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_</span><span class="filepath">sequential.</span><span class="filepath">a</span></p>
+<p>Dynamic linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_</span><span class="filepath">sequential</span><span class="filepath">.dylib</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d26552e191 "><p>none<a href="#FOOTNOTE"><sup>†</sup></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="12%" headers="d26552e183 d26552e195 "><p>yes 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15%" headers="d26552e183 d26552e197 "><p>Intel compiler 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d26552e186 d26552e199 "><p>parallel 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d26552e186 d26552e202 "><p>Static linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_intel_</span><span class="filepath">thread.</span><span class="filepath">a</span></p>
+<p>Dynamic linking: 
+              </p>
+<p><span class="filepath">lib</span><span class="filepath">mkl_intel_</span><span class="filepath">thread</span><span class="filepath">.dylib</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d26552e191 "><p><span class="filepath">libiomp5</span>.<span class="filepath">dylib</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="12%" headers="d26552e183 d26552e195 "><p>yes 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15%" headers="d26552e183 d26552e197 "><p>GNU compiler 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d26552e186 d26552e199 "><p>parallel 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d26552e186 d26552e202 "><p>Static linking: 
+              </p>
+<p><span class="filepath">libmkl_intel_</span><span class="filepath">thread.a</span></p>
+<p>Dynamic linking: 
+              </p>
+<p><span class="filepath">libmkl_intel_</span><span class="filepath">thread.dylib</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d26552e191 "><p><span class="filepath">libiomp5.dylib</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="12%" headers="d26552e183 d26552e195 "><p>yes 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="15%" headers="d26552e183 d26552e197 "><p>any other compiler 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="20%" headers="d26552e186 d26552e199 "><p>parallel 
+              </p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d26552e186 d26552e202 "><p>Not supported. Use 
+                Intel&reg; oneAPI Math Kernel Library in the sequential mode. 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="28.000000000000004%" headers="d26552e191 "> </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="footnote" id="FOOTNOTE"><sup>†</sup> For the sequential mode, add the POSIX threads library 
+      <samp class="codeph" id="GUID-4EFE7436-7ADA-45BC-B923-35BDA7042F21">(libpthread)</samp> to your link line because the 
+      <span class="filepath">libmkl_sequential.a</span> and 
+      <span class="filepath">libmkl_sequential.dylib</span> libraries depend on 
+      <samp class="codeph" id="GUID-9DC0B00A-667F-4710-9BD8-024CB3EB99D8">libpthread</samp>. 
+    </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d25e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d26552e436"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d26552e436 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A5E2525D-9FE2-4BDB-ACF8-56F81E5918AA.html">Linking in Detail</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-45FE75D8-E55C-44A4-BE8F-9CC0F1805F46.html#GUID-45FE75D8-E55C-44A4-BE8F-9CC0F1805F46">Layered Model Concept 
+        </a></div>
+<div><a href="GUID-9870FD98-79EE-4006-8129-C5A0C5285B31.html#GUID-9870FD98-79EE-4006-8129-C5A0C5285B31">Notational Conventions 
+        </a></div></div></div>
+</body>
+</html>

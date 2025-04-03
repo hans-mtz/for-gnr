@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Examples of BLACS Routines Usage"/>
+<meta name="DC.subject" content="BLACS, usage examples"/>
+<meta name="keywords" content="BLACS, usage examples"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Examples of BLACS Routines Usage</title>
+
+</head>
+<body id="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Examples of BLACS Routines Usage</h1>
+<div><div class="tbstyle(tblExampleLong)" id="CH16EX16-1"><h2 class="sectiontitle"><span>Example. 
+        </span>BLACS Usage. Hello World</h2><p>The following routine takes the available processes, forms them into a process grid, and then has each process check in with the process at {0,0} in the process grid.
+      </p>
+<pre>      PROGRAM HELLO 
+*     -- BLACS example code --
+*     Written by Clint Whaley 7/26/94 
+*     Performs a simple check-in type hello world 
+*     .. 
+*     .. External Functions ..
+      INTEGER BLACS_PNUM
+      EXTERNAL BLACS_PNUM 
+*     .. 
+*     .. Variable Declaration ..
+      INTEGER CONTXT, IAM, NPROCS, NPROW, NPCOL, MYPROW, MYPCOL
+      INTEGER ICALLER, I, J, HISROW, HISCOL 
+*     
+*     Determine my process number and the number of processes in 
+*     machine 
+*     
+      CALL BLACS_PINFO(IAM, NPROCS) 
+*     
+*     If in PVM, create virtual machine if it doesn't exist 
+*     
+      IF (NPROCS .LT. 1) THEN
+         IF (IAM .EQ. 0) THEN
+            WRITE(*, 1000)
+            READ(*, 2000) NPROCS
+         END IF
+         CALL BLACS_SETUP(IAM, NPROCS)
+      END IF 
+*     
+*     Set up process grid that is as close to square as possible 
+*     
+      NPROW = INT( SQRT( REAL(NPROCS) ) )
+      NPCOL = NPROCS / NPROW 
+*     
+*     Get default system context, and define grid
+
+*     
+      CALL BLACS_GET(0, 0, CONTXT)
+      CALL BLACS_GRIDINIT(CONTXT, 'Row', NPROW, NPCOL)
+      CALL BLACS_GRIDINFO(CONTXT, NPROW, NPCOL, MYPROW, MYPCOL) 
+*     
+*     If I'm not in grid, go to end of program 
+*     
+      IF ( (MYPROW.GE.NPROW) .OR. (MYPCOL.GE.NPCOL) ) GOTO 30
+
+*     
+*     Get my process ID from my grid coordinates 
+*     
+      ICALLER = BLACS_PNUM(CONTXT, MYPROW, MYPCOL) 
+*     
+*     If I am process {0,0}, receive check-in messages from 
+*     all nodes 
+*     
+      IF ( (MYPROW.EQ.0) .AND. (MYPCOL.EQ.0) ) THEN
+            
+         WRITE(*,*) ' '
+
+         DO 20 I = 0, NPROW-1
+            DO 10 J = 0, NPCOL-1
+      
+               IF ( (I.NE.0) .OR. (J.NE.0) ) THEN
+                  CALL IGERV2D(CONTXT, 1, 1, ICALLER, 1, I, J)
+               END IF 
+*     
+*              Make sure ICALLER is where we think in process grid
+
+*     
+              CALL BLACS_PCOORD(CONTXT, ICALLER, HISROW, HISCOL)
+              IF ( (HISROW.NE.I) .OR. (HISCOL.NE.J) ) THEN
+                 WRITE(*,*) 'Grid error!  Halting . . .'
+
+                 STOP
+              END IF
+              WRITE(*, 3000) I, J, ICALLER
+
+
+      
+10         CONTINUE 
+20      CONTINUE
+        WRITE(*,*) ' '
+        WRITE(*,*) 'All processes checked in.  Run finished.' 
+*     
+*     All processes but {0,0} send process ID as a check-in
+
+
+*     
+      ELSE
+
+         CALL IGESD2D(CONTXT, 1, 1, ICALLER, 1, 0, 0)
+      END IF
+
+     
+30    CONTINUE
+              
+
+
+      CALL BLACS_EXIT(0)
+
+1000  FORMAT('How many processes in machine?') 
+2000  FORMAT(I) 
+3000  FORMAT('Process {',i2,',',i2,'} (node number =',I,
+     $       ') has checked in.')
+ 
+      STOP
+      END</pre></div>
+<div class="tbstyle(tblExampleLong)" id="CH16EX16-2"><h2 class="sectiontitle"><span>Example. 
+        </span>BLACS Usage. PROCMAP</h2><p>This routine maps processes to a grid using 
+      <span class="option">blacs_gridmap</span>.
+      </p>
+<pre>      SUBROUTINE PROCMAP(CONTEXT, MAPPING, BEGPROC, NPROW, NPCOL, IMAP) 
+*     
+*     -- BLACS example code --
+
+*     Written by Clint Whaley 7/26/94 
+*     .. 
+*     .. Scalar Arguments ..
+      INTEGER CONTEXT, MAPPING, BEGPROC, NPROW, NPCOL
+
+*     .. 
+*     .. Array Arguments ..
+      INTEGER IMAP(NPROW, *) 
+*     .. 
+*     
+*  Purpose 
+*  ======= 
+*  PROCMAP maps NPROW*NPCOL processes starting from process BEGPROC to   
+*  the grid in a variety of ways depending on the parameter MAPPING.
+
+*     
+*  Arguments
+
+*  ========= 
+*     
+*  CONTEXT      (output) INTEGER 
+*               This integer is used by the BLACS to indicate a context. 
+*               A context is a universe where messages exist and do not 
+*               interact with other context's messages.  The context 
+*               includes the definition of a grid, and each process's 
+*               coordinates in it. 
+*     
+*  MAPPING      (input) INTEGER 
+*               Way to map processes to grid.  Choices are: 
+*               1 : row-major natural ordering 
+*               2 : column-major natural ordering 
+*     
+*  BEGPROC      (input) INTEGER 
+*               The process number (between 0 and NPROCS-1) to use as 
+
+*               {0,0}. From this process, processes will be assigned 
+*               to the grid as indicated by MAPPING. 
+*     
+*  NPROW        (input) INTEGER 
+*               The number of process rows the created grid 
+
+*               should have. 
+*                
+*  NPCOL        (input) INTEGER 
+*               The number of process columns the created grid 
+
+*               should have. 
+*     
+*  IMAP         (workspace) INTEGER array of dimension (NPROW, NPCOL) 
+*               Workspace, where the array which maps the  
+
+*               processes to the grid will be stored for the 
+*               call to GRIDMAP. 
+*     
+*     =============================================================== 
+*     
+*     .. 
+*     .. External Functions ..
+      INTEGER  BLACS_PNUM
+
+      EXTERNAL BLACS_PNUM
+
+*     .. 
+*     .. External Subroutines ..
+      EXTERNAL BLACS_PINFO, BLACS_GRIDINIT, BLACS_GRIDMAP 
+*     .. 
+*     .. Local Scalars ..
+      INTEGER TMPCONTXT, NPROCS, I, J, K
+
+*     .. 
+*     .. Executable Statements .. 
+*     
+*     See how many processes there are in the system 
+*     
+      CALL BLACS_PINFO( I, NPROCS )
+
+      IF (NPROCS-BEGPROC .LT. NPROW*NPCOL) THEN
+         WRITE(*,*) 'Not enough processes for grid'
+         STOP
+      END IF 
+*     
+*     Temporarily map all processes into 1 x NPROCS grid
+
+
+*     
+      CALL BLACS_GET( 0, 0, TMPCONTXT )
+      CALL BLACS_GRIDINIT( TMPCONTXT, 'Row', 1, NPROCS )
+      K = BEGPROC
+
+
+*     
+*     If we want a row-major natural ordering
+
+
+*     
+      IF (MAPPING .EQ. 1) THEN
+
+         DO I = 1, NPROW
+            DO J = 1, NPCOL
+               IMAP(I, J) = BLACS_PNUM(TMPCONTXT, 0, K)
+               K = K + 1W
+            END DO
+         END DO 
+*     
+*     If we want a column-major natural ordering
+
+
+*     
+      ELSE IF (MAPPING .EQ. 2) THEN
+
+         DO J = 1, NPCOL
+            DO I = 1, NPROW
+               IMAP(I, J) = BLACS_PNUM(TMPCONTXT, 0, K)
+
+               K = K + 1
+
+            END DO
+         END DO
+      ELSE
+
+         WRITE(*,*) 'Unknown mapping.'
+         STOP
+      END IF
+
+*     
+*     Free temporary context 
+*     
+      CALL BLACS_GRIDEXIT(TMPCONTXT) 
+*     
+*     Apply the new mapping to form desired context 
+*     
+      CALL BLACS_GET( 0, 0, CONTEXT )
+      CALL BLACS_GRIDMAP( CONTEXT, IMAP, NPROW, NPROW, NPCOL )
+
+      
+
+
+      RETURN
+      END
+</pre></div>
+<div class="tbstyle(tblExampleLong)" id="CH16EX16-3"><h2 class="sectiontitle"><span>Example. 
+        </span>BLACS Usage. PARALLEL DOT PRODUCT</h2><p>This routine does a bone-headed parallel double precision dot product of two vectors. Arguments are input on process {0,0}, and output everywhere else.
+      </p>
+<pre>      DOUBLE PRECISION FUNCTION PDDOT( CONTEXT, N, X, Y ) 
+*     
+*     -- BLACS example code --
+
+*     Written by Clint Whaley 7/26/94 
+*     .. 
+*     .. Scalar Arguments ..
+      INTEGER CONTEXT, N
+
+*     .. 
+*     .. Array Arguments ..
+      DOUBLE PRECISION X(*), Y(*) 
+*     .. 
+*     
+*  Purpose 
+*  ======= 
+*  PDDOT is a restricted parallel version of the BLAS routine   
+*  DDOT.  It assumes that the increment on both vectors is one,   
+*  and that process {0,0} starts out owning the vectors and 
+   
+*  has N.  It returns the dot product of the two N-length vectors   
+*  X and Y, that is, PDDOT = X' Y.   
+*     
+*  Arguments
+
+*  ========= 
+*     
+*  CONTEXT      (input) INTEGER 
+*               This integer is used by the BLACS to indicate a context. 
+*               A context is a universe where messages exist and do not 
+*               interact with other context's messages.  The context 
+*               includes the definition of a grid, and each process's 
+*               coordinates in it. 
+*     
+*  N            (input/output) INTEGER 
+*               The length of the vectors X and Y. Input 
+*               for {0,0}, output for everyone else. 
+*     
+*  X            (input/output) DOUBLE PRECISION array of dimension (N) 
+*               The vector X of PDDOT = X' Y. Input for {0,0}, 
+*               output for everyone else. 
+*     
+*  Y            (input/output) DOUBLE PRECISION array of dimension (N) 
+*               The vector Y of PDDOT = X' Y. Input for {0,0}, 
+*               output for everyone else. 
+*                
+*     =============================================================== 
+*     
+*     .. 
+*     .. External Functions ..
+      DOUBLE PRECISION DDOT
+
+      EXTERNAL DDOT
+
+*     .. 
+*     .. External Subroutines ..
+      EXTERNAL BLACS_GRIDINFO, DGEBS2D, DGEBR2D, DGSUM2D 
+*     .. 
+*     .. Local Scalars ..
+      INTEGER IAM, NPROCS, NPROW, NPCOL, MYPROW, MYPCOL, I, LN
+
+
+      DOUBLE PRECISION LDDOT
+
+
+*     .. 
+*     .. Executable Statements .. 
+*     
+*     Find out what grid has been set up, and pretend it is 1-D 
+*     
+      CALL BLACS_GRIDINFO( CONTXT, NPROW, NPCOL, MYPROW, MYPCOL )
+
+      IAM = MYPROW*NPCOL + MYPCOL
+      NPROCS = NPROW * NPCOL 
+*     
+*     Temporarily map all processes into 1 x NPROCS grid
+
+
+*     
+      CALL BLACS_GET( 0, 0, TMPCONTXT )
+      CALL BLACS_GRIDINIT( TMPCONTXT, 'Row', 1, NPROCS )
+      K = BEGPROC
+
+
+*     
+*     Do bone-headed thing, and just send entire X and Y to
+
+
+*     everyone
+
+
+*     
+      IF ( (MYPROW.EQ.0) .AND. (MYPCOL.EQ.0) ) THEN
+
+         CALL IGEBS2D(CONTXT, 'All', 'i-ring', 1, 1, N, 1 )
+
+         CALL DGEBS2D(CONTXT, 'All', 'i-ring', N, 1, X, N )
+         CALL DGEBS2D(CONTXT, 'All', 'i-ring', N, 1, Y, N )
+      ELSE
+         CALL IGEBR2D(CONTXT, 'All', 'i-ring', 1, 1, N, 1, 0, 0 )
+         CALL DGEBR2D(CONTXT, 'All', 'i-ring', N, 1, X, N, 0, 0 )
+         CALL DGEBR2D(CONTXT, 'All', 'i-ring', N, 1, Y, N, 0, 0 )
+      ENDIF 
+*     
+*     Find out the number of local rows to multiply (LN), and
+
+
+*     where in vectors to start (I)
+
+
+*     
+      LN = N / NPROCS
+
+      I = 1 + IAM * LN 
+*     
+*     Last process does any extra rows 
+*     
+      IF (IAM .EQ. NPROCS-1) LN = LN + MOD(N, NPROCS) 
+*     
+*     Figure dot product of my piece of X and Y
+
+*     
+      LDDOT = DDOT( LN, X(I), 1, Y(I), 1 ) 
+*     
+*     Add local dot products to get global dot product;
+
+
+*     give all procs the answer
+
+
+*     
+      CALL DGSUM2D( CONTXT, 'All', '1-tree', 1, 1, LDDOT, 1, -1, 0 )
+
+ 
+      PDDOT = LDDOT
+ 
+      RETURN
+
+      END
+ </pre></div>
+<div class="tbstyle(tblExampleLong)" id="CH16EX16-4"><h2 class="sectiontitle"><span>Example. 
+        </span>BLACS Usage. PARALLEL MATRIX INFINITY NORM</h2><p>This routine does a parallel infinity norm on a distributed double precision matrix. Unlike the PDDOT example, this routine assumes the matrix has already been distributed.
+      </p>
+<pre>      DOUBLE PRECISION FUNCTION PDINFNRM(CONTXT, LM, LN, A, LDA, WORK) 
+*     
+*     -- BLACS example code --
+
+*     Written by Clint Whaley. 
+*     .. 
+*     .. Scalar Arguments ..
+      INTEGER CONTEXT, LM, LN, LDA
+
+
+*     .. 
+*     .. Array Arguments ..
+      DOUBLE PRECISION A(LDA, *), WORK(*) 
+*     .. 
+*     
+*  Purpose 
+*  ======= 
+*  Compute the infinity norm of a distributed matrix, where   
+*  the matrix is spread across a 2D process grid.  The result is   
+*  left on all processes. 
+   
+*     
+*  Arguments
+
+*  ========= 
+*     
+*  CONTEXT      (input) INTEGER 
+*               This integer is used by the BLACS to indicate a context. 
+*               A context is a universe where messages exist and do not 
+*               interact with other context's messages.  The context 
+*               includes the definition of a grid, and each process's 
+*               coordinates in it. 
+*     
+*  LM           (input) INTEGER 
+*               Number of rows of the global matrix owned by this 
+*               process. 
+*     
+*  LN           (input) INTEGER 
+*               Number of columns of the global matrix owned by this 
+*               process. 
+*     
+*  A            (input) DOUBLE PRECISION, dimension (LDA,N) 
+*               The matrix whose norm you wish to compute.
+
+*                
+*  LDA          (input) INTEGER 
+*               Leading Dimension of A.
+ 
+*                
+*  WORK         (temporary) DOUBLE PRECISION array, dimension (LM) 
+*               Temporary work space used for summing rows.
+
+
+*                
+*     .. External Subroutines ..
+      EXTERNAL BLACS_GRIDINFO, DGEBS2D, DGEBR2D, DGSUM2D, DGAMX2D
+
+*     .. 
+*     .. External Functions ..
+      INTEGER IDAMAX
+      DOUBLE PRECISION DASUM 
+*     
+*     .. Local Scalars ..
+      INTEGER NPROW, NPCOL, MYROW, MYCOL,  I, J
+
+
+
+      DOUBLE PRECISION MAX
+
+
+*     
+*     .. Executable Statements .. 
+*     
+*     Get process grid information 
+*     
+      CALL BLACS_GRIDINFO( CONTXT, NPROW, NPCOL, MYPROW, MYPCOL )
+
+*     
+*     Add all local rows together
+
+
+*     
+      DO 20 I = 1, LM
+
+         WORK(I) = DASUM(LN, A(I,1), LDA) 
+20    CONTINUE
+
+
+*     
+*     Find sum of global matrix rows and store on column 0 of 
+
+
+*     process grid
+
+
+*     
+      CALL DGSUM2D(CONTXT, 'Row', '1-tree', LM, 1, WORK, LM, MYROW, 0)
+
+
+*     
+*     Find maximum sum of rows for supnorm
+
+
+*     
+      IF (MYCOL .EQ. 0) THEN
+
+         MAX = WORK(IDAMAX(LM,WORK,1))
+
+         IF (LM .LT. 1) MAX = 0.0D0
+
+
+         CALL DGAMX2D(CONTXT, 'Col', 'h', 1, 1, MAX, 1, I, I, -1, -1, 0)
+      END IF
+
+*     
+*     Process column 0 has answer; send answer to all nodes
+
+*     
+      IF (MYCOL .EQ. 0) THEN
+
+         CALL DGEBS2D(CONTXT, 'Row', ' ', 1, 1, MAX, 1)
+
+      ELSE
+
+
+
+         CALL DGEBR2D(CONTXT, 'Row', ' ', 1, 1, MAX, 1, 0, 0)
+
+      END IF
+
+*     
+      PDINFNRM = MAX
+
+*     
+      RETURN 
+*     
+*     End of PDINFNRM
+
+
+*     
+      END
+ </pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html">BLACS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

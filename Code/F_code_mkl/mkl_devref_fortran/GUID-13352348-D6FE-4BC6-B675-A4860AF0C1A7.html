@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DSS Symmetric Matrix Storage"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-13352348-D6FE-4BC6-B675-A4860AF0C1A7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DSS Symmetric Matrix Storage</title>
+
+</head>
+<body id="GUID-13352348-D6FE-4BC6-B675-A4860AF0C1A7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DSS Symmetric Matrix Storage</h1>
+<div><p>For symmetric matrices, it is necessary to store only
+      the upper triangular half of the matrix (upper triangular format) or the lower
+      triangular half of the matrix (lower triangular format). 
+    </p>
+<p>The Intel&reg; oneAPI Math Kernel Library direct sparse solvers use a row-major upper triangular storage format: the matrix is compressed row-by-row and for symmetric matrices only non-zero elements in the upper triangular half of the matrix are stored.</p>
+<p>The Intel&reg; oneAPI Math Kernel Library sparse matrix storage format for direct sparse solvers is specified by three arrays:<var>values</var>, 
+      <var>columns</var>, and 
+      <var>rowIndex</var>. The
+      following table describes the arrays in terms of the values, row, and column
+      positions of the non-zero elements in a sparse matrix. 
+    </p>
+<dl id="GUID-01E0B955-EC71-4F35-8046-9E300E28AF5A"><dt class="dlterm"><var>values</var></dt>
+
+<dd><p>A real or complex array that contains the
+            non-zero elements of a sparse matrix. The non-zero elements are mapped into the
+            
+            <var>values</var>
+            array using the row-major upper triangular storage mapping described above. 
+          </p>
+</dd>
+<dt class="dlterm"><var>columns</var></dt>
+
+<dd><p>Element 
+            <var>i</var> of the
+            integer array 
+            <var>columns</var> is
+            the number of the column that contains the 
+            <var>i</var>-th
+            element in the 
+            <var>values</var>
+            array. 
+          </p>
+</dd>
+<dt class="dlterm"><var>rowIndex</var></dt>
+
+<dd><p>Element 
+            <var>j</var> of the
+            integer array 
+            <var>rowIndex</var>
+            gives the index of the element in the 
+            <var>values</var>
+            array that is first non-zero element in a row 
+            <var>j</var>. 
+          </p>
+</dd>
+</dl>
+<p>The length of the 
+      <var>values</var> and 
+      <var>columns</var> arrays
+      is equal to the number of non-zero elements in the matrix. 
+    </p>
+<p>As the 
+      <var>rowIndex</var> array
+      gives the location of the first non-zero element within a row, and the non-zero
+      elements are stored consecutively, the number of non-zero elements in the 
+      <var>i</var>-th row is
+      equal to the difference of 
+      <span><samp class="codeph"><var>rowIndex</var>(<var>i</var>)</samp> and 
+        <samp class="codeph"><var>rowIndex</var>(<var>i</var>+1)</samp>. 
+      </span></p>
+<p>To have this relationship hold for the last row of
+      the matrix, an additional entry (dummy entry) is added to the end of 
+      <var>rowIndex</var>. Its
+      value is equal to the number of non-zero elements plus one. This makes the
+      total length of the 
+      <var>rowIndex</var> array
+      one larger than the number of rows in the matrix. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The Intel&reg; oneAPI Math Kernel Library sparse storage scheme for the direct sparse solvers supports both one-based indexing and zero-based indexing.</p>
+</div>
+<p>Consider the symmetric matrix 
+      <var>A</var>: 
+    </p>
+<p><br/><img src="equations/GUID-13352348-D6FE-4BC6-B675-A4860AF0Cee1.png"/><br/></p>
+<p>Only elements from the upper triangle are stored. The
+      actual arrays for the matrix 
+      <var>A</var> are as
+      follows: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBLA-1" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Storage Arrays for a Symmetric Matrix</span></caption><tbody><tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><strong>one-based indexing</strong></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%"> </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><var>values</var></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">-1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">-3 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">6 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">7 
+        </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%">-5) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><var>columns</var></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%">5) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><var>rowIndex</var></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">8 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">9 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">10) 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">  
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">  
+        </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%">  
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><strong>zero-based indexing</strong></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%"> </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%"> </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><var>values</var></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">-1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">-3 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">6 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">7 
+        </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%">-5) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><var>columns</var></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">(0 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">1 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">3 
+        </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%">4) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="29.292929292929294%"><var>rowIndex</var></td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">(0 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">7 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">8 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">9) 
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">  
+        </td>
+<td class="cellrowborder" valign="top" width="7.07070707070707%">  
+        </td>
+<td class="row-nocellborder" valign="top" width="7.07070707070707%">  
+        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="STORAGE_FORMAT_RESTRICTIONS"><h2 class="sectiontitle">Storage Format Restrictions</h2><p>The storage format for the sparse solver must conform
+      to two important restrictions: 
+    </p>
+<ul id="GUID-4260DD78-99E2-469B-B969-10D974FDA32A"><li><p>the non-zero values in a given row must be placed
+          into the 
+          <var>values</var> array
+          in the order in which they occur in the row (from left to right); 
+        </p>
+</li>
+<li><p>no diagonal element can be omitted from the 
+          <var>values</var> array
+          for any symmetric or structurally symmetric matrix. 
+        </p>
+</li>
+</ul>
+<p>The second restriction implies that if symmetric or
+      structurally symmetric matrices have zero diagonal elements, then they must be
+      explicitly represented in the 
+      <var>values</var> array. 
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html">Sparse Matrix Storage Formats</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLAS Code Examples"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0F422B6D-90B4-4207-8CEC-FDB291209D37.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-71558CA4-1077-4203-B0BB-165BAB18899E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLAS Code Examples</title>
+
+</head>
+<body id="GUID-71558CA4-1077-4203-B0BB-165BAB18899E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLAS Code Examples</h1>
+<div><div class="example" id="APPC-EXC-1"><h2 class="sectiontitle"><span>Example. 
+        </span>Using BLAS Level 1 Function</h2><p>The following example illustrates a 
+        call to
+        the BLAS Level 1 function 
+      <span class="option">sdot</span>. This function
+      performs a vector-vector operation of computing a scalar product of two
+      single-precision real vectors 
+      <var>x</var> and 
+      <var>y</var>. 
+      </p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><td valign="top" width="30%" class="noborder"><p><b>Parameters 
+          </b></p></td>
+<td valign="top" class="noborder"><p><b>  
+          </b></p></td>
+<tr><td valign="top" width="30%" class="noborder"><p><var>n</var></p></td>
+
+<td valign="top" class="noborder">Specifies the number of elements in vectors 
+            <var>x</var> and 
+            <var>y</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><var>incx</var></p></td>
+
+<td valign="top" class="noborder">Specifies the increment for the elements of 
+            <var>x</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><var>incy</var></p></td>
+
+<td valign="top" class="noborder">Specifies the increment for the elements of 
+            <var>y</var>. 
+          </td>
+</tr></table><pre>program dot_main
+real x(10), y(10), sdot, res
+integer n, incx, incy, i
+external sdot
+n = 5
+incx = 2
+incy = 1
+do i = 1, 10
+  x(i) = 2.0e0
+  y(i) = 1.0e0
+end do
+res = sdot (n, x, incx, y, incy)
+print*, `SDOT = `, res
+end</pre><p>As a result of this program execution, the
+        following line is printed: 
+      </p>
+<p>SDOT = 10.000 
+      </p>
+</div>
+<div class="example" id="APPC-EXC-2"><h2 class="sectiontitle"><span>Example. 
+        </span>Using BLAS Level 1 Routine</h2><p>The following example illustrates a 
+        call to
+        the BLAS Level 1 routine 
+      <span class="option">scopy</span>. This routine
+      performs a vector-vector operation of copying a single-precision real vector 
+      <var>x</var> to a vector 
+      <var>y</var>. 
+      </p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><td valign="top" width="30%" class="noborder"><p><b>Parameters 
+          </b></p></td>
+<td valign="top" class="noborder"><p><b>  
+          </b></p></td>
+<tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder">Specifies the number of elements in vectors 
+            <var>x</var> and 
+            <var>y</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">incx</span></p></td>
+
+<td valign="top" class="noborder">Specifies the increment for the elements of 
+            <var>x</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">incy</span></p></td>
+
+<td valign="top" class="noborder">Specifies the increment for the elements of 
+            <var>y</var>. 
+          </td>
+</tr></table><pre> 
+program copy_main
+real x(10), y(10)
+integer n, incx, incy, i
+n = 3
+incx = 3
+incy = 1
+do i = 1, 10
+  x(i) = i
+end do
+call scopy (n, x, incx, y, incy)
+print*, `Y = `, (y(i), i = 1, n)
+end</pre><p>As a result of this program execution, the
+        following line is printed: 
+      </p>
+<p>Y = 1.00000 4.00000 7.00000 
+      </p>
+</div>
+<div class="example" id="APPC-EXC-3"><h2 class="sectiontitle"><span>Example. 
+        </span>Using BLAS Level 2 Routine</h2><p>The following example illustrates a 
+        call to
+        the BLAS Level 2 routine 
+      <span class="option">sger</span>. This routine
+      performs a matrix-vector operation 
+      <pre><var>a</var> :=  <var>alpha</var>*<var>x</var>*<var>y</var>' + <var>a</var>.</pre></p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><td valign="top" width="30%" class="noborder"><p><b>Parameters 
+          </b></p></td>
+<td valign="top" class="noborder"><p><b>  
+          </b></p></td>
+<tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">alpha</span></p></td>
+
+<td valign="top" class="noborder">Specifies a scalar 
+            <var>alpha</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">x</span></p></td>
+
+<td valign="top" class="noborder"><var>m</var>-element vector. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">y</span></p></td>
+
+<td valign="top" class="noborder"><var>n</var>-element vector. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><var>m</var>-by-<var>n</var> matrix. 
+          </td>
+</tr></table><pre>program ger_main
+real a(5,3), x(10), y(10), alpha
+integer m, n, incx, incy, i, j, lda
+m = 2
+n = 3
+lda = 5
+incx = 2
+incy = 1
+alpha = 0.5
+do i = 1, 10
+  x(i) = 1.0
+  y(i) = 1.0
+end do
+do i = 1, m
+  do j = 1, n
+    a(i,j) = j
+  end do
+end do
+call sger (m, n, alpha, x, incx, y, incy, a, lda)
+print*, `Matrix A: `
+do i = 1, m
+  print*, (a(i,j), j = 1, n)
+end do
+end</pre><p>As a result of this program execution, matrix 
+        <var>a</var> is printed
+        as follows: 
+      </p>
+<p>Matrix A: 
+      </p>
+<p>1.50000 2.50000 3.50000 
+      </p>
+<p>1.50000 2.50000 3.50000 
+      </p>
+</div>
+<div class="example" id="APPC-EXC-4"><h2 class="sectiontitle"><span>Example. 
+        </span>Using BLAS Level 3 Routine</h2><p>The following example illustrates 
+        a call
+        to the BLAS Level 3 routine 
+      <span class="option">ssymm</span>. This routine
+      performs a matrix-matrix operation 
+      <pre><var>c</var> :=  <var>alpha</var>*<var>a</var>*<var>b</var>' + <var>beta</var>*<var>c</var>.</pre></p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><td valign="top" width="30%" class="noborder"><p><b>Parameters 
+          </b></p></td>
+<td valign="top" class="noborder"><p><b>  
+          </b></p></td>
+<tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">alpha</span></p></td>
+
+<td valign="top" class="noborder">Specifies a scalar 
+            <var>alpha</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">beta</span></p></td>
+
+<td valign="top" class="noborder">Specifies a scalar 
+            <var>beta</var>. 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder">Symmetric matrix 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><var>m</var>-by-<var>n</var> matrix 
+          </td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">c</span></p></td>
+
+<td valign="top" class="noborder"><var>m</var>-by-<var>n</var> matrix 
+          </td>
+</tr></table><pre>program symm_main
+real a(3,3), b(3,2), c(3,3), alpha, beta
+integer m, n, lda, ldb, ldc, i, j
+character uplo, side
+uplo = 'u'
+side = 'l'
+m = 3
+n = 2
+lda = 3
+ldb = 3
+ldc = 3
+alpha = 0.5
+beta = 2.0
+do i = 1, m
+  do j = 1, m
+    a(i,j) = 1.0
+  end do
+end do
+do i = 1, m
+  do j = 1, n
+    c(i,j) = 1.0
+    b(i,j) = 2.0
+  end do
+end do
+call ssymm (side, uplo, m, n, alpha,
+a, lda, b, ldb, beta, c, ldc)
+print*, `Matrix C: `
+do i = 1, m
+  print*, (c(i,j), j = 1, n)
+end do
+end</pre><p>As a result of this program execution, matrix 
+        <var>c</var> is printed
+        as follows: 
+      </p>
+<p>Matrix C: 
+      </p>
+<p>5.00000 5.00000 
+      </p>
+<p>5.00000 5.00000 
+      </p>
+<p>5.00000 5.00000 
+      </p>
+</div>
+<p>The following example illustrates a call from a C
+      program to the Fortran version of the complex BLAS Level 1 function 
+  <span class="option">zdotc()</span>. This function
+  computes the dot product of two double-precision complex vectors. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0F422B6D-90B4-4207-8CEC-FDB291209D37.html">Appendix E: Code Examples</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?trsen"/>
+<meta name="abstract" content="Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers and invariant subspace for the selected cluster of eigenvalues."/>
+<meta name="description" content="Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers and invariant subspace for the selected cluster of eigenvalues."/>
+<meta name="DC.subject" content="pstrsen, ScaLAPACK routines, auxiliary routines, Schur factorization, reordering, pdtrsen"/>
+<meta name="keywords" content="pstrsen, ScaLAPACK routines, auxiliary routines, Schur factorization, reordering, pdtrsen"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C6D8B67C-0919-4D61-82B0-8C01A70ECE99"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?trsen</title>
+
+</head>
+<body id="GUID-C6D8B67C-0919-4D61-82B0-8C01A70ECE99">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?trsen</span></h1>
+<!-- Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers and invariant subspace for the selected cluster of eigenvalues.--><div><p class="shortdesc"> Reorders the Schur factorization of a matrix and (optionally) computes the reciprocal condition numbers and invariant subspace for the selected cluster of eigenvalues.</p>
+<div class="section" id="GUID-EC59DC54-5856-43B4-AB18-40E04662A569"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pstrsen</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">compq</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">para</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">it</span><span class="sep">, </span><span class="var">jt</span><span class="sep">, </span><span class="var">desct</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">iq</span><span class="sep">, </span><span class="var">jq</span><span class="sep">, </span><span class="var">descq</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdtrsen</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">compq</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">para</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">it</span><span class="sep">, </span><span class="var">jt</span><span class="sep">, </span><span class="var">desct</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">iq</span><span class="sep">, </span><span class="var">jq</span><span class="sep">, </span><span class="var">descq</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-550E0589-757B-4FB4-8B36-F30104BA493A"><h2 class="sectiontitle">Description</h2><p><span class="option">p?trsen</span> reorders the real Schur factorization of a real matrix <var>A </var> = <var>Q</var>*<var>T</var>*<var>Q</var><sup>T</sup>, so that a selected cluster of eigenvalues appears in the leading diagonal blocks of the upper quasi-triangular matrix <var>T</var>, and the leading columns of <var>Q</var> form an orthonormal basis of the corresponding right invariant subspace. The reordering is performed by <a href="GUID-37F1DD43-8A39-48D3-AE69-7EA9129B397A.html"><span class="option">p?trord</span></a>. </p>
+<p>Optionally the <span>routine </span>computes the reciprocal condition numbers of the cluster of eigenvalues and/or the invariant subspace. </p>
+<p><var>T</var> must be in Schur form (as returned by <a href="GUID-DCE20F5B-BC48-496B-9CCB-8FD537CB4510.html"><span class="option">p?lahqr</span></a>), that is, block upper triangular with 1-by-1 and 2-by-2 diagonal blocks. </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1497164e308"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1497164e308 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-215B50E6-38E7-433F-AD0A-E314FA979779"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B0E2A143-5D35-4C01-8545-15F8BB2ABBC9"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>(global ) <span><span class="keyword">CHARACTER</span>*1</span></p>
+<p>Specifies whether condition numbers are required for the cluster of eigenvalues (<span class="parmname">s</span>) or the invariant subspace (<span class="parmname">sep</span>):</p>
+<p>= 'N': no condition numbers are required;</p>
+<p>= 'E': only the condition number for the cluster of eigenvalues is computed (<span class="parmname">s</span>);</p>
+<p>= 'V': only the condition number for the invariant subspace is computed (<span class="parmname">sep</span>);</p>
+<p>= 'B': condition numbers for both the cluster and the invariant subspace are computed (<span class="parmname">s</span> and <span class="parmname">sep</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compq</span></dt>
+
+<dd><p>(global ) <span><span class="keyword">CHARACTER</span>*1</span></p>
+<p>= 'V': update the matrix <span class="parmname">q</span> of Schur vectors;</p>
+<p>= 'N': do not update <span class="parmname">q</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">select</span></dt>
+
+<dd><p>(global ) <span class="keyword">LOGICAL</span>  array of size <span class="parmname">n</span></p>
+<p><span class="parmname">select</span> specifies the eigenvalues in the selected cluster. To select a real eigenvalue <var>w</var>(<var>j</var>), <span class="parmname">select</span><span>(<var>j</var>)</span> must be set to <span class="keyword">.TRUE.</span>. To select a complex conjugate pair of eigenvalues <var>w</var>(<var>j</var>) and <var>w</var>(<var>j</var>+1), corresponding to a 2-by-2 diagonal block, either <span class="parmname">select</span><span>(<var>j</var>)</span> or <span class="parmname">select</span><span>(<var>j</var>+1)</span>  or both must be set to <span class="keyword">.TRUE.</span>; a complex conjugate pair of eigenvalues must be either both included in the cluster or both excluded.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">para</span></dt>
+
+<dd><p>(global ) <span><span class="keyword">INTEGER</span>*6</span></p>
+<p>Block parameters:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">para</span><span>(1)</span></p></td>
+
+<td valign="top" class="noborder"><p>maximum number of concurrent computational windows allowed in the algorithm; 0 &lt; <span class="parmname">para</span><span>(1)</span><span class="eqsymbol">≤</span> min(NPROW,NPCOL) must hold;</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">para</span><span>(2)</span></p></td>
+
+<td valign="top" class="noborder"><p>number of eigenvalues in each window; 0 &lt; <span class="parmname">para</span><span>(2)</span> &lt; <span class="parmname">para</span><span>(3)</span> must hold;</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">para</span><span>(3)</span></p></td>
+
+<td valign="top" class="noborder"><p>window size; <span class="parmname">para</span><span>(2)</span> &lt; <span class="parmname">para</span><span>(3)</span> &lt; <var>mb_t</var>   must hold;</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">para</span><span>(4)</span></p></td>
+
+<td valign="top" class="noborder"><p>minimal percentage of flops required for performing matrix-matrix multiplications instead of pipelined orthogonal transformations; 0 <span class="eqsymbol">≤</span><span class="parmname">para</span><span>(4)</span><span class="eqsymbol">≤</span> 100 must hold;</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">para</span><span>(5)</span></p></td>
+
+<td valign="top" class="noborder"><p>width of block column slabs for row-wise application of pipelined orthogonal transformations in their factorized form; 0 &lt; <span class="parmname">para</span><span>(5)</span><span class="eqsymbol">≤</span><var>mb_t</var> must hold.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">para</span><span>(6)</span></p></td>
+
+<td valign="top" class="noborder"><p>the maximum number of eigenvalues moved together over a process border; in practice, this will be approximately half of the cross border window size 0 &lt; <span class="parmname">para</span><span>(6)</span><span class="eqsymbol">≤</span><span class="parmname">para</span><span>(2)</span> must hold;</p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The order of the globally distributed matrix <span class="parmname">t</span>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pstrsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrsen</span></p>
+<p>(local ) array of size <span>(<var>lld_t</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">n</span>))</span>.</p>
+<p>The local pieces of the global distributed upper quasi-triangular matrix <var>T</var>, in Schur form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">it</span>, <span class="parmname">jt</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The row and column index in the global matrix <var>T</var> indicating the first column of <var>T</var>. <span class="parmname">it</span> = <span class="parmname">jt</span> = 1 must hold (see Application Notes).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desct</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the global distributed matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pstrsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrsen</span></p>
+<p>(local ) array of size <span>(<var>lld_q</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">n</span>))</span>.</p>
+<p>On entry, if <span class="parmname">compq</span> = 'V', the local pieces of the global distributed matrix <var>Q</var> of Schur vectors.</p>
+<p>If <span class="parmname">compq</span> = 'N', <span class="parmname">q</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iq</span>, <span class="parmname">jq</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The column index in the global matrix <var>Q</var> indicating the first column of <var>Q</var>. <span class="parmname">iq</span> = <span class="parmname">jq</span> = 1 must hold (see Application Notes).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descq</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the global distributed matrix <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pstrsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrsen</span></p>
+<p>(local workspace) array of size <span class="parmname">lwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The size of the array <span class="parmname">work</span>.</p>
+<p>If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the <span>routine </span>only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by <a href="GUID-E523C816-D553-4D4E-8458-5404828CC07B.html"><span class="option">pxerbla</span></a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local workspace) <span class="keyword">INTEGER</span> array of size <span class="parmname">liwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The size of the array <span class="parmname">iwork</span>.</p>
+<p>If <span class="parmname">liwork</span> = -1, then a workspace query is assumed; the <span>routine </span>only calculates the optimal size of the <span class="parmname">iwork</span> array, returns this value as the first entry of the <span class="parmname">iwork</span> array, and no error message related to <span class="parmname">liwork</span> is issued by <span class="option">pxerbla</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4D2DCC01-BB1E-4CF3-8A46-88DDFB6DD417"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-78494657-B090-4327-B712-8F594DFBEA4F"><dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="parmname">t</span> is overwritten by the local pieces of the reordered matrix <var>T</var>, again in Schur form, with the selected eigenvalues in the globally leading diagonal blocks.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>On exit, if <span class="parmname">compq</span> = 'V', <span class="parmname">q</span> has been postmultiplied by the global orthogonal transformation matrix which reorders <span class="parmname">t</span>; the leading <span class="parmname">m</span> columns of <span class="parmname">q</span> form an orthonormal basis for the specified invariant subspace.</p>
+<p>If <span class="parmname">compq</span> = 'N', <span class="parmname">q</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pstrsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrsen</span></p>
+<p>(global ) array of size <span class="parmname">n</span></p>
+<p>The real and imaginary parts, respectively, of the reordered eigenvalues of the matrix <var>T</var>. The eigenvalues are in principle stored in the same order as on the diagonal of <var>T</var>, with <span class="parmname">wr</span><span>(<var>i</var>)</span> = <span><span class="parmname">t</span>(<var>i</var>,<var>i</var>)</span> and, if <span><span class="parmname">t</span>(<var>i</var>:<var>i</var>+1,<var>i</var>:<var>i</var>+1)</span> is a 2-by-2 diagonal block, <span class="parmname">wi</span><span>(<var>i</var>)</span> &gt; 0 and <span class="parmname">wi</span><span>(<var>i</var>+1)</span> = -<span class="parmname">wi</span><span>(<var>i</var>)</span>.</p>
+<p>Note also that if a complex eigenvalue is sufficiently ill-conditioned, then its value may differ significantly from its value before reordering.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The size of the specified invariant subspace. 0 <span class="eqsymbol">≤</span><span class="parmname">m</span><span class="eqsymbol">≤</span><span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pstrsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrsen</span></p>
+<p>(global )</p>
+<p>If <span class="parmname">job</span> = 'E' or 'B', <span class="parmname">s</span> is a lower bound on the reciprocal condition number for the selected cluster of eigenvalues. <span class="parmname">s</span> cannot underestimate the true reciprocal condition number by more than a factor of sqrt(<span class="parmname">n</span>). If <span class="parmname">m</span> = 0 or <span class="parmname">n</span>, <span class="parmname">s</span> = 1.</p>
+<p>If <span class="parmname">job</span> = 'N' or 'V', <span class="parmname">s</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sep</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pstrsen</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrsen</span></p>
+<p>(global )</p>
+<p>If <span class="parmname">job</span> = 'V' or 'B', <span class="parmname">sep</span> is the estimated reciprocal condition number of the specified invariant subspace. If</p>
+<p><span class="parmname">m</span> = 0 or <span class="parmname">n</span>, <span class="parmname">sep</span> = norm(<span class="parmname">t</span>).</p>
+<p>If <span class="parmname">job</span> = 'N' or 'E', <span class="parmname">sep</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><span>(1)</span></dt>
+
+<dd><p>On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><span>(1)</span> returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span><span>(1)</span></dt>
+
+<dd><p>On exit, if <span class="parmname">info</span> = 0, <span class="parmname">iwork</span><span>(1)</span> returns the optimal <span class="parmname">liwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>= 0: successful exit</p>
+<p>&lt; 0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+<p>If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*1000+<var>j</var>), if the <var>i</var>-th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = -<var>i</var>.</p>
+<p>&gt; 0: here we have several possibilities</p>
+<ul id="GUID-928493D5-94FD-4CC6-990B-CBD2E46D84AF"><li><p>Reordering of <span class="parmname">t</span> failed because some eigenvalues are too close to separate (the problem is very ill-conditioned); <span class="parmname">t</span> may have been partially reordered, and <span class="parmname">wr</span> and <span class="parmname">wi</span> contain the eigenvalues in the same order as in <span class="parmname">t</span>.</p>
+<p>On exit, <span class="parmname">info</span> = {the index of <span class="parmname">t</span> where the swap failed}.</p>
+</li>
+<li><p>A 2-by-2 block to be reordered split into two 1-by-1 blocks and the second block failed to swap with an adjacent block.</p>
+<p>On exit, <span class="parmname">info</span> = {the index of <span class="parmname">t</span> where the swap failed}.</p>
+</li>
+<li><p>If <span class="parmname">info</span> = <span class="parmname">n</span>+1, there is no valid BLACS context (see the BLACS documentation for details).</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-044986D2-CCC5-4ECC-9DA9-BC87494AADC5"><h2 class="sectiontitle">Application Notes</h2><p>The following alignment requirements must hold: </p>
+<ul id="GUID-953A81D2-5030-4198-84DB-6466401159C8"><li><p><var>mb_t</var> = <var>nb_t</var> = <var>mb_q</var> = <var>nb_q</var></p>
+</li>
+<li><p><var>rsrc_t</var> = <var>rsrc_q</var></p>
+</li>
+<li><p><var>csrc_t</var> = <var>csrc_q</var></p>
+</li>
+</ul>
+<p>All matrices must be blocked by a block factor larger than or equal to two (3). This to simplify reordering across processor borders in the presence of 2-by-2 blocks. </p>
+<p>This algorithm cannot work on submatrices of <span class="parmname">t</span> and <span class="parmname">q</span>, i.e., <span class="parmname">it</span> = <span class="parmname">jt</span> = <span class="parmname">iq</span> = <span class="parmname">jq</span> = 1 must hold. This is however no limitation since <a href="GUID-DCE20F5B-BC48-496B-9CCB-8FD537CB4510.html"><span class="option">p?lahqr</span></a> does not compute Schur forms of submatrices anyway. </p>
+<p>For parallel execution, use a square grid, if possible, for maximum performance. The block parameters in <span class="parmname">para</span> should be kept well below the data distribution block size. </p>
+<p>In general, the parallel algorithm strives to perform as much work as possible without crossing the block borders on the main block diagonal. </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

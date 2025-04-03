@@ -1,0 +1,730 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Summary Statistics Task Status and Error Reporting"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-44CA0D4A-ADEF-4B94-8032-F90F99E96710.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-829C0633-21F1-4C11-88F0-4340DE972858"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Summary Statistics Task Status and Error Reporting</title>
+
+</head>
+<body id="GUID-829C0633-21F1-4C11-88F0-4340DE972858">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Summary Statistics Task Status and Error
+    Reporting</h1>
+<div><p>The task status is an integer value, which is zero if
+      no error is detected, or a specific non-zero error code otherwise. Negative
+      status values indicate errors, and positive values indicate warnings. An error
+      can be caused by invalid parameter values or a memory allocation failure. 
+    </p>
+<p>The header files define symbolic names for the status
+      codes. 
+      <span>These names 
+        are defined as integer constants via 
+        <span class="keyword">PARAMETER</span> operators. 
+      </span></p>
+<p>The header files define the following status codes
+      for the Summary Statistics error codes: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-21" class="AllLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Summary Statistics Status Codes</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="55.00000000000001%" id="d970375e35"><p>Status Code 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="45%" id="d970375e38"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">VSL_STATUS_OK</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Operation is successfully completed. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">VSL_SS_ERROR_ALLOCATION_FAILURE</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Memory allocation has failed. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">VSL_SS_ERROR_BAD_DIMEN</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Dimension value is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">VSL_SS_ERROR_BAD_OBSERV_N</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid number (zero or negative) of
+            observations was obtained. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_STORAGE_NOT_SUPPORTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Storage format is not supported. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_INDC_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of indices is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_WEIGHTS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of weights contains negative values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MEAN_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of means is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_2R_MOM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the second order raw moments is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_3R_MOM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the third order raw moments is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_4R_MOM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the fourth order raw moments is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_2C_MOM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the second order central moments is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_3C_MOM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the third order central moments is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_4C_MOM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the fourth order central moments is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_KURTOSIS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of kurtosis values is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_SKEWNESS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of skewness values is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MIN_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of minimum values is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MAX_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of maximum values is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_VARIATION_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of variation coefficients is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_COV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Covariance matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_COR_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Correlation matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_QUANT_ORDER_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of quantile orders is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_QUANT_ORDER</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Quantile order value is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_QUANT_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of quantiles is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_ORDER_STATS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of order statistics is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_MOMORDER_NOT_SUPPORTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Moment of requested order is not supported. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_NOT_FULL_RANK_MATRIX</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Correlation matrix is not of full rank. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_ALL_OBSERVS_OUTLIERS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> All observations are outliers. (At least one
+            observation must not be an outlier.) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_ROBUST_COV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Robust covariance matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_ROBUST_MEAN_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of robust means is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_METHOD_NOT_SUPPORTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Requested method is not supported. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_NULL_TASK_DESCRIPTOR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Task descriptor is null. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_OBSERV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Dataset matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_ACCUM_WEIGHT_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the variable that holds the value
+            of accumulated weight is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_SINGULAR_COV</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Covariance matrix is singular. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_POOLED_COV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pooled covariance matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_POOLED_MEAN_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of pooled means is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_GROUP_COV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Group covariance matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_GROUP_MEAN_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of group means is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_GROUP_INDC_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of group indices is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_GROUP_INDC</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Group indices have improper values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_OUTLIERS_PARAMS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of parameters for the outlier detection
+            algorithm is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_OUTLIERS_PARAMS_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to size of the parameter array for the
+            outlier detection algorithm is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_OUTLIERS_WEIGHTS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Output of the outlier detection algorithm is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_ROBUST_COV_PARAMS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of parameters of the robust covariance
+            estimation algorithm is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_ROBUST_COV_PARAMS_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the number of parameters of the
+            algorithm for robust covariance is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STORAGE_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the variable that holds the storage
+            format is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_PARTIAL_COV_IDX_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array that encodes sub-components of a random
+            vector for the partial covariance algorithm is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_PARTIAL_COV_IDX</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array that encodes sub-components of a random
+            vector for partial covariance has improper values. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_PARTIAL_COV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Partial covariance matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_PARTIAL_COR_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Partial correlation matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_PARAMS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of parameters for the Multiple
+            Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_PARAMS_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to number of parameters for the
+            Multiple Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_BAD_PARAMS_N</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Size of the parameter array of the Multiple
+            Imputation method is invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_PARAMS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Parameters of the Multiple Imputation method
+            are invalid. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_INIT_ESTIMATES_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the number of initial estimates in
+            the Multiple Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_INIT_ESTIMATES_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of initial estimates for the Multiple
+            Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_SIMUL_VALS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of simulated missing values in the
+            Multiple Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_SIMUL_VALS_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the size of the array of simulated
+            missing values in the Multiple Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_ESTIMATES_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the number of parameter estimates
+            in the Multiple Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_ESTIMATES_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of parameter estimates in the Multiple
+            Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_SIMUL_VALS_N</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid size of the array of simulated values
+            in the Multiple Imputation method. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_ESTIMATES_N</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid size of an array to hold parameter
+            estimates obtained using the Multiple Imputation method. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_OUTPUT_PARAMS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of output parameters in the Multiple
+            Imputation method is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_PRIOR_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the number of prior parameters is
+            not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_PRIOR_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of prior parameters is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MI_MISSING_VALS_N</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid number of missing values was obtained.
+            
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_SEMIDEFINITE_COR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Correlation matrix passed into the
+            parameterization function is semi-definite. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_PARAMTR_COR_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Correlation matrix to be parameterized is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_COR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> All eigenvalues of the correlation matrix to
+            be parameterized are non-positive. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS_N_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Pointer to the number of parameters for the
+            quantile computation algorithm for streaming data is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of parameters of the quantile
+            computation algorithm for streaming data is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS_N</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid number of parameters of the quantile
+            computation algorithm for streaming data has been obtained. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_PARAMS</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid parameters of the quantile computation
+            algorithm for streaming data have been passed. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_ORDER_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of the quantile orders for streaming
+            data is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_ORDER</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Invalid quantile order for streaming data is
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_STREAM_QUANT_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of quantiles for streaming data is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of sums is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_2R_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of raw sums of 2nd order is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_3R_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of raw sums of 3rd order is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_4R_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of raw sums of 4th order is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_2C_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of central sums of 2nd order is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_3C_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of central sums of 3rd order is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_4C_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of central sums of 4th order is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_CP_SUM_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Cross-product matrix is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MDAD_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p>Array of median absolute deviations is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_MNAD_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of mean absolute deviations is not
+            defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_BAD_SORTED_OBSERV_ADDR</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array for storing observation sorting results is not defined. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="55.00000000000001%" headers="d970375e35 "><p><span class="keyword">
+              VSL_SS_ERROR_ERROR_INDICES_NOT_SUPPORTED</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="45%" headers="d970375e38 "><p> Array of indices is not supported. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Routines for robust covariance estimation, outlier detection, partial covariance estimation, multiple imputation, and parameterization of a correlation matrix can return internal error codes that are related to a specific implementation. Such error codes indicate invalid input data or other bugs in the Intel&reg; oneAPI Math Kernel Library routines other than the Summary Statistics routines.</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-44CA0D4A-ADEF-4B94-8032-F90F99E96710.html">Summary Statistics</a></div>
+</div>
+<div/>
+</body>
+</html>

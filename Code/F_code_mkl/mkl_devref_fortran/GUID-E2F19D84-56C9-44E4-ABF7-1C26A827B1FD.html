@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLACS Combine Operations"/>
+<meta name="DC.subject" content="BLACS, combines"/>
+<meta name="keywords" content="BLACS, combines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-70B37DFF-DE08-4A90-B222-A69E14B26F93.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-27ADC520-AF79-477F-87DD-A597E17F20CB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B9D26327-928F-4088-B5AF-110BA928912F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E2F19D84-56C9-44E4-ABF7-1C26A827B1FD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLACS Combine Operations</title>
+
+</head>
+<body class="no-rel-links" id="GUID-E2F19D84-56C9-44E4-ABF7-1C26A827B1FD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLACS Combine Operations</h1>
+<div><p>This <span>topic</span> describes BLACS routines that combine the data to produce a result.</p>
+<p>In a combine operation,  each participating process contributes data that is combined with other processes’ data to produce a result. This result can be given to a particular process (called the <dfn class="term">destination</dfn> process), or to all participating processes. If the result is given to only one process, the operation is referred to as a <dfn class="term">leave-on-one</dfn> combine, and if the result is given to all participating processes the operation is referenced  as a <dfn class="term">leave-on-all</dfn> combine.</p>
+<p>At present, three kinds of combines are supported. They are:<ul id="GUID-0F82BCEC-7A5E-441C-A7F7-9820C98E47F3"><li>element-wise summation</li>
+<li>element-wise absolute value maximization</li>
+<li>element-wise absolute value minimization</li>
+</ul>
+ of general rectangular arrays.</p>
+<p>Note that a combine operation combines data between processes. By definition, a combine performed across a scope of only one process does not change the input data. This is why the operations (<span class="keyword">max</span>/<span class="keyword">min</span>/<span class="keyword">sum</span>)  are specified as <dfn class="term">element-wise</dfn>. Element-wise indicates that each element of the input array will be combined with the corresponding element from all other processes’ arrays to produce the result. Thus, a  4 x 2 array of inputs produces a 4 x 2 answer array.</p>
+<p>When the <span class="keyword">max</span>/<span class="keyword">min</span> comparison is being performed, absolute value is used. For example, -5 and 5 are equivalent. However, the returned value is unchanged; that is, it is not the absolute value, but is a signed value instead. Therefore, if you performed a BLACS absolute value maximum combine on the numbers -5, 3, 1, 8 the result would be -8.</p>
+<p>The initial symbol <span class="keyword">?</span>
+ in the routine names below masks the data type:</p>
+<dl id="GUID-7371D4B5-6218-44F0-BCFC-D644FCED32F4"><dt class="dlterm"><span class="keyword">i</span></dt>
+
+<dd><p>integer</p>
+</dd>
+<dt class="dlterm"><span class="keyword">s</span></dt>
+
+<dd><p>single precision real</p>
+</dd>
+<dt class="dlterm"><span class="keyword">d</span></dt>
+
+<dd><p>double precision real</p>
+</dd>
+<dt class="dlterm"><span class="keyword">c</span></dt>
+
+<dd><p>single precision complex</p>
+</dd>
+<dt class="dlterm"><span class="keyword">z</span></dt>
+
+<dd><p>double precision complex.</p>
+</dd>
+</dl>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL16-1" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">BLACS Combines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="33%" id="d1697737e118"><p>Routine name</p>
+</th>
+<th class="row-nocellborder" valign="top" width="67%" id="d1697737e121"><p>Results of operation</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="33%" headers="d1697737e118 "><p><a href="GUID-70B37DFF-DE08-4A90-B222-A69E14B26F93.html#GUID-70B37DFF-DE08-4A90-B222-A69E14B26F93">gamx2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d1697737e121 "><p>Entries of result matrix will have the value of the greatest absolute value found in that position.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33%" headers="d1697737e118 "><p><a class="allformats" href="GUID-27ADC520-AF79-477F-87DD-A597E17F20CB.html#GUID-27ADC520-AF79-477F-87DD-A597E17F20CB">gamn2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d1697737e121 "><p>Entries of result matrix will have the value of the smallest absolute value found in that position.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33%" headers="d1697737e118 "><p><a class="allformats" href="GUID-B9D26327-928F-4088-B5AF-110BA928912F.html#GUID-B9D26327-928F-4088-B5AF-110BA928912F">gsum2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d1697737e121 "><p>Entries of result matrix will have the summation of that position.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

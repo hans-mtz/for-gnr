@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laed5"/>
+<meta name="abstract" content="Used by sstedc/dstedc. Solves the 2-by-2 secular equation."/>
+<meta name="description" content="Used by sstedc/dstedc. Solves the 2-by-2 secular equation."/>
+<meta name="DC.subject" content="?laed5, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="keywords" content="?laed5, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3BFD8EB3-1701-4152-9D59-B7ABD7FC49CE"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laed5</title>
+
+</head>
+<body id="GUID-3BFD8EB3-1701-4152-9D59-B7ABD7FC49CE">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laed5</span></h1>
+<!--Used by  sstedc / dstedc . Solves the 2-by-2 secular equation.--><div><p class="shortdesc">Used by <span class="option">sstedc</span>/<span class="option">dstedc</span>. Solves the 2-by-2 secular equation.</p>
+<div class="section" id="GUID-5DBC317D-3FD4-47F7-B43B-12DFD665BB7E"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaed5</span><span class="delim">( </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dlam</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaed5</span><span class="delim">( </span><span class="var">i</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">delta</span><span class="sep">, </span><span class="var">rho</span><span class="sep">, </span><span class="var">dlam</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-2456FF55-50EB-472F-8BAD-B3CA3486B9DD"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2D904F49-EEE6-49B2-B938-25ECFC307D65"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the <var>i</var>-th eigenvalue of a symmetric rank-one modification of a 2-by-2 diagonal matrix</p>
+<p><samp class="codeph">diag(<var>D</var>)  +  <var>rho</var>*<var>Z</var>  * transpose(<var>Z</var>)</samp>.</p>
+<p>The diagonal elements in the array <var>D</var> are assumed to satisfy</p>
+<p><samp class="codeph"><var>D</var>(i) &lt; <var>D</var>(<var>j</var>) for <samp class="codeph"><var>i</var> &lt; <var>j</var></samp></samp>.</p>
+<p>We also assume <var>rho</var> &gt; 0 and that the Euclidean norm of the vector <var>Z</var> is one.</p>
+</div>
+<div class="section" id="GUID-53C97795-6608-4447-A0A9-09A4D75E1877"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-5F81DCD9-70D1-4081-BE44-115E56CD6D61"><dt class="dlterm"><span class="parmname">i</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The index of the eigenvalue to be computed; </p>
+<p><samp class="codeph">1 ≤   i ≤ 2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed5</span></p>
+<p>Arrays, dimension (2) each. The array <var>d</var> contains the original eigenvalues. It is assumed that <samp class="codeph"><var>d</var>(1) &lt; <var>d</var>(2)</samp>.</p>
+<p>The array <var>z</var> contains the components of the updating vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rho</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed5</span></p>
+<p>The scalar in the symmetric updating formula.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-850154E1-CD85-4C65-8A5C-B32C990761F4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C152B6C0-046E-4D25-B0BE-8F2664F7B90B"><dt class="dlterm"><span class="parmname">delta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed5</span></p>
+<p>Array, dimension (2). </p>
+<p>The vector <var>delta</var> contains the information necessary to construct the eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dlam</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaed5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaed5</span></p>
+<p>The computed <var>lambda_i</var>, the <var>i</var>-th updated eigenvalue.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

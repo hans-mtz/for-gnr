@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laneg"/>
+<meta name="abstract" content="Computes the Sturm count, the number of negative pivots encountered while factoring tridiagonal T-sigma*I = L*D*LT."/>
+<meta name="description" content="Computes the Sturm count, the number of negative pivots encountered while factoring tridiagonal T-sigma*I = L*D*LT."/>
+<meta name="DC.subject" content="?laneg, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?laneg, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D41AFB48-7F25-43CF-AA34-B5AACFD80D90"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laneg</title>
+
+</head>
+<body id="GUID-D41AFB48-7F25-43CF-AA34-B5AACFD80D90">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laneg</span></h1>
+<!--Computes the Sturm count, the number of negative pivots encountered while factoring tridiagonal  T - sigma * I  =  L * D * L T .--><div><p class="shortdesc">Computes the Sturm count, the number of negative pivots encountered while factoring tridiagonal <var>T</var>-<span class="parmname">sigma</span>*<var>I</var> = <var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup>.</p>
+<div class="section" id="GUID-8193F14F-C330-4829-ABF4-3258ACF6EF4B"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="var">value</span><span class="oper"> = </span><span class="kwd">slaneg</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">lld</span><span class="sep">, </span><span class="var">sigma</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="var">value</span><span class="oper"> = </span><span class="kwd">dlaneg</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">lld</span><span class="sep">, </span><span class="var">sigma</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-21AB40F9-ED84-45A3-9E93-E2B3589C2CD4"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A937D878-C6F1-450E-8927-BDAE2C183171"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the Sturm count, the number of negative pivots encountered while factoring tridiagonal <var>T</var>-<span class="parmname">sigma</span>*<var>I</var> = <var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup>. This implementation works directly on the factors without forming  the tridiagonal matrix <var>T</var>.  The Sturm count is also the number of eigenvalues of <var>T</var> less than <span class="parmname">sigma</span>. This routine is called from <span class="option">?larb</span>. The current routine does not use the <span class="parmname">pivmin</span> parameter but rather requires IEEE-754 propagation of infinities and <samp class="codeph">NaN</samp>s (<samp class="codeph">NaN</samp> stands for 'Not A Number').  This routine also has no input range restrictions but does require default exception handling such that <samp class="codeph"><var>x</var>/0</samp> produces <span class="keyword">Inf</span> when <samp class="codeph"><var>x</var></samp> is non-zero, and <samp class="codeph">Inf/Inf</samp> produces <span class="keyword">NaN</span>.  (For more information see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#MARQUES06">Marques06</a>]).
+</p>
+</div>
+<div class="section" id="GUID-50090987-3BC0-4965-9209-851412F14637"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-932FEF08-54BD-4955-A5B6-FCC2B2F86777"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaneg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaneg</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>Contains <span class="parmname">n</span> diagonal elements of the matrix <var>D</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lld</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaneg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaneg</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<samp class="codeph"><var>n</var>-1</samp>).</p>
+<p>Contains <samp class="codeph">(<span class="parmname">n</span>-1)</samp> elements <samp class="codeph"><var>L</var>(i)*<var>L</var>(i)*<var>D</var>(i)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sigma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaneg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaneg</span></p>
+<p>Shift amount in <samp class="codeph"><var>T</var>-<span class="parmname">sigma</span>*<var>I</var> = <var>L</var>*<var>D</var>*<var>L</var>**<var>T</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaneg</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaneg</span></p>
+<p>The minimum pivot in the Sturm sequence. May be used when zero pivots are encountered on non-IEEE-754 architectures.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The twist index for the twisted factorization that is used for the negcount.
+</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5545C4D0-5157-40C0-80FD-D2936CBBCEDA"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-212D7A5A-F3A4-454F-B58C-AFFB64F287C0"><dt class="dlterm"><span class="parmname">value</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of negative pivots encountered while factoring. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

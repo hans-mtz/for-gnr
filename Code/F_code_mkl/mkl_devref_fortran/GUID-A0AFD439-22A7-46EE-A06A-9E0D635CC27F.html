@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?tplqt"/>
+<meta name="abstract" content="Computes a blocked LQ factorization of a complex &#34;triangular-pentagonal&#34; matrix composed of a triangular block A and pentagonal block B, using the compact WY representation for Q."/>
+<meta name="description" content="Computes a blocked LQ factorization of a complex &#34;triangular-pentagonal&#34; matrix composed of a triangular block A and pentagonal block B, using the compact WY representation for Q."/>
+<meta name="DC.subject" content="?tplqt, stplqt, dtplqt, ctplqt, ztplqt, LAPACK routines"/>
+<meta name="keywords" content="?tplqt, stplqt, dtplqt, ctplqt, ztplqt, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A0AFD439-22A7-46EE-A06A-9E0D635CC27F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?tplqt</title>
+
+</head>
+<body id="GUID-A0AFD439-22A7-46EE-A06A-9E0D635CC27F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?tplqt</span></h1>
+<!--Computes a blocked LQ factorization of a complex "triangular-pentagonal" matrix composed of a triangular block A and pentagonal block B, using the compact WY representation for Q.--><div><p class="shortdesc">Computes a blocked LQ factorization of a complex "triangular-pentagonal" matrix composed of a triangular block A and pentagonal block B, using the compact WY representation for Q.</p>
+<div id="SYNTAX_49A8E8FFE7E6498F914FB67F627A0099"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call stplqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtplqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctplqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztplqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_44B085D8660341F2BE9834AA8456E31D"><h2 class="sectiontitle">Description</h2><p><span class="option">?tplqt</span> computes a blocked LQ factorization of a real or complex "triangular-pentagonal" matrix <var>C</var>, which is composed of a triangular block <var>A</var> and pentagonal block <var>B</var>, using the compact WY representation for <var>Q</var>. </p>
+<p>The input matrix <var>C</var> is an <span class="parmname">m</span>-by-(<span class="parmname">m</span>+<span class="parmname">n</span>) matrix:</p>
+<p><var>C</var> = [ <var>A</var> ] [ <var>B</var> ] </p>
+<p>where <var>A</var> is a lower triangular <span class="parmname">m</span>-by-<span class="parmname">m</span> matrix, and <var>B</var> is an <span class="parmname">m</span>-by-<span class="parmname">n</span> pentagonal matrix consisting of an <span class="parmname">m</span>-by-(<span class="parmname">n</span>-<span class="parmname">l</span>) rectangular matrix <var>B1</var> to the left of an <span class="parmname">m</span>-by-<span class="parmname">l</span> lower trapezoidal matrix <var>B2</var>:</p>
+<p> [ <var>B</var> ] = [ <var>B1</var> ] [ <var>B2</var> ] </p>
+<p>[<var>B1</var> ] &lt;- <span class="parmname">m</span>-by-(<span class="parmname">n</span>-<span class="parmname">l</span>) rectangular</p>
+<p> [ <var>B2</var> ] &lt;- <span class="parmname">m</span>-by-<span class="parmname">l</span> lower trapezoidal. </p>
+<p>The lower trapezoidal matrix <var>B2</var> consists of the first <span class="parmname">l</span> columns of an <span class="parmname">m</span>-by-<span class="parmname">m</span> lower triangular matrix, where 0 <span class="eqsymbol">≤</span><span class="parmname">l</span><span class="eqsymbol">≤</span> min(<span class="parmname">m</span>,<span class="parmname">n</span>). If <span class="parmname">l</span>=0, <span class="parmname">b</span> is rectangular <span class="parmname">m</span>-by-<span class="parmname">n</span>; if <span class="parmname">m</span>=<span class="parmname">l</span>=<span class="parmname">n</span>, <span class="parmname">b</span> is lower triangular. </p>
+<p>The matrix <var>W</var> stores the elementary reflectors <var>H</var>(<var>i</var>) in the <var>i</var>-th row above the diagonal (of <var>A</var>) in the <span class="parmname">m</span>-by-(<span class="parmname">m</span>+<span class="parmname">n</span>) input matrix <var>C</var>:</p>
+<p>[ <var>C</var> ] = [ <var>A</var> ] [ <var>B</var> ] </p>
+<p>[ <var>A</var> ] &lt;- lower triangular <span class="parmname">m</span>-by-<span class="parmname">m</span></p>
+<p> [ <var>B</var> ] &lt;- <span class="parmname">m</span>-by-<span class="parmname">n</span> pentagonal </p>
+<p>so that <var>W</var> can be represented as </p>
+<p>[ <var>W</var> ] = [ <var>I</var> ] [ <var>V</var> ] </p>
+<p>[ <var>I</var> ] &lt;- <span class="parmname">m</span>-by-<span class="parmname">m</span> identity matrix</p>
+<p> [ <var>V</var> ] &lt;- <span class="parmname">m</span>-by-<span class="parmname">n</span>, same form as <var>B</var>. </p>
+<p>Thus, all of information needed for <var>W</var> is contained on exit in the array <span class="parmname">b</span>, called <var>V</var> in the preceding. Note that <var>V</var> has the same form as <var>B</var>; that is, </p>
+<p>[ <var>V</var> ] = [ <var>V1</var> ] [ <var>V2</var> ] </p>
+<p>[ <var>V1</var> ] &lt;- <span class="parmname">m</span>-by-(<span class="parmname">n</span>-<span class="parmname">l</span>) rectangular </p>
+<p>[ <var>V2</var> ] &lt;- <span class="parmname">m</span>-by-<span class="parmname">l</span> lower trapezoidal. </p>
+<p>The rows of <var>V</var> represent the vectors which define the <var>H</var>(<var>i</var>) elementary reflectors . </p>
+<p>The number of blocks is <var>B</var> = ceiling(<span class="parmname">m</span>/<span class="parmname">mb</span>), where each block is of order <span class="parmname">mb</span> except for the last block, which is of order <var>ib</var> = <span class="parmname">m</span> - (<span class="parmname">m</span> - 1)*<span class="parmname">mb</span>. For each of the <var>B</var> blocks, a upper triangular block reflector factor is computed: </p>
+<p><var>T1</var>, <var>T2</var>, ..., <var>TB</var>. </p>
+<p>The <span class="parmname">mb</span>-by-<span class="parmname">mb</span> (and <var>ib</var>-by-<var>ib</var> for the last block) <var>Ti</var>s are stored in the <span class="parmname">mb</span>-by-<span class="parmname">n</span> array  <span class="parmname">t</span> as </p>
+<p><var>T</var> = [<var>T1</var><var>T2</var> ... <var>TB</var>].</p>
+</div>
+<div class="section" id="ARGUMENTS_C1721FC6209647C4AE1234CA750B72FC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1B5350E9-EAAC-4AF9-8F0A-FFEB3BFAB9D2"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>B</var>, and the order of the triangular matrix <var>A</var>. <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of the matrix <var>B</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the lower trapezoidal part of <var>B</var>. min(<span class="parmname">m</span>, <span class="parmname">n</span>) <span class="eqsymbol">≥</span><span class="parmname">l</span><span class="eqsymbol">≥</span> 0. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">mb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The block size to be used in the blocked QR. <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">mb</span><span class="eqsymbol">≥</span> 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">stplqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtplqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">ctplqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">ztplqt</span></p>
+<p>Array of size (<span class="parmname">lda</span>,<span class="parmname">m</span>). On entry, the lower triangular <span class="parmname">m</span>-by-<span class="parmname">m</span> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">stplqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtplqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">ctplqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">ztplqt</span></p>
+<p>Array of size (<span class="parmname">ldb</span>,<span class="parmname">n</span>). On entry, the pentagonal <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>B</var>. The first <span class="parmname">n</span>-<span class="parmname">l</span> columns are rectangular, and the last <span class="parmname">l</span> columns are lower trapezoidal.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">b</span>. <span class="parmname">ldb</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">t</span>. <span class="parmname">ldt</span><span class="eqsymbol">≥</span><span class="parmname">mb</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_7C5A380354824F70AA9B890DD5F155D2"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-195B2B0D-A0E3-47A7-AE5F-087C9C733AA0"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the elements on and below the diagonal of the array contain the lower triangular matrix <var>L</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, <span class="parmname">b</span> contains the pentagonal matrix <var>V</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">stplqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtplqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">ctplqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">ztplqt</span></p>
+<p>Array of size (<span class="parmname">ldt</span>,<span class="parmname">n</span>). The lower triangular block reflectors stored in compact form as a sequence of upper triangular blocks. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">stplqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtplqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">ctplqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">ztplqt</span></p>
+<p> Array of size (<span class="parmname">mb</span>*<span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><span class="parmname">info</span> =  0: successful exit.</p>
+<p><span class="parmname">info</span> &lt;  0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

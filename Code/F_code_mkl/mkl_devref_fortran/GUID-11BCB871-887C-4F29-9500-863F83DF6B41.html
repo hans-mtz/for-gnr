@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?potrf2"/>
+<meta name="abstract" content="Computes Cholesky factorization using a recursive algorithm."/>
+<meta name="description" content="Computes Cholesky factorization using a recursive algorithm."/>
+<meta name="DC.subject" content="spotrf2, dpotrf2, cpotrf2, zpotrf2"/>
+<meta name="keywords" content="spotrf2, dpotrf2, cpotrf2, zpotrf2"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-11BCB871-887C-4F29-9500-863F83DF6B41"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?potrf2</title>
+
+</head>
+<body id="GUID-11BCB871-887C-4F29-9500-863F83DF6B41">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?potrf2</span></h1>
+<!--Computes Cholesky factorization using a recursive algorithm.--><div><p class="shortdesc">Computes Cholesky factorization using a recursive algorithm.</p>
+<div class="section" id="GUID-599C3D28-5970-432A-923E-91C9C97508AF"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spotrf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dpotrf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cpotrf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zpotrf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-551E1F8B-BBBE-430F-B3FF-E3FD046268EA"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-ADBDB549-2A5B-4D1C-900C-703E3AE48740"><h2 class="sectiontitle">Description</h2><p><span class="option">?potrf2</span> computes the Cholesky factorization of a real or complex symmetric positive definite matrix <var>A</var> using the recursive algorithm.</p>
+<p>  The factorization has the form</p>
+<p> for real flavors:</p>
+<p><var>A</var> = <var>U</var><sup>T</sup> * <var>U</var>, if <span class="parmname">uplo</span> = 'U', or</p>
+<p><var>A</var> = <var>L</var> * <var>L</var><sup>T</sup>, if <span class="parmname">uplo</span> = 'L',</p>
+<p> for complex flavors:</p>
+<p><var>A</var> = <var>U</var><sup>H</sup> * <var>U</var>, if <span class="parmname">uplo</span> = 'U',</p>
+<p> or <var>A</var> = <var>L</var> * <var>L</var><sup>H</sup>, if <span class="parmname">uplo</span> = 'L',</p>
+<p> where <var>U</var> is an upper triangular matrix and <var>L</var> is lower triangular.</p>
+<p>  This is the recursive version of the algorithm. It divides the matrix into four submatrices:</p>
+<p><span><img class="img-middle" src="equations/GUID-11BCB871-887C-4F29-9500-863F83DF6ee1.png"/></span></p>
+<p>where <var>A11</var> is <var>n1</var> by <var>n1</var> and <var>A22</var> is <var>n2</var> by <var>n2</var>, with <var>n1</var> = <span class="parmname">n</span>/2 and <var>n2</var> = <span class="parmname">n</span>-<var>n1</var>.</p>
+<p>  The subroutine calls itself to factor <var>A11</var>. Update and scale <var>A21</var> or <var>A12</var>, update <var>A22</var> then call itself to factor <var>A22</var>.</p>
+</div>
+<div class="section" id="GUID-B532F7B4-1DEC-408C-A124-60F03F56AF6B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E5230031-CB4E-44A0-8A9E-C9D199AE7CF0"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span>CHARACTER*1. </span>= 'U': Upper triangle of <var>A</var> is stored;</p>
+<p> = 'L': Lower triangle of <var>A</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span>INTEGER. </span>The order of the matrix <var>A</var>.</p>
+<p><span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">spotrf2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dpotrf2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpotrf2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpotrf2</span></p>
+<p>Array, size <span>(<span class="parmname">lda</span>, <span class="parmname">n</span>)</span>.</p>
+<p> On entry, the symmetric matrix <var>A</var>.</p>
+<p> If <span class="parmname">uplo</span> = 'U', the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of <span class="parmname">a</span> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <span class="parmname">a</span> is not referenced.</p>
+<p> If <span class="parmname">uplo</span> = 'L', the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of <span class="parmname">a</span> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <span class="parmname">a</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span>INTEGER. </span>The leading dimension of the array <span class="parmname">a</span>.</p>
+<p><span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E566524E-42F4-42D6-A98A-B9DBAB15AA94"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, if <span class="parmname">info</span> = 0, the factor <var>U</var> or <var>L</var> from the Cholesky factorization.</p>
+<p> For real flavors:  </p>
+<p><var>A</var> = <var>U</var><sup>T</sup>*<var>U</var> or <var>A</var> = <var>L</var>*<var>L</var><sup>T</sup>;</p>
+<p>For complex flavors:</p>
+<p><var>A</var> = <var>U</var><sup>H</sup>*<var>U</var> or <var>A</var> = <var>L</var>*<var>L</var><sup>H</sup>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span>INTEGER. </span>= 0: successful exit</p>
+<p> &lt; 0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value </p>
+<p>&gt; 0: if <span class="parmname">info</span> = <var>i</var>, the leading minor of order <var>i</var> is not positive definite, and the factorization could not be completed.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

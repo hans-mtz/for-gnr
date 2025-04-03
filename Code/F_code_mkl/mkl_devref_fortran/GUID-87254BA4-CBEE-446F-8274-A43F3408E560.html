@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?tranc"/>
+<meta name="abstract" content="Transposes a complex distributed matrix, conjugated."/>
+<meta name="description" content="Transposes a complex distributed matrix, conjugated."/>
+<meta name="DC.subject" content="p?tranc, pstranc, pdtranc, PBLAS Level 3 routines, transposition, distributed complex matrix, conjugated, distributed complex matrix, distributed matrix-matrix operation, complex matrix, conjugated"/>
+<meta name="keywords" content="p?tranc, pstranc, pdtranc, PBLAS Level 3 routines, transposition, distributed complex matrix, conjugated, distributed complex matrix, distributed matrix-matrix operation, complex matrix, conjugated"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-87254BA4-CBEE-446F-8274-A43F3408E560"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?tranc</title>
+
+</head>
+<body id="GUID-87254BA4-CBEE-446F-8274-A43F3408E560">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?tranc</span></h1>
+<!--Transposes a complex distributed matrix, conjugated.--><div><p class="shortdesc">Transposes a complex distributed matrix, conjugated.</p>
+<div class="section" id="GUID-89C39A5D-16E4-4522-A060-24E1D9BEF6F1"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pctranc</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pztranc</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-CD5A005D-965A-42F4-BD20-A2DBB9E5802E"><h2 class="sectiontitle">Include Files</h2><ul id="d163e233"><li id="d163e234"><span class="filepath">mkl_pblas.h</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2DAABDE2-485F-4792-BEA9-1B4B4EF93C55"><h2 class="sectiontitle">Description</h2><p>The <span class="option">p?tranc</span> routines transpose a complex distributed matrix. The operation is defined as <pre>sub(<var>C</var>):=<var>beta</var>*sub(<var>C</var>) + <var>alpha</var>*conjg(sub(<var>A</var>)'),</pre></p>
+<p>where:</p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><var/><samp class="codeph">sub(<var>C</var>)</samp>
+ is an 	<span class="parmname">m</span>-by-<span class="parmname">n</span> distributed
+ matrix, <samp class="codeph">sub(<var>C</var>)=<var>C</var>(<span class="parmname">ic</span>:<span class="parmname">ic</span>+<span class="parmname">m</span>-1, <span class="parmname">jc</span>:<span class="parmname">jc</span>+<span class="parmname">n</span>-1)</samp>.</p>
+<p><samp class="codeph">sub(<var>A</var>)</samp>
+ is a distributed matrix, <samp class="codeph">sub(<var>A</var>)=<var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">m</span>-1)</samp>.</p>
+</div>
+<div class="section" id="GUID-930E5E3C-3EFF-4466-9931-37CCA766AA0E"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-5540CDCD-1820-4EB2-BAF9-12615948B804"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Specifies the number of rows of the distributed matrix <samp class="codeph">sub(<var>C</var>)</samp>, <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Specifies the number of columns of the distributed matrix <samp class="codeph">sub(<var>C</var>)</samp>
+, <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>(global)<span><span class="keyword">COMPLEX</span>  for <span class="option">pctranc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pztranc</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)<span><span class="keyword">COMPLEX</span>  for <span class="option">pctranc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pztranc</span></p>
+<p>Array, size <samp class="codeph">(<var>lld_a</var>, LOCq(<span class="parmname">ja</span>+<span class="parmname">m</span>-1))</samp>. This array contains the local pieces of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>A</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>A</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>(global)<span><span class="keyword">COMPLEX</span>  for <span class="option">pctranc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pztranc</span></p>
+<p>Specifies the scalar <var>beta</var>.</p>
+<p>When <span class="parmname">beta</span>
+is equal to zero, then <samp class="codeph">sub(<var>C</var>)</samp> need not be set on input.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>(local)<span><span class="keyword">COMPLEX</span>  for <span class="option">pctranc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pztranc</span></p>
+<p>Array, size <samp class="codeph">(<var>lld_c</var>, LOCq(<span class="parmname">jc</span>+<span class="parmname">n</span>-1))</samp>. </p>
+<p>This array contains the local pieces of the distributed matrix <samp class="codeph">sub(<var>C</var>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ic</span>, <span class="parmname">jc</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>C</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>C</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descc</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>C</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C68CE7CC-EDF6-48B4-BB83-25F2B198962B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7B4567C2-9B0C-424F-B0A8-EDDF578F7DDA"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the updated submatrix.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html">PBLAS Level 3 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

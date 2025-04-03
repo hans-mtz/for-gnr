@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?latsqr"/>
+<meta name="abstract" content="Computes a blocked Tall-Skinny QR matrix factorization."/>
+<meta name="description" content="Computes a blocked Tall-Skinny QR matrix factorization."/>
+<meta name="DC.subject" content="?latsqr, slatsqr, dlatsqr, clatsqr, zlatsqr, LAPACK routines"/>
+<meta name="keywords" content="?latsqr, slatsqr, dlatsqr, clatsqr, zlatsqr, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8F15B861-04EB-4C96-A346-2B336E318210"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?latsqr</title>
+
+</head>
+<body id="GUID-8F15B861-04EB-4C96-A346-2B336E318210">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?latsqr</span></h1>
+<!--Computes a blocked Tall-Skinny QR matrix factorization. --><div><p class="shortdesc">Computes a blocked Tall-Skinny QR matrix factorization. </p>
+<div id="SYNTAX_6957689599AB40B08A1C725159AF9FE5"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slatsqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlatsqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call clatsqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlatsqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_1F85C324173D46C9BC6E58215604506F"><h2 class="sectiontitle">Description</h2><p><span class="option">?latsqr</span> computes a blocked Tall-Skinny QR (TSQR)  factorization of an <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>, where <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">n</span>: <var>A</var> = <var>Q</var>*<var>R</var>. </p>
+<p> TSQR performs QR by a sequence of orthogonal transformations, representing <var>Q</var> as a product of other orthogonal matrices</p>
+<p><var>Q</var> = <var>Q</var>(1) * <var>Q</var>(2) * . . . * <var>Q</var>(<var>k</var>) </p>
+<p>where each <var>Q</var>(<var>i</var>) zeros out subdiagonal entries of a block of <span class="parmname">mb</span> rows of <var>A</var>: </p>
+<p><var>Q</var>(1) zeros out the subdiagonal entries of rows 1:MB of <var>A</var>, </p>
+<p><var>Q</var>(2) zeros out the bottom <span class="parmname">mb</span> - <span class="parmname">n</span> rows of rows [1:<span class="parmname">n</span>, <span class="parmname">mb</span> + 1:2*<span class="parmname">mb</span> - <span class="parmname">n</span>] of <var>A</var>,</p>
+<p><var>Q</var>(3) zeros out the bottom <span class="parmname">mb</span> - <span class="parmname">n</span> rows of rows [1:<span class="parmname">n</span>, 2*<span class="parmname">mb</span> - <span class="parmname">n</span> + 1:3*<span class="parmname">mb</span> - 2*<span class="parmname">n</span>] of <var>A</var> . . . .</p>
+<p><var>Q</var>(1) is computed by <span class="option">geqrt</span>, which represents <var>Q</var>(1) by Householder vectors stored under the diagonal of rows 1:<span class="parmname">mb</span> of <span class="parmname">a</span>, and by upper triangular block reflectors, stored in array <span class="parmname">t</span>(1:<span class="parmname">ldt</span>, 1:<span class="parmname">n</span>). For more information see <a href="GUID-280BB03B-34FC-4FBD-AC59-6E244E77808F.html"><span class="option">geqrt</span></a>. </p>
+<p><var>Q</var>(<var>i</var>) for <var>i</var> &gt; 1 is computed by <span class="option">tpqrt</span>, which represents <var>Q</var>(<var>i</var>) by Householder vectors stored in rows [(<var>i</var> - 1)*(<span class="parmname">mb</span> - <span class="parmname">n</span>) + <span class="parmname">n</span> + 1:<var>i</var>*(<span class="parmname">mb</span> - <span class="parmname">n</span>) + <span class="parmname">n</span>] of <span class="parmname">a</span>, and by upper triangular block reflectors, stored in array <span class="parmname">t</span>(1:<span class="parmname">ldt</span>,    (<var>i</var> - 1)*<span class="parmname">n</span> + 1:<var>i</var>*<span class="parmname">n</span>). The last <var>Q</var>(<var>k</var>) may use fewer rows. For more information, see <a href="GUID-4E76B45F-A4E9-4282-BA5E-463F6FD28B56.html#GUID-4E76B45F-A4E9-4282-BA5E-463F6FD28B56"><span class="option">tpqrt</span></a>. For more details of the overall algorithm, see <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DEMMEL12">[DEMMEL12]</a></p>
+</div>
+<div class="section" id="ARGUMENTS_7C4D09C128F641DCAA1664D49208E3C3"><h2 class="sectiontitle">Input Parameters</h2><p/>
+<dl id="GUID-5D8360AB-6052-44B4-82A5-AB6BD6E71F77"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>A</var>. <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of the matrix <var>A</var>. <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The row block size to be used in the blocked QR. <span class="parmname">mb</span> &gt; <span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The column block size to be used in the blocked QR. <span class="parmname">n</span><span class="eqsymbol">≥</span><span class="parmname">nb</span><span class="eqsymbol">≥</span> 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">slatsqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatsqr</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">clatsqr</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlatsqr</span></p>
+<p>Array of size (<span class="parmname">lda</span>, <span class="parmname">n</span>). On entry, the <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1, <span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">t</span>. <span class="parmname">ldt</span><span class="eqsymbol">≥</span><span class="parmname">nb</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The dimension of the array <span class="parmname">work</span>. <span class="parmname">lwork</span><span class="eqsymbol">≥</span><span class="parmname">nb</span>*<span class="parmname">n</span>. If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the routine only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by <span class="option">xerbla</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_52A3DC6FD2B7456C90A03A073259BB62"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AFC6C5D3-3834-48BE-B812-11A56E4005E3"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the elements on and above the diagonal of the array contain the <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular matrix <var>R</var> and the elements below the diagonal represent <var>Q</var> by the columns of blocked <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">slatsqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatsqr</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">clatsqr</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlatsqr</span></p>
+<p>Array of size (<span class="parmname">ldt</span>, <span class="parmname">n</span> * <var>Number_of_row_blocks</var>) where <var>Number_of_row_blocks</var> = ceiling((<span class="parmname">m</span> - <span class="parmname">n</span>)/(<span class="parmname">mb</span> - <span class="parmname">n</span>)) The blocked upper triangular block reflectors stored in compact form as a sequence of upper triangular blocks.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">slatsqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatsqr</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">clatsqr</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlatsqr</span></p>
+<p>Workspace array of size  (max(1, <span class="parmname">lwork</span>)).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><span class="parmname">info</span> =  0: successful exit.</p>
+<p><span class="parmname">info</span> &lt;  0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

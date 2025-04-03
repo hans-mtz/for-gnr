@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gem2vu"/>
+<meta name="abstract" content="Computes two matrix-vector products using a general matrix (real data)"/>
+<meta name="description" content="Computes two matrix-vector products using a general matrix (real data)"/>
+<meta name="DC.subject" content="?gem2vu, BLAS Level 2 routines, general matrix, matrix-vector product, matrix-vector operation, product, matrix-vector"/>
+<meta name="keywords" content="?gem2vu, BLAS Level 2 routines, general matrix, matrix-vector product, matrix-vector operation, product, matrix-vector"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2926A791-7E01-45F7-A457-A545E8DA3F2F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gem2vu</title>
+
+</head>
+<body id="GUID-2926A791-7E01-45F7-A457-A545E8DA3F2F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gem2vu</span></h1>
+<!--Computes two matrix-vector products using a general matrix (real data)--><div><p class="shortdesc">Computes two matrix-vector products using a general matrix (real data)</p>
+<div class="section" id="GUID-8EA1793E-3591-4CDF-AB09-C04E5B70C3BD"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgem2vu</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x1</span><span class="sep">, </span><span class="var">incx1</span><span class="sep">, </span><span class="var">x2</span><span class="sep">, </span><span class="var">incx2</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y1</span><span class="sep">, </span><span class="var">incy1</span><span class="sep">, </span><span class="var">y2</span><span class="sep">, </span><span class="var">incy2</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgem2vu</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x1</span><span class="sep">, </span><span class="var">incx1</span><span class="sep">, </span><span class="var">x2</span><span class="sep">, </span><span class="var">incx2</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y1</span><span class="sep">, </span><span class="var">incy1</span><span class="sep">, </span><span class="var">y2</span><span class="sep">, </span><span class="var">incy2</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call gem2vu</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">x1</span><span class="sep">, </span><span class="var">x2</span><span class="sep">, </span><span class="var">y1</span><span class="sep">, </span><span class="var">y2</span><span class="delim"> [</span><span class="sep">,</span><span class="var">alpha</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">beta</span><span class="delim">] </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-2192B830-5887-41DF-BBC7-39857503CF49"><h2 class="sectiontitle">Include Files</h2><ul id="d163e22"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E5CE0CDF-D653-490E-950C-80F2DB6D93F8"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?gem2vu</span> routines perform two matrix-vector operations defined as</p>
+<p><samp class="codeph"><var>y1</var>  := <var>alpha</var>*<var>A</var>*<var>x1</var> + <var>beta</var>*<var>y1</var></samp>,</p>
+<p>and</p>
+<p><samp class="codeph"><var>y2</var>  := <var>alpha</var>*<var>A</var>'*<var>x2</var> + <var>beta</var>*<var>y2</var></samp>,</p>
+<p>where: </p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><var>x1</var>, <var>x2</var>, <var>y1</var>, and <var>y2</var> are vectors,</p>
+<p><var>A</var> is an <var>m</var>-by-<var>n</var> matrix.</p>
+</div>
+<div class="section" id="GUID-D7274CE9-DEF5-42A8-8AFB-51165DC4785C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-29837D32-69EC-4003-87D1-E55AE910C971"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of rows of the matrix <var>A</var>. The value of <var/><var>m</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of columns of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>n</var>)</samp>. Before entry, the leading <var>m</var>-by-<var>n</var> part of the array <var>a</var> must contain the matrix of coefficients.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>a</var> as declared in the calling (sub)program. The value of <var>lda</var> must be at least <samp class="codeph">max(1, <var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x1</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Array, size at least <samp class="codeph">(1+(<var>n</var>-1)*abs(<var>incx1</var>))</samp>. Before entry, the incremented array <var>x1</var> must contain the vector <var>x1</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx1</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x1</var>.</p>
+<p>The value of <var>incx1</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Array, size at least <samp class="codeph">(1+(<var>m</var>-1)*abs(<var>incx2</var>))</samp>. Before entry, the incremented array <var>x2</var> must contain the vector <var>x2</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx2</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x2</var>.</p>
+<p>The value of <var>incx2</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Specifies the scalar <var>beta</var>. When <var>beta</var> is set to zero, then <var>y1</var> and <var>y2</var> need not be set on input.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y1</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Array, size at least <samp class="codeph">(1+(<var>m</var>-1)*abs(<var>incy1</var>))</samp>. Before entry with non-zero <var>beta</var>, the incremented array <var>y1</var> must contain the vector <var>y1</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy1</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>y1</var>.</p>
+<p>The value of <var>incy1</var> must not be zero. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgem2vu</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgem2vu</span></p>
+<p>Array, size at least <samp class="codeph">(1+(<var>n</var>-1)*abs(<var>incy2</var>))</samp>. Before entry with non-zero <var>beta</var>, the incremented array <var>y2</var> must contain the vector <var>y2</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy2</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>y2</var>.</p>
+<p>The value of <var>incy2</var> must not be zero. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-CEFA10BD-9012-4404-B44C-04ABF6641484"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-4463A4B3-9271-458C-BE30-DB3BD9855C0A"><dt class="dlterm"><span class="parmname">y1</span></dt>
+
+<dd><p>Updated vector <var>y1</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y2</span></dt>
+
+<dd><p>Updated vector <var>y2</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-CEB13121-A343-4024-BF12-E78129DA5FCF"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gem2vu</span> interface are the following:</p>
+<dl id="GUID-E231751A-FC9D-477A-995D-F94A9B44F23F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <em>A</em> of size (<var>m</var>,<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x1</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>rx1</var> where <samp class="codeph"><var>rx1</var> = <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x2</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>rx2</var> where <samp class="codeph"><var>rx2</var> = <var>m</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y1</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>ry1</var> where <samp class="codeph"><var>ry1</var> = <var>m</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y2</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>ry2</var> where <samp class="codeph"><var>ry2</var> = <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>The default value is 0.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div/>
+</body>
+</html>

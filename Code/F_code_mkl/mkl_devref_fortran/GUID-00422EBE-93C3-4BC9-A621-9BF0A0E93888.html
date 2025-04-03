@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Examples of Using OpenMP* Threading for FFT Computation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-00422EBE-93C3-4BC9-A621-9BF0A0E93888"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Examples of Using OpenMP* Threading for FFT Computation</title>
+
+</head>
+<body id="GUID-00422EBE-93C3-4BC9-A621-9BF0A0E93888">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Examples of Using OpenMP* Threading for FFT Computation</h1>
+<div><p>The following sample program shows how to employ internal OpenMP* threading in 
+      Intel&reg; oneAPI Math Kernel Library for FFT computation.
+    </p>
+<p>To specify the number of threads inside 
+      Intel&reg; oneAPI Math Kernel Library, use the following settings:
+    </p>
+<p>set 
+      <samp class="codeph">MKL_NUM_THREADS = 1</samp> for one-threaded mode; 
+    </p>
+<p>set 
+      <samp class="codeph">MKL_NUM_THREADS = 4</samp> for multi-threaded mode. 
+    </p>
+<div class="example" id="APPC-EXC-19"><h2 class="sectiontitle">Using 
+        <span>oneMKL</span> Internal Threading Mode (C Example)</h2><pre> 
+/* C99 example */
+#include "mkl_dfti.h"
+
+float data[200][100];
+DFTI_DESCRIPTOR_HANDLE fft = NULL;
+MKL_LONG dim_sizes[2] = {200, 100};
+
+/* ...put values into data[i][j] 0&lt;=i&lt;=199, 0&lt;=j&lt;=99 */
+
+DftiCreateDescriptor(&amp;fft, DFTI_SINGLE, DFTI_REAL, 2, dim_sizes);
+DftiCommitDescriptor(fft);
+DftiComputeForward(fft, data);
+DftiFreeDescriptor(&amp;fft);
+ </pre></div>
+<p>The following 
+      <a href="#APPC-EXC-20">Example 
+        <span>“Using Parallel Mode with Multiple Descriptors Initialized in a Parallel Region”</span></a> and 
+      <a href="#APPC-EXC-21">Example 
+        <span>“Using Parallel Mode with Multiple Descriptors Initialized in One Thread”</span></a> illustrate a parallel customer program with each descriptor instance used only in a single thread. 
+    </p>
+<p>Specify the number of OpenMP threads for 
+      <a href="#APPC-EXC-20">Example 
+        <span>“Using Parallel Mode with Multiple Descriptors Initialized in a Parallel Region”</span></a> like this: 
+    </p>
+<p>set 
+      <samp class="codeph">MKL_NUM_THREADS = 1</samp>for 
+      Intel&reg; oneAPI Math Kernel Library to work in the single-threaded mode (recommended);
+    </p>
+<p>set 
+      <samp class="codeph">OMP_NUM_THREADS = 4</samp> for the customer program to work in the multi-threaded mode. 
+    </p>
+<div class="example" id="APPC-EXC-20"><h2 class="sectiontitle">Using Parallel Mode with Multiple Descriptors Initialized in a Parallel Region</h2><p>Note that in this example, the program can be transformed to become single-threaded at the customer level but using parallel mode within 
+        Intel&reg; oneAPI Math Kernel Library. To achieve this, you need to set the parameter<samp class="codeph">DFTI_NUMBER_OF_TRANSFORMS = 4</samp> and to set the corresponding parameter 
+        <samp class="codeph">DFTI_INPUT_DISTANCE = 5000.</samp></p>
+<pre>program fft2d_private_descr_main
+  use mkl_dfti
+
+  integer nth, len(2)
+! 4 OMP threads, each does 2D FFT 50x100 points
+  parameter (nth = 4, len = (/50, 100/))
+  complex x(len(2)*len(1), nth)
+
+  type(dfti_descriptor), pointer :: myFFT
+  integer th, myStatus
+
+! assume x is initialized and do 2D FFTs
+!$OMP PARALLEL DO SHARED(len, x) PRIVATE(myFFT, myStatus)
+  do th = 1, nth
+    myStatus = DftiCreateDescriptor (myFFT, DFTI_SINGLE, DFTI_COMPLEX, 2, len)
+    myStatus = DftiCommitDescriptor (myFFT)
+    myStatus = DftiComputeForward (myFFT, x(:, th))
+    myStatus = DftiFreeDescriptor (myFFT)
+  end do
+!$OMP END PARALLEL DO
+end
+</pre></div>
+<p>Specify the number of OpenMP threads for 
+      <a href="#APPC-EXC-21">Example 
+        <span>“Using Parallel Mode with Multiple Descriptors Initialized in One Thread”</span></a> like this: 
+    </p>
+<p>set 
+      <samp class="codeph">MKL_NUM_THREADS</samp>= 1 for 
+      Intel&reg; oneAPI Math Kernel Library to work in the single-threaded mode (obligatory);
+    </p>
+<p>set 
+      <samp class="codeph">OMP_NUM_THREADS</samp> = 4 for the customer program to work in the multi-threaded mode. 
+    </p>
+<div class="example" id="APPC-EXC-21"><h2 class="sectiontitle">Using Parallel Mode with Multiple Descriptors Initialized in One Thread</h2><pre>program fft2d_array_descr_main
+  use mkl_dfti
+
+  integer nth, len(2)
+! 4 OMP threads, each does 2D FFT 50x100 points
+  parameter (nth = 4, len = (/50, 100/))
+  complex x(len(2)*len(1), nth)
+
+  type thread_data
+    type(dfti_descriptor), pointer :: FFT
+  end type thread_data
+  type(thread_data) :: workload(nth)
+
+  integer th, status, myStatus
+
+  do th = 1, nth
+    status = DftiCreateDescriptor (workload(th)%FFT, DFTI_SINGLE, DFTI_COMPLEX, 2, len)
+    status = DftiCommitDescriptor (workload(th)%FFT)
+  end do
+! assume x is initialized and do 2D FFTs
+!$OMP PARALLEL DO SHARED(len, x, workload) PRIVATE(myStatus)
+  do th = 1, nth
+    myStatus = DftiComputeForward (workload(th)%FFT, x(:, th))
+  end do
+!$OMP END PARALLEL DO
+  do th = 1, nth
+    status = DftiFreeDescriptor (workload(th)%FFT)
+  end do
+end
+</pre></div>
+<div class="example" id="APPC-EXC-22"><h2 class="sectiontitle">Using Parallel Mode with a Common Descriptor</h2><p>The following 
+        <a href="#APPC-EXC-22">Example 
+          <span>“Using Parallel Mode with a Common Descriptor”</span></a> illustrates a parallel customer program with a common descriptor used in several threads. 
+      </p>
+<pre> program fft2d_shared_descr_main
+  use mkl_dfti
+
+  integer nth, len(2)
+! 4 OMP threads, each does 2D FFT 50x100 points
+  parameter (nth = 4, len = (/50, 100/))
+  complex x(len(2)*len(1), nth)
+  type(dfti_descriptor), pointer :: FFT
+
+  integer th, status, myStatus
+
+  status = DftiCreateDescriptor (FFT, DFTI_SINGLE, DFTI_COMPLEX, 2, len)
+  status = DftiCommitDescriptor (FFT)
+! assume x is initialized and do 2D FFTs
+!$OMP PARALLEL DO SHARED(len, x, FFT) PRIVATE(myStatus)
+  do th = 1, nth
+    myStatus = DftiComputeForward (FFT, x(:, th))
+  end do
+!$OMP END PARALLEL DO
+  status = DftiFreeDescriptor (FFT)
+end
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A.html">FFT Code Examples</a></div>
+</div>
+<div/>
+</body>
+</html>

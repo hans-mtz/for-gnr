@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="blacs_get"/>
+<meta name="abstract" content="Gets values that BLACS use for internal defaults."/>
+<meta name="description" content="Gets values that BLACS use for internal defaults."/>
+<meta name="DC.subject" content="BLACS, blacs_get"/>
+<meta name="keywords" content="BLACS, blacs_get"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html#GUID-7336B11C-2B31-466B-8173-0F84835CC0BD"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D826B610-9541-4B2B-B78E-02E0ABBD933F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>blacs_get</title>
+
+</head>
+<body id="GUID-D826B610-9541-4B2B-B78E-02E0ABBD933F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">blacs_get</span></h1>
+<!--Gets values that BLACS use for internal defaults. --><div><p class="shortdesc">Gets values that BLACS use for internal defaults. </p>
+<div class="section" id="GUID-05CB7D8C-DA47-4680-977C-B3FED4E3114C"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call blacs_get</span><span class="sep">( </span><span class="var">icontxt</span><span class="sep">, </span><span class="var">what</span><span class="sep">, </span><span class="var">val</span><span class="sep"> )</span></p></div></div>
+<div class="section" id="GUID-FA424970-9E34-4BF7-B3EE-533F04D2662F"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">icontxt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.  On values of  <span class="parmname">what</span> that are tied to a particular context, this parameter is the integer handle indicating the context. Otherwise, ignored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">what</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>. Indicates what BLACS internal(s) should be returned in <var>val</var>. Present options are:</p>
+<ul id="GUID-F0490A7B-51A5-413F-B30D-1FE8481B4C56"><li><span class="parmname">what</span> = 0 : Handle indicating default system context.</li>
+<li><span class="parmname">what</span> = 1 : The BLACS message ID range.</li>
+<li><span class="parmname">what</span> = 2 : The BLACS debug level the library was compiled with.</li>
+<li><span class="parmname">what</span> = 10 : Handle indicating the system context used to define the BLACS context whose handle is <span class="parmname">icontxt</span>.</li>
+<li><span class="parmname">what</span> = 11 : Number of rings multiring broadcast topology is presently using.</li>
+<li><span class="parmname">what</span> = 12 : Number of branches general tree broadcast topology is presently using.</li>
+<li><span class="parmname">what</span> =  13 : Number of rings multiring combine topology is presently using.</li>
+<li><span class="parmname">what</span> =  14 : Number of branches general tree combine topology is presently using.</li>
+<li><span class="parmname">what</span> = 15 : Whether topologies are forced to be repeatable or not. A non-zero return value indicates that topologies are being forced to be repeatable. See <a href="GUID-896F8C19-5C04-4519-832D-FBC8100676CD.html">Repeatability and Coherence</a> for more information about repeatability.</li>
+<li><span class="parmname">what</span> = 16 : Whether topologies are forced to be heterogenous coherent or not. A non-zero return value indicates that topologies are being forced to be heterogenous coherent. See <a href="GUID-896F8C19-5C04-4519-832D-FBC8100676CD.html">Repeatability and Coherence</a> for more information about coherence.</li>
+</ul>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-F14F51C8-5FF1-4257-83AE-762DCD5AA5C0"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">val</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.  The value of the BLACS internal. </p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-D3D6E752-DC8E-42E6-857A-3C30BD3121DA"><h2 class="sectiontitle">Description</h2><p>This routine gets the values that the BLACS are using for internal defaults. Some values are tied to a BLACS context, and some are more general. The most common use is in retrieving a default system context for input into <a class="allformats" href="GUID-F74017DD-C068-4C53-B5CD-63EEE1970FD8.html#GUID-F74017DD-C068-4C53-B5CD-63EEE1970FD8"><span class="option">blacs_gridinit</span></a> or <a class="allformats" href="GUID-C6316B45-360E-4AA7-B0C3-F83B16E50F3D.html#GUID-C6316B45-360E-4AA7-B0C3-F83B16E50F3D"><span class="option">blacs_gridmap</span></a>. </p>
+<p>Some systems, such as MPI*, supply their own version of context. For those users who mix system code with BLACS code, a BLACS context should be formed  in reference to a system context. Thus, the grid creation routines take a system context as input. If you wish to have strictly portable code, you may use <span class="option">blacs_get</span> to retrieve a default system context that  will include all available processes. This value is not tied to a BLACS context, so the parameter <span class="parmname">icontxt</span> is unused.</p>
+<p><span class="option">blacs_get</span> returns information on three quantities that are tied to an individual BLACS context, which is passed in as <span class="parmname">icontxt</span>. The information that may be retrieved is: </p>
+<ul id="GUID-09EDDFE5-5A71-4753-A5C0-9CD02F333068"><li><p>The handle of the system context upon which this BLACS context was defined</p>
+</li>
+<li><p>The number of rings for <samp class="codeph">TOP = 'M'</samp> (multiring broadcast/combine)</p>
+</li>
+<li><p>The number of branches for <samp class="codeph">TOP = 'T'</samp> (general tree broadcast/general tree gather).</p>
+</li>
+<li><p>Whether topologies are being forced to be repeatable or heterogenous coherent.</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A7D94DCA-5A69-4EA9-9332-427F0615A196.html">Initialization Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html#GUID-7336B11C-2B31-466B-8173-0F84835CC0BD">Examples of BLACS Routines Usage</a></div></div></div>
+</body>
+</html>

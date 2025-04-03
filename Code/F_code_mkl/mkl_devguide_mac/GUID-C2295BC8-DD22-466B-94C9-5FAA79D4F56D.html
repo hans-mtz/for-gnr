@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Avoiding Conflicts in the Execution Environment"/>
+<meta name="DC.subject" content="parallel performance"/>
+<meta name="keywords" content="parallel performance"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A09C5398-D263-42F8-95E2-772C3C1FE79C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0073DDBD-3239-44B2-AD92-87A533733E11.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-01E66248-FBD1-49E9-8EFF-40AE61A81C57.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C2295BC8-DD22-466B-94C9-5FAA79D4F56D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Avoiding Conflicts in the Execution Environment</title>
+
+</head>
+<body id="GUID-C2295BC8-DD22-466B-94C9-5FAA79D4F56D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Avoiding Conflicts in the Execution Environment</h1>
+<div id="GUID-DF1D2533-873D-4E94-8C1A-BD7C5331B80C"><p id="GUID-6069F6D0-8135-4EE1-8F95-080E7D80DAA4">Certain situations can cause conflicts in the execution environment that make the use of threads in Intel&reg; oneAPI Math Kernel Library problematic. This section briefly discusses why these problems exist and how to avoid them.</p>
+<p>If your program is parallelized by other means than Intel&reg; OpenMP* run-time library (RTL) and Intel TBB RTL, several calls to Intel&reg; oneAPI Math Kernel Library may operate in a multithreaded mode at the same time and result in slow performance due to overuse of machine resources.</p>
+<p>The following table considers several cases where the conflicts may arise and provides recommendations depending on your threading model: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-51FE8B86-A4CF-4263-9868-48E8CE788F37" width="100%" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="30%" id="d27780e41"><p id="GUID-E6A3C220-D09E-4751-BF28-D93A15DAAAA8">Threading model 
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="70%" id="d27780e44"><p id="GUID-0EB93DF8-C4D9-42B1-84ED-534315462EC3">Discussion 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="30%" headers="d27780e41 "><p id="GUID-C8C19D63-3807-4382-9F6D-C00DAF24C22D">You parallelize the program 
+                <span>using the technology other than Intel OpenMP and Intel TBB 
+                </span>(for example: 
+                <span id="GUID-4203D2A5-BB38-4E12-B543-213E0C570AFB"><samp class="codeph" id="GUID-555843A2-83A7-4EDF-B1DE-BF396E8C2FF0">pthreads</samp></span> on 
+                <span id="GUID-A8114A80-6C1B-4556-BB61-942D5E01D5C0">macOS*</span>). 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="70%" headers="d27780e44 "><p id="GUID-F08B103F-75A1-455C-A5C2-1F7EC0F929D9">If more than one thread calls Intel&reg; oneAPI Math Kernel Library, and the function being called is threaded, it may be important that you turn off Intel&reg; oneAPI Math Kernel Library threading. Set the number of threads to one by any of the available means (see<a href="GUID-DEEF0363-2B34-4BAB-87FA-A75DBE842040.html">Techniques to Set the Number of Threads</a>). 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d27780e41 "><p id="GUID-A2831981-B130-4590-8C3D-17B94D51B890">You parallelize the program using OpenMP directives and/or pragmas and compile the program using a non-Intel compiler. 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="70%" headers="d27780e44 "><p id="GUID-4DDB9BB9-8BC3-4080-85C6-9311FE6CA4A9"><span>To avoid simultaneous activities of multiple threading RTLs, link the program against the Intel&reg; oneAPI Math Kernel Library threading library that matches the compiler you use</span> (see 
+                <span id="GUID-45175271-2820-44FF-B2F9-5B527958D08D"><a href="GUID-C676FE09-339D-4147-BB79-4038A27A6851.html">Linking Examples</a></span>on how to do this). If this is not possible, use Intel&reg; oneAPI Math Kernel Library in the sequential mode. To do this, you should link with the appropriate threading library:<span class="filepath" id="GUID-5F2C6789-D090-4ED1-B507-5319E9FF24E0">lib</span><span class="filepath" id="GUID-CC6B2E91-58D0-4918-99D0-533BCA0462EC">mkl_sequential.</span><span class="filepath" id="GUID-35DB5B15-0664-43F8-840E-952294DB9021">a</span> or 
+                <span class="filepath" id="GUID-677B4B94-301E-4D78-A51B-0C43ADC23805">lib</span><span class="filepath" id="GUID-CF2E658E-9ACE-47A8-8FEE-15593A6A537F">mkl_sequential.</span><span class="filepath" id="GUID-C16D0F5A-48A5-40EB-8873-E8780344459D">dylib</span> (see 
+                <a href="GUID-E1D65283-7158-47FD-8EF8-F457261BC3AC.html"> Appendix C: Directory Structure in Detail</a>). 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d27780e41 "><p>You thread the program using Intel TBB threading technology and compile the program using a non-Intel compiler. 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="70%" headers="d27780e44 "><p>To avoid simultaneous activities of multiple threading RTLs, link the program against the Intel&reg; oneAPI Math Kernel Library Intel TBB threading library and Intel TBB RTL if it matches the compiler you use. If this is not possible, use Intel&reg; oneAPI Math Kernel Library in the sequential mode. To do this, link with the appropriate threading library:<span class="filepath">lib</span><span class="filepath">mkl_sequential</span>.<span class="filepath">a</span> or 
+                <span class="filepath">lib</span><span class="filepath">mkl_sequential</span><span class="filepath">.dylib</span> (see 
+                <a href="GUID-E1D65283-7158-47FD-8EF8-F457261BC3AC.html"> Appendix C: Directory Structure in Detail</a>). 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30%" headers="d27780e41 "><p id="GUID-E8B8E064-5C2C-4A0A-86FF-EAD45A69CA90"><span>You run multiple programs calling Intel&reg; oneAPI Math Kernel Library on a multiprocessor system, for example, a program parallelized using a message-passing interface (MPI).</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="70%" headers="d27780e44 "><p id="GUID-0BB062C8-8419-4831-B099-CFD29ABEE6A7"><span>The threading RTLs from different programs you run may place a large number of threads on the same processor on the system and therefore overuse the machine resources. 
+                </span>In this case, one of the solutions is to set the number of threads to one by any of the available means (see 
+                <a href="GUID-DEEF0363-2B34-4BAB-87FA-A75DBE842040.html">Techniques to Set the Number of Threads</a>). 
+                 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Using the 
+  <span class="option">mkl_set_num_threads</span> and 
+  <span class="option">mkl_domain_set_num_threads</span>functions to control parallelism of Intel&reg; oneAPI Math Kernel Library from parallel user threads may result in a race condition that impacts the performance of the application because these functions operate on internal control variables that are global, that is, apply to all threads. For example, if parallel user threads call these functions to set different numbers of threads for the same function domain, the number of threads actually set is unpredictable. To avoid this kind of data races, use the<span class="option">mkl_set_num_threads_local</span> function (see the "Support Functions" 
+  <span>section</span> in the 
+  <em>Intel&reg; oneAPI Math Kernel Library Developer Reference</em> for the function description). 
+  </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d25e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d27780e202"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d27780e202 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A09C5398-D263-42F8-95E2-772C3C1FE79C.html">Improving Performance with Threading</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-0073DDBD-3239-44B2-AD92-87A533733E11.html">Using Additional Threading Control 
+        </a> </div>
+<div><a href="GUID-01E66248-FBD1-49E9-8EFF-40AE61A81C57.html">Linking with Compiler Support RTLs 
+        </a> </div></div></div>
+</body>
+</html>

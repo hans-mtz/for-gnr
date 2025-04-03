@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Random Number Generators"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D765BC91-569F-45FC-8E29-2ACCC0415235.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFB5DEF8-A870-4508-B796-55D2CAE9689B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3D7D2650-A414-4C95-AF33-BE291BAB2AC3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9E874ACA-44BF-4E38-9F85-C2A4B2354D45.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-50EFE620-4696-4249-86E9-93A6C94A199C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Random Number Generators</title>
+
+</head>
+<body id="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Random Number Generators</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library VS provides a set of routines implementing commonly used pseudorandom, quasi-random, or non-deterministic random number generators with continuous and discrete distribution. To improve performance, all these routines were developed using the calls to the highly optimized<dfn class="term">Basic Random Number
+        Generators</dfn>
+      (BRNGs) and vector mathematical functions (VM, see 
+      <a href="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html#GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954">"Vector Mathematical Functions"</a>). 
+    </p>
+<p>VS provides interfaces both for Fortran and C
+      languages. 
+      <span>For users of the Fortran 90 or
+        Fortran 95 language the 
+        <span class="filepath">mkl_vsl.f90</span>
+        header file is provided. The 
+        <span class="filepath">mkl_vsl.fi</span>header file available in the previous versions of Intel&reg; oneAPI Math Kernel Library is retained for backward compatibility.</span>All header files are found in the following directory: 
+      <pre>${MKL}/include</pre></p>
+<p>The 
+      <span class="filepath">mkl_vsl.f90</span> header
+      is intended for use with the Fortran 
+      <samp class="codeph">include</samp> clause and is
+      compatible with both standard forms of F90/F95 sources - the free and
+      72-columns fixed forms. If you need to use the VS interface with 80- or
+      132-columns fixed form sources, you may add a new file to your project. That
+      file is formatted as a 72-columns fixed-form source and consists of a single 
+      <samp class="codeph">include</samp> clause as
+      follows: 
+    </p>
+<p><pre>include 'mkl_vsl.f90'</pre></p>
+<p>This 
+      <samp class="codeph">include</samp> clause causes
+      the compiler to generate the module files 
+      <span class="filepath">mkl_vsl.mod</span> and 
+      <span class="filepath">mkl_vsl_type.mod</span>,
+      which are used to process the Fortran use clauses referencing to the VS
+      interface: 
+    </p>
+<p><pre>use mkl_vsl_type</pre><pre>use mkl_vsl</pre></p>
+<p>Because of this
+      specific feature, you do not need to include the 
+      <span class="filepath">mkl_vsl.f90</span> header
+      into each source of your project. You only need to include the header into some
+      of the sources. In any case, make sure that the sources that depend on the VS
+      interface are compiled after those that include the header so that the module
+      files 
+      <span class="filepath">mkl_vsl.mod</span> and 
+      <span class="filepath">mkl_vsl_type.mod</span>
+      are generated prior to using them. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For the Fortran 
+        interface, VS provides both a subroutine-style interface and a
+        function-style interface. The default interface in this case is a
+        function-style interface. The function-style interface, unlike the
+        subroutine-style interface, allows the user to get error status of each
+        routine. The subroutine-style interface is provided for backward compatibility
+        only. To use the subroutine-style interface, manually include 
+        <span class="filepath">mkl_vsl_subroutine.fi</span> file instead
+        of 
+        <span class="filepath">mkl_vsl.f90</span> by
+        changing the line 
+        <samp class="tt">include
+          'mkl_vsl.f90'</samp> in 
+        <span class="filepath">include\mkl.fi</span>
+        with the line 
+        <samp class="tt">include
+          'mkl_vsl_subroutine.fi'</samp>. 
+      </p>
+</div>
+<p>All VS routines can be classified into three major
+      categories: 
+    </p>
+<ul class="bullet" id="GUID-E39F9A80-8E4E-486C-890E-A913E81D5EFF"><li><p>Transformation routines for different types of
+          statistical distributions, for example, uniform, normal (Gaussian), binomial,
+          etc. These routines indirectly call basic random number generators, which are
+          pseudorandom, quasi-random, or non-deterministic random number generators.
+          Detailed description of the generators can be found in 
+          <a href="GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9.html#GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9">Distribution Generators</a>. 
+        </p>
+</li>
+<li><p>Service routines to handle random number streams:
+          create, initialize, delete, copy, save to a binary file, load from a binary
+          file, get the index of a basic generator. The description of these routines can
+          be found in 
+          <a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html#GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB">Service Routines</a>. 
+        </p>
+</li>
+<li><p>Registration routines for basic pseudorandom
+          generators and routines that obtain properties of the registered generators
+          (see 
+          <a href="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html#GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62">Advanced Service Routines</a>). 
+        </p>
+</li>
+</ul>
+<p>The last two categories are referred to as service
+      routines. 
+    </p>
+<p id="P_CF_128498338457233">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d720954e145"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d720954e145 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D765BC91-569F-45FC-8E29-2ACCC0415235.html">Statistical Functions</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-FFB5DEF8-A870-4508-B796-55D2CAE9689B.html">Random Number Generators Conventions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-3D7D2650-A414-4C95-AF33-BE291BAB2AC3.html">Basic Generators</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-9E874ACA-44BF-4E38-9F85-C2A4B2354D45.html">Error Reporting</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-50EFE620-4696-4249-86E9-93A6C94A199C.html">VS RNG Usage ModelIntel&reg; oneMKL RNG Usage Model</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-8714DEAF-550D-4FDC-B8D0-05945CD856CB.html">Service Routines</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-38330C50-A45E-403A-9ADB-7BA5D102C3E9.html">Distribution Generators</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html">Advanced Service Routines</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

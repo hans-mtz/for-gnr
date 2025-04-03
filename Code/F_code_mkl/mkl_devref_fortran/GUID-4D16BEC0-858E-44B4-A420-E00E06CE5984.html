@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hesv_aa"/>
+<meta name="abstract" content="Computes the solution to system of linear equations for HE matrices."/>
+<meta name="description" content="Computes the solution to system of linear equations for HE matrices."/>
+<meta name="DC.subject" content="?hesv_aa, chesv_aa, zhesv_aa, LAPACK routines"/>
+<meta name="keywords" content="?hesv_aa, chesv_aa, zhesv_aa, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4D16BEC0-858E-44B4-A420-E00E06CE5984"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hesv_aa</title>
+
+</head>
+<body id="GUID-4D16BEC0-858E-44B4-A420-E00E06CE5984">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hesv_aa</span></h1>
+<!--Computes the solution to system of linear equations for HE matrices. --><div><p class="shortdesc">Computes the solution to system of linear equations for HE matrices. </p>
+<div id="SYNTAX_E1AA5DE0B5984EFCAEB78C60BA6AE075"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chesv_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhesv_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_0F1AF24E7F59414D9F8CA6FF96DF3B42"><h2 class="sectiontitle">Description</h2><p><span class="option">?hesv_aa</span> computes the solution to a complex system of linear equations <var>A</var> * <var>X</var> = <var>B</var>, where <var>A</var> is an <span class="parmname">n</span>-by-<span class="parmname">n</span> Hermitian matrix and <var>X</var> and <var>B</var> are <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> matrices. Aasen's algorithm is used to factor <var>A</var> as </p>
+<p><var>A</var> = <var>U</var> * <var>T</var> * <var>U</var><sup>H</sup> if <span class="parmname">uplo</span> = 'U', or </p>
+<p><var>A</var> = <var>L</var> * <var>T</var> * <var>L</var><sup>H</sup> if <span class="parmname">uplo</span> = 'L', </p>
+<p>where <var>U</var> (or <var>L</var>) is a product of permutation and unit upper (lower) triangular matrices, and <var>T</var> is Hermitian and tridiagonal. The factored form of <var>A</var> is then used to solve the system of equations <var>A</var> * <var>X</var> = <var>B</var>.</p>
+</div>
+<div class="section" id="ARGUMENTS_930E875D203E40D49BF858A437C170AA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-35567D82-8607-477B-A09E-FC4008FC3E80"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>If <span class="parmname">uplo</span> = 'U': The upper triangle of <var>A</var> is stored.</p>
+<p>If <span class="parmname">uplo</span> = 'L': the lower triangle of <var>A</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of linear equations or the order of the matrix <var>A</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of right hand sides or the number of columns of the matrix <var>B</var>. <span class="parmname">nrhs</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">chesv_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zhesv_aa</span></p>
+<p>Array of size <span>(<span class="parmname">lda</span>, <span class="parmname">n</span>)</span>. On entry, the Hermitian matrix <var>A</var>. </p>
+<p>If <span class="parmname">uplo</span> = 'U', the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of <span class="parmname">a</span> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <span class="parmname">a</span> is not referenced. </p>
+<p>If <span class="parmname">uplo</span> = 'L', the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of <span class="parmname">a</span> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <span class="parmname">a</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">chesv_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zhesv_aa</span></p>
+<p>Array of size <span>(<span class="parmname">ldb</span>, <span class="parmname">nrhs</span>)</span>. On entry, the <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> right hand side matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">b</span>. <span class="parmname">ldb</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The length of <span class="parmname">work</span>. <span class="parmname">lwork</span><span class="eqsymbol">≥</span> max(1, 2*<span class="parmname">n</span>, 3*<span class="parmname">n</span>-2), and for best performance <span class="parmname">lwork</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>*<var>nb</var>), where <var>nb</var> is the optimal blocksize for <span class="option">?hetrf</span>. </p>
+<p>If <span class="parmname">lwork</span> &lt; <span class="parmname">n</span>, TRS is done with Level BLAS 2. If <span class="parmname">lwork</span><span class="eqsymbol">≥</span><span class="parmname">n</span>, TRS is done with Level BLAS 3.</p>
+<p>If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the routine only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by <span class="option">xerbla</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_8A380A2E29A440F6A0CFDC2E3D1972C0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C86D7A3E-A458-44A1-9967-6774B8EAFF82"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, if <span class="parmname">info</span> = 0, the tridiagonal matrix <var>T</var> and the multipliers used to obtain the factor <var>U</var> or <var>L</var> from the factorization <var>A</var> = <var>U</var>*<var>T</var>*<var>U</var><sup>H</sup> or <var>A</var> = <var>L</var>*<var>T</var>*<var>L</var><sup>H</sup> as computed by <span class="option">?hetrf_aa</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER </span>. </span>Array of size (<span class="parmname">n</span>) On exit, it contains the details of the interchanges: row and column <var>k</var> of <var>A</var> were interchanged with the row and column <span class="parmname">ipiv</span><samp class="codeph">(<var>k</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, if <span class="parmname">info</span> = 0, the <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> solution matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">chesv_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zhesv_aa</span></p>
+<p>Array of size (max(1, <span class="parmname">lwork</span>)). On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <span class="parmname">info</span> = 0: successful exit.</p>
+<p>If <span class="parmname">info</span> &lt; 0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+<p>If <span class="parmname">info</span> &gt; 0: if <span class="parmname">info</span> = <var>i</var>, <var>D</var><sub><var>i</var>, <var>i</var></sub> is exactly zero. The factorization has been completed, but the block diagonal matrix <var>D</var> is exactly singular, so the solution could not be computed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

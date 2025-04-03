@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Matrix Arguments"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FF74FCC9-69BE-400B-B483-ECF09454CD22.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7B11079E-CB74-4A5F-AEEA-D6C9B7181C42"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Matrix Arguments</title>
+
+</head>
+<body id="GUID-7B11079E-CB74-4A5F-AEEA-D6C9B7181C42">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Matrix Arguments</h1>
+<div><p>Matrix arguments of the Intel&reg; oneAPI Math Kernel Library routines can be stored in<span>either one- or two-dimensional</span> arrays, using the following storage schemes: 
+    </p>
+<ul id="GUID-C8F5BA6E-6EDA-436D-9725-D1EFFD8B01EB"><li><p><a href="#FULL">conventional full storage</a><span>(in a two-dimensional array)</span></p>
+</li>
+<li><p><a href="#PACKED">packed storage</a> for Hermitian, symmetric, or triangular matrices 
+          <span>(in a one-dimensional array) 
+          </span></p>
+</li>
+<li><p><a href="#BAND">band storage</a> for band matrices 
+          <span>(in a two-dimensional array) 
+          </span></p>
+</li>
+<li><p><a href="#RFP">rectangular full packed storage</a> for symmetric, Hermitian, or triangular matrices as compact as the Packed storage while maintaining efficiency by using Level 3 BLAS/LAPACK kernels. 
+        </p>
+</li>
+</ul>
+<p id="FULL"><strong>Full storage</strong> is the simplest scheme. 
+      <span>A matrix 
+        <var>A</var> is stored in a two-dimensional array 
+        <var>a</var>, with the matrix element 
+        <var>a</var><sub>ij</sub> stored in the array element 
+        <samp class="codeph"><var>a</var>(<var>i</var>,<var>j</var>)</samp></span>. 
+      , where 
+      <samp class="codeph"><var>lda</var></samp> is the leading dimension of array 
+      <samp class="codeph"><var>a</var></samp>. 
+    </p>
+<p>If a matrix is triangular (upper or lower, as specified by the argument 
+      <var>uplo</var>), only the elements of the relevant triangle are stored; the remaining elements of the array need not be set. 
+    </p>
+<p>Routines that handle symmetric or Hermitian matrices allow for either the upper or lower triangle of the matrix to be stored in the corresponding elements of the array: 
+    </p>
+<dl id="GUID-915F4682-8B34-4FE9-94B1-11B607B39033"><dt class="dlterm">if 
+          <samp class="codeph"><var>uplo</var> ='U'</samp>, 
+        </dt>
+
+<dd><p><var>a</var><sub>ij</sub> is stored as described for 
+            <samp class="codeph"><var>i</var> <span class="eqsymbol">≤</span> <var>j</var></samp>, other elements of 
+            <var>a</var> need not be set. 
+          </p>
+</dd>
+<dt class="dlterm">if 
+          <samp class="codeph"><var>uplo</var> ='L',</samp></dt>
+
+<dd><p><var>a</var><sub>ij</sub> is stored as described for 
+            <samp class="codeph"><var>j</var> <span class="eqsymbol">≤</span> <var>i</var></samp>, other elements of 
+            <var>a</var> need not be set. 
+          </p>
+</dd>
+</dl>
+<p id="PACKED"><strong>Packed storage</strong> allows you to store symmetric, Hermitian, or triangular matrices more compactly: the relevant triangle (again, as specified by the argument 
+      <var>uplo</var>) is packed by columns in a one-dimensional array 
+      <var>ap</var>: 
+    </p>
+<p>if 
+      <var>uplo</var> ='U', 
+      <var>a</var><sub>ij</sub> is stored in 
+      <samp class="codeph"><var>ap</var>(<var>i</var> + 
+        <var>j</var>(<var>j</var> - 1)/2)</samp> for 
+      <samp class="codeph"><var>i</var> <span class="eqsymbol">≤</span> <var>j</var></samp></p>
+<p>if 
+      <samp class="codeph"><var>uplo</var> ='L'</samp>, 
+      <var>a</var><sub>ij</sub> is stored in 
+      <samp class="codeph"><var>ap</var>(<var>i</var> + (2*<var>n</var> - 
+        <var>j</var>)*(<var>j</var> - 1)/2)</samp> for 
+      <samp class="codeph"><var>j</var> <span class="eqsymbol">≤</span> <var>i</var></samp>. 
+    </p>
+<p>In descriptions of LAPACK routines, arrays with packed matrices have names ending in 
+      <var>p</var>. 
+    </p>
+<p id="BAND"><strong>Band storage</strong> is as follows: an 
+      <var>m</var>-by-<var>n</var> band matrix with 
+      <var>kl</var> non-zero sub-diagonals and 
+      <var>ku</var> non-zero super-diagonals is stored compactly in 
+      <span>a two-dimensional array 
+        <var>ab</var> with 
+        <var>kl</var>+<var>ku</var> + 1 rows and 
+        <var>n</var> columns. Columns of the matrix are stored in the corresponding columns of the array, and diagonals of the matrix are stored in rows of the array 
+      </span>. Thus, 
+    </p>
+<p><samp class="codeph"><var>a</var><sub>ij</sub></samp> is stored in 
+      <var>ab</var>(<var>ku</var>+1+<var>i</var>-<var>j</var>,<var>j</var>) for max(1,<var>j</var>-<var>ku</var>) <span class="eqsymbol">≤</span> <var>i</var> <span class="eqsymbol">≤</span> min(<var>n</var>,<var>j</var>+<var>kl</var>). 
+    </p>
+<p>Use the band storage scheme only when 
+      <var>kl</var> and 
+      <var>ku</var> are much less than the matrix size 
+      <var>n</var>. Although the routines work correctly for all values of 
+      <var>kl</var> and 
+      <var>ku</var>, using the band storage is inefficient if your matrices are not really banded. 
+    </p>
+<p>The band storage scheme is illustrated by the following example, when 
+      <pre><var>m</var> = <var>n</var> = 6, <var>kl</var> = 2, <var>ku</var> = 1</pre></p>
+<p>Array elements marked * are not used by the routines: 
+    </p>
+<br/><div class="imagecenter"><img src="GUID-4D7AA513-1D8A-4E80-838D-8970587D0921-low.gif" alt="Equation" align="center" class=".eq"/></div><br/><p>When a general band matrix is supplied for 
+      <dfn class="term">LU factorization</dfn>, space must be allowed to store 
+      <var>kl</var> additional super-diagonals generated by fill-in as a result of row interchanges. This means that the matrix is stored according to the above scheme, but with 
+      <samp class="codeph"><var>kl</var> + 
+        <var>ku</var></samp> super-diagonals. Thus, 
+    </p>
+<p><samp class="codeph"><var>a</var><sub>ij</sub></samp> is stored in 
+      <samp class="codeph"><var>ab</var>(<var>kl</var>+<var>ku</var>+1+<var>i</var>-<var>j</var>,<var>j</var>)</samp> for 
+      <samp class="codeph">max(1,<var>j</var>-<var>ku</var>) <span class="eqsymbol">≤</span> <var>i</var> <span class="eqsymbol">≤</span> min(<var>n</var>,<var>j</var>+<var>kl</var>)</samp>. 
+    </p>
+<p>The band storage scheme for LU factorization is illustrated by the following example, when<samp class="codeph"><var>m</var> = 
+        <var>n</var> = 6, 
+        <var>kl</var> = 2, 
+        <var>ku</var> = 1:</samp></p>
+<br/><div class="imagecenter"><img src="GUID-DD968432-1C01-45DF-B1A4-9E4C9012FA48-low.gif" alt="Equation" align="center"/></div><br/><p>Array elements marked * are not used by the routines; elements marked + need not be set on entry, but are required by the LU factorization routines to store the results. The input array will be overwritten on exit by the details of the LU factorization as follows: 
+    </p>
+<br/><div class="imagecenter"><img src="GUID-1000A74D-522C-48EA-86DB-2A492B318180-low.gif" alt="Equation" align="center" class=".eq"/></div><br/><p>where 
+      <samp class="codeph"><var>u</var><sub>ij</sub></samp> are the elements of the upper triangular matrix U, and 
+      <samp class="codeph"><var>m</var><sub>ij</sub></samp> are the multipliers used during factorization. 
+    </p>
+<p>Triangular band matrices are stored in the same format, with either 
+      <var>kl</var>= 0 if upper triangular, or 
+      <samp class="codeph"><var>ku</var> = 0</samp> if lower triangular. For symmetric or Hermitian band matrices with 
+      <var>k</var> sub-diagonals or super-diagonals, you need to store only the upper or lower triangle, as specified by the argument 
+      <var>uplo</var>: 
+    </p>
+<p>if 
+      <var>uplo</var> ='U', 
+      <samp class="codeph"><var>a</var><sub>ij</sub></samp> is stored in 
+      <var>ab</var>(<var>k</var>+1+<var>i</var>-<var>j</var>,<var>j</var>) for max(1,<var>j</var>-<var>k</var>) <span class="eqsymbol">≤</span> <var>i</var> <span class="eqsymbol">≤</span> <var>j</var></p>
+<p>if 
+      <var>uplo</var> ='L', 
+      <samp class="codeph"><var>a</var><sub>ij</sub></samp> is stored in 
+      <var>ab</var>(1+<var>i</var>-<var>j</var>,<var>j</var>) for 
+      <var>j</var> <span class="eqsymbol">≤</span> <var>i</var> <span class="eqsymbol">≤</span> min(<var>n</var>,<var>j</var>+<var>k</var>). 
+    </p>
+<p>In descriptions of LAPACK routines, arrays that hold matrices in band storage have names ending in 
+      <var>b</var>. 
+    </p>
+<p>In Fortran, 
+      column-major ordering of storage is assumed. This means that elements of the same column occupy successive storage locations. 
+    </p>
+<p>Three quantities are usually associated with a two-dimensional array argument: its 
+      leading dimension, which specifies the number of storage locations between elements in the same row, its 
+      number of rows, and its 
+      number of columns. For a matrix in full storage, the 
+      leading dimension of the array must be at least as large as the number of rows in the matrix. 
+    </p>
+<p>A character 
+      transposition parameter is often passed to indicate whether the matrix argument is to be used in normal or transposed form or, for a complex matrix, if the conjugate transpose of the matrix is to be used. 
+    </p>
+<p>The values of the transposition parameter for these three cases are the following: 
+    </p>
+<dl id="GUID-F3C99557-8A41-4362-B240-A81E7B7C8BE0"><dt class="dlterm"><span class="parmname">'N'</span> or 
+          <span class="parmname">'n'</span></dt>
+
+<dd><p>normal (no conjugation, no transposition) 
+          </p>
+</dd>
+<dt class="dlterm"><span class="parmname">'T'</span> or 
+          <span class="parmname">'t'</span></dt>
+
+<dd><p>transpose 
+          </p>
+</dd>
+<dt class="dlterm"><span class="parmname">'C'</span> or 
+          <span class="parmname">'c'</span></dt>
+
+<dd><p>conjugate transpose. 
+          </p>
+</dd>
+</dl>
+<div class="example" id="APPB-EXB-3"><h2 class="sectiontitle"><span>Example. 
+        </span>Two-Dimensional Complex Array</h2><p>Suppose 
+        <samp class="codeph"><var>A</var> (1:5, 1:4)</samp> is the complex two-dimensional array presented by matrix 
+      </p>
+<br/><div class="imagecenter"><img src="GUID-15D0EDED-16B9-45E0-A1E5-0C97CFE1AC45-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/><p>Let 
+        <var>transa</var> be the transposition parameter, 
+        <var>m</var> be the number of rows, 
+        <var>n</var> be the number of columns, and 
+        <var>lda</var> be the leading dimension. Then if 
+      </p>
+<p><samp class="codeph"><var>transa</var> = '<var>N</var>'</samp>, 
+        <samp class="codeph"><var>m</var> = 4</samp>, 
+        <samp class="codeph"><var>n</var> = 2</samp>, and 
+        <samp class="codeph"><var>lda</var> = 5</samp>, the matrix argument would be 
+      </p>
+<br/><div class="imagecenter"><img src="GUID-E7C9979D-94D2-40EE-843B-98006D1748DC-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/><p>If 
+        <samp class="codeph"><var>transa</var> = '<var>T</var>'</samp>, 
+        <samp class="codeph"><var>m</var> = 4</samp>, 
+        <samp class="codeph"><var>n</var> = 2</samp>, and 
+        <samp class="codeph"><var>lda</var> =5</samp>, the matrix argument would be 
+      </p>
+<br/><div class="imagecenter"><img src="GUID-460C954A-516A-446F-A929-C7D109B0FC4D-low.gif" alt="Equation" align="center" class=".eq"/></div><br/><p>If 
+        <samp class="codeph"><var>transa</var> = '<var>C</var>'</samp>, 
+        <samp class="codeph"><var>m</var> = 4</samp>, 
+        <samp class="codeph"><var>n</var> = 2</samp>, and 
+        <samp class="codeph"><var>lda</var> =5</samp>, the matrix argument would be 
+      </p>
+<br/><div class="imagecenter"><img src="GUID-117E4A27-7288-4FA8-8D72-059C294D7E29-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/><p>Note that care should be taken when using a leading dimension value which is different from the number of rows specified in the declaration of the two-dimensional array. For example, suppose the array 
+        <var>A</var> above is declared as 
+        <samp class="codeph">COMPLEX A (5,4)</samp>. 
+      </p>
+<p>Then if 
+        <samp class="codeph"><var>transa</var> = '<var>N</var>', 
+          <var>m</var> = 3, 
+          <var>n</var> = 4</samp>, and 
+        <samp class="codeph"><var>lda</var> = 4</samp>, the matrix argument will be 
+      </p>
+<br/><div class="imagecenter"><img src="GUID-FE48DB1A-4507-4588-823F-4E47D5BB74B8-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></div>
+<p id="RFP"><strong>Rectangular Full Packed storage</strong> allows you to store symmetric, Hermitian, or triangular matrices as compact as the Packed storage while maintaining efficiency by using Level 3 BLAS/LAPACK kernels. To store an 
+      <var>n</var>-by-<var>n</var> triangle (and suppose for simplicity that 
+      <var>n</var> is even), you partition the triangle into three parts: two 
+      <var>n</var>/2-by-<var>n</var>/2 triangles and an 
+      <var>n</var>/2-by-<var>n</var>/2 square, then pack this as an 
+      <var>n</var>-by-<var>n</var>/2 rectangle (or 
+      <var>n</var>/2-by-<var>n</var> rectangle), by transposing (or transpose-conjugating) one of the triangles and packing it next to the other triangle. Since the two triangles are stored in full storage, you can use existing efficient routines on them. 
+    </p>
+<p>There are eight cases of RFP storage representation: when 
+      <var>n</var> is even or odd, the packed matrix is transposed or not, the triangular matrix is lower or upper. See below for all the eight storage schemes illustrated: 
+    </p>
+<p><var>n</var> is odd, 
+      <var>A</var> is lower triangular 
+    </p>
+<p><br/><div class="imagecenter"><img src="GUID-161204A2-1030-4E9B-B4E9-96A07F5A21D7-low.gif" align="center"/></div><br/></p>
+<p><var>n</var> is even, 
+      <var>A</var> is lower triangular 
+    </p>
+<p><br/><div class="imagecenter"><img src="GUID-8ECE2163-064F-4F45-910E-02167E01A77B-low.gif" align="center"/></div><br/></p>
+<p><var>n</var> is odd, 
+      <var>A</var> is upper triangular 
+    </p>
+<p><br/><div class="imagecenter"><img src="GUID-84F18988-56AD-4402-B991-76E5E68DC59B-low.gif" align="center"/></div><br/></p>
+<p><var>n</var> is even, 
+      <var>A</var> is upper triangular 
+    </p>
+<p><br/><div class="imagecenter"><img src="GUID-C373892B-FEF7-409D-8C81-88BAB071942A-low.jpg" align="center"/></div><br/></p>
+<p>Intel&reg; oneAPI Math Kernel Library provides a number of routines such as<a href="GUID-B1F4B0A2-8BD1-4FF0-8059-3E71A30288B9.html#GUID-B1F4B0A2-8BD1-4FF0-8059-3E71A30288B9"><span class="option">?hfrk</span></a>, 
+      <a href="GUID-7D89EB9A-7DED-4E36-B6B0-9C3B31DDBF6D.html#GUID-7D89EB9A-7DED-4E36-B6B0-9C3B31DDBF6D"><span class="option">?sfrk</span></a> performing BLAS operations working directly on RFP matrices, as well as some conversion routines, for instance, 
+      <a href="GUID-737CEE9F-4F1E-4872-931D-62BC10CF8B96.html#GUID-737CEE9F-4F1E-4872-931D-62BC10CF8B96"><span class="option">?tpttf</span></a> goes from the standard packed format to RFP and 
+      <a href="GUID-0655BC29-1256-4DC0-B9A4-502E26CBC9A4.html#GUID-0655BC29-1256-4DC0-B9A4-502E26CBC9A4"><span class="option">?trttf</span></a> goes from the full format to RFP. 
+    </p>
+<p>Please refer to the Netlib site for more information. 
+    </p>
+<p>Note that in the descriptions of LAPACK routines, arrays with RFP matrices have names ending in 
+  <span class="option">fp</span>. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FF74FCC9-69BE-400B-B483-ECF09454CD22.html">Appendix B: Routine and Function Arguments</a></div>
+</div>
+<div/>
+</body>
+</html>

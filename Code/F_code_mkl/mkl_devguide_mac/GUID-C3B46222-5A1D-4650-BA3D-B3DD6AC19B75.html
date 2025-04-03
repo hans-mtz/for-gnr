@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Using oneMKL Verbose Mode"/>
+<meta name="DC.subject" content="verbose mode, of Intel&reg; MKL, function call information, enable printing, information, for function call , enable printing"/>
+<meta name="keywords" content="verbose mode, of Intel&reg; MKL, function call information, enable printing, information, for function call , enable printing"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-19AC7D6B-213C-41B9-A5F3-160E0E459454.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4DD15C97-ADEC-4DF0-B335-07418649D650.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-30D1544C-5104-4410-8A92-FF16DC831527.html"/>
+<meta name="DC.Relation" scheme="URI" content="https://software.intel.com/en-us/intel-software-technical-documentation"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C3B46222-5A1D-4650-BA3D-B3DD6AC19B75"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Using oneMKL Verbose Mode</title>
+
+</head>
+<body id="GUID-C3B46222-5A1D-4650-BA3D-B3DD6AC19B75">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Using 
+    oneMKL Verbose Mode</h1>
+<div id="GUID-D8F7B717-D1F5-49A7-BF30-755696A4A720"><p id="GUID-CAD82E90-C30A-4666-874A-2117FB339B7F">When building applications that callIntel&reg; oneAPI Math Kernel Library functions, it may be useful to determine: </p>
+<p><ul id="GUID-FBAB629E-6C55-461F-BD03-1D26B9A38813"><li id="LI_FEF37EE0916544988FBD072AB00D38F7">which computational functions are called, 
+      </li>
+<li id="LI_5315D3055B4E4DFDA468C831B5D71821">what parameters are passed to them, and 
+      </li>
+<li id="LI_35C54AC7D9CB4490BFE1102DCDA68847">how much time is spent to execute the functions. 
+      </li>
+</ul>
+</p>
+<p>You can get an application to print this information to a standard output device by enabling 
+      Intel&reg; oneAPI Math Kernel Library Verbose. Functions that can print this information are referred to as 
+      <strong>verbose-enabled functions</strong>. 
+    </p>
+<p>When Verbose mode is activein an 
+      Intel&reg; oneAPI Math Kernel Library domain, every call of a verbose-enabled function finishes with printing a human-readable line describing the call. However, if your application gets terminated for some reason during the function call, no information for that function will be printed. The first call to a verbose-enabled function also prints a version information line. 
+    </p>
+<p>To enable the 
+      Intel&reg; oneAPI Math Kernel Library Verbose mode for an application, do<strong> one of the following: 
+      </strong></p>
+<ul id="GUID-6B855267-C67E-4682-94BB-3933ED1A636E"><li id="LI_5ADF71EF39F8475A9E9C72B0E1155E56">set the environment variable 
+        <span class="keyword"/><var>MKL_VERBOSE</var><span class="keyword"/> to 1, or</li>
+<li id="LI_4D9F0E12388B490F80AA54A026AEDDC8">call the support function 
+  <span class="option">mkl_verbose</span>(1). 
+  </li>
+</ul>
+<p>To disable the 
+    Intel&reg; oneAPI Math Kernel Library Verbose mode,call the <span class="option">mkl_verbose</span>(0) function.Both enabling and disabling of the Verbose mode using the function call takes precedence over the environment setting. For a full description of the 
+  <span class="option">mkl_verbose</span> function, see either the 
+  <em>Intel&reg; oneAPI Math Kernel Library Developer Reference for C</em> or the<em>Intel&reg; oneAPI Math Kernel Library Developer Reference for Fortran.</em>Both references are available in the <a href="https://software.intel.com/en-us/mkl/documentation" target="_blank">Intel&reg; Software Documentation Library</a>. 
+  </p>
+<p>You can enable 
+    Intel&reg; oneAPI Math Kernel Library Verbose mode in these domains: 
+  <ul id="GUID-8CCF733C-4C74-439A-A34C-BFD982824228"><li>BLAS 
+    </li>
+<li>LAPACK 
+    </li>
+<li>ScaLAPACK (selected functionality) 
+    </li>
+<li>FFT 
+    </li>
+</ul>
+</p>
+<p>Intel&reg; oneAPI Math Kernel Library Verbose mode is not a thread-local but a global state. In other words, if an application changes the mode from multiple threads, the result is undefined. 
+  </p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p> The performance of an application may degrade with the Verbose mode enabled, especially when the number of calls to verbose-enabled functions is large, because every call to a verbose-enabled function requires an output operation.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-19AC7D6B-213C-41B9-A5F3-160E0E459454.html">Managing Output</a></div>
+</div>
+<div class="See Also">
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-4DD15C97-ADEC-4DF0-B335-07418649D650.html">Version Information Line</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-30D1544C-5104-4410-8A92-FF16DC831527.html">Call Description Line</a><br/>
+</li>
+</ul>
+<h2>See Also</h2>
+<div class="linklist">
+<div><a href="https://software.intel.com/en-us/intel-software-technical-documentation" target="_blank">Intel Software Documentation Library 
+        </a></div></div></div>
+</body>
+</html>

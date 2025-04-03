@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="FGMRES Interface Description"/>
+<meta name="DC.subject" content="RCI FGMRES Interface"/>
+<meta name="keywords" content="RCI FGMRES Interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-702D8969-5678-4B7D-9EF0-797335F79CA9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>FGMRES Interface Description</title>
+
+</head>
+<body id="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">FGMRES Interface Description</h1>
+<div><p>All types in this documentation refer to the common Fortran types: 
+      <span class="keyword">INTEGER</span> and 
+      <span class="keyword">DOUBLE PRECISION</span>. 
+    </p>
+<div class="level3" id="RCI_ID_ROUTINESOPTIONS"><h2 class="sectiontitle">Routine Options</h2><p>All of the RCI FGMRES routines have common parameters for passing various options to the routines (see 
+        <a href="#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>). The values for these parameters can be changed during computations. 
+      </p>
+</div>
+<div class="level3" id="RCI_ID_USERDATAARRAYS"><h2 class="sectiontitle">User Data Arrays</h2><p>Many of the RCI FGMRES routines take arrays of user data as input. For example, user arrays are passed to the routine 
+      <span class="option">dfgmres</span>to compute the solution of a system of linear algebraic equations. To minimize storage requirements and improve overall run-time efficiency, the Intel&reg; oneAPI Math Kernel Library RCI FGMRES routines do not make copies of the user input arrays.</p>
+</div>
+<div class="level3" id="RCI_ID_COMMONPARAMETERS"><h2 class="sectiontitle">FGMRES Common Parameters</h2><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The default and initial values listed below are assigned to the parameters by calling the 
+        <span class="option">dfgmres_init</span> routine. 
+        </p>
+</div>
+<dl id="GUID-EA0D5E39-0710-4BD7-AD66-2EA56301208C"><dt class="dlterm"><var class="varname">n</var></dt>
+
+<dd><p><span class="keyword">INTEGER</span>, this parameter sets the size of the problem in the 
+            <span class="option">dfgmres_init</span> routine. All the other routines use the 
+            <span class="parmname">ipar</span><samp class="codeph">(1)</samp> parameter instead. Note that the coefficient matrix 
+            <var>A</var> is a square matrix of size 
+            <span class="parmname">n</span>*<span class="parmname">n</span>. 
+            </p>
+</dd>
+<dt class="dlterm"><var class="varname">x</var></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array, this parameter contains the current approximation to the solution vector. Before the first call to the 
+            <span class="option">dfgmres</span> routine, it contains the initial approximation to the solution vector. 
+            </p>
+</dd>
+<dt class="dlterm"><var class="varname">b</var></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array, this parameter contains the right-hand side vector. Depending on user requests (see the parameter 
+              <span class="parmname">ipar</span><samp class="codeph">(13)</samp>), it might contain the approximate solution after execution. 
+            </p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>, this parameter gives information about the result of work of the RCI FGMRES routines. Negative values of the parameter indicate that the routine completed with errors or warnings. The 0 value indicates successful completion of the task. Positive values mean that you must perform specific actions: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 1 
+                </p></td>
+
+<td valign="top" class="noborder"><p>multiply the matrix by 
+                    <samp class="codeph"><span class="parmname">tmp</span><span class="parmnamen">(</span><span class="parmname">ipar</span><span class="parmnamen">(22))</span></samp>, put the result in 
+                    <samp class="codeph"><span class="parmname">tmp</span><span class="parmnamen">(</span><span class="parmname">ipar</span><span class="parmnamen">(23))</span></samp>, and return the control to the 
+                  <span class="option">dfgmres</span> routine; 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 2 
+                </p></td>
+
+<td valign="top" class="noborder"><p> perform the stopping tests. If they fail, return the control to the 
+                  <span class="option">dfgres</span> routine. Otherwise, the solution can be updated by a subsequent call to 
+                  <span class="option">dfgmres_get</span> routine; 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 3 
+                </p></td>
+
+<td valign="top" class="noborder"><p>apply the preconditioner to 
+                    <samp class="codeph"><span class="parmname">tmp</span><span class="parmnamen">(</span><span class="parmname">ipar</span><span class="parmnamen">(22))</span></samp>, put the result in 
+                    <samp class="codeph"><span class="parmname">tmp</span><span class="parmnamen">(</span><span class="parmname">ipar</span><span class="parmnamen">(23))</span></samp>, and return the control to the 
+                  <span class="option">dfgmres</span> routine. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RCI_request</span>= 4 
+                </p></td>
+
+<td valign="top" class="noborder"><p>check if the norm of the current orthogonal vector is zero, within the rounding or computational errors. Return the control to the 
+                  <span class="option">dfgmres</span> routine if it is not zero, otherwise complete the solution process by calling 
+                  <span class="option">dfgmres_get</span> routine. 
+                  </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">ipar</span><span class="parmnamen">(128)</span><samp class="codeph">[128]</samp></dt>
+
+<dd><p><span class="keyword">INTEGER</span> array, this parameter specifies the integer set of data for the RCI FGMRES computations: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(1)</samp></p></td>
+
+<td valign="top" class="noborder"><p>specifies the size of the problem. The 
+                  <span class="option">dfgmres_init</span> routine assigns 
+                  <span class="parmname">ipar</span><samp class="codeph">(1)</samp>=<var>n</var>. All the other routines uses this parameter instead of 
+                  <span class="parmname">n</span>. There is no default value for this parameter. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(2)</samp></p></td>
+
+<td valign="top" class="noborder"><p>specifies the type of output for error and warning messages that are generated by the RCI FGMRES routines. The default value 
+                    <span class="keyword">6</span> means that all messages are displayed on the screen. Otherwise the error and warning messages are written to the newly created file 
+                    <span class="filepath">MKL_RCI_FGMRES_Log.txt</span>. Note that if 
+                    <span class="parmname">ipar</span><samp class="codeph">(6)</samp> and 
+                    <span class="parmname">ipar</span><samp class="codeph">(7)</samp> parameters are set to 0, error and warning messages are not generated at all. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(3)</samp></p></td>
+
+<td valign="top" class="noborder"><p> contains the current stage of the RCI FGMRES computations. The initial value is 1. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>Avoid altering this variable during computations. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(4)</samp></p></td>
+
+<td valign="top" class="noborder"><p>contains the current iteration number. The initial value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(5)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the maximum number of iterations. The default value is 
+                    <var>min</var> (150,<var>n</var>). 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(6)</samp></p></td>
+
+<td valign="top" class="noborder"><p>if the value is not 0, the routines output error messages in accordance with the parameter 
+                    <span class="parmname">ipar</span><samp class="codeph">(2)</samp>. If it is 0, the routines do not output error messages at all, but return a negative value of the parameter 
+                    <span class="parmname">RCI_request</span>. The default value is 1. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(7)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not 0, the routines output warning messages in accordance with the parameter 
+                    <span class="parmname">ipar</span><samp class="codeph">(2)</samp>. Otherwise, the routines do not output warning messages at all, but they return a negative value of the parameter 
+                    <span class="parmname">RCI_request</span>. The default value is 1. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(8)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not equal to 0, the 
+                  <span class="option">dfgmres</span> routine performs the stopping test for the maximum number of iterations: 
+                  <span class="parmname">ipar</span><samp class="codeph">(4)</samp><span class="eqsymbol">≤</span><span class="parmname">ipar</span><samp class="codeph">(5)</samp>. 
+                  If the value is 0, the 
+                  <span class="option">dfgmres</span> routine does not perform this stopping test. The default value is 1. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(9)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not 0, the 
+                  <span class="option">dfgmres</span> routine performs the residual stopping test: 
+                  <span class="parmname">dpar</span><samp class="codeph">(5)</samp><span class="eqsymbol">≤</span><span class="parmname">dpar</span><samp class="codeph">(4)</samp>.If the value is 0, the 
+                  <span class="option">dfgmres</span> routine does not perform this stopping test. The default value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(10)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not 0, the 
+                  <span class="option">dfgmres</span> routine indicates that the user-defined stopping test should be performed by setting 
+                  <span class="parmname">RCI_request</span>=2. If the value is 0, the 
+                  <span class="option">dfgmres</span> routine does not perform the user-defined stopping test. The default value is 1. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>At least one of the parameters 
+                      <span class="parmname">ipar</span><samp class="codeph">(8)</samp>-<span class="parmname">ipar</span><samp class="codeph">(10)</samp> must be set to 1. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(11)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is 0, the 
+                  <span class="option">dfgmres</span> routine runs the non-preconditioned version of the FGMRES method. Otherwise, the routine runs the preconditioned version of the FGMRES method, and requests that you perform the preconditioning step by setting the output parameter 
+                  <span class="parmname">RCI_request</span>=3. The default value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(12)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is not equal to 0, the 
+                  <span class="option">dfgmres</span> routine performs the automatic test for zero norm of the currently generated vector: 
+                  <span class="parmname">dpar</span><samp class="codeph">(7)</samp><span class="eqsymbol">≤</span><span class="parmname">dpar</span><samp class="codeph">(8)</samp>, where 
+                  <span class="parmname">dpar</span><samp class="codeph">(8)</samp> contains the tolerance value. Otherwise, the routine indicates that you must perform this check by setting the output parameter 
+                  <span class="parmname">RCI_request</span>=4. The default value is 0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(13)</samp></p></td>
+
+<td valign="top" class="noborder"><p> if the value is equal to 0, the 
+                  <span class="option">dfgmres_get</span> routine updates the solution to the vector 
+                  <span class="parmname">x</span> according to the computations done by the 
+                  <span class="option">dfgmres</span> routine. If the value is positive, the routine writes the solution to the right-hand side vector 
+                  <span class="parmname">b</span>. If the value is negative, the routine returns only the number of the current iteration, and does not update the solution. The default value is 0. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>It is possible to call the 
+                    <span class="option">dfgmres_get</span> routine at any place in the code, but you must pay special attention to the parameter 
+                    <span class="parmname">ipar</span><samp class="codeph">(13)</samp>. The RCI FGMRES iterations can be continued after the call to 
+                    <span class="option">dfgmres_get</span> routine only if the parameter 
+                    <span class="parmname">ipar</span><samp class="codeph">(13)</samp> is not equal to zero. If 
+                    <span class="parmname">ipar</span><samp class="codeph">(13)</samp> is positive, then the updated solution overwrites the right-hand side in the vector 
+                    <span class="parmname">b</span>. If you want to run the restarted version of FGMRES with the same right-hand side, then it must be saved in a different memory location before the first call to the 
+                    <span class="option">dfgmres_get</span> routine with positive 
+                    <span class="parmname">ipar</span><samp class="codeph">(13)</samp>. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(14)</samp></p></td>
+
+<td valign="top" class="noborder"><p> contains the internal iteration counter that counts the number of iterations before the restart takes place. The initial value is 0. 
+                    <div class="Note"><h3 class="NoteTipHead">warning</h3> <p>Do not alter this variable during computations. 
+                      </p>
+</div>
+</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(15)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the number of the non-restarted FGMRES iterations. To run the restarted version of the FGMRES method, assign the number of iterations to 
+                    <span class="parmname">ipar</span><samp class="codeph">(15)</samp> before the restart. The default value is 
+                    <var>min</var>(150, 
+                    <span class="parmname">n</span>), which means that by default the non-restarted version of FGMRES method is used. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(16)</samp></p></td>
+
+<td valign="top" class="noborder"><p> service variable specifying the location of the rotated Hessenberg matrix from which the matrix stored in the packed format (see 
+                    <a class="allformats" href="GUID-7B11079E-CB74-4A5F-AEEA-D6C9B7181C42.html#GUID-7B11079E-CB74-4A5F-AEEA-D6C9B7181C42">Matrix Arguments</a> in the Appendix B for details) is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(17)</samp></p></td>
+
+<td valign="top" class="noborder"><p> service variable specifying the location of the rotation cosines from which the vector of cosines is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(18)</samp></p></td>
+
+<td valign="top" class="noborder"><p> service variable specifying the location of the rotation sines from which the vector of sines is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(19)</samp></p></td>
+
+<td valign="top" class="noborder"><p> service variable specifying the location of the rotated residual vector from which the vector is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(20)</samp></p></td>
+
+<td valign="top" class="noborder"><p>service variable, specifies the location of the least squares solution vector from which the vector is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(21)</samp></p></td>
+
+<td valign="top" class="noborder"><p> service variable specifying the location of the set of preconditioned vectors from which the set is started in the 
+                    <span class="parmname">tmp</span> array. The memory locations in the 
+                    <span class="parmname">tmp</span> array starting from 
+                    <span class="parmname">ipar</span><samp class="codeph">(21)</samp> are used only for the preconditioned FGMRES method. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(22)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the memory location from which the first vector (source) used in operations requested via 
+                    <span class="parmname">RCI_request</span> is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(23)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the memory location from which the second vector (output) used in operations requested via 
+                    <span class="parmname">RCI_request</span> is started in the 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipar</span><samp class="codeph">(24:128)</samp></p></td>
+
+<td valign="top" class="noborder"><p> are reserved and not used in the current RCI FGMRES routines. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You must declare the array 
+                      <span class="parmname">ipar</span> with length 128. While defining the array in the code as 
+                      <samp class="codeph"><span class="keyword">INTEGER</span><span class="parmname">ipar</span><samp class="codeph">(23)</samp></samp>works, there is no guarantee of future compatibility with Intel&reg; oneAPI Math Kernel Library.</p>
+</div>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">dpar</span><span class="parmnamen">(128)</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array, this parameter specifies the double precision set of data for the RCI CG computations, specifically: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(1)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the relative tolerance. The default value is 1.0e-6. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(2)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the absolute tolerance. The default value is 0.0e-0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(3)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the Euclidean norm of the initial residual (if it is computed in the 
+                  <span class="option">dfgmres</span> routine). The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(4)</samp></p></td>
+
+<td valign="top" class="noborder"><p>service variable equal to 
+                    <span class="parmname">dpar</span><samp class="codeph">(1)</samp><span class="parmname">*</span><span class="parmname">dpar</span><samp class="codeph">(3)</samp><span class="parmname">+</span><span class="parmname">dpar</span><samp class="codeph">(2)</samp> (if it is computed in the 
+                  <span class="option">dfgmres</span> routine). The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(5)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the Euclidean norm of the current residual. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(6)</samp></p></td>
+
+<td valign="top" class="noborder"><p> specifies the Euclidean norm of residual from the previous iteration step (if available). The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(7)</samp></p></td>
+
+<td valign="top" class="noborder"><p> contains the norm of the generated vector. The initial value is 0.0. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>In terms of [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SAAD03">Saad03</a>] this parameter is the coefficient 
+                      <var>h</var><sub><var>k</var>+1,<var>k</var></sub> of the Hessenberg matrix. 
+                    </p>
+</div>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(8)</samp></p></td>
+
+<td valign="top" class="noborder"><p> contains the tolerance for the zero norm of the currently generated vector. The default value is 1.0e-12. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dpar</span><samp class="codeph">(9:128)</samp></p></td>
+
+<td valign="top" class="noborder"><p> are reserved and not used in the current RCI FGMRES routines. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You must declare the array 
+                      <span class="parmname">dpar</span> with length 128. While defining the array in the code as 
+                      <samp class="codeph"><span class="keyword">DOUBLE PRECISION 
+                        </span><span class="parmname">dpar</span><span class="parmnamen">(8)</span></samp>works, there is no guarantee of future compatibility with Intel&reg; oneAPI Math Kernel Library.</p>
+</div>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> array of size 
+              <samp class="codeph"><span class="parmnamen">((</span><span class="parmnamen">2*</span><span class="parmname">ipar</span><span class="parmnamen">(15)+1)*</span><span class="parmname">n</span><span class="parmnamen"> + 
+                </span><span class="parmname">ipar</span><span class="parmnamen">(15)*(</span><span class="parmname">ipar</span><span class="parmnamen">(15)+9)/2 + 1))</span></samp> used to supply the double precision temporary space for the RCI FGMRES computations, specifically: 
+            </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(1:<span class="parmname">ipar</span><span class="parmnamen">(16)</span>-1)</span></p></td>
+
+<td valign="top" class="noborder"><p> contains the sequence of vectors generated by the FGMRES method. The initial value is 0.0. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(<span class="parmname">ipar</span><span class="parmnamen">(16)</span>:<span class="parmname">ipar</span><span class="parmnamen">(17)</span>-1)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the rotated Hessenberg matrix generated by the FGMRES method; the matrix is stored in the packed format. There is no initial value for this part of 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(<span class="parmname">ipar</span><span class="parmnamen">(17)</span>:<span class="parmname">ipar</span><span class="parmnamen">(18)</span>-1)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the rotation cosines vector generated by the FGMRES method. There is no initial value for this part of 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(<span class="parmname">ipar</span><span class="parmnamen">(18)</span>:<span class="parmname">ipar</span><span class="parmnamen">(19)</span>-1)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the rotation sines vector generated by the FGMRES method. There is no initial value for this part of 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(<span class="parmname">ipar</span><span class="parmnamen">(19)</span>:<span class="parmname">ipar</span><span class="parmnamen">(20)</span>-1)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the rotated residual vector generated by the FGMRES method. There is no initial value for this part of 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(<span class="parmname">ipar</span><span class="parmnamen">(20)</span>:<span class="parmname">ipar</span><span class="parmnamen">(21)</span>-1)</span></p></td>
+
+<td valign="top" class="noborder"><p>contains the solution vector to the least squares problem generated by the FGMRES method. There is no initial value for this part of 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">tmp</span><span class="parmname">(<span class="parmname">ipar</span><span class="parmnamen">(21)</span>:)</span></p></td>
+
+<td valign="top" class="noborder"><p> contains the set of preconditioned vectors generated for the FGMRES method by the user. This part of 
+                    <span class="parmname">tmp</span> array is not used if the non-preconditioned version of FGMRES method is called. There is no initial value for this part of 
+                    <span class="parmname">tmp</span> array. 
+                  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can define this array in the code as 
+                      <samp class="codeph"><span class="keyword">DOUBLE PRECISION</span><span class="parmname"> tmp</span><span class="parmnamen">((</span><span class="parmnamen">2*</span><span class="parmname">ipar</span><span class="parmnamen">(15)+1)*</span><span class="parmname">n</span><span class="parmnamen"> + 
+                        </span><span class="parmname">ipar</span><span class="parmnamen">(15)*(</span><span class="parmname">ipar</span><span class="parmnamen">(15)+9)/2 + 1))</span></samp> if you run only non-preconditioned FGMRES iterations. 
+                    </p>
+</div>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+<div class="section" id="GUID-98B880BE-D219-43CC-B282-78C42ECFE04F"><h2 class="sectiontitle">Scheme of Using the RCI FGMRES Routines </h2><p>The following pseudocode shows the general scheme of using the RCI FGMRES routines. 
+      </p>
+<p>... 
+      </p>
+<p>generate matrix 
+        <span class="parmname">A</span></p>
+<p>generate preconditioner 
+        <span class="parmname">C</span> (optional) 
+      </p>
+<p>   call 
+        <samp class="codeph"><span class="option">dfgmres_init</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <var>tmp</var>)</samp></p>
+<p>    change parameters in 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">dpar</span> if necessary 
+      </p>
+<p>    call 
+        <samp class="codeph"><span class="option">dfgmres_check</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <var>tmp</var>)</samp></p>
+<p>1   call 
+        <samp class="codeph"><span class="option">dfgmres</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <var>tmp</var>)</samp></p>
+<p>    if 
+        <samp class="codeph">(<var>RCI_request</var>.eq.1)</samp> then 
+      </p>
+<p>      multiply the matrix 
+        <span class="parmname">A</span> by 
+        <samp class="codeph"><var>tmp</var>(<var>ipar</var>(22))</samp> and put the result in 
+        <samp class="codeph"><var>tmp</var>(<var>ipar</var>(23))</samp></p>
+<p>     It is possible to use 
+        <a href="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html#GUID-0FDAE661-C4A2-43F6-A288-52667018D255">MKL Sparse BLAS Level 2</a> subroutines for this operation 
+      </p>
+<p><samp class="codeph">c  proceed with FGMRES iterations</samp></p>
+<p>      <samp class="codeph">goto 1</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.2) then</samp></p>
+<p>      <samp class="codeph">do the stopping test</samp></p>
+<p>      <samp class="codeph">if</samp> (test not passed) 
+        <samp class="codeph">then</samp></p>
+<p><samp class="codeph">c  proceed with FGMRES iterations</samp></p>
+<p>        <samp class="codeph">go to 1</samp></p>
+<p>      <samp class="codeph">else</samp></p>
+<p><samp class="codeph">c  stop FGMRES iterations</samp></p>
+<p>        <samp class="codeph">goto 2</samp></p>
+<p>      <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.3) 
+        </samp>then (optional) 
+      </p>
+<p>    apply the preconditioner 
+        <span class="parmname">C</span> inverse to 
+        <samp class="codeph"><var>tmp</var>(<var>ipar</var>(22))</samp> and put the result in 
+        <samp class="codeph"><var>tmp</var>(<var>ipar</var>(23))</samp></p>
+<p><samp class="codeph">c  proceed with FGMRES iterations</samp></p>
+<p>      <samp class="codeph">goto 1</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.4) then</samp></p>
+<p>    check the norm of the next orthogonal vector, it is contained in 
+        <samp class="codeph"><var>dpar</var>(7)</samp></p>
+<p>      <samp class="codeph">if</samp> (the norm is not zero up to rounding/computational errors) 
+        <samp class="codeph">then</samp></p>
+<p><samp class="codeph">c  proceed with FGMRES iterations</samp></p>
+<p>        <samp class="codeph">goto 1</samp></p>
+<p>      <samp class="codeph">else</samp></p>
+<p><samp class="codeph">c  stop FGMRES iterations</samp></p>
+<p>        <samp class="codeph">goto 2</samp></p>
+<p>      <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>2  call 
+        <samp class="codeph"><span class="option">dfgmres_get</span>(<var>n</var>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">tmp</span>, 
+          <var>itercount</var>)</samp></p>
+<p>current iteration number is in 
+        <span class="parmname">itercount</span></p>
+<p>the computed approximation is in the array 
+        <span class="parmname">x</span></p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For the FGMRES method, the array 
+          <span class="parmname">x</span> initially contains the current approximation to the solution. It can be updated only by calling the routine 
+        <span class="option">dfgmres_get</span>, which updates the solution in accordance with the computations performed by the routine 
+        <span class="option">dfgmres</span>. 
+        </p>
+</div>
+<p>The above pseudocode demonstrates two main differences in the use of RCI FGMRES interface comparing with the 
+        <a href="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html#GUID-84B673F3-E221-4D25-A260-62D3398CA2F8">CG Interface Description</a>. The first difference relates to 
+        <span class="parmname">RCI_request</span><span class="parmnamen">=3</span>: it uses different locations in the 
+        <span class="parmname">tmp</span> array, which is two-dimensional for CG and one-dimensional for FGMRES. The second difference relates to 
+        <span class="parmname">RCI_request</span><span class="parmnamen">=4</span>: the RCI CG interface never produces 
+        <span class="parmname">RCI_request</span><span class="parmnamen">=4</span>. 
+      </p>
+</div>
+<p/>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-702D8969-5678-4B7D-9EF0-797335F79CA9.html">Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS)</a></div>
+</div>
+<div/>
+</body>
+</html>

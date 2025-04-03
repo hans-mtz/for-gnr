@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?ungbr"/>
+<meta name="abstract" content="Generates the complex unitary matrix Q or PH determined by ?gebrd."/>
+<meta name="description" content="Generates the complex unitary matrix Q or PH determined by ?gebrd."/>
+<meta name="DC.subject" content="?ungbr, cungbr, zungbr, ungbr, LAPACK routines, singular value decomposition"/>
+<meta name="keywords" content="?ungbr, cungbr, zungbr, ungbr, LAPACK routines, singular value decomposition"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?ungbr</title>
+
+</head>
+<body id="GUID-0481638C-D47D-4CF0-8C43-1D450DAB3C04">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?ungbr</span></h1>
+<!--Generates the complex unitary matrix Q or P H   determined by  ?gebrd . --><div><p class="shortdesc">Generates the complex unitary matrix Q or P<sup><var class="varname">H</var></sup>  determined by <span class="option">?gebrd</span>. </p>
+<div class="section" id="GUID-758AC930-F817-42F6-9BB8-7CC3E0E016CE"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cungbr</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zungbr</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ungbr</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> [</span><span class="sep">,</span><span class="var">vect</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-501B7FB3-EB1D-4256-ADC3-0DCA6D1C5273"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5132BBC6-DD56-4CC5-B9FE-236BAB6A11C4"><h2 class="sectiontitle">Description</h2><p>The routine generates the whole or part of the unitary matrices <var>Q</var> and <var>P</var><sup class="power"><var>H</var></sup> formed by the routines <a href="GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B.html#GUID-03C78F41-D16C-4BFE-B087-BE4F5A6A0B9B">gebrd</a>. Use this routine after a call to <span class="option">cgebrd</span>/<span class="option">zgebrd</span>. All valid combinations of arguments are described in <em>Input Parameters</em>; in most cases you need the following:</p>
+<p>To compute the whole <var>m</var>-by-<var>m</var> matrix <var>Q</var>, use:</p>
+<p><pre>call ?ungbr('Q', m, m, n, a ... )</pre></p>
+<p>(note that the  <span>array</span><var>a</var> must have at least <var>m</var> columns).</p>
+<p>To form the <var>n</var> leading columns of <var>Q</var> if <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>, use:</p>
+<p><pre>call ?ungbr('Q', m, n, n, a ... )</pre></p>
+<p>To compute the whole <var>n</var>-by-<var>n</var> matrix <span><var>P</var><sup class="power"><var>H</var></sup></span>, use:</p>
+<p><pre>call ?ungbr('P', n, n, m, a ... )</pre></p>
+<p>(note that the array <var>a</var> must have at least <var>n</var> rows).</p>
+<p>To form the <var>m</var> leading rows of <span><var>P</var><sup><var>H</var></sup></span> if <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>, use:</p>
+<p><pre>call ?ungbr('P', m, n, m, a ... )</pre></p>
+</div>
+<div class="section" id="GUID-E49208E3-C87D-4968-BC69-100917D3DA54"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7F517ED6-FA02-4E9F-969C-3207939ABB69"><dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'Q'</span> or <span class="keyword">'P'</span>. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, the routine generates the matrix <var>Q</var>. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, the routine generates the matrix 
+<var>P</var><sup class="power"><var>H</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of required rows of <var>Q</var> or <var>P</var><sup class="power"><var>H</var></sup>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of required columns of <var>Q</var> or <var>P</var><sup class="power"><var>H</var></sup>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>One of the dimensions of <var>A</var> in <span class="option">?gebrd</span>:</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, the number of columns in <var>A</var>;</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, the number of rows in <var>A</var>.</p>
+<p>Constraints: <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>, <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>, <samp class="codeph"><var>k</var><span class="eqsymbol">≥</span> 0</samp>. </p>
+<p>For <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>: <samp class="codeph"><var>k</var><span class="eqsymbol">≤</span><var>n</var><span class="eqsymbol">≤</span><var>m</var></samp> if <samp class="codeph"><var>m</var> &gt; <var>k</var></samp>, or <samp class="codeph"><var>m</var> = <var>n</var></samp> if <samp class="codeph"><var>m</var><span class="eqsymbol">≤</span><var>k</var></samp>. </p>
+<p>For <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>: <samp class="codeph"><var>k</var><span class="eqsymbol">≤</span><var>m</var><span class="eqsymbol">≤</span><var>n</var></samp> if <samp class="codeph"><var>n</var> &gt; <var>k</var></samp>, or <samp class="codeph"><var>m</var> = <var>n</var></samp> if <samp class="codeph"><var>n</var><span class="eqsymbol">≤</span><var>k</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cungbr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zungbr</span>. </p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span>
+ is the array <var>a</var> as returned by <span class="option">?gebrd</span>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cungbr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zungbr</span>. </p>
+<p>For <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, the array <var>tauq</var> as returned by <span class="option">?gebrd</span>. For <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, the array <var>taup</var> as returned by <span class="option">?gebrd</span>. </p>
+<p>The dimension of <var>tau</var> must be at least max(1, min(<var>m</var>, <var>k</var>)) for <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>, or max(1, min(<var>m</var>, <var>k</var>)) for <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array. </p>
+<p>Constraint: <samp class="codeph"><var>lwork</var> &lt; max(1, min(<var>m</var>, <var>n</var>))</samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-53F7AEC7-1C33-4A32-BF57-1E1DB81BF4B7"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-74E3FF03-5E7C-4312-B061-B2232508A4BC"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the orthogonal matrix <var>Q</var> or <var>P</var><sup class="power"><var>T</var></sup> (or the leading rows or columns thereof) as specified by <var>vect</var>, <var>m</var>, and <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E170505E-822E-46D7-A889-329A71440E8F"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">ungbr</span> interface are the following:</p>
+<dl id="GUID-FE3A904A-2BFB-4AB4-96C4-14691081C74E"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length min(<var>m,k</var>) where</p>
+<p><var>k</var> = <var>m</var>, if <samp class="codeph"><var>vect</var> = <span class="keyword">'P'</span></samp>, </p>
+<p><var>k</var> = <var>n</var>, if <samp class="codeph"><var>vect</var> = <span class="keyword">'Q'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p>Must be <span class="keyword">'Q'</span> or <span class="keyword">'P'</span>. The default value is <span class="keyword">'Q'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3E66A56C-1FFD-438E-96F0-954BFBBEED57"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = min(<var>m,n</var>)*<var>blocksize</var></samp>, where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>In first case the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The computed matrix <var>Q</var> differs from an exactly orthogonal matrix by a matrix <var>E</var> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)</samp>.</p>
+<p>The approximate numbers of possible floating-point operations are listed below:</p>
+<p>To compute the whole matrix <var>Q</var>:</p>
+<p><samp class="codeph">(16/3)<var>n</var>(3<var>m</var><sup class="power">2</sup> - 3<var>m</var>*<var>n</var> + <var>n</var><sup class="power">2</sup>)</samp>	if <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>; </p>
+<p><samp class="codeph">(16/3)<var>m</var><sup class="power">3</sup></samp> 	if <samp class="codeph"><var>m</var><span class="eqsymbol">≤</span><var>n</var></samp>.</p>
+<p>To form the <var>n</var> leading columns of 
+<var>Q</var> when <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>:</p>
+<p><samp class="codeph">(8/3)<var>n</var><sup class="power">2</sup>(3<var>m</var> - <var>n</var><sup class="power">2</sup>)</samp>.</p>
+<p>To compute the whole matrix <var>P</var><sup><var>H</var></sup>:</p>
+<p><samp class="codeph">(16/3)<var>n</var><sup class="power">3</sup></samp> 	if <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>n</var></samp>; </p>
+<p><samp class="codeph">(16/3)<var>m</var>(3<var>n</var><sup class="power">2</sup> - 3<var>m</var>*<var>n</var> + <var>m</var><sup class="power">2</sup>)</samp>	if <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>.</p>
+<p>To form the <var>m</var> leading columns of <var>P</var><sup><var>H</var></sup> when <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>:</p>
+<p><samp class="codeph">(8/3)<var>n</var><sup class="power">2</sup>(3<var>m</var> - <var>n</var><sup class="power">2</sup>)</samp>	if <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>.</p>
+<p>The real counterpart of this routine is <a href="GUID-793811F1-006B-41C4-ACC9-84805F6B446C.html#GUID-793811F1-006B-41C4-ACC9-84805F6B446C">orgbr</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-31E03413-9B5E-4F72-A4B0-743AFD7E387F.html">Singular Value Decomposition: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

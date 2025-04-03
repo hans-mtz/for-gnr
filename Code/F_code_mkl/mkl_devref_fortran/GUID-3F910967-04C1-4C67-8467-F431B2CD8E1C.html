@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hseqr"/>
+<meta name="abstract" content="Computes all eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form."/>
+<meta name="description" content="Computes all eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form."/>
+<meta name="DC.subject" content="?hseqr, shseqr, dhseqr, chseqr, zhseqr, hseqr, LAPACK routines, nonsymmetric eigenvalue problems"/>
+<meta name="keywords" content="?hseqr, shseqr, dhseqr, chseqr, zhseqr, hseqr, LAPACK routines, nonsymmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hseqr</title>
+
+</head>
+<body id="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hseqr</span></h1>
+<!--Computes all eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form.--><div><p class="shortdesc">Computes all eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form.</p>
+<div class="section" id="GUID-D41802DA-9D9D-41B8-9F3B-C1ADD667C410"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call shseqr</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dhseqr</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call chseqr</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhseqr</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hseqr</span><span class="delim">(</span><span class="var">h</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="delim"> [</span><span class="sep">,</span><span class="var">ilo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ihi</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">job</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">compz</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call hseqr</span><span class="delim">(</span><span class="var">h</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">ilo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ihi</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">job</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">compz</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-24B0A0D3-F263-41AE-B0ED-C64162A5290B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8032833E-A984-495E-A34D-26E12E0A4700"><h2 class="sectiontitle">Description</h2><p>The routine computes all the eigenvalues, and optionally the Schur factorization, of an upper Hessenberg matrix <var>H</var>: <samp class="codeph"><var>H</var> = <var>Z</var>*<var>T</var>*<var>Z</var><sup class="power"><var>H</var></sup></samp>, where <var>T</var> is an upper triangular (or, for real flavors, quasi-triangular) matrix (the Schur form of <var>H</var>), and <var>Z</var> is the unitary or orthogonal matrix whose columns are the Schur vectors <var>z</var><sub class="subb"><var>i</var></sub>.</p>
+<p>You can also use this routine to compute the Schur factorization of a general matrix <var>A</var> which has been reduced to upper Hessenberg form <var>H</var>:</p>
+<p><samp class="codeph"><var>A</var> = <var>Q</var>*<var>H</var>*<var>Q</var><sup class="power"><var>H</var></sup></samp>, where <var>Q</var> is unitary (orthogonal for real flavors); </p>
+<p><samp class="codeph"><var>A</var> = (<var>QZ</var>)*<var>T</var>*(<var>QZ</var>)<sup class="power"><var>H</var></sup></samp>. </p>
+<p>In this case, after reducing <var>A</var> to Hessenberg form by <a href="GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7.html#GUID-0CA713FB-F989-4B3F-9EB9-8244480848D7">gehrd</a>, call <a href="GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87.html#GUID-9695C009-3EE0-4A95-ABB8-A1E1C7561A87">orghr</a> to form <var>Q</var> explicitly and then pass <var>Q</var> to <span class="option">?hseqr</span> with <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp>.</p>
+<p>You can also call <a href="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C.html#GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C">gebal</a> to balance the original matrix before reducing it to Hessenberg form by <span class="option">?hseqr</span>, so that the Hessenberg matrix <var>H</var> will have the 
+structure:</p>
+<p><br/><div class="imagecenter"><img src="GUID-F9A05E7B-1B83-44B6-B0DB-84255A793C9C-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <var>H</var><sub class="subnb">11</sub> and <var>H</var><sub>33</sub> are upper triangular.</p>
+<p>If so, only the central diagonal block <var>H</var><sub>22</sub> (in rows and columns <var>ilo</var> to <var>ihi</var>) needs to be further reduced to Schur form (the blocks <var>H</var><sub>12</sub> and <var>H</var><sub>23</sub> are also affected). Therefore the values of <var>ilo</var> and <var>ihi</var> can be supplied to <span class="option">?hseqr</span> directly. Also, after calling this routine you must call <a href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6">gebak</a> to permute the Schur vectors of the balanced matrix to those of the original matrix.</p>
+<p>If <span class="option">?gebal</span> has not been called, however, then <var>ilo</var> must be set to 1 and <var>ihi</var> to <var>n</var>. Note that if the Schur factorization of <var>A</var> is required, <span class="option">?gebal</span> must not be called with <samp class="codeph"><var>job</var> = <span class="keyword">'S'</span></samp> or <span class="keyword">'B'</span>, because the balancing transformation is not unitary (for real flavors, it is not orthogonal).</p>
+<p><span class="option">?hseqr</span> uses a multishift form of the upper Hessenberg <var>QR</var> algorithm. The Schur vectors are normalized so that <samp class="codeph">||<var>z</var><sub class="subb"><var>i</var></sub>||<sub>2</sub> = 1</samp>, but are determined only to within a complex factor of absolute value 1 (for the real flavors, to within a factor <span class="eqsymbol">±</span>1).</p>
+</div>
+<div class="section" id="GUID-FFB25AA8-6D7B-40B1-9CD5-A3AF509DE669"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A9D9C146-9760-4280-AE5E-E7E3F1BD0579"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'E'</span> or <span class="keyword">'S'</span>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, then eigenvalues only are required. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'S'</span></samp>, then the Schur form <var>T</var> is required.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'I'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <var>compz</var> = <span class="keyword">'N'</span>, then no Schur vectors are computed (and the array <var>z</var> is not referenced). </p>
+<p>If <var>compz</var> = <span class="keyword">'I'</span>, then the Schur vectors of <var>H</var> are computed (and the array <var>z</var> is initialized by the routine). </p>
+<p>If <var>compz</var> = <span class="keyword">'V'</span>, then the Schur vectors of <var>A</var> are computed (and the array <var>z</var> must contain the matrix <var>Q</var> on entry).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>H</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <var>A</var> has been balanced by <span class="option">?gebal</span>, then <var>ilo</var> and <var>ihi</var> must contain the values returned by <span class="option">?gebal</span>. Otherwise, <var>ilo</var> must be set to 1 and <var>ihi</var> to <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span>, <span class="parmname">z</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">shseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dhseqr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">chseqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhseqr</span>. </p>
+<p>Arrays: </p>
+<p><var>h</var><span>(<var>ldh</var>,*)</span>
+) The <var>n</var>-by-<var>n</var> upper Hessenberg matrix <var>H</var>. </p>
+<p>The second dimension of <var>h</var> must be at least max(1, <var>n</var>).</p>
+<p><var>z</var><span>(<var>ldz</var>,*)</span></p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp>, then <var>z</var> must contain the matrix <var>Q</var> from the reduction to Hessenberg form. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, then <var>z</var> need not be set. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced. </p>
+<p>The second dimension of <var>z</var> must be </p>
+<p>at least max(1, <var>n</var>) if <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'I'</span>; </p>
+<p>at least 1 if <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>.</p>
+<p><var>work</var>(<var>lwork</var>) is a workspace array. </p>
+<p>The dimension of <var>work</var> must be at least max (1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>h</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>z</var>; </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'I'</span>, then <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The dimension of the array <var>work</var>.</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> is sufficient  and delivers very good and
+sometimes
+optimal performance. However, <var>lwork</var> as large as <samp class="codeph">11*<span class="parmname">n</span></samp> may be required for optimal performance.  A workspace query is recommended
+to determine the optimal workspace size.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only estimates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D5C51572-0D9B-4D63-9954-6CA5B26EB90C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1A11A8CE-CC46-4377-B039-DF5982DB05B2"><dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chseqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhseqr</span>. </p>
+<p>Array, size at least max (1, <var>n</var>). Contains the computed eigenvalues, unless <var>info</var>&gt;0. The eigenvalues are stored in the same order as on the diagonal of the Schur form <var>T</var> (if computed).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">shseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dhseqr</span></p>
+<p>Arrays, size at least max (1, <var>n</var>) each. </p>
+<p>Contain the real and imaginary parts, respectively, of the computed eigenvalues, unless <samp class="codeph"><var>info</var> &gt; 0</samp>. Complex conjugate pairs of eigenvalues appear consecutively with the eigenvalue having positive imaginary part first. The eigenvalues are stored in the same order as on the diagonal of the Schur form <var>T</var> (if computed).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp> and <samp class="codeph"><span class="parmname">job</span> = 'S'</samp>, <span class="parmname">h</span> contains the upper quasi-triangular matrix <var>T</var> from the Schur decomposition (the Schur form). </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp> and <samp class="codeph"><span class="parmname">job</span> = 'E'</samp>, the contents of <span class="parmname">h</span> are unspecified on exit.  (The output value of <span class="parmname">h</span> when  <samp class="codeph"><var>info</var> &gt; 0</samp> is given under the description of <span class="parmname">info</span> below.)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>info</var> = 0</samp>, then <var>z</var> contains  <samp class="codeph"><var>Q</var>*<var>Z</var></samp>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp> and <samp class="codeph"><var>info</var> = 0</samp>, then <var>z</var> contains the unitary or orthogonal matrix <var>Z </var>of the Schur vectors of <var>H</var>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work(1)</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work(1)</var> returns the optimal <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, <span class="option">?hseqr</span> failed to compute all of the eigenvalues. Elements 1,2, ..., <var>ilo</var>-1 and <var>i</var>+1, <var>i</var>+2, ..., <var>n</var> of the eigenvalue arrays (<var>wr</var> and <var>wi</var> for real flavors and <span class="parmname">w</span> for complex flavors) contain the real and imaginary parts of those eigenvalues that have been successfully found.</p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, and  <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, then on exit, the remaining unconverged eigenvalues are the eigenvalues of the upper Hessenberg matrix rows and columns <var>ilo</var> through <var>info</var> of the final output value of <var>H</var>. </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, and  <samp class="codeph"><var>job</var> = <span class="keyword">'S'</span></samp>, then on exit (initial value of <var>H</var>)*<var>U</var>  = <var>U</var>*(final value of <var>H</var>), where <var>U</var> is a unitary matrix.  The final value of  <var>H</var> is upper Hessenberg and triangular in rows and columns <samp class="codeph"><var>info</var>+1</samp> through <var>ihi</var>.</p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, and  <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp>, then on exit  (final value of <var>Z</var>)  =  (initial value of <var>Z</var>)*<var>U</var>,  where <var>U</var> is the unitary matrix (regardless of the value of <var>job</var>).</p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, and  <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, then on exit  (final value of <var>Z</var>)  =  <var>U</var>,  where <var>U</var> is the unitary matrix (regardless of the value of <var>job</var>).</p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, and  <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <var>Z</var>     is not accessed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-660A9E28-7B8B-4DCF-AC7D-DA480E68EB3E"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hseqr</span> interface are the following:</p>
+<dl id="GUID-B4C066D3-9161-4775-87DF-DD2205B173DA"><dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>Holds the matrix <var>H</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wi</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>. Used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>Holds the matrix <var>Z</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>Must be <span class="keyword">'E'</span> or <span class="keyword">'S'</span>. The default value is <span class="keyword">'E'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p>If omitted, this argument is restored based on the presence of argument <var>z</var> as follows: <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, if <var>z</var> is present, <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, if <var>z</var> is omitted. </p>
+<p>If present, <var>compz</var> must be equal to <span class="keyword">'I'</span> or <span class="keyword">'V'</span> and the argument <var>z</var> must also be present. Note that there will be an error condition if <var>compz</var> is present and <var>z</var> omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D1932750-1977-4FFA-B6A5-069AB599220E"><h2 class="sectiontitle">Application Notes</h2><p>The computed Schur factorization is the exact factorization of a nearby matrix <samp class="codeph"><var>H</var> + <var>E</var></samp>, where <samp class="codeph">||<var>E</var>||<sub>2</sub> &lt; <var>O</var>(<span class="eqsymbol">ε</span>) ||<var>H</var>||<sub>2</sub>/<var>s</var><sub class="subb"><var>i</var></sub></samp>, and <span class="eqsymbol">ε</span> is the machine precision. </p>
+<p>If <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub> is an exact eigenvalue, and <span class="eqsymbol">μ</span><sub class="subb"><var>i</var></sub> is the corresponding computed value, then <samp class="codeph"><samp class="codeph">|<span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub> - <span class="eqsymbol">μ</span><sub class="subb"><var>i</var></sub>|<span class="eqsymbol">≤</span><var>c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>H</var>||<sub>2</sub>/<var>s</var><sub class="subb"><var>i</var></sub></samp></samp>, where <samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modestly increasing function of <var>n</var>, and <var>s</var><sub class="subb"><var>i</var></sub> is the reciprocal condition number of <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>. The condition numbers <var>s</var><sub class="subb"><var>i</var></sub> may be computed by calling <a href="GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965.html#GUID-859D90A3-6336-4C9A-95D2-ABF40FE19965">trsna</a>.</p>
+<p>The total number of floating-point operations depends on how rapidly the algorithm converges; typical numbers are as follows.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>If only eigenvalues are computed:</p></td>
+
+<td valign="top" class="noborder"><p>7<var>n</var><sup class="power">3</sup> for real flavors </p>
+<p>25<var>n</var><sup class="power">3</sup> for complex flavors.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>If the Schur form is computed:</p></td>
+
+<td valign="top" class="noborder"><p>10<var>n</var><sup class="power">3</sup> for real flavors </p>
+<p>35<var>n</var><sup class="power">3</sup> for complex flavors.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>If the full Schur factorization is computed:</p></td>
+
+<td valign="top" class="noborder"><p>20<var>n</var><sup class="power">3</sup> for real flavors </p>
+<p>70<var>n</var><sup class="power">3</sup> for complex flavors.</p>
+</td>
+</tr></table><p/>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html">Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?heevd"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, all eigenvectors of a complex Hermitian matrix using divide and conquer algorithm."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, all eigenvectors of a complex Hermitian matrix using divide and conquer algorithm."/>
+<meta name="DC.subject" content="?heevd, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="keywords" content="?heevd, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-258D5408-0894-424A-83B2-33DE708A319C.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9AD3B5B7-DC35-4DF7-A126-9A8730FE98CA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?heevd</title>
+
+</head>
+<body id="GUID-9AD3B5B7-DC35-4DF7-A126-9A8730FE98CA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?heevd</span></h1>
+<!--Computes all eigenvalues and, optionally, all eigenvectors of a complex Hermitian matrix using divide and conquer algorithm. --><div><p class="shortdesc">Computes all eigenvalues and, optionally, all eigenvectors of a complex Hermitian matrix using divide and conquer algorithm. </p>
+<div class="section" id="GUID-27408EB8-B8F0-4D65-93CB-8AD0E3E34EC9"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cheevd</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">lrwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zheevd</span><span class="delim">(</span><span class="var">job</span><span class="sep">z, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">lrwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call heevd</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">job</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-095CEA35-F3D5-4000-B4AF-5AF8F662DAFB"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-D9C0329E-BFA0-4C7A-B67E-2765FE54F2EC"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all the eigenvalues, and optionally all the eigenvectors, of a complex Hermitian matrix <var>A</var>. In other words, it can compute the spectral factorization of <var>A</var> as: <samp class="codeph"><var>A</var> = <var>Z</var>*<span class="eqsymbol">Λ</span>*<var>Z</var><sup class="power"><var>H</var></sup></samp>.</p>
+<p>Here <span class="eqsymbol">Λ</span> is a real diagonal matrix whose diagonal elements are the eigenvalues <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>, and <var>Z</var> is the (complex) unitary matrix whose columns are the eigenvectors <var>z</var><sub class="subb"><var>i</var></sub>. Thus, </p>
+<p><samp class="codeph"><var>A</var>*<var>z</var><sub><var>i</var></sub> = <span class="eqsymbol">λ</span><sub class="subb"><var>i</var></sub>*<var>z</var><sub><var>i</var></sub></samp> for <samp class="codeph"><var>i</var> = 1, 2, ..., <var>n</var></samp>.</p>
+<p>If the eigenvectors are requested, then this routine uses a divide and conquer algorithm to compute eigenvalues and eigenvectors. However, if only eigenvalues are required, then it uses the Pal-Walker-Kahan variant of the <var>QL</var> or <var>QR</var> algorithm. </p>
+<p>Note that for most cases of complex Hermetian eigenvalue problems the default choice should be <a href="GUID-917A3B87-1503-4458-97AC-EE84F972CECC.html#GUID-917A3B87-1503-4458-97AC-EE84F972CECC">heevr</a> function as its underlying algorithm is faster and uses less workspace. <span class="option">?heevd</span> requires more workspace but is faster in some cases, especially for large matrices.</p>
+</div>
+<div class="section" id="GUID-2DA397BF-3222-4B88-B42E-D13CDDFD8B4D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-75EE2D78-7095-4E4E-AED0-6030CBE6FE73"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then only eigenvalues are computed. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then eigenvalues and eigenvectors are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>a</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>a</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cheevd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zheevd</span></p>
+<p>Array, size (<var>lda</var>, *).</p>
+<p><var>a</var><span>(<var>lda</var>,*)</span>
+ is an array containing either upper or lower triangular part of the Hermitian matrix <var>A</var>, as specified by <var>uplo</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>a</var>. Must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cheevd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zheevd</span>. </p>
+<p>Workspace array, size <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>. Constraints: </p>
+<p>if <samp class="codeph"><var>n</var><span class="eqsymbol">≤</span> 1</samp>, then <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp> and <var>n</var> &gt; 1, then <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var>+1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> and <var>n</var> &gt; 1, then <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var><sup class="power">2</sup>+2*<var>n</var></samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var>, <var>rwork</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var>, <var>rwork</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>lrwork</var> or <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cheevd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zheevd</span></p>
+<p>Workspace array, size at least <var>lrwork</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lrwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>rwork</var>. Constraints: </p>
+<p>if <samp class="codeph"><var>n</var><span class="eqsymbol">≤</span> 1</samp>, then <samp class="codeph"><var>lrwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp> and <var>n</var> &gt; 1, then <samp class="codeph"><var>lrwork</var><span class="eqsymbol">≥</span><var>n</var></samp>; </p>
+<p>if <samp class="codeph"><var>job</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>n</var> &gt; 1</samp>, then <samp class="codeph"><var>lrwork</var><span class="eqsymbol">≥</span> 2*<var>n</var><sup class="power">2</sup>+ 5*<var>n </var>+ 1</samp>. </p>
+<p>If <samp class="codeph"><var>lrwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var>, <var>rwork</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var>, <var>rwork</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>lrwork</var> or <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">liwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>iwork</var>. Constraints: if <var>n</var><span class="eqsymbol">≤</span> 1, then <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp> and <var>n</var> &gt; 1, then <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> and <var>n</var> &gt; 1, then <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 5*<var>n</var>+3</samp>.</p>
+<p>If <var>liwork</var> = -1, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var>, <var>rwork</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var>, <var>rwork</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>lrwork</var> or <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5FC3FA3F-4E78-4FC1-AF2F-7885F58D6938"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-338E5B1A-772B-4517-B6F7-E1F2444D1930"><dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cheevd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zheevd</span></p>
+<p>Array, size at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, contains the eigenvalues of the matrix <var>A</var> in ascending order. See also <var>info</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then on exit this array is overwritten by the unitary matrix <var>Z</var> which contains the eigenvectors of <var>A</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>lwork</var> &gt; 0</samp>, then the real part of <var>work</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>lrwork</var> &gt; 0</samp>, then <var>rwork</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>lrwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>liwork</var> &gt; 0</samp>, then <var>iwork</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>liwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><span class="parmname">jobz</span> = 'N'</samp>, then the algorithm failed to converge; <var>i</var> off-diagonal elements of an intermediate tridiagonal form did not converge to zero; </p>
+<p>if <samp class="codeph"><var>info</var> = <var>i</var></samp>, and <samp class="codeph"><span class="parmname">jobz</span> = 'V'</samp>, then the algorithm failed to compute an eigenvalue while working on the submatrix lying in rows and columns <samp class="codeph"><span class="parmname">info</span>/(<span class="parmname">n</span>+1)</samp> through <samp class="codeph">mod(<span class="parmname">info</span>, <span class="parmname">n</span>+1)</samp>. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B98A5287-012F-4F5C-8F06-80D72546C82B"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">heevd</span> interface are the following:</p>
+<dl id="GUID-57529CAA-E131-41D2-B80A-DFE61A497FD2"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector of length (<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-322AC1C7-3B26-4035-9E74-993F797F215E"><h2 class="sectiontitle">Application Notes</h2><p>The computed eigenvalues and eigenvectors are exact for a matrix <samp class="codeph"><var>A</var> + <var>E</var></samp> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)*||<var>A</var>||<sub>2</sub></samp>, where <samp class="codeph"><span class="eqsymbol">ε</span></samp> is the machine precision.</p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> (<var>liwork</var> or <var>lrwork</var>) for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>, <samp class="codeph"><var>lrwork</var> = -1</samp>). </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> (<var>liwork</var> or <var>lrwork</var>) sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>, <var>rwork</var>) on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>, <samp class="codeph"><var>iwork</var>(1)</samp>, <samp class="codeph"><var>rwork</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>, <samp class="codeph"><var>lrwork</var> = -1</samp>), the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>, <var>rwork</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> (<var>liwork</var>, <var>lrwork</var>) to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The real analogue of this routine is <a href="GUID-93809AA2-7D58-425A-94D6-BF1BA14468F2.html#GUID-93809AA2-7D58-425A-94D6-BF1BA14468F2">syevd</a>. See also <a href="GUID-8BB672EA-453B-4354-AF79-E3752722CDBC.html#GUID-8BB672EA-453B-4354-AF79-E3752722CDBC">hpevd</a> for matrices held in packed storage, and <a href="GUID-65F4BF3F-A175-48B3-9397-2842E09382BF.html#GUID-65F4BF3F-A175-48B3-9397-2842E09382BF">hbevd</a> for banded matrices.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-258D5408-0894-424A-83B2-33DE708A319C.html">Symmetric Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

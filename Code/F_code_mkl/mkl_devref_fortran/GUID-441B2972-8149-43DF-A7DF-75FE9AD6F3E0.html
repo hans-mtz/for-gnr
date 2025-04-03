@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?orgql"/>
+<meta name="abstract" content="Generates the orthogonal matrix Q of the QL factorization formed by p?geqlf."/>
+<meta name="description" content="Generates the orthogonal matrix Q of the QL factorization formed by p?geqlf."/>
+<meta name="DC.subject" content="p?orgql, ScaLAPACK routines, QL factorization, computing the elements of, orthogonal matrix Q"/>
+<meta name="keywords" content="p?orgql, ScaLAPACK routines, QL factorization, computing the elements of, orthogonal matrix Q"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-441B2972-8149-43DF-A7DF-75FE9AD6F3E0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?orgql</title>
+
+</head>
+<body id="GUID-441B2972-8149-43DF-A7DF-75FE9AD6F3E0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?orgql</span></h1>
+<!--Generates the orthogonal matrix  Q  of the  QL  factorization formed by  p?geqlf .--><div><p class="shortdesc">Generates the orthogonal matrix <var>Q</var> of the <var>QL</var> factorization formed by <span class="option">p?geqlf</span>.</p>
+<div class="section" id="GUID-A6A3946F-E503-41C8-BE8B-8AD8E6BCD9B7"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psorgql</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdorgql</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-60258447-BE13-4326-9E50-115339DF9C2A"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-9EE9B68A-DB3E-4CFA-88C4-D788244AC792"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?orgql</span><span> routine </span>generates the whole or part of <span class="parmname">m</span>-by-<span class="parmname">n</span> real distributed matrix <var>Q</var> denoting <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">m</span>-1,<span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1) with orthonormal rows, which is defined as the first <span class="parmname">m</span> rows of a product of <span class="parmname">k</span> elementary reflectors of order <span class="parmname">n</span></p>
+<p><var>Q</var> = <var>H</var>(<span class="parmname">k</span>)*...*<var>H</var>(2)*<var>H</var>(1)</p>
+<p> as returned by <a class="allformats" href="GUID-DAA2D124-C6B2-48F0-AE29-60F115CC5EF0.html#GUID-DAA2D124-C6B2-48F0-AE29-60F115CC5EF0"><span class="option">p?geqlf</span></a>. </p>
+</div>
+<div class="section" id="GUID-996BA089-1800-4C91-9A75-67126DC196F9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-158E098B-B188-461A-8B79-F06199534E97"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix sub(<var>Q</var>), <samp class="codeph">(<var>m</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of columns in the matrix sub(<var>Q</var>)<samp class="codeph">,(<var>m</var><span class="eqsymbol">≥</span><var>n</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of elementary reflectors whose product defines the matrix <var>Q</var><samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span><var>k</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psorgql</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdorgql</span></p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. On entry, the <var>j</var>-th column must contain the vector that defines the elementary reflector <var>H</var>(<var>j</var>),<span class="parmname">ja</span>+<span class="parmname">n</span>-<span class="parmname">k</span>≤<var>j</var>≤<span class="parmname">ja</span>+<span class="parmname">n</span>-1, as returned by <a class="allformats" href="GUID-DAA2D124-C6B2-48F0-AE29-60F115CC5EF0.html#GUID-DAA2D124-C6B2-48F0-AE29-60F115CC5EF0"><span class="option">p?geqlf</span></a> in the <span class="parmname">k</span> columns of its distributed matrix argument <var>A</var>(<span class="parmname">ia</span>:*,<span class="parmname">ja</span>+<span class="parmname">n</span>-<span class="parmname">k</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the submatrix  <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">m</span>-1,<span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psorgql</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdorgql</span></p>
+<p>Array of size <samp class="codeph"><var>LOCc</var>(<var>ja</var>+<var>n</var>-1)</samp>. </p>
+<p>Contains the scalar factors <span class="parmname">tau</span><span>(<var>j</var>) </span>of elementary reflectors <var>H</var><span>(<var>j</var>)</span>. <span class="parmname">tau</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psorgql</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdorgql</span></p>
+<p>Workspace array of size of <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>, </span>size of <span class="parmname">work</span>, must be at least <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>nb_a</var>*(<var>nqa</var>0+<var>mpa</var>0+<var>nb_a</var>)</samp>, where</p>
+<p><samp class="codeph"><var>iroffa</var> = <span class="keyword">mod</span>(<var>ia</var>-1, <var>mb_a</var>)</samp>, </p>
+<p><samp class="codeph"><var>icoffa</var> = <span class="keyword">mod</span>(<var>ja</var>-1, <var>nb_a</var>)</samp>, </p>
+<p><samp class="codeph"><var>iarow</var> = <span class="keyword">indxg2p</span>(<var>ia</var>, <var>mb_a</var>, <span class="keyword">MYROW</span>, <var>rsrc_a</var>, <span class="keyword">NPROW</span>)</samp>, </p>
+<p><samp class="codeph"><var>iacol</var> = <span class="keyword">indxg2p</span>(<var>ja</var>, <var>nb_a</var>, <span class="keyword">MYCOL</span>, <var>csrc_a</var>, <span class="keyword">NPCOL</span>)</samp>, </p>
+<p><samp class="codeph"><var>mpa</var>0 = <span class="keyword">numroc</span>(<var>m</var>+<var>iroffa</var>, <var>mb_a</var>, <span class="keyword">MYROW</span>, <var>iarow</var>, <span class="keyword">NPROW</span>)</samp>, </p>
+<p><samp class="codeph"><var>nqa</var>0 = <span class="keyword">numroc</span>(<var>n</var>+<var>icoffa</var>, <var>nb_a</var>, <span class="keyword">MYCOL</span>, <var>iacol</var>, <span class="keyword">NPCOL</span>)</samp></p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><samp class="codeph">mod(<var>x</var>,<var>y</var>)</samp> is the integer remainder of <samp class="codeph"><var>x</var>/<var>y</var></samp>.</p>
+</div>
+<p><span class="keyword">indxg2p</span> and <span class="keyword">numroc</span> are ScaLAPACK tool functions; <span class="keyword">MYROW</span>, <span class="keyword">MYCOL</span>, <span class="keyword">NPROW</span> and <span class="keyword">NPCOL</span> can be determined by calling the <span>subroutine </span><span class="option">blacs_gridinfo</span>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <span class="parmname">lwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <a href="GUID-E523C816-D553-4D4E-8458-5404828CC07B.html">pxerbla</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-132A5BA6-9C34-4A55-B1F0-49C1EC8C932A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8ACC0D01-D0FB-4E3B-9135-C10CE84AD14B"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Contains the local pieces of the <span class="parmname">m</span>-by-<span class="parmname">n</span> distributed matrix <var>Q</var> to be factored.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span><span>(1)</span></samp></dt>
+
+<dd><p>On exit, <samp class="codeph"><span class="parmname">work</span><span>(1)</span></samp> contains the minimum value of <span class="parmname">lwork</span> required for optimum performance.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p><samp class="codeph">= 0</samp>: the execution is successful.</p>
+<p><samp class="codeph">&lt; 0</samp>: if the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html">Orthogonal Factorizations: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

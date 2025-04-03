@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lanhb"/>
+<meta name="abstract" content="Returns the value of the 1-norm, or the Frobenius norm, or the infinity norm, or the element of largest absolute value of a Hermitian band matrix."/>
+<meta name="description" content="Returns the value of the 1-norm, or the Frobenius norm, or the infinity norm, or the element of largest absolute value of a Hermitian band matrix."/>
+<meta name="DC.subject" content="?lanhb, LAPACK routines, auxiliary routines, Hermitian band matrix, 1-norm value, Frobenius norm, infinity- norm, largest absolute value of element, infinity-norm"/>
+<meta name="keywords" content="?lanhb, LAPACK routines, auxiliary routines, Hermitian band matrix, 1-norm value, Frobenius norm, infinity- norm, largest absolute value of element, infinity-norm"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-51B666B4-8AB2-4F8A-B5A0-3037C1E1474F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lanhb</title>
+
+</head>
+<body id="GUID-51B666B4-8AB2-4F8A-B5A0-3037C1E1474F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lanhb</span></h1>
+<!--Returns the value of the 1-norm, or the Frobenius norm, or the  infinity norm, or the element of  largest absolute value of a Hermitian band matrix.--><div><p class="shortdesc">Returns the value of the 1-norm, or the Frobenius norm, or the  infinity norm, or the element of  largest absolute value of a Hermitian band matrix.</p>
+<div class="section" id="GUID-C1E06770-B0EE-4398-89ED-FAEB3EDC22F9"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">clanhb</span><span class="delim">( </span><span class="var">norm</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">zlanhb</span><span class="delim">( </span><span class="var">norm</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-646C1BC5-009A-43F1-B80F-CC5D618CC274"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C01BB1F3-4309-4E0B-9058-6B4D6AB3E567"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine returns the value of the 1-norm, or the Frobenius norm, or the  infinity norm, or the element of  largest absolute value  of an <var>n</var>-by-<var>n</var> Hermitian band matrix <var>A</var>, with <var>k</var> super-diagonals.</p>
+</div>
+<div class="section" id="GUID-46C23071-9087-4C00-BAF7-83D6F81D6183"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-6FB210B6-EE05-4BFA-BB69-A3B3FEEA6ABF"><dt class="dlterm"><span class="parmname">norm</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. Specifies the value to be returned by the routine:</p>
+<p> = <span class="keyword">'M'</span> or <span class="keyword">'m': </span><var>val</var> = <span class="keyword">max</span>(<span class="keyword">abs</span>(<var>A</var><sub class="subb"><var>i</var><var>j</var></sub>)), largest absolute value  of the matrix <var>A</var>.</p>
+<p>= <span class="keyword">'1'</span> or <span class="keyword">'O'</span> or <span class="keyword">'o': </span><var>val</var> = <span class="keyword">norm1</span>(<var>A</var>), 1-norm of the matrix <var>A</var> (maximum column sum),</p>
+<p>= <span class="keyword">'I'</span> or <span class="keyword">'i': </span><var>val</var> = <span class="keyword">normI</span>(<var>A</var>), infinity norm of the matrix <var>A</var> (maximum row sum),</p>
+<p>= <span class="keyword">'F'</span>, <span class="keyword">'f'</span>, <span class="keyword">'E'</span>  or <span class="keyword">'e': </span><var>val</var> = <span class="keyword">normF</span>(<var>A</var>), Frobenius norm of the matrix <var>A</var> (square root of sum of squares).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the band matrix <var>A</var> is supplied. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: upper triangular part is supplied; </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: lower triangular part is supplied.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>. When <samp class="codeph"><var>n</var> = 0</samp>, <span class="option">?lanhb</span> is set to zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of super-diagonals or sub-diagonals of the band matrix <var>A</var>. </p>
+<p><samp class="codeph"><var>k</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">clanhb</span>.</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlanhb</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldaB</var>,<var>n</var>). The upper or lower triangle of the Hermitian band matrix <var>A</var>, stored in the first <var>k</var>+1 rows of <var>ab</var>. The <var>j</var>-th column of <var>A</var> is stored in the <var>j</var>-th column of the array <var>ab</var> as follows: </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <samp class="codeph"><var>ab</var>(<var>k</var>+1+<var>i</var>-<var>j</var>,<var>j</var>) = <var>a</var>(<var>i</var>,<var>j</var>)</samp></p>
+<p>for <samp class="codeph">max(1,<var>j</var>-<var>k</var>) ≤ <var>i</var> ≤ <var>j</var></samp>;</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>ab</var>(1+<var>i</var>-<var>j</var>,<var>j</var>)  = <var>a</var>(<var>i</var>,<var>j</var>)</samp> for <samp class="codeph"><var>j</var> ≤ <var>i</var> ≤ min(<var>n</var>,<var>j</var>+<var>k</var>)</samp>. </p>
+<p>Note that the imaginary parts of the diagonal elements need not be set and are assumed to be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>ab</var>. <var>ldab</var><span class="eqsymbol">≥</span><var>k</var>+1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">clanhb</span>.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlanhb</span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span><samp class="codeph">max(1, <var>lwork</var>)</samp>, where </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var></samp> when <samp class="codeph"><var>norm</var> = <span class="keyword">'I'</span></samp> or <span class="keyword">'1'</span> or <span class="keyword">'O'</span>; otherwise, <var>work</var> is not referenced. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-86BCFC9A-6C78-43B0-8E26-4917964D6C72"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0AFBB518-8CA3-42BB-A7E5-60028E77D69B"><dt class="dlterm"><span class="parmname">val</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slanhb</span>/<span class="option">clanhb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlanhb</span>/<span class="option">zlanhb</span></p>
+<p>Value returned by the function.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

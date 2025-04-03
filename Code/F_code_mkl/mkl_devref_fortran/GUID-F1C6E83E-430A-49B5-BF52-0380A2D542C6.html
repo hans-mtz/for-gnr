@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasrt"/>
+<meta name="abstract" content="Sorts numbers in increasing or decreasing order."/>
+<meta name="description" content="Sorts numbers in increasing or decreasing order."/>
+<meta name="DC.subject" content="?lasrt, LAPACK routines, auxiliary routines, sorting numbers, sorting, numbers in increasing/decreasing order, LAPACK"/>
+<meta name="keywords" content="?lasrt, LAPACK routines, auxiliary routines, sorting numbers, sorting, numbers in increasing/decreasing order, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F1C6E83E-430A-49B5-BF52-0380A2D542C6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasrt</title>
+
+</head>
+<body id="GUID-F1C6E83E-430A-49B5-BF52-0380A2D542C6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasrt</span></h1>
+<!--Sorts numbers in increasing or decreasing order.--><div><p class="shortdesc">Sorts numbers in increasing or decreasing order.</p>
+<div class="section" id="GUID-7FC7D06C-58AC-4C8B-8763-D0F6360FFD95"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slasrt</span><span class="delim">( </span><span class="var">id</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasrt</span><span class="delim">( </span><span class="var">id</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-A8182A69-3DE7-4A34-80A0-5DDFB8B031EC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-79AA782F-D430-48B1-970D-2607FC27B79A"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?lasrt</span> sorts the numbers in <var>d</var> in increasing order (if <var>id</var> = <span class="keyword">'I'</span>) or in decreasing order (if <var>id</var> = <span class="keyword">'D'</span>). It uses Quick Sort, reverting to Insertion Sort on arrays of size ≤ 20. Dimension of <span class="keyword">stack</span> limits <var>n</var> to about 2<sup class="power">32</sup>.</p>
+</div>
+<div class="section" id="GUID-B5224322-6169-4CD5-8CFD-4BA3FD4405BB"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-5321DDE9-9E03-4380-877D-231484A200ED"><dt class="dlterm"><span class="parmname">id</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p><samp class="codeph">(<var>d</var>(1) ≤ ... ≤  <var>d</var>(<var>n</var>))</samp> or into decreasing order</p>
+<p><samp class="codeph">(<var>d</var>(1) <span class="eqsymbol">≥</span> ... <span class="eqsymbol">≥</span><var>d</var>(<var>n</var>))</samp>, depending on <var>id</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The length of the array <var>d</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasrt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasrt</span>. </p>
+<p>On entry, the array to be sorted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D55C0D72-C9AA-4980-A38C-5A98C0BBCFCC"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9AA26AAE-0BC9-417A-96DE-EAEDBC040AF4"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, <var>d</var> has been sorted into increasing order </p>
+<p><samp class="codeph">(<var>d</var>[0]≤d[1]≤ ... ≤ <var>d</var>[n-1])</samp> or into decreasing order</p>
+<p><samp class="codeph">(<var>d</var>[0] <span class="eqsymbol">≥</span> d[1] <span class="eqsymbol">≥</span> ... <span class="eqsymbol">≥</span><var>d</var>[<var>n</var>-1])</samp>, depending on <var>id</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p><samp class="codeph">If <var>info</var> &lt; 0</samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

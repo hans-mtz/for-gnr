@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="VM Naming Conventions"/>
+<meta name="DC.subject" content="function name conventions, in VM, naming conventions, VM"/>
+<meta name="keywords" content="function name conventions, in VM, naming conventions, VM"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C4D00FC3-91E1-4F61-BBBD-EC8E2F7A3792.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B29EBCC6-C24B-4842-92CF-DE57E256F493"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>VM Naming Conventions</title>
+
+</head>
+<body id="GUID-B29EBCC6-C24B-4842-92CF-DE57E256F493">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">VM Naming Conventions</h1>
+<div><p>The VM function names are<span> lowercase</span>. 
+    </p>
+<p>The VM mathematical and pack/unpack function names have the following structure: </p>
+<p><samp class="codeph"><var>v</var>[<var>m</var>]&lt;<var>?</var>&gt;<span class="option">&lt;name&gt;</span>&lt;<var>mod</var>&gt;</samp></p>
+<p>where 
+    </p>
+<ul id="GUID-C4D9C1B9-A65F-44DB-8AA0-183116E0E7EC"><li><p><var>v</var> is a prefix indicating vector operations. 
+        </p>
+</li>
+<li><p><samp class="codeph">[<var>m</var>]</samp> is an optional prefix for mathematical functions that indicates additional argument to specify a VM mode for a given function call (see 
+          <a href="GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E.html#GUID-08DD1124-912F-4AB2-9E0E-90E988379D5E"><span class="option">vmlsetmode</span></a> for possible values and their description). 
+        </p>
+</li>
+<li><p><samp class="codeph">&lt;<var>?</var>&gt;</samp> is a precision prefix that indicates one of the following data types: 
+        </p>
+<dl id="GUID-759A979E-3935-4005-9CC4-524925AE2FEE"><dt class="dlterm"><var>s</var></dt>
+
+<dd><p><span class="keyword">REAL (KIND=4)</span>. 
+              </p>
+</dd>
+<dt class="dlterm"><var>d</var></dt>
+
+<dd><p><span class="keyword">REAL (KIND=8)</span>. 
+              </p>
+</dd>
+<dt class="dlterm"><var>c</var></dt>
+
+<dd><p><span class="keyword">COMPLEX (KIND=4)</span>. 
+              </p>
+</dd>
+<dt class="dlterm"><var>z</var></dt>
+
+<dd><p><span class="keyword">COMPLEX (KIND=8)</span>. 
+              </p>
+</dd>
+</dl>
+</li>
+<li><p><span class="option">&lt;name&gt;</span> indicates the function short name. 
+  <span>See examples in 
+    <a href="GUID-7B3B6537-71E2-4BF5-A041-0365E72B211B.html#TBL9-2">Table 
+      <span>"VM Mathematical Functions"</span></a></span>. 
+  </p>
+</li>
+<li><p><var>&lt;mod&gt;</var> field 
+       is present only in the pack/unpack functions and indicates the indexing method used: 
+    </p>
+<dl id="GUID-FA582C16-92E7-44A4-9F6C-39922F993B62"><dt class="dlterm"><var>i</var></dt>
+
+<dd><p>indexing with a positive increment 
+          </p>
+</dd>
+<dt class="dlterm"><var>v</var></dt>
+
+<dd><p>indexing with an index vector 
+          </p>
+</dd>
+<dt class="dlterm"><var>m</var></dt>
+
+<dd><p>indexing with a mask vector. 
+          </p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The VM service function names have the following structure: 
+  </p>
+<p><var>vml</var><span class="option">&lt;name&gt;</span></p>
+<p>where 
+  </p>
+<p><span class="option">&lt;name&gt;</span> indicates the function short name. 
+  <span>See examples in 
+    <a href="GUID-D6D98FC7-E01C-4DE1-8EF5-03F1C4DE3981.html#TBL9-13">Table 
+      <span>"VM Service Functions"</span></a></span>. 
+  </p>
+<p>To call VM functions from an application program, use conventional function calls. For example, call the vector single precision real exponential function as 
+  </p>
+<p><samp class="codeph">call 
+      <span class="option">vsexp</span> ( 
+      <span class="parmname">n</span>, 
+      <span class="parmname">a</span>, 
+      <span class="parmname">y</span> )</samp></p>
+<p><samp class="codeph">call 
+      <span class="option">vmsexp</span> ( 
+      <span class="parmname">n</span>, 
+      <span class="parmname">a</span>, 
+      <span class="parmname">y</span>, 
+      <span class="parmname">mode</span> )</samp> 
+    with a specified mode 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-59EC4B87-29C8-4FB4-B57C-D269E6364954.html">Vector Mathematical Functions</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-C4D00FC3-91E1-4F61-BBBD-EC8E2F7A3792.html">VM Function Interfaces</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?potf2"/>
+<meta name="abstract" content="Computes the Cholesky factorization of a symmetric/Hermitian positive definite matrix (local unblocked algorithm)."/>
+<meta name="description" content="Computes the Cholesky factorization of a symmetric/Hermitian positive definite matrix (local unblocked algorithm)."/>
+<meta name="DC.subject" content="p?potf2, ScaLAPACK routines, auxiliary routines, factorization, Cholesky, ScaLAPACK, Hermitian positive-definite matrix, Cholesky factorization, symmetric positive-definite matrix"/>
+<meta name="keywords" content="p?potf2, ScaLAPACK routines, auxiliary routines, factorization, Cholesky, ScaLAPACK, Hermitian positive-definite matrix, Cholesky factorization, symmetric positive-definite matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7BBD35A5-D1F0-48A0-836D-C029E15E4DDF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?potf2</title>
+
+</head>
+<body id="GUID-7BBD35A5-D1F0-48A0-836D-C029E15E4DDF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?potf2</span></h1>
+<!--Computes the Cholesky factorization of a symmetric/Hermitian positive definite matrix (local unblocked algorithm).--><div><p class="shortdesc">Computes the Cholesky factorization of a symmetric/Hermitian positive definite matrix (local unblocked algorithm).</p>
+<div class="section" id="GUID-F5999F61-8D24-4BE2-85F3-C9331EE72359"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pspotf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdpotf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcpotf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzpotf2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-86EFA7DF-5CF7-4AAA-80E6-64DA07121E72"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?potf2</span><span>routine </span>computes the Cholesky factorization of a real symmetric or complex Hermitian positive definite distributed matrix sub <samp class="codeph">(<var>A</var>)=<var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1, <var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp>. </p>
+<p>The factorization has the form</p>
+<p>sub(<var>A</var>) = <var>U'</var>*<var>U</var>, if <span class="parmname">uplo</span> = <span class="keyword">'U'</span>, or sub(<var>A</var>) = <var>L</var>*<var>L'</var>, if <span class="parmname">uplo</span> = <span class="keyword">'L'</span>, </p>
+<p>where <var>U</var> is an upper triangular matrix, <var>L</var> is lower triangular. <var>X'</var> denotes transpose (conjugate transpose) of <var>X</var>.</p>
+</div>
+<div class="section" id="GUID-E707E281-B6F2-4266-A9C3-1E83A48B3538"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-AC0DE88A-8E22-4EA2-956C-C69386B74AD2"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span></p>
+<p>Specifies whether the upper or lower triangular part of the symmetric/Hermitian matrix <var>A </var> is stored. </p>
+<p>= <span class="keyword">'U'</span>:  upper triangle of sub (<var>A</var>) is stored;</p>
+<p>= <span class="keyword">'L'</span>:  lower triangle of sub (<var>A</var>) is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of rows and columns to be operated on, that is, the order of the distributed matrix sub (<var>A</var>). <samp class="codeph"><var>n</var><span class="eqsymbol"> ≥</span> 0</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pspotf2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdpotf2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcpotf2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzpotf2</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph"><span>(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</span></samp> containing the local pieces of the <span class="parmname">n</span>-by-<span class="parmname">n</span> symmetric distributed matrix sub(<var>A</var>) to be factored. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of sub(<var>A</var>) contains the upper triangular matrix and the strictly lower triangular part of this matrix is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of sub(<var>A</var>) contains the lower triangular matrix and the strictly upper triangular part of sub(<var>A</var>) is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DF1D1E38-26B6-4625-AD21-18BBDE9D4244"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8B72C5D5-3120-4317-A610-9FA51DEB377F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local) </p>
+<p>On exit, </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangular part of the distributed matrix contains the Cholesky factor <span class="keyword">U</span>; </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangular part of the distributed matrix contains the Cholesky factor <span class="keyword">L</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>.</span></p>
+<p><samp class="codeph">= 0</samp>: successful exit </p>
+<p><samp class="codeph">&lt; 0</samp>: if the <var>i</var>-th argument is an array and the <var>j</var>-th entry had an illegal value,</p>
+<p>      then <span class="parmname">info</span> = - (<var>i</var>*100 +<var>j</var>),</p>
+<p>      if the <var>i</var>-th argument is a scalar and had an illegal value,</p>
+<p>       then <span class="parmname">info</span> = -<var>i</var>.</p>
+<p><samp class="codeph"><span class="eqsymbol">&gt;</span> 0</samp>: if <span class="parmname">info</span> = <var>k</var>, the leading minor of order <var>k</var> is not positive definite, and the factorization could not be completed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

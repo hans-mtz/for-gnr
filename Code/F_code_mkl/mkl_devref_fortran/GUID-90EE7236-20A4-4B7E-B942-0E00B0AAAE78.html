@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Fortran 95 Interface Conventions for BLAS Routines"/>
+<meta name="DC.subject" content="Fortran 95 interface conventions, BLAS, Sparse BLAS"/>
+<meta name="keywords" content="Fortran 95 interface conventions, BLAS, Sparse BLAS"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F7ED9FB8-6663-4F44-A62B-61B63C4F0491.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Fortran 95 Interface Conventions for BLAS Routines</title>
+
+</head>
+<body id="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Fortran 95 Interface Conventions for BLAS Routines</h1>
+<div><p> The Fortran 95 interface to BLAS and Sparse BLAS Level 1 routines is implemented through wrappers that call respective FORTRAN 77 routines. This interface uses features of Fortran 95 such as assumed-shape arrays and optional arguments to provide simplified calls to BLAS and Sparse BLAS Level 1 routines with fewer parameters. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For BLAS, 
+        Intel&reg; oneAPI Math Kernel Library offers two types of Fortran 95 interfaces:
+      <ul id="GUID-7E9202C8-5C7E-4D0E-99CC-CB27A389CDE1"><li>using 
+          <span class="filepath">mkl_blas.fi</span> only through 
+          <samp class="tt">include 'mkl.fi'</samp> statement. Such interfaces allow you to make use of the original BLAS routines with all their arguments 
+        </li>
+<li>using 
+          <span class="filepath">blas.f90</span> that includes improved interfaces. This file is used to generate the module files 
+          <span class="filepath">blas95.mod</span> and 
+          <span class="filepath">f95_precision.mod</span>. See also section "Fortran 95 interfaces and wrappers to LAPACK and BLAS" of 
+          <em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em> for details. The module files are used to process the FORTRAN use clauses referencing the BLAS interface: 
+          <samp class="codeph">use blas95</samp> and 
+          <samp class="codeph">use f95_precision</samp>. </li>
+</ul>
+</p>
+</div>
+<p>The main conventions used in Fortran 95 interface are as follows: 
+    </p>
+<ul id="GUID-A3BF9A80-8351-4E8F-9C5F-A95401688ED6"><li><p>The names of parameters used in Fortran 95 interface are typically the same as those used for the respective generic (FORTRAN 77) interface. In rare cases formal argument names may be different. 
+        </p>
+</li>
+<li><p>Some input parameters such as array dimensions are not required in Fortran 95 and are skipped from the calling sequence. Array dimensions are reconstructed from the user data that must exactly follow the required array shape. 
+        </p>
+</li>
+<li><p>A parameter can be skipped if its value is completely defined by the presence or absence of another parameter in the calling sequence, and the restored value is the only meaningful value for the skipped parameter. 
+        </p>
+</li>
+<li><p>Parameters specifying the increment values 
+          <var>incx</var> and 
+          <var>incy</var> are skipped. In most cases their values are equal to 1. In Fortran 95 an increment with different value can be directly established in the corresponding parameter. 
+        </p>
+</li>
+<li><p>Some generic parameters are declared as optional in Fortran 95 interface and may or may not be present in the calling sequence. A parameter can be declared optional if it satisfies one of the following conditions: 
+        </p>
+<ol id="GUID-9B78DA55-815F-45ED-95FF-B2928355EFCD"><li><p>It can take only a few possible values. The default value of such parameter typically is the first value in the list; all exceptions to this rule are explicitly stated in the routine description. 
+            </p>
+</li>
+<li><p>It has a natural default value. 
+            </p>
+</li>
+</ol>
+<p>Optional parameters are given in square brackets in Fortran 95 call syntax. 
+        </p>
+</li>
+</ul>
+<p>The particular rules used for reconstructing the values of omitted optional parameters are specific for each routine and are detailed in the respective "Fortran 95 Notes" subsection at the end of routine specification section. If this subsection is omitted, the Fortran 95 interface for the given routine does not differ from the corresponding FORTRAN 77 interface. 
+    </p>
+<p>Note that this interface is not implemented in the current version of Sparse BLAS Level 2 and Level 3 routines. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F7ED9FB8-6663-4F44-A62B-61B63C4F0491.html">BLAS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

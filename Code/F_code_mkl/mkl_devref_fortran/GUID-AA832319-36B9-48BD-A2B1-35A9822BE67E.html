@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?rscl"/>
+<meta name="abstract" content="Multiplies a vector by the reciprocal of a real scalar."/>
+<meta name="description" content="Multiplies a vector by the reciprocal of a real scalar."/>
+<meta name="DC.subject" content="p?rscl, ScaLAPACK routines, auxiliary routines, vector multiplication, ScaLAPACK"/>
+<meta name="keywords" content="p?rscl, ScaLAPACK routines, auxiliary routines, vector multiplication, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AA832319-36B9-48BD-A2B1-35A9822BE67E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?rscl</title>
+
+</head>
+<body id="GUID-AA832319-36B9-48BD-A2B1-35A9822BE67E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?rscl</span></h1>
+<!--Multiplies a vector by the reciprocal of a real scalar.--><div><p class="shortdesc">Multiplies a vector by the reciprocal of a real scalar.</p>
+<div class="section" id="GUID-8D1862F7-BC2C-448E-BBCF-6E9F2F84ABE0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psrscl</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">sa</span><span class="sep">, </span><span class="var">sx</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdrscl</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">sa</span><span class="sep">, </span><span class="var">sx</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcsrscl</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">sa</span><span class="sep">, </span><span class="var">sx</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzdrscl</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">sa</span><span class="sep">, </span><span class="var">sx</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-D384A25E-1B75-4930-B6E9-400075E4D660"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?rscl</span><span>routine </span>multiplies an <span class="parmname">n</span>-element real/complex vector sub(<var>X</var>) by the real scalar 1/<var>a</var>. This is done without overflow or underflow as long as the final result sub(<var>X</var>)/a does not overflow or underflow.</p>
+<p>sub(<var>X</var>) denotes<var> X</var><samp class="codeph">(<var>ix</var>:<var>ix</var>+<var>n</var>-1, <var>jx</var>:<var>jx</var>)</samp>, if <samp class="codeph"><var>incx</var> = 1</samp>,</p>
+<p>                and <var>X</var><samp class="codeph">(<var>ix</var>:<var>ix</var>, <var>jx</var>:<var>jx</var>+<var>n</var>-1)</samp>, if <samp class="codeph"><var>incx</var> = <var>m_x</var></samp>.</p>
+</div>
+<div class="section" id="GUID-58B59131-01FD-4FBD-8A75-140C493E579D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-CE93ABE1-2009-42A5-AF65-F9111FEF26E0"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of components of the distributed vector sub(<var>X</var>). <samp class="codeph"><var>n</var><span class="eqsymbol"> ≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sa</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">psrscl/pcsrscl</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdrscl/pzdrscl</span>. </p>
+<p>The scalar <var>a</var> that is used to divide each component of the vector sub(<var>X</var>). This parameter must be <span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sx</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for<span class="option">psrscl</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdrscl</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcsrscl</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzdrscl</span>. </p>
+<p>Array containing the local pieces of a distributed matrix of size of at least <samp class="codeph">((<var>jx</var>-1)*<var>m_x</var> + <var>ix</var> + (<var>n</var>-1)*abs(<var>incx</var>))</samp>. This array contains the entries of the distributed vector sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.</span>The row index of the submatrix of the distributed matrix <var>X </var> to operate on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The column index of the submatrix of the distributed matrix <var>X </var> to operate on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Array of size 9. The array descriptor for the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The increment for the elements of <var>X</var>. This version supports only two values of <span class="parmname">incx</span>, namely 1 and <var>m_x</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4A413D39-DC99-4C9F-89A3-5FBBF804E572"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AF8B1285-3B66-4962-B6F0-1ADB88056B75"><dt class="dlterm"><span class="parmname">sx</span></dt>
+
+<dd><p>On exit, the result <var>x</var>/<var>a</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

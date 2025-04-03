@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Convolution and Correlation Mathematical Notation and Definitions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Convolution and Correlation Mathematical Notation and Definitions</title>
+
+</head>
+<body id="GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Convolution and Correlation Mathematical
+    Notation and Definitions</h1>
+<div><p>The following notation is necessary to explain the
+      underlying mathematical definitions used in the text:
+    </p>
+<table cellpadding="4" cellspacing="0" summary="" border="1" class="noborder"><tr><td valign="top" class="noborder" width="35.84905660377358%"><samp class="codeph"><strong>R</strong> = (-<span class="eqsymbol">∞</span>, +<span class="eqsymbol">∞</span>)</samp></td>
+<td valign="top" class="noborder" width="64.15094339622641%">The set of real
+          numbers.</td>
+</tr>
+<tr><td valign="top" class="noborder"><samp class="codeph"><strong>Z</strong> = {0, 
+            <span class="eqsymbol">±</span>1, 
+            <span class="eqsymbol">±</span>2,
+            ...}</samp></td>
+<td valign="top" class="noborder">The set of integer numbers.</td>
+</tr>
+<tr><td valign="top" class="noborder"><samp class="codeph"><strong>Z</strong><sup>N</sup> = 
+            <strong>Z</strong><span class="eqsymbol">×</span> ... 
+            <span class="eqsymbol">×</span><strong>Z</strong></samp></td>
+<td valign="top" class="noborder">The set of N-dimensional series
+          of integer numbers.</td>
+</tr>
+<tr><td valign="top" class="noborder"><samp class="codeph"><var>p</var> = (<var>p</var><sub>1</sub>, ..., 
+            <var>p</var><sub>N</sub>) 
+            <span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup></samp></td>
+<td valign="top" class="noborder">N-dimensional series of
+          integers.</td>
+</tr>
+<tr><td valign="top" class="noborder"><var>u</var>:<strong>Z</strong><sup>N</sup><span class="eqsymbol">→</span><strong>R</strong></td>
+<td valign="top" class="noborder">Function 
+          <var>u</var> with
+          arguments from 
+          <strong>Z</strong><sup>N</sup> and values from 
+          <strong>R</strong>.</td>
+</tr>
+<tr><td valign="top" class="noborder"><var>u</var>(<var>p</var>) = 
+          <var>u</var>(<var>p</var><sub>1</sub>, ..., 
+          <var>p</var><sub>N</sub>)</td>
+<td valign="top" class="noborder">The value of the function 
+          <var>u</var> for the
+          argument (<var>p</var><sub>1</sub>, ..., 
+          <var>p</var><sub>N</sub>).</td>
+</tr>
+<tr><td valign="top" class="noborder"><samp class="codeph"><var>w</var> = 
+            <var>u</var><span class="eqsymbol">*</span><var>v</var></samp></td>
+<td valign="top" class="noborder">Function 
+          <var>w</var> is the
+          convolution of the functions 
+          <var>u</var>, 
+          <var>v</var>.</td>
+</tr>
+<tr><td valign="top" class="noborder"><samp class="codeph"><var>w</var> = 
+            <var>u</var><span class="eqsymbol">•</span><var>v</var></samp></td>
+<td valign="top" class="noborder">Function 
+          <var>w</var> is the
+          correlation of the functions 
+          <var>u</var>, 
+          <var>v</var>.</td>
+</tr>
+</table>
+<p>Given series <var>p</var>, 
+      <var>q</var><span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup>:
+    </p>
+<ul class="bullet" id="GUID-10311FB2-B60D-4F34-A963-B014B79C7E4D"><li><p>series 
+          <samp class="codeph"><var>r</var> = 
+            <var>p</var> + 
+            <var>q</var></samp>
+          is defined as 
+          <samp class="codeph"><var>r</var><sup><var>n</var></sup> = 
+            <var>p</var><sup><var>n</var></sup> + 
+            <var>q</var><sup><var>n</var></sup></samp> for every 
+          <samp class="codeph"><var>n</var>=1,...,N</samp></p>
+</li>
+<li><p>series 
+          <samp class="codeph"><var>r</var> = 
+            <var>p</var> - 
+            <var>q</var></samp>
+          is defined as 
+          <samp class="codeph"><var>r</var><sup><var>n</var></sup> = 
+            <var>p</var><sup><var>n</var></sup> - 
+            <var>q</var><sup><var>n</var></sup></samp> for every 
+          <samp class="codeph"><var>n</var>=1,...,N</samp></p>
+</li>
+<li><p>series 
+          <samp class="codeph"><var>r</var> = sup{<var>p</var>, 
+            <var>q</var>}</samp> is defines as 
+          <samp class="codeph"><var>r</var><sup><var>n</var></sup> = max{<var>p</var><sup><var>n</var></sup>, 
+            <var>q</var><sup><var>n</var></sup>}</samp> for every 
+          <samp class="codeph"><var>n</var>=1,...,N</samp></p>
+</li>
+<li><p>series 
+          <samp class="codeph"><var>r</var> = inf{<var>p</var>, 
+            <var>q</var>}</samp> is defined as 
+          <samp class="codeph"><var>r</var><sup><var>n</var></sup> = min{<var>p</var><sup><var>n</var></sup>, 
+            <var>q</var><sup><var>n</var></sup>}</samp> for every 
+          <samp class="codeph"><var>n</var>=1,...,N</samp></p>
+</li>
+<li><p>inequality 
+          <samp class="codeph"><var>p</var><span class="eqsymbol">≤</span><var>q</var></samp>
+          means that 
+          <var>p</var><sup><var>n</var></sup><span class="eqsymbol">≤</span><var>q</var><sup><var>n</var></sup> for every 
+          <samp class="codeph"><var>n</var>=1,...,N</samp>.
+        </p>
+</li>
+</ul>
+<p>A function 
+      <samp class="codeph"><var>u</var>(<var>p</var>)</samp> is called a finite
+      function if there exist series P<sup>min</sup>, P<sup>max</sup><span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup> such that: 
+    </p>
+<p><pre><var>u</var>(<var>p</var>) 
+        <span class="eqsymbol">≠</span> 0 
+      </pre>implies<pre> P<sup>min</sup><span class="eqsymbol">≤</span><var>p</var><span class="eqsymbol">≤</span> P<sup>max</sup>.</pre></p>
+<p>Operations of convolution and correlation are only
+      defined for finite functions.
+    </p>
+<p>Consider functions 
+      <var>u</var>, 
+      <var>v</var> and series P<sup>min</sup>, P<sup>max</sup>Q<sup>min</sup>, Q<sup>max</sup><span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup> such that: 
+    </p>
+<p><samp class="codeph"><var>u</var>(<var>p</var>) 
+        <span class="eqsymbol">≠</span> 0</samp>
+      implies 
+      <samp class="codeph">P<sup>min</sup><span class="eqsymbol">≤</span><var>p</var><span class="eqsymbol">≤</span> P<sup>max</sup></samp>.<br/><samp class="codeph"><var>v</var>(<var>q</var>) 
+        <span class="eqsymbol">≠</span> 0</samp>
+      implies 
+      <samp class="codeph">Q<sup>min</sup><span class="eqsymbol">≤</span><var>q</var><span class="eqsymbol">≤</span> Q<sup>max</sup>.</samp></p>
+<p>Definitions of linear correlation and linear
+      convolution for functions 
+      <var>u</var> and 
+      <var>v</var> are given
+      below.
+    </p>
+<div class="section" id="GUID-5D438467-DB63-4D16-A0AB-F8DAE84DC39C"><h2 class="sectiontitle">Linear Convolution</h2><p>If function 
+        <samp class="codeph"><var>w</var> = 
+          <var>u</var><span class="eqsymbol">*</span><var>v</var></samp> is the convolution
+        of 
+        <var>u</var> and 
+        <var>v</var>, then: 
+      </p>
+<p><samp class="codeph"><var>w</var>(<var>r</var>) 
+          <span class="eqsymbol">≠</span> 0</samp>
+        implies 
+        <samp class="codeph"><strong>R</strong><sup>min</sup><span class="eqsymbol">≤</span><var>r</var><span class="eqsymbol">≤</span><strong>R</strong><sup>max</sup></samp>, 
+        <br/>where 
+        <samp class="codeph"><strong>R</strong><sup>min</sup> =
+          P<sup>min</sup> + Q<sup>min</sup></samp> and 
+        <samp class="codeph"><strong>R</strong><sup>max</sup> =
+          P<sup>max</sup> + Q<sup>max</sup>.</samp></p>
+<p>If 
+        <samp class="codeph"><strong>R</strong><sup>min</sup><span class="eqsymbol">≤</span><var>r</var><span class="eqsymbol">≤</span><strong>R</strong><sup>max</sup></samp>, then:
+      </p>
+<p><var>w</var>(<var>r</var>) = 
+        <samp class="codeph"><span class="eqsymbol">∑</span><var>u</var>(<var>t</var>)·<var>v</var>(<var>r</var><span class="eqsymbol">−</span><var>t</var>) 
+        </samp>is the sum for all 
+        <var>t</var><span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup> such that 
+        <samp class="codeph"><strong>T</strong><sup>min</sup><span class="eqsymbol">≤</span><var>t</var><span class="eqsymbol">≤</span><strong>T</strong><sup>max</sup></samp>, 
+        <br/> where 
+        <samp class="codeph"><strong>T</strong><sup>min</sup> =
+          sup{P<sup>min</sup>, 
+          <var>r</var><span class="eqsymbol">−</span> Q<sup>max</sup>}</samp> and 
+        <samp class="codeph"><strong>T</strong><sup>max</sup> =
+          inf{P<sup>max</sup>, 
+          <var>r</var><span class="eqsymbol">−</span> Q<sup>min</sup>}.</samp></p>
+</div>
+<div class="section" id="GUID-258744A5-BB6F-4C52-9233-7CA066879BCF"><h2 class="sectiontitle">Linear Correlation</h2><p>If function 
+        <var>w</var> = 
+        <var>u</var><span class="eqsymbol">•</span><var>v</var> is the
+        correlation of 
+        <var>u</var> and 
+        <var>v</var>, then: 
+      </p>
+<p><samp class="codeph"><var>w</var>(<var>r</var>) 
+          <span class="eqsymbol">≠</span> 0</samp>
+        implies 
+        <samp class="codeph"><strong>R</strong><sup>min</sup><span class="eqsymbol">≤</span><var>r</var><span class="eqsymbol">≤</span><strong>R</strong><sup>max</sup></samp>, 
+        <br/>where 
+        <samp class="codeph"><strong>R</strong><sup>min</sup> =
+          Q<sup>min</sup> - P<sup>max</sup></samp> and 
+        <samp class="codeph"><strong>R</strong><sup>max</sup> =
+          Q<sup>max</sup> - P<sup>min</sup></samp>.
+      </p>
+<p>If 
+        <samp class="codeph"><strong>R</strong><sup>min</sup><span class="eqsymbol">≤</span><var>r</var><span class="eqsymbol">≤</span><strong>R</strong><sup>max</sup></samp>, then: 
+      </p>
+<p><samp class="codeph"><var>w</var>(<var>r</var>) = 
+          <span class="eqsymbol">∑</span><var>u</var>(<var>t</var>)·<var>v</var>(<var>r</var>+<var>t</var>) 
+        </samp>is the sum for all 
+        <samp class="codeph"><var>t</var><span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup></samp> such that 
+        <samp class="codeph"><strong>T</strong><sup>min</sup><span class="eqsymbol">≤</span><var>t</var><span class="eqsymbol">≤</span><strong>T</strong><sup>max</sup></samp>,<br/>where 
+        <samp class="codeph"><strong>T</strong><sup>min</sup> =
+          sup{P<sup>min</sup>, Q<sup>min</sup><span class="eqsymbol">−</span><var>r</var>}</samp>
+        and 
+        <samp class="codeph"><strong>T</strong><sup>max</sup> =
+          inf{P<sup>max</sup>, Q<sup>max</sup><span class="eqsymbol">−</span><var>r</var>}</samp>.
+      </p>
+<p>Representation of the functions 
+        <var>u</var>, 
+        <var>v</var>, 
+        <var>w</var>as the input/output data for the Intel&reg; oneAPI Math Kernel Library convolution and correlation functions is described in the<a href="GUID-EC3E2E6B-4989-4AF1-A3A8-7BAE7C945E05.html#GUID-EC3E2E6B-4989-4AF1-A3A8-7BAE7C945E05">Data Allocation</a>.
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html">Convolution and Correlation</a></div>
+</div>
+<div/>
+</body>
+</html>

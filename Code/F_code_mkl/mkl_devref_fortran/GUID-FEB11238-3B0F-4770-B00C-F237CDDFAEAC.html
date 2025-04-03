@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?latra"/>
+<meta name="abstract" content="Computes the trace of a general square distributed matrix."/>
+<meta name="description" content="Computes the trace of a general square distributed matrix."/>
+<meta name="DC.subject" content="p?latra, ScaLAPACK routines, auxiliary routines, general square matrix, trace"/>
+<meta name="keywords" content="p?latra, ScaLAPACK routines, auxiliary routines, general square matrix, trace"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-FEB11238-3B0F-4770-B00C-F237CDDFAEAC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?latra</title>
+
+</head>
+<body id="GUID-FEB11238-3B0F-4770-B00C-F237CDDFAEAC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?latra</span></h1>
+<!--Computes the trace of a general square distributed matrix.--><div><p class="shortdesc">Computes the trace of a general square distributed matrix.</p>
+<div class="section" id="GUID-10047EF3-D90C-46F2-A3B4-42414C685ADA"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">pslatra</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">pdlatra</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">pclatra</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="var">val</span><span class="oper"> = </span><span class="kwd">pzlatra</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3DC3EDFC-A71C-401F-AF10-6A733B951AD9"><h2 class="sectiontitle">Description</h2><p><span/>This function computes the trace of an <var>n</var>-by-<var>n</var> distributed matrix sub(<var>A</var>) denoting <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp>. The result is left on every process of the grid.</p>
+</div>
+<div class="section" id="GUID-2AAC6F6B-E136-4452-A97B-6C2BE75044AA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-D9C6DB96-2D8C-49D4-BE8E-1A67B5C9D830"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of rows and columns to be operated on, that is, the order of the distributed matrix sub(<var>A</var>). <samp class="codeph"><var>n  </var><span class="eqsymbol">≥</span>0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslatra</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlatra</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclatra</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlatra</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph"><span>(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</span></samp> containing the local pieces of the distributed matrix, the trace of which is to be computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices respectively in the global matrix <var>A</var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-75C1D275-3CD4-4FE2-A862-AA81C18FA615"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-63BB13F5-6C05-4302-AD7D-7A1F8B771F55"><dt class="dlterm"><span class="parmname">val</span></dt>
+
+<dd><p>The value returned by the function.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

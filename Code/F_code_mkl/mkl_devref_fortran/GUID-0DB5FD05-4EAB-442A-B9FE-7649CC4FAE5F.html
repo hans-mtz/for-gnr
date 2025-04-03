@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_set_exit_handler"/>
+<meta name="abstract" content="Sets the custom handler of fatal errors."/>
+<meta name="description" content="Sets the custom handler of fatal errors."/>
+<meta name="DC.subject" content="Single Dynamic Library, mkl_set_exit_handler"/>
+<meta name="keywords" content="Single Dynamic Library, mkl_set_exit_handler"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-16E76074-4EEC-4D69-92C7-E490BC9B569D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0DB5FD05-4EAB-442A-B9FE-7649CC4FAE5F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_set_exit_handler</title>
+
+</head>
+<body id="GUID-0DB5FD05-4EAB-442A-B9FE-7649CC4FAE5F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_set_exit_handler</span></h1>
+<!--Sets the custom handler of fatal errors.--><div><p class="shortdesc">Sets the custom handler of fatal errors.</p>
+<div class="section" id="GUID-7023EE28-51E8-44BC-A764-8284C8413DEA"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span><span class="kwd">external</span><span class="delim"> :: </span><span class="var">myexit</span></span></p><p class="dlsyntaxpara"><span class="kwd">interface = mkl_set_exit_handler</span><span class="sep">( </span><span class="var">myexit</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-6D2BE120-C36D-43D7-AECC-27CE05DF79B1"><h2 class="sectiontitle">Fortran Include Files/Modules</h2><p>None.</p>
+</div>
+<div class="section" id="GUID-9FC2FEE0-C2A2-41CE-931B-184C56E5C369"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d108541e57" width="18.18181818181818%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d108541e60" width="45.45454545454545%"><p><span>Interface</span></p>
+</th>
+<th valign="bottom" align="left" id="d108541e64" width="36.36363636363636%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d108541e57"><p><span class="parmname">myexit</span></p>
+</td>
+<td valign="top" headers="d108541e60"><p/>
+<pre>interface
+subroutine myexit(iwhy)
+integer,value :: iwhy
+end subroutine myexit
+end interface
+</pre></td>
+<td valign="top" headers="d108541e64"><p>The error handler to set.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-67E3E379-90A2-4EAB-BC6F-AE9800CDB42F"><h2 class="sectiontitle">Description</h2><p>This function sets the custom handler of fatal errors.</p>
+<p>The following example shows how to use a custom handler of fatal errors in your application:</p>
+<pre>subroutine myexit(rsn)
+integer,value :: rsn
+call msgbox("Application is terminating")
+end myexit
+
+program app
+external :: myexit
+call mkl_set_exit_handler(myexit)
+!... compute using Intel MKL...
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-16E76074-4EEC-4D69-92C7-E490BC9B569D.html">Handling Fatal Errors</a></div>
+</div>
+<div/>
+</body>
+</html>

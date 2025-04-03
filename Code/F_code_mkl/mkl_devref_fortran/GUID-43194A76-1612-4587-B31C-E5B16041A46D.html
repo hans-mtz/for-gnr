@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?steqr2"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, eigenvectors of a symmetric tridiagonal matrix using the implicit QL or QR method."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, eigenvectors of a symmetric tridiagonal matrix using the implicit QL or QR method."/>
+<meta name="DC.subject" content="?steqr2, ScaLAPACK routines, auxiliary routines, symmetric eigenvalue problems, eigenvalue problems, symmetric tridiagonal matrix"/>
+<meta name="keywords" content="?steqr2, ScaLAPACK routines, auxiliary routines, symmetric eigenvalue problems, eigenvalue problems, symmetric tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-43194A76-1612-4587-B31C-E5B16041A46D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?steqr2</title>
+
+</head>
+<body id="GUID-43194A76-1612-4587-B31C-E5B16041A46D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?steqr2</span></h1>
+<!--Computes all eigenvalues and, optionally, eigenvectors of a symmetric tridiagonal matrix using the implicit QL or QR method.--><div><p class="shortdesc">Computes all eigenvalues and, optionally, eigenvectors of a symmetric tridiagonal matrix using the implicit QL or QR method.</p>
+<div class="section" id="GUID-D6ECA7A8-A11B-4637-9202-216AAF4F559E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssteqr2</span><span class="delim">(</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">nr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsteqr2</span><span class="delim">(</span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">nr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-9E4D29B3-84E0-4EDB-B5D6-875ECA975F25"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">?steqr2</span><span>routine </span>is a modified version of LAPACK <span>routine </span><a href="GUID-DA4091CD-31BA-487A-9447-D6C9B3772989.html#GUID-DA4091CD-31BA-487A-9447-D6C9B3772989"><span class="option">?steqr</span></a>. The <span class="option">?steqr2</span><span>routine </span> computes all eigenvalues and, optionally, eigenvectors of a symmetric tridiagonal matrix using the implicit QL or QR method. <span class="option">?steqr2</span> is modified from <span class="option">?steqr</span> to allow each ScaLAPACK process running <span class="option">?steqr2</span> to perform updates on a distributed matrix Q. Proper usage of <span class="option">?steqr2</span> can be gleaned from examination of ScaLAPACK <span>routine </span><a href="GUID-98DAAD07-1FDA-49A3-88A5-88C40C670A75.html#GUID-98DAAD07-1FDA-49A3-88A5-88C40C670A75"><span class="option">p?syev</span></a>.</p>
+</div>
+<div class="section" id="GUID-88FC6B80-04D3-4C0E-A59A-F55E7F29EDDA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-416BFD1F-7C6D-4480-A39A-CE9E00874984"><dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'I'</span>.</p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, the <span>routine </span>computes eigenvalues only. If <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, the <span>routine </span>computes the eigenvalues and eigenvectors of the tridiagonal matrix <var>T</var>.</p>
+<p><span class="parmname">z</span> must be initialized to the identity matrix by <a class="allformats" href="GUID-38967D93-04E2-46BF-8C79-6B005B034451.html#GUID-38967D93-04E2-46BF-8C79-6B005B034451"><span class="option">p?laset</span></a> or <a class="allformats" href="GUID-99363CCB-9A6A-4BBD-88EF-3F441B10FDF5.html#GUID-99363CCB-9A6A-4BBD-88EF-3F441B10FDF5"><span class="option">?laset</span></a> prior to entering this <span>subroutine</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>T</var><samp class="codeph">(<var>n </var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span>, <span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssteqr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsteqr2</span></p>
+<p>Arrays: <var/></p>
+<p><span class="parmname">d</span> contains the diagonal elements of <var>T</var>. The size of <span class="parmname">d</span> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><span class="parmname">e</span> contains the <samp class="codeph">(<var>n</var>-1)</samp> subdiagonal elements of <var>T</var>. The size of <span class="parmname">e</span> must be at least <samp class="codeph">max(1, <var>n</var>-1)</samp>.</p>
+<p><span class="parmname">work</span> is a workspace array. The size of <span class="parmname">work</span> is <samp class="codeph">max(1, 2<var>*n</var>-2)</samp>. If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <span class="parmname">work</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">ssteqr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsteqr2</span></p>
+<p>Array of global size <span class="parmname">n</span><span>by </span><span class="parmname">n</span> and of local size <var>ldz</var><span>by </span><span class="parmname">nr</span>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp>, then <span class="parmname">z</span> contains the orthogonal matrix used in the reduction to tridiagonal form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">z</span>. Constraints: </p>
+<p><samp class="codeph"><var>ldz </var><span class="eqsymbol">≥</span> 1</samp>, </p>
+<p><samp class="codeph"><var>ldz </var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>, if eigenvectors are desired.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nr</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><span class="parmname">nr</span> = <samp class="codeph">max(1, <var>numroc</var>(<var>n</var>, <var>nb</var>, <var>myprow</var>, 0, <var>nprocs</var>))</samp>. </p>
+<p>If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <span class="parmname">nr</span> is not referenced.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-41227E26-F793-400D-B619-E0E6F68F3957"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2D8494BE-7D71-463A-BAE2-65A4CAEA1427"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, the eigenvalues in ascending order, if <samp class="codeph"><var>info</var> = 0</samp>. </p>
+<p>See also <samp class="codeph"><var>info</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, <span class="parmname">e</span> has been destroyed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then, </p>
+<p>if <samp class="codeph"><var>compz</var> = <span class="keyword">'V'</span></samp>, <span class="parmname">z</span> contains the orthonormal eigenvectors of the original symmetric matrix, and if <samp class="codeph"><var>compz</var> = <span class="keyword">'I'</span></samp>, <span class="parmname">z</span> contains the orthonormal eigenvectors of the symmetric tridiagonal matrix. If <samp class="codeph"><var>compz</var> = <span class="keyword">'N'</span></samp>, then <span class="parmname">z</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p><samp class="codeph"><var>info</var> = 0</samp>, the exit is successful.</p>
+<p><samp class="codeph"><var>info</var> &lt; 0</samp>: if <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th had an illegal value.</p>
+<p><samp class="codeph"><var>info</var><span class="eqsymbol"> &gt;</span> 0</samp>: the algorithm has failed to find all the eigenvalues in a total of 30<span class="parmname">n</span> iterations;</p>
+<p>if <samp class="codeph"><var>info</var> = <var>i</var></samp>, then <var>i</var> elements of <span class="parmname">e</span> have not converged to zero; on exit, <span class="parmname">d</span> and <span class="parmname">e</span> contain the elements of a symmetric tridiagonal matrix, which is orthogonally similar to the original matrix.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

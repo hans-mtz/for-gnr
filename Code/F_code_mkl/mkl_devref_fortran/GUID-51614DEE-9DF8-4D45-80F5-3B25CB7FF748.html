@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Error Analysis"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Error Analysis</title>
+
+</head>
+<body id="GUID-51614DEE-9DF8-4D45-80F5-3B25CB7FF748">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Error Analysis</h1>
+<div><p>In practice, most computations are performed with rounding errors. Besides, you often need to solve a system 
+		<samp class="codeph"><var>Ax</var> = 
+		  <var>b</var></samp>, where the data (the elements of 
+		<var>A</var> and 
+		<var>b</var>) are not known exactly. Therefore, it is important to understand how the data errors and rounding errors can affect the solution 
+		<var>x</var>.
+	 </p>
+<p><strong>Data perturbations.</strong> If 
+		<var>x</var> is the exact solution of 
+		<samp class="codeph"><var>Ax</var> = 
+		  <var>b</var></samp>, and 
+		<samp class="codeph"><var>x</var> + 
+		  <span class="eqsymbol">δ</span><var>x</var></samp> is the exact solution of a perturbed problem 
+		<samp class="codeph">(<var>A</var> + 
+		  <span class="eqsymbol">δ</span><var>A</var>)(<var>x</var> + 
+		  <span class="eqsymbol">δ</span><var>x</var>) = (<var>b</var> + 
+		  <span class="eqsymbol">δ</span><var>b</var>)</samp>, then this estimate, given up to linear terms of perturbations, holds:
+	 </p>
+<p><br/><div class="imagecenter"><img src="GUID-DA0F6FAE-C72E-4339-9057-5DE8389D4976-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where 
+		<var>A</var> + 
+		<span class="eqsymbol">δ</span><var>A</var> is nonsingular and<br/><div class="imagecenter"><img src="GUID-4FACB64E-6CAC-4839-B6C5-B7CD5AFBB6B6-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>In other words, relative errors in 
+		<var>A</var> or 
+		<var>b</var> may be amplified in the solution vector 
+		<var>x</var> by a factor 
+		<samp class="codeph"><span class="eqsymbol">κ</span>(<var>A</var>) = ||<var>A</var>|| ||<var>A</var><sup>-1</sup>||</samp> called the 
+		<dfn class="term">condition number</dfn> of 
+		<var>A</var>.
+	 </p>
+<p><strong>Rounding errors</strong> have the same effect as relative perturbations 
+		<samp class="codeph"><var>c</var>(<var>n</var>)<span class="eqsymbol">ε</span></samp> in the original data. Here 
+		<samp class="codeph"><span class="eqsymbol">ε</span></samp> is the 
+		<dfn class="term">machine precision</dfn>, defined as the smallest positive number 
+		<var>x</var> such that 1 + 
+		<var>x</var> &gt; 1; and 
+		<samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modest function of the matrix order 
+		<var>n</var>. The corresponding solution error is 
+	 </p>
+<p><samp class="codeph">||<span class="eqsymbol">δ</span><var>x</var>||/||<var>x</var>||<span class="eqsymbol">≤</span><var>c</var>(<var>n</var>)<span class="eqsymbol">κ</span>(<var>A</var>)<span class="eqsymbol">ε</span></samp>. (The value of 
+		<samp class="codeph"><var>c</var>(<var>n</var>)</samp> is seldom greater than 10<var>n</var>.)
+	 </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Machine precision depends on the data type used.
+		</p>
+</div>
+<p>Thus, if your matrix 
+		<var>A</var> is 
+		<dfn class="term">ill-conditioned</dfn> (that is, its condition number 
+		<samp class="codeph"><span class="eqsymbol">κ</span>(<var>A</var>)</samp> is very large), then the error in the solution 
+		<var>x</var> can also be large; you might even encounter a complete loss of precision. LAPACK provides routines that allow you to estimate 
+		<samp class="codeph"><span class="eqsymbol">κ</span>(<var>A</var>)</samp> (see 
+		<a href="GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241.html#GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241">Routines for Estimating the Condition Number</a>) and also give you a more precise estimate for the actual solution error (see 
+		<a href="GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D.html#GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D">Refining the Solution and Estimating Its Error</a>).
+	 </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F03A11B3-2E6D-4FBD-978B-26A5E206305C.html">LAPACK Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

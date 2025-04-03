@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Building Your Own FFTW3 Interface Wrapper Library"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-96706BDD-A9FB-4C2F-B8B3-E6F564BEBB20"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Building Your Own FFTW3 Interface Wrapper Library</title>
+
+</head>
+<body id="GUID-96706BDD-A9FB-4C2F-B8B3-E6F564BEBB20">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Building Your Own FFTW3 Interface Wrapper
+	 Library</h1>
+<div><p>The FFTW3 wrappers to Intel&reg; oneAPI Math Kernel Library are delivered both integrated in Intel&reg; oneAPI Math Kernel Library and as source code, which can be compiled to build a standalone wrapper library with exactly the same functionality. Normally you do not need to build the wrappers yourself.<span>However, if your Fortran application
+		  is compiled with a compiler that uses a different name decoration than the
+		  Intel&reg; Fortran compiler or if you are using compiler options altering the
+		  Fortran name decoration, you may need to build the wrappers that use the
+		  appropriate name changing convention.</span></p>
+<p>The source code for the wrappers, makefiles, and
+		files with lists of functions are located in the 
+		<span class="filepath">.\interfaces\fftw3xf</span>subdirectory in the Intel&reg; oneAPI Math Kernel Library directory. 
+	 </p>
+<p> To build the wrappers, 
+	 <ol id="GUID-0E83537F-15D6-4856-935A-AA434C382D73"><li id="LI_9BA8C31E25FB46C680091C90B597E7F6"><p>Change the current directory to the wrapper
+			 directory 
+		  </p>
+</li>
+<li id="LI_B1BD3A366C014B47BD19B414925A024A"><p>Run the 
+			 <span class="keyword">make</span> command on Linux* OS
+			 and macOS* or the 
+			 <span class="keyword">nmake</span> command on Windows*
+			 OS with a required target and optionally several parameters. 
+		  </p>
+</li>
+</ol>
+ The target 
+	 <span class="keyword">libia32</span> or 
+	 <span class="keyword">libintel64</span> defines the platform
+	 architecture, and the other parameters specify the compiler, size of the
+	 default integer type, and placement of the resulting wrapper library. You can
+	 find a detailed and up-to-date description of the parameters in the makefile. 
+	 </p>
+<div class="section" id="FORTRAN_EXAMPLE"><p> In the following example, the 
+		  <span class="keyword">make</span>command is used to build the FFTW3 Fortran wrappers to Intel&reg; oneAPI Math Kernel Library for use from the GNU g77* Fortran compiler on Linux OS based on Intel&reg; 64 architecture:</p>
+<pre>cd interfaces/fftw3xf
+make libintel64 compiler=gnu fname=a_name__ INSTALL_DIR=/my/path
+ </pre><p>This command builds the wrapper library using the
+		  GNU gcc compiler, decorates the name with the second underscore, and places the
+		  result, named 
+		  <span class="filepath">libfftw3xf_gnu.a</span>, into the 
+		  <span class="filepath">/my/path</span>
+		  directory. The name of the resulting library is composed of the name of the
+		  compiler used and may be changed by an optional parameter 
+		  <span class="keyword">INSTALL_LIBNAME</span>. 
+		</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html">FFTW3 Interface to Intel&reg; Math Kernel Library</a></div>
+</div>
+<div/>
+</body>
+</html>

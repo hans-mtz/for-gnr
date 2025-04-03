@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Basic Generators"/>
+<meta name="DC.subject" content="basic random number generators, BRNG, MCG, 32-bit, GFSR, MRG, MCG, 59-bit, Wichmann-Hill, Mersenne Twister, MT19937, MT2203, basic quasi-number generator, Sobol, Niederreiter, leapfrog method, block-splitting method"/>
+<meta name="keywords" content="basic random number generators, BRNG, MCG, 32-bit, GFSR, MRG, MCG, 59-bit, Wichmann-Hill, Mersenne Twister, MT19937, MT2203, basic quasi-number generator, Sobol, Niederreiter, leapfrog method, block-splitting method"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0DF30E1C-2D0E-4EAD-A955-3E3EC269608D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-19EC10DA-0064-4AA2-BA7F-F66BABA35312.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C09B982-560C-4A50-8E0B-021A16F138C2.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3D7D2650-A414-4C95-AF33-BE291BAB2AC3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Basic Generators</title>
+
+</head>
+<body id="GUID-3D7D2650-A414-4C95-AF33-BE291BAB2AC3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Basic Generators</h1>
+<div><p>VS provides pseudorandom, quasi-random, and non-deterministic random number generators. This includes the following BRNGs, which differ in speed and other properties: 
+    </p>
+<ul class="bullet" id="GUID-9BA63664-48C5-4918-A8A3-D6BAFD77F944"><li><p>the 31-bit multiplicative congruential pseudorandom number generator 
+          <samp class="codeph"><em>MCG(1132489760, 2<sup>31</sup> -1)</em></samp> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LECUYER99">L'Ecuyer99</a>] 
+        </p>
+</li>
+<li><p>the 32-bit generalized feedback shift register pseudorandom number generator 
+          <samp class="codeph"><dfn class="term">GFSR(250,103)</dfn></samp> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#KIRKPATRICK81">Kirkpatrick81</a>] 
+        </p>
+</li>
+<li><p>the combined multiple recursive pseudorandom number generator 
+          <samp class="codeph"><dfn class="term">MRG32k3a</dfn></samp> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LECUYER99A">L'Ecuyer99a</a>] 
+        </p>
+</li>
+<li><p>the 59-bit multiplicative congruential pseudorandom number generator 
+          <samp class="codeph"><em>MCG(13<sup>13</sup>, 2<sup>59</sup>)</em></samp> from NAG Numerical Libraries [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#NAG">NAG</a>] 
+        </p>
+</li>
+<li><p>Wichmann-Hill pseudorandom number generator (a set of 273 basic generators) from NAG Numerical Libraries [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#NAG">NAG</a>] 
+        </p>
+</li>
+<li><p>Mersenne Twister pseudorandom number generator 
+          <samp class="codeph"><em>MT19937</em></samp> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#MATSUMOTO98">Matsumoto98</a>] with period length 2<sup>19937</sup>-1 of the produced sequence 
+        </p>
+</li>
+<li><p>Set of 6024 Mersenne Twister pseudorandom number generators 
+          <samp class="codeph"><em>MT2203</em></samp> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#MATSUMOTO98">Matsumoto98</a>], [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#MATSUMOTO2000">Matsumoto00</a>]. Each of them generates a sequence of period length equal to 2<sup>2203</sup>-1. Parameters of the generators provide mutual independence of the corresponding sequences. 
+        </p>
+</li>
+<li><p>SIMD-oriented Fast Mersenne Twister pseudorandom number generator 
+          <samp class="codeph"><em>SFMT19937</em></samp> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SAITO08">Saito08</a>] with a period length equal to 2<sup>19937</sup>-1 of the produced sequence. 
+        </p>
+</li>
+<li><p>Sobol quasi-random number generator [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SOBOL76">Sobol76</a>], [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BRATLEY88">Bratley88</a>], which works in arbitrary dimension. For dimensions greater than 40 the user should supply initialization parameters (initial direction numbers and primitive polynomials or direction numbers) by using 
+  <span class="option">vslNewStreamEx</span> function. See additional details on interface for registration of the parameters in the library in 
+  <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a>. 
+  </p>
+</li>
+<li><p>Niederreiter quasi-random number generator [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BRATLEY92">Bratley92</a>], which works in arbitrary dimension. For dimensions greater than 318 the user should supply initialization parameters (irreducible polynomials or direction numbers) by using 
+  <span class="option">vslNewStreamEx</span> function. See additional details on interface for registration of the parameters in the library in 
+  <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a>. 
+  </p>
+</li>
+<li><p>Non-deterministic random number generator (RDRAND-based generators only) [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#AVX">AVX</a>], [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#INTELSWMAN">IntelSWMan</a>]. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can use a non-deterministic random number generator only if the underlying hardware supports it. For instructions on how to detect if an Intel CPU supports a non-deterministic random number generator see, for example, 
+        <em>Chapter 8: Post-32nm Processor Instructions</em> in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#AVX">AVX</a>] or 
+        <em>Chapter 4: RdRand Instruction Usage</em> in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BMT">BMT</a>]. 
+      </p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> The time required by some non-deterministic sources to generate a random number is not constant, so you might have to make multiple requests before the next random number is available. VS limits the number of retries for requests to the non-deterministic source to 10. You can redefine the maximum number of retries during the initialization of the non-deterministic random number generator with the 
+        <a href="GUID-A32BAAF2-D83D-45D0-920B-4A1EFDC11AF5.html">vslNewStreamEx</a> function. 
+      </p>
+<p>For more details on the non-deterministic source implementation for Intel CPUs please refer to Section 7.3.17, Volume 1, 
+        <em>Random Number Generator Instruction</em> in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#INTELSWMAN">IntelSWMan</a>] and Section 4.2.2, 
+        <em>RdRand Retry Loop</em> in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BMT">BMT</a>]. 
+      </p>
+</div>
+</li>
+<li><p>Philox4x32-10 counter-based pseudorandom number generator with a period of 2<sup>128</sup><samp class="codeph"><em>PHILOX4X32X10</em></samp><a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SALMON11">[Salmon11]</a>. 
+    </p>
+</li>
+<li><p>ARS-5 counter-based pseudorandom number generator with a period of 2<sup>128</sup>, which uses instructions from the AES-NI set 
+      <samp class="codeph"><em>ARS5</em></samp><a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SALMON11">[Salmon11]</a>. 
+    </p>
+</li>
+</ul>
+<p>See some testing results for the generators in 
+    <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a> and comparative performance data at https://software.intel.com/en-us/articles/intel-math-kernel-library-documentation. 
+  </p>
+<p>VS provides means of registration of such user-designed generators through the steps described in 
+    <a href="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html#GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62">Advanced Service Routines</a>. 
+  </p>
+<p>For some basic generators, VS provides two methods of creating independent random streams in multiprocessor computations, which are the leapfrog method and the block-splitting method. These sequence splitting methods are also useful in sequential Monte Carlo. 
+  </p>
+<p>In addition, MT2203 pseudorandom number generator is a set of 6024 generators designed to create up to 6024 independent random sequences, which might be used in parallel Monte Carlo simulations. Another generator that has the same feature is Wichmann-Hill. It allows creating up to 273 independent random streams. The properties of the generators designed for parallel computations are discussed in detail in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#CODDINGTON94">Coddington94</a>]. 
+  </p>
+<p>You may want to design and use your own basic generators. VS provides means of registration of such user-designed generators through the steps described in 
+    <a href="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html#GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62">Advanced Service Routines</a>. 
+  </p>
+<p>There is also an option to utilize externally generated random numbers in VS distribution generator routines. For this purpose VS provides three additional basic random number generators: 
+  </p>
+<ul class="dash" id="GUID-97447931-C7E5-42FE-AE3C-99807DD07D21"><li><p>for external random data packed in 32-bit integer array 
+      </p>
+</li>
+<li><p>for external random data stored in double precision floating-point array; data is supposed to be uniformly distributed over (<var class="varnamett">a</var>,<var class="varnamett">b</var>) interval 
+      </p>
+</li>
+<li><p>for external random data stored in single precision floating-point array; data is supposed to be uniformly distributed over (<var class="varnamett">a</var>,<var class="varnamett">b</var>) interval. 
+      </p>
+</li>
+</ul>
+<p>Such basic generators are called the abstract basic random number generators. 
+  </p>
+<p>See 
+    <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#VSLNOTES">VS Notes</a> for a more detailed description of the generator properties. 
+  </p>
+<p id="P_CF_128498338457233">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d468822e334"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d468822e334 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31.html">Random Number Generators</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-0DF30E1C-2D0E-4EAD-A955-3E3EC269608D.html">BRNG Parameter Definition</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-19EC10DA-0064-4AA2-BA7F-F66BABA35312.html">Random Streams</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-4C09B982-560C-4A50-8E0B-021A16F138C2.html">BRNG Data Types</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

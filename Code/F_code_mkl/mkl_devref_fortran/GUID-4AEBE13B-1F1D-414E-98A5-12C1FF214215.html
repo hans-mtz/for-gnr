@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="cluster_sparse_solver"/>
+<meta name="abstract" content="Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides."/>
+<meta name="description" content="Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides."/>
+<meta name="DC.subject" content="cluster_sparse_solver, parallel direct sparse solver interface for clusters, sparse solver, parallel direct sparse solver interface for clusters"/>
+<meta name="keywords" content="cluster_sparse_solver, parallel direct sparse solver interface for clusters, sparse solver, parallel direct sparse solver interface for clusters"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4AEBE13B-1F1D-414E-98A5-12C1FF214215"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>cluster_sparse_solver</title>
+
+</head>
+<body id="GUID-4AEBE13B-1F1D-414E-98A5-12C1FF214215">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">cluster_sparse_solver</span></h1>
+<!--Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.--><div><p class="shortdesc">Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.</p>
+<div class="section" id="GUID-38A41F1A-9502-4824-A8BD-BE0799523545"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cluster_sparse_solver</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">maxfct</span><span class="sep">, </span><span class="var">mnum</span><span class="sep">, </span><span class="var">mtype</span><span class="sep">, </span><span class="var">phase</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">iparm</span><span class="sep">, </span><span class="var">msglvl</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">comm</span><span class="sep">, </span><span class="var">error</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="INCLUDE_PARDISO"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-FB0C3529-2BBB-4CE2-B4C4-E3CFD1F9B753"><li id="LI_8BBD0A1B433D483090EBAA2698176CBB"><p>Fortran: <span class="filepath">mkl_cluster_sparse_solver.f77</span></p>
+</li>
+<li id="LI_E9DFE1C15BBF4DFD823D4CA3CEBDE1C4"><p>Fortran 90: <span class="filepath">mkl_cluster_sparse_solver.f90</span></p>
+</li>
+</ul>
+</div>
+<div class="section" id="PARDISO"><h2 class="sectiontitle">Description</h2><p><span/>The routine <span class="option">cluster_sparse_solver</span>
+ calculates the solution of a set of sparse linear equations <pre class="indent"><var>A</var>*<var>X</var> = <var>B</var></pre> with single or multiple right-hand sides, using a parallel <var>LU</var>, <var>LDL</var>,  or <var>LL</var><sup><var>T</var></sup> factorization, where <var>A</var> is an <span class="parmname">n</span>-by-<span class="parmname">n</span> matrix, and <var>X</var> and <var>B</var> are <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> vectors or matrices.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a> for details.</p>
+</div>
+</div>
+<div class="section" id="GUID-FB4D5442-2BE8-4687-A6F6-D2AAE34B8A87"><h2 class="sectiontitle">Input Parameters</h2><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Most of the input parameters (except for the <var>pt</var>, <var>phase</var>, and <var>comm</var> parameters  and, for the distributed format, the <var>a</var>, <var>ia</var>,  and <var>ja</var> arrays) must be set on the master MPI process only, and ignored on other processes. Other MPI processes get all required data from the master MPI process using the MPI communicator, <var>comm</var>.</p>
+</div>
+<dl id="GUID-614BAFB8-061A-4EFE-914C-BC27DB58A156"><dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p><span class="keyword">INTEGER*8</span> for 64-bit architectures</p>
+<p>Array of size 64.</p>
+<p>Handle to internal data structure. The entries must be set to zero before the first call to <span class="option">cluster_sparse_solver</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>After the first call to <span class="option">cluster_sparse_solver</span> do not modify <span class="parmname">pt</span>, as that could cause a serious memory leak.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">maxfct</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Ignored; assumed equal to 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mnum</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Ignored; assumed equal to 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mtype</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Defines the matrix type, which influences the pivoting method. The Parallel Direct Sparse Solver for Clusters solver supports the following matrices: </p>
+<dl id="GUID-269EB410-AC0B-4FFD-A54D-213705E89BE1"><dt class="dlterm"><span class="parmnamen">1</span></dt>
+
+<dd><p>real and structurally symmetric</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">2</span></dt>
+
+<dd><p>real and symmetric positive definite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">-2</span></dt>
+
+<dd><p>real and symmetric indefinite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">3</span></dt>
+
+<dd><p>complex and structurally symmetric </p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">4</span></dt>
+
+<dd><p>complex and Hermitian positive definite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">-4</span></dt>
+
+<dd><p>complex and Hermitian indefinite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">6</span></dt>
+
+<dd><p>complex and symmetric</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">11</span></dt>
+
+<dd><p>real and nonsymmetric</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">13</span></dt>
+
+<dd><p>complex and nonsymmetric</p>
+</dd>
+</dl>
+</dd>
+<dt class="dlterm"><span class="parmname">phase</span></dt>
+
+<dd><p id="PHASE"><span class="keyword">INTEGER</span></p>
+<p>Controls the execution of the solver. Usually it is a two- or three-digit integer. The first digit indicates the starting phase of execution and the second digit indicates the ending phase. Parallel Direct Sparse Solver for Clusters has the following phases of execution:<ul class="bullet" id="GUID-57F3B9AB-CB23-41F4-832D-D317E900AF90"><li id="LI_2EC313462ED8494BA7ABDF77A390B1DC"><p>Phase 1: Fill-reduction analysis and symbolic factorization</p>
+</li>
+<li id="LI_75481A4861514F5590DE609248C77007"><p>Phase 2: Numerical factorization</p>
+</li>
+<li id="LI_7BE9576FC02E4C05BC5DA2F13105D7E5"><p>Phase 3: Forward and Backward solve including optional iterative refinement</p>
+</li>
+<li id="LI_2786E13F453F4004B6D6C506F6E4D107"><p>Memory release (<span class="parmname">phase</span>= -1)</p>
+</li>
+</ul>
+</p>
+<p>If a previous call to the routine has computed information from previous phases, execution may start at any phase. The <span class="parmname">phase</span> parameter can have the following values:</p>
+<dl id="GUID-5B157A61-F0AD-47EA-BE18-069BD3CE9454"><dt><strong><span class="parmname">phase</span></strong></dt>
+<dd><strong>Solver Execution Steps</strong></dd>
+<dt class="dlterm"><samp class="codeph">11 
+</samp></dt>
+
+<dd><p>Analysis</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">12 </samp></dt>
+
+<dd><p>Analysis, numerical factorization</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">13 </samp></dt>
+
+<dd><p>Analysis, numerical factorization, solve, iterative refinement</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">22 </samp></dt>
+
+<dd><p>Numerical factorization</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">23 </samp></dt>
+
+<dd><p>Numerical factorization, solve, iterative refinement</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">33 </samp></dt>
+
+<dd><p>Solve, iterative refinement</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1 </samp></dt>
+
+<dd><p>Release all internal memory for all matrices</p>
+</dd>
+</dl>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Number of equations in the sparse linear systems of equations <samp class="codeph"><var>A</var>*<var>X</var> = <var>B</var></samp>. Constraint: <samp class="codeph"><span class="parmname">n</span> &gt; 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for double precision Parallel Direct Sparse Solver for Clusters Interface (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for single precision  Parallel Direct Sparse Solver for Clusters Interface (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for double precision  Parallel Direct Sparse Solver for Clusters Interface (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for single precision  Parallel Direct Sparse Solver for Clusters Interface (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p>Array. Contains the non-zero elements of the coefficient matrix <var>A</var> corresponding to the indices in <span class="parmname">ja</span>. The coefficient matrix can be either real or complex. The matrix must be stored in the three-array variant of the compressed sparse row (CSR3) or in the three-array variant of the block compressed sparse row (BSR3) format, and the matrix must be stored with increasing values of <span class="parmname">ja</span> for each row. </p>
+<p>For CSR3 format, the size of <span class="parmname">a</span> is the same as that of <span class="parmname">ja</span>. Refer to the <span class="parmname">values</span> array description in <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format</a> for more details.</p>
+<p>For BSR3 format the size of <span class="parmname">a</span> is the size of <span class="parmname">ja</span> multiplied by the square of the block size.   Refer to the <span class="parmname">values</span> array description in <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a> for more details.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For centralized input (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM40"><span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span></a><samp class="codeph">=0</samp>), provide the <span class="parmname">a</span> array for the master MPI process only. For distributed assembled input (<span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><samp class="codeph">=1</samp> or <span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><samp class="codeph">=2</samp>), provide it for all MPI processes.  </p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p>The column indices of non-zero elements of each row of the matrix <var>A</var> must be stored in increasing order.  </p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>For CSR3 format, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> (<samp class="codeph"><span class="parmname">i</span><span class="eqsymbol">≤</span><span class="parmname">n</span></samp>) points to the first column index of row <var>i</var> in the array <span class="parmname">ja</span>. That is, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> gives the index of the element in array <span class="parmname">a</span> that contains the first non-zero element from row <var>i</var> of <var>A</var>. The last element <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">n</span>+1)</samp> is taken to be equal to the number of non-zero elements in <var>A</var>, plus one. Refer to <span class="parmname">rowIndex</span> array description in <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format</a> for more details. </p>
+<p>For BSR3 format, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> (<samp class="codeph"><span class="parmname">i</span><span class="eqsymbol">≤</span><span class="parmname">n</span></samp>) points to the first column index of row <var>i</var> in the array <span class="parmname">ja</span>. That is, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> gives the index of the element in array <span class="parmname">a</span> that contains the first non-zero block from row <var>i</var> of <var>A</var>. The last element <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">n</span>+1)</samp> is taken to be equal to the number of non-zero blcoks in <var>A</var>, plus one. Refer to <span class="parmname">rowIndex</span> array description in <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a> for more details. </p>
+<p>The array <span class="parmname">ia</span> is accessed in all phases of the solution process. </p>
+<p>Indexing of <span class="parmname">ia</span> is one-based by default, but it can be changed to zero-based by setting the appropriate value to the parameter
+<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM35"><span><samp class="codeph"><span class="parmname">iparm</span>(35)</samp></span></a>. For zero-based indexing, the last element <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">n</span>+1)</samp> is assumed to be equal to the number of non-zero elements in matrix <var>A</var>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For centralized input (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM40"><span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span></a><samp class="codeph">=0</samp>), provide the <span class="parmname">ia</span> array at the master MPI process only. For distributed assembled input (<span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><samp class="codeph">=1</samp> or <span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><samp class="codeph">=2</samp>), provide it at all MPI processes.  </p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>For CSR3 format, array <samp class="codeph"><span class="parmname">ja</span></samp> contains column indices of the sparse matrix <var>A</var>. It is important that the indices are in increasing order per row. For symmetric matrices, the solver needs only the upper triangular part of the system as is shown for <span class="parmname">columns</span> array in <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format</a>.</p>
+<p>For BSR3 format, array <samp class="codeph"><span class="parmname">ja</span></samp> contains column indices of the sparse matrix <var>A</var>. It is important that the indices are in increasing order per row. For symmetric matrices, the solver needs only the upper triangular part of the system as is shown for <span class="parmname">columns</span> array in <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a>.</p>
+<p>The array <span class="parmname">ja</span> is accessed in all phases of the solution process. </p>
+<p>Indexing of <span class="parmname">ja</span> is one-based by default, but it can be changed to zero-based by setting the appropriate value to the parameter
+<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(35)</samp></a>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For centralized input (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM40"><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></a><samp class="codeph">=0)</samp>, provide the <span class="parmname">ja</span> array at the master MPI process only. For distributed assembled input (<samp class="codeph"><var>iparm</var>(40)=1</samp> or <samp class="codeph"><var>iparm</var>(40)=2</samp>), provide it at all MPI processes.  </p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">perm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Ignored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Number of right-hand sides that need to be solved for.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iparm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array, size <samp class="codeph">64</samp>. This array is used to pass various parameters to  Parallel Direct Sparse Solver for Clusters Interface and to return some useful information after execution of the solver. </p>
+<p>See <a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#GUID-35A4D7F4-D6DF-4057-967D-406B5073354B">cluster_sparse_solver iparm Parameter</a> for more details about the <span class="parmname">iparm</span> parameters. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">msglvl</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Message level information. If <samp class="codeph"><span class="parmname">msglvl</span> = 0</samp> then <samp class="codeph"><span class="keyword">cluster_sparse_solver</span></samp> generates no output, if <samp class="codeph"><span class="parmname">msglvl</span> = 1</samp> the solver prints statistical information to the screen.</p>
+<p>Statistics include information such as the number of non-zero elements in <var>L-factor</var> and the timing for each phase.</p>
+<p>Set <samp class="codeph"><span class="parmname">msglvl</span> = 1</samp> if you report a problem with the solver, since the additional information provided can facilitate a solution.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for double precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for single precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for double precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for single precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p>Array, size <span>(<span class="parmname">n, nrhs</span>)</span>. On entry, contains the right-hand side vector/matrix  <var>B</var>, which is placed in memory contiguously. The <span class="parmname">b</span><samp class="codeph">(i+(k-1)×<span class="parmname">nrhs</span>)</samp>  must hold the <span class="keyword">i</span>-th component of <span class="keyword">k</span>-th
+right-hand  side vector. Note that <span class="parmname">b</span> is only accessed in the solution phase.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">comm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p> MPI communicator. The
+solver uses the  Fortran
+MPI communicator internally. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="FUNCTN_PARDISO_OUTPUTPARAM"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AA7BE346-2BC0-4A5A-8AA7-FA06AB7BBAD9"><dt class="dlterm"/>
+
+<dd/>
+<dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p>Handle to internal data structure.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">perm</span></dt>
+
+<dd><p>Ignored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iparm</span></dt>
+
+<dd><p>On output, some <span class="parmname">iparm</span> values report information such as the numbers of non-zero elements in the factors.</p>
+<p>See <a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#GUID-35A4D7F4-D6DF-4057-967D-406B5073354B">cluster_sparse_solver iparm Parameter</a> for more details about the <span class="parmname">iparm</span> parameters. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On output, the array is replaced with the solution if <a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM6"><span><samp class="codeph"><span class="parmname">iparm</span>(6)</samp></span></a> = 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for double precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for single precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for double precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for single precision Parallel Direct Sparse Solver for Clusters (<a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p>Array, size (<span class="parmname">n</span><samp class="codeph">, </samp><span class="parmname">nrhs</span>). If <a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html#IPARM6"><span><samp class="codeph"><span class="parmname">iparm</span>(6)</samp></span></a>=0 it contains solution vector/matrix <var>X</var>, which is placed contiguously in memory. The <span class="parmname">x</span><samp class="codeph">(i+(k-1)× <span class="parmname">n</span>)</samp> element must hold the
+<span class="keyword">i</span>-th  component of the <span class="keyword">k</span>-th solution
+vector.
+Note that <var>x</var> is only accessed in the solution phase.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">error</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The error indicator according to the below table:</p>
+<dl id="GUID-A32C8FF2-CA1A-47A6-8834-28E98E4C647B"><dt><strong><var>error</var></strong></dt>
+<dd><strong>Information</strong></dd>
+<dt class="dlterm"><samp class="codeph">0 </samp></dt>
+
+<dd><p>no error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1 </samp></dt>
+
+<dd><p>input inconsistent</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-2 </samp></dt>
+
+<dd><p>not enough memory</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-3 </samp></dt>
+
+<dd><p>reordering problem</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-4 </samp></dt>
+
+<dd><p>Zero pivot, numerical factorization or iterative refinement problem. If the error appears during the solution phase, try to change the pivoting perturbation (<span><samp class="codeph"><span class="parmname">iparm</span>(10)</samp></span>) and also increase the number of iterative refinement steps. If it does not help, consider changing the scaling, matching and pivoting options (<span><samp class="codeph"><span class="parmname">iparm</span>(11)</samp>, <samp class="codeph"><span class="parmname">iparm</span>(13)</samp>, <samp class="codeph"><span class="parmname">iparm</span>(21)</samp></span>)</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-5 </samp></dt>
+
+<dd><p>unclassified (internal) error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-6 </samp></dt>
+
+<dd><p>reordering failed (matrix types 11 and 13 only)</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-7 </samp></dt>
+
+<dd><p>diagonal matrix is singular</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-8 </samp></dt>
+
+<dd><p>32-bit integer overflow problem</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-9 </samp></dt>
+
+<dd><p>not enough memory for OOC</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-10 </samp></dt>
+
+<dd><p>error opening OOC files</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-11 </samp></dt>
+
+<dd><p>read/write error with OOC files</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html">Parallel Direct Sparse Solver for Clusters Interface</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Intel&reg; MKL Fortran 95 Interfaces for LAPACK Routines vs. Netlib Implementation"/>
+<meta name="DC.subject" content="Fortran 95 LAPACK interface vs. Netlib"/>
+<meta name="keywords" content="Fortran 95 LAPACK interface vs. Netlib"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-949509C0-481F-48E7-9602-CA07EC2139A4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Intel&reg; MKL Fortran 95 Interfaces for LAPACK Routines vs. Netlib Implementation</title>
+
+</head>
+<body id="GUID-949509C0-481F-48E7-9602-CA07EC2139A4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Intel&reg; MKL Fortran 95 Interfaces for LAPACK Routines vs. Netlib Implementation</h1>
+<div><p>The following list presents general digressions of the Intel&reg; oneAPI Math Kernel Library LAPACK95 implementation from the Netlib analog:</p>
+<ul id="GUID-7D3EC954-849E-4647-A010-AF74744A9295"><li>The Intel&reg; oneAPI Math Kernel Library Fortran 95 interfaces are provided for pure procedures.</li>
+<li>Names of interfaces do not contain the 
+        <span class="keyword">LA_</span> prefix.
+      </li>
+<li>An optional array argument always has the 
+        <span class="keyword">target</span> attribute.
+      </li>
+<li>Functionality of the Intel&reg; oneAPI Math Kernel Library LAPACK95 wrapper is close to the FORTRAN 77 original implementation in the<a class="allformats" href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">getrf</span></a>, 
+        <a class="allformats" href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">gbtrf</span></a>, and 
+        <a class="allformats" href="GUID-15A9E907-2600-430B-BF11-DFA0A375711B.html#GUID-15A9E907-2600-430B-BF11-DFA0A375711B"><span class="option">potrf</span></a> interfaces.
+      </li>
+<li>If 
+        <span class="parmname">jobz</span> argument value specifies presence or absence of 
+        <span class="parmname">z</span> argument, then 
+        <span class="parmname">z</span> is always declared as optional and 
+        <span class="parmname">jobz</span> is restored depending on whether 
+        <span class="parmname">z</span> is present or not.
+      </li>
+<li>To avoid double error checking, processing of the 
+        <span class="parmname">info</span> argument is limited to checking of the allocated memory and disarranging of optional arguments.
+      </li>
+<li>If an argument that is present in the list of arguments completely defines another argument, the latter is always declared as optional.
+      </li>
+</ul>
+<p>You can transform an application that uses the Netlib LAPACK interfaces to ensure its work with the Intel&reg; oneAPI Math Kernel Library interfaces providing that:</p>
+<ol class="abc" id="GUID-0381927A-F132-479E-907A-00D1585C734A"><li class="abc">The application is correct, that is, unambiguous, compiler-independent, and contains no errors.
+      </li>
+<li class="abc">Each routine name denotes only one specific routine. If any routine name in the application coincides with a name of the original Netlib routine (for example, after removing the 
+        <span class="keyword">LA_</span> prefix) but denotes a routine different from the Netlib original routine, this name should be modified through context name replacement.
+      </li>
+</ol>
+<p>You should transform your application in the following cases:
+    </p>
+<ul id="GUID-7E18BF3E-3841-44F9-A887-0ED3EC4A291C"><li><p>When using the Netlib routines that differ from the Intel&reg; oneAPI Math Kernel Library routines only by the<span class="keyword">LA_</span> prefix or in the array attribute 
+          <span class="keyword">target</span>. The only transformation required in this case is context name replacement.
+        </p>
+</li>
+<li><p>When using Netlib routines that differ from the Intel&reg; oneAPI Math Kernel Library routines by the<span class="keyword">LA_</span> prefix, the 
+          <span class="keyword">target</span> array attribute, and the names of formal arguments. In the case of positional passing of arguments, no additional transformation except context name replacement is required. In the case of the keywords passing of arguments, in addition to the context name replacement the names of mismatching keywords should also be modified. 
+        </p>
+</li>
+<li><p>When using the Netlib routines that differ from the respective Intel&reg; oneAPI Math Kernel Library routines by the<span class="keyword">LA_</span> prefix, the 
+          <span class="keyword">target</span>array attribute, sequence of the arguments, arguments missing in Intel&reg; oneAPI Math Kernel Library but present in Netlib and, vice versa, present in Intel&reg; oneAPI Math Kernel Library but missing in Netlib. Remove the differences in the sequence and range of the arguments in process of all the transformations when you use the Netlib routines specified by this bullet and the preceding bullet.</p>
+</li>
+<li><p>When using the 
+          <a class="allformats" href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">getrf</span></a>, 
+          <a class="allformats" href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">gbtrf</span></a>, and 
+          <a class="allformats" href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">potrf</span></a>interfaces, that is, new functionality implemented in Intel&reg; oneAPI Math Kernel Library but unavailable in the Netlib source. To override the differences, build the desired functionality explicitly with the Intel&reg; oneAPI Math Kernel Library means or create a new subroutine with the new functionality, using specific MKL interfaces corresponding to LAPACK 77 routines. You can call the LAPACK 77 routines directly but using the new Intel&reg; oneAPI Math Kernel Library interfaces is preferable. Note that if the transformed application calls<span class="option">getrf</span>, 
+  <span class="option">gbtrf</span> or 
+  <span class="option">potrf</span> without controlling arguments 
+  <span class="parmname">rcond</span> and 
+  <span class="parmname">norm</span>, just context name replacement is enough in modifying the calls into the Intel&reg; oneAPI Math Kernel Library interfaces, as described in the first bullet above. The Netlib functionality is preserved in such cases.</p>
+</li>
+<li><p>When using the Netlib auxiliary routines. In this case, call a corresponding subroutine directly, using the Intel&reg; oneAPI Math Kernel Library LAPACK 77 interfaces.</p>
+</li>
+</ul>
+<p>Transform your application as follows:
+  </p>
+<ol id="GUID-561041ED-689D-4D09-BEDF-69BB1A48C2CA"><li>Make sure conditions a. and b. are met.
+    </li>
+<li>Select Netlib LAPACK 95 calls. For each call, do the following:
+      <ul class="bullet" id="GUID-DF75BDDA-BC84-47C8-B6A9-BA9762EB5087"><li class="bullet">Select the type of digression and do the required transformations.
+        </li>
+<li class="bullet">Revise results to eliminate unneeded code or data, which may appear after several identical calls.
+        </li>
+</ul>
+</li>
+<li>Make sure the transformations are correct and complete.
+    </li>
+</ol>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html">Fortran 95 Interface Conventions for LAPACK Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

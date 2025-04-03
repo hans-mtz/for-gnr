@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pjlaenv"/>
+<meta name="abstract" content="Called from the ScaLAPACK symmetric and Hermitian tailored eigen-routines to choose problem-dependent parameters for the local environment."/>
+<meta name="description" content="Called from the ScaLAPACK symmetric and Hermitian tailored eigen-routines to choose problem-dependent parameters for the local environment."/>
+<meta name="DC.subject" content="pjlaenv"/>
+<meta name="keywords" content="pjlaenv"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-EE0A655A-09C9-4764-9A1B-89EF982B4B69"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pjlaenv</title>
+
+</head>
+<body id="GUID-EE0A655A-09C9-4764-9A1B-89EF982B4B69">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pjlaenv</span></h1>
+<!--Called from the ScaLAPACK symmetric and Hermitian tailored eigen-routines to choose problem-dependent parameters for the local environment. --><div><p class="shortdesc">Called from the ScaLAPACK symmetric and Hermitian tailored eigen-routines to choose problem-dependent parameters for the local environment. </p>
+<div class="section" id="GUID-E606F5E0-44B6-4551-88F7-02CD4B1B0C82"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">result = pjlaenv</span><span class="delim"> (</span><span class="var">ictxt</span><span class="sep">, </span><span class="var">ispec</span><span class="sep">, </span><span class="var">name</span><span class="sep">, </span><span class="var">opts</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">n2</span><span class="sep">, </span><span class="var">n3</span><span class="sep">, </span><span class="var">n4 </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-EB680FA8-FC99-4B21-BFFA-886D6158258A"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-3377AA8B-AC48-4D8B-811C-31C63DCC5FFB"><li><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-830100DB-9580-48F7-B330-2FED19B0E241"><h2 class="sectiontitle">Description</h2><p><span class="option">pjlaenv</span> is called from the ScaLAPACK symmetric and Hermitian tailored eigen-routines to choose problem-dependent parameters for the local environment.  See <span class="parmname">ispec</span> for a description of the parameters. This version provides a set of parameters which should give good, though not optimal, performance on many of the currently available computers.  You are encouraged to modify this subroutine to set the tuning parameters for your particular machine using the option and problem size information in the arguments. </p>
+</div>
+<div class="section" id="GUID-95B3CB99-9DC2-4BD3-AB43-140D53339A8E"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-CDB253DB-3DA1-4106-8E1E-FBF976E1F2E7"><dt class="dlterm"><span class="parmname">ispec</span></dt>
+
+<dd><p>(global input) <span>INTEGER. </span>Specifies the parameter to be returned as the value of <span class="option">pjlaenv</span>.        </p>
+<p>= 1: the data layout blocksize;        </p>
+<p>= 2: the panel blocking factor;        </p>
+<p>= 3: the algorithmic blocking factor;        </p>
+<p>= 4: execution path control;        </p>
+<p>= 5: maximum size for direct call to the LAPACK routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">name</span></dt>
+
+<dd><p>(global input) <span>CHARACTER*(*). </span>The name of the calling subroutine, in either upper case or lower case.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">opts</span></dt>
+
+<dd><p>(global input) <span>CHARACTER*(*). </span>The character options to the subroutine name, concatenated into a single character string.  For example, <samp class="codeph"><span class="parmname">uplo</span> = 'U'</samp>, <samp class="codeph"><span class="parmname">trans</span> = 'T'</samp>, and <samp class="codeph"><span class="parmname">diag</span> = 'N'</samp> for a triangular routine would         be specified as <samp class="codeph"><span class="parmname">opts</span> = 'UTN'</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n1</span>, <span class="parmname">n2</span>, <span class="parmname">n3</span>, and <span class="parmname">n4</span></dt>
+
+<dd><p>(global input) <span>INTEGER. </span>Problem dimensions for the subroutine name; these may not all be required.  At present, only <span class="parmname">n1</span> is used, and it (<span class="parmname">n1</span>) is used only for <samp class="codeph">'TTRD'</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1CB128FA-101D-40EA-A82A-5BAB304E1328"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">result</span></p></td>
+
+<td valign="top" class="noborder"><p>(global or local output) <span>INTEGER. </span></p>
+<p>&gt;= 0: the value of the parameter specified by <span class="parmname">ispec</span>.</p>
+<p>&lt; 0:  if <span class="option">pjlaenv</span> = -<var>k</var>, the <var>k</var>-th argument had an illegal value. Most parameters set via a call to <span class="option">pjlaenv</span> must be identical on all processors and hence <span class="option">pjlaenv</span> will return the same value to all procesors (i.e. global output).  However some, in particular, the panel blocking factor can be different on each processor and hence <span class="option">pjlaenv</span> can return different values on different processors (i.e. local output).</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-0083CD80-595E-48B2-9158-BDA594A83C4D"><h2 class="sectiontitle">Application Notes</h2><p>The following conventions have been used when calling <span class="option">pjlaenv</span> from the ScaLAPACK routines:</p>
+<ol id="GUID-D3B1EC56-9348-491B-A389-2AFA160B432D"><li><p><span class="parmname">opts</span> is a concatenation of all of the character options to subroutine name, in the same order that they appear in the argument list for name, even if they are not used in determining the value of the parameter specified by <span class="parmname">ispec</span>. </p>
+</li>
+<li><p>The problem dimensions <span class="parmname">n1</span>, <span class="parmname">n2</span>, <span class="parmname">n3</span>, and <span class="parmname">n4</span> are specified in the order that they appear in the argument list for name.  <span class="parmname">n1</span> is used first, <span class="parmname">n2</span> second, and so on, and unused problem dimensions are passed a value of -1.</p>
+<ol type="a" id="GUID-77EEB32B-72A1-4CF9-BDCB-753A5C3B412B"><li><p>The parameter value returned by <span class="option">pjlaenv</span> is checked for validity in the calling subroutine.  For example, <span class="option">pjlaenv</span> is used to retrieve the optimal blocksize for <span class="option">STRTRI</span> as follows:    </p>
+<p/>
+<pre>NB = <span class="option">pjlaenv</span>( 1, 'STRTRI', UPLO // DIAG, N, -1, -1, -1 )    
+IF( NB.LE.1 ) NB = MAX( 1, N )</pre></li>
+</ol>
+</li>
+</ol>
+<p><span class="option">pjlaenv</span> is patterned after <span class="option">ilaenv</span> and keeps the same interface in anticipation of future needs, even though <span class="option">pjlaenv</span> is only sparsely used at present in ScaLAPACK.  Most ScaLAPACK codes use the input data layout blocking factor as the algorithmic blocking factor - hence there is no need or opportunity to set the algorithmic or data decomposition blocking factor. <span class="option">pXYYtevx.f</span> and <span class="option">pXYYtgvx.f</span> and <span class="option">pXYYttrd.f</span> are the only codes which call <span class="option">pjlaenv</span>.  <span class="option">pXYYtevx.f</span> and <span class="option">pXYYtgvx.f</span> redistribute the data to the best data layout for each transformation.  <span class="option">pXYYttrd.f</span> uses a data layout blocking factor of 1.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

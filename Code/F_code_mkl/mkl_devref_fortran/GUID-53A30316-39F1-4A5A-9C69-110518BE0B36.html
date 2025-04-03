@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?gelq2"/>
+<meta name="abstract" content="Computes an LQ factorization of a general rectangular matrix (unblocked algorithm)."/>
+<meta name="description" content="Computes an LQ factorization of a general rectangular matrix (unblocked algorithm)."/>
+<meta name="DC.subject" content="p?gelq2, ScaLAPACK routines, auxiliary routines, general rectangular matrix, LQ factorization, ScaLAPACK"/>
+<meta name="keywords" content="p?gelq2, ScaLAPACK routines, auxiliary routines, general rectangular matrix, LQ factorization, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-53A30316-39F1-4A5A-9C69-110518BE0B36"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?gelq2</title>
+
+</head>
+<body id="GUID-53A30316-39F1-4A5A-9C69-110518BE0B36">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?gelq2</span></h1>
+<!--Computes an LQ factorization of a general rectangular matrix (unblocked algorithm).--><div><p class="shortdesc">Computes an LQ factorization of a general rectangular matrix (unblocked algorithm).</p>
+<div class="section" id="GUID-CBC5F6C8-B0CE-428E-B319-AA66733E7F27"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psgelq2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdgelq2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcgelq2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzgelq2</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-1550FF41-8188-4B6C-8875-D821840FA12B"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?gelq2</span><span>routine </span>computes an <var>LQ</var> factorization of a real/complex distributed <var>m</var>-by-<var>n</var> matrix  <samp class="codeph">sub(<var>A</var>) = <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>m</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> = <var>L</var>*<var>Q</var></samp>.</p>
+</div>
+<div class="section" id="GUID-763C1917-7610-41CD-B1C8-0DFF7FC45B51"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DA526F4D-CD54-42D1-9E45-94372AF94FB3"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of rows of the distributed matrix sub(<var>A</var>).  <samp class="codeph">(<var>m</var>≥0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of columns of the distributed matrix sub(<var>A</var>). <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span>0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psgelq2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgelq2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgelq2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzgelq2</span>. </p>
+<p>Pointer into the local memory to an array of size <span><samp class="codeph">(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp></span>. </p>
+<p>On entry, this array contains the local pieces of the <var>m</var>-by-<var>n</var> distributed matrix  sub(<var>A</var>) which is to be factored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A </var>indicating the first row and the first column of sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psgelq2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgelq2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgelq2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzgelq2</span>. </p>
+<p>This is a workspace array of size <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The size of the array <span class="parmname">work</span>. </p>
+<p><span class="parmname">lwork</span> is local input and must be at least <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>nq</var>0 + max( 1, <var>mp</var>0 )</samp>, </p>
+<p>where <samp class="codeph"><var>iroff</var> = mod(<var>ia</var>-1, <var>mb_a</var>), <var>icoff</var> = mod(<var>ja</var>-1, <var>nb_a</var>)</samp>, </p>
+<p><samp class="codeph"><var>iarow</var> = <span class="keyword">indxg2p</span>(<var>ia</var>, <var>mb_a</var>, <var>myrow</var>, <var>rsrc_a</var>, <var>nprow</var>)</samp>,<var/></p>
+<p><samp class="codeph"><var>iacol</var> = <span class="keyword">indxg2p</span>(<var>ja</var>, <var>nb_a</var>, <var>mycol</var>, <var>csrc_a</var>, <var>npcol</var>)</samp>,<var/></p>
+<p><samp class="codeph"><var>mp</var>0   = <span class="keyword">numroc</span>(<var>m</var>+<var>iroff</var>, <var>mb_a</var>, <var>myrow</var>, <var>iarow</var>, <var>nprow</var>)</samp>,<var/></p>
+<p><samp class="codeph"><var>nq</var>0   = <span class="keyword">numroc</span>(<var>n</var>+<var>icoff</var>, <var>nb_a</var>, <var>mycol</var>, <var>iacol</var>, <var>npcol</var>)</samp>,</p>
+<p><span class="keyword">indxg2p</span> and <span class="keyword">numroc</span> are ScaLAPACK tool functions; <var>myrow</var>, <var>mycol</var>, <var>nprow</var>, and <var>npcol</var> can be determined by calling the <span>subroutine </span><span class="keyword">blacs_gridinfo</span>. </p>
+If <span class="parmname">lwork</span> = -1, then <span class="parmname">lwork</span> is global input and a workspace query is assumed; the <span>routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <a href="GUID-E523C816-D553-4D4E-8458-5404828CC07B.html"><span class="option">pxerbla</span></a>. </dd>
+</dl>
+</div>
+<div class="section" id="GUID-DCB501CF-C68A-4A97-BD2D-E4766DFA4EA5"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AA4B13CD-9864-4FE0-8D0F-776502E79A3C"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, the elements on and below the diagonal of sub(<var>A</var>) contain the <var>m</var> by min(<var>m,n</var>) lower trapezoidal matrix <var>L</var> (<var>L</var> is lower triangular if <samp class="codeph"><var>m</var> ≤ <var>n</var></samp>); the elements above the diagonal, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors<span>  (see <em>Application Notes</em> below)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psgelq2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgelq2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgelq2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzgelq2</span>. </p>
+<p>Array of size <samp class="codeph"><var>LOCr</var>(<var>ia</var>+min(<var>m</var>, <var>n</var>)-1)</samp>.  This array contains the scalar factors of the elementary reflectors. <var>tau</var> is tied to the distributed  matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>On exit, <samp class="codeph"><samp class="codeph"><span><var>work</var>(1)</span></samp><samp class="codeph"/></samp> returns the minimal and optimal <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. if <span class="parmname">info</span> &lt;  0: If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had  an illegal value, then <span class="parmname">info</span> = - (<var>i</var>*100+<var>j</var>), if the <var>i</var>-th  argument is a scalar and had an illegal value, then <samp class="codeph"><var>info</var> = -<var>i</var></samp>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EFFF952B-B64D-4459-AB46-3B06F8175612"><h2 class="sectiontitle">Application Notes</h2><p>The matrix <var>Q</var> is represented as a product of elementary reflectors</p>
+<p><samp class="codeph"><var>Q</var> =<var>H</var>(<var>ia</var>+<var>k</var>-1)*<var>H</var>(<var>ia</var>+<var>k</var>-2)*. . . *<var>H</var>(<var>ia</var>)</samp> for real flavors, <samp class="codeph"><var>Q</var> =(<var>H</var>(<var>ia</var>+<var>k</var>-1))<sup class="power"><var>H</var></sup>*(<var>H</var>(<var>ia</var>+<var>k</var>-2))<sup class="power"><var>H</var></sup>...*(<var>H</var>(<var>ia</var>))<sup class="power"><var>H</var></sup></samp> for complex flavors, </p>
+<p>where <samp class="codeph"><var>k</var> = min(<var>m,n</var>)</samp>.</p>
+<p>Each <samp class="codeph"><var>H</var>(<var>i</var>)</samp> has the form</p>
+<p><samp class="codeph"><var>H</var>(<var>i</var>) =  <var>I</var> - <var>tau</var>*<var>v</var>*<var>v'</var></samp></p>
+<p>where <var>tau</var> is a real/complex scalar, and <var>v</var> is a real/complex vector with <samp class="codeph"><var>v</var>(1: <var>i</var>-1) = 0</samp> and <samp class="codeph"><var>v</var>(<var>i</var>) = 1</samp>; <samp class="codeph"><var>v</var>(<var>i</var>+1: <var>n</var>)</samp> (for real flavors) or <samp class="codeph"><span class="keyword">conjg</span>(<var>v</var>(<var>i</var>+1: <var>n</var>))</samp> (for complex flavors) is stored on exit in <samp class="codeph"><var>A</var>(<var>ia</var>+<var>i</var>-1,<var>ja</var>+<var>i</var>:<var>ja</var>+<var>n</var>-1)</samp>, and <var>tau</var> in <samp class="codeph"><var>tau</var><span>(<var>ia</var>+<var>i</var>-1)</span></samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

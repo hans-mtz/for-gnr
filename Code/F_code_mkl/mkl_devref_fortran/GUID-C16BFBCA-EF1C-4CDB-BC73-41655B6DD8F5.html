@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pardisoinit"/>
+<meta name="abstract" content="Initialize Intel&reg; oneAPI Math Kernel Library PARDISO with default parameters in accordance with the matrix type."/>
+<meta name="description" content="Initialize Intel&reg; oneAPI Math Kernel Library PARDISO with default parameters in accordance with the matrix type."/>
+<meta name="DC.subject" content="sparse solver, parallel direct sparse solver interface, pardisoinit"/>
+<meta name="keywords" content="sparse solver, parallel direct sparse solver interface, pardisoinit"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7E829836-0FEF-46B2-8943-86A022193462.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C16BFBCA-EF1C-4CDB-BC73-41655B6DD8F5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pardisoinit</title>
+
+</head>
+<body id="GUID-C16BFBCA-EF1C-4CDB-BC73-41655B6DD8F5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pardisoinit</span></h1>
+<!--Initialize Intel&reg; oneAPI Math Kernel Library PARDISO with default parameters in accordance with the matrix type.--><div><p class="shortdesc">Initialize Intel&reg; oneAPI Math Kernel Library PARDISO with default parameters in accordance with the matrix type.</p>
+<div class="section" id="GUID-074A7005-BE40-477C-9E1C-72E4CF64C3F9"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pardisoinit</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">mtype</span><span class="sep">, </span><span class="var">iparm</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-EFDD4854-04A4-4D30-87A3-14DFC750039D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e110"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_pardiso.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7A52663F-A768-4245-B49B-47350B9AF9A2"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>This function initializes Intel&reg; oneAPI Math Kernel Library PARDISO internal address pointer<span class="parmname">pt</span> with zero values (as needed for the very first
+call of <samp class="codeph"><span class="keyword">pardiso</span></samp>) and sets default <span class="parmname">iparm</span>values in accordance with the matrix type. Intel&reg; oneAPI Math Kernel Library supplies the <span class="option">pardisoinit</span> routine to be  compatible   with PARDISO 3.2 or lower.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> An alternative way to set default
+<span class="parmname">iparm</span>
+ values is to call <span class="option">pardiso</span> in the analysis phase with <samp class="codeph"><span class="parmname">iparm</span>(1)=0</samp>. In this case you must initialize  the internal address pointer <span class="parmname">pt</span> with zero values manually.</p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The <span class="option">pardisoinit</span>routine initializes only the in-core version of Intel&reg; oneAPI Math Kernel Library PARDISO. Switching on the out-of core version of Intel&reg; oneAPI Math Kernel Library PARDISO as well as changing default <span class="parmname">iparm</span> values
+can be done after the call to <span class="option">pardisoinit</span> but before
+the first call to <span class="option">pardiso</span>.</p>
+</div>
+</div>
+<div class="section" id="GUID-5AC07532-69D1-43A6-BA42-C3A4C1CABE41"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C6AE0E41-F4E2-44D3-B43F-A063275B6522"><dt class="dlterm"><span class="parmname">perm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Ignored.</p>
+</dd>
+<dt class="dlterm"/>
+
+<dd><div class="Note"><h3 class="NoteTipHead">Note</h3> <p id="INPUT_PARAMETERS"> Parameters types in this section are specified in FORTRAN 77 notation. See <a href="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html#GUID-E1E2E435-241F-47CB-83D5-9322CA21473E">Intel MKL PARDISO Parameters in Tabular Form</a>section for detailed description of types of Intel&reg; oneAPI Math Kernel Library PARDISO parameters inFortran 90 notation.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">mtype</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>This scalar value defines the matrix type.  Based on this value <span class="option">pardisoinit</span> sets default values for the <span class="parmname">iparm</span> array. Refer to the section <a href="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html#GUID-E1E2E435-241F-47CB-83D5-9322CA21473E">Intel MKL PARDISO Parameters in Tabular Form</a>for more details about the default values of Intel&reg; oneAPI Math Kernel Library PARDISO</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A16D382D-525D-4DA7-AE08-8D5444D43ED9"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-06DC95E0-786E-4542-9239-ED472332A6D3"><dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> for 32-bit or 64-bit architectures</p>
+<p><span class="keyword">INTEGER*8</span> for 64-bit architectures</p>
+<p>Array with a dimension of 64. Solver internal data address pointer. These addresses are passed to the solver, and all related internal memory management is organized through this array. The <span class="option">pardisoinit</span>
+  routine nullifies the array <span class="parmname">pt</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> It is very important that the pointer <span class="parmname">pt</span>is initialized with zero before the first call of Intel&reg; oneAPI Math Kernel Library PARDISO. After that first call you should never modify the pointer, because it could cause a serious memory leak or a crash.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">iparm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array with a dimension of 64. This array is used to pass various parameters to Intel&reg; oneAPI Math Kernel Library PARDISO and to return some useful information after execution of the solver. The<span class="option">pardisoinit</span>
+  routine fills-in the <span class="parmname">iparm</span> array with the default values. Refer to the section <a href="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html#GUID-E1E2E435-241F-47CB-83D5-9322CA21473E">Intel MKL PARDISO Parameters in Tabular Form</a>for more details about the default values of Intel&reg; oneAPI Math Kernel Library PARDISO.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html">oneMKL PARDISO - Parallel Direct Sparse Solver Interface</a></div>
+</div>
+<div/>
+</body>
+</html>

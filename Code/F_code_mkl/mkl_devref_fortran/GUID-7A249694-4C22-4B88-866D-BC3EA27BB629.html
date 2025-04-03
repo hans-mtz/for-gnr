@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?ppsv"/>
+<meta name="abstract" content="Computes the solution to the system of linear equations with a symmetric (Hermitian) positive definite packed coefficient matrix A and multiple right-hand sides."/>
+<meta name="description" content="Computes the solution to the system of linear equations with a symmetric (Hermitian) positive definite packed coefficient matrix A and multiple right-hand sides."/>
+<meta name="DC.subject" content="?ppsv, LAPACK routines, driver routines, solving linear equations, linear equations, solving, symmetric positive-definite matrix, packed storage, Hermitian positive-definite matrix, multiple right-hand sides"/>
+<meta name="keywords" content="?ppsv, LAPACK routines, driver routines, solving linear equations, linear equations, solving, symmetric positive-definite matrix, packed storage, Hermitian positive-definite matrix, multiple right-hand sides"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7A249694-4C22-4B88-866D-BC3EA27BB629"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?ppsv</title>
+
+</head>
+<body id="GUID-7A249694-4C22-4B88-866D-BC3EA27BB629">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?ppsv</span></h1>
+<!--Computes the solution to the system of linear equations with a symmetric (Hermitian) positive definite packed coefficient matrix A and multiple right-hand sides.--><div><p class="shortdesc">Computes the solution to the system of linear equations with a symmetric (Hermitian) positive definite packed coefficient matrix A and multiple right-hand sides.</p>
+<div class="section" id="GUID-C8CCDAD9-719B-4D30-8D6A-380A123D6DE3"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sppsv</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dppsv</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cppsv</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zppsv</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ppsv</span><span class="delim">( </span><span class="var">ap</span><span class="sep">, </span><span class="var">b</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-67031DB7-51EF-4DBE-9B2D-D5FBB4880540"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-37F654DE-4D62-4ACB-A2A8-EED65662ECD5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine solves for <var>X</var> the real or complex system of linear equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>, where <var>A</var> is an <var>n</var>-by-<var>n</var> real symmetric/Hermitian positive-definite matrix stored in packed format, the columns of matrix <var>B</var> are individual right-hand sides, and the columns of <var>X</var> are the corresponding solutions.</p>
+<p>The Cholesky decomposition is used to factor <var>A</var> as </p>
+<p><samp class="codeph"><var>A</var> = <var>U</var></samp><sup class="power"><var>T</var></sup><var>*U</var> (real flavors) and <samp class="codeph"><var>A</var> = <var>U</var></samp><sup class="power"><var>H</var></sup><var>*U</var> (complex flavors), if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U' </span></samp></p>
+<p> or <samp class="codeph"><var>A</var> = <var>L*L</var><sup class="power"><var>T</var></sup></samp> (real flavors) and <samp class="codeph"><var>A</var> = <var>L*L</var><sup class="power"><var>H</var></sup></samp> (complex flavors), if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, </p>
+<p>where <var>U</var> is an upper triangular matrix and <var>L</var> is a lower triangular matrix.  The factored form of <var>A</var> is then used to solve the system of equations <samp class="codeph"><var>A*X</var> = <var>B</var></samp>.</p>
+</div>
+<div class="section" id="GUID-76828AE7-DE63-4B0D-830B-01A66D99E5CF"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of <var>A</var> is stored. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of <var>A</var> is stored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nrhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides, the number of columns in <samp class="codeph"><var>B</var>; <var>nrhs</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span>, <span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sppsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dppsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cppsv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zppsv</span>. </p>
+<p>Arrays: <var>ap</var><span>(size *)</span>, <samp class="codeph"><var>b</var></samp><span>(size <span class="parmname">ldb</span>, *)</span>. The array <var>ap</var> contains the upper or the lower triangular part of the matrix <var>A</var> (as specified by <var>uplo</var>) in <dfn class="term">packed storage</dfn> (see <a class="allformats" href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>). <span>The dimension of <var>ap</var> must be at least <samp class="codeph">max(1,<var>n</var>(<var>n</var>+1)/2)</samp></span>. </p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations.<span> The second dimension of  <var>b</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp>.</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ldb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-941BC0E5-7C65-42B5-A097-3BFD18936C87"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p>If <var>info </var>= 0, the upper or lower triangular part of <var>A</var> in packed storage is overwritten by the Cholesky factor <var>U</var> or <var>L</var>, as specified by <var>uplo</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by the solution matrix <var>X</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, the leading minor of order <var>i</var> (and therefore the matrix <var>A</var> itself) is not positive-definite, so the factorization could not be completed, and the solution has not been computed.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-8CE6A392-1AD7-48B9-A39B-BB2A42C59630"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">ppsv</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ap</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the array <var>A</var> of size <samp class="codeph">(<var>n</var>*(<var>n</var>+1)/2)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">b</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>B</var> of size (<samp class="codeph"><var>n</var>,<var>nrhs</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D.html">LAPACK Linear Equation Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

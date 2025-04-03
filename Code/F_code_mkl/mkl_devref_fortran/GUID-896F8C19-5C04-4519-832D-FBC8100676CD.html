@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Repeatability and Coherence"/>
+<meta name="DC.subject" content="BLACS routines, repeatability, coherence"/>
+<meta name="keywords" content="BLACS routines, repeatability, coherence"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-896F8C19-5C04-4519-832D-FBC8100676CD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Repeatability and Coherence</title>
+
+</head>
+<body id="GUID-896F8C19-5C04-4519-832D-FBC8100676CD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Repeatability and Coherence</h1>
+<div><p>Floating point computations are not exact on almost all modern architectures. This lack of precision is particularly problematic in parallel operations. Since floating point computations are inexact, algorithms are classified according to whether they are 
+		<em>repeatable</em> and to what degree they guarantee 
+		<em>coherence</em>. 
+	 </p>
+<ul id="UL_C0A14A3564584FDC849CBB80C7B5848C"><li><p>Repeatable: a routine is repeatable if it is guaranteed to give the same answer if called multiple times with the same parallel configuration and input. 
+		  </p>
+</li>
+<li><p>Coherent: a routine is coherent if all processes selected to receive the answer get identical results. 
+		  </p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Repeatability and coherence do not effect correctness. A routine may be both incoherent and non-repeatable, and still give correct output. But inaccuracies in floating point calculations may cause the routine to return differing values, all of which are equally valid. 
+		</p>
+</div>
+<div class="section" id="GUID-228AC74E-353A-4F3B-A0C9-58F3C329CDDC"><h2 class="sectiontitle">Repeatability</h2><p>Because the precision of floating point arithmetic is limited, it is not truly associative: 
+		  <samp class="codeph">(a + b) + c</samp> might not be the same as 
+		  <samp class="codeph">a + (b + c)</samp>. The lack of exact arithmetic can cause problems whenever the possibility for reordering of floating point calculations exists. This problem becomes prevalent in parallel computing due to race conditions in message passing. For example, consider a routine which sums numbers stored on different processes. Assume this routine runs on four processes, with the numbers to be added being the process numbers themselves. Therefore, process 0 has the value 0:0, process 1 has the value 1:0, and son on. 
+		</p>
+<p>One algorithm for the computation of this result is to have all processes send their process numbers to process 0; process 0 adds them up, and sends the result back to all processes. So, process 0 would add a number to 0:0 in the first step. If receiving the process numbers is ordered so that process 0 always receives the message from process 1 first, then 2, and finally 3, this results in a repeatable algorithm, which evaluates the expression 
+		  <samp class="codeph">((0:0+ 1:0) + 2:0) + 3:0</samp>. 
+		</p>
+<p>However, to get the best parallel performance, it is better not to require a particular ordering, and just have process 0 add the first available number to its value and continue to do so until all numbers have been added in. Using this method, a race condition occurs, because the order of the operation is determined by the order in which process 0 receives the messages, which can be effected by any number of things. This implementation is not repeatable, because the answer can vary between invocations, even if the input is the same. For instance, one run might produce the sequence 
+		  <samp class="codeph">((0:0+1:0)+2:0)+3:0</samp>, while a subsequent run could produce 
+		  <samp class="codeph">((0:0 + 2:0) + 1:0) + 3:0</samp>. Both of these results are correct summations of the given numbers, but because of floating point roundoff, they might be different. 
+		</p>
+</div>
+<div class="section" id="GUID-7756DC8B-8913-4348-97DD-814869BB2B76"><h2 class="sectiontitle">Coherence</h2><p>A routine produces coherent output if all processes are guaranteed to produce the exact same results. Obviously, almost no algorithm involving communication is coherent if communication can change the values being communicated. Therefore, if the parallel system being studied cannot guarantee that communication between processes preserves values, no routine is guaranteed to produce coherent results. 
+		</p>
+<p>If communication is assumed to be coherent, there are still various levels of coherent algorithms. Some algorithms guarantee coherence only if floating point operations are done in the exact same order on every node. This is 
+		  <em>homogeneous coherence</em>: the result will be coherent if the parallel machine is homogeneous in its handling of floating point operations. 
+		</p>
+<p>A stronger assertion of coherence is 
+		  <em>heterogeneous coherence</em>, which does not require all processes to have the same handling of floating point operations. 
+		</p>
+<p>In general, a routine that is homogeneous coherent performs computations redundantly on all nodes, so that all processes get the same answer only if all processes perform arithmetic in the exact same way, whereas a routine which is heterogeneous coherent is usually constrained to having one process calculate the final result, and broadcast it to all other processes. 
+		</p>
+</div>
+<div class="section" id="GUID-09457A8F-2B01-4AD3-BFEC-90CB0E21D4BF"><h2 class="sectiontitle">Example of Incoherence</h2><p>An incoherent algorithm is one which does not guarantee that all processes get the same result even on a homogeneous system with coherent communication. The previous example of summing the process numbers demonstrates this kind of behavior. One way to perform such a sum is to have every process broadcast its number to all other processes. Each process then adds these numbers, starting with its own. The calculations performed by each process receives would then be: 
+		</p>
+<ul id="UL_E31C617B0FD142C9AA42E36278DC3CDA"><li><p>Process 0 : 
+				<samp class="codeph">((0:0+ 1:0) + 2:0) + 3:0</samp></p>
+</li>
+<li><p>Process 1 : 
+				<samp class="codeph">((1:0+ 2:0) + 3:0) + 0:0</samp></p>
+</li>
+<li><p>Process 2 : 
+				<samp class="codeph">((2:0+ 3:0) + 0:0) + 1:0</samp></p>
+</li>
+<li><p>Process 3 : 
+				<samp class="codeph">((3:0+ 0:0) + 1:0) + 0:0</samp></p>
+</li>
+</ul>
+<p>All of these results are equally valid, and since all the results might be different from each other, this algorithm is incoherent. Notice, however, that this algorithm is repeatable: each process will get the same result if the algorithm is called again on the same data. 
+		</p>
+</div>
+<div class="section" id="GUID-A964CA69-4BA7-41D9-9229-84FB75D8597A"><h2 class="sectiontitle">Example of Homogeneous Coherence</h2><p>Another way to perform this summation is for all processes to send their data to all other processes, and to ensure the result is not incoherent, enforce the ordering so that the calculation each node performs is 
+		  <samp class="codeph">((0:0+ 1:0) + 2:0) + 3:0</samp>. This answer is the same for all processes only if all processes do the floating point arithmetic in the same way. Otherwise, each process may make different floating point errors during the addition, leading to incoherence of the output. Notice that since there is a specific ordering to the addition, this algorithm is repeatable. 
+		</p>
+</div>
+<div class="section" id="GUID-84F2AA4D-4DC5-4550-BBA3-304D7474B63F"><h2 class="sectiontitle">Example of Heterogeneous Coherence</h2><p>In the final example, all processes send the result to process 0, which adds the numbers and broadcasts the result to the rest of the processes. Since one process does all the computation, it can perform the operations in any order and it will give coherent results as long as communication is itself coherent. If a particular order is not forced on the the addition, the algorithm will not be repeatable. If a particular order is forced, it will be repeatable. 
+		</p>
+</div>
+<div class="section" id="GUID-508CABC9-0D4F-4886-8930-2C76F55B938C"><h2 class="sectiontitle">Summary</h2><p>Repeatability and coherence are separate issues which may occur in parallel computations. These concepts may be summarized as: 
+		</p>
+<ul id="GUID-1393B301-02E9-485D-9AD5-ACBAB02DF012"><li><p>Repeatability: The routine will yield the exact same result if it run multiple times on an identical problem. Each process may get a different result than the others (i.e., repeatability does not imply coherence), but that value will not change if the routine is invoked multiple times. 
+			 </p>
+</li>
+<li><p>Homogeneous coherence: All processes selected to possess the result will receive the exact same answer if: 
+			 </p>
+<ul id="GUID-E95ABFEE-25A7-4012-88A5-99DB2D97C9F9"><li id="LI_045379CE7DBD4105BC1FFCF164D4D59E"><p>Communication does not change the value of the communicated data. 
+				  </p>
+</li>
+<li id="LI_61DB78EB8D194F678113965770BCBE34"><p>All processes perform floating point arithmetic exactly the same. 
+				  </p>
+</li>
+</ul>
+</li>
+<li id="LI_805DEE152E4F431892E6897F8172424C"><p>Heterogeneous coherence: All processes will receive the exact same answer if communication does not change the value of the communicated data. 
+			 </p>
+</li>
+</ul>
+<p>In general, lack of the associative property for floating point calculations may cause both incoherence and non-repeatability. Algorithms that rely on redundant computations are at best homogeneous coherent, and algorithms in which one process broadcasts the result are heterogeneous coherent. Repeatability does not imply coherence, nor does coherence imply repeatability. 
+		</p>
+<p>Since these issues do not effect the correctness of the answer, they can usually be ignored. However, in very specific situations, these issues may become very important. A stopping criteria should not be based on incoherent results, for instance. Also, a user creating and debugging a parallel program may wish to enforce repeatability so the exact same program sequence occurs on every run. 
+		</p>
+<p>In the BLACS, coherence and repeatability apply only in the context of the combine operations. As mentioned above, it is possible to have communication which is incoherent (for instance, two machines which store floating point numbers differently may easily produce incoherent communication, since a number stored on machine A may not have a representation on machine B). However, the BLACS cannot control this issue. Communication is assumed to be coherent, which for communication implies that it is also repeatable. 
+		</p>
+<p>For combine operations, the BLACS allow you to set flags indicating that you would like combines to be repeatable and/or heterogeneous coherent (see 
+		  <a href="GUID-D826B610-9541-4B2B-B78E-02E0ABBD933F.html"><span class="option">blacs_get</span></a> and 
+		  <a href="GUID-B4A3D952-1152-4137-8218-9FF6995A9AAB.html"><span class="option">blacs_set</span></a> for details on setting these flags). 
+		</p>
+<p>If the BLACS are instructed to guarantee heterogeneous coherency, the BLACS restrict the topologies which can be used so that one process calculates the final result of the combine, and if necessary, broadcasts the answer to all other processes. 
+		</p>
+<p>If the BLACS are instructed to guarantee repeatability, orderings will be enforced in the topologies which are selected. This may result in loss of performance which can range from negligible to serious depending on the application. 
+		</p>
+<p>A couple of additional notes are in order. Incoherence and nonrepeatability can arise as a result of floating point errors, as discussed previously. This might lead you to suspect that integer calculations are always repeatable and coherent, since they involve exact arithmetic. This is true if overflow is ignored. With overflow taken into consideration, even integer calculations can display incoherence and non-repeatability. Therefore, if the repeatability or coherence flags are set, the BLACS treats integer combines the same as floating point combines in enforcing repeatability and coherence guards. 
+		</p>
+<p>By their nature, maximization and minimization should always be repeatable. In the complex precisions, however, the real and imaginary parts must be combined in order to obtain a magnitude value used to do the comparison (this is typically |<var>r</var>| + |<var>i</var>| or sqr(<var>r</var><sup>2</sup> + 
+		  <var>i</var><sup>2</sup>)). This allows for the possibility of heterogeneous incoherence. The BLACS therefore restrict which topologies are used for maximization and minimization in the complex routines when the heterogeneous coherence flag is set. 
+		</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html">BLACS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

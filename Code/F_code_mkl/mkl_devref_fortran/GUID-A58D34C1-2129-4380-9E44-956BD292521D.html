@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?pbtf2"/>
+<meta name="abstract" content="Computes the Cholesky factorization of a symmetric/ Hermitian positive-definite band matrix (unblocked algorithm)."/>
+<meta name="description" content="Computes the Cholesky factorization of a symmetric/ Hermitian positive-definite band matrix (unblocked algorithm)."/>
+<meta name="DC.subject" content="LAPACK routines, auxiliary routines, ?pbtf2, spbtf2, dpbtf2, cpbtf2, zpbtf2, factorization, Cholesky, LAPACK, Hermitian positive-definite band matrix, Cholesky factorization, symmetric positive-definite band matrix"/>
+<meta name="keywords" content="LAPACK routines, auxiliary routines, ?pbtf2, spbtf2, dpbtf2, cpbtf2, zpbtf2, factorization, Cholesky, LAPACK, Hermitian positive-definite band matrix, Cholesky factorization, symmetric positive-definite band matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A58D34C1-2129-4380-9E44-956BD292521D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?pbtf2</title>
+
+</head>
+<body id="GUID-A58D34C1-2129-4380-9E44-956BD292521D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?pbtf2</span></h1>
+<!--Computes the Cholesky factorization of a symmetric/ Hermitian positive-definite band matrix (unblocked algorithm).--><div><p class="shortdesc">Computes the Cholesky factorization of a symmetric/ Hermitian positive-definite band matrix (unblocked algorithm).</p>
+<div class="section" id="GUID-FF46C776-0AAE-4E05-99E3-E522CBD41D08"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call spbtf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dpbtf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cpbtf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zpbtf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-D22562CB-6823-463D-8457-675EC5EBBD02"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-3B0470F2-4B64-45D1-BB96-3691EEAB8E9C"><h2 class="sectiontitle">Description</h2><p>The routine computes the Cholesky factorization of a real symmetric or complex Hermitian  positive definite band matrix <var>A</var>. </p>
+<p>The factorization has the form</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> for real flavors, <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>H</var></sup>*<var>U</var></samp> for complex flavors if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, or</p>
+<p><samp class="codeph"><var>A</var> =  <var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp> for real flavors, <samp class="codeph"><var>A</var> = <var>L</var>*<var>L</var><sup class="power"><var>H</var></sup></samp> for complex flavors if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, </p>
+<p>where <var>U</var> is an upper triangular matrix, and <var>L</var> is lower triangular. This is the unblocked version of the algorithm, calling <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html#GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1">BLAS Level 2 Routines</a>.</p>
+</div>
+<div class="section" id="GUID-699B0F5C-70F0-4ABB-B4CC-3815064C7A0B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8E7CCDE9-C4A3-42ED-B149-D9481AAB4364"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the symmetric/Hermitian matrix <var>A</var> is stored:</p>
+<p>= <span class="keyword">'U'</span>:  upper triangular</p>
+<p>= <span class="keyword">'L'</span>:  lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">kd</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of super-diagonals of the matrix <var>A</var> if <samp class="codeph"><var>uplo</var> = 'U'</samp>, or the number of sub-diagonals if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>. </p>
+<p><samp class="codeph"><var>kd</var><span class="eqsymbol">≥</span> 0</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">spbtf2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dpbtf2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpbtf2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpbtf2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldab</var>, <var>n</var>). </p>
+<p>On entry, the upper or lower triangle of the symmetric/ Hermitian band matrix <var>A</var>, stored in the first <var>kd</var>+1 rows of the array. The <var>j</var>-th column of <var>A</var> is stored in the <var>j</var>-th column of the array <var>ab</var> as follows:</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <samp class="codeph"><var>ab</var>(<var>kd</var>+1+<var>i</var><var>-j</var>,<var>j</var>) = <var>A</var>(<var>i</var>, <var>j</var></samp> for <samp class="codeph">max(1, <var>j</var>-<var>kd</var>) ≤ <var>i</var> ≤ <var>j</var></samp>;</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>ab</var>(1+<var>i</var><var>-j</var>,<var>j</var>) = <var>A</var>(<var>i</var>, <var>j</var></samp> for <samp class="codeph"><var>j</var> ≤ <var>i</var></samp> ≤ min(<var>n</var>, <var>j</var>+<var>kd</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>ab</var>. <samp class="codeph"><var>ldab</var><span class="eqsymbol">≥</span><var>kd</var>+1</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7B0CC301-BC1A-4ACB-B1F6-2B0479F94D75"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7AB16D29-D252-4DA5-99EF-D922398DAFC4"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>On exit, If <samp class="codeph"><var>info</var> = 0</samp>, the triangular factor <var>U</var> or <var>L</var> from the Cholesky factorization  <samp class="codeph"><var>A</var>=<var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp>  (<samp class="codeph"><var>A</var>=<var>U</var><sup class="power"><var>H</var></sup>*<var>U</var></samp>), or <samp class="codeph"><var>A</var>=  <var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp> (<samp class="codeph"><var>A</var> = <var>L</var>*<var>L</var><sup class="power"><var>H</var></sup></samp>) of the band matrix <var>A</var>, in the same storage format as <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0: successful exit</p>
+<p>&lt; 0: if <samp class="codeph"><var>info</var> = -<var>k</var></samp>, the <var>k-</var>th argument had an illegal value</p>
+<p>&gt; 0: if <samp class="codeph"><var>info</var> = <var>k</var></samp>, the leading minor of order <var>k</var> is not positive definite, and the factorization could not be completed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Parallel Direct Sparse Solver for Clusters Interface"/>
+<meta name="DC.subject" content="Parallel Direct Sparse Solver for Clusters"/>
+<meta name="keywords" content="Parallel Direct Sparse Solver for Clusters"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4AEBE13B-1F1D-414E-98A5-12C1FF214215.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D12170B5-6E4B-4492-98CF-F616A5023C23.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9ABFE950-322A-425C-8C11-75EE310AAA68.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-87778AA2-D959-42E3-B140-8E70D13CB4AF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E98988B5-0EEB-4E37-ABBD-99C8DF88E290.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9AF71EE9-6FB0-4621-AD30-8EDF26B1F674.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Parallel Direct Sparse Solver for Clusters Interface</title>
+
+</head>
+<body id="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Parallel Direct Sparse Solver for Clusters
+	 Interface</h1>
+<div><p>The Parallel Direct Sparse Solver for Clusters Interface solves large
+		linear systems of equations with sparse matrices on clusters. It is 
+	 </p>
+<ul id="GUID-EFDF21F5-53C8-454A-80A2-17EA756B6542"><li id="LI_567ED82B72994B659CD1C1B6EADD1E8A"><p>high performing 
+		  </p>
+</li>
+<li id="LI_972938BFB60B4D9B9E7549B6B6124774"><p>robust 
+		  </p>
+</li>
+<li id="LI_F24CAA6604164C189C21FD34F80434F1"><p>memory efficient 
+		  </p>
+</li>
+<li id="LI_BEDEF369F47F47D688A00A90F47BF8E2"><p>easy to use 
+		  </p>
+</li>
+</ul>
+<p>A hybrid implementation combines Message Passing Interface (MPI)
+		technology for data exchange between parallel tasks (processes) running on
+		different nodes, and OpenMP* technology for parallelism inside each node of the
+		cluster. This approach effectively uses modern hardware resources such as
+		clusters consisting of nodes with multi-core processors. The solver code is
+		optimized for the latest Intel processors, but also performs well on clusters
+		consisting of non-Intel processors. 
+	 </p>
+<p>Code examples are available in the Intel&reg; oneAPI Math Kernel Library installation<samp class="codeph">examples</samp> directory. 
+	 </p>
+<p id="P_CF_128498338457233">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1872622e50"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1872622e50 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+<div class="section" id="GUID-ACF2CDEB-FF25-447C-BF24-0A80958FF43B"><h2 class="sectiontitle"> Parallel Direct Sparse Solver for Clusters Interface
+		  Algorithm</h2><p> Parallel Direct Sparse Solver for Clusters Interface solves a set of
+		  sparse linear equations 
+		</p>
+<p><var>A</var>*<var>X</var> = 
+		  <var>B</var></p>
+<p>with multiple right-hand sides using a distributed 
+		  <var>LU</var>, 
+		  <var>LL</var><sup>T</sup> , 
+		  <var>LDL</var><sup>T</sup> or 
+		  <var>LDL</var>* factorization, where 
+		  <var>A</var> is an 
+		  <var>n</var>-by-<var>n</var> matrix, and 
+		  <var>X</var> and 
+		  <var>B</var> are 
+		  <var>n</var>-by-<var>nrhs</var> matrices. 
+		</p>
+<p>The solution comprises four tasks: 
+		</p>
+<ul id="GUID-3774C16E-2795-450F-99AA-90FB5B550377"><li id="LI_D39DCEB56B054DA89E6B4F5C9D03AAC3"><p>analysis and symbolic factorization; 
+			 </p>
+</li>
+<li id="LI_F609632DB4184875B048CFA55C8C950A"><p>numerical factorization; 
+			 </p>
+</li>
+<li id="LI_EB85333351634837A6B724FF42A7410A"><p>forward and backward substitution including iterative refinement; 
+			 </p>
+</li>
+<li id="LI_5D4BC4320B9642908774A42B9FC9D61C"><p>termination to release all internal solver memory. 
+			 </p>
+</li>
+</ul>
+<p>The solver first computes a symmetric fill-in reducing permutation 
+		  <var>P</var> based on the nested dissection algorithm from the
+		  METIS package 
+		  <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#KARYPIS98">[Karypis98]</a>(included with Intel&reg; oneAPI Math Kernel Library), followed by the Cholesky or other type of factorization (depending on matrix type)<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK00-2">[Schenk00-2]</a>
+		  of 
+		  <var>PAP</var><sup>T</sup>. The solver uses either diagonal
+		  pivoting, or 1x1 and 2x2 Bunch and Kaufman pivoting for symmetric indefinite or
+		  Hermitian matrices before finding an approximation of 
+		  <var>X</var> by forward and backward substitution and iterative
+		  refinement. 
+		</p>
+<p>The initial matrix 
+		  <var>A</var> is perturbed whenever numerically acceptable 1x1
+		  and 2x2 pivots cannot be found within the diagonal blocks. One or two passes of
+		  iterative refinement may be required to correct the effect of the
+		  perturbations. This restricted notion of pivoting with iterative refinement is
+		  effective for highly indefinite symmetric systems. For a large set of matrices
+		  from different application areas, the accuracy of this method is comparable to
+		  a direct factorization method that uses complete sparse pivoting techniques 
+		  <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK04">[Schenk04]</a>.
+		  
+		</p>
+<p> Parallel Direct Sparse Solver for Clusters additionally improves the
+		  pivoting accuracy by applying symmetric weighted matching algorithms. These
+		  methods identify large entries in the coefficient matrix 
+		  <var>A</var> that, if permuted close to the diagonal, enable
+		  the factorization process to identify more acceptable pivots and proceed with
+		  fewer pivot perturbations. The methods are based on maximum weighted matching
+		  and improve the quality of the factor in a complementary way to the alternative
+		  idea of using more complete pivoting techniques. 
+		</p>
+</div>
+<div class="section" id="GUID-79E2ECD4-84F9-4B18-93A3-E283E3C0F229"><h2 class="sectiontitle"> Parallel Direct Sparse Solver for Clusters Interface Matrix
+		  Storage</h2><p>The sparse data storage in the Parallel Direct Sparse Solver for
+		  Clusters Interface follows the scheme described in the 
+		  <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html">Sparse Matrix
+			 Storage Formats</a> section using the variable 
+		  <var>ja</var> for 
+		  <var>columns</var>, 
+		  <var>ia</var> for 
+		  <var>rowIndex</var>, and 
+		  <var>a</var> for 
+		  <var>values</var>. Column indices 
+		  <var>ja</var> must be in increasing order per row. 
+		</p>
+<p>When an input data structure is not accessed in a call, a NULL pointer
+		  or any valid address can be passed as a placeholder for that argument. 
+		</p>
+</div>
+<div class="section" id="GUID-BC04607C-4419-490D-892D-2D8CB5510DD0"><h2 class="sectiontitle">Algorithm Parallelization and Data Distribution</h2><p>Intel&reg; oneAPI Math Kernel Library Parallel Direct Sparse Solver for Clusters enables parallel execution of the solution algorithm with efficient data distribution.</p>
+<p>The master MPI process performs the symbolic factorization phase to
+		  represent matrix 
+		  <var>A</var> as computational tree. Then matrix 
+		  <var>A</var> is divided among all MPI processes in a
+		  one-dimensional manner. The same distribution is used for 
+		  <var>L-factor</var> (the lower triangular matrix in Cholesky
+		  decomposition). Matrix 
+		  <var>A</var> and all required internal data are broadcast to
+		  slave MPI processes. Each MPI process fills in its own parts of 
+		  <var>L-factor</var> with initial values of the matrix 
+		  <var>A</var>. 
+		</p>
+<p> Parallel Direct Sparse Solver for Clusters Interface computes all
+		  independent parts of 
+		  <var>L-factor</var> completely in parallel. When a block of the
+		  factor must be updated by other blocks, these updates are independently passed
+		  to a temporary array on each updating MPI process. It further gathers the
+		  result into an updated block using the 
+		<span class="option">MPI_Reduce()</span>routine. The computations within an MPI process are dynamically divided among OpenMP threads using pipelining parallelism with a combination of left- and right-looking techniques similar to those of the PARDISO* software. Level 3 BLAS operations from Intel&reg; oneAPI Math Kernel Library ensure highly efficient performance of block-to-block update operations.</p>
+<p>During forward/backward substitutions, respective Right Hand Side
+		  (RHS) parts are distributed among all MPI processes. All these processes
+		  participate in the computation of the solution. Finally, the solution is
+		  gathered on the master MPI process. 
+		</p>
+<p>This approach demonstrates good scalability on clusters with
+		  Infiniband* technology. Another advantage of the approach is the effective
+		  distribution of 
+		  <var>L-factor</var> among cluster nodes. This enables the
+		  solution of tasks with a much higher number of non-zero elements than it is
+		  possible with any Symmetric Multiprocessing (SMP) in-core direct solver. 
+		</p>
+<p>The algorithm ensures that the memory required to keep internal data
+		  on each MPI process is decreased when the number of MPI processes in a run
+		  increases. However, the solver requires that matrix 
+		  <var>A</var> and some other internal arrays completely fit into
+		  the memory of each MPI process. 
+		</p>
+<p>To get the best performance, run one MPI process per physical node and
+		  set the number of OpenMP* threads per node equal to the number of physical
+		  cores on the node. 
+		</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Instead of calling 
+		  <span class="option">MPI_Init()</span>, initialize MPI with 
+		  <span class="option">MPI_Init_thread()</span> and set the MPI threading level to 
+		  <span class="keyword">MPI_THREAD_FUNNELED</span> or higher. For details, see the
+		  code examples in 
+		  <samp class="codeph"><var>&lt;install_dir&gt;</var>/examples.</samp></p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html">Sparse Solver Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-4AEBE13B-1F1D-414E-98A5-12C1FF214215.html">cluster_sparse_solver</a><br/>
+Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.</li>
+<li class="ulchildlink"><a href="GUID-D12170B5-6E4B-4492-98CF-F616A5023C23.html">cluster_sparse_solver_64</a><br/>
+Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.</li>
+<li class="ulchildlink"><a href="GUID-9ABFE950-322A-425C-8C11-75EE310AAA68.html">cluster_sparse_solver_get_csr_size</a><br/>
+Computes the (local) number of rows and (local) number of nonzero entries for (distributed) CSR data corresponding to the provided name.</li>
+<li class="ulchildlink"><a href="GUID-87778AA2-D959-42E3-B140-8E70D13CB4AF.html">cluster_sparse_solver_set_csr_ptrs</a><br/>
+ Saves internally-provided pointers to the 3-array CSR data corresponding to the specified name.</li>
+<li class="ulchildlink"><a href="GUID-E98988B5-0EEB-4E37-ABBD-99C8DF88E290.html">cluster_sparse_solver_set_ptr</a><br/>
+ Internally saves a provided pointer to the data corresponding to the specified name.</li>
+<li class="ulchildlink"><a href="GUID-9AF71EE9-6FB0-4621-AD30-8EDF26B1F674.html">cluster_sparse_solver_export</a><br/>
+ Computes data corresponding to the specified         decomposition (defined by export operation) and fills the pointers provided by calls to             <span class="keyword">cluster_sparse_solver_set_ptr</span> and/or             <span class="keyword">cluster_sparse_solver_set_csr_ptrs</span>.</li>
+<li class="ulchildlink"><a href="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B.html">cluster_sparse_solver iparm Parameter</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

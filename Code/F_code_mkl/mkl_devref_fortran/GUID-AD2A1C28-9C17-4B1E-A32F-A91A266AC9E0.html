@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="b?laapp"/>
+<meta name="abstract" content="Multiplies a matrix with an orthogonal matrix."/>
+<meta name="description" content="Multiplies a matrix with an orthogonal matrix."/>
+<meta name="DC.subject" content="bslaapp, ScaLAPACK routines, auxiliary routines, bdlaapp, orthogonal matrix, multiplication"/>
+<meta name="keywords" content="bslaapp, ScaLAPACK routines, auxiliary routines, bdlaapp, orthogonal matrix, multiplication"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AD2A1C28-9C17-4B1E-A32F-A91A266AC9E0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>b?laapp</title>
+
+</head>
+<body id="GUID-AD2A1C28-9C17-4B1E-A32F-A91A266AC9E0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">b?laapp</span></h1>
+<!-- Multiplies a matrix with an orthogonal matrix.--><div><p class="shortdesc"> Multiplies a matrix with an orthogonal matrix.</p>
+<div class="section" id="GUID-FBF3616D-F413-4A9E-B17F-6B10DC51EF09"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call bslaapp</span><span class="delim">(</span><span class="var"> iside</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">nitraf</span><span class="sep">, </span><span class="var">itraf</span><span class="sep">, </span><span class="var">dtraf</span><span class="sep">, </span><span class="var">work </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call bdlaapp</span><span class="delim">(</span><span class="var"> iside</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">nitraf</span><span class="sep">, </span><span class="var">itraf</span><span class="sep">, </span><span class="var">dtraf</span><span class="sep">, </span><span class="var">work </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-8745EDE3-713C-4DCE-958B-F725767E0697"><h2 class="sectiontitle">Description</h2><p><span class="option">b?laapp</span> computes </p>
+<p><span><var>B</var> = <var>Q</var><sup>T</sup><var>A</var></span> or <span><var>B</var> = <var>A</var><var>Q</var></span></p>
+<p>where <var>A</var> is an <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix and <var>Q</var> is an orthogonal matrix represented by the parameters in the arrays <span class="parmname">itraf</span> and <span class="parmname">dtraf</span> as described in <a href="GUID-D6ACFBAE-85C5-47E8-B7D6-00D0969E636E.html"><span class="option">b?trexc</span></a>. </p>
+<p>This is an auxiliary <span>routine </span>called by <a href="GUID-37F1DD43-8A39-48D3-AE69-7EA9129B397A.html"><span class="option">p?trord</span></a>. </p>
+</div>
+<div class="section" id="GUID-C7F77B71-E6F4-4127-8FCB-BCD56C455588"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C5E49E8F-2DA1-45B4-971C-96EDEF7042AD"><dt class="dlterm"><span class="parmname">iside</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Specifies whether <var>Q</var> multiplies <var>A</var> from the left or right as follows:</p>
+<p>= 0: compute <span><var>B</var> = <var>Q</var><sup>T</sup><var>A</var></span>;</p>
+<p>= 1: compute <span><var>B</var> = <var>A</var><var>Q</var></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of rows of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of columns of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>If <span class="parmname">iside</span> = 0, the <var>Q</var> is applied block column-wise to the rows of <var>A</var> and <span class="parmname">nb</span> specifies the maximal width of the block columns.</p>
+<p>If <span class="parmname">iside</span> = 1, this variable is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">bslaapp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">bdlaapp</span></p>
+<p>Array of size <span>(<span class="parmname">lda</span>,<span class="parmname">n</span>)</span>.</p>
+<p>On entry, the matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nitraf</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Length of the array <span class="parmname">itraf</span>. <span class="parmname">nitraf</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itraf</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> array, length <span class="parmname">nitraf</span></p>
+<p>List of parameters for representing the transformation matrix <var>Q</var>, see <a href="GUID-D6ACFBAE-85C5-47E8-B7D6-00D0969E636E.html"><span class="option">b?trexc</span></a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(workspace) <span>REAL             </span>array of size <span class="parmname">n</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-30195D48-EBEA-409D-99EB-437CF81EEB14"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-39938811-E8EE-4A8E-A547-2D3E64FFDA84"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="parmname">a</span> is overwritten by <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dtraf</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">bslaapp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">bdlaapp</span></p>
+<p>Array, length <var>k</var>.</p>
+<p>If <span class="parmname">iside</span>=0, <var>k</var> = 3*(<span class="parmname">n</span>/<span class="parmname">nb</span>).</p>
+<p>If <span class="parmname">iside</span>=1, <var>k</var> = 3*<span class="parmname">nitraf</span>.</p>
+<p>List of parameters for representing the transformation matrix <var>Q</var>, see <a href="GUID-D6ACFBAE-85C5-47E8-B7D6-00D0969E636E.html"><span class="option">b?trexc</span></a></p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

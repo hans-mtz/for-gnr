@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Configuring and Computing an FFT in Fortran"/>
+<meta name="DC.subject" content="Configuration Settings, for Fourier transform functions"/>
+<meta name="keywords" content="Configuration Settings, for Fourier transform functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9A3E3D5-94C9-411E-8D4A-628D0143E1E2.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AE4CC017-EE25-479F-A729-F3131D4BAB09"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Configuring and Computing an FFT in Fortran</title>
+
+</head>
+<body class="parent-no-rel-links" id="GUID-AE4CC017-EE25-479F-A729-F3131D4BAB09">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Configuring and Computing an FFT in Fortran</h1>
+<div><p> The table below summarizes information on configuring and computing an FFT in Fortran for all kinds of transforms and possible combinations of input and output domains. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL11-3" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.047619047619047%" id="d1300777e37"><p>FFT to Compute 
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="14.285714285714285%" id="d1300777e40"><p>Input Data 
+              </p>
+</th>
+<th class="cellrowborder" valign="top" width="14.285714285714285%" id="d1300777e43"><p>Output Data 
+              </p>
+</th>
+<th class="row-nocellborder" valign="top" width="52.38095238095239%" id="d1300777e46"><p>Required FFT Function Calls 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Complex-to-complex, 
+              </p>
+<p>in-place, 
+              </p>
+<p>forward or backward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Interleaved complex numbers 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Interleaved complex numbers 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp;
+    DFTI_COMPLEX, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+! forward FFT
+status = DftiComputeForward(hand, X_inout)
+! or backward FFT
+status = DftiComputeBackward(hand, X_inout)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Complex-to-complex, 
+              </p>
+<p>out-of-place, 
+              </p>
+<p>forward or backward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Interleaved complex numbers 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Interleaved complex numbers 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp;
+    DFTI_COMPLEX, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, DFTI_PLACEMENT, &amp;
+    DFTI_NOT_INPLACE)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+! forward FFT
+status = DftiComputeForward(hand, X_in, Y_out)
+! or backward FFT
+status = DftiComputeBackward(hand, X_in, Y_out)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Complex-to-complex, 
+              </p>
+<p>in-place, 
+              </p>
+<p>forward or backward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Split-complex numbers 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Split-complex numbers 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp;
+    DFTI_COMPLEX, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, &amp; 
+    DFTI_COMPLEX_STORAGE, DFTI_REAL_REAL)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+! forward FFT
+status = DftiComputeForward(hand, Xre_inout, &amp;
+    Xim_inout)
+! or backward FFT
+status = DftiComputeBackward(hand, Xre_inout, &amp;
+    Xim_inout)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Complex-to-complex, 
+              </p>
+<p>out-of-place, 
+              </p>
+<p>forward or backward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Split-complex numbers 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Split-complex numbers 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp;
+    DFTI_COMPLEX, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, &amp;
+    DFTI_COMPLEX_STORAGE, DFTI_REAL_REAL)
+status = DftiSetValue(hand, &amp;
+    DFTI_PLACEMENT, DFTI_NOT_INPLACE)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+! forward FFT
+status = DftiComputeForward(hand, Xre_in, &amp;
+    Xim_in, Yre_out, Yim_out)
+! or backward FFT
+status = DftiComputeBackward(hand, Xre_in, &amp;
+    Xim_in, Yre_out, Yim_out)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Real-to-complex, 
+              </p>
+<p>in-place, 
+              </p>
+<p>forward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Real numbers 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Numbers in the CCE format 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp; 
+   DFTI_REAL, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, &amp;
+    DFTI_CONJUGATE_EVEN_STORAGE, &amp; 
+    DFTI_COMPLEX_COMPLEX)
+status = DftiSetValue(hand, DFTI_PACKED_FORMAT,  &amp;
+    DFTI_CCE_FORMAT)
+status = DftiSetValue(hand, DFTI_INPUT_STRIDES,  &amp;
+    <var>&lt;real_strides&gt;</var>)
+status = DftiSetValue(hand, DFTI_OUTPUT_STRIDES, &amp;
+    <var>&lt;complex_strides&gt;</var>)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+status = DftiComputeForward(hand, X_inout)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Real-to-complex, 
+              </p>
+<p>out-of-place, 
+              </p>
+<p>forward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Real numbers 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Numbers in the CCE format 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var> &amp;, 
+    DFTI_REAL, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, &amp;
+    DFTI_CONJUGATE_EVEN_STORAGE, &amp; 
+    DFTI_COMPLEX_COMPLEX)
+status = DftiSetValue(hand, DFTI_PACKED_FORMAT, &amp;
+    DFTI_CCE_FORMAT)
+status = DftiSetValue(hand, DFTI_PLACEMENT, &amp;
+    DFTI_NOT_INPLACE)
+status = DftiSetValue(hand, DFTI_INPUT_STRIDES, &amp;
+    <var>&lt;real_strides&gt;</var>)
+status = DftiSetValue(hand, DFTI_OUTPUT_STRIDES, &amp;
+    <var>&lt;complex_strides&gt;</var>)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+status = DftiComputeForward(hand, X_in, Y_out)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Complex-to-real, 
+              </p>
+<p>in-place, 
+              </p>
+<p>backward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Numbers in the CCE format 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Real numbers 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp; 
+    DFTI_REAL, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, &amp;
+    DFTI_CONJUGATE_EVEN_STORAGE, &amp; 
+    DFTI_COMPLEX_COMPLEX)
+status = DftiSetValue(hand, DFTI_PACKED_FORMAT, &amp;
+    DFTI_CCE_FORMAT)
+status = DftiSetValue(hand, DFTI_INPUT_STRIDES, &amp;
+    <var>&lt;complex_strides&gt;</var>)
+status = DftiSetValue(hand, DFTI_OUTPUT_STRIDES, &amp;
+    <var>&lt;real_strides&gt;</var>)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+status = DftiComputeBackward(hand, X_inout)
+</pre></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19.047619047619047%" headers="d1300777e37 "><p>Complex-to-real, 
+              </p>
+<p>out-of-place, 
+              </p>
+<p>backward 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e40 "><p>Numbers in the CCE format 
+              </p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1300777e43 "><p>Real numbers 
+              </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="52.38095238095239%" headers="d1300777e46 "><pre>! Configure a Descriptor
+status = DftiCreateDescriptor(hand, <var>&lt;precision&gt;</var>, &amp; 
+    DFTI_REAL, <var>&lt;dimension&gt;</var>, <var>&lt;sizes&gt;</var>)
+status = DftiSetValue(hand, &amp; 
+    DFTI_CONJUGATE_EVEN_STORAGE, &amp; 
+    DFTI_COMPLEX_COMPLEX)
+status = DftiSetValue(hand, DFTI_PLACEMENT, &amp;
+    DFTI_NOT_INPLACE)
+status = DftiSetValue(hand, DFTI_PACKED_FORMAT, &amp;
+    DFTI_CCE_FORMAT)
+status = DftiSetValue(hand, DFTI_INPUT_STRIDES, &amp;
+    <var>&lt;complex_strides&gt;</var>)
+status = DftiSetValue(hand, DFTI_OUTPUT_STRIDES, &amp;
+    <var>&lt;real_strides&gt;</var>)
+status = DftiCommitDescriptor(hand)
+
+! Compute an FFT
+status = DftiComputeBackward(hand, X_in, Y_out)
+</pre></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You can find Fortran programs that illustrate configuring and computing FFTs in the 
+      <span class="filepath">examples/dftf/</span>subdirectory of your Intel&reg; oneAPI Math Kernel Library directory.</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9A3E3D5-94C9-411E-8D4A-628D0143E1E2.html">FFT Computation Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

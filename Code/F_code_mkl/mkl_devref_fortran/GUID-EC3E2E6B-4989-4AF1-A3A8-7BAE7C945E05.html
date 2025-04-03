@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Convolution and Correlation Data Allocation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-EC3E2E6B-4989-4AF1-A3A8-7BAE7C945E05"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Convolution and Correlation Data Allocation</title>
+
+</head>
+<body id="GUID-EC3E2E6B-4989-4AF1-A3A8-7BAE7C945E05">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Convolution and Correlation Data
+    Allocation</h1>
+<div><p>This section explains the relation between:
+    </p>
+<ul class="bullet" id="GUID-B95390AB-862F-4B17-BD04-D6461A2975AA"><li><p>mathematical finite functions 
+          <var>u</var>, 
+          <var>v</var>, 
+          <var>w</var> introduced
+          in 
+          <a href="GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D.html#GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D">Mathematical Notation and
+            Definitions</a>;
+        </p>
+</li>
+<li><p>multi-dimensional input and output data vectors
+          representing the functions 
+          <var>u</var>, 
+          <var>v</var>, 
+          <var>w</var>;
+        </p>
+</li>
+<li><p>arrays 
+          <var>u</var>, 
+          <var>v</var>, 
+          <var>w</var> used to
+          store the input and output data vectors in computer memory
+        </p>
+</li>
+</ul>
+<p>The convolution and correlation routine parameters
+      that determine the allocation of input and output data are the following:
+    </p>
+<ul class="bullet" id="GUID-3C5E83DE-23D6-4130-BF33-F3F0C212B3C9"><li><p>Data arrays 
+          <var>x</var>, 
+          <var>y</var>, 
+          <var>z</var></p>
+</li>
+<li><p>Shape arrays 
+          <var>xshape</var>, 
+          <var>yshape</var>, 
+          <var>zshape</var></p>
+</li>
+<li><p>Strides within arrays 
+          <var>xstride</var>, 
+          <var>ystride</var>, 
+          <var>zstride</var></p>
+</li>
+<li><p>Parameters 
+          <span class="parmname">start</span>, 
+          <span class="parmname">decimation</span></p>
+</li>
+</ul>
+<div class="section" id="GUID-A749758D-8C86-4CF8-8F0B-166A35249B99"><h2 class="sectiontitle">Finite Functions and Data Vectors</h2><p>The finite functions 
+        <var>u(p)</var>, 
+        <var>v(q)</var>, and 
+        <var>w(r)</var>
+        introduced above are represented as multi-dimensional vectors of input and
+        output data:
+      </p>
+<p><samp class="codeph">inputu(i<sub>1</sub>,...,i<sub>dims</sub>)</samp> for 
+        <samp class="codeph"><var>u</var>(p<sub>1</sub>,...,p<sub>N</sub>)</samp></p>
+<p><samp class="codeph">inputv(j<sub>1</sub>,...,j<sub>dims</sub>)</samp> for 
+        <samp class="codeph"><var>v</var>(q<sub>1</sub>,...,q<sub>N</sub>)</samp></p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>)</samp> for 
+        <samp class="codeph"><var>w</var>(r<sub>1</sub>,...,r<sub>N</sub>).</samp></p>
+<p>Parameter 
+        <span class="parmname">dims</span>
+        represents the number of dimensions and is equal to N.
+      </p>
+<p>The parameters 
+        <span class="parmname">xshape</span>, 
+        <span class="parmname">yshape</span>, and
+        
+        <span class="parmname">zshape</span>
+        define the shapes of input/output vectors:
+      </p>
+<p><samp class="codeph">inputu(i<sub>1</sub>,...,i<sub>dims</sub>)</samp> is defined if 
+        <samp class="codeph">1 
+          <span class="eqsymbol">≤</span><var>i</var><sub><var>n</var></sub><span class="eqsymbol">≤</span><span class="parmname">xshape</span>(<var>n</var>)</samp> for every 
+        <samp class="codeph">n=1,...,<span class="parmname">dims</span></samp></p>
+<p><samp class="codeph">inputv(j<sub>1</sub>,...,j<sub>dims</sub>)</samp> is defined if 
+        <samp class="codeph">1 
+          <span class="eqsymbol">≤</span><var>j</var><sub><var>n</var></sub><span class="eqsymbol">≤</span><span class="parmname">yshape</span>(<var>n</var>)</samp> for every 
+        <samp class="codeph">n=1,...,<span class="parmname">dims</span></samp></p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>)</samp> is defined if 
+        <samp class="codeph">1 
+          <span class="eqsymbol">≤</span><var>k</var><sub><var>n</var></sub><span class="eqsymbol">≤</span><span class="parmname">zshape</span>(<var>n</var>)</samp> for every 
+        <samp class="codeph">n=1,...,<span class="parmname">dims</span></samp>.
+      </p>
+<p>Relation between the input vectors and the
+        functions 
+        <var>u</var> and 
+        <var>v</var> is defined
+        by the following formulas:
+      </p>
+<p><samp class="codeph">inputu(i<sub>1</sub>,...,i<sub>dims</sub>)= 
+          <var>u</var>(p<sub>1</sub>,...,p<sub>N</sub>)</samp>, where 
+        <samp class="codeph">p<sub>n</sub> = P<sub>n</sub><sup>min</sup>
+          + (i<sub>n</sub>-1)</samp> for every 
+        <samp class="codeph">n</samp></p>
+<p><samp class="codeph">inputv(j<sub>1</sub>,...,j<sub>dims</sub>)= 
+          <var>v</var>(q<sub>1</sub>,...,q<sub>N</sub>)</samp>, where 
+        <samp class="codeph">q<sub>n</sub>=Q<sub>n</sub><sup>min</sup>
+          + (j<sub>n</sub>-1)</samp> for every 
+        <samp class="codeph">n</samp>.
+      </p>
+<p>The relation between the output vector and the
+        function 
+        <var>w(r)</var> is
+        similar (but only in the case when parameters 
+        <span class="parmname">start</span> and 
+        <span class="parmname">decimation</span>
+        are not defined):
+      </p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>)= w(r<sub>1</sub>,...,r<sub>N</sub>)</samp>, where 
+        <samp class="codeph">r<sub>n</sub>=R<sub>n</sub><sup>min</sup>
+          + (k<sub>n</sub>-1)</samp> for every 
+        <samp class="codeph">n</samp>.
+      </p>
+<p>If the parameter 
+        <span class="parmname">start</span> is
+        defined, it must belong to the interval 
+        <samp class="codeph"><var>R</var><sub><var>n</var></sub><sup><var>min</var></sup><span class="eqsymbol">≤</span><span class="parmname">start(n)</span><span class="eqsymbol">≤</span><var>R</var><sub><var>n</var></sub><sup><var>max</var></sup></samp>. If defined,
+        the 
+        <span class="parmname">start</span>
+        parameter replaces 
+        <samp class="codeph">R<sup>min</sup></samp> in the formula:
+      </p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>)=w(r<sub>1</sub>,...,r<sub>N</sub>)</samp>, where 
+        <samp class="codeph">r<sub>n</sub>=start(n) + (k<sub>n</sub>-1)</samp></p>
+<p>If the parameter 
+        <span class="parmname">decimation</span>
+        is defined, it changes the relation according to the following formula:
+      </p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>)=w(r<sub>1</sub>,...,r<sub>N</sub>)</samp>, where 
+        <samp class="codeph">r<sub>n</sub>= R<sub>n</sub><sup>min</sup>
+          + (k<sub>n</sub>-1)*decimation(n)</samp></p>
+<p>If both parameters 
+        <span class="parmname">start</span> and 
+        <span class="parmname">decimation</span>
+        are defined, the formula is as follows:
+      </p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>)=w(r<sub>1</sub>,...,r<sub>N</sub>)</samp>, where 
+        <samp class="codeph">r<sub>n</sub>=start(n) + (k<sub>n</sub>-1)*decimation(n)</samp></p>
+<p>The convolution and correlation software checks the
+        values of 
+        <span class="parmname">zshape</span>, 
+        <span class="parmname">start</span>, and 
+        <span class="parmname">decimation</span>
+        during task commitment. If 
+        <samp class="codeph"><var>r</var><sub>n</sub></samp> exceeds 
+        <samp class="codeph">R<sub>n</sub><sup>max</sup></samp> for some 
+        <samp class="codeph">k<sub>n</sub>,n=1,...,dims</samp>, an error is raised.
+      </p>
+</div>
+<div class="section" id="GUID-0B37DC03-C57B-47E2-AB11-81AF7920CCF5"><h2 class="sectiontitle">Allocation of Data Vectors</h2><p>Both parameter arrays 
+        <var>x</var> and 
+        <var>y</var> contain
+        input data vectors in memory, while array 
+        <var>z</var> is intended
+        for storing output data vector. To access the memory, the convolution and
+        correlation software uses only pointers to these arrays and ignores the array
+        shapes.
+      </p>
+<p>For parameters 
+        <span class="parmname">x</span>, 
+        <span class="parmname">y</span>, and 
+        <span class="parmname">z</span>, you can
+        provide one-dimensional arrays with the requirement that actual length of these
+        arrays be sufficient to store the data vectors.
+      </p>
+<p>The allocation of the input and output data inside
+        the arrays 
+        <var>x</var>, 
+        <var>y</var>, and 
+        <var>z</var> is described
+        below assuming that the arrays are one-dimensional. Given multi-dimensional
+        indices <var>i</var>, 
+        <var>j</var>, 
+        <var>k</var><span class="eqsymbol">∈</span><strong>Z</strong><sup>N</sup>, one-dimensional indices <var>e</var>, 
+        <var>f</var>, 
+        <var>g</var><span class="eqsymbol">∈</span><strong>Z</strong> are defined such
+        that:
+      </p>
+<p><samp class="codeph">inputu(i<sub>1</sub>,...,i<sub>dims</sub>) is allocated at 
+          <var>x(e)</var></samp></p>
+<p><samp class="codeph">inputv(j<sub>1</sub>,...,j<sub>dims</sub>) is allocated at 
+          <var>y(f)</var></samp></p>
+<p><samp class="codeph">output(k<sub>1</sub>,...,k<sub>dims</sub>) is allocated at 
+          <var>z(g)</var></samp>.
+      </p>
+<p>The indices 
+        <var>e</var>, 
+        <var>f</var>, and 
+        <var>g</var> are defined
+        as follows:
+      </p>
+<p><samp class="codeph"><var>e</var> = 1 + 
+          <span class="eqsymbol">∑</span><span class="parmname">xstride</span>(n)·<var>dx</var>(n)</samp> (the sum is for
+        all 
+        <samp class="codeph">n=1,...,dims</samp>)
+      </p>
+<p><samp class="codeph"><var>f</var> = 1 + 
+          <span class="eqsymbol">∑</span><span class="parmname">ystride</span>(n)·<var>dy</var>(n)</samp> (the sum is for
+        all 
+        <samp class="codeph">n=1,...,dims</samp>)
+      </p>
+<p><samp class="codeph"><var>g</var> = 1 + 
+          <span class="eqsymbol">∑</span><span class="parmname">zstride</span>(n)·<var>dz</var>(n)</samp> (the sum is for
+        all 
+        <samp class="codeph">n=1,...,dims</samp>)
+      </p>
+<p>The distances 
+        <samp class="codeph">dx(n)</samp>, 
+        <samp class="codeph">dy(n)</samp>, and 
+        <samp class="codeph">dz(n)</samp> depend on the
+        signum of the stride:
+      </p>
+<p><samp class="codeph">dx(n) =
+          i<sub>n</sub>-1 if xstride(n)&gt;0, or dx(n) =
+          i<sub>n</sub>-xshape(n) if
+          xstride(n)&lt;0</samp></p>
+<p><samp class="codeph">dy(n) =
+          j<sub>n</sub>-1 if ystride(n)&gt;0, or dy(n) =
+          j<sub>n</sub>-yshape(n) if
+          ystride(n)&lt;0</samp></p>
+<p><samp class="codeph">dz(n) =
+          k<sub>n</sub>-1 if zstride(n)&gt;0, or dz(n) =
+          k<sub>n</sub>-zshape(n)<sub/> if zstride(n)&lt;0</samp></p>
+<p>The definitions of indices 
+        <var>e</var>, 
+        <var>f</var>, and 
+        <var>g</var> assume that
+        indexes for arrays 
+        <var>x</var>, 
+        <var>y</var>, and 
+        <var>z</var> are started
+        from unity:
+      </p>
+<p><samp class="codeph"><var>x(e)</var></samp> is defined for 
+        <samp class="codeph">e=1,...,length(x)</samp></p>
+<p><samp class="codeph"><var>y(f)</var></samp> is defined for 
+        <samp class="codeph">f=1,...,length(y)</samp></p>
+<p><samp class="codeph"><var>z(g)</var></samp> is defined for 
+        <samp class="codeph">g=1,...,length(z)</samp></p>
+<p>Below is a detailed explanation about how elements
+        of the multi-dimensional output vector are stored in the array 
+        <var>z</var> for
+        one-dimensional and two-dimensional cases.
+      </p>
+<p><strong>One-dimensional
+          case.</strong> If 
+        <samp class="codeph"><span class="parmname">dims</span>=1</samp>, then 
+        <span class="parmname">zshape</span> is
+        the number of the output values to be stored in the array 
+        <var>z</var>. The actual
+        length of array 
+        <var>z</var> may be
+        greater than 
+        <var>zshape</var>
+        elements.
+      </p>
+<p>If 
+        <samp class="codeph">zstride&gt;1</samp>, output
+        values are stored with the stride: 
+        <samp class="codeph">output(1)</samp> is stored to
+        
+        <samp class="codeph">z(1)</samp>, 
+        <samp class="codeph">output(2)</samp> is stored to
+        
+        <samp class="codeph">z(1+zstride)</samp>, and so
+        on. Hence, the actual length of 
+        <var>z</var> must be at
+        least 
+        <samp class="codeph">1+zstride*(zshape-1)</samp>
+        elements or more.
+      </p>
+<p>If 
+        <samp class="codeph">zstride&lt;0</samp>, it still
+        defines the stride between elements of array 
+        <var>z</var>. However,
+        the order of the used elements is the opposite. For the 
+        <var>k-</var>th output
+        value, output(<samp class="codeph">k</samp>) is stored in 
+        <samp class="codeph">z(1+|zstride|*(zshape-k))</samp>, where 
+        <samp class="codeph">|zstride|</samp> is the
+        absolute value of 
+        <samp class="codeph">zstride</samp>. The actual
+        length of the array 
+        <var>z</var> must be at
+        least 
+        <samp class="codeph">1+|zstride|*(zshape -
+          1)</samp> elements.
+      </p>
+<p><strong>Two-dimensional
+          case.</strong> If 
+        <samp class="codeph"><span class="parmname">dims</span>=2</samp>, the output
+        data is a two-dimensional matrix. The value 
+        <samp class="codeph">zstride(1)</samp> defines the
+        stride inside matrix columns, that is, the stride between the 
+        <samp class="codeph">output(k<sub>1</sub>, k<sub>2</sub>)</samp> and 
+        <samp class="codeph">output(k<sub>1</sub>+1, k<sub>2</sub>)</samp> for every pair of indices 
+        <samp class="codeph">k<sub>1</sub>, k<sub>2</sub></samp>. On the other hand, 
+        <samp class="codeph">zstride(2)</samp> defines the
+        stride between columns, that is, the stride between 
+        <samp class="codeph">output(k<sub>1</sub>,k<sub>2</sub>)</samp> and 
+        <samp class="codeph">output(k<sub>1</sub>,k<sub>2</sub>+1)</samp>.
+      </p>
+<p>If 
+        <samp class="codeph">zstride(2)</samp> is greater
+        than 
+        <samp class="codeph">zshape(1)</samp>, this causes
+        sparse allocation of columns. If the value of 
+        <samp class="codeph">zstride(2)</samp> is smaller
+        than 
+        <samp class="codeph">zshape(1)</samp>, this may
+        result in the transposition of the output matrix. For example, if 
+        <samp class="codeph">zshape = (2,3)</samp>, you
+        can define 
+        <samp class="codeph">zstride = (3,1)</samp> to
+        allocate output values like transposed matrix of the shape 
+        <samp class="codeph">3x2</samp>.
+      </p>
+<p>Whether 
+        <samp class="codeph">zstride</samp> assumes this
+        kind of transformations or not, you need to ensure that different elements
+        output (<samp class="codeph">k<sub>1</sub>, ...,k<sub>dims</sub></samp>) will be stored in different
+        locations 
+        <samp class="codeph"><var>z(g)</var></samp>.
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html">Convolution and Correlation</a></div>
+</div>
+<div/>
+</body>
+</html>

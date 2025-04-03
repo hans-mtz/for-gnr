@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trsm_batch_strided"/>
+<meta name="abstract" content="Solves groups of triangular matrix equations."/>
+<meta name="description" content="Solves groups of triangular matrix equations."/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-41ACC32C-DB4C-478D-8CC8-640BF7D34A2B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trsm_batch_strided</title>
+
+</head>
+<body id="GUID-41ACC32C-DB4C-478D-8CC8-640BF7D34A2B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trsm_batch_strided</span></h1>
+<!--Solves groups of triangular matrix equations.--><div><p class="shortdesc">Solves groups of triangular matrix equations.</p>
+<div class="section" id="GUID-6F8E0E22-B30A-4825-B508-CEDE0CAC8B90"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call strsm_batch_strided(side, uplo, transa, diag, m, n, alpha, a, lda, stridea, b, ldb, strideb, batch_size)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtrsm_batch_strided(side, uplo, transa, diag, m, n, alpha, a, lda, stridea, b, ldb, strideb, batch_size)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctrsm_batch_strided(side, uplo, transa, diag, m, n, alpha, a, lda, stridea, b, ldb, strideb, batch_size)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztrsm_batch_strided(side, uplo, transa, diag, m, n, alpha, a, lda, stridea, b, ldb, strideb, batch_size)</span></p></dl></div>
+<div class="section" id="GUID-F2C570DC-A314-495A-A8B7-C29E59EEA24B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-AE6CFEF4-4058-49C3-BABC-2B05D6594555"><h2 class="sectiontitle">Description</h2><p>The <span><span class="option">?trsm_batch_strided</span></span> routines solve a series of triangular matrix equations. They are similar to the <span class="option">?trsm</span> routine counterparts, but the <span><span class="option">?trsm_batch_strided</span></span> routines solve triangular matrix equations with groups of matrices. All matrix <var>a</var> have the same parameters (<var>size</var>, <var>leading dimension</var>, <var>side</var>, <var>uplo</var>, <var>diag</var>, <var>transpose operation</var>) and are stored at constant <var>stridea</var> from each other. Similarly, all matrix <var>b</var> have the same parameters (<var>size</var>, <var>leading dimension</var>, <var>alpha scaling</var>) and are stored at constant <var>strideb</var> from each other.</p>
+<p>The operation is defined as<pre>For i = 0 … batch_size – 1
+    Ai, and Bi are matrices at offset i * stridea and i * strideb in a and b
+    Solve op(Ai)*Xi = alpha * Bi
+        Or
+    Solve Xi*op(Ai) = alpha * Bi
+end for                                                                                       
+</pre></p>
+</div>
+<div class="section" id="GUID-0BBDCB60-8CDE-4EBD-BDE5-F7688B4B29F4"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B1819B36-1361-454E-BBD8-8ABFA106D9FA"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>Specifies whether <samp class="codeph">op(<var>A</var>)</samp> appears on the left or right of <var>X</var> in the equation.</p>
+<p>
+if <var>side</var> = <span>'<samp class="codeph"><var>L</var></samp>' or '<samp class="codeph"><var>l</var></samp>'</span>, then <samp class="codeph">op(<var>A</var>)</samp>*<samp class="codeph"><var>X</var></samp> = <samp class="codeph"><var>alpha</var></samp>*<samp class="codeph"><var>B</var></samp>;</p>
+<p>
+if <var>side</var> = <span>'<samp class="codeph"><var>R</var></samp>' or '<samp class="codeph"><var>r</var></samp>'</span>, then <samp class="codeph"><var>X</var></samp>*<samp class="codeph">op(<var>A</var>)</samp> = <var>alpha</var>*<samp class="codeph"><var>B</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>Specifies whether the matrices <var>A</var> are upper or lower triangular.</p>
+<p>
+if <var>uplo</var> = <span>'<samp class="codeph"><var>U</var></samp>' or '<samp class="codeph"><var>u</var></samp>'</span>, then <var>A</var> are upper triangular;</p>
+<p>
+if <var>uplo</var> = <span>'<samp class="codeph"><var>L</var></samp>' or '<samp class="codeph"><var>l</var></samp>'</span>, then <var>A</var> are lower triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">transa</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>Specifies <samp class="codeph">op(<var>A</var>)</samp> the transposition operation applied to the matrices <var>A</var>.</p>
+<p>
+if <var>transa</var> = <span>'<samp class="codeph"><var>N</var></samp>' or '<samp class="codeph"><var>n</var></samp>'</span>, then <samp class="codeph">op(<var>A</var>)</samp> = <var>A</var>;</p>
+<p>
+if <var>transa</var> = <span>'<samp class="codeph"><var>T</var></samp>' or '<samp class="codeph"><var>t</var></samp>'</span>, then <samp class="codeph">op(<var>A</var>)</samp> = <var>A</var><sup><var>T</var></sup>;</p>
+<p>
+if <var>transa</var> = <span>'<samp class="codeph"><var>C</var></samp>' or '<samp class="codeph"><var>c</var></samp>'</span>, then <samp class="codeph">op(<var>A</var>)</samp> = <var>A</var><sup><var>H</var></sup>;</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>Specifies whether the matrices <var>A</var> are unit triangular.</p>
+<p>
+if <var>diag</var> = <span>'<samp class="codeph"><var>U</var></samp>' or '<samp class="codeph"><var>u</var></samp>'</span>, then <var>A</var> are unit triangular;</p>
+<p>
+if <var>diag</var> = <span>'<samp class="codeph"><var>N</var></samp>' or '<samp class="codeph"><var>n</var></samp>'</span>, then <var>A</var> are non-unit triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Number of rows of <var>B</var> matrices. Must be at least 0</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Number of columns of <var>B</var> matrices. Must be at least 0</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsm_batch_strided</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsm_batch_strided</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctrsm_batch_strided</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsm_batch_strided</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsm_batch_strided</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsm_batch_strided</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctrsm_batch_strided</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsm_batch_strided</span></p>
+<p>Array of size at least <var>stridea</var>*<var>batch_size</var> holding the <var>A</var> matrices. Each <var>A</var> matrix is stored at constant <var>stridea</var> from each other.</p>
+<p>Each <var>A</var> matrix has size <samp class="codeph"><var>lda</var>* <var>k</var></samp>, where <var>k</var> is <var>m</var> when <var>side</var> = <span>'<samp class="codeph"><var>L</var></samp>' or '<samp class="codeph"><var>l</var></samp>'</span> and is <var>n</var> when <var>side</var> = <span>'<samp class="codeph"><var>R</var></samp>' or '<samp class="codeph"><var>r</var></samp>'</span> .</p>
+<p> 
+Before entry with <var>uplo</var> = <span>'<samp class="codeph"><var>U</var></samp>' or '<samp class="codeph"><var>u</var></samp>'</span>, the leading <var>k</var>-by-<var>k</var> upper triangular part of the array <var>A</var> must contain the upper triangular matrix and the strictly lower triangular part of <var>A</var> is not referenced.</p>
+<p>Before entry with <var>uplo</var> = <span>'<samp class="codeph"><var>L</var></samp>' or '<samp class="codeph"><var>l</var></samp>'</span> lower triangular part of the array <var>A</var> must contain the lower triangular matrix and the strictly upper triangular part of <var>A</var> is not referenced.</p>
+<p>
+When diag = <span>'<samp class="codeph"><var>U</var></samp>' or '<samp class="codeph"><var>u</var></samp>'</span> , the diagonal elements of <var>A</var> are not referenced either, but are assumed to be unity.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Specifies the leading dimension of the <var>A</var> matrices.
+When <var>side</var> = <span>'<samp class="codeph"><var>L</var></samp>' or '<samp class="codeph"><var>l</var></samp>'</span>, then <var>lda</var> must be at least <samp class="codeph">max(1, m)</samp>, when side = <var>side</var> = <span>'<samp class="codeph"><var>R</var></samp>' or '<samp class="codeph"><var>r</var></samp>'</span>, then <var>lda</var> must be at least <samp class="codeph">max(1, n)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stridea</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Stride between two consecutive <var>A</var> matrices.</p>
+<p>
+When <var>side</var> = <span>'<samp class="codeph"><var>L</var></samp>' or '<samp class="codeph"><var>l</var></samp>'</span>, then <var>stridea</var> must be at least <samp class="codeph"><var>lda</var>*<var>m</var></samp>.</p>
+<p>When side = <var>side</var> = <span>'<samp class="codeph"><var>R</var></samp>' or '<samp class="codeph"><var>r</var></samp>'</span>, then <var>stridea</var> must be at least <samp class="codeph"><var>lda</var>*<var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsm_batch_strided</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsm_batch_strided</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctrsm_batch_strided</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsm_batch_strided</span></p>
+<p>Array of size at least <var>strideb</var>*<var>batch_size</var> holding the <var>B</var> matrices. Each <var>B</var> matrix is stored at constant <var>strideb</var> from each other.</p>
+<p>Each <var>B</var> matrix has size <samp class="codeph"><var>ldb</var>* <var>n</var></samp>. Before entry, the leading <var>m</var>-by-<var>n</var> part of the array <var>B</var> must contain the matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Specifies the leading dimension of the <var>B</var> matrices.
+</p>
+<p><var>ldb</var> must be at least <samp class="codeph">max(1,<var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">strideb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Stride between two consecutive <var>B</var> matrices.</p>
+<p><var>strideb</var> must be at least <samp class="codeph">(<var>ldb</var>*<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">batch_size</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p> Number of <span class="option">trsm</span> computations to perform. Must be at least 0.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7AC6C3B9-7A31-4E0B-B770-FD607E7F9BE5"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D6EB9225-A5B2-4201-941D-4F9AD4783ACB"><dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>Overwritten by the solution batch_size  <var>X</var> matrices.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div/>
+</body>
+</html>

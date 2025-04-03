@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Advanced Service Routine Data Types"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-74F9867D-36F6-4A37-946D-DAD2F2FC0F92"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Advanced Service Routine Data Types</title>
+
+</head>
+<body id="GUID-74F9867D-36F6-4A37-946D-DAD2F2FC0F92">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Advanced Service Routine Data Types</h1>
+<div><p>The Advanced Service routines refer to a structure
+      defining the properties of the basic generator. 
+    </p>
+<p>This structure is
+      described in Fortran 90 as follows: 
+      <pre>TYPE VSL_BRNG_PROPERTIES
+    INTEGER streamstatesize
+    INTEGER nseeds
+    INTEGER includeszero
+    INTEGER wordsize
+    INTEGER nbits
+    INTEGER reserved(8) 
+END TYPE VSL_BRNG_PROPERTIES</pre></p>
+<p>The following table provides brief descriptions of
+      the fields engaged in the above structure: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-12" class="AllLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Field Descriptions</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="35%" id="d848162e32"><p>Field 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="65%" id="d848162e35"><p>Short Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="35%" headers="d848162e32 "><p><b class="parmname" style="color:#0033ff">Fortran: </b><span class="keyword">streamstatesize</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%" headers="d848162e35 "><p>The size, in bytes, of the stream state
+            structure for a given basic generator. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%" headers="d848162e32 "><p><b class="parmname" style="color:#0033ff">Fortran: </b><span class="keyword">nseeds</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%" headers="d848162e35 "><p>The number of 32-bit initial conditions (seeds)
+            necessary to initialize the stream state structure for a given basic generator.
+            
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%" headers="d848162e32 "><p><b class="parmname" style="color:#0033ff">Fortran: </b><span class="keyword">includeszero</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%" headers="d848162e35 "><p>Flag value indicating whether the generator can
+            produce a random 0. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%" headers="d848162e32 "><p><b class="parmname" style="color:#0033ff">Fortran: </b><span class="keyword">wordsize</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%" headers="d848162e35 "><p>Machine word size, in bytes, used in
+            integer-value computations. Possible values: 4, 8, and 16 for 32, 64, and
+            128-bit generators, respectively. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%" headers="d848162e32 "><p><b class="parmname" style="color:#0033ff">Fortran: </b><span class="keyword">nbits</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%" headers="d848162e35 "><p>The number of bits required to represent a
+            random value in integer arithmetic. Note that, for instance, 48-bit random
+            values are stored to 64-bit (8 byte) memory locations. In this case, 
+            <span class="keyword">wordsize</span>/<span class="keyword">WordSize</span> is equal to 
+            <var class="varnamett">8</var> (number of bytes used to store the random value),
+            while 
+            <span class="keyword">nbits</span>/<span class="keyword">NBits</span> contains the actual number of bits
+            occupied by the value (in this example, 
+            <var class="varnamett">48</var>). 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="35%" headers="d848162e32 "><p><b class="parmname" style="color:#0033ff">Fortran: </b><span class="keyword">reserved(8)</span></p>
+</td>
+<td class="row-nocellborder" valign="top" width="65%" headers="d848162e35 "><p>Reserved for internal use. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Using Advanced Service routines for defining generators is not supported
+      for Fortran, but you can use the Fortran interface to get information about a
+      previously-registered generator using 
+      <a href="GUID-E97C3BA6-B454-4E2C-AC03-B726A6CE4DF6.html"><span class="option">vslGetBrngProperties</span></a>.
+      
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F5A96F4B-B0A4-48E4-B82A-F253BA4FAA62.html">Advanced Service Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

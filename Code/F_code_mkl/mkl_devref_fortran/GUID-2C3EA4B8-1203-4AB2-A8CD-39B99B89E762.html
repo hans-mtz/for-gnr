@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pardiso_getdiag"/>
+<meta name="abstract" content="Returns diagonal elements of initial and factorized matrix."/>
+<meta name="description" content="Returns diagonal elements of initial and factorized matrix."/>
+<meta name="DC.subject" content="sparse solver, parallel direct sparse solver interface, pardiso_getdiag"/>
+<meta name="keywords" content="sparse solver, parallel direct sparse solver interface, pardiso_getdiag"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7E829836-0FEF-46B2-8943-86A022193462.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2C3EA4B8-1203-4AB2-A8CD-39B99B89E762"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pardiso_getdiag</title>
+
+</head>
+<body id="GUID-2C3EA4B8-1203-4AB2-A8CD-39B99B89E762">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pardiso_getdiag</span></h1>
+<!--Returns diagonal elements of initial and factorized matrix.--><div><p class="shortdesc">Returns diagonal elements of initial and factorized matrix.</p>
+<div class="section" id="GUID-074A7005-BE40-477C-9E1C-72E4CF64C3F9"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pardiso_getdiag</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">df</span><span class="sep">, </span><span class="var">da</span><span class="sep">, </span><span class="var">mnum</span><span class="sep">, </span><span class="var">error</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-EFDD4854-04A4-4D30-87A3-14DFC750039D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e110"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_pardiso.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7A52663F-A768-4245-B49B-47350B9AF9A2"><h2 class="sectiontitle">Description</h2><p>This routine returns the diagonal elements of the initial and factorized matrix for a  real or Hermitian matrix.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>In order to use this routine, you must set <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM56"><samp class="codeph"><span class="parmname">iparm</span>(56)</samp></a> to 1 before the main <span class="keyword">pardiso</span> loop.</p>
+</div>
+</div>
+<div class="section" id="GUID-5AC07532-69D1-43A6-BA42-C3A4C1CABE41"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C6AE0E41-F4E2-44D3-B43F-A063275B6522"><dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> for 32-bit or 64-bit architectures</p>
+<p><span class="keyword">INTEGER*8</span> for 64-bit architectures</p>
+<p>Array with a size of 64. Handle to internal data structure for the Intel&reg; oneAPI Math Kernel Library PARDISO solver. The entries must be set to zero prior to the first call to<span class="keyword">pardiso</span>. Unique for factorization.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mnum</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Indicates the actual matrix for the solution phase of the Intel&reg; oneAPI Math Kernel Library PARDISO solver. With this scalar you can define the diagonal elements of the factorized matrix that you want to obtain. The value must be: 1 ≤<span class="parmname">mnum</span> ≤ <span class="parmname">maxfct</span>. In most applications this value is 1.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A16D382D-525D-4DA7-AE08-8D5444D43ED9"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-06DC95E0-786E-4542-9239-ED472332A6D3"><dt class="dlterm"><span class="parmname">df</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span>- for real types of matrices and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span>- for real types of matrices and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span>- for complex types of matrices and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span>- for complex types of matrices and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p> Array with a dimension of <span class="parmname">n</span>. Contains diagonal elements of the factorized matrix after factorization.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Elements of <span class="parmname">df</span> correspond to diagonal elements of matrix <var>L</var>computed during phase 22. Because during phase 22 Intel&reg; oneAPI Math Kernel Library PARDISO makes additional permutations to improve stability, it is possible that array<span class="parmname">df</span> is not in line with the <span class="parmname">perm</span> array computed during phase 11.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">da</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span>- for real types of matrices and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span>- for real types of matrices and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span>- for complex types of matrices and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span>- for complex types of matrices and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p> Array with a dimension of <span class="parmname">n</span>. Contains diagonal elements of the initial matrix.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Elements of <span class="parmname">da</span> correspond to diagonal elements of matrix <var>L</var>computed during phase 22. Because during phase 22 Intel&reg; oneAPI Math Kernel Library PARDISO makes additional permutations to improve stability, it is possible that array<span class="parmname">da</span> is not in line with the <span class="parmname">perm</span> array computed during phase 11.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">error</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The error indicator.</p>
+<dl id="GUID-A32C8FF2-CA1A-47A6-8834-28E98E4C647B"><dt><strong><var>error</var></strong></dt>
+<dd><strong>Information</strong></dd>
+<dt class="dlterm"><samp class="codeph">0 </samp></dt>
+
+<dd><p>no error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1 </samp></dt>
+
+<dd><p> Diagonal information not turned on before <span class="keyword">pardiso</span> main loop (<span><samp class="codeph"><span class="parmname">iparm</span>(56)</samp></span>=0).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html">oneMKL PARDISO - Parallel Direct Sparse Solver Interface</a></div>
+</div>
+<div/>
+</body>
+</html>

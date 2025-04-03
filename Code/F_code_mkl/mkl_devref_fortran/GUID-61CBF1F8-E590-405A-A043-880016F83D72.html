@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pardiso_64"/>
+<meta name="abstract" content="Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides, 64-bit integer version."/>
+<meta name="description" content="Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides, 64-bit integer version."/>
+<meta name="DC.subject" content="pardiso_64, parallel direct sparse solver interface, sparse solver"/>
+<meta name="keywords" content="pardiso_64, parallel direct sparse solver interface, sparse solver"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7E829836-0FEF-46B2-8943-86A022193462.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-61CBF1F8-E590-405A-A043-880016F83D72"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pardiso_64</title>
+
+</head>
+<body id="GUID-61CBF1F8-E590-405A-A043-880016F83D72">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pardiso_64</span></h1>
+<!--Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides, 64-bit integer version.--><div><p class="shortdesc">Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides, 64-bit integer version.</p>
+<div class="section" id="GUID-D488BD5D-5982-4644-B32F-5DE4A89F9E71"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pardiso_64</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">maxfct</span><span class="sep">, </span><span class="var">mnum</span><span class="sep">, </span><span class="var">mtype</span><span class="sep">, </span><span class="var">phase</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">iparm</span><span class="sep">, </span><span class="var">msglvl</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">error</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-36E506E2-669C-4CB9-86EF-63BEEED3AD72"><h2 class="sectiontitle">Include Files</h2><ul id="d163e110"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_pardiso.f90</span></li>
+</ul>
+</div>
+<div class="section" id="PARDISO"><h2 class="sectiontitle">Description</h2><p><span/><span class="option">pardiso_64</span>  is an alternative ILP64 (64-bit integer) version
+of the <a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA">pardiso</a>
+ routine (see <a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#PARDISO">Description</a>
+ section for more details). The interface of <span class="option">pardiso_64</span> is the same as
+the interface of <span class="option">pardiso</span>,<span> but it accepts and returns all INTEGER data as  <span class="keyword">INTEGER*8</span></span>.</p>
+<p> Use <span class="option">pardiso_64</span> when  <span class="keyword">pardiso</span>for solving large matrices (with the number of non-zero elements on the order of 500 million or more). You can use it together with the usual LP64 interfaces for the rest of Intel&reg; oneAPI Math Kernel Library functionality. In other words, if you use 64-bit integer version (<span class="option">pardiso_64</span>), you do not need to re-link
+your applications with ILP64  libraries. Take into
+account that <span class="option">pardiso_64</span> may perform slower than regular <span class="option">pardiso</span> on  the reordering and symbolic factorization
+phase.</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p><span class="option">pardiso_64</span> is supported only in the 64-bit libraries.  If <span class="option">pardiso_64</span>  is called from the 32-bit libraries, it returns <samp class="codeph"><span class="parmname">error</span> =-12</samp>.</p>
+</div>
+</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a> for details.</p>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-DA67CB19-3611-49D5-93C4-249C311E35F6"><h2 class="sectiontitle">Input Parameters</h2><p>The input parameters of <span class="option">pardiso_64</span> are the same as the input parameters of <span class="option">pardiso</span>, <span> but <span class="option">pardiso_64</span> accepts all INTEGER data as  <span class="keyword">INTEGER*8</span></span>.</p>
+</div>
+<div class="section" id="FUNCTN_PARDISO_OUTPUTPARAM"><h2 class="sectiontitle">Output Parameters</h2><p>The output parameters of <span class="option">pardiso_64</span> are the same as the <span><a href="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA.html#OUTPUT_PARAMETERS">output parameters of <span class="option">pardiso</span></a></span>, <span> but <span class="option">pardiso_64</span> returns all INTEGER data as  <span class="keyword">INTEGER*8</span></span>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html">oneMKL PARDISO - Parallel Direct Sparse Solver Interface</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

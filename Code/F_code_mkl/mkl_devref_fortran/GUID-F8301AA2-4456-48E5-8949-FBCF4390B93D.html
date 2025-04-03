@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pilaenvx"/>
+<meta name="abstract" content="Called from the ScaLAPACK routines to choose problem-dependent parameters for the local environment."/>
+<meta name="description" content="Called from the ScaLAPACK routines to choose problem-dependent parameters for the local environment."/>
+<meta name="DC.subject" content="pilaenvx"/>
+<meta name="keywords" content="pilaenvx"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F8301AA2-4456-48E5-8949-FBCF4390B93D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pilaenvx</title>
+
+</head>
+<body id="GUID-F8301AA2-4456-48E5-8949-FBCF4390B93D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pilaenvx</span></h1>
+<!--Called from the ScaLAPACK routines to choose problem-dependent parameters for the local environment.--><div><p class="shortdesc">Called from the ScaLAPACK routines to choose problem-dependent parameters for the local environment.</p>
+<div class="section" id="GUID-FFE43932-C6D9-467D-B0EB-F362872FA4D6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">result = pilaenvx</span><span class="delim"> (</span><span class="var">ictxt</span><span class="sep">, </span><span class="var">ispec</span><span class="sep">, </span><span class="var">name</span><span class="sep">, </span><span class="var">opts</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">n2</span><span class="sep">, </span><span class="var">n3</span><span class="sep">, </span><span class="var">n4 </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-7A218A47-4E90-46B4-9F7D-F95015A37FCA"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-034A1768-380D-4565-870E-4746B210F475"><li><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-CAAF1886-47AB-496A-A83C-389AC2089CA8"><h2 class="sectiontitle">Description</h2><p><span class="option">pilaenvx</span> is called from the ScaLAPACK routines to choose problem-dependent parameters for the local environment.  See <span class="parmname">ispec</span> for a description of the parameters. This version provides a set of parameters which should give good, though not optimal, performance on many of the currently available computers.  You are encouraged to modify this subroutine to set the tuning parameters for your particular machine using the option and problem size information in the arguments. </p>
+</div>
+<div class="section" id="GUID-710A142A-A529-4DEB-855B-BEF8A85167E8"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-CCA6E8D9-1E33-48F6-A54A-B2AC9C919662"><dt class="dlterm"><span class="parmname">ictxt</span></dt>
+
+<dd><p>(local input)<span> INTEGER. </span>On entry,  <span class="parmname">ictxt</span>  specifies the BLACS context handle, indicating the global  context of the operation. The context itself is global, but the value of <span class="parmname">ictxt</span> is local.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ispec</span></dt>
+
+<dd><p>(global input)<span> INTEGER. </span></p>
+<p>        Specifies the parameter to be returned as the value of <span class="option">pilaenvx</span>.</p>
+<p>        = 1: the optimal blocksize; if this value is 1, an unblocked             algorithm will give the best performance (unlikely).</p>
+<p>        = 2: the minimum block size for which the block routine             should be used; if the usable block size is less than             this value, an unblocked routine should be used.</p>
+<p>        = 3: the crossover point (in a block routine, for N less             than this value, an unblocked routine should be used).</p>
+<p>        = 4: the number of shifts, used in the nonsymmetric             eigenvalue routines (DEPRECATED).</p>
+<p>        = 5: the minimum column dimension for blocking to be used;             rectangular blocks must have dimension at least <var>k</var> by <var>m</var>,             where <var>k</var> is given by <samp class="codeph"><span class="option">pilaenvx</span>(2,...)</samp> and <var>m</var> by <samp class="codeph"><span class="option">pilaenvx</span>(5,...)</samp>.</p>
+<p>        = 6: the crossover point for the SVD (when reducing an <var>m</var> by <var>n</var>             matrix to bidiagonal form, if max(<var>m</var>,<var>n</var>)/min(<var>m</var>,<var>n</var>) exceeds             this value, a QR factorization is used first to reduce             the matrix to a triangular form).</p>
+<p>        = 7: the number of processors.</p>
+<p>        = 8: the crossover point for the multishift QR method             for nonsymmetric eigenvalue problems (DEPRECATED).</p>
+<p>        = 9: maximum size of the subproblems at the bottom of the             computation tree in the divide-and-conquer algorithm             (used by <span class="option">?gelsd</span> and <span class="option">?gesdd</span>).</p>
+<p>        =10: IEEE NaN arithmetic can be trusted not to trap.</p>
+<p>        =11: infinity arithmetic can be trusted not to trap.</p>
+<p>        12 &lt;= <span class="parmname">ispec</span> &lt;= 16:</p>
+<p><span class="option">p?hseqr</span> or one of its subroutines,             see <span class="option">piparmq</span> for detailed explanation.</p>
+<p>        17 &lt;= <span class="parmname">ispec</span> &lt;= 22:</p>
+<p>             Parameters for <span class="option">pb?trord</span>/<span class="option">p?hseqr</span> (not all), as follows:</p>
+<p>             =17: maximum number of concurrent computational windows;</p>
+<p>             =18: number of eigenvalues/bulges in each window;</p>
+<p>             =19: computational window size;</p>
+<p>             =20: minimal percentage of FLOPS required for                  performing matrix-matrix multiplications instead                  of pipelined orthogonal transformations;</p>
+<p>             =21: width of block column slabs for row-wise                  application of pipelined orthogonal                  transformations in their factorized form;</p>
+<p>             =22: the maximum number of eigenvalues moved together                  over a process border;</p>
+<p>             =23: the number of processors involved in Aggressive Early Deflation (AED);</p>
+<p>        =99: Maximum iteration chunksize in OpenMP parallelization.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">name</span></dt>
+
+<dd><p>(global input)<span> CHARACTER*(*). </span></p>
+<p>        The name of the calling subroutine, in either upper case or        lower case.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">opts</span></dt>
+
+<dd><p>(global input)<span> CHARACTER*(*). </span>        The character options to the subroutine name, concatenated        into a single character string.  For example, <samp class="codeph"><span class="parmname">uplo</span> = 'U'</samp>,        <samp class="codeph"><span class="parmname">trans</span> = 'T'</samp>, and <samp class="codeph"><span class="parmname">diag</span> = 'N'</samp> for a triangular routine would        be specified as <samp class="codeph"><span class="parmname">opts</span> = 'UTN'</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n1</span>, <span class="parmname">n2</span>, <span class="parmname">n3</span>, and <span class="parmname">n4</span></dt>
+
+<dd><p>(global input)<span> INTEGER. </span> Problem dimensions for the subroutine name; these may not all        be required.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6D9AADF7-711F-49E4-8E4C-57173B3A9FFA"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">result</span></p></td>
+
+<td valign="top" class="noborder"><p>(global output) <span>INTEGER. </span></p>
+<p>        &gt;= 0: the value of the parameter specified by <span class="parmname">ispec</span>.</p>
+<p>        &lt; 0:  if <span class="option">pilaenvx</span> = -<var>k</var>, the <var>k</var>-th argument had an illegal value.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-3018DE70-C444-4E9F-A0FF-1C246AD221EF"><h2 class="sectiontitle">Application Notes</h2><p>The following conventions have been used when calling <span class="option">ilaenv</span> from the LAPACK routines:</p>
+<ol id="GUID-AF03C22C-FDF7-428A-926A-D1EC5883450D"><li><p><span class="parmname">opts</span> is a concatenation of all of the character options to    subroutine name, in the same order that they appear in the    argument list for name, even if they are not used in determining    the value of the parameter specified by <span class="parmname">ispec</span>.</p>
+</li>
+<li><p>The problem dimensions <span class="parmname">n1</span>, <span class="parmname">n2</span>, <span class="parmname">n3</span>,  and <span class="parmname">n4</span> are specified in the order    that they appear in the argument list for <span class="parmname">name</span>.  <span class="parmname">n1</span> is used    first, <span class="parmname">n2</span> second, and so on, and unused problem dimensions are    passed a value of -1.</p>
+</li>
+<li><p>The parameter value returned by <span class="option">ilaenv</span> is checked for validity in    the calling subroutine.  For example, <span class="option">ilaenv</span> is used to retrieve    the optimal block size for <span class="option">strtri</span> as follows:</p>
+</li>
+</ol>
+<pre> NB = ilaenv( 1, 'STRTRI', UPLO // DIAG, N, -1, -1, -1 )
+    IF( NB.LE.1 ) NB = MAX( 1, N )</pre><p>The same conventions hold for this ScaLAPACK-style variant.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

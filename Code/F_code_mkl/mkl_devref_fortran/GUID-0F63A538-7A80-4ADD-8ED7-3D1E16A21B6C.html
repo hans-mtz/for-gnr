@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gebal"/>
+<meta name="abstract" content="Balances a general matrix to improve the accuracy of computed eigenvalues and eigenvectors."/>
+<meta name="description" content="Balances a general matrix to improve the accuracy of computed eigenvalues and eigenvectors."/>
+<meta name="DC.subject" content="?gebal, LAPACK routines, nonsymmetric eigenvalue problems, balancing a matrix"/>
+<meta name="keywords" content="?gebal, LAPACK routines, nonsymmetric eigenvalue problems, balancing a matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gebal</title>
+
+</head>
+<body id="GUID-0F63A538-7A80-4ADD-8ED7-3D1E16A21B6C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gebal</span></h1>
+<!--Balances a general matrix to improve the accuracy of computed eigenvalues and eigenvectors.--><div><p class="shortdesc">Balances a general matrix to improve the accuracy of computed eigenvalues and eigenvectors.</p>
+<div class="section" id="GUID-8ADD008A-F512-41BA-8704-C13C0A4A5E96"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgebal</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgebal</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgebal</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgebal</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call gebal</span><span class="delim">(</span><span class="var">a</span><span class="delim"> [</span><span class="sep">, </span><span class="var">scale</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ilo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">ihi</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">job</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-BC526D8B-CDAF-4FB2-B0AE-A182F4174C9A"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-55E83C07-2351-4A61-A3B5-4A3DB697D364"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <var>balances</var> a matrix <var>A</var> by performing either or both of the following two similarity transformations:</p>
+<p>(1) The routine first attempts to permute <var>A</var> to block upper triangular form:</p>
+<p><br/><div class="imagecenter"><img src="GUID-7A7B0B86-D0F3-4C5E-A7D6-C44A46A25A8E-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <var>P</var> is a permutation matrix, and <var>A'</var><sub class="subnb">11</sub> and <var>A'</var><sub>33</sub> are upper triangular. The diagonal elements of <var>A'</var><sub class="subnb">11</sub> and <var>A'</var><sub>33</sub> are eigenvalues of <var>A</var>. The rest of the eigenvalues of <var>A</var> are the eigenvalues of the central diagonal block <var>A'</var><sub>22</sub>, in rows and columns <var>ilo</var> to <var>ihi</var>. Subsequent operations to compute the eigenvalues of <var>A</var> (or its Schur factorization) need only be applied to these rows and columns; this can save a significant amount of work if <samp class="codeph"><var>ilo</var> &gt; 1</samp> and <samp class="codeph"><var>ihi</var> &lt; <var>n</var></samp>. </p>
+<p>If no suitable permutation exists (as is often the case), the routine sets <samp class="codeph"><var>ilo</var> = 1</samp> and <samp class="codeph"><var>ihi</var> = <var>n</var></samp>, and <var>A'</var><sub>22</sub> is the whole of <var>A</var>.</p>
+<p>(2) The routine applies a diagonal similarity transformation to <var>A'</var>, to make the rows and columns of <var>A'</var><sub>22</sub> as close in norm as possible:</p>
+<p><br/><div class="imagecenter"><img src="GUID-B8AAD58C-C046-4083-8BBB-EC130C1AAB36-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>This scaling can reduce the norm of the matrix (that is, <samp class="codeph">||<var>A''</var><sub>22</sub>|| &lt; ||<var>A'</var><sub>22</sub>||</samp>), and hence reduce the effect of rounding errors on the accuracy of computed eigenvalues and eigenvectors.</p>
+</div>
+<div class="section" id="GUID-09E5EE86-A0DC-4A89-963E-3EF0115AC600"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8AD7C019-0AA9-4FB4-9385-D3CC0AF58103"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'P'</span> or <span class="keyword">'S'</span> or <span class="keyword">'B'</span>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>, then <var>A</var> is neither permuted nor scaled (but <var>ilo</var>, <var>ihi</var>, and <var>scale</var> get their values). </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'P'</span></samp>, then <var>A</var> is permuted but not scaled. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'S'</span></samp>, then <var>A</var> is scaled but not permuted. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'B'</span></samp>, then <var>A</var> is both scaled and permuted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgebal</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgebal</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgebal</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgebal</span>. </p>
+<p>Array <var>a</var><span>(<var>lda</var>,*)</span> contains the matrix <var>A</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>). <var>a</var> is not referenced if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>n</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-70B81559-0078-43EF-A11B-9794253E35E6"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3D14E52B-9AFC-4496-B7B9-6634A1B66076"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the balanced matrix (<var>a</var> is not referenced if <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The values <var>ilo</var> and <var>ihi</var> such that on exit <var>a</var>(<var>i,j</var>) is zero if <samp class="codeph"><var>i</var> &gt; <var>j</var></samp> and <samp class="codeph">1 <span class="eqsymbol">≤</span><var>j</var> &lt; <var>ilo</var> or <var>ihi</var> &lt; <var>j</var><span class="eqsymbol">≤</span><var>n</var></samp>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'S'</span>, then <samp class="codeph"><var>ilo</var> = 1</samp> and <samp class="codeph"><var>ihi</var> = <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single-precision flavors <span class="keyword">DOUBLE PRECISION</span> for double-precision flavors </p>
+<p>Array, size at least max(1, <var>n</var>). </p>
+<p>Contains details of the permutations and scaling factors.</p>
+<p>More precisely, if <var>p</var><sub class="subb"><var>j</var></sub> is the index of the row and column interchanged with row and column <var>j</var>, and <var>d</var><sub class="subb"><var>j</var></sub> is the scaling factor used to balance row and column <var>j</var>, then </p>
+<p><samp class="codeph"><var>scale</var><span>(<var>j</var>)</span> = <var>p</var><sub class="subb"><var>j</var></sub></samp> for <samp class="codeph"><var>j</var> = 1, 2,..., <var>ilo</var>-1, <var>ihi</var>+1,..., <var>n</var>;</samp></p>
+<p><samp class="codeph"><var>scale</var><span>(<var>j</var>)</span> = <var>d</var><sub class="subb"><var>j</var></sub></samp> for <samp class="codeph"><var>j</var> = <var>ilo</var>, <var>ilo</var> + 1,..., <var>ihi</var></samp>. </p>
+<p>The order in which the interchanges are made is <var>n</var> to <var>ihi</var>+1, then 1 to <var>ilo</var>-1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0EB72A5-E638-4847-90C3-A47C34A1050F"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gebal</span> interface are the following:</p>
+<dl id="GUID-6482978A-0AD4-4F12-99FA-38B7A585DB77"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span></dt>
+
+<dd><p>Default value for this argument is <samp class="codeph"><var>ilo</var> = 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ihi</span></dt>
+
+<dd><p>Default value for this argument is <samp class="codeph"><var>ihi</var> = <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>Must be <span class="keyword">'B'</span>, <span class="keyword">'S'</span>, <span class="keyword">'P'</span>, or <span class="keyword">'N'</span>. The default value is <span class="keyword">'B'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-8951C176-278E-44CC-A903-720E84CB3DB6"><h2 class="sectiontitle">Application Notes</h2><p>The errors are negligible, compared with those in subsequent computations.</p>
+<p>If the matrix <var>A</var> is balanced by this routine, then any eigenvectors computed subsequently are eigenvectors of the matrix <var>A''</var> and hence you must call <a href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6">gebak</a> to transform them back to eigenvectors of <var>A</var>.</p>
+<p>If the Schur vectors of <var>A</var> are required, do not call this routine with <samp class="codeph"><var>job</var> = <span class="keyword">'S'</span></samp> or <span class="keyword">'B'</span>, because then the balancing transformation is not orthogonal (not unitary for complex flavors). </p>
+<p>If you call this routine with <samp class="codeph"><var>job</var> = <span class="keyword">'P'</span></samp>, then any Schur vectors computed subsequently are Schur vectors of the matrix <var>A''</var>, and you need to call <a href="GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6.html#GUID-9F6FDE68-961D-47C3-8DEA-B1986FC060A6">gebak</a> (with <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>) to transform them back to Schur vectors of <var>A</var>.</p>
+<p>The total number of floating-point operations is proportional to <var>n</var><sup class="power">2</sup>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-96CDD8D9-37D7-477A-8EEE-7E6F4081E3DF.html">Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

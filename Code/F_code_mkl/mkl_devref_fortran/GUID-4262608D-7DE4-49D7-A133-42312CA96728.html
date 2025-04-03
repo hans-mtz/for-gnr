@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larot"/>
+<meta name="abstract" content="Applies a Givens rotation to two adjacent rows or columns."/>
+<meta name="description" content="Applies a Givens rotation to two adjacent rows or columns."/>
+<meta name="DC.subject" content="slarot, dlarot, clarot, zlarot"/>
+<meta name="keywords" content="slarot, dlarot, clarot, zlarot"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4262608D-7DE4-49D7-A133-42312CA96728"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larot</title>
+
+</head>
+<body id="GUID-4262608D-7DE4-49D7-A133-42312CA96728">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larot</span></h1>
+<!--Applies a Givens rotation to two adjacent rows or columns.--><div><p class="shortdesc">Applies a Givens rotation to two adjacent rows or columns.</p>
+<div class="section" id="GUID-0BDB3B87-997C-4812-AF76-9FE10FD80891"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slarot</span><span class="delim">( </span><span class="var">lrows</span><span class="sep">,
+</span><span class="var">lleft</span><span class="sep">, </span><span class="var">lright</span><span class="sep">,
+</span><span class="var">nl</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="sep">,
+</span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">,
+</span><span class="var">xleft</span><span class="sep">, </span><span class="var">xright</span><span class="delim">
+)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarot</span><span class="delim">( </span><span class="var">lrows</span><span class="sep">,
+</span><span class="var">lleft</span><span class="sep">, </span><span class="var">lright</span><span class="sep">,
+</span><span class="var">nl</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="sep">,
+</span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">,
+</span><span class="var">xleft</span><span class="sep">, </span><span class="var">xright</span><span class="delim">
+)</span></p><p class="dlsyntaxpara"><span class="kwd">call clarot</span><span class="delim">( </span><span class="var">lrows</span><span class="sep">,
+</span><span class="var">lleft</span><span class="sep">, </span><span class="var">lright</span><span class="sep">,
+</span><span class="var">nl</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="sep">,
+</span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">,
+</span><span class="var">xleft</span><span class="sep">, </span><span class="var">xright</span><span class="delim">
+)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarot</span><span class="delim">( </span><span class="var">lrows</span><span class="sep">,
+</span><span class="var">lleft</span><span class="sep">, </span><span class="var">lright</span><span class="sep">,
+</span><span class="var">nl</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="sep">,
+</span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">,
+</span><span class="var">xleft</span><span class="sep">, </span><span class="var">xright</span><span class="delim">
+)</span></p></dl></div>
+<div class="section" id="GUID-0358A881-9D9B-49CF-839B-7D494B9AB25F"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-822A46E9-70AB-4E81-9113-E71EEB3C0D6B"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?larot</span> applies a Givens rotation to two adjacent rows or columns,
+where one element of the first or last column or row is stored in some format other than GE so that elements of
+the matrix may be used or modified for which no array element is
+provided. </p>
+<p>One example is a symmetric matrix in SB format
+(bandwidth = 4), for which <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp>. Two adjacent rows will have the
+format: </p>
+<pre>row <var>j</var> :      <samp class="codeph"><var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; . . . . 
+row <var>j </var>+ 1 :  <samp class="codeph"><var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; . . . .</samp></samp></pre><p><span class="keyword">'*'</span> indicates elements for which
+storage is provided. </p>
+<p><span class="keyword">'.'</span> indicates elements for which no storage is
+provided, but are not necessarily zero; their values are determined
+by symmetry. </p>
+<p><span class="keyword">' '</span> indicates elements which are required to be zero, and
+have no storage provided. </p>
+<p>Those columns which have two <span class="keyword">'*'</span> entries can be
+handled by <span class="option">srot</span> (for <span class="option">slarot</span> and <span class="option">clarot</span>), or by <span class="option">drot</span>( for <span class="option">dlarot</span> and <span class="option">zlarot</span>). </p>
+<p>Those columns which have no <span class="keyword">'*'</span> entries can be ignored,
+since as long as the Givens rotations are carefully applied to
+preserve symmetry, their values are determined. </p>
+<p>Those columns which
+have one <span class="keyword">'*'</span> have to be handled separately, by using separate
+variables <var>p</var> and <var>q </var>: </p>
+<pre>row <var>j</var> :      <samp class="codeph"><var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>p</var>. . . . </samp>
+row <var>j </var>+ 1 :  <samp class="codeph"><var>q</var> <var>  C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; <var>C</var> &gt; . . . . </samp></pre><p>If element <var>p</var>
+is set correctly, <span class="option">?larot</span> rotates the column and sets <var>p</var> to its new value. The next call to <span class="option">?larot</span> rotates
+columns <var>j </var> and <var>j </var>+1, and restore symmetry. The element <var>q </var>is zero at the beginning, and non-zero after the rotation.
+Later, rotations would presumably be chosen to zero <var>q</var> out. </p>
+<p>Typical
+Calling Sequences: rotating the <var>i </var>-th and <samp class="codeph">(<var>i </var>+1)-</samp>st rows. </p>
+</div>
+<div class="section" id="GUID-28F2D112-D30B-4D44-B5F9-F368C2B5DD4F"><h2 class="sectiontitle">Typical Calling Sequences</h2><p>These examples rotate the <var>i </var>-th and <samp class="codeph">(<var>i </var>+1)-</samp>st rows.</p>
+<p>General dense matrix: </p>
+<pre>call dlarot (.TRUE.,.FALSE.,.FALSE., n, c, s,
+a(i,1),lda, dummy, dummy) </pre><p>General banded matrix in GB format:</p>
+<pre>              j = max(1, i-kl )
+              nl = min( n, i+ku+1 ) + 1-j
+              call dlarot( .TRUE., i-kl.GE.1, i+ku.LT.n, nl, c,s,
+                      a(ku+i+1-j,j),lda-1, xleft, xright )
+</pre><div class="Note"><h3 class="NoteTipHead">Note</h3> <p><var> i</var> + 1 - <var>j</var> is just min(<var>i</var>, <span class="parmname">kl</span> + 1).</p>
+</div>
+<p>Symmetric banded matrix in
+SY format, bandwidth K, lower triangle only: </p>
+<pre>              j = max(1, i-k )
+              nl = min( k+1, i ) + 1
+              call dlarot( .TRUE., i-k.GE.1, .TRUE., nl, c,s,
+                      a(i,j), lda, xleft, xright )
+
+</pre><p>Same, but upper triangle only:</p>
+<pre>              nl = min( k+1, n-i ) + 1
+              call dlarot( .TRUE., .TRUE., i+k.LT.n, nl, c,s,
+                      a(i,i), lda, xleft, xright )</pre><p>Symmetric banded matrix in SB format,
+bandwidth K, lower triangle only: [ same as for SY, except:]</p>
+<pre>                  . . . .
+                      a(i+1-j,j), lda, xleft, xright )
+</pre><div class="Note"><h3 class="NoteTipHead">Note</h3> <p><var>i</var>+1-<var>j</var> is just
+min(<var>i</var>,<span class="parmname">k</span>+1)</p>
+</div>
+<p>Same, but upper triangle only: </p>
+<pre>                . . . .
+                      a(k+1,i), lda-1, xleft, xright )</pre><p>Rotating columns is just the transpose of rotating
+rows, except for GB and SB: (rotating columns i and i+1) GB:</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><span class="parmname">ku</span>+<var>j</var>+1-<var>i</var> is just max(1,<span class="parmname">ku</span>+2-<var>i</var>)</p>
+</div>
+<pre>              j = max(1, i-ku )
+              nl = min( n, i+kl+1 ) + 1-j
+              call dlarot( .TRUE., i-ku.LE.1, i+kl.LT.n, nl, c,s,
+                      a(ku+j+1-i,i),lda-1, xtop, xbottm )
+</pre><p>SB: (upper triangle) </p>
+<pre>                   . . . . . .
+                      a(k+j+1-i,i),lda-1, xtop, xbottm )</pre><p>SB: (lower triangle) . .
+. . . . A(1,i),LDA-1, XTOP, XBOTTM )
+</p>
+<pre>                   . . . . . .
+                      a(1,i),lda-1, xtop, xbottm )</pre></div>
+<div class="section" id="GUID-F894C9B1-10D4-42F3-8CB3-15247F85AB6E"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DDD9D8F0-F084-4FBA-A606-203293499EBB"><dt class="dlterm"><span class="parmname">lrows</span></dt>
+
+<dd><p><span><span class="keyword">LOGICAL</span>. </span></p>
+<p>If <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.TRUE.</span></samp>,
+<span class="option">?larot</span> rotates two rows. </p>
+<p>If <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.FALSE.</span></samp>,
+<span class="option">?larot</span> rotates two columns. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lleft</span></dt>
+
+<dd><p><span><span class="keyword">LOGICAL</span>. </span></p>
+<p>If <samp class="codeph"><span class="parmname">lleft</span> = <span class="keyword">.TRUE.</span></samp>,
+<span class="parmname">xleft</span> is used instead of the corresponding element of <span class="parmname">a</span> for the first element in the second row (if <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.FALSE.</span></samp>) or column (if <samp class="codeph"><span class="parmname">lrows</span>=<span class="keyword">.TRUE.</span></samp>). </p>
+<p>If <samp class="codeph"><span class="parmname">lleft</span> = <span class="keyword">.FALSE.</span></samp>,
+the corresponding
+element of <span class="parmname">a</span> is used. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lright</span></dt>
+
+<dd><p><span><span class="keyword">LOGICAL</span>. </span></p>
+<p>If <samp class="codeph"><span class="parmname">lleft</span> = <span class="keyword">.TRUE.</span></samp>,
+<span class="parmname">xright</span> is used instead of the corresponding element of <span class="parmname">a</span> for the first element in the second row (if <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.FALSE.</span></samp>) or column (if <samp class="codeph"><span class="parmname">lrows</span>=<span class="keyword">.TRUE.</span></samp>). </p>
+<p>If <samp class="codeph"><span class="parmname">lright</span> = <span class="keyword">.FALSE.</span></samp>,
+the corresponding
+element of <span class="parmname">a</span> is used. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nl</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span> The length of the rows (if <samp class="codeph"><span class="parmname">lrows</span>=<span class="keyword">.TRUE.</span></samp>) or columns (if <samp class="codeph"><span class="parmname">lrows</span>=<span class="keyword">.TRUE.</span></samp>) to be rotated. </p>
+<p>If <span class="parmname">xleft</span> or <span class="parmname">xright</span> are used, the columns or rows they are in
+should be included in <span class="parmname">nl</span>, e.g., if <samp class="codeph"><span class="parmname">lleft</span> = <span class="parmname">lright</span> = <span class="keyword">.TRUE.</span></samp>, then <span class="parmname">nl</span>
+must be at least 2. </p>
+<p>The number of rows or columns to be rotated
+exclusive of those involving <span class="parmname">xleft</span> and/or <span class="parmname">xright</span> may not be
+negative, i.e., <span class="parmname">nl</span> minus how many of <span class="parmname">lleft</span> and <span class="parmname">lright</span> are <span class="keyword">.TRUE.</span>
+must be at least zero; if not, <span class="option">xerbla</span> is called.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c, s</span></dt>
+
+<dd><p><span class="keyword">REAL</span>
+for <span class="option">slarot</span>,</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for
+<span class="option">dlarot</span>,</p>
+<p><span class="keyword">COMPLEX</span> for
+<span class="option">clarot</span>,</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for
+<span class="option">zlarot</span>, </p>
+<p>Specify the Givens rotation to be applied. </p>
+<p>If <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.TRUE.</span></samp>, then
+the matrix </p>
+<p><img src="GUID-9D45E748-E30F-44BB-A9E0-387D9D8B15D6-low.png"/></p>
+<p> is applied from the left. </p>
+<p>If <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.FALSE.</span></samp>, then
+the transpose thereof is applied from the right. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span>
+for <span class="option">slarot</span>,</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for
+<span class="option">dlarot</span>,</p>
+<p><span class="keyword">COMPLEX</span> for
+<span class="option">clarot</span>,</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for
+<span class="option">zlarot</span>, </p>
+<p>The array containing the rows or columns to be rotated. The first
+element of <span class="parmname">a</span> should be the upper left element to be rotated.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The "effective" leading dimension of <span class="parmname">a</span>. </p>
+<p>If <span class="parmname">a</span> contains a matrix
+stored in GE or SY format, then this is just the leading dimension
+of <var>A</var>. </p>
+<p>If <span class="parmname">a</span> contains a matrix
+stored in band (GB or SB) format, then this should be one less
+than the leading dimension used in the calling routine. Thus, if <span class="parmname">a</span><span>is dimensioned <span class="parmname">a</span>(<span class="parmname">lda</span>,*)</span> in <span class="option">?larot</span>, then <span class="parmname">a</span><samp class="codeph">(1,<var>j </var>)</samp> would be the <var>j </var>-th
+element in the first of the two rows to be rotated, and <span class="parmname">a</span><samp class="codeph">(2,<var>j </var>)</samp>
+would be the <var>j </var>-th in the second, regardless of how the array may be
+stored in the calling routine. <span class="parmname">a</span> cannot be
+dimensioned, because for band format the row number may exceed
+<span class="parmname">lda</span>, which is not legal FORTRAN.</p>
+<p>If <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.TRUE.</span></samp>, then <span class="parmname">lda</span> must be
+at least 1, otherwise it must be at least <span class="parmname">nl</span> minus the number of
+<span class="keyword">.TRUE.</span> values in <span class="parmname">xleft</span> and <span class="parmname">xright</span>.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">xleft</span></dt>
+
+<dd><p><span class="keyword">REAL</span>
+for <span class="option">slarot</span>,</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for
+<span class="option">dlarot</span>,</p>
+<p><span class="keyword">COMPLEX</span> for
+<span class="option">clarot</span>,</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for
+<span class="option">zlarot</span>, </p>
+<p>If <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.TRUE.</span></samp>,
+<span class="parmname">xleft</span> is used and modified instead of <span class="parmname">a</span><samp class="codeph">(2,1)</samp> (if <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.TRUE.</span></samp>) or <span class="parmname">a</span><samp class="codeph">(1,2)</samp> (if <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.FALSE.</span></samp>).
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">xright</span></dt>
+
+<dd><p><span class="keyword">REAL</span>
+for <span class="option">slarot</span>,</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for
+<span class="option">dlarot</span>,</p>
+<p><span class="keyword">COMPLEX</span> for
+<span class="option">clarot</span>,</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for
+<span class="option">zlarot</span>, </p>
+<p>If <samp class="codeph"><span class="parmname">lright</span> = <span class="keyword">.TRUE.</span></samp>,
+<span class="parmname">xright</span> is used and modified instead of <span class="parmname">a</span><samp class="codeph">(1,<span class="parmname">nl</span>)</samp> (if <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.TRUE.</span></samp>) or <span class="parmname">a</span><samp class="codeph">(<span class="parmname">nl</span>,1)</samp> (if <samp class="codeph"><span class="parmname">lrows</span> = <span class="keyword">.FALSE.</span></samp>).
+</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-38FF2DCF-4A95-4F48-839A-57E46081A867"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-20853B41-23FC-4196-B120-F8A2B9E0CD6C"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, modified array <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

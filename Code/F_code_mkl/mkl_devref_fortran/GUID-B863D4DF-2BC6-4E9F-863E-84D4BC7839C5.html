@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?hseqr"/>
+<meta name="abstract" content="Computes eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form."/>
+<meta name="description" content="Computes eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form."/>
+<meta name="DC.subject" content="pshseqr, ScaLAPACK routines, auxiliary routines, Hessenberg matrix, eigenvalues and Schur factorization, pdhseqr"/>
+<meta name="keywords" content="pshseqr, ScaLAPACK routines, auxiliary routines, Hessenberg matrix, eigenvalues and Schur factorization, pdhseqr"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D1298E03-2CA9-4CAE-8453-48F369932578.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B863D4DF-2BC6-4E9F-863E-84D4BC7839C5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?hseqr</title>
+
+</head>
+<body id="GUID-B863D4DF-2BC6-4E9F-863E-84D4BC7839C5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?hseqr</span></h1>
+<!-- Computes eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form.--><div><p class="shortdesc"> Computes eigenvalues and (optionally) the Schur factorization of a matrix reduced to Hessenberg form.</p>
+<div class="section" id="GUID-DB3B9C8F-CD48-43A7-AB90-784B923BE85E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pshseqr</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">desch</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdhseqr</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">compz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">desch</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-6D691F7E-30D6-4326-BC35-96452B1FB4B2"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-E80C621D-E19B-4F18-AECC-9FD8DE149CC3"><h2 class="sectiontitle">Description</h2><p><span class="option">p?hseqr</span> computes the eigenvalues of an upper Hessenberg matrix <var>H</var> and, optionally, the matrices <var>T</var> and <var>Z</var> from the Schur decomposition <var>H</var> = <var>Z</var>*<var>T</var>*<var>Z</var><sup>T</sup>, where <var>T</var> is an upper quasi-triangular matrix (the Schur form), and <var>Z</var> is the orthogonal matrix of Schur vectors. </p>
+<p>Optionally <var>Z</var> may be postmultiplied into an input orthogonal matrix <var>Q</var> so that this<span> routine </span>can give the Schur factorization of a matrix <var>A</var> which has been reduced to the Hessenberg form <var>H</var> by the orthogonal matrix <var>Q</var>:  <var>A</var> = <var>Q</var>*<var>H</var>*<var/><var>Q</var><sup>T</sup> = (<var>Q</var><var>Z</var>)*<var>T</var>*(<var>Q</var><var>Z</var>)<sup>T</sup>. </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>These restrictions apply to the use of <span class="option">p?hseqr</span>:</p>
+<ul id="GUID-7AB731A8-D37A-4684-BF37-769DCCD7EF0E"><li><p>The code requires the distributed block size to be square and  at least 6.</p>
+</li>
+<li><p>The code requires A and Z to be distributed identically and have identical contexts.</p>
+</li>
+<li><p>The matrix A must be in upper Hessenberg form. If elements below the subdiagonal are non-zero, the resulting transformations can be nonsimilar.</p>
+</li>
+<li><p>All eigenvalues are distributed to all the nodes.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="GUID-FB8B7816-EE1D-4840-885D-01FD6679CA8D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7E1FD48D-8AEF-475F-8465-F7D3677D682B"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>*1</span></p>
+<p>= 'E':  compute eigenvalues only;</p>
+<p>= 'S':  compute eigenvalues and the Schur form T.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">compz</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>*1</span></p>
+<p>= 'N':  no Schur vectors are computed;</p>
+<p>= 'I':  <span class="parmname">z</span> is initialized to the unit matrix and the matrix <var>Z</var> of Schur vectors of <var>H</var> is returned;</p>
+<p>= 'V':  <span class="parmname">z</span> must contain an orthogonal matrix <var>Q</var> on entry, and the product <var>Q</var>*<var>Z</var> is returned.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The order of the Hessenberg matrix <var>H</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>It is assumed that <var>H</var>    is already upper triangular in rows and columns 1:<span class="parmname">ilo</span>-1 and <span class="parmname">ihi</span>+1:<span class="parmname">n</span>. <span class="parmname">ilo</span> and <span class="parmname">ihi</span> are normally set by a previous call to <a href="GUID-62E9F1AE-AE64-4AE3-AB97-B5FA63F17E4A.html">p gebal</a>, and then passed to <a href="GUID-9E48BAB2-2BB8-40B6-9C0B-D068026A6286.html#GUID-9E48BAB2-2BB8-40B6-9C0B-D068026A6286"><span class="option">p?gehrd</span></a> when the matrix output by <span class="option">p?gebal</span> is reduced to Hessenberg form. Otherwise <span class="parmname">ilo</span> and <span class="parmname">ihi</span> should be set to 1 and <span class="parmname">n</span> respectively.  If <span class="parmname">n</span>&gt;0, then 1<span class="eqsymbol">≤</span><span class="parmname">ilo</span><span class="eqsymbol">≤</span><span class="parmname">ihi</span><span class="eqsymbol">≤</span><span class="parmname">n</span>.</p>
+<p>If <span class="parmname">n</span> = 0, then <span class="parmname">ilo</span> = 1 and <span class="parmname">ihi</span> = 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pshseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdhseqr</span></p>
+<p>(global )             array of size <span>(<span class="parmname">desch</span>(<var>lld_</var>),<var>LOC</var><sub><var>c</var></sub>(<span class="parmname">n</span>))</span></p>
+<p>The upper Hessenberg matrix <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desch</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var></p>
+<p>The array descriptor for the distributed matrix <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pshseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdhseqr</span></p>
+<p>(global )             array</p>
+<p>If <span class="parmname">compz</span> = 'V', on entry <span class="parmname">z</span> must contain the current matrix <var>Z</var> of accumulated transformations from, for example, <span class="option">p?gehrd</span>.</p>
+<p>If <span class="parmname">compz</span> = 'I', on entry <span class="parmname">z</span> need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descz</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var></p>
+<p>The array descriptor for the distributed matrix <span class="parmname">z</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pshseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdhseqr</span></p>
+<p>(local workspace)             array of size <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The length of the workspace array <span class="parmname">work</span>.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <samp class="codeph"><var>work</var><span>(1)</span></samp> gets set to the above number and the code returns immediately.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local workspace) <span class="keyword">INTEGER</span> array of size <span class="parmname">liwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The length of the workspace array <span class="parmname">iwork</span>.</p>
+If <var>liwork</var>=-1, then <samp class="codeph"><var>iwork</var></samp><span>(1)</span> is set to -1 and the code returns immediately. 
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-341BB167-F316-45C6-85FB-F969F3308420"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-4301486C-D7A5-48C6-8508-33896DB016AB"><dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>If <span class="parmname">job</span> = 'S', <span class="parmname"/><var>H</var> is upper quasi-triangular in rows and columns <span class="parmname">ilo</span>:<span class="parmname">ihi</span>, with 1-by-1 and 2-by-2 blocks on the main diagonal.  The 2-by-2 diagonal blocks (corresponding to complex conjugate pairs of eigenvalues) are returned in standard form, with <span><span class="parmname">h</span>(<var>i</var>,<var>i</var>) = <span class="parmname">h</span>(<var>i</var>+1,<var>i</var>+1) and <span class="parmname">h</span>(<var>i</var>+1,<var>i</var>)*<span class="parmname">h</span>(<var>i</var>,<var>i</var>+1)&lt;0</span>. If <span class="parmname">info</span> = 0 and <span class="parmname">job</span> = 'E', the contents of <span class="parmname">h</span> are unspecified on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pshseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdhseqr</span></p>
+<p>(global )             array of size <span class="parmname">n</span></p>
+<p>The real and imaginary parts, respectively, of the computed eigenvalues <span class="parmname">ilo</span> to <span class="parmname">ihi</span> are stored in the corresponding elements of <span class="parmname">wr</span> and <span class="parmname">wi</span>. If two eigenvalues are computed as a complex conjugate pair, they are stored in consecutive elements of <span class="parmname">wr</span> and <span class="parmname">wi</span>, say the <var>i</var>-th and (<var>i</var>+1)th, with <span class="parmname">wi</span><span>(<var>i</var>)</span>&gt; 0 and <span class="parmname"/><span class="parmname">wi</span><span>(<var>i</var>+1)</span> &lt; 0. If <span class="parmname">job</span> = 'S', the eigenvalues are stored in the same order as on the diagonal of the Schur form returned in <span class="parmname">h</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pshseqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdhseqr</span></p>
+<p>(global )             array</p>
+<p><span class="parmname">z</span> is updated; transformations are applied only to the submatrix <span class="parmname">z</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>,<span class="parmname">ilo</span>:<span class="parmname">ihi</span>).</p>
+<p>If <span class="parmname">compz</span> = 'N', <span class="parmname">z</span> is not referenced.</p>
+<p>If <span class="parmname">compz</span> = 'I' and  <span class="parmname">info</span> = 0, <span class="parmname">z</span> contains the orthogonal matrix <var>Z</var> of the Schur vectors of<var> H</var><span class="parmname"/>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>=    0:  successful exit</p>
+<p>&lt; 0:  if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value (see also below for -7777 and -8888).</p>
+<p>&gt; 0:  if <span class="parmname">info</span> = <var>i</var>, <span class="option">p?hseqr</span> failed to compute all of the eigenvalues.  Elements <span>1:<span class="parmname">ilo</span>-1 and <var>i</var>+1:<span class="parmname">n</span></span> of <span class="parmname">wr</span> and <span class="parmname">wi</span> contain those eigenvalues which have been successfully computed.  (Failures are rare.)</p>
+<p>If <span class="parmname">info</span> &gt; 0 and <span class="parmname">job</span> = 'E', then on exit, the remaining unconverged eigenvalues are the eigenvalues of the upper Hessenberg matrix rows and columns <span class="parmname">ilo</span> through <span class="parmname">info</span> of the final, output value of <var>H</var><span class="parmname"/>.</p>
+<p>If <span class="parmname">info</span> &gt; 0 and <span class="parmname">job</span>   = 'S', then on exit (*)  (initial value of <var>H</var>)*<var>U</var>  = <var>U</var>*(final value of <var>H</var>) where <var>U</var> is an orthogonal matrix.  The final value of <var>H</var> is upper Hessenberg and quasi-triangular in rows and columns <span class="parmname">info</span>+1 through <span class="parmname">ihi</span>.</p>
+<p>If <span class="parmname">info</span> &gt; 0 and <span class="parmname">compz</span> = 'V', then on exit (final value of <var>Z</var>)  =  (initial value of <var>Z</var>)*<var>U</var> where <var>U</var> is the orthogonal matrix in (*) (regardless of the value of <span class="parmname">job</span>.)</p>
+<p>If <span class="parmname">info</span> &gt; 0 and <span class="parmname">compz</span> = 'I', then on exit (final value of <var>Z</var>)  = <var>U</var> where <var>U</var> is the orthogonal matrix in (*) (regardless of the value of <span class="parmname">job</span>.)</p>
+<p>If <span class="parmname">info</span> &gt; 0 and <span class="parmname">compz</span> = 'N', then <span class="parmname">z</span> is not accessed.</p>
+<p>= -7777: <a href="GUID-830E109D-B055-45DB-9CCD-D20C716FF20A.html">p laqr0</a> failed to converge and <a href="GUID-92F38ECF-79CA-4D58-8331-E1C38B7775C6.html">p laqr1</a> was called instead. </p>
+<p>= -8888: <span class="option">p?laqr1</span> failed to converge and <span class="option">p?laqr0</span> was called instead. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D1298E03-2CA9-4CAE-8453-48F369932578.html">Nonsymmetric Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

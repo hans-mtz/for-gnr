@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="cluster_sparse_solver_export"/>
+<meta name="abstract" content="Computes data corresponding to the specified decomposition (defined by export operation) and fills the pointers provided by calls to cluster_sparse_solver_set_ptr and/or cluster_sparse_solver_set_csr_ptrs."/>
+<meta name="description" content="Computes data corresponding to the specified decomposition (defined by export operation) and fills the pointers provided by calls to cluster_sparse_solver_set_ptr and/or cluster_sparse_solver_set_csr_ptrs."/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9AF71EE9-6FB0-4621-AD30-8EDF26B1F674"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>cluster_sparse_solver_export</title>
+
+</head>
+<body id="GUID-9AF71EE9-6FB0-4621-AD30-8EDF26B1F674">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">cluster_sparse_solver_export</span></h1>
+<!-- Computes data corresponding to the specified
+        decomposition (defined by export operation) and fills the pointers provided by calls to
+             cluster_sparse_solver_set_ptr  and/or
+             cluster_sparse_solver_set_csr_ptrs .--><div><p class="shortdesc"> Computes data corresponding to the specified
+        decomposition (defined by export operation) and fills the pointers provided by calls to
+            <span class="keyword">cluster_sparse_solver_set_ptr</span> and/or
+            <span class="keyword">cluster_sparse_solver_set_csr_ptrs</span>.</p>
+<div class="section" id="GUID-38A41F1A-9502-4824-A8BD-BE0799523545"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cluster_sparse_solver_export</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">operation</span><span class="sep">, </span><span class="var">comm</span><span class="sep">,</span><span class="var"> error</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="INCLUDE_PARDISO"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-6EA27D8A-01EE-4666-AA92-B1030630F134"><li><span class="filepath">mkl_cluster_sparse_solver.f90</span></li>
+</ul>
+</div>
+<div class="section" id="PARDISO"><h2 class="sectiontitle">Description</h2><p>This routine computes the data for the pointers of the
+                (distributed) data to be exported (as defined the specified
+                    <var>operation</var>). It is assumed that the exported data will be
+                distributed in the same way as the matrix <var>A</var> (as defined by
+                    <span class="parmname">iparm(40)</span>) used in
+                    <span class="keyword">cluster_sparse_solver</span>. </p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Only call
+                        this routine after the factorization phase
+                                (<samp class="codeph"><span class="parmname">phase</span>=22</samp>) of the
+                            <span class="keyword">cluster_sparse_solver</span> has been called. Neither
+                            <span class="parmname">pt</span>, nor <span class="parmname">iparm</span> should be
+                        changed after the preceding call to
+                        <span class="keyword">cluster_sparse_solver</span>. </p>
+</div>
+</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Only
+                        call this routine after all pointers to the data required for the specified
+                        operation have been provided by means of calling
+                            <span class="keyword">cluster_sparse_solver_set_ptr</span> and/or
+                            <span class="keyword">cluster_sparse_solver_set_csr_ptrs</span>. </p>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-FB4D5442-2BE8-4687-A6F6-D2AAE34B8A87"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-614BAFB8-061A-4EFE-914C-BC27DB58A156"><dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p><span class="keyword">INTEGER*8</span> for 64-bit architectures</p>
+<p>Array with size of 64.</p>
+<p>Handle to internal data structure used in the prior calls to
+                                <span class="keyword">cluster_sparse_solver</span>. </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>Do
+                                not modify <span class="parmname">pt</span> after the calls to
+                                    <span class="keyword">cluster_sparse_solver</span>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Specifies a particular
+                            operation which defines what data are exported</p>
+<dl id="GUID-D3E2CA0D-3D25-4358-93E1-382BAFFE053E"><dt class="dlterm"><span class="keyword">SPARSE_PTLUQT</span></dt>
+
+<dd><p>Exporting data from decomposition
+                                                <samp class="codeph"><var>P</var>*<var>A</var>*<var>Q</var>=<var>L</var>*<var>U</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="keyword">SPARSE_DPTLUQT</span></dt>
+
+<dd><p>Exporting data
+                                        from decomposition from <samp class="codeph"><var>P</var>*
+                                                (<var>D</var><sup>-1</sup><var>A</var>)*<var>Q</var>=<var>L</var>*<var>U</var></samp>.</p>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Currently, for
+                                    <span class="parmname">operation</span>=<span class="keyword">SPARSE_DPTLUQT</span>
+                                a real (complex) unit vector is provided for the scaling matrix
+                                    <var>D</var>. Do not turn on scaling(<span class="parmname">iparm(11)</span><span class="keyword">&gt;0</span>) or
+                                    matching(<span class="parmname">iparm(13)</span><span class="keyword">&gt;0</span>) in the
+                                    <span class="parmname">iparm</span> during the call to
+                                    <span class="keyword">cluster_sparse_solver</span> for this value of
+                                    <span class="parmname">operation</span>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">comm</span></dt>
+
+<dd><p><span class="keyword">INTEGER*4</span></p>
+<p>MPI communicator. The
+                            solver uses the Fortran MPI communicator internally.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="FUNCTN_PARDISO_OUTPUTPARAM"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AA7BE346-2BC0-4A5A-8AA7-FA06AB7BBAD9"><dt class="dlterm"><span class="parmname">error</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The error
+                            indicator:</p>
+<dl id="GUID-A32C8FF2-CA1A-47A6-8834-28E98E4C647B"><dt><strong><var>error</var></strong></dt>
+<dd><strong>Information</strong></dd>
+<dt class="dlterm"><samp class="codeph">0
+                                    </samp></dt>
+
+<dd><p>no error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1
+                                    </samp></dt>
+
+<dd><p><span class="parmname">pt</span> is a null pointer</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-2
+                                    </samp></dt>
+
+<dd><p>invalid
+                                            <span class="parmname">pt</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-5
+                                    </samp></dt>
+
+<dd><p>invalid
+                                            <span class="parmname">operation</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-6
+                                    </samp></dt>
+
+<dd><p>pointers to some of the data required for the specified <span class="parmname">operation</span> were not provided prior to calling <span class="keyword">cluster_sparse_solver_export</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-9
+                                    </samp></dt>
+
+<dd><p>unsupported
+                                            internal code path, consider switching off non-default <span class="parmname">iparm</span> parameters for <span class="keyword">cluster_sparse_solver</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-10
+                                    </samp></dt>
+
+<dd><p>unsupported case when the matrix <var>A</var> is distributed among processes with overlap in the preceding calls to <span class="keyword">cluster_sparse_solver</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-12
+                                    </samp></dt>
+
+<dd><p>internal memory
+                                        error</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> Refer to <span class="filepath">cl_solver_export_f90.f90</span> for an example using this
+                functionality.</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html">Parallel Direct Sparse Solver for Clusters Interface</a></div>
+</div>
+<div/>
+</body>
+</html>

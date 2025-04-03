@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Convolution and Correlation"/>
+<meta name="DC.subject" content="Convolution and Correlation"/>
+<meta name="keywords" content="Convolution and Correlation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D765BC91-569F-45FC-8E29-2ACCC0415235.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-08681A54-0069-45BF-81B2-1A388F2D74D5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E6EFDDFC-0BAE-4416-BB8A-5C82CB262945.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-095CFBBB-A30A-49C8-9BCB-34266DA7B67B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B21BAFB0-92C1-419B-9B66-7D0B8EBC8C01.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-96104DFF-0CB9-4001-B0E0-6100950165D2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F57C6737-6430-401D-9279-29DA272E44C7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2A9852DA-DAF2-41B2-8A2B-E3632386A237.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B2FFFFD0-3E23-4C65-83A8-22A286B5230F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4AF08793-22D9-4D05-AF23-653C0FA19B2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8A36CAFD-02E2-46A8-872A-A42E8097412F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-EC3E2E6B-4989-4AF1-A3A8-7BAE7C945E05.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Convolution and Correlation</title>
+
+</head>
+<body id="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Convolution and Correlation</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library VS provides a set of routines intended to perform linear convolution and correlation transformations for single and double precision real and complex data.</p>
+<p>For correct definition of implemented operations, see the 
+      <a href="GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D.html#GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D">Mathematical Notation and Definitions</a>. 
+    </p>
+<p>The current implementation provides: 
+    </p>
+<ul class="bullet" id="GUID-016D66B8-03CA-48A5-B9EB-0A6C50DDA715"><li><p>Fourier algorithms for one-dimensional single and double precision real and complex data 
+        </p>
+</li>
+<li><p>Fourier algorithms for multi-dimensional single and double precision real and complex data 
+        </p>
+</li>
+<li><p>Direct algorithms for one-dimensional single and double precision real and complex data 
+        </p>
+</li>
+<li><p>Direct algorithms for multi-dimensional single and double precision real and complex data 
+        </p>
+</li>
+</ul>
+<p>One-dimensional algorithms cover the following functions from the IBM* 
+      ESSL library: 
+      <pre>SCONF, SCORF</pre><pre>SCOND, SCORD</pre><pre>SDCON, SDCOR</pre><pre>DDCON, DDCOR</pre><pre>SDDCON, SDDCOR.</pre></p>
+<p>Special wrappers are designed to simulate these ESSL functions. The wrappers are provided as sample sources: 
+       
+      <pre>${MKL}/examples/vslf/essl/vsl_wrappers</pre></p>
+<p>Additionally, you can browse the examples demonstrating the calculation of the ESSL functions through the wrappers: 
+       
+      <pre>${MKL}/examples/vslf/essl</pre></p>
+<p>The convolution and correlation API provides interfaces for 
+      Fortran 90 and C/89 languages. 
+      <span>You can use the Fortran 90 interface with programs written in Fortran. 
+      </span></p>
+<p>Intel&reg; oneAPI Math Kernel Library provides<span> the 
+        <span class="filepath">mkl_vsl.f90</span><span> header file</span></span>. All header files are in the directory 
+    </p>
+<p><samp class="codeph">${MKL}/include</samp></p>
+<p>See more details about the Fortran header in 
+      <a href="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31.html#GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31">Random Number Generators</a><span> topic</span>. 
+    </p>
+<p>The convolution and correlation API is implemented through task objects, or tasks. Task object is a data structure, or descriptor, which holds parameters that determine the specific convolution or correlation operation. Such parameters may be precision, type, and number of dimensions of user data, an identifier of the computation algorithm to be used, shapes of data arrays, and so on. 
+    </p>
+<p>All the Intel&reg; oneAPI Math Kernel Library VS convolution and correlation routines process task objects in one way or another: either create a new task descriptor, change the parameter settings, compute mathematical results of the convolution or correlation using the stored parameters, or perform other operations. Accordingly, all routines are split into the following groups:</p>
+<p><a href="GUID-96104DFF-0CB9-4001-B0E0-6100950165D2.html#GUID-96104DFF-0CB9-4001-B0E0-6100950165D2">Task Constructors</a> - routines that create a new task object descriptor and set up most common parameters. 
+    </p>
+<p><a href="GUID-F57C6737-6430-401D-9279-29DA272E44C7.html#GUID-F57C6737-6430-401D-9279-29DA272E44C7">Task Editors</a> - routines that can set or modify some parameter settings in the existing task descriptor. 
+    </p>
+<p><a href="GUID-2A9852DA-DAF2-41B2-8A2B-E3632386A237.html#GUID-2A9852DA-DAF2-41B2-8A2B-E3632386A237">Task Execution Routines</a> - compute results of the convolution or correlation operation over the actual input data, using the operation parameters held in the task descriptor. 
+    </p>
+<p><a href="GUID-4AF08793-22D9-4D05-AF23-653C0FA19B2D.html#GUID-4AF08793-22D9-4D05-AF23-653C0FA19B2D">Task Copy</a> - routines used to make several copies of the task descriptor. 
+    </p>
+<p><a href="GUID-B2FFFFD0-3E23-4C65-83A8-22A286B5230F.html#GUID-B2FFFFD0-3E23-4C65-83A8-22A286B5230F">Task Destructors</a> - routines that delete task objects and free the memory. 
+    </p>
+<p>When the task is executed or copied for the first time, a special process runs which is called task commitment. During this process, consistency of task parameters is checked and the required work data are prepared. If the parameters are consistent, the task is tagged as committed successfully. The task remains committed until you edit its parameters. Hence, the task can be executed multiple times after a single commitment process. Since the task commitment process may include costly intermediate calculations such as preparation of Fourier transform of input data, launching the process only once can help speed up overall performance. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D765BC91-569F-45FC-8E29-2ACCC0415235.html">Statistical Functions</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-08681A54-0069-45BF-81B2-1A388F2D74D5.html">Convolution and Correlation Naming Conventions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-E6EFDDFC-0BAE-4416-BB8A-5C82CB262945.html">Convolution and Correlation Data Types</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-095CFBBB-A30A-49C8-9BCB-34266DA7B67B.html">Convolution and Correlation Parameters</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-B21BAFB0-92C1-419B-9B66-7D0B8EBC8C01.html">Convolution and Correlation Task Status and Error Reporting</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-96104DFF-0CB9-4001-B0E0-6100950165D2.html">Convolution and Correlation Task Constructors</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-F57C6737-6430-401D-9279-29DA272E44C7.html">Convolution and Correlation Task Editors</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-2A9852DA-DAF2-41B2-8A2B-E3632386A237.html">Task Execution Routines</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-B2FFFFD0-3E23-4C65-83A8-22A286B5230F.html">Convolution and Correlation Task Destructors</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-4AF08793-22D9-4D05-AF23-653C0FA19B2D.html">Convolution and Correlation Task Copiers</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-8A36CAFD-02E2-46A8-872A-A42E8097412F.html">Convolution and Correlation Usage Examples</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-9E63BAB2-A39A-4107-8547-C66EC533E86D.html">Convolution and Correlation Mathematical Notation and Definitions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-EC3E2E6B-4989-4AF1-A3A8-7BAE7C945E05.html">Convolution and Correlation Data Allocation</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

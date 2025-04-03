@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="OpenMP* Offload for Intel&reg; oneAPI Math Kernel Library"/>
+<meta name="DC.subject" content="Enter index keyword"/>
+<meta name="keywords" content="Enter index keyword"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3EBF592C-ADF9-4A18-A6B3-F2CE4E16464C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-EADF6E7C-5288-42E7-ACBA-863E06413AF5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>OpenMP* Offload for Intel&reg; oneAPI Math Kernel Library</title>
+
+</head>
+<body id="GUID-EADF6E7C-5288-42E7-ACBA-863E06413AF5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">OpenMP* Offload for Intel&reg; oneAPI Math Kernel Library</h1>
+<div><p>You can use 
+      Intel&reg; oneAPI Math Kernel Library (oneMKL) and OpenMP* offload to run standard 
+      oneMKL computations on a GPU. You can find the list of 
+      oneMKL features that support OpenMP offload in the 
+      <samp class="codeph">mkl_omp_offload.f90</samp> interface module file which includes: 
+    </p>
+<ul id="GUID-36F9CD28-7DCF-4505-86C1-2E8F749066A8"><li>All Level 1, 2, and 3 BLAS functions, supporting both synchronous and asynchronous execution 
+      </li>
+<li>BLAS-like extension: 
+  <span class="option">?axpy_batch{_strided}</span>, 
+  <span class="option">?gemm_batch{_strided}</span>, 
+  <span class="option">?trsm_batch{_strided}</span>, and 
+  <span class="option">?gemmt</span> functionality, supporting synchronous execution 
+  </li>
+</ul>
+<p>The OpenMP offload feature from 
+    Intel&reg; oneAPI Math Kernel Library allows you to run 
+    oneMKL computations on a GPU through the standard 
+    oneMKL APIs within an 
+    <samp class="codeph">omp target variant dispatch</samp> section. For example, the standard CBLAS API for single precision real data type matrix multiply is: 
+  </p>
+<pre>subroutine sgemm ( transa, transb, m, n, k, alpha, a, lda,        &amp;
+          &amp;b, ldb, beta, c, ldc ) BIND(C)
+       character*1,intent(in)              :: transa, transb
+       integer,intent(in)                  :: m, n, k, lda, ldb, ldc
+       real,intent(in)                     :: alpha, beta
+       real,intent(in)                     :: a( lda, * ), b( ldb, * )
+       real,intent(in)                     :: c( ldc, * )
+     end subroutine sgemm
+</pre><p>If 
+    <samp class="codeph">sgemm</samp> is called outside of an<samp class="codeph">omp target variant dispatch</samp> section or if offload is disabled, then the CPU implementation is dispatched. If the same function is called within an 
+    <samp class="codeph">omp target variant dispatch</samp> section and offload is possible then the GPU implementation is dispatched. By default the execution of the 
+    oneMKL function within a dispatch variant construct is synchronous, the 
+    <samp class="codeph">nowait</samp> clause can be used on the 
+    <samp class="codeph">dispatch variant</samp> construct to specify that asynchronous execution is desired. In that case, synchronization needs to be handled by the application using standard OpenMP synchronization functionality, for example the<samp class="codeph"> omp taskwait</samp> construct. 
+  </p>
+<p>If the 
+    oneMKL function has a pointer argument representing a buffer in memory (such as matrices, for example), they must be allocatable and mapped to the device memory through an 
+    <samp class="codeph">omp target data</samp> section before calling the 
+    oneMKL function within the 
+    <samp class="codeph">omp target variant dispatch</samp> construct. Also, you must use the 
+    <var>use_device_ptr</var> clause in the 
+    <samp class="codeph">omp target variant dispatch</samp> construct to specify which buffer has been mapped to the device memory. 
+  </p>
+<div class="section" id="GUID-97715A19-7DDE-4738-9E7A-53554E5B702B"><h2 class="sectiontitle">Example</h2><p>Examples for using the OpenMP offload for 
+      oneMKL are located in the 
+      Intel&reg; oneAPI Math Kernel Library installation directory, under: 
+    </p>
+<pre>examples/f_openmp</pre><pre>include "mkl_omp_offload.f90"
+
+program sgemm_example
+use onemkl_blas_omp_offload
+use common_blas  
+
+character*1 :: transa = 'N', transb = 'N'
+integer :: i, j, m = 5, n = 3, k = 10
+integer :: lda, ldb, ldc
+real :: alpha = 1.0, beta = 1.0
+real,allocatable :: a(:,:), b(:,:), c(:,:)
+
+! initialize leading dimension and allocate and initialize arrays
+lda = m
+…
+allocate(a(lda,k))
+…
+ 
+! initialize matrices
+call sinit_matrix(transa, m, k, lda, a)
+…
+
+! Calling sgemm on the CPU using standard oneMKL Fortran interface
+call sgemm(transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
+
+! map the a, b and c matrices on the device memory
+!$omp target data map(a,b,c)
+
+! Calling sgemm on the GPU using standard oneMKL Fortran interface within a variant dispatch construct
+! Use the use_device_ptr clause to specify that a, b and c are device memory
+!$omp target variant dispatch use_device_ptr(a,b,c)
+call sgemm(transa, transb, m, n, k, alpha, a, lda, b, ldb, beta, c, ldc)
+!$omp end target variant dispatch
+
+!$omp end target data
+
+! Free memory
+deallocate(a)
+…
+stop
+end program
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3EBF592C-ADF9-4A18-A6B3-F2CE4E16464C.html">OpenMP* Offload</a></div>
+</div>
+<div/>
+</body>
+</html>

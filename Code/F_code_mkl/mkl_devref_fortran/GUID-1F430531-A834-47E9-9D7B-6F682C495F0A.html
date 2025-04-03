@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gesdd"/>
+<meta name="abstract" content="Computes the singular value decomposition of a general rectangular matrix using a divide and conquer method."/>
+<meta name="description" content="Computes the singular value decomposition of a general rectangular matrix using a divide and conquer method."/>
+<meta name="DC.subject" content="?gesdd, LAPACK routines, driver routines, singular value decomposition"/>
+<meta name="keywords" content="?gesdd, LAPACK routines, driver routines, singular value decomposition"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BDA281B1-921F-4A41-B381-DCD341B0774A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1F430531-A834-47E9-9D7B-6F682C495F0A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gesdd</title>
+
+</head>
+<body id="GUID-1F430531-A834-47E9-9D7B-6F682C495F0A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gesdd</span></h1>
+<!--Computes the singular value decomposition of a general rectangular matrix using a divide and conquer method.--><div><p class="shortdesc">Computes the singular value decomposition of a general rectangular matrix using a divide and conquer method.</p>
+<div class="section" id="GUID-EBF23356-6637-42B6-B29B-F059D4528A81"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgesdd</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgesdd</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgesdd</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgesdd</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call gesdd</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">s</span><span class="delim"> [</span><span class="sep">,</span><span class="var">u</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">vt</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">jobz</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-6B338ED8-BF8C-40D6-975E-0B3580982E9E"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-3FC6742E-3C27-4253-84DA-7CF7F628EE4D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the singular value decomposition (SVD) of a real/complex <var>m</var>-by-<var>n</var> matrix <var>A</var>, optionally computing the left and/or right singular vectors. </p>
+<p>If singular vectors are desired, it uses a divide-and-conquer algorithm. The SVD is written </p>
+<p><samp class="codeph"><var>A</var> = <var>U</var>*<span class="eqsymbol">Σ</span>*<var>V</var><sup>T</sup></samp> for real routines,</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var>*<span class="eqsymbol">Σ</span>*<var>V</var><sup>H</sup></samp> for complex routines,</p>
+<p>where <span class="eqsymbol">Σ</span> is an <var>m</var>-by-<var>n</var> matrix which is zero except for its min(<var>m</var>,<var>n</var>) diagonal elements, <var>U</var> is an <var>m</var>-by-<var>m</var> orthogonal/unitary matrix, and <var>V</var> is an <var>n</var>-by-<var>n</var> orthogonal/unitary matrix. The diagonal elements of <span class="eqsymbol">Σ</span> are the singular values of <var>A</var>; they are real and non-negative, and are returned in descending order. The first min(<var>m</var>, <var>n</var>) columns of <var>U</var> and <var>V</var> are the left and right singular vectors of <var>A</var>. </p>
+<p>Note that the routine returns <var>vt</var> =
+<var>V</var><sup>T</sup> (for real flavors)
+ or <var>vt</var> =<var>V</var><sup>H</sup> (for complex flavors), not <var>V</var>.</p>
+</div>
+<div class="section" id="GUID-3C907445-E691-4652-95BF-1335E6118229"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-47D85D64-09C5-4293-BF53-832CFDF9FAB8"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'A'</span>, <span class="keyword">'S'</span>, <span class="keyword">'O'</span>, or <span class="keyword">'N'</span>. </p>
+<p>Specifies options for computing all or part of the matrices <var>U</var> and <var>V</var>.</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'A'</span></samp>, all <var>m</var> columns of <var>U</var> and all <var>n</var> rows of <var>V</var><sup>T</sup> or <var>V</var><sup>H</sup> are returned in the arrays <var>u</var> and <var>vt</var>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp>, the first min(<var>m</var>, <var>n</var>) columns of <var>U</var> and the first min(<var>m</var>, <var>n</var>) rows of <var>V</var><sup>T</sup> or <var>V</var><sup>H</sup>   are returned in the arrays <var>u</var> and <var>vt</var>; </p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp>, then </p>
+<p>if <var>m</var><span class="eqsymbol">≥</span>  <var>n</var>, the first <var>n</var> columns of <var>U</var> are overwritten in the array <var>a</var> and all rows of <var>V</var><sup>T</sup> or <var>V</var><sup>H</sup> are returned in the array <var>vt</var>; </p>
+<p>if <var>m</var><span class="eqsymbol">&lt;</span><var>n</var>, all columns of <var>U</var> are returned in the array <var>u</var> and the first <var>m</var> rows of <var>V</var><sup>T</sup> or <var>V</var><sup>H</sup> are overwritten in the array <var>a</var>;</p>
+<p>if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, no columns of <var>U</var> or rows of <var>V</var><sup>T</sup> or <var>V</var><sup>H</sup> are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>A</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<var>n</var><span class="eqsymbol">≥</span> 0). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgesdd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgesdd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgesdd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgesdd</span>. </p>
+<p>Arrays: <var/></p>
+<p><var>a</var><span>(<var>lda</var>,*)</span>
+ is an array containing the <var>m</var>-by-<var>n</var> matrix <var>A</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>a</var>. Must be at least max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldu</span>, <span class="parmname">ldvt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimensions of the output arrays <var>u</var> and <var>vt</var>, respectively. </p>
+<p>Constraints:</p>
+<p><samp class="codeph"><var>ldu</var><span class="eqsymbol">≥</span> 1</samp>; <samp class="codeph"><var>ldvt</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp> or <span class="keyword">'A'</span>, or <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>, </p>
+<p>then <samp class="codeph"><var>ldu</var><span class="eqsymbol">≥</span><var>m</var></samp>; </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'A'</span></samp> or <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> <var>n</var></samp>, </p>
+<p>then <samp class="codeph"><var>ldvt</var><span class="eqsymbol">≥</span><var>n</var></samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp>, <samp class="codeph"><var>ldvt</var><span class="eqsymbol">≥</span> min(<var>m</var>, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>; <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the <samp class="codeph"><span class="parmname">work</span>(1)</samp>, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p><span>See <em>Application Notes</em> for the theoretical minimum value of <var>lwork</var> when a workspace query is not performed.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cgesdd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zgesdd</span></p>
+<p>Workspace array, size at least <samp class="codeph">max(1, 7*min(<var>m</var>,<var>n</var>))</samp> if <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>. </p>
+<p>Otherwise, the dimension of <var>rwork</var> must be at least <samp class="codeph">max(1,min(<var>m</var>,<var>n</var>)*max(5*min(<var>m</var>,<var>n</var>)+7,2*max(<var>m</var>,<var>n</var>)+2*min(<var>m</var>,<var>n</var>)+1))</samp>. This array is used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, size at least <samp class="codeph">max(1, 8 *min(<var>m</var>, <var>n</var>))</samp>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EA2F20E9-B88F-42FE-A223-FFD881FFE934"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-CE04B20A-EC7C-4636-B1D3-1D0C67F4ED59"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit: </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp>, then if <var>m</var><span class="eqsymbol">≥</span> <var>n</var>, <var>a</var> is overwritten with the first <var>n</var> columns of <var>U</var> (the left singular vectors, stored columnwise). If <var>m</var> &lt; <var>n</var>, <var>a</var> is overwritten with the first <var>m</var> rows of <var>V</var><sup class="power"><var>T</var></sup> (the right singular vectors, stored rowwise);</p>
+<p>If <var>jobz</var><span class="eqsymbol">≠</span><span class="keyword">'O'</span>, the contents of <var>a</var> are destroyed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors <span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Array, size at least max(1, min(<var>m</var>,<var>n</var>)). Contains the singular values of <var>A</var> sorted so that <samp class="codeph"><var>s</var>(i) <span class="eqsymbol">≥</span> <var>s</var>(i+1)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span>, <span class="parmname">vt</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgesdd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgesdd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgesdd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgesdd</span>. </p>
+<p>Arrays:</p>
+<p><var>u</var>(<var>ldu</var>,*); the second dimension of <var>u</var> must be at least max(1, <var>m</var>) if <samp class="codeph"><var>jobz</var> = <span class="keyword">'A'</span></samp> or <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp>, the second dimension of <var>u</var> must be at least max(1, min(<var>m</var>, <var>n</var>)).</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'A'</span></samp>or <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <var>m</var> &lt; <var>n</var>, <var>u</var> contains the <var>m</var>-by-<var>m</var> orthogonal/unitary matrix <var>U</var>.</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp>, <var>u</var> contains the first min(<var>m</var>, 
+<var>n</var>) columns of <var>U</var> (the left singular vectors, stored columnwise). </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <var>m</var><span class="eqsymbol">≥</span><var>n</var>, or <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, <var>u</var> is not referenced.</p>
+<p><var>vt</var>(<var>ldvt</var>,*); the second dimension of <var>vt</var> must be at least max(1, <var>n</var>).</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'A'</span></samp>or <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <var>m</var><span class="eqsymbol">≥</span><var>n</var>, <var>vt</var> contains the <var>n</var>-by-<var>n</var> orthogonal/unitary matrix <var>V</var><sup class="power"><var>T</var></sup>.</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp>, <var>vt</var> contains the first min(<var>m</var>, <var>n</var>) rows of <var>V</var><sup class="power"><var>T</var></sup> (the right singular vectors, stored rowwise). </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp> and <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>, or <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, <var>vt</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work(1)</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work(1)</var> returns the optimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, then <span class="option">?bdsdc</span> did not converge, updating process failed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-90758B2D-64BD-483E-8FDE-E581CDF40BE4"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gesdd</span> interface are the following:</p>
+<dl id="GUID-8B92C288-9413-48D4-8816-58908A5DD2A0"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>m</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p>Holds the vector of length min(<var>m</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p>Holds the matrix <var>U</var> of size</p>
+<ul id="GUID-F03F5E6C-9AB2-4263-B2D9-354BBBD1693E"><li><p> (<var>m</var>,<var>m</var>) if <span class="parmname">jobz</span>=<span class="keyword">'A'</span> or
+<span class="parmname">jobz</span>=<span class="keyword">'O'</span>   and  <samp class="codeph"><var>m</var> &lt; <var>n</var></samp></p>
+</li>
+<li><p> 
+(<var>m</var>,min(<var>m</var>, <var>n</var>)) if <span class="parmname">jobz</span>=<span class="keyword">'S'</span></p>
+</li>
+</ul>
+<p><span class="parmname">u</span> is not referenced if <span class="parmname">jobz</span> is not supplied or if <span class="parmname">jobz</span>=<span class="keyword">'N'</span> or
+<span class="parmname">jobz</span>=<span class="keyword">'O'</span>
+and <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>n</var>.</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt</span></dt>
+
+<dd><p>Holds the matrix <var>VT</var> of size</p>
+<ul id="GUID-66AC9DE3-CE33-4990-B785-73F7F890FB7E"><li><p> (<var>n</var>,<var>n</var>) if <span class="parmname">jobz</span>=<span class="keyword">'A'</span> or
+<span class="parmname">jobz</span>=<span class="keyword">'O'</span>   and  <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>n</var></samp></p>
+</li>
+<li><p> 
+(min(<var>m</var>, <var>n</var>), <var>n</var>) if <span class="parmname">jobz</span>=<span class="keyword">'S'</span></p>
+</li>
+</ul>
+<p><span class="parmname">vt</span> is not referenced if <span class="parmname">jobz</span> is not supplied or if <span class="parmname">jobz</span>=<span class="keyword">'N'</span> or
+<span class="parmname">jobz</span>=<span class="keyword">'O'</span>
+and <samp class="codeph"><var>m</var> &lt; <var>n</var>.</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'A'</span>, <span class="keyword">'S'</span>, or <span class="keyword">'O'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B9AD81EB-886C-4BE4-97C4-94DF0A6944E4"><h2 class="sectiontitle">Application Notes</h2><p>The theoretical minimum value for <span class="parmname">lwork</span> depends on the flavor of the routine. </p>
+<p><em>For real flavors</em>: </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">=</span> 3*min(<var>m</var>, <var>n</var>) + max (max(<var>m</var>,<var>n</var>), 6*min(<var>m</var>, <var>n</var>))</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">=</span> 3*(min(<var>m</var>, <var>n</var>))<sup class="power">2</sup> + max (max(<var>m</var>, <var>n</var>), 5*(min(<var>m</var>, <var>n</var>))<sup class="power">2</sup> + 4*min(<var>m</var>, <var>n</var>))</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp> or <span class="keyword">'A'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">=</span> min(<var>m</var>, <var>n</var>)*(6 + 4*min(<var>m</var>, <var>n</var>)) + max(<var>m</var>, <var>n</var>)</samp>;</p>
+<p><em>For complex flavors</em>: </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">=</span> 2*min(<var>m</var>, <var>n</var>) + max(<var>m</var>, <var>n</var>)</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'O'</span></samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">=</span> 2*(min(<var>m</var>, <var>n</var>))<sup class="power">2</sup> + max(<var>m</var>, <var>n</var>) + 2*min(<var>m</var>, <var>n</var>)</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'S'</span></samp> or <span class="keyword">'A'</span>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">=</span> (min(<var>m</var>, <var>n</var>))<sup class="power">2</sup> + max(<var>m</var>, <var>n</var>) + 2*min(<var>m</var>, <var>n</var>)</samp>;</p>
+<p>The optimal value of <span class="parmname">lwork</span> returned by a workspace query generally provides better performance than the theoretical minimum value.The value of <span class="parmname">lwork</span> returned by a workspace query is generally larger than the theoretical minimum value, but for very small matrices it can be smaller. The absolute minimum value of <span class="parmname">lwork</span> is the minimum of the workspace query result and the theoretical minimum. </p>
+<p>If you set <span class="parmname">lwork</span> to a value less than the absolute  minimum value and not equal to -1, the routine returns immediately with an error exit and does not provide information on the recommended workspace size.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BDA281B1-921F-4A41-B381-DCD341B0774A.html">Singular Value Decomposition: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

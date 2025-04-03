@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sptrd"/>
+<meta name="abstract" content="Reduces a real symmetric matrix to tridiagonal form using packed storage."/>
+<meta name="description" content="Reduces a real symmetric matrix to tridiagonal form using packed storage."/>
+<meta name="DC.subject" content="?sptrd, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?sptrd, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3C4516C4-705C-4362-A3B9-C1C5FA0966EB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sptrd</title>
+
+</head>
+<body id="GUID-3C4516C4-705C-4362-A3B9-C1C5FA0966EB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sptrd</span></h1>
+<!--Reduces a real symmetric matrix to tridiagonal form using packed storage.--><div><p class="shortdesc">Reduces a real symmetric matrix to tridiagonal form using packed storage.</p>
+<div class="section" id="GUID-A114FC10-071D-4B78-B825-B45A117D2EFE"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssptrd</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsptrd</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sptrd</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-08C6ABAE-982D-4F31-B8E2-673D97322AD4"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2D86CE51-DD42-4B1C-9A22-899E0D26365E"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces a packed real symmetric matrix <var>A</var> to symmetric tridiagonal form <var>T</var> by an orthogonal similarity transformation: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var><sup class="power"><var>T</var></sup></samp>. The orthogonal matrix <var>Q</var> is not formed explicitly but is represented as a product of <var>n</var>-1 elementary reflectors. Routines are provided for working with <var>Q</var> in this representation. See <em>Application Notes</em> below for details. </p>
+</div>
+<div class="section" id="GUID-21000082-E8A0-483E-8494-F852FFA50CD8"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BBF6EAE0-BE84-4A10-B2A0-4270F694E65A"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>ap</var> stores the packed upper triangle of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>ap</var> stores the packed lower triangle of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssptrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsptrd</span>. </p>
+<p>Array, size at least max(1, <var>n</var>(<var>n</var>+1)/2). Contains either upper or lower triangle of <var>A</var> (as specified by <var>uplo</var>) in the packed form described in  <a class="allformats" href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2B8A12A0-E9B4-441F-BE60-2A053C2A25CE"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-67D8094A-D431-4008-BB68-3B8449CEDD3B"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Overwritten by the tridiagonal matrix <var>T</var> and details of the orthogonal matrix <var>Q</var>, as specified by <var>uplo</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span>, <span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssptrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsptrd</span>. </p>
+<p>Arrays: </p>
+<p><var>d</var><span>(*)</span> contains the diagonal elements of the matrix <var>T</var>. </p>
+<p>The dimension of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p><var>e</var><span>(*)</span> contains the off-diagonal elements of <var>T</var>. </p>
+<p>The dimension of <var>e</var> must be at least max(1, <var>n</var>-1).</p>
+<p><var>tau</var><span>(*)</span> Stores (<span class="parmname">n</span>-1) scalars that define elementary reflectors in decomposition  of the matrix <var>Q</var> in a product of <span class="parmname">n</span>-1 reflectors. </p>
+<p>The dimension of <var>tau</var> must be at least max(1, <var>n</var>-1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-582267BC-8E6B-43AD-BE09-6F19F1BCC368"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">sptrd</span> interface are the following:</p>
+<dl id="GUID-361C66C3-7AFF-4253-BF32-0D73BAFA9DEE"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Holds the array <var>A</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n-</var>1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+<p>Note that diagonal (<span class="parmname">d</span>) and off-diagonal (<span class="parmname">e</span>) elements of the matrix <var>T</var> are
+omitted because they are kept in the matrix <var>A</var> on exit.</p>
+</div>
+<div class="section" id="GUID-C90FB4E7-719F-4E5C-8DA5-EA4F207A9CD5"><h2 class="sectiontitle">Application Notes</h2><p> The matrix <var>Q</var> is represented as a product of <var>n</var>-1 <dfn class="term">elementary reflectors</dfn>, as follows :</p>
+<p><ul id="GUID-A5369227-58A2-4D0F-AA55-2CA3F966FB07"><li><p>If <span class="parmname">uplo</span> = <span class="keyword">'U'</span>, <samp class="codeph"><var>Q</var> = <var>H</var>(<var>n</var>-1) ...<var> H</var>(2)<var>H</var>(1)</samp></p>
+<p>Each <var>H</var>(i) has the form</p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup><var>T</var></sup></samp></p>
+<p>where <var>tau</var> is a real scalar and <var>v</var> is a real vector with <samp class="codeph"><var>v</var>(i+1:<var>n</var>) = 0</samp> and <samp class="codeph"><var>v</var>(i) = 1</samp>. </p>
+<p>On exit, <var>tau</var> is stored in <var>tau</var><span>(i)</span>, and <samp class="codeph"><var>v</var>(1:i-1)</samp> is stored in <var>AP</var>, overwriting <samp class="codeph"><var>A</var>(1:i-1, i+1)</samp>.</p>
+</li>
+<li><p>If <span class="parmname">uplo</span> = <span class="keyword">'L'</span>, <samp class="codeph"><var>Q</var> = <var>H</var>(1)<var>H</var>(2)<var> ... H</var>(<var>n</var>-1)</samp></p>
+<p>Each <var>H</var>(i) has the form</p>
+<p><samp class="codeph"><var>H</var>(i) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup><var>T</var></sup></samp></p>
+<p>where <var>tau</var> is a real scalar and <var>v</var> is a real vector with <samp class="codeph"><var>v</var>(1:i) = 0</samp> and <samp class="codeph"><var>v</var>(i+1) = 1</samp>. </p>
+<p>On exit, <var>tau</var> is stored in <var>tau</var><span>(i)</span>, and <samp class="codeph"><var>v</var>(i+2:n)</samp> is stored in <var>AP</var>, overwriting <samp class="codeph"><var>A</var>(i+2:n, i)</samp>.</p>
+</li>
+</ul>
+</p>
+<p>The computed matrix <var>T</var> is exactly similar to a matrix <samp class="codeph"><var>A</var>+<var>E</var></samp>, where <samp class="codeph"><samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>A</var>||<sub>2</sub></samp></samp>, <samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modestly increasing function of <var>n</var>, and ε is the machine precision. The approximate number of floating-point operations is <samp class="codeph">(4/3)<var>n</var><sup class="power">3</sup></samp>.</p>
+<p>After calling this routine, you can call the following:</p>
+<dl id="GUID-8003F9E5-630B-440B-A1C5-9FF3C99085AE"><dt class="dlterm"><a href="GUID-B04CE909-CD95-448A-A9F2-FBCC9DFBDD8D.html#GUID-B04CE909-CD95-448A-A9F2-FBCC9DFBDD8D">opgtr</a></dt>
+
+<dd><p>to form the computed matrix <var>Q</var> explicitly</p>
+</dd>
+<dt class="dlterm"><a href="GUID-DE4A61A9-578D-415C-AD5F-F6D99586FD04.html#GUID-DE4A61A9-578D-415C-AD5F-F6D99586FD04">opmtr</a></dt>
+
+<dd><p>to multiply a real matrix by <var>Q</var>.</p>
+</dd>
+</dl>
+<p>The complex counterpart of this routine is <a href="GUID-2FF7F017-2BFD-4EFB-AB80-F84801DE7F19.html#GUID-2FF7F017-2BFD-4EFB-AB80-F84801DE7F19">hptrd</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

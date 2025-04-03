@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?herk"/>
+<meta name="abstract" content="Performs a Hermitian rank-k update."/>
+<meta name="description" content="Performs a Hermitian rank-k update."/>
+<meta name="DC.subject" content="?herk, BLAS Level 3 routines, rank-k update, Hermitian matrix, updating, rank-k, matrix-matrix operation"/>
+<meta name="keywords" content="?herk, BLAS Level 3 routines, rank-k update, Hermitian matrix, updating, rank-k, matrix-matrix operation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-73761EEF-B0DC-4F41-9B7E-C8D6202866BF.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A529894C-A503-476F-BF8A-4F1C4634F142"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?herk</title>
+
+</head>
+<body id="GUID-A529894C-A503-476F-BF8A-4F1C4634F142">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?herk</span></h1>
+<!--Performs a Hermitian rank-k update.--><div><p class="shortdesc">Performs a Hermitian rank-k update.</p>
+<div class="section" id="GUID-407B8203-A28D-468B-BA79-87FA865E75A2"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cherk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zherk</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call herk</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">c</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">, </span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">alpha</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">beta</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0AB69983-8A6F-4D2C-BBC0-9A5302304D39"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-539B4E63-9CDF-4834-999A-4133CE5DE1E5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?herk</span><span> routines perform a rank-k matrix-matrix operation using a general matrix <var>A</var> and a Hermitian matrix <var>C</var>.</span>
+				 The operation is defined as:<pre><var>C</var> := <var>alpha</var>*<var>A</var>*<var>A</var><sup>H</sup> + <var>beta</var>*<var>C</var>,</pre></p>
+<p>or <pre><var>C</var> := <var>alpha</var>*<var>A</var><sup>H</sup>*<var>A</var> + <var>beta</var>*<var>C</var>,</pre></p>
+<p>where:</p>
+<p><var>alpha</var> and <var>beta</var> are real scalars,</p>
+<p><var>C</var> is an <var>n</var>-by-<var>n</var> Hermitian matrix,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>k</var> matrix in the first case and a <var>k</var>-by-<var>n</var> matrix in the second case.</p>
+</div>
+<div class="section" id="GUID-7B880A06-4E53-4DE9-B0E6-D70673CF2638"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1703A343-D4D1-49BB-B21D-EFE6CD8C2FA9"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the array <span class="parmname">c</span> is used.</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>
+							, then the upper triangular part of the array <span class="parmname">c</span> is used.</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>
+							, then the low triangular part of the array <span class="parmname">c</span> is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span><span>Specifies the operation:</span></p>
+<p><span>if </span><span><samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp></span><span>, then <samp class="codeph"><var>C</var> := <var>alpha</var>*<var>A</var>*<var>A</var><sup>H</sup> + <var>beta</var>*<var>C</var></samp>;</span></p>
+<p><span>if </span><span><samp class="codeph"><span class="parmname">trans</span>= 'C'</samp> or <samp class="codeph">'c'</samp></span><span>, then <samp class="codeph"><var>C</var> := <var>alpha</var>*<var>A</var><sup>H</sup>*<var>A</var> + <var>beta</var>*<var>C</var></samp>.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><span>Specifies the order of the matrix <var>C</var>.</span> The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><span>With</span><span><samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp></span><span>, <var>k</var> specifies the number of columns of the matrix <var>A</var>, and with </span><span><samp class="codeph"><span class="parmname">trans</span>= 'C'</samp> or <samp class="codeph">'c'</samp></span><span>, <var>k</var> specifies the number of rows of the matrix <var>A</var>.</span></p>
+<p>The value of <var>k</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cherk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zherk</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cherk</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zherk</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>ka</var>)</samp>, where <var>ka</var> is <var>k</var> when <samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp>, and is <var>n</var> otherwise. Before entry with <samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp>, the leading <var>n</var>-by-<var>k</var> part of the array <var>a</var> must contain the matrix <var>a</var>, otherwise the leading <var>k</var>-by-<var>n</var> part of the array <var>a</var> must contain the matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>a</var> as declared in the calling (sub)program. When <samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp>, then <var>lda</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>, otherwise <var>lda</var> must be at least <samp class="codeph"> max(1, <var>k</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cherk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zherk</span></p>
+<p>Specifies the scalar <var>beta</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cherk</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zherk</span></p>
+<p>Array, size <var>ldc</var> by <var>n</var>.</p>
+<p> Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>
+							, the leading <var>n</var>-by-<var>n</var> upper triangular part of the array <var>c</var> must contain the upper triangular part of the Hermitian matrix and the strictly lower triangular part of <var>c</var> is not referenced.</p>
+<p>Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>
+							, the leading <var>n</var>-by-<var>n</var> lower triangular part of the array <var>c</var> must contain the lower triangular part of the Hermitian matrix and the strictly upper triangular part of <var>c</var> is not referenced. </p>
+<p>The imaginary parts of the diagonal elements need not be set, they are assumed to be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span><span>Specifies the leading dimension of <var>c</var> as declared in the calling (sub)program. The value of <var>ldc</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-05309970-DEC8-4D87-90AA-958FC101E119"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0A4F4CED-E70B-4DED-B2F8-6C7DE3CFD60E"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>With <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>
+							, the upper triangular part of the array <var>c</var> is overwritten by the upper triangular part of the updated matrix.</p>
+<p>With <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>
+							, the lower triangular part of the array <var>c</var> is overwritten by the lower triangular part of the updated matrix. </p>
+<p> The imaginary parts of the diagonal elements are set to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-421F0DDE-060B-4619-B4BB-CBE28B7D2BFB"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">herk</span> interface are the following:</p>
+<dl id="GUID-674531BA-0848-4949-8F5E-D59F50DE103B"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>ma</var>,<var>ka</var>) where </p>
+<p><samp class="codeph"><var>ka</var> = <var>k</var></samp> if <samp class="codeph"><var>trans=</var><span class="keyword">'N'</span></samp>, </p>
+<p><samp class="codeph"><var>ka</var> = <var>n</var></samp> otherwise, </p>
+<p><samp class="codeph"><var>ma</var> = <var>n</var></samp> if <samp class="codeph"><var>trans=</var><span class="keyword">'N'</span></samp>, </p>
+<p><samp class="codeph"><var>ma</var> = <var>k</var></samp> otherwise.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Holds the matrix <var>C</var> of size (<var>n</var>,<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'C'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>The default value is 0.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-73761EEF-B0DC-4F41-9B7E-C8D6202866BF.html">BLAS Level 3 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

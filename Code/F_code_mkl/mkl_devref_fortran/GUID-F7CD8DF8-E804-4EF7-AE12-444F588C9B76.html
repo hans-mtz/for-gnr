@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?stev"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, eigenvectors of a real symmetric tridiagonal matrix."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, eigenvectors of a real symmetric tridiagonal matrix."/>
+<meta name="DC.subject" content="?stev, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="keywords" content="?stev, LAPACK routines, driver routines, symmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-258D5408-0894-424A-83B2-33DE708A319C.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F7CD8DF8-E804-4EF7-AE12-444F588C9B76"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?stev</title>
+
+</head>
+<body id="GUID-F7CD8DF8-E804-4EF7-AE12-444F588C9B76">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?stev</span></h1>
+<!--Computes all eigenvalues and, optionally, eigenvectors of a real symmetric tridiagonal matrix.--><div><p class="shortdesc">Computes all eigenvalues and, optionally, eigenvectors of a real symmetric tridiagonal matrix.</p>
+<div class="section" id="GUID-464EEBD4-45DA-4B83-A6AB-F6F878CB7187"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sstev</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dstev</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call stev</span><span class="delim">(</span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="delim"> [</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C62052A2-7489-4025-B618-C0BDE7C87F86"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-76C41943-F3C5-4DB6-A314-C22932BE4DA1"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all eigenvalues and, optionally, eigenvectors of a real symmetric tridiagonal matrix <var>A</var>.</p>
+</div>
+<div class="section" id="GUID-7CB1C6FE-AE6A-4A3A-BB6E-4A58E16CD900"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-89BDFE0E-4A6E-4842-AAE0-A00DB2E2EF37"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then only eigenvalues are computed. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then eigenvalues and eigenvectors are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstev</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstev</span>. </p>
+<p>Arrays: </p>
+<p>Array <samp class="codeph"><var>d</var></samp><samp class="codeph">(*)</samp> contains the <var>n</var> diagonal elements of the tridiagonal matrix <var>A</var>. </p>
+<p>The size of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p>Array <samp class="codeph"><var>e</var></samp><samp class="codeph">(*)</samp> contains the <var>n</var>-1 subdiagonal elements of the tridiagonal matrix <var>A</var>. </p>
+<p>The size of <var>e</var> must be at least max(1, <var>n</var>). The <var>n</var>-th element of this array is used as workspace.</p>
+<p><var>work</var>(*) is a workspace array. </p>
+<p>The dimension of <var>work</var> must be at least max(1, 2<var>n</var>-2). </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, <var>work</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>z</var>; <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp>. If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> then <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> max</samp>(1, <var>n</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-360C10EE-5304-45E5-AAED-98242B571095"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-31E8953C-20A1-4E4B-BB47-C1C19523929F"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, contains the eigenvalues of the matrix <var>A</var> in ascending order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstev</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstev</span></p>
+<p>Array, size <span>(<var>ldz</var>,*)</span>. </p>
+<p>The second dimension of <var>z</var> must be at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then if <samp class="codeph"><var>info</var> = 0</samp>, <var>z</var> contains the orthonormal eigenvectors of the matrix <var>A</var>, with the <var>i</var>-th column of <var>z</var> holding the eigenvector associated with the eigenvalue returned in <samp class="codeph"><var>d</var>(<var>i</var>)</samp>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, this array is overwritten with intermediate results.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, then the algorithm failed to converge; </p>
+<p><var>i</var> elements of <var>e</var> did not converge to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-28116199-11D6-49A1-AC02-B8B3F26FAE65"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">stev</span> interface are the following:</p>
+<dl id="GUID-C578FD22-5337-48AA-A78D-74E6EB586EED"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>Holds the matrix <var>Z</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>z</var> as follows: </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, if <var>z</var> is present, </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, if <var>z</var> is omitted.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-258D5408-0894-424A-83B2-33DE708A319C.html">Symmetric Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

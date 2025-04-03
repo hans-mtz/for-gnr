@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lagts"/>
+<meta name="abstract" content="Solves the system of equations (T - lambda*I)*x = y or (T - lambda*I)T*x = y,where T is a general tridiagonal matrix and lambda is a scalar, using the LU factorization computed by ?lagtf."/>
+<meta name="description" content="Solves the system of equations (T - lambda*I)*x = y or (T - lambda*I)T*x = y,where T is a general tridiagonal matrix and lambda is a scalar, using the LU factorization computed by ?lagtf."/>
+<meta name="DC.subject" content="?lagts, LAPACK routines, auxiliary routines, LU factorization, solving linear equations, tridiagonal matrix, general tridiagonal matrix"/>
+<meta name="keywords" content="?lagts, LAPACK routines, auxiliary routines, LU factorization, solving linear equations, tridiagonal matrix, general tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-70AD6255-F272-48C4-9DB5-08FBDD435F4A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lagts</title>
+
+</head>
+<body id="GUID-70AD6255-F272-48C4-9DB5-08FBDD435F4A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lagts</span></h1>
+<!--Solves the system of equations ( T  -  lambda * I )* x  =  y  or ( T  -  lambda * I ) T * x  =  y ,where  T  is a general tridiagonal matrix and  lambda  is a scalar, using the  LU  factorization computed by  ?lagtf .--><div><p class="shortdesc">Solves the system of equations (<var>T</var> - <var>lambda</var>*<var>I</var>)*<var>x</var> = <var>y</var> or (<var>T</var> - <var>lambda</var>*<var>I</var>)<sup class="power"><var>T</var></sup>*<var>x</var> = <var>y</var>,where <var>T</var> is a general tridiagonal matrix and <var>lambda</var> is a scalar, using the <var>LU</var> factorization computed by <span class="option">?lagtf</span>.</p>
+<div class="section" id="GUID-2982F933-BD1F-41D9-A929-DD578408DED6"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slagts</span><span class="delim">( </span><span class="var">job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">in</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">tol</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlagts</span><span class="delim">( </span><span class="var">job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">in</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">tol</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-9B45798F-1E5E-42A3-9E5A-E2118ABE0907"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2F91B5DB-9F23-4FE9-8B0A-696E7FA1EE58"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine may be used to solve for <var>x</var> one of the systems of equations:</p>
+<p><samp class="codeph">(<var>T</var> - <var>lambda</var>*<var>I</var>)*<var>x</var> = <var>y</var></samp>    or        <samp class="codeph">(<var>T</var> - <var>lambda</var>*<var>I</var>)<sup class="power"><var>T</var></sup>*<var>x</var> = <var>y</var></samp>, </p>
+<p>where <var>T</var> is an <var>n</var>-by-<var>n</var> tridiagonal matrix, following the factorization of (<samp class="codeph"><var>T</var> - <var>lambda</var>*<var>I</var></samp>) as</p>
+<p><samp class="codeph"><var>T</var> - <var>lambda</var>*<var>I</var> = <var>P</var>*<var>L</var>*<var>U</var></samp>,</p>
+<p>computed by the routine <a href="GUID-C455408E-8AA7-4DC1-9CA2-61FB78A3A7E5.html#GUID-C455408E-8AA7-4DC1-9CA2-61FB78A3A7E5"><span class="option">?lagtf</span></a>. </p>
+<p>The choice of equation to be solved is controlled by the argument <var>job</var>, and in each case there is an option to perturb zero or very small diagonal elements of <var>U</var>, this option being intended for use in applications such as inverse iteration.</p>
+</div>
+<div class="section" id="GUID-FA82F50D-2039-440C-9D66-FE5C5D42CC56"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E60471BF-1650-4A67-92ED-27016A3D9D6E"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Specifies the job to be performed by <span class="option">?lagts</span> as follows:</p>
+<p>=  1: The equations <samp class="codeph">(<var>T</var> - <var>lambda</var>*<var>I</var>)<var>x</var> = <var>y</var></samp> are to be solved, but diagonal elements of <var>U</var> are not to be perturbed.</p>
+<p>= -1: The equations <samp class="codeph">(<var>T</var> - <var>lambda</var>*<var>I</var>)<var>x</var> = <var>y</var></samp> are to be solved and, if overflow would otherwise occur, the diagonal elements of <var>U</var> are to be perturbed. See argument <var>tol</var> below.</p>
+<p> =  2: The equations <samp class="codeph">(<var>T</var> - <var>lambda</var>*<var>I</var>)<sup class="power"><var>T</var></sup><var>x</var> = <var>y</var></samp> are to be solved, but diagonal elements of <var>U</var> are not to be perturbed.</p>
+<p>= -2: The equations <samp class="codeph">(<var>T</var> - <var>lambda</var>*<var>I</var>)<sup class="power"><var>T</var></sup><var>x</var> = <var>y</var></samp> are to be solved and, if overflow would otherwise occur, the diagonal elements of <var>U</var> are to be perturbed. See argument <var>tol</var> below.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>T</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span>, <span class="parmname">c</span>, <span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slagts</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlagts</span></p>
+<p>Arrays, dimension <var>a</var>(<var>n</var>), <var>b</var>(<var>n</var>-1), <var>c</var>(<var>n</var>-1), <var>d</var>(<var>n</var>-2): </p>
+<p>On entry, <var>a</var><span class="keyword">(*)</span> must contain the diagonal elements of <var>U</var> as returned from <span class="option">?lagtf</span>. </p>
+<p>On entry, <var>b</var><span class="keyword">(*)</span> must contain the first super-diagonal elements of <var>U</var> as returned from <span class="option">?lagtf</span>. </p>
+<p>On entry, <var>c</var><span class="keyword">(*)</span> must contain the sub-diagonal elements of <var>L</var> as returned from <span class="option">?lagtf</span>. </p>
+<p>On entry, <var>d</var><span class="keyword">(*)</span> must contain the second super-diagonal elements of <var>U</var> as returned from <span class="option">?lagtf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">in</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Array, dimension (<var>n</var>). </p>
+<p>On entry, <var>in</var><span class="keyword">(*)</span> must contain details of the matrix <var>p</var> as returned from <span class="option">?lagtf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slagts</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlagts</span></p>
+<p>Array, dimension (<var>n</var>). On entry, the right hand side vector <var>y</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">tol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slagtf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlagtf</span>. </p>
+<p>On entry, with <samp class="codeph"><var>job</var> &lt; 0</samp>, <var>tol</var> should be the minimum perturbation to be made to very small diagonal elements of <var>U</var>. <var>tol</var> should normally be chosen as about <samp class="codeph"><var>eps</var>*norm(<var>U</var>)</samp>, where <var>eps</var> is the relative machine precision, but if <var>tol</var> is supplied as non-positive, then it is reset to <samp class="codeph"><var>eps</var>*max( abs( u(i,j)</samp>) ). If <samp class="codeph"><var>job</var> &gt; 0</samp> then <var>tol</var> is not referenced.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-906E59B1-8681-4B8C-95EE-339C6EAA02E3"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D97A80F7-2A61-4CA2-BE53-61CEAC1B17B8"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>On exit, <var>y</var> is overwritten by the solution vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tol</span></dt>
+
+<dd><p>On exit, <var>tol</var> is changed as described in <em>Input Parameters</em> section above, only if <var>tol</var> is non-positive on entry. Otherwise <var>tol</var> is unchanged.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. If <samp class="codeph"><var>info</var>  = <var>i</var> &gt;0</samp>, overflow would occur when computing the <var>i</var>th element of the solution vector <var>x</var>. This can only occur when <var>job</var> is supplied as positive and either means that a diagonal element of <var>U</var> is very small, or that the elements of the right-hand side vector <var>y</var> are very large.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

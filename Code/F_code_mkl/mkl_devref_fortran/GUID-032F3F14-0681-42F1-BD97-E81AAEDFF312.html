@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?axpy_batch"/>
+<meta name="abstract" content="Computes a group of vector-scalar products added to a vector."/>
+<meta name="description" content="Computes a group of vector-scalar products added to a vector."/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-032F3F14-0681-42F1-BD97-E81AAEDFF312"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?axpy_batch</title>
+
+</head>
+<body id="GUID-032F3F14-0681-42F1-BD97-E81AAEDFF312">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?axpy_batch</span></h1>
+<!--Computes a group of vector-scalar products added to a vector.--><div><p class="shortdesc">Computes a group of vector-scalar products added to a vector.</p>
+<div class="section" id="GUID-17ADB23B-C9B0-44B4-89F9-B7199DA9E872"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call saxpy_batch</span><span class="delim">(</span><span class="var">n_array</span><span class="sep">, </span><span class="var">alpha_array</span><span class="sep">, </span><span class="var">x_array</span><span class="sep">, </span><span class="var">incx_array</span><span class="sep">, </span><span class="var">y_array</span><span class="sep">, </span><span class="var">incy_array</span><span class="sep">, </span><span class="var">group_count</span><span class="sep">, </span><span class="var">group_size_array</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call daxpy_batch</span><span class="delim">(</span><span class="var">n_array</span><span class="sep">, </span><span class="var">alpha_array</span><span class="sep">, </span><span class="var">x_array</span><span class="sep">, </span><span class="var">incx_array</span><span class="sep">, </span><span class="var">y_array</span><span class="sep">, </span><span class="var">incy_array</span><span class="sep">, </span><span class="var">group_count</span><span class="sep">, </span><span class="var">group_size_array</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call caxpy_batch</span><span class="delim">(</span><span class="var">n_array</span><span class="sep">, </span><span class="var">alpha_array</span><span class="sep">, </span><span class="var">x_array</span><span class="sep">, </span><span class="var">incx_array</span><span class="sep">, </span><span class="var">y_array</span><span class="sep">, </span><span class="var">incy_array</span><span class="sep">, </span><span class="var">group_count</span><span class="sep">, </span><span class="var">group_size_array</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zaxpy_batch</span><span class="delim">(</span><span class="var">n_array</span><span class="sep">, </span><span class="var">alpha_array</span><span class="sep">, </span><span class="var">x_array</span><span class="sep">, </span><span class="var">incx_array</span><span class="sep">, </span><span class="var">y_array</span><span class="sep">, </span><span class="var">incy_array</span><span class="sep">, </span><span class="var">group_count</span><span class="sep">, </span><span class="var">group_size_array</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-4BC6BF9A-BAB9-4078-A6B5-9C7ECB9D4821"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?axpy_batch</span> routines perform a series of scalar-vector product added to a vector. They are similar to the <span class="option">?axpy</span> routine counterparts, but the <span class="option">?axpy_batch</span> routines perform vector operations with a group of vectors. The groups contain vectors with the same parameters.</p>
+<p>The operation is defined as</p>
+<pre>idx = 0
+for i = 0 … group_count – 1
+    n, alpha, incx, incy and group_size at position i in n_array, alpha_array, incx_array, incy_array and group_size_array
+    for j = 0 … group_size – 1
+        x and y are vectors of size n at position idx in x_array and y_array
+        y := alpha * x + y
+        idx := idx + 1
+    end for
+end for</pre><p>The number of entries in <var>x_array</var>, and <var>y_array</var> is <var>total_batch_count</var> = the sum of all of the <var>group_size</var> entries.</p>
+</div>
+<div class="section" id="GUID-6F86EF6A-8FFE-4C6A-8B71-23B95C1F1365"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C749A4E6-CF28-43E4-8D0B-712EC35683D4"><dt class="dlterm"><span class="parmname">n_array</span></dt>
+
+<dd><p><span>INTEGER. </span> Array of size <var>group_count</var>. For the group <samp class="codeph">i</samp>, <samp class="codeph">n</samp><sub><samp class="codeph">i</samp></sub> = <samp class="codeph">n_array[i]</samp> is the number of elements in vectors <var>x</var> and <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha_array</span></dt>
+
+<dd><p>REAL for <span class="option">saxpy_batch</span></p>
+<p>DOUBLE PRECISION for <span class="option">daxpy_batch</span></p>
+<p>COMPLEX for <span class="option">caxpy_batch</span></p>
+<p>DOUBLE COMPLEX for <span class="option">zaxpy_batch</span></p>
+<p>Array of size <var>group_count</var>. For the group <samp class="codeph">i</samp>, <samp class="codeph">alpha</samp><sub><samp class="codeph">i</samp></sub> = <samp class="codeph">alpha_array[i]</samp> is the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x_array</span></dt>
+
+<dd><p>INTEGER*8 for Intel&reg; 64 architecture </p>
+<p>INTEGER*4 for IA-32 architecture </p>
+<p>Array of size <var>total_batch_count</var> of pointers used to store <var>x</var> vectors. The array allocated for the <var>x</var> vectors of the group <samp class="codeph">i</samp> must be of size at least (1 + (<samp class="codeph">n</samp><sub><samp class="codeph">i</samp></sub> – 1)*abs(<samp class="codeph">incx</samp><sub><samp class="codeph">i</samp></sub>)). See <a href="https://software.intel.com/en-us/oneapi-mkl-dpcpp-developer-reference-matrix-storage" target="_blank">Matrix and Vector Storage</a> for more details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx_array</span></dt>
+
+<dd><p><span>INTEGER. </span> Array of size <var>group_count</var>. For the group <samp class="codeph">i</samp>, <samp class="codeph">incx</samp><sub><samp class="codeph">i</samp></sub> = <samp class="codeph">incx_array[i]</samp> is the stride of vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y_array</span></dt>
+
+<dd><p>INTEGER*8 for Intel&reg; 64 architecture </p>
+<p>INTEGER*4 for IA-32 architecture </p>
+<p>Array of size <var>total_batch_count</var> of pointers used to store <var>y</var> vectors. The array allocated for the <var>y</var> vectors of the group <samp class="codeph">i</samp> must be of size at least (1 + (<samp class="codeph">n</samp><sub><samp class="codeph">i</samp></sub> – 1)*abs(<samp class="codeph">incy</samp><sub><samp class="codeph">i</samp></sub>)). See <a href="https://software.intel.com/en-us/oneapi-mkl-dpcpp-developer-reference-matrix-storage" target="_blank">Matrix and Vector Storage</a> for more details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy_array</span></dt>
+
+<dd><p><span>INTEGER. </span> Array of size <var>group_count</var>. For the group <samp class="codeph">i</samp>, <samp class="codeph">incy</samp><sub><samp class="codeph">i</samp></sub> = <samp class="codeph">incy_array[i]</samp> is the stride of vector <span class="parmname">y</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">group_count</span></dt>
+
+<dd><p><span>INTEGER. </span> Number of groups. Must be at least 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">group_size_array</span></dt>
+
+<dd><p><span>INTEGER. </span> Array of size <var>group_count</var>. The element <samp class="codeph">group_size_array[i]</samp> is the number of vector in the group <samp class="codeph">i</samp>. Each element in <var>group_size_array</var> must be at least 0.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A0926D96-B673-48A4-986A-033719589288"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1BC27F0A-0344-4F99-9EAE-9E3653EADEC7"><dt class="dlterm"><span class="parmname">y_array</span></dt>
+
+<dd><p>Array of pointers holding the <var>total_batch_count</var> updated vector <var>y</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div/>
+</body>
+</html>

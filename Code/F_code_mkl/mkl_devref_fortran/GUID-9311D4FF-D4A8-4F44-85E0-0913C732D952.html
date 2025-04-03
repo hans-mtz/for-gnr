@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trnlsp_init"/>
+<meta name="abstract" content="Initializes the solver of a nonlinear least squares problem."/>
+<meta name="description" content="Initializes the solver of a nonlinear least squares problem."/>
+<meta name="DC.subject" content="TR routines, ?trnlsp_init, strnlsp_init, dtrnlsp_init"/>
+<meta name="keywords" content="TR routines, ?trnlsp_init, strnlsp_init, dtrnlsp_init"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97CD4402-169E-473E-897E-2D67A7665DFE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3E0A929C-9EEF-4FF4-9A01-CB0A1BE640CC.html#GUID-3E0A929C-9EEF-4FF4-9A01-CB0A1BE640CC"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9311D4FF-D4A8-4F44-85E0-0913C732D952"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trnlsp_init</title>
+
+</head>
+<body id="GUID-9311D4FF-D4A8-4F44-85E0-0913C732D952">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trnlsp_init</span></h1>
+<!--Initializes the solver of a nonlinear least  squares problem.--><div><p class="shortdesc">Initializes the solver of a nonlinear least  squares problem.</p>
+<div class="section" id="GUID-E504225F-F823-4785-80CB-A47DFEC8B285"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">strnlsp_init</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">iter1</span><span class="sep">, </span><span class="var">iter2</span><span class="sep">, </span><span class="var">rs</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">dtrnlsp_init</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">iter1</span><span class="sep">, </span><span class="var">iter2</span><span class="sep">, </span><span class="var">rs</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-6232DA8D-F701-4B1C-8A68-99E9F30E3FF7"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-3FCE6078-3E7D-4E43-AB55-6D5E38FD9E5C"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?trnlsp_init</span> routine initializes the solver.</p>
+<p>After initialization, all subsequent invocations of the <span class="option">?trnlsp_solve</span> routine should use the values of the handle returned by <span class="option">?trnlsp_init</span>. This handle stores internal data, including
+pointers to the arrays <em>x</em> and <em>eps</em>. It is important to not move or
+deallocate these arrays until after calling the <span class="option">?trnlsp_delete</span> routine.</p>
+<p>The <span class="parmname">eps</span> array contains a number indicating the stopping criteria:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-1C" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="25%" id="d1092469e164"><p><span class="parmname">eps</span> Value</p>
+</th>
+<th class="row-nocellborder" align="left" valign="top" width="75%" id="d1092469e169"><p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1092469e164 "><p><span>1</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1092469e169 "><p><samp class="codeph">Δ &lt; <span class="parmname">eps</span></samp><samp class="codeph">(1)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1092469e164 "><p><span>2</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1092469e169 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub>
+ &lt; <span class="parmname">eps</span></samp><samp class="codeph">(2)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1092469e164 "><p><span>3</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1092469e169 "><p>The Jacobian matrix is singular.</p>
+<p><samp class="codeph">||<var>J</var>(<var>x</var>)<sub>(1:<var>m</var>,<var>j</var>)</sub>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(3)</samp><samp class="codeph">, <var>j</var> = 1, ..., 
+<var>n</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1092469e164 "><p><span>4</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1092469e169 "><p><samp class="codeph">||s||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(4)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1092469e164 "><p><span>5</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1092469e169 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub> - ||<var>F</var>(<var>x</var>) - <var>J</var>(<var>x</var>)<var>s</var>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(5)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1092469e164 "><p><span>6</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1092469e169 "><p>The trial step precision. If <samp class="codeph"><span class="parmname">eps</span></samp><samp class="codeph">(6)</samp> = 0, then the trial step meets the required precision (<span class="eqsymbol">≤</span> 1.0*10<sup>-10</sup>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note:</p>
+<ul id="GUID-10AB7390-4EFB-4AD2-87CD-B53CC04C9713"><li id="LI_C40B2648CC7C48D98FB6CCFECCFD9B3A"><p><samp class="codeph"><var>J</var>(<var>x</var>)</samp> is the Jacobian matrix.</p>
+</li>
+<li id="LI_4E0E3C8F803F4168A3A90A9B416F6783"><p><samp class="codeph">Δ</samp> is the trust-region area.</p>
+</li>
+<li id="LI_5630FA196CB74FCCB72EFCB6B8351908"><p><samp class="codeph"><var>F</var>(<var>x</var>)</samp> is the value of the functional.</p>
+</li>
+<li id="LI_7AFA7D8AA49F492EA4A19C337125437D"><p><samp class="codeph">s</samp> is the trial step.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-6ADA237E-F69D-449B-B10E-C28D13B05321"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2F958E72-3C65-4BD2-B55A-94B18D72910F"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span>  Length of <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Length of <var>F</var>(<var>x</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlsp_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlsp_init</span></p>
+<p>Array of size <var>n</var>. Initial guess.  A reference to this array is stored in <em>handle</em> for later use and modification by <span class="option">?trnlsp_solve</span></p>
+<p> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">eps</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlsp_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlsp_init</span></p>
+<p>Array of size 6; contains stopping criteria. <span>See the values in the Description section.</span></p>
+<p> A reference to this array is stored in <em>handle</em> for later use by <span class="option">?trnlsp_solve</span></p>
+<p> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iter1</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span>  Specifies the maximum number of iterations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iter2</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Specifies the maximum number of iterations of trial step calculation.</p>
+<p/>
+</dd>
+<dt class="dlterm"><span class="parmname">rs</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlsp_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlsp_init</span></p>
+<p>Definition of initial size of the trust region (boundary of the trial step). The recommend minimum value is 0.1, and the recommended maximum value is 100.0. Based on your knowledge of the objective function and initial guess you can increase or decrease the initial trust region. It can influence the iteration process, for example, the direction of the iteration process and the number of iterations. If you set  <span class="parmname">rs</span> to 0.0, the solver uses the default value, which is 100.0.  </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F1ED7CCE-36CD-4F81-9DA6-7F32F655AC8D"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E48AD53D-0F05-47DA-8848-5A12D97A8CCC"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd><p>Type <span><span class="keyword">INTEGER*8</span></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Indicates task completion status.</p>
+<ul id="GUID-F069A927-3A3D-42E9-9AEB-897FDE3A841B"><li id="LI_3B1A45878B9241A2ABCEFF15FA2F538E"><p><span class="parmname">res</span> = <span class="keyword">TR_SUCCESS</span> - the routine completed the task normally.</p>
+</li>
+<li id="LI_E5AB800D059F4E9BBC6E3CEC60CAA843"><p><span class="parmname">res</span> = <span class="keyword">TR_INVALID_OPTION</span> - there was an error in the input parameters.</p>
+</li>
+<li id="LI_6F7F599E292F448586190F847708DF1C"><p><span class="parmname">res</span> = <span class="keyword">TR_OUT_OF_MEMORY</span> -  there was a memory error.</p>
+</li>
+</ul>
+<p><span class="keyword">TR_SUCCESS</span>, <span class="keyword">TR_INVALID_OPTION</span>, and <span class="keyword">TR_OUT_OF_MEMORY</span> are defined in the <span class="filepath">mkl_rci.fi</span> include file.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-97CD4402-169E-473E-897E-2D67A7665DFE.html">Nonlinear Least Squares Problem without Constraints</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-3E0A929C-9EEF-4FF4-9A01-CB0A1BE640CC.html#GUID-3E0A929C-9EEF-4FF4-9A01-CB0A1BE640CC"><span class="option">?trnlsp_solve</span></a> </div></div></div>
+</body>
+</html>

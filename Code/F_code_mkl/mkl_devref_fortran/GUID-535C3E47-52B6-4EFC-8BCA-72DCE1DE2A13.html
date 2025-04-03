@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dss_factor_real, dss_factor_complex"/>
+<meta name="abstract" content="Compute factorization of the matrix with previously specified location of non-zero elements."/>
+<meta name="description" content="Compute factorization of the matrix with previously specified location of non-zero elements."/>
+<meta name="DC.subject" content="Sparse Solver, direct sparse solver interface, dss_factor_real, dss_factor_complex, dss_factor"/>
+<meta name="keywords" content="Sparse Solver, direct sparse solver interface, dss_factor_real, dss_factor_complex, dss_factor"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-535C3E47-52B6-4EFC-8BCA-72DCE1DE2A13"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dss_factor_real, dss_factor_complex</title>
+
+</head>
+<body id="GUID-535C3E47-52B6-4EFC-8BCA-72DCE1DE2A13">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dss_factor_real</span>, <span class="option">dss_factor_complex</span></h1>
+<!--Compute factorization of the matrix with previously specified location of non-zero elements.--><div><p class="shortdesc">Compute factorization of the matrix with previously specified location of non-zero elements.</p>
+<div class="section" id="GUID-3193DAED-615B-4DA6-84E4-89C4916C8A04"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_factor_real</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">rValues</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dss_factor_complex</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">cValues</span><span class="sep">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_factor</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">Values</span><span class="sep">)</span></p></dl><div class="dlsyntaxpara"/></div>
+<div class="section" id="GUID-C54407D0-6196-4284-A8FF-DF1B92911924"><h2 class="sectiontitle">Include Files</h2><ul id="d163e166"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_dss.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-19BA0CE4-9707-4908-8E29-9A045278FC48"><h2 class="sectiontitle">Description</h2><p><span/>These routines compute factorization of the matrix whose non-zero locations were previously specified by a call to <a class="allformats" href="GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC.html#GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC"><span class="option">dss_define_structure</span></a> and whose non-zero values are given in the array <span class="parmname">rValues</span>, <span class="parmname">cValues</span>
+ or <span class="parmname">Values</span>. Data type These arrays must be of length <span class="parmname">nNonZeros</span> as defined in a previous call to <span class="keyword">dss_define_structure</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The data type (single or double precision) of  <span class="parmname">rValues</span>, <span class="parmname">cValues</span>,
+ <span class="parmname">Values</span> must be in correspondence with precision specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</div>
+<p>The <span class="parmname">opt</span> argument can contain one of the following options: <ul class="none" id="GUID-3415AC6C-3C54-4B71-8DDF-F7D2ACBC1FEF"><li><p><span class="keyword">MKL_DSS_POSITIVE_DEFINITE</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_INDEFINITE</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_HERMITIAN_POSITIVE_DEFINITE</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_HERMITIAN_INDEFINITE</span></p>
+</li>
+</ul>
+depending on your matrix's type.</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a> for details.</p>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-154F8F28-4966-417D-80CF-244332E9D15A"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">handle</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">TYPE (MKL_DSS_HANDLE)</span>, <span class="keyword">INTENT(INOUT)</span></p>
+<p> Pointer to the data structure storing internal DSS results (<span class="keyword">MKL_DSS_HANDLE</span>).
+</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">opt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Parameter to pass the DSS options. The default value is <span class="keyword">MKL_DSS_POSITIVE_DEFINITE</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL*8</span></p>
+<p><span class="keyword">REAL(KIND=4)</span>, <span class="keyword">INTENT(IN)</span> or </p>
+<p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+<p> Array of elements of the matrix <var>A</var>. Real data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">cValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX*16</span></p>
+<p><span class="keyword">COMPLEX(KIND=4)</span>, <span class="keyword">INTENT(IN)</span> or    </p>
+<p><span class="keyword">COMPLEX(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+<p> Array of elements of the matrix <var>A</var>. Complex data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">Values</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL(KIND=4)</span>, <span class="keyword">INTENT(OUT)</span>, or </p>
+<p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span>, or
+</p>
+<p><span class="keyword">COMPLEX(KIND=4)</span>, <span class="keyword">INTENT(OUT)</span>, or</p>
+<p><b class="parmname" style="color:#0033ff">Fortran90: </b><span class="keyword">COMPLEX(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span></p>
+<p> Array of elements of the matrix <var>A</var>. Real or complex data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="RETURNVALUES_6418D4ED47FD414B89073DAC66C51103"><h2 class="sectiontitle">Return Values</h2><p><span class="keyword">MKL_DSS_SUCCESS</span></p>
+<p><span class="keyword">MKL_DSS_STATE_ERR</span></p>
+<p><span class="keyword">MKL_DSS_INVALID_OPTION</span></p>
+<p><span class="keyword">MKL_DSS_OPTION_CONFLICT</span></p>
+<p><span class="keyword">MKL_DSS_VALUES_ERR</span></p>
+<p><span class="keyword">MKL_DSS_OUT_OF_MEMORY</span></p>
+<p><span class="keyword">MKL_DSS_ZERO_PIVOT</span></p>
+<p><span class="keyword">MKL_DSS_FAILURE</span></p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_TERM_LVL_ERR</span></p>
+<p><span class="keyword"> MKL_DSS_OOC_MEM_ERR</span></p>
+<p><span class="keyword"> MKL_DSS_OOC_OC_ERR</span></p>
+<p><span class="keyword"> MKL_DSS_OOC_RW_ERR</span></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

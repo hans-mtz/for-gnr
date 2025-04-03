@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?tran"/>
+<meta name="abstract" content="Transposes a real distributed matrix."/>
+<meta name="description" content="Transposes a real distributed matrix."/>
+<meta name="DC.subject" content="p?tran, pstran, pdtran, PBLAS Level 3 routines, transposition, distributed real matrix, distributed matrix-matrix operation, real matrix"/>
+<meta name="keywords" content="p?tran, pstran, pdtran, PBLAS Level 3 routines, transposition, distributed real matrix, distributed matrix-matrix operation, real matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2E2A6B33-0396-44E2-8F62-6F225BF8F99D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?tran</title>
+
+</head>
+<body id="GUID-2E2A6B33-0396-44E2-8F62-6F225BF8F99D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?tran</span></h1>
+<!--Transposes a real distributed matrix.--><div><p class="shortdesc">Transposes a real distributed matrix.</p>
+<div class="section" id="GUID-98CC60BE-5D87-4A87-AA27-8EC1A020E49B"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pstran</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdtran</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-140C3085-3604-4FC8-B332-E914E58D4FA2"><h2 class="sectiontitle">Include Files</h2><ul id="d163e233"><li id="d163e234"><span class="filepath">mkl_pblas.h</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2897C996-291A-4D0B-894C-31B3D1C7FDDC"><h2 class="sectiontitle">Description</h2><p>The <span class="option">p?tran</span> routines transpose a real distributed matrix. The operation is defined as <pre>sub(<var>C</var>):=<var>beta</var>*sub(<var>C</var>) + <var>alpha</var>*sub(<var>A</var>)',</pre></p>
+<p>where:</p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><samp class="codeph">sub(<var>C</var>)</samp>
+ is an 	<span class="parmname">m</span>-by-<span class="parmname">n</span> distributed
+ matrix, <samp class="codeph">sub(<var>C</var>)=<var>C</var>(<span class="parmname">ic</span>:<span class="parmname">ic</span>+<span class="parmname">m</span>-1, <span class="parmname">jc</span>:<span class="parmname">jc</span>+<span class="parmname">n</span>-1)</samp>.</p>
+<p><samp class="codeph">sub(<var>A</var>)</samp>
+ is a distributed matrix, <samp class="codeph">sub(<var>A</var>)=<var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">m</span>-1)</samp>.</p>
+</div>
+<div class="section" id="GUID-B9957630-E0A5-48BC-9409-9377936310CA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E74A034F-1255-4559-9064-1A3F874F0EA2"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Specifies the number of rows of the distributed matrix <samp class="codeph">sub(<var>C</var>)</samp>, <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Specifies the number of columns of the distributed matrix <samp class="codeph">sub(<var>C</var>)</samp>
+, <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>(global)<span><span class="keyword">REAL</span>  for <span class="option">pstran</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtran</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)<span><span class="keyword">REAL</span>  for <span class="option">pstran</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtran</span></p>
+<p>Array, size <samp class="codeph">(<var>lld_a</var>, LOCq(<span class="parmname">ja</span>+<span class="parmname">m</span>-1))</samp>. This array contains the local pieces of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>A</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>A</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>(global)<span><span class="keyword">REAL</span>  for <span class="option">pstran</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtran</span></p>
+<p>Specifies the scalar <var>beta</var>.</p>
+<p>When <span class="parmname">beta</span>
+is equal to zero, then <samp class="codeph">sub(<var>C</var>)</samp> need not be set on input.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>(local)<span><span class="keyword">REAL</span>  for <span class="option">pstran</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtran</span></p>
+<p>Array, size <samp class="codeph">(<var>lld_c</var>, LOCq(<span class="parmname">jc</span>+<span class="parmname">n</span>-1))</samp>. </p>
+<p>This array contains the local pieces of the distributed matrix <samp class="codeph">sub(<var>C</var>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ic</span>, <span class="parmname">jc</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>C</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>C</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descc</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>C</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-BE940AD6-5955-41AF-B26A-9DA8D3D6C3C9"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-83035F60-FF91-4FF6-AA84-F87C54602A03"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the updated submatrix.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html">PBLAS Level 3 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

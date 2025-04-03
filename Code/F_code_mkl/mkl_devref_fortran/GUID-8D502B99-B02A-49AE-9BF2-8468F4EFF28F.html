@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lamc5"/>
+<meta name="abstract" content="Called from ?lamc2. Attempts to compute the largest machine floating-point number, without overflow."/>
+<meta name="description" content="Called from ?lamc2. Attempts to compute the largest machine floating-point number, without overflow."/>
+<meta name="DC.subject" content="?lamc5, LAPACK routines, utility functions and routines"/>
+<meta name="keywords" content="?lamc5, LAPACK routines, utility functions and routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8D502B99-B02A-49AE-9BF2-8468F4EFF28F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lamc5</title>
+
+</head>
+<body id="GUID-8D502B99-B02A-49AE-9BF2-8468F4EFF28F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lamc5</span></h1>
+<!--Called from  ?lamc2 . Attempts to compute the largest machine floating-point number, without overflow.--><div><p class="shortdesc">Called from <span class="option">?lamc2</span>. Attempts to compute the largest machine floating-point number, without overflow.</p>
+<div class="section" id="GUID-FFF34B47-C07E-475D-8E2A-91631E7FDDB4"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slamc5</span><span class="delim">( </span><span class="var">beta</span><span class="sep">, </span><span class="var">p</span><span class="sep">, </span><span class="var">emin</span><span class="sep">, </span><span class="var">ieee</span><span class="sep">, </span><span class="var">emax</span><span class="sep">, </span><span class="var">rmax</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlamc5</span><span class="delim">( </span><span class="var">beta</span><span class="sep">, </span><span class="var">p</span><span class="sep">, </span><span class="var">emin</span><span class="sep">, </span><span class="var">ieee</span><span class="sep">, </span><span class="var">emax</span><span class="sep">, </span><span class="var">rmax</span><span class="delim">)</span></p></div></div>
+<div class="section" id="GUID-546412DD-0209-4708-9E90-49AD844D0369"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-3CE1BBCF-9A40-40C6-891E-1DA294FA60AC"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?lamc5</span> attempts to compute <var>rmax</var>, the largest machine floating-point  number, without overflow. It assumes that <samp class="codeph"><var>emax</var> + abs(<var>emin</var>)</samp> sum approximately to a power of 2. It will fail on machines where this assumption does not hold, for example, the Cyber 205 (<samp class="codeph"><var>emin</var> = -28625</samp>, <samp class="codeph"><var>emax</var> = 28718</samp>). It will also fail if the value supplied for <var>emin</var> is  too large (that is, too close to zero), probably with overflow.</p>
+</div>
+<div class="section" id="GUID-6019F262-F8F4-443D-B501-52101C7B6E89"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7DADC654-9B20-4E6B-AAA7-AD863633D977"><dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The base of floating-point arithmetic.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">p</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of base <var>beta</var> digits in the mantissa of a floating-point value.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">emin</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The minimum exponent before (gradual) underflow.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ieee</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. A logical flag specifying whether or not the arithmetic  system is thought to comply with the IEEE standard.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-11DECE2A-A6AA-438E-8849-556F2D83EA76"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-21D1DA4B-8A0B-46C8-AE6B-EC6A51FF1F58"><dt class="dlterm"><span class="parmname">emax</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The largest exponent before overflow.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rmax</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slamc5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlamc5</span></p>
+<p>The largest machine floating-point number.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html">LAPACK Utility Functions and Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

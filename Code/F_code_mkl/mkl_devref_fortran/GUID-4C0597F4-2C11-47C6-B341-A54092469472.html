@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DSS Implementation Details"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-24A41D50-4D0A-471B-9722-EA59E443ABC8.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4C0597F4-2C11-47C6-B341-A54092469472"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DSS Implementation Details</title>
+
+</head>
+<body id="GUID-4C0597F4-2C11-47C6-B341-A54092469472">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DSS Implementation Details</h1>
+<div><p>To promote portability
+		across platforms and ease of use across different languages, use the 
+		<span class="filepath">mkl_dss.f90</span> header
+		file. 
+	 </p>
+<p>The header file defines symbolic constants for
+		returned error values, function options, certain defined data types, and
+		function prototypes. 
+	 </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Constants for options, returned error values, and message severities must be referred only by the symbolic names that are defined in these header files. Use of the Intel&reg; oneAPI Math Kernel Library DSS software without including one of the above header files is not supported.</p>
+</div>
+<div class="level3" id="MEMORYALLOCATIONHANDLES"><h2 class="sectiontitle">Memory Allocation and Handles</h2><p>You do not need to allocate any temporary working storage in order to use the Intel&reg; oneAPI Math Kernel Library DSS routines, because the solver itself allocates any required storage. To enable multiple users to access the solver simultaneously, the solver keeps track of the storage allocated for a particular application by using a<em>handle</em> data object. 
+		</p>
+<p>Each of the Intel&reg; oneAPI Math Kernel Library DSS routines creates, uses, or deletes a handle. Consequently, any program calling an Intel&reg; oneAPI Math Kernel Library DSS routine must be able to allocate storage for a handle. The exact syntax for allocating storage for a handle varies from language to language. To standardize the handle declarations, the language-specific header files declare constants and defined data types that must be used when declaring a handle object in your code.</p>
+<div><pre>INCLUDE "mkl_dss.f90" 
+TYPE(MKL_DSS_HANDLE) handle</pre></div><p>In addition to the definition for the correct
+		  declaration of a handle, the include file also defines the following: 
+		<ul class="bullet" id="GUID-EC00BA9E-F745-46B2-A069-9191EDC69928"><li id="LI_34BE3E1CF51E4C15AACD359BA47B9011"><p>function prototypes for languages that support
+				prototypes 
+			 </p>
+</li>
+<li id="LI_CBBB78BC7D6041B38F72C37EA026B9D7"><p>symbolic constants that are used for the
+				returned error values 
+			 </p>
+</li>
+<li id="LI_6B3977E0831D4BD3B9154CEB5EA6C99A"><p>user options for the solver routines 
+			 </p>
+</li>
+<li id="LI_230178BE952A4E7988814E3997C4DFC8"><p>constants indicating message severity. 
+			 </p>
+</li>
+</ul>
+</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-24A41D50-4D0A-471B-9722-EA59E443ABC8.html">Direct Sparse Solver (DSS) Interface Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?ormr3"/>
+<meta name="abstract" content="Applies an orthogonal distributed matrix to a general m-by-n distributed matrix."/>
+<meta name="description" content="Applies an orthogonal distributed matrix to a general m-by-n distributed matrix."/>
+<meta name="DC.subject" content="psormr3, pdormr3"/>
+<meta name="keywords" content="psormr3, pdormr3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-99B2F6F7-39E7-4390-BDD7-4F7EC8532B35"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?ormr3</title>
+
+</head>
+<body id="GUID-99B2F6F7-39E7-4390-BDD7-4F7EC8532B35">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?ormr3</span></h1>
+<!--Applies an orthogonal distributed matrix to a general  m -by- n  distributed matrix.--><div><p class="shortdesc">Applies an orthogonal distributed matrix to a general <var>m</var>-by-<var>n</var> distributed matrix.</p>
+<div class="section" id="GUID-5211FF71-AB40-4366-A95A-B9476D49C955"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psormr3</span><span class="delim"> (</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdormr3</span><span class="delim"> (</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-09A84333-B0C3-4486-9371-7389267A0BA4"><h2 class="sectiontitle">Description</h2><p><span class="option">p?ormr3</span> overwrites the general real <span class="parmname">m</span>-by-<span class="parmname">n</span> distributed matrix  sub( <var>C</var> ) = <var>C</var>(<span class="parmname">ic</span>:<span class="parmname">ic</span>+<span class="parmname">m</span>-1,<span class="parmname">jc</span>:<span class="parmname">jc</span>+<span class="parmname">n</span>-1) with</p>
+<table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder"><tr><td valign="top"> </td>
+<td valign="top"><p><span class="parmname">side</span> = 'L'</p>
+</td>
+<td valign="top"><p><span class="parmname">side</span> = 'R'</p>
+</td>
+</tr>
+<tr><td valign="top"><p><span class="parmname">trans</span> = 'N'</p>
+</td>
+<td valign="top"><p><var>Q</var> * sub( <var>C</var> )</p>
+</td>
+<td valign="top"><p><var>sub(  C )</var> * <var>Q</var></p>
+</td>
+</tr>
+<tr><td valign="top"><p><span class="parmname">trans</span> = 'T'</p>
+</td>
+<td valign="top"><p><var>Q</var><sup><var>T</var></sup> * sub( <var>C</var> )</p>
+<p><var>Q</var> * sub( <var>C</var> )</p>
+</td>
+<td valign="top"><p>sub( <var>C</var> ) * <var>Q</var><sup><var>T</var></sup></p>
+</td>
+</tr>
+</table>
+<p>where <var>Q</var> is a real orthogonal distributed matrix defined as the  product of <span class="parmname">k</span> elementary reflectors</p>
+<p><var>Q</var> = H(1) H(2) . . . H(<span class="parmname">k</span>)</p>
+<p>  as returned by <span class="option">p?tzrzf</span>. <var>Q</var> is of order <span class="parmname">m</span> if <span class="parmname">side</span> = 'L' and of order <span class="parmname">n</span>  if <span class="parmname">side</span> = 'R'.</p>
+</div>
+<div class="section" id="GUID-9465EA12-9E6A-4E7A-8FB2-0DD563AEE74E"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E1A62790-CFAE-48E5-829F-6248229B6DA1"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>(global)</p>
+<p>CHARACTER. </p>
+<p>= 'L': apply <var>Q</var> or <var>Q</var><sup><var>T</var></sup> from the Left;</p>
+<p>= 'R': apply <var>Q</var> or <var>Q</var><sup><var>T</var></sup> from the Right.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>(global)</p>
+<p>CHARACTER. </p>
+<p>= 'N':  No transpose, apply <var>Q</var>;</p>
+<p>= 'T':  Transpose, apply <var>Q</var><sup><var>T</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of rows to be operated on i.e the number of rows          of the distributed submatrix sub( <var>C</var> ). <span class="parmname">m</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of columns to be operated on i.e the number of          columns of the distributed submatrix sub( <var>C</var> ). <span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of elementary reflectors whose product defines the          matrix <var>Q</var>.</p>
+<p>If <span class="parmname">side</span> = 'L', <span class="parmname">m</span> &gt;= <span class="parmname">k</span> &gt;= 0,</p>
+<p>if <span class="parmname">side</span> = 'R',          <span class="parmname">n</span> &gt;= <span class="parmname">k</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The columns of the distributed submatrix sub( <var>A</var> ) containing          the meaningful part of the Householder reflectors.</p>
+<p>If <span class="parmname">side</span> = 'L', <span class="parmname">m</span> &gt;= <span class="parmname">l</span> &gt;= 0,</p>
+<p>if <span class="parmname">side</span> = 'R', <span class="parmname">n</span> &gt;= <span class="parmname">l</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psormr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdormr3</span></p>
+<p>Pointer into the local memory          to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>m</var>-1))</samp> if <span class="parmname">side</span>='L',          and <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp> if <span class="parmname">side</span>='R', where <var>lld_a</var> &gt;= MAX(1,LOCr(<span class="parmname">ia</span>+<span class="parmname">k</span>-1));</p>
+<p>On entry, the <var>i</var>-th row must          contain the vector which defines the elementary reflector          H(<var>i</var>), <span class="parmname">ia</span> &lt;= <var>i</var> &lt;= <span class="parmname">ia</span>+<span class="parmname">k</span>-1, as returned by <span class="option">p?tzrzf</span> in the          <span class="parmname">k</span> rows of its distributed matrix argument <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">k</span>-1,<span class="parmname">ja</span>:*).</p>
+<p><var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">k</span>-1,<span class="parmname">ja</span>:*) is modified by the routine but restored on          exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The row index in the global array <span class="parmname">a</span> indicating the first          row of sub( <var>A</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The column index in the global array <span class="parmname">a</span> indicating the          first column of sub( <var>A</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psormr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdormr3</span></p>
+<p>Array, size LOCc(<span class="parmname">ia</span>+<span class="parmname">k</span>-1).</p>
+<p>This array contains the scalar factors <span class="parmname">tau</span>(i) of the          elementary reflectors H(i) as returned by <span class="option">p?tzrzf</span>.          <span class="parmname">tau</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psormr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdormr3</span></p>
+<p>Pointer into the          local memory to an array of size <samp class="codeph">(<var>lld_c</var>,<var>LOCc</var>(<var>jc</var>+<var>n</var>-1))</samp>
+.</p>
+<p>On entry, the local pieces of the distributed matrix sub( <var>C</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ic</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The row index in the global array <span class="parmname">c</span> indicating the first          row of sub( <var>C</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jc</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The column index in the global array <span class="parmname">c</span> indicating the          first column of sub( <var>C</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descc</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psormr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdormr3</span></p>
+<p>Array,                                                   size (<span class="parmname">lwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local)</p>
+<p>INTEGER. </p>
+<p>The size of the array <span class="parmname">work</span>.</p>
+<p><span class="parmname">lwork</span> is local input and must be at least</p>
+<p>If <span class="parmname">side</span> = 'L', <span class="parmname">lwork</span> &gt;= <var>MpC0</var> + MAX( MAX( 1, <var>NqC0</var> ), <span class="option">numroc</span>(                  <span class="option">numroc</span>( <span class="parmname">m</span>+<var>IROFFC</var>,<var>mb_a</var>,0,0,<var>NPROW</var> ),<var>mb_a</var>,0,0,<var>NqC0</var> ) );</p>
+<p>if <span class="parmname">side</span> = 'R', <span class="parmname">lwork</span> &gt;= <var>NqC0</var> + MAX( 1, <var>MpC0</var> );</p>
+<p>where <var>LCMP</var> = <var>LCM</var> / <var>NPROW</var></p>
+<p><var>LCM</var> = <span class="option">iclm</span>( <var>NPROW</var>, <var>NPCOL</var> ),</p>
+<p><var>IROFFC</var> = MOD( <span class="parmname">ic</span>-1, <var>mb_c</var> ), </p>
+<p><var>ICOFFC</var> = MOD( <span class="parmname">jc</span>-1, <var>nb_c</var>),</p>
+<p><var>ICROW</var> = <span class="option">indxg2p</span>( <span class="parmname">ic</span>, <var>mb_c</var>, <var>MYROW</var>, <var>rsrc_c</var>, <var>NPROW</var> ),</p>
+<p><var>ICCOL</var> = <span class="option">indxg2p</span>( <span class="parmname">jc</span>, <var>nb_c</var>, <var>MYCOL</var>, <var>csrc_c</var>, <var>NPCOL</var> ),</p>
+<p><var>MpC0</var> = <span class="option">numroc</span>( <span class="parmname">m</span>+<var>IROFFC</var>, <var>mb_c</var>, <var>MYROW</var>, <var>ICROW</var>, <var>NPROW</var> ),</p>
+<p><var>NqC0</var> = <span class="option">numroc</span>( <span class="parmname">n</span>+<var>ICOFFC</var>, <var>nb_c</var>, <var>MYCOL</var>, <var>ICCOL</var>, <var>NPCOL</var> ),</p>
+<p><span class="option">ilcm</span>, <span class="option">indxg2p</span>, and <span class="option">numroc</span> are ScaLAPACK tool functions;</p>
+<p><var>MYROW</var>, <var>MYCOL</var>, <var>NPROW</var> and <var>NPCOL</var> can be determined by calling          the subroutine <span class="option">blacs_gridinfo</span>.</p>
+<p>If <span class="parmname">lwork</span> = -1, then <span class="parmname">lwork</span> is global input and a workspace          query is assumed; the routine only calculates the minimum          and optimal size for all work arrays. Each of these          values is returned in the first entry of the corresponding          work array, and no error message is issued by <span class="option">pxerbla</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-202F3673-BA6A-4C32-B077-902DB8DB87A8"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">c</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, sub( <var>C</var> ) is overwritten by <var>Q</var>*sub( <var>C</var> ) or <var>Q</var>'*sub( <var>C</var> )          or sub( <var>C</var> )*<var>Q</var>' or sub( <var>C</var> )*<var>Q</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the minimal and optimal <span class="parmname">lwork</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p>(local)</p>
+<p>INTEGER. </p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had                an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>), if the <var>i</var>-th                argument is a scalar and had an illegal value, then                <span class="parmname">info</span> = -<var>i</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-4F4E8D6A-E02A-4E81-BD89-519324DACF9E"><h2 class="sectiontitle">Application Notes</h2><p><strong>Alignment requirements</strong></p>
+<p>The distributed submatrices <var>A</var>(<span class="parmname">ia</span>:*, <span class="parmname">ja</span>:*) and <var>C</var>(<span class="parmname">ic</span>:<span class="parmname">ic</span>+<span class="parmname">m</span>-1,<span class="parmname">jc</span>:<span class="parmname">jc</span>+<span class="parmname">n</span>-1)  must verify some alignment properties, namely the following  expressions should be true:</p>
+<p>If <span class="parmname">side</span> = 'L',</p>
+<p>( <var>nb_a</var> = <var>mb_c</var> .AND. ICOFFA = <var>IROFFC</var> )</p>
+<p>If <span class="parmname">side</span> = 'R',</p>
+<p>( <var>nb_a</var> = <var>nb_c</var> .AND. ICOFFA = <var>ICOFFC</var> .AND. IACOL = <var>ICCOL</var> )</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html">Orthogonal Factorizations: ScaLAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

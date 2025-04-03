@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lase2"/>
+<meta name="abstract" content="Initializes an m-by-n distributed matrix."/>
+<meta name="description" content="Initializes an m-by-n distributed matrix."/>
+<meta name="DC.subject" content="pslase2, pdlase2, pclase2, pzlase2"/>
+<meta name="keywords" content="pslase2, pdlase2, pclase2, pzlase2"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-954C869F-DEE0-429A-92A5-511D4DF6A59F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lase2</title>
+
+</head>
+<body id="GUID-954C869F-DEE0-429A-92A5-511D4DF6A59F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lase2</span></h1>
+<!--Initializes an  m -by- n  distributed matrix.--><div><p class="shortdesc">Initializes an <span class="parmname">m</span>-by-<span class="parmname">n</span> distributed matrix.</p>
+<div class="section" id="GUID-D2F397EB-7FE8-4E09-81DD-5432349026FB"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslase2</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlase2</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclase2</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlase2</span><span class="delim"> (</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-BDBC34F4-9814-4718-BDAE-B0ED21726829"><h2 class="sectiontitle">Description</h2><p><span class="option">p?lase2</span> initializes an <span class="parmname">m</span>-by-<span class="parmname">n</span> distributed matrix sub( <var>A</var> ) denoting  <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">m</span>-1,<span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1) to <span class="parmname">beta</span> on the diagonal and <span class="parmname">alpha</span> on the  off-diagonals.  <span class="option">p?lase2</span> requires that only the dimension of the matrix  operand is distributed.</p>
+</div>
+<div class="section" id="GUID-5A45C735-CAFE-48D5-A37E-52BAA7585C7F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-53A6E4D8-A707-4432-B8FE-7C3032B65F69"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global)</p>
+<p>CHARACTER. </p>
+<p>Specifies the part of the distributed matrix sub( <var>A</var> ) to be          set:</p>
+<p>= 'U':      Upper triangular part is set; the strictly lower                      triangular part of sub( <var>A</var> ) is not changed;</p>
+<p>= 'L':      Lower triangular part is set; the strictly upper                      triangular part of sub( <var>A</var> ) is not changed;</p>
+<p>Otherwise:  All of the matrix sub( <var>A</var> ) is set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of rows to be operated on i.e the number of rows          of the distributed submatrix sub( <var>A</var> ). <span class="parmname">m</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The number of columns to be operated on i.e the number of          columns of the distributed submatrix sub( <var>A</var> ). <span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslase2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlase2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclase2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzlase2</span></p>
+<p>The constant to which the off-diagonal elements are to be          set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslase2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlase2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclase2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzlase2</span></p>
+<p>The constant to which the diagonal elements are to be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The row index in the global array <span class="parmname">a</span> indicating the first          row of sub( <var>A</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The column index in the global array <span class="parmname">a</span> indicating the          first column of sub( <var>A</var> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-76A70301-1124-423E-AF07-7EB9DCC0BAE2"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslase2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlase2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclase2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzlase2</span></p>
+<p>Pointer into the local memory          to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>.</p>
+<p>This array          contains the local pieces of the distributed matrix sub( <var>A</var> )          to be set.</p>
+<p>On exit, the leading <span class="parmname">m</span>-by-<span class="parmname">n</span> submatrix sub( <var>A</var> )          is set as follows:</p>
+<p>if <span class="parmname">uplo</span> = 'U', <var>A</var>(<span class="parmname">ia</span>+i-1,<span class="parmname">ja</span>+j-1) = <span class="parmname">alpha</span>, <span>1&lt;=i&lt;=j-1, 1&lt;=j&lt;=<span class="parmname">n</span></span>,</p>
+<p>if <span class="parmname">uplo</span> = 'L', <var>A</var>(<span class="parmname">ia</span>+i-1,<span class="parmname">ja</span>+j-1) = <span class="parmname">alpha</span>, <span>j+1&lt;=i&lt;=<span class="parmname">m</span>, 1&lt;=j&lt;=<span class="parmname">n</span></span>,</p>
+<p>otherwise,     <var>A</var>(<span class="parmname">ia</span>+i-1,<span class="parmname">ja</span>+j-1) = <span class="parmname">alpha</span>, 1&lt;=i&lt;=<span class="parmname">m</span>, <span>1&lt;=j&lt;=<span class="parmname">n</span>,                                                   <span class="parmname">ia</span>+i != <span class="parmname">ja</span>+j,</span></p>
+<p>and, for all <span class="parmname">uplo</span>, <var>A</var>(<span class="parmname">ia</span>+i-1,<span class="parmname">ja</span>+i-1) = <span class="parmname">beta</span>, <span>1&lt;=i&lt;=min(<span class="parmname">m</span>,<span class="parmname">n</span>)</span>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

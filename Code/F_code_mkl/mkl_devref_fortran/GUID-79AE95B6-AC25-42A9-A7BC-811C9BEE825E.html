@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gejsv"/>
+<meta name="abstract" content="Computes the singular value decomposition using a preconditioned Jacobi SVD method."/>
+<meta name="description" content="Computes the singular value decomposition using a preconditioned Jacobi SVD method."/>
+<meta name="DC.subject" content="?gejsv, sgejsv, dgejsv, LAPACK routines, driver routines, singular value decomposition, preconditioned Jacobi SVD"/>
+<meta name="keywords" content="?gejsv, sgejsv, dgejsv, LAPACK routines, driver routines, singular value decomposition, preconditioned Jacobi SVD"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BDA281B1-921F-4A41-B381-DCD341B0774A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4326D19C-246A-4A7B-9728-03D371FB39AD.html#GUID-4326D19C-246A-4A7B-9728-03D371FB39AD"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A.html#GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE.html#GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9469788C-1DF5-46A8-999B-F71B17245938.html#GUID-9469788C-1DF5-46A8-999B-F71B17245938"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7D137664-6F3E-4832-BEDD-39EAF5AE9F52.html#GUID-7D137664-6F3E-4832-BEDD-39EAF5AE9F52"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB.html#GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D.html#GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-79AE95B6-AC25-42A9-A7BC-811C9BEE825E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gejsv</title>
+
+</head>
+<body id="GUID-79AE95B6-AC25-42A9-A7BC-811C9BEE825E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gejsv</span></h1>
+<!--Computes the singular value decomposition using a preconditioned Jacobi SVD  method.--><div><p class="shortdesc">Computes the singular value decomposition using a preconditioned Jacobi SVD  method.</p>
+<div class="section" id="GUID-F72565EC-E26E-49B9-AA72-DF2A904CD2CB"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgejsv</span><span class="delim">(</span><span class="var">joba</span><span class="sep">, </span><span class="var">jobu</span><span class="sep">, </span><span class="var">jobv</span><span class="sep">, </span><span class="var">jobr</span><span class="sep">, </span><span class="var">jobt</span><span class="sep">, </span><span class="var">jobp</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sva</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgejsv</span><span class="delim">(</span><span class="var">joba</span><span class="sep">, </span><span class="var">jobu</span><span class="sep">, </span><span class="var">jobv</span><span class="sep">, </span><span class="var">jobr</span><span class="sep">, </span><span class="var">jobt</span><span class="sep">, </span><span class="var">jobp</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sva</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgejsv</span><span class="delim"> (</span><span class="var">joba</span><span class="sep">, </span><span class="var">jobu</span><span class="sep">, </span><span class="var">jobv</span><span class="sep">, </span><span class="var">jobr</span><span class="sep">, </span><span class="var">jobt</span><span class="sep">, </span><span class="var">jobp</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sva</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">cwork</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">lrwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgejsv</span><span class="delim"> (</span><span class="var">joba</span><span class="sep">, </span><span class="var">jobu</span><span class="sep">, </span><span class="var">jobv</span><span class="sep">, </span><span class="var">jobr</span><span class="sep">, </span><span class="var">jobt</span><span class="sep">, </span><span class="var">jobp</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sva</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">ldv</span><span class="sep">, </span><span class="var">cwork</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">lrwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-37FF83B4-B600-4CB5-A32B-239AD001603C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-102B001F-4EA5-457A-9B1A-B5967F3E626D"><h2 class="sectiontitle">Description</h2><p>The routine computes the singular value decomposition (SVD) of a real/complex <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>, where <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">n</span>. </p>
+<p>The SVD is written as</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var>*<span class="eqsymbol">Σ</span>*<var>V</var><sup><var>T</var></sup></samp>, for real routines</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var>*<span class="eqsymbol">Σ</span>*<var>V</var><sup><var>H</var></sup></samp>, for complex routines</p>
+<p>where <span class="eqsymbol">Σ</span> is an <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix which is zero except for its <span class="parmname">n</span> diagonal elements, <var>U</var> is an <span class="parmname">m</span>-by-<span class="parmname">n</span> (or <span class="parmname">m</span>-by-<span class="parmname">m</span>) orthonormal matrix, and <var>V</var> is an <span class="parmname">n</span>-by-<span class="parmname">n</span> orthogonal matrix. The diagonal elements of <span class="eqsymbol">Σ</span> are the singular values of <var>A</var>; the columns of <var>U</var> and <var>V</var> are the left and right singular vectors of <var>A</var>, respectively. The matrices <var>U</var> and <var>V</var> are computed and stored in the arrays <span class="parmname">u</span>
+and <span class="parmname">v</span>, respectively. The diagonal of <span class="eqsymbol">Σ</span> is computed and
+stored in the array <span class="parmname">sva</span>.</p>
+<p>The <span class="option">?gejsv</span> routine can sometimes compute tiny singular values and their
+singular vectors much more accurately than other SVD
+routines.</p>
+<p>The  routine implements a preconditioned Jacobi SVD algorithm. It uses
+<span class="option">?geqp3</span>, <span class="option">?geqrf</span>, and <span class="option">?gelqf</span> as preprocessors and preconditioners. Optionally, an additional row pivoting can be used as a preprocessor, which in some cases results in much higher accuracy. An example is matrix <var>A</var> with the structure <samp class="codeph">A = D1 * C * D2</samp>, where <span class="keyword">D1</span>, <span class="keyword">D2</span> are arbitrarily ill-conditioned diagonal matrices and <span class="keyword">C</span> is a well-conditioned matrix. In that case, complete pivoting in the first QR factorizations provides accuracy dependent on the condition number of <span class="keyword">C</span>, and independent of <span class="keyword">D1</span>, <span class="keyword">D2</span>. Such higher accuracy is not completely understood theoretically, but it works well in practice.</p>
+<p>If <var>A</var> can be written as <samp class="codeph">A = B*D</samp>, with well-conditioned <var>B</var> and some diagonal <var>D</var>, then the high accuracy is guaranteed, both theoretically and in software, independent of <var>D</var>. For more details see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-1">Drmac08-1</a>], [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-2">Drmac08-2</a>].</p>
+<p>The computational range for the singular values can be the full range ( <span class="keyword">UNDERFLOW</span>,<span class="keyword">OVERFLOW</span> ), provided that the machine arithmetic and
+the BLAS and LAPACK routines called by <span class="option">?gejsv</span> are implemented to work in that range. If that is not the case, the
+restriction for safe computation with the singular values in the
+range of normalized IEEE numbers is that the spectral condition
+number <samp class="codeph">kappa(A)=sigma_max(A)/sigma_min(A)</samp> does not overflow. This code (<span class="option">?gejsv</span>) is best used in this restricted range, meaning that singular values of magnitude below <samp class="codeph">||A||_2 / slamch('O')</samp> (for single precision) or <samp class="codeph">||A||_2 / dlamch('O')</samp> (for double precision) are returned as zeros. See <span class="parmname">jobr</span> for details on this.</p>
+<p>This
+implementation is slower than the one described in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-1">Drmac08-1</a>], [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-2">Drmac08-2</a>]
+due to replacement of some non-LAPACK components, and because the
+choice of some tuning parameters in the iterative part (<span class="option">?gesvj</span>) is
+left to the implementer on a particular machine.</p>
+<p>The rank
+revealing QR factorization (in this code: <span class="option">?geqp3</span>) should be implemented as in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-3">Drmac08-3</a>].</p>
+<p>If <span class="parmname">m</span> is much larger than <span class="parmname">n</span>, it is
+obvious that the inital QRF with  column pivoting can be
+preprocessed by the QRF without pivoting. That well known trick
+is not used in <span class="option">?gejsv</span> because in some cases heavy row weighting
+can be treated with complete pivoting. The overhead in cases <span class="parmname">m</span> much larger than <span class="parmname">n</span> is then only due to pivoting, but the benefits
+in accuracy have prevailed. You can
+incorporate this extra QRF step easily and also
+improve data movement (matrix transpose, matrix copy, matrix
+transposed copy) - this implementation of <span class="option">?gejsv</span> uses only the
+simplest, naive data movement.</p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d887496e690"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d887496e690 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-46F70D2C-4D3D-4A76-9513-70BEDF4745C9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-CD365270-4DB6-4D96-B9EE-EDE23B7E0C18"><dt class="dlterm"><span class="parmname">joba</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'C'</span>, <span class="keyword">'E'</span>, <span class="keyword">'F'</span>, <span class="keyword">'G'</span>, <span class="keyword">'A'</span>, or <span class="keyword">'R'</span>.</p>
+<p>Specifies the level of accuracy:</p>
+<p>If <samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'C'</span></samp>, high relative accuracy is achieved if <samp class="codeph"><var>A</var> = <var>B</var>*<var>D</var></samp> with well-conditioned <var>B</var> and arbitrary diagonal matrix <var>D</var>. The accuracy cannot be spoiled by column scaling. The accuracy of the computed output depends on the condition of <var>B</var>, and the procedure aims at the best theoretical accuracy. The relative error <samp class="codeph">max_{i=1:N}|d sigma_i| / sigma_i</samp> is bounded by <samp class="codeph">f(M,N)*epsilon* cond(B)</samp>, independent of <var>D</var>. The input matrix is preprocessed with the QRF with column pivoting. This initial preprocessing and preconditioning by a rank revealing QR factorization is common for all values of <span class="parmname">joba</span>. Additional actions are specified as follows: </p>
+<p>If <samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'E'</span></samp>, computation as with <span class="keyword">'C'</span> with an additional estimate of the condition number of <var>B</var>. It provides a realistic error bound.</p>
+<p>If <samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'F'</span></samp>, accuracy higher than in the <span class="keyword">'C'</span> option is achieved, if <samp class="codeph"><var>A</var> = <var>D1</var>*<var>C</var>*<var>D2</var></samp> with ill-conditioned diagonal scalings <var>D1</var>, <var>D2</var>, and a well-conditioned matrix <var>C</var>. This option is advisable,
+if the structure of the input matrix is not known and relative
+accuracy is  desirable. The input
+matrix <var>A</var> is preprocessed with QR factorization with full (row and column) pivoting.</p>
+<p>If <samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'G'</span></samp>, computation as with <span class="keyword">'F'</span> with an additional estimate of the condition number of <var>B</var>, where <samp class="codeph"><var>A</var> = <var>B</var>*<var>D</var></samp>. If <var>A</var> has heavily weighted rows, using this condition number gives too pessimistic error bound.</p>
+<p>If <samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'A'</span></samp>, small singular values are the noise and the matrix is treated as numerically rank defficient. The error in the computed singular values is bounded by <samp class="codeph">f(m,n)*epsilon*||A||</samp>. The computed SVD <samp class="codeph">A = U*S*V**t</samp> (for real flavors) or <samp class="codeph">A = U*S*V**H</samp> (for complex flavors) restores <var>A</var> up to <samp class="codeph">f(m,n)*epsilon*||A||</samp>. This enables the procedure to set all singular values below <samp class="codeph">n*epsilon*||A||</samp> to zero.</p>
+<p>If <samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'R'</span></samp>, the procedure is similar to the <span class="keyword">'A'</span> option. Rank revealing property of the initial QR factorization is used to reveal (using triangular factor) a gap <samp class="codeph">sigma_{r+1} <span class="eqsymbol">&lt;</span> epsilon * sigma_r</samp>, in which case the numerical rank is declared to be <var>r</var>. The SVD is computed with absolute error bounds, but more accurately than with <span class="keyword">'A'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobu</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span>, <span class="keyword">'F'</span>, <span class="keyword">'W'</span>, or <span class="keyword">'N'</span>.</p>
+<p>Specifies whether to compute the columns of the matrix
+<var>U</var>:</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'U'</span></samp>, <span class="parmname">n</span> columns of <var>U</var> are returned in the array <span class="parmname">u</span></p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'F'</span></samp>, a full set of <span class="parmname">m</span> left singular vectors is returned in the array <span class="parmname">u</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'W'</span></samp>, <span class="parmname">u</span> may be used as workspace of length <span class="parmname">m</span>*<span class="parmname">n</span>. See the description of
+<span class="parmname">u</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">u</span> is not computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobv</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'V'</span>, <span class="keyword">'J'</span>, <span class="keyword">'W'</span>, or <span class="keyword">'N'</span>.</p>
+<p>Specifies whether to compute the matrix
+<var>V</var>:</p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'V'</span></samp>, <span class="parmname">n</span> columns of <var>V</var> are returned in the array <span class="parmname">v</span>; Jacobi rotations are not explicitly accumulated.</p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'J'</span></samp>, <span class="parmname">n</span> columns of <var>V</var> are returned in the array <span class="parmname">v</span> but they are computed as the product of Jacobi rotations. This option is allowed only if <span class="parmname">jobu</span><span class="eqsymbol">≠</span><span class="keyword">'N'</span></p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'W'</span></samp>, <span class="parmname">v</span> may be used as workspace of length <span class="parmname">n</span>*<span class="parmname">n</span>. See the description of
+<span class="parmname">v</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">v</span> is not computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobr</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'R'</span>.</p>
+<p>Specifies the range for the singular values. If small positive singular values are outside the specified range, they may be set to zero.
+If <var>A</var> is scaled so that the largest singular value of the scaled matrix is around <samp class="codeph">sqrt(big), big = <span class="option">?lamch</span>(<span class="keyword">'O'</span>)</samp>, the function can remove columns of <var>A</var> whose norm in the scaled matrix is less than <samp class="codeph">sqrt(<span class="option">?lamch</span>(<span class="keyword">'S'</span>))</samp> (for <span class="parmname">jobr</span> = <span class="keyword">'R'</span>), or less than <samp class="codeph">small = <span class="option">?lamch</span>(<span class="keyword">'S'</span>)/<span class="option">?lamch</span>(<span class="keyword">'E'</span>)</samp>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobr</span> = <span class="keyword">'N'</span></samp>, the function does not remove small columns of the scaled matrix. This option assumes that BLAS and QR factorizations and triangular solvers are implemented to work in that range. If the condition of <var>A</var> if greater that <samp class="codeph">big</samp>, use <span class="option">?gesvj</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobr</span> = <span class="keyword">'R'</span></samp>, restricted range for singular values of the scaled matrix <var>A</var> is <samp class="codeph">[sqrt(<span class="option">?lamch</span>(<span class="keyword">'S'</span>), sqrt(big)]</samp>, roughly as described above. This option is recommended.</p>
+<p>For computing the singular values in the full range <samp class="codeph">[<span class="option">?lamch</span>(<span class="keyword">'S'</span>),big]</samp>, use <span class="option">?gesvj</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobt</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'T'</span> or <span class="keyword">'N'</span>.</p>
+<p>If the matrix is square, the procedure may determine to use a transposed <var>A</var> if <samp class="codeph"><var>A</var><sup>T</sup></samp> (for real flavors) or <samp class="codeph"><var>A</var><sup>H</sup></samp> (for complex flavors) seems to be better with respect to convergence. If the matrix is not square, <span class="parmname">jobt</span> is ignored. </p>
+<p>The decision is based on two values of entropy over the adjoint orbit of <samp class="codeph"><var>A</var><sup>T</sup></samp>
+ * <var>A</var> (for real flavors) or <samp class="codeph"><var>A</var><sup>H</sup></samp>
+ * <var>A</var> (for complex flavors). See the descriptions of <span><span class="parmname">work(6)</span> and <span class="parmname">work(7)</span></span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'T'</span></samp>, the function performs  transposition if the entropy test indicates possibly faster convergence of the Jacobi process, if <var>A</var> is taken as input. If <var>A</var> is replaced with <samp class="codeph"><var>A</var><sup>T</sup></samp> or <samp class="codeph"><var>A</var><sup>H</sup></samp>, the row pivoting is included automatically.</p>
+<p>If <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'N'</span></samp>, the functions attempts no speculations. This option can be used to compute only the singular values, or the
+full SVD (<span class="parmname">u</span>, <var>sigma</var>, and <span class="parmname">v</span>). For only one set of singular vectors
+(<span class="parmname">u</span> or <span class="parmname">v</span>), the caller should provide both <span class="parmname">u</span> and <span class="parmname">v</span>, as one of the
+arrays is used as workspace if the matrix <var>A</var> is transposed. The implementer can easily remove this constraint and make the code more complicated. See the descriptions of <span class="parmname">u</span> and <span class="parmname">v</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>The <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'T'</span></samp> option is experimental and its effect might not be the same in subsequent releases. Consider using the <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'N'</span></samp> instead.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">jobp</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'P'</span> or <span class="keyword">'N'</span>.</p>
+<p>Enables structured perturbations of
+denormalized numbers. This option should be active if the denormals are poorly implemented, causing slow computation, especially in cases of fast convergence. For details,  see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-1">Drmac08-1</a>], [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DRMAC08-2">Drmac08-2</a>]
+.
+ For simplicity, such perturbations are included only
+when the full SVD or only the singular values are requested. You can add the perturbation for the cases
+of computing one set of singular vectors.</p>
+<p>If <samp class="codeph"><span class="parmname">jobp</span> = <span class="keyword">'P'</span></samp>, the function introduces perturbation.</p>
+<p>If <samp class="codeph"><span class="parmname">jobp</span> = <span class="keyword">'N'</span></samp>, the function introduces no perturbation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the input matrix <var>A</var>; <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in the input matrix <var>A</var>; <var>m</var><span class="eqsymbol">≥</span><var>n</var><span class="eqsymbol">≥</span> 0. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">u</span>, <span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgejsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgejsv</span>.</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgejsv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgejsv</span></p>
+<p>Array <span class="parmname">a</span><span>(<var>lda</var>,<span class="parmname">n</span>)</span>
+ is an array containing the <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>. </p>
+<p><var>u</var> is a workspace array,<span> its size is (<span class="parmname">ldu</span>,*); the second dimension of <var>u</var> must be <span class="parmname">m</span> if <span class="parmname">jobu</span> = 'F' and <var>n</var> otherwise, </span>. When <span class="parmname">jobt</span> = 'T' and <span class="parmname">m</span> = <span class="parmname">n</span>, <span class="parmname">u</span> must be provided even though <span class="parmname">jobu</span> = 'N'.</p>
+<p><var>v</var> is a workspace array, its size is <span>(<span class="parmname">ldv</span>,<span class="parmname">n</span>)</span>. When <span class="parmname">jobt</span> = 'T' and <span class="parmname">m</span> = <span class="parmname">n</span>, <span class="parmname">v</span> must be provided even though <span class="parmname">jobv</span> = 'N'. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. Must be at least <samp class="codeph">max(1, <span class="parmname">m</span>)</samp>
+.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sva</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgejsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgejsv</span>.</p>
+<p><span class="keyword">REAL</span> for <span class="option">cgejsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zgejsv</span></p>
+<p><var>sva</var> is a workspace array, its size is <span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldu</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>u</var>;  <samp class="codeph"><span class="parmname">ldu</span><span class="eqsymbol">≥</span> 1</samp>.</p>
+<p><span class="parmname">jobu</span> = <span class="keyword">'U'</span> or <span class="keyword">'F'</span> or <span class="keyword">'W'</span>, <span class="parmname">ldu</span><span class="eqsymbol">≥</span><var>m</var> for column major layout.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>v</var>;  <samp class="codeph"><span class="parmname">ldv</span><span class="eqsymbol">≥</span> 1</samp>.</p>
+<p><span class="parmname">jobv</span> = <span class="keyword">'V'</span> or <span class="keyword">'J'</span> or <span class="keyword">'W'</span>, <span class="parmname">ldv</span><span class="eqsymbol">≥</span><var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span><span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgejsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgejsv</span>.</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(7, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>For real flavors:</p>
+<p>Length of <var>work</var> to confirm proper allocation of work space. <span class="parmname">lwork</span> depends on the task performed:</p>
+<p>If only <var>sigma</var> is needed (<samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'N'</span></samp>, <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'N'</span></samp>) and <ul class="dash" id="GUID-DC2E5055-BE2C-448F-ACCE-10D818796A34"><li><p>no scaled condition estimate is required, then 
+<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,4*<span class="parmname">n</span>+1,7)</samp>. This is the minimal requirement. For optimal performance (blocked code) the optimal value is <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,3*<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>,7)</samp>. Here <var>nb</var> is the optimal block size for <span class="option">?geqp3/?geqrf</span>.</p>
+<p>In general, the optimal length  <span class="parmname">lwork</span> is computed as</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,<span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqp3</span>),<span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqrf</span>),7)</samp> for <span class="option">sgejsv</span></p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqp3</span>),<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqrf</span>),7)</samp> for <span class="option">dgejsv</span></p>
+</li>
+<li><p> ... an estimate of the scaled condition number of <var>A</var> is required (<samp class="codeph"><span class="parmname">joba</span> = <span class="keyword">'E'</span>, <span class="keyword">'G'</span></samp>). In this case, <span class="parmname">lwork</span> is the maximum  of the above and <samp class="codeph"><var>n</var>*<span class="parmname">n</span>+4*<span class="parmname">n</span></samp>, that is, 
+<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,<span class="parmname">n</span>*<span class="parmname">n</span>+4*<span class="parmname">n</span>,7)</samp>. For optimal performance (blocked code) the optimal value is <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,3*<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, <span class="parmname">n</span>*<span class="parmname">n</span>+4*<span class="parmname">n</span>, 7)</samp>.</p>
+<p>In general, the optimal length  <span class="parmname">lwork</span> is computed as</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,<span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqp3</span>),<span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqrf</span>),<span class="parmname">n</span>+<span class="parmname">n</span>*<span class="parmname">n</span>+<var>lwork</var>(<span class="option">spocon</span>, 7)</samp> for <span class="option">sgejsv</span></p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqp3</span>),<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqrf</span>),<span class="parmname">n</span>+<span class="parmname">n</span>*<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dpocon</span>, 7)</samp> for <span class="option">dgejsv</span></p>
+</li>
+</ul>
+</p>
+<p>If <var>sigma</var> and the right singular vectors are needed (<samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'V'</span></samp>), <ul class="dash" id="GUID-F30F2734-3BE1-4389-8F87-660768039056"><li><p>the minimal requirement is <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,4*<span class="parmname">n</span>+1,7)</samp>.</p>
+</li>
+<li><p> for optimal performance, 
+<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,3*<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>,7)</samp>, where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?gelqf</span>, <span class="option">?ormlq</span>. In general, the optimal length  <span class="parmname">lwork</span> is computed as</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>, <span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqp3</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">spocon</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgelqf</span>), 2*<span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqrf</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">sormlq</span>)</samp> for <span class="option">sgejsv</span></p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>, <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqp3</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dpocon</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgelqf</span>), 2*<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqrf</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dormlq</span>)</samp> for <span class="option">dgejsv</span></p>
+</li>
+</ul>
+</p>
+<p>If <var>sigma</var> and the left singular vectors are needed<ul class="dash" id="GUID-13C3BE81-196C-4860-BEB2-D355924B9E93"><li><p>the minimal requirement is <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">n</span>+<span class="parmname">m</span>,4*<span class="parmname">n</span>+1,7)</samp>.</p>
+</li>
+<li><p> for optimal performance, 
+</p>
+<p>if <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'U'</span></samp> :: <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,3*<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, 7)</samp>,</p>
+<p>if <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'F'</span></samp> :: <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>,3*<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, <span class="parmname">n</span>+<span class="parmname">m</span>*<var>nb</var>, 7)</samp>,</p>
+<p>where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?ormlq</span> . In general, the optimal length  <span class="parmname">lwork</span> is computed as</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>, <span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqp3</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">spocon</span>),  2*<span class="parmname">n</span>+<var>lwork</var>(<span class="option">sgeqrf</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">sormlq</span>)</samp> for <span class="option">sgejsv</span></p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>, <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqp3</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dpocon</span>),  2*<span class="parmname">n</span>+<var>lwork</var>(<span class="option">dgeqrf</span>), <span class="parmname">n</span>+<var>lwork</var>(<span class="option">dormlq</span>)</samp> for <span class="option">dgejsv</span></p>
+<p>Here <var>lwork</var>(<span class="option">?ormlq</span>) equals <samp class="codeph"><span class="parmname">n</span>*<var>nb</var></samp> (for <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'U'</span></samp>) or <samp class="codeph"><span class="parmname">m</span>*<var>nb</var></samp> (for <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'F'</span></samp>)</p>
+</li>
+</ul>
+</p>
+<p>If full SVD is needed (<samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'U'</span> or <span class="keyword">'F'</span>)</samp> and</p>
+<ul class="dash" id="GUID-C2AF6F52-F694-4A3D-8DAB-BFDD6624FB0A"><li><p>if <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'V'</span></samp>,</p>
+<p>the minimal requirement is <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>, 6*<span class="parmname">n</span>+2*<span class="parmname">n</span>*<span class="parmname">n</span>)</samp></p>
+</li>
+<li><p>if <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'J'</span></samp>,</p>
+<p>the minimal requirement is <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(2*<span class="parmname">m</span>+<span class="parmname">n</span>, 4*<span class="parmname">n</span>+<span class="parmname">n</span>*<span class="parmname">n</span>, 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<span class="parmname">n</span>+6)</samp></p>
+</li>
+<li><p>For optimal performance, <var>lwork</var> should be additionally larger than <samp class="codeph"><span class="parmname">n</span>+<span class="parmname">m</span>*<var>nb</var></samp>, where <var>nb</var> is the optimal block size for <span class="option">?ormlq</span>.</p>
+</li>
+</ul>
+<p>For complex flavors:</p>
+<p>Length of <span class="parmname">cwork</span> to confirm proper allocation of workspace. The value of <span class="parmname">lwork</span> depends on the job:</p>
+<ul id="GUID-9B921979-C0D9-4667-9DC4-27AFCE31E0D0"><li><p>If only <var>sigma</var> is needed <samp class="codeph">( <span class="parmname">jobu</span>.EQ.<span class="keyword">'N'</span>, <span class="parmname">jobv</span>.EQ.<span class="keyword">'N'</span> )</samp> and</p>
+<ul id="GUID-B5C0C4FB-0CC2-4BD1-B9BA-52E058A158A2"><li><p>no scaled condition estimate is required:  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 2*<span class="parmname">n</span>+1</samp>. This is the minimal requirement.  For optimal performance (blocked code) the optimal value  is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span><span class="parmname">n</span> + (<span class="parmname">n</span>+1)*<var>nb</var></samp>. Here <var>nb</var> is the optimal  block size for <span class="option">?geqp3</span> and <span class="option">?geqrf</span>.  In general, optimal <span class="parmname">lwork</span> is computed as   <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">lwork</span>(<span class="option">?gesvj</span>))</samp>.</p>
+</li>
+<li><p> an estimate of the scaled condition number of <span class="parmname">a</span> is  required (<samp class="codeph"><span class="parmname">joba</span>=<span class="keyword">'E'</span> or <span class="keyword">'G'</span></samp>). In this case, the minimal  requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span><span class="parmname">n</span>*<span class="parmname">n</span> + 2*<span class="parmname">n</span></samp>.  For optimal performance (blocked code) the optimal value   is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, <span class="parmname">n</span>*<span class="parmname">n</span>+3*<span class="parmname">n</span>)</samp> = <span class="parmname">n</span><sup>2</sup> + 2*<span class="parmname">n</span>.  In general, the optimal length <span class="parmname">lwork</span> is computed as  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>),<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">lwork</span>(<span class="option">?gesvj</span>),   <span class="parmname">n</span>+<span class="parmname">n</span>*<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?pocon</span>))</samp>.</p>
+</li>
+</ul>
+</li>
+<li><p>If <var>sigma</var> and the right singular vectors are needed (<samp class="codeph"><span class="parmname">jobv</span>.EQ.<span class="keyword">'V'</span></samp> or   <samp class="codeph"><span class="parmname">jobu</span>.EQ.<span class="keyword">'N'</span></samp>) and</p>
+<ul id="GUID-36DE4451-24B9-44B1-AC84-6288EEBD3D83"><li><p>no scaled condition estimate is requested (<samp class="codeph"><span class="parmname">jobe</span> .EQ.<span class="keyword">'N'</span></samp>), then the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 3*<span class="parmname">n</span></samp>. For optimal performance, <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var>) = 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var></samp>,  where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?gelq</span>,  <span class="option">?unmlq</span>. </p>
+<p>In general, the optimal length <span class="parmname">lwork</span> is computed as  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?gesvj</span>),  <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?gelqf</span>), 2*<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?unmlq</span>))</samp>.</p>
+</li>
+<li><p>an estimate of the scaled condition number of <span class="parmname">a</span> is  required (<samp class="codeph"><span class="parmname">joba</span>=<span class="keyword">'E'</span> or <span class="keyword">'G'</span></samp>), then the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 3*<span class="parmname">n</span></samp>. For optimal performance, <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>,  2*<span class="parmname">n</span>,  2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var>) = 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var></samp>,  where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?gelq</span>,  <span class="option">?unmlq</span></p>
+<p>In general, the optimal length <span class="parmname">lwork</span> is computed as  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?pocon</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?gesvj</span>),  <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?gelqf</span>), 2*<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?unmlq</span>))</samp></p>
+</li>
+</ul>
+</li>
+<li><p>If <var>sigma</var> and the left singular vectors are needed and</p>
+<ul id="GUID-EE807A48-E877-492F-8CD9-75CDC85CE9C1"><li><p>no scaled condition estimate is requested (<samp class="codeph"><span class="parmname">jobe</span> .EQ.<span class="keyword">'N'</span></samp>), then the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 3*<span class="parmname">n</span></samp>.  </p>
+<p>For optimal performance:  <samp class="codeph">if <span class="parmname">jobu</span>.EQ.<span class="keyword">'U'</span> :: <span class="parmname">lwork</span><span>≥</span> max(3*<span class="parmname">n</span>, <span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var>) = 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var></samp>,  where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?unmqr</span>.  In general, the optimal length <span class="parmname">lwork</span> is computed as  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>),2*<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?unmqr</span>))</samp>.</p>
+</li>
+<li><p>an estimate of the scaled condition number of <span class="parmname">a</span> is  required (<samp class="codeph"><span class="parmname">joba</span>=<span class="keyword">'E'</span> or <span class="keyword">'G'</span></samp>), then the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 3*<span class="parmname">n</span></samp>.  </p>
+<p>For optimal performance:  <samp class="codeph">if <span class="parmname">jobu</span>.EQ.<span class="keyword">'U'</span> :: <span class="parmname">lwork</span><span>≥</span> max(3*<span class="parmname">n</span>, <span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var>) = 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var></samp>,  where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?unmqr</span>.  In general, the optimal length <span class="parmname">lwork</span> is computed as  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>),<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?pocon</span>),  2*<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?unmqr</span>))</samp>.</p>
+</li>
+</ul>
+<p> then the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 3*<span class="parmname">n</span></samp>.  For optimal performance:  <samp class="codeph">if <span class="parmname">jobu</span>.EQ.<span class="keyword">'U'</span> :: <span class="parmname">lwork</span><span>≥</span> max(3*<span class="parmname">n</span>, <span class="parmname">n</span>+(<span class="parmname">n</span>+1)*<var>nb</var>, 2*<span class="parmname">n</span>+<span class="parmname">n</span>*<var>nb</var>)</samp>,  where <var>nb</var> is the optimal block size for <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?unmqr</span>.  In general, the optimal length <span class="parmname">lwork</span> is computed as  <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> max(<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqp3</span>),<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?pocon</span>),  2*<span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?geqrf</span>), <span class="parmname">n</span>+<span class="parmname">lwork</span>(<span class="option">?unmqr</span>))</samp>.</p>
+</li>
+<li><p>If the full SVD is needed: (<samp class="codeph"><span class="parmname">jobu</span>.EQ.<span class="keyword">'U'</span></samp> or <span class="parmname">jobu</span>.EQ.<span class="keyword">'F'</span>) and</p>
+<ul id="GUID-A27A160B-5D4A-4A65-8629-AB69A9ADB367"><li><p>if <samp class="codeph"><span class="parmname">jobv</span>.EQ.<span class="keyword">'V'</span></samp>   the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 5*<span class="parmname">n</span>+2*<span class="parmname">n</span>*<span class="parmname">n</span></samp>.</p>
+</li>
+<li><p> if <samp class="codeph"><span class="parmname">jobv</span>.EQ.<span class="keyword">'J'</span></samp> the minimal requirement is <samp class="codeph"><span class="parmname">lwork</span><span>≥</span> 4*<span class="parmname">n</span>+<span class="parmname">n</span>*<span class="parmname">n</span></samp>.  In both cases, the allocated <span class="parmname">cwork</span> can accommodate blocked runs  of <span class="option">?geqp3</span>, <span class="option">?geqrf</span>, <span class="option">?gelqf</span>, <span class="option">?unmqr</span>, <span class="option">?unmlq</span>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>If the call to <span class="option">?gejsv</span> is a workspace query (indicated by <span class="parmname">lwork</span> = -1 or          <span class="parmname">lrwork</span> = -1), then on exit <samp class="codeph"><span class="parmname">cwork</span>(1)</samp> contains the required length of          <span class="parmname">cwork</span> for the job parameters used in the call.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cwork</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cgejsv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgejsv</span></p>
+<p><span class="parmname">cwork</span> is a workspace array of size <samp class="codeph">max(2, <span class="parmname">lwork</span>)</samp>.</p>
+<p>If the call to <span class="option">?gejsv</span> is a workspace query (indicated by <span class="parmname">lwork</span> = -1 or          <span class="parmname">lrwork</span> = -1), then on exit <samp class="codeph"><span class="parmname">cwork</span>(1)</samp> contains the required length of          <span class="parmname">cwork</span> for the job parameters used in the call.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cgejsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zgejsv</span></p>
+<p><span class="parmname">rwork</span> is an array of size at least max(7, <span class="parmname">lrwork</span>) for real flavors and at least max(7, <span class="parmname">lwork</span>) for complex flavors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lrwork</span></dt>
+
+<dd><p><span>INTEGER. </span>Length of <span class="parmname">rwork</span> to confirm proper allocation of workspace. <span class="parmname">lrwork</span> depends on the job:</p>
+<p>   1. If only singular values are requested i.e. if   <samp class="codeph">lsame(<span class="parmname">jobu</span>,'N') .AND. lsame(<span class="parmname">jobv</span>,'N')</samp>   then:  </p>
+<ul id="GUID-F7B5A192-605D-4263-8E40-75F526C36B39"><li><p>If <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>,  then <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, 2 * <span class="parmname">m</span> )</samp>.</p>
+</li>
+<li><p>Otherwise, <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, <span class="parmname">n</span> )</samp>.</p>
+</li>
+</ul>
+<p>   2. If singular values with the right singular vectors are requested  i.e. if   <samp class="codeph">(lsame(<span class="parmname">jobv</span>,<span class="keyword">'V'</span>).OR.lsame(<span class="parmname">jobv</span>,<span class="keyword">'J'</span>)) .AND.   .NOT.(lsame(<span class="parmname">jobu</span>,<span class="keyword">'U'</span>).OR.lsame(<span class="parmname">jobu</span>,<span class="keyword">'F'</span>))</samp>  then:</p>
+<ul id="GUID-0D639648-28D1-48C3-98E3-F7CDFF48B1AE"><li><p>If <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>,  then <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, 2 * <span class="parmname">m</span> )</samp>.</p>
+</li>
+<li><p>Otherwise, <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, <span class="parmname">n</span> )</samp>.</p>
+</li>
+</ul>
+<p>     3. If singular values with the left singular vectors are requested, i.e. if   <samp class="codeph">(lsame(<span class="parmname">jobu</span>,<span class="keyword">'U'</span>).OR.lsame(<span class="parmname">jobu</span>,<span class="keyword">'F'</span>)) .AND.  .NOT.(lsame(<span class="parmname">jobv</span>,<span class="keyword">'V'</span>).OR.lsame(<span class="parmname">jobv</span>,<span class="keyword">'J'</span>))</samp>  then:</p>
+<ul id="GUID-3247DD2C-E027-49F9-A8BE-021D984B5ABD"><li><p>If <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>,  then <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, 2 * <span class="parmname">m</span> ).</samp></p>
+</li>
+<li><p> Otherwise, <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, <span class="parmname">n</span> )</samp>.</p>
+</li>
+</ul>
+<p>    4. If singular values with both the left and the right singular vectors   are requested, i.e. if   <samp class="codeph">(lsame(<span class="parmname">jobu</span>,<span class="keyword">'U'</span>).OR.lsame(<span class="parmname">jobu</span>,<span class="keyword">'F'</span>)) .AND.  (lsame(<span class="parmname">jobv</span>,<span class="keyword">'V'</span>).OR.lsame(<span class="parmname">jobv</span>,<span class="keyword">'J'</span>))</samp>  then:</p>
+<ul id="GUID-E5CA913B-B087-4FCC-9F9C-2795646925D7"><li><p>If <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>,  then <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, 2 * <span class="parmname">m</span> )</samp>.</p>
+</li>
+<li><p>Otherwise, <samp class="codeph"><span class="parmname">lrwork</span> = max( 7, <span class="parmname">n</span> )</samp>.</p>
+</li>
+</ul>
+<p>For complex flavors, if the call to <span class="option">?gejsv</span> is a workspace query (indicated by <span class="parmname">lwork</span> = -1 or          <span class="parmname">lrwork</span> = -1), then on exit <samp class="codeph"><span class="parmname">rwork</span>(1)</samp> contains the required length of          <span class="parmname">rwork</span> for the job parameters used in the call.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, of size</p>
+<p>For real flavors:</p>
+<p><samp class="codeph">)</samp>.</p>
+<p><samp class="codeph">max(3, <span class="parmname">m</span>+3*<span class="parmname">n</span></samp><samp class="codeph">max( 3, 2 * <span class="parmname">n</span> + <span class="parmname">m</span> )</samp>.</p>
+<p>For complex flavors, the size depends on the job but is at least 4:</p>
+<ul id="GUID-8396826B-8FA5-41D0-A726-0CB8E588891C"><li><p>If only the singular values are requested and <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>, then the length of <span class="parmname">iwork</span> is <span class="parmname">n</span> + <span class="parmname">m</span>; otherwise the length of <span class="parmname">iwork</span> is <span class="parmname">n</span>.</p>
+</li>
+<li><p>If the singular values and the right singular vectors are requested and <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>, then the length of <span class="parmname">iwork</span> is <span class="parmname">n</span> + <span class="parmname">m</span>; otherwise the length of <span class="parmname">iwork</span> is <span class="parmname">n</span>.</p>
+</li>
+<li><p>If the singular values and the left singular vectors are requested and <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>, then the length of <span class="parmname">iwork</span> is <span class="parmname">n</span> + <span class="parmname">m</span>; otherwise the length of <span class="parmname">iwork</span> is <span class="parmname">n</span>.</p>
+</li>
+<li><p>If the singular values and both the left and the right singular vectors are requested and </p>
+<ul id="GUID-DE445CC3-8D9D-4C85-ADF2-FE4250A15EE0"><li><p>if <samp class="codeph">lsame(<span class="parmname">jobv</span>,<span class="keyword">'J'</span>)</samp>, if <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>, then the length of <span class="parmname">iwork</span> is <span class="parmname">n</span> + <span class="parmname">m</span>; otherwise the length of <span class="parmname">iwork</span> is <span class="parmname">n</span>.</p>
+</li>
+<li><p>if <samp class="codeph">lsame(<span class="parmname">jobv</span>,<span class="keyword">'V'</span>)</samp> , if <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>, then the length of <span class="parmname">iwork</span> is 2*<span class="parmname">n</span> + <span class="parmname">m</span>; otherwise the length of <span class="parmname">iwork</span> is 2*<span class="parmname">n</span>.</p>
+</li>
+</ul>
+<p>and <samp class="codeph">lsame(<span class="parmname">jobt</span>,<span class="keyword">'T'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'F'</span>) .OR. lsame(<span class="parmname">joba</span>,<span class="keyword">'G'</span>)</samp>, then the length of <span class="parmname">iwork</span> is <span class="parmname">n</span> + <span class="parmname">m</span>; otherwise the length of <span class="parmname">iwork</span> is <span class="parmname">n</span>.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1F8305EB-6ACE-414F-9FDB-5FB6613421FC"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8D6C1D71-1EE3-44EC-90FD-AA2C484AB9B8"><dt class="dlterm"><span class="parmname">sva</span></dt>
+
+<dd><p>On exit:</p>
+<p>For <samp class="codeph"><span class="parmname">work(1)</span>/<span class="parmname">work(2)</span> = one</samp>: the singular values of <var>A</var>. During the computation <span class="parmname">sva</span> contains Euclidean column norms of the
+iterated matrices in the array <span class="parmname">a</span>.</p>
+<p>For <samp class="codeph"><span class="parmname">work(1)</span><span class="eqsymbol">≠</span><span class="parmname">work(2)</span></samp>: the singular values of <var>A</var> are <samp class="codeph">(<span class="parmname">work(1)</span>/<span class="parmname">work(2)</span>) * <span class="parmname">sva</span>(1:<span class="parmname">n</span>)</samp>. This factored form is used if <var>sigma_max(A)</var> overflows or if small singular values have been saved from underflow by
+scaling the input matrix
+<var>A</var>.</p>
+<p><samp class="codeph"><span class="parmname">jobr</span> = <span class="keyword">'R'</span></samp>, some of the singular values may be returned as exact zeros
+obtained by 'setting to zero' because they are  below the numerical
+rank threshold or are denormalized numbers.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p>On exit:</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'U'</span></samp>, contains the <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix of the left singular vectors.</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'F'</span></samp>, contains the <span class="parmname">m</span>-by-<span class="parmname">m</span> matrix of the left singular vectors, including an orthonormal  basis of the orthogonal complement of the range of <var>A</var>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'W'</span></samp> and <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'V'</span></samp>, <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'T'</span></samp>, and  <samp class="codeph"><span class="parmname">m</span> = <span class="parmname">n</span></samp>, then  <span class="parmname">u</span>
+is used as workspace if the procedure replaces <var>A</var> with <var>A</var><sup>T</sup> (for real flavors) or <var>A</var><sup>H</sup> (for complex flavors). In that
+case, <span class="parmname">v</span> is computed in <span class="parmname">u</span> as left singular vectors of <var>A</var><sup>T</sup> or <var>A</var><sup>H</sup> and copied back to the <span class="parmname">v</span> array. This <span class="keyword">'W'</span> option is just a
+reminder to the caller that in this case <span class="parmname">u</span> is reserved as
+workspace of length <span class="parmname">n</span>*<span class="parmname">n</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">u</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p>On exit:</p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'V'</span> or <span class="keyword">'J'</span></samp>, contains the <span class="parmname">n</span>-by-<span class="parmname">n</span> matrix of the right singular vectors.</p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'W'</span></samp> and <samp class="codeph"><span class="parmname">jobu</span> = <span class="keyword">'U'</span></samp>, <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'T'</span></samp>, and  <samp class="codeph"><span class="parmname">m</span> = <span class="parmname">n</span></samp>, then  <span class="parmname">v</span>
+is used as workspace if the procedure replaces <var>A</var> with <var>A</var><sup>T</sup> (for real flavors) or <var>A</var><sup>H</sup> (for complex flavors). In that
+case, <span class="parmname">u</span> is computed in <span class="parmname">v</span> as right singular vectors of <var>A</var><sup>T</sup> or <var>A</var><sup>H</sup> and copied back to the <span class="parmname">u</span> array. This <span class="keyword">'W'</span> option is just a
+reminder to the caller that in this case <span class="parmname">v</span> is reserved as
+workspace of length <span class="parmname">n</span>*<span class="parmname">n</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">jobv</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">v</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>On exit,</p>
+<p><span class="parmname">work(1)</span> = <var>scale</var> = <span class="parmname">work(2)</span>/<span class="parmname">work(1)</span> is the scaling factor such that <samp class="codeph"><var>scale</var>*<span class="parmname">sva</span>(1:<span class="parmname">n</span>)</samp> are the computed singular values of <var>A</var>. See the description of <span class="parmname">sva()</span>.</p>
+<p><span class="parmname">work(2)</span> =  see the description of <span class="parmname">work(1)</span>.</p>
+<p><span class="parmname">work(3)</span> = <var>sconda</var> is an estimate for the condition number of column equilibrated <var>A</var>. If <span class="parmname">joba</span> = <span class="keyword">'E'</span> or 
+<span class="keyword">'G'</span>, 
+<var>sconda</var>
+is an estimate of <samp class="codeph">sqrt(||(R**t * R)**(-1)||_1)</samp>. It is computed using 
+<span class="option">?pocon</span>. It holds <samp class="codeph"><span class="parmname">n</span>**(-1/4) * <var>sconda</var><span class="eqsymbol">≤</span> ||R**(-1)||_2 <span class="eqsymbol">≤</span><span class="parmname">n</span>**(1/4) * <var>sconda</var></samp>, where <span class="keyword">R</span> is the triangular factor from the QRF of 
+<var>A</var>. However, if <span class="keyword">R</span> is truncated and the numerical rank is determined
+to be strictly smaller than <span class="parmname">n</span>, <var>sconda</var> is returned as -1, indicating that the smallest singular values might be lost.</p>
+<p>If full SVD is needed, the following two condition numbers are useful for the analysis of the algorithm. They are provided for a
+user who is familiar with the details of the
+method.</p>
+<p><span class="parmname">work(4)</span> =  an estimate of the scaled condition number of the triangular
+factor in the first QR factorization.</p>
+<p><span class="parmname">work(5)</span> =  an estimate of the scaled condition number of the triangular
+factor in the second QR factorization.</p>
+<p>The following two parameters are computed if <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'T'</span></samp>. They
+are provided for a user who is familiar with the
+details of the method.</p>
+<p><span class="parmname">work(6)</span> =  the entropy of <samp class="codeph"><var>A</var>**t*<var>A</var> ::</samp> this is the Shannon entropy of <samp class="codeph">diag(<var>A</var>**t*<var>A</var>) / Trace(<var>A</var>**t*<var>A</var>)</samp> taken as point in the probability simplex.</p>
+<p><span class="parmname">work(7)</span> =  the entropy of <samp class="codeph"><var>A</var>*<var>A</var>**t</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p> On exit,</p>
+<p><span class="parmname">rwork(1)</span> determines the scaling factor <var>scale</var> = <span class="parmname">rwork(2) </span>/ <span class="parmname">rwork(1)</span> such that <samp class="codeph"><var>scale</var>*<span class="parmname">sva</span>(1:<span class="parmname">n</span>)</samp> are the computed singular values of <span class="parmname">a</span>. (See the description of <span class="parmname">sva()</span>.)</p>
+<p><span class="parmname">rwork(2)</span> = see the description of <span class="parmname">rwork(1)</span>.</p>
+<p><span class="parmname">rwork(3) </span>= <var>sconda</var> is an estimate for the condition number of column equilibrated <var>A</var>. If <span class="parmname">joba</span> = <span class="keyword">'E'</span> or <span class="keyword">'G'</span>, <var>sconda</var> is an estimate of <samp class="codeph">SQRT(||(R^* * R)^(-1)||_1)</samp>. It is computed using <span class="option">?pocon</span>. It holds <samp class="codeph"><span class="parmname">n</span>^(-1/4) * <var>sconda</var><span class="eqsymbol">≤</span> ||R^(-1)||_2 <span class="eqsymbol">≤</span><span class="parmname">n</span>^(1/4) * <var>sconda</var></samp> where <span class="keyword">R</span> is the triangular factor from the QRF of <var>A</var>. However, if <span class="keyword">R</span> is truncated and the numerical rank is determined to be strictly smaller than <span class="parmname">n</span>, <var>sconda</var> is returned as -1, thus indicating that the smallest singular values might be lost.</p>
+<p>  If full SVD is needed, the following two condition numbers are useful for the analysis of the algorithm. They are provided for a user who is familiar with the details of the method.</p>
+<p><span class="parmname">rwork(4)</span> = an estimate of the scaled condition number of the triangular factor in the first QR factorization.</p>
+<p><span class="parmname">rwork(5)</span> = an estimate of the scaled condition number of the triangular factor in the second QR factorization.</p>
+<p> The following two parameters are computed if <samp class="codeph"><span class="parmname">jobt</span> = <span class="keyword">'T'</span></samp>. They are provided for a user who is familiar with the details of the method.</p>
+<p><span class="parmname">rwork(6)</span> = the entropy of <samp class="codeph"><var>A</var>^* * <var>A</var> ::</samp> this is the Shannon entropy of <samp class="codeph">diag(<var>A</var>^* * <var>A</var>) / Trace(<var>A</var>^* * <var>A</var>)</samp> taken as point in the probability simplex.</p>
+<p><span class="parmname">rwork(7)</span> = the entropy of <samp class="codeph"><var>A</var> * <var>A</var>^*</samp>. (See the description of <span class="parmname">rwork(6)</span>.)</p>
+<p>For complex flavors, if the call to <span class="option">?gejsv</span> is a workspace query (indicated by <span class="parmname">lwork</span> = -1 or          <span class="parmname">lrwork</span> = -1), then on exit <samp class="codeph"><span class="parmname">rwork</span>(1)</samp> contains the required length of          <span class="parmname">rwork</span> for the job parameters used in the call.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>On exit,</p>
+<p><span class="parmname">iwork(1)</span> = the numerical rank determined after the initial QR factorization
+with pivoting. See the descriptions of <span class="parmname">joba</span> and <span class="parmname">jobr</span>.</p>
+<p><span class="parmname">iwork(2)</span> = the number of the computed nonzero singular value.</p>
+<p><span class="parmname">iwork(3)</span> =  if nonzero, a warning message. If <span class="parmname">iwork(3)</span>=1, some of the column norms of <var>A</var> were denormalized floats. The
+requested high accuracy is not warranted by the data.</p>
+<p>For complex flavors, <span class="parmname">iwork(4)</span> = 1 or -1. If <span class="parmname">iwork(4)</span> = 1, then the procedure used <var>A</var><sup>H</sup> to do the job as specified by the <span class="parmname">job</span> parameters.</p>
+<p>For complex flavors, if the call to <span class="option">?gejsv</span> is a workspace query (indicated by <span class="parmname">lwork</span> = -1 or          <span class="parmname">lrwork</span> = -1), then on exit <samp class="codeph"><span class="parmname">iwork</span>(1)</samp> contains the required length of          <span class="parmname">iwork</span> for the job parameters used in the call.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> &gt; 0</samp>, the function did not converge in the maximal number of sweeps. The computed values may be inaccurate.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BDA281B1-921F-4A41-B381-DCD341B0774A.html">Singular Value Decomposition: LAPACK Driver Routines</a></div>
+</div>
+<div><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-4326D19C-246A-4A7B-9728-03D371FB39AD.html#GUID-4326D19C-246A-4A7B-9728-03D371FB39AD"><span class="option">?geqp3</span></a> </div>
+<div><a href="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A.html#GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A"><span class="option">?geqrf</span></a> </div>
+<div><a href="GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE.html#GUID-5844A2DB-9062-4344-BD68-80A1C3208CCE"><span class="option">?gelqf</span></a> </div>
+<div><a href="GUID-9469788C-1DF5-46A8-999B-F71B17245938.html#GUID-9469788C-1DF5-46A8-999B-F71B17245938"><span class="option">?gesvj</span></a> </div>
+<div><a href="GUID-7D137664-6F3E-4832-BEDD-39EAF5AE9F52.html#GUID-7D137664-6F3E-4832-BEDD-39EAF5AE9F52"><span class="option">?lamch</span></a> </div>
+<div><a href="GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB.html#GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB"><span class="option">?pocon</span></a> </div>
+<div><a href="GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D.html#GUID-E4CB7423-6D55-46F9-A3EC-4FD4EBF9820D"><span class="option">?ormlq</span></a> </div></div></div>
+</body>
+</html>

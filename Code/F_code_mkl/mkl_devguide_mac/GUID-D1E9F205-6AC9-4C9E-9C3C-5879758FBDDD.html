@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="oneMKL-specific Environment Variables for OpenMP Threading Control"/>
+<meta name="DC.subject" content="environment variables, for threading control"/>
+<meta name="keywords" content="environment variables, for threading control"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0073DDBD-3239-44B2-AD92-87A533733E11.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D1E9F205-6AC9-4C9E-9C3C-5879758FBDDD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>oneMKL-specific Environment Variables for OpenMP Threading Control</title>
+
+</head>
+<body id="GUID-D1E9F205-6AC9-4C9E-9C3C-5879758FBDDD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">oneMKL-specific Environment Variables for OpenMP Threading Control</h1>
+<div id="GUID-5196B81B-6F61-445D-A601-672CF4D8FD22"><p id="GUID-28A11999-7283-4200-87A7-432D610A78A5">Intel&reg; oneAPI Math Kernel Library provides environment variables and support functions to control 
+      Intel&reg; oneAPI Math Kernel Library threading independently of OpenMP. The 
+      Intel&reg; oneAPI Math Kernel Library-specific threading controls take precedence over their OpenMP equivalents. Use the 
+      Intel&reg; oneAPI Math Kernel Library-specific threading controls to distribute OpenMP threads between 
+      Intel&reg; oneAPI Math Kernel Library and the rest of your program.
+    </p>
+<div class="section" id="GUID-D592A272-11EB-4516-BB58-A68AF2126F77"><div class="Note"><h3 class="NoteTipHead">Note</h3> <p id="GUID-9B13DF98-58C2-4212-B872-B83080E2BB79">Some 
+          Intel&reg; oneAPI Math Kernel Library routines may use fewer OpenMP threads than suggested by the threading controls if either the underlying algorithms do not support the suggested number of OpenMP threads or the routines perform better with fewer OpenMP threads because of lower OpenMP overhead and/or better data locality. Set the<span class="keyword">MKL_DYNAMIC</span> environment variable to 
+          <span class="keyword">FALSE</span> or call 
+          <samp class="codeph">mkl_set_dynamic(0)</samp> to use the suggested number of OpenMP threads whenever the algorithms permit and regardless of OpenMP overhead and data locality. 
+        </p>
+</div>
+<p id="GUID-A15EBC46-B64E-420C-B6A3-F9AB77398B3C"><span>Subsection</span> "Number of User Threads" in the "Fourier Transform Functions" 
+        <span>section</span> of the 
+        <em id="GUID-08D7E577-66A7-431E-B082-320C817BA13F">Intel&reg; oneAPI Math Kernel Library Developer Reference</em>shows how the 
+        Intel&reg; oneAPI Math Kernel Library threading controls help to set the number of threads for the FFT computation.
+      </p>
+<p id="GUID-D71C0902-C812-4FA1-9CDD-4155C9E5A216">The table below lists the 
+        Intel&reg; oneAPI Math Kernel Library environment variables for threading control, their equivalent functions, and OMP counterparts:
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-AA7A5119-8AAD-4A9E-BEC6-DDAE5D3990B4" width="100%" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="25%" id="d29050e104"><p id="GUID-53D964F2-6991-4EBD-8BD1-7DFFE852A8B7">Environment Variable 
+                </p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="d29050e107"><p id="GUID-4D3759B8-D549-4817-B4C5-E32C0C0C1866">Support Function 
+                </p>
+</th>
+<th class="cellrowborder" valign="top" width="25%" id="d29050e110"><p id="GUID-6589D0E8-CFCA-4C76-9668-E98E57DF7417">Comment 
+                </p>
+</th>
+<th class="row-nocellborder" valign="top" width="25%" id="d29050e113"><p id="GUID-AE80B1B6-8048-4230-B2B4-AFBD736280FC">Equivalent OpenMP* Environment Variable 
+                </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="25%" headers="d29050e104 "><p id="GUID-9B4C9C19-5901-425E-A3CC-453044C5C174"><samp class="codeph" id="GUID-5FA4C160-8A84-467D-8EB7-2D1956C0E3A6">MKL_NUM_THREADS</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d29050e107 "><p id="GUID-CC3F70B6-25C2-4A28-A5FD-2B6600FC9757"><samp class="codeph" id="GUID-8ABCAFA7-0BEF-4735-98F0-ACF3B8AD2ED1">mkl_set_num_threads</samp></p>
+<p><samp class="codeph">mkl_set_num_threads_local</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d29050e110 "><p id="GUID-C5B4664A-315F-46BA-8151-9B1E926D5830">Suggests the number of OpenMP threads to use. 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="25%" headers="d29050e113 "><p id="GUID-75AA6F2D-98F7-44B2-8AA3-CC3AADB87F0F"><samp class="codeph" id="GUID-62824382-D566-487C-B126-FD041FDE65F1">OMP_NUM_THREADS</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="25%" headers="d29050e104 "><p id="GUID-79D4BB5C-7A0B-46BC-8414-E86DBAA1D24F"><samp class="codeph" id="GUID-190C625F-AA76-461D-B563-045D4FA1D0A3">MKL_DOMAIN_NUM_ 
+                    <br/> THREADS</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d29050e107 "><p id="GUID-E4301F86-C13B-4C3F-99BB-E7461624494D"><samp class="codeph" id="GUID-B1A0E1BD-4647-4465-97AB-1C66C81946C7">mkl_domain_set_num_threads</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d29050e110 "><p id="GUID-47C91A5C-0869-4601-9308-B0EB107C6274">Suggests the number of OpenMP threads for a particular function domain. 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="25%" headers="d29050e113 "> </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="25%" headers="d29050e104 "><p id="GUID-85F1B5DB-8E89-4D5F-8E2C-9D15C4B23FC0"><samp class="codeph" id="GUID-3E0A30F3-42A4-47BA-A5EC-3B443A20F598">MKL_DYNAMIC</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d29050e107 "><p id="GUID-6D42DABF-7B68-4C8D-8B5A-1D30B21BB8BE"><samp class="codeph" id="GUID-567E00C0-A4C6-4AD1-BB9E-CA0C7DDC073E">mkl_set_dynamic</samp></p>
+</td>
+<td class="cellrowborder" valign="top" width="25%" headers="d29050e110 "><p id="GUID-E41EE935-ADDD-4386-AC8D-8B98FDD6B12F">Enables 
+                  Intel&reg; oneAPI Math Kernel Library to dynamically change the number of OpenMP threads.
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="25%" headers="d29050e113 "><p id="GUID-5062EB84-124C-4E41-A926-56380C015FCE"><samp class="codeph" id="GUID-62FBC5F7-A3AB-490F-B31E-AFB6DA8E0060">OMP_DYNAMIC</samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="GUID-91BAC1CB-695E-4E0B-96D4-C836D6716124"><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Call 
+          <samp class="codeph">mkl_set_num_threads()</samp>to force 
+          Intel&reg; oneAPI Math Kernel Library to use a given number of OpenMP threads and prevent it from reacting to the environment variables<span class="keyword">MKL_NUM_THREADS</span>, 
+          <span class="keyword">MKL_DOMAIN_NUM_THREADS</span>, and 
+          <span class="keyword">OMP_NUM_THREADS</span>. 
+        </p>
+</div>
+<p id="GUID-D87449E4-BA58-4AAA-81EB-08962EB45735">The example below shows how to force 
+        Intel&reg; oneAPI Math Kernel Library to use one thread:</p>
+<pre><code class="language-clike">
+// ******* C language *******
+
+#include &lt;mkl.h&gt;
+...
+mkl_set_num_threads ( 1 );
+            </code></pre><p id="GUID-DE3A38D7-D7BA-42B1-936F-510496A5BC4C"/>
+<pre><code class="language-fortran">            
+// ******* Fortran language *******
+...
+call mkl_set_num_threads( 1 )
+            </code></pre><p id="GUID-51D16F95-873A-4E0F-AEE7-F272386538FF">See the 
+        <em id="GUID-F652F236-FE82-40D3-83CD-9B5DDC31DF8B">Intel&reg; oneAPI Math Kernel Library Developer Reference</em> for the detailed description of the threading control functions, their parameters, calling syntax, and more code examples. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0073DDBD-3239-44B2-AD92-87A533733E11.html">Using Additional Threading Control</a></div>
+</div>
+<div/>
+</body>
+</html>

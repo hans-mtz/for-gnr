@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?laqr3"/>
+<meta name="abstract" content="Performs the orthogonal/unitary similarity transformation of a Hessenberg matrix to detect and deflate fully converged eigenvalues from a trailing principal submatrix (aggressive early deflation)."/>
+<meta name="description" content="Performs the orthogonal/unitary similarity transformation of a Hessenberg matrix to detect and deflate fully converged eigenvalues from a trailing principal submatrix (aggressive early deflation)."/>
+<meta name="DC.subject" content="pslaqr3, ScaLAPACK routines, auxiliary routines, pdlaqr3, Hessenberg matrix"/>
+<meta name="keywords" content="pslaqr3, ScaLAPACK routines, auxiliary routines, pdlaqr3, Hessenberg matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1D94E6CA-3AB8-41B1-ABD9-45C311CF6A9D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?laqr3</title>
+
+</head>
+<body id="GUID-1D94E6CA-3AB8-41B1-ABD9-45C311CF6A9D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?laqr3</span></h1>
+<!--Performs the orthogonal/unitary similarity transformation of a Hessenberg matrix to detect and deflate fully converged eigenvalues from a trailing principal submatrix (aggressive early deflation).--><div><p class="shortdesc">Performs the orthogonal/unitary similarity transformation of a Hessenberg matrix to detect and deflate fully converged eigenvalues from a trailing principal submatrix (aggressive early deflation).</p>
+<div class="section" id="GUID-05F0F44E-B667-4D0C-AB6C-87631A3A0328"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslaqr3</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ktop</span><span class="sep">, </span><span class="var">kbot</span><span class="sep">, </span><span class="var">nw</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">desch</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">ns</span><span class="sep">, </span><span class="var">nd</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">si</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">descv</span><span class="sep">, </span><span class="var">nh</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">desct</span><span class="sep">, </span><span class="var">nv</span><span class="sep">, </span><span class="var">wv</span><span class="sep">, </span><span class="var">descw</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">reclevel </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlaqr3</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ktop</span><span class="sep">, </span><span class="var">kbot</span><span class="sep">, </span><span class="var">nw</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">desch</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">ns</span><span class="sep">, </span><span class="var">nd</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">si</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">descv</span><span class="sep">, </span><span class="var">nh</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">desct</span><span class="sep">, </span><span class="var">nv</span><span class="sep">, </span><span class="var">wv</span><span class="sep">, </span><span class="var">descw</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">reclevel </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-80A2B5A8-E68A-497C-AD61-FFB336D89618"><h2 class="sectiontitle">Description</h2><p>This <span>subroutine </span>accepts as input an upper Hessenberg matrix <var>H</var> and performs an orthogonal similarity transformation designed to detect and deflate fully converged eigenvalues from a trailing principal submatrix.  On output <var>H</var> is overwritten by a new Hessenberg matrix that is a perturbation of an orthogonal similarity transformation of <var>H</var>.  It is to be hoped that the final version of <var>H</var> has many zero subdiagonal entries. </p>
+</div>
+<div class="section" id="GUID-F61BC3BB-934A-4986-8C03-035AC9425E17"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4C0CA296-411A-41C7-AF45-DB101E9E29DE"><dt class="dlterm"><span class="parmname">wantt</span></dt>
+
+<dd><p>(global ) <span class="keyword">LOGICAL</span></p>
+<p>If <span class="keyword">.TRUE.</span>, then the Hessenberg matrix <var>H</var> is fully updated so that the quasi-triangular Schur factor may be computed (in cooperation with the calling <span>subroutine</span>). </p>
+<p>If <span class="keyword">.FALSE.</span>, then only enough of <var>H</var> is updated to preserve the eigenvalues.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wantz</span></dt>
+
+<dd><p>(global ) <span class="keyword">LOGICAL</span></p>
+<p>If <span class="keyword">.TRUE.</span>, then the orthogonal matrix <var>Z</var> is updated so that the orthogonal Schur factor may be computed (in cooperation with the calling <span>subroutine</span>).</p>
+<p>If <span class="keyword">.FALSE.</span>, then <span class="parmname">z</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The order of the matrix <var>H</var> and (if <span class="parmname">wantz</span> is <span><span class="keyword">.TRUE.</span></span>), the order of the orthogonal matrix <var>Z</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ktop</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>It is assumed that either <span class="parmname">ktop</span> = 1 or <var>H</var> (<span class="parmname">ktop</span>,<span class="parmname">ktop</span>-1)=0. <span class="parmname">kbot</span> and <span class="parmname">ktop</span> together determine an isolated block along the diagonal of the Hessenberg matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">kbot</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>It is assumed without a check that either <span class="parmname">kbot</span> = <span class="parmname">n</span> or <var>H</var> (<span class="parmname">kbot</span>+1,<span class="parmname">kbot</span>)=0.  <span class="parmname">kbot</span> and <span class="parmname">ktop</span> together determine an isolated block along the diagonal of the Hessenberg matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nw</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>Deflation window size.  1 <span class="eqsymbol">≤</span><span class="parmname">nw</span><span class="eqsymbol">≤</span> (<span class="parmname">kbot</span>-<span class="parmname">ktop</span>+1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pslaqr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr3</span></p>
+<p>(local ) array of size <span>(<var>lld_h</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">n</span>))</span></p>
+<p>The initial <span class="parmname">n</span>-by-<span class="parmname">n</span> section of <var>H</var> stores the Hessenberg matrix undergoing aggressive early deflation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desch</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iloz</span>, <span class="parmname">ihiz</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>Specify the rows of the matrix <var>Z</var> to which transformations must be applied if <span class="parmname">wantz</span> is <span><span class="keyword">.TRUE.</span></span>. 1 <span class="eqsymbol">≤</span><span class="parmname">iloz</span><span class="eqsymbol">≤</span><span class="parmname">ihiz</span><span class="eqsymbol">≤</span><span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pslaqr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr3</span></p>
+<p>Array of size <span>(<var>lld_z</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">n</span>))</span></p>
+<p>If <span class="parmname">wantz</span> is <span><span class="keyword">.TRUE.</span></span>, then on output, the orthogonal similarity transformation mentioned above has been accumulated into <span class="parmname"/>the matrix <var>Z</var>(<span class="parmname">iloz</span>:<span class="parmname">ihiz</span>,<span class="parmname">kbot</span>:<span class="parmname">ktop</span>) from the right.</p>
+<p>If <span class="parmname">wantz</span> is <span><span class="keyword">.FALSE.</span></span>, then <span class="parmname">z</span> is unreferenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descz</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <span class="parmname"/><var>Z</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pslaqr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr3</span></p>
+<p>(global workspace) array of size <span>(<var>lld_v</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">nw</span>))</span></p>
+<p>An <span class="parmname">nw</span>-by-<span class="parmname">nw</span> distributed work array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descv</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nh</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> scalar</p>
+<p>The number of columns of <span class="parmname">t</span>.  <span class="parmname">nh</span><span class="eqsymbol">≥</span><span class="parmname">nw</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pslaqr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr3</span></p>
+<p>(global workspace) array of size <span>(<var>lld_t</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">nh</span>))</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">desct</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nv</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The number of rows of work array <span class="parmname">wv</span> available for workspace.  <span class="parmname">nv</span><span class="eqsymbol">≥</span><span class="parmname">nw</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wv</span></dt>
+
+<dd><p>(global workspace) <span class="keyword">REAL</span> array of size <span>(<var>lld_w</var>,<span><var>LOC</var><sub><var>c</var></sub>(<span class="parmname">nw</span>)</span>)</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">descw</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <span class="parmname">wv</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local workspace) <span class="keyword">REAL</span> array of size <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The size of the work array <span class="parmname">work</span> (<span class="parmname">lwork</span><span class="eqsymbol">≥</span>1).  <span class="parmname">lwork</span> = 2*<span class="parmname">nw</span> suffices, but greater efficiency may result from larger values of <span class="parmname">lwork</span>.</p>
+<p>If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; <span class="option">p?laqr3</span> only estimates the optimal workspace size for the given values of <span class="parmname">n</span>, <span class="parmname">nw</span>, <span class="parmname">ktop</span> and <span class="parmname">kbot</span>.  The estimate is returned in <span class="parmname">work</span><span>(1)</span>.  No error message related to <span class="parmname">lwork</span> is issued by <a href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html"><span class="option">xerbla</span></a>.  Neither <span class="parmname">h</span> nor <span class="parmname">z</span> are accessed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local workspace) <span class="keyword">INTEGER</span> array of size <span class="parmname">liwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local ) <span class="keyword">INTEGER</span></p>
+<p>The length of the workspace array <span class="parmname">iwork</span> (<span class="parmname">liwork</span><span class="eqsymbol">≥</span>1).</p>
+<p>If <span class="parmname">liwork</span>=-1, then a workspace query is assumed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-ABD31F6F-4909-4153-A4CD-C7AA2A27B769"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-F587697D-09C2-41F6-829B-096B617BEF7B"><dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>On output <span class="parmname">h</span> has been transformed by an orthogonal similarity transformation, perturbed, and the returned to Hessenberg form that (it is to be hoped) has some zero subdiagonal entries.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>IF <span class="parmname">wantz</span> is <span><span class="keyword">.TRUE.</span></span>, then on output, the orthogonal similarity transformation mentioned above has been accumulated into <span class="parmname"/>the matrix <var>Z</var>(<span class="parmname">iloz</span>:<span class="parmname">ihiz</span>,<span class="parmname">kbot</span>:<span class="parmname">ktop</span>) from the right.</p>
+<p>If <span class="parmname">wantz</span> is <span><span class="keyword">.FALSE.</span></span>, then <span class="parmname">z</span> is unreferenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ns</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The number of unconverged (that is,  approximate) eigenvalues returned in <span class="parmname">sr</span> and <span class="parmname">si</span> that may be used as shifts by the calling <span>subroutine</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nd</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The number of converged eigenvalues uncovered by this <span>subroutine</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sr</span>, <span class="parmname">si</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">pslaqr3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr3</span></p>
+<p>(global ) array of size <span class="parmname">kbot</span>. The real and imaginary parts of approximate eigenvalues that may be used for shifts are stored in <span><span class="parmname">sr</span>(<span class="parmname">kbot</span>-<span class="parmname">nd</span>-<span class="parmname">ns</span>+1) through <span class="parmname">sr</span>(<span class="parmname">kbot</span>-<span class="parmname">nd</span>) and <span class="parmname">si</span>(<span class="parmname">kbot</span>-<span class="parmname">nd</span>-<span class="parmname">ns</span>+1) through <span class="parmname">si</span>(<span class="parmname">kbot</span>-<span class="parmname">nd</span>)</span>, respectively. The real and imaginary parts of converged eigenvalues are stored in <span><span class="parmname">sr</span>(<span class="parmname">kbot</span>-<span class="parmname">nd</span>+1) through <span class="parmname">sr</span>(<span class="parmname">kbot</span>) and <span class="parmname">si</span>(<span class="parmname">kbot</span>-<span class="parmname">nd</span>+1) through <span class="parmname">si</span>(<span class="parmname">kbot</span>)</span>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><span>(1)</span></dt>
+
+<dd><p> On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><span>(1)</span> returns the optimal <span class="parmname">lwork</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span><span>(1)</span></dt>
+
+<dd><p> On exit, if <span class="parmname">info</span> = 0, <span class="parmname">iwork</span><span>(1)</span> returns the optimal <span class="parmname">liwork</span></p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

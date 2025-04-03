@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Preconditioners based on Incomplete LU Factorization Technique"/>
+<meta name="DC.subject" content="preconditioners based on incomplete LU factorization, Incomplete LU Factorization Technique, ILU0 preconditioner"/>
+<meta name="keywords" content="preconditioners based on incomplete LU factorization, Incomplete LU Factorization Technique, ILU0 preconditioner"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-12EB6090-3B08-4003-BF2E-4AC617601F9F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2FACF0A6-B5EF-4AB4-A771-9E70CE1289CA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-77769EA3-8A8C-4DD8-BC0F-B07D59563BAA.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A9A97100-09F8-46ED-A055-3DB4EF10DE0B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Preconditioners based on Incomplete LU Factorization Technique</title>
+
+</head>
+<body id="GUID-A9A97100-09F8-46ED-A055-3DB4EF10DE0B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Preconditioners based on Incomplete LU Factorization Technique</h1>
+<div><p>Preconditioners, or accelerators are used to accelerate an iterative solution process. In some cases, their use can reduce the number of iterations dramatically and thus lead to better solver performance. Although the terms 
+      <em>preconditioner</em> and 
+      <em>accelerator</em> are synonyms, hereafter only 
+      <em>preconditioner</em> is used. 
+    </p>
+<p>Intel&reg; oneAPI Math Kernel Library provides two preconditioners, ILU0 and ILUT, for sparse matrices presented in the format accepted in the 
+      Intel&reg; oneAPI Math Kernel Library direct sparse solvers (three-array variation of the CSR storage format described in<a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a> ). The algorithms used are described in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SAAD03">Saad03</a>]. 
+    </p>
+<p>The ILU0 preconditioner is based on a well-known factorization of the original matrix into a product of two triangular matrices: lower and upper triangular matrices. Usually, such decomposition leads to some fill-in in the resulting matrix structure in comparison with the original matrix. The distinctive feature of the ILU0 preconditioner is that it preserves the structure of the original matrix in the result. 
+    </p>
+<p>Unlike the ILU0 preconditioner, the ILUT preconditioner preserves some resulting fill-in in the preconditioner matrix structure. The distinctive feature of the ILUT algorithm is that it calculates each element of the preconditioner and saves each one if it satisfies two conditions simultaneously: its value is greater than the product of the given tolerance and matrix row norm, and its value is in the given bandwidth of the resulting preconditioner matrix. 
+    </p>
+<p>Both ILU0 and ILUT preconditioners can apply to any non-degenerate matrix. They can be used alone or together with the 
+      Intel&reg; oneAPI Math Kernel Library RCI FGMRES solver (see<a href="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html#GUID-78889273-7E77-426A-9B5E-23A7C2378D78">Sparse Solver Routines</a>). Avoid using these preconditioners with MKL RCI CG solver because in general, they produce a non-symmetric resulting matrix even if the original matrix is symmetric. Usually, an inverse of the preconditioner is required in this case. To do this the 
+      Intel&reg; oneAPI Math Kernel Library triangular solver routine<a href="GUID-F532EA67-0DC7-4A1D-9B7A-03B3A78CADEE.html#GUID-F532EA67-0DC7-4A1D-9B7A-03B3A78CADEE"><span class="option">mkl_dcsrtrsv</span></a> must be applied twice: for the lower triangular part of the preconditioner, and then for its upper triangular part. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Although ILU0 and ILUT preconditioners apply to any non-degenerate matrix, in some cases the algorithm may fail to ensure successful termination and the required result. Whether or not the preconditioner produces an acceptable result can only be determined in practice. 
+      </p>
+<p>A preconditioner may increase the number of iterations for an arbitrary case of the system and the initial solution, and even ruin the convergence. It is your responsibility as a user to choose a suitable preconditioner. 
+      </p>
+<p/>
+</div>
+<div class="level3" id="RCI_ID_USERDATAARRAYS"><h2 class="sectiontitle">General Scheme of Using ILUT and RCI FGMRES Routines</h2><p>The general scheme for use is the same for both preconditioners. Some differences exist in the calling parameters of the preconditioners and in the subsequent call of two triangular solvers. You can see all these differences in the preconditioner code examples (<span class="filepath">dcsrilu*.*</span>) in the 
+        <span class="filepath">examples</span>folder of the 
+        Intel&reg; oneAPI Math Kernel Library installation directory: 
+      </p>
+<ul id="GUID-C935972E-CBEA-4731-97D9-10476B5FDF49"><li><span class="filepath">examples/solverf/source</span></li>
+</ul>
+<p>The following pseudocode shows the general scheme of using the ILUT preconditioner in the RCI FGMRES context. 
+      </p>
+<p>... 
+      </p>
+<p>generate matrix 
+        <span class="parmname">A</span></p>
+<p>generate preconditioner 
+        <span class="parmname">C</span> (optional) 
+      </p>
+<p>   call 
+        <samp class="codeph"><span class="option">dfgmres_init</span>(<span class="parmname">n</span>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <span class="parmname">RCI_request</span>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">tmp</span>)</samp></p>
+<p>    change parameters in 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">dpar</span> if necessary 
+      </p>
+<p>    call 
+        <samp class="codeph"><span class="option">dcsrilut</span>(<span class="parmname">n</span>, 
+          <span class="parmname">a</span>, 
+          <span class="parmname">ia</span>, 
+          <span class="parmname">ja</span>, 
+          <span class="parmname">bilut</span>, 
+          <span class="parmname">ibilut</span>, 
+          <span class="parmname">jbilut</span>, 
+          <span class="parmname">tol</span>, 
+          <span class="parmname">maxfil</span>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">ierr</span>)</samp></p>
+<p>    call 
+        <samp class="codeph"><span class="option">dfgmres_check</span>(<span class="parmname">n</span>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <span class="parmname">RCI_request</span>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">tmp</span>)</samp></p>
+<p>1   call 
+        <samp class="codeph"><span class="option">dfgmres</span>(<span class="parmname">n</span>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <span class="parmname">RCI_request</span>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">tmp</span>)</samp></p>
+<p>    if 
+        <samp class="codeph">(<span class="parmname">RCI_request</span>.eq.1)</samp> then 
+      </p>
+<p>      multiply the matrix 
+        <span class="parmname">A</span> by 
+        <samp class="codeph"><span class="parmname">tmp</span>(<span class="parmname">ipar</span>(22))</samp> and put the result in 
+        <samp class="codeph"><span class="parmname">tmp</span>(<span class="parmname">ipar</span>(23))</samp></p>
+<p><samp class="codeph">c  proceed with FGMRES iterations</samp></p>
+<p>      <samp class="codeph">goto 1</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.2) then</samp></p>
+<p>      do the stopping test 
+      </p>
+<p>      <samp class="codeph">if</samp> (test not passed) 
+        <samp class="codeph">then</samp></p>
+<p><samp class="codeph">c </samp>proceed with FGMRES iterations 
+      </p>
+<p>        <samp class="codeph">go to 1</samp></p>
+<p>      <samp class="codeph">else</samp></p>
+<p><samp class="codeph">c </samp> stop FGMRES iterations. 
+      </p>
+<p>        <samp class="codeph">goto 2</samp></p>
+<p>      <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.3) 
+        </samp>then 
+      </p>
+<p><samp class="codeph">c  
+        </samp>Below, 
+        <samp class="codeph">trvec</samp> is an intermediate vector of length at least 
+        <span class="parmname">n</span></p>
+<p><samp class="codeph">c  
+        </samp>Here is the recommended use of the result produced by the ILUT routine. 
+      </p>
+<p><samp class="codeph">c  
+        </samp>via standard 
+        Intel&reg; oneAPI Math Kernel Library Sparse Blas solver routine<span class="option">mkl_dcsrtrsv</span>. 
+      </p>
+<p>    <samp class="codeph">call mkl_dcsrtrsv('L','N','U', 
+          <span class="parmname">n</span>, 
+          <span class="parmname">bilut</span>, 
+          <span class="parmname">ibilut</span>, 
+          <span class="parmname">jbilut</span>, 
+          <span class="parmname">tmp</span>(<span class="parmname">ipar</span>(22)),<span class="parmname">trvec</span>)</samp></p>
+<p>    <samp class="codeph">call mkl_dcsrtrsv('U','N','N', 
+          <span class="parmname">n</span>, 
+          <span class="parmname">bilut</span>, 
+          <span class="parmname">ibilut</span>, 
+          <span class="parmname">jbilut</span>, 
+          <span class="parmname">trvec</span>, 
+          <span class="parmname">tmp</span>(<span class="parmname">ipar</span>(23)))</samp></p>
+<p><samp class="codeph">c </samp>proceed with FGMRES iterations 
+      </p>
+<p>      <samp class="codeph">goto 1</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">if (RCI_request.eq.4) then</samp></p>
+<p>    check the norm of the next orthogonal vector, it is contained in 
+        <samp class="codeph"><span class="parmname">dpar</span>(7)</samp></p>
+<p>      <samp class="codeph">if</samp> (the norm is not zero up to rounding/computational errors) 
+        <samp class="codeph">then</samp></p>
+<p><samp class="codeph">c  proceed with FGMRES iterations</samp></p>
+<p>        <samp class="codeph">goto 1</samp></p>
+<p>      <samp class="codeph">else</samp></p>
+<p><samp class="codeph">c  stop FGMRES iterations</samp></p>
+<p>        <samp class="codeph">goto 2</samp></p>
+<p>      <samp class="codeph">endif</samp></p>
+<p>    <samp class="codeph">endif</samp></p>
+<p>2  call 
+        <samp class="codeph"><span class="option">dfgmres_get</span>(<span class="parmname">n</span>, 
+          <span class="parmname">x</span>, 
+          <span class="parmname">b</span>, 
+          <var>RCI_request</var>, 
+          <span class="parmname">ipar</span>, 
+          <span class="parmname">dpar</span>, 
+          <span class="parmname">tmp</span>, 
+          <span class="parmname">itercount</span>)</samp></p>
+<p>current iteration number is in 
+        <span class="parmname">itercount</span></p>
+<p>the computed approximation is in the array 
+        <span class="parmname">x</span></p>
+<p/>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html">Sparse Solver Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-12EB6090-3B08-4003-BF2E-4AC617601F9F.html">ILU0 and ILUT Preconditioners Interface Description</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-2FACF0A6-B5EF-4AB4-A771-9E70CE1289CA.html">dcsrilu0</a><br/>
+ILU0 preconditioner based on incomplete LU factorization of a sparse matrix.</li>
+<li class="ulchildlink"><a href="GUID-77769EA3-8A8C-4DD8-BC0F-B07D59563BAA.html">dcsrilut</a><br/>
+ILUT preconditioner based on the incomplete LU factorization with a threshold of a sparse matrix.</li>
+</ul>
+</div>
+</body>
+</html>

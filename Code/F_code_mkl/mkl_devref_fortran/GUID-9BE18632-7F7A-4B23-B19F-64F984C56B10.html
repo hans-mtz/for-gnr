@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Routines and Supported Operations"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9BE18632-7F7A-4B23-B19F-64F984C56B10"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Routines and Supported Operations</title>
+
+</head>
+<body id="GUID-9BE18632-7F7A-4B23-B19F-64F984C56B10">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Routines and Supported Operations</h1>
+<div><p>This section describes operations supported by the Intel&reg; oneAPI Math Kernel Library Sparse BLAS Level 2 and Level 3 routines. The following notations are used here:</p>
+<ul class="nobullet" id="GUID-933454D8-12E3-4CD1-94C4-E5564C25ED3F"><li><p><var>A</var> is a sparse matrix; 
+        </p>
+</li>
+<li><p><var>B</var> and 
+          <var>C</var> are dense
+          matrices; 
+        </p>
+</li>
+<li><p><var>D</var> is a diagonal scaling matrix;
+          
+        </p>
+</li>
+<li><p><var>x</var> and 
+          <var>y</var> are dense
+          vectors; 
+        </p>
+</li>
+<li><p><var>alpha</var> and 
+          <var>beta</var> are
+          scalars;
+        </p>
+</li>
+</ul>
+<p><samp class="codeph">op(<var>A</var>)</samp> is one of the
+      possible operations: 
+    </p>
+<ul class="nobullet" id="GUID-7FB9DBC1-85DF-4D5F-BBF5-1B1697A63CF3"><li><p><samp class="codeph">op(<var>A</var>) = 
+            <var>A</var></samp>; 
+        </p>
+</li>
+<li><p><samp class="codeph">op(<var>A</var>) = 
+            <var>A</var><sup>T</sup></samp> -
+          transpose of 
+          <var>A</var>; 
+        </p>
+</li>
+<li><p><samp class="codeph">op(<var>A</var>) = 
+            <var>A</var><sup>H</sup></samp> -
+          conjugated transpose of 
+          <var>A</var>.
+        </p>
+</li>
+</ul>
+<p><samp class="codeph">inv(op(<var>A</var>))</samp> denotes the
+      inverse of 
+      <samp class="codeph">op(<var>A</var>)</samp>.
+    </p>
+<div class="section" id="GUID-485AC580-0256-454E-B089-6A941D732411"><p>The Intel&reg; oneAPI Math Kernel Library Sparse BLAS Level 2 and Level 3 routines support the following operations:</p>
+<ul id="GUID-CC2EA164-D529-4C9C-8D4D-D630E36AFB43"><li><p>computing the vector product between a sparse
+            matrix and a dense vector: 
+            <pre><var>y</var> := <var>alpha</var>*op(<var>A</var>)*<var>x</var> + <var>beta</var>*<var>y</var></pre></p>
+</li>
+<li><p>solving a single triangular system: 
+            <pre><var>y</var> := <var>alpha</var>*<var>inv</var>(op(<var>A</var>))*<var>x</var></pre></p>
+</li>
+</ul>
+<ul id="GUID-6ACA7EA4-62BF-4628-A910-2A3CC549548F"><li><p>computing a product between sparse matrix and
+            dense matrix: 
+            <pre><var>C</var> := <var>alpha</var>*op(<var>A</var>)*<var>B</var> + <var>beta</var>*<var>C</var></pre></p>
+</li>
+<li><p>solving a sparse triangular system with
+            multiple right-hand sides: 
+            <pre><var>C</var> := <var>alpha</var>*<var>inv</var>(op(<var>A</var>))*<var>B</var></pre></p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-52C76E6A-1995-4D72-BD36-2EB639B41F7F"><p>Intel&reg; oneAPI Math Kernel Library provides an additional set of the Sparse BLAS Level 2 routines with<em>simplified interfaces</em>. Each of these routines operates on a
+        matrix of the fixed type. The following operations are supported:
+      </p>
+<ul id="GUID-76DF134F-AA09-4A21-A5BB-4621E65EF76C"><li><p>computing the vector product between a sparse
+            matrix and a dense vector (for general and symmetric matrices): 
+            <pre><var>y</var> := op(<var>A</var>)*<var>x</var></pre></p>
+</li>
+<li><p>solving a single triangular system (for
+            triangular matrices): 
+            <pre><var>y</var> := <var>inv</var>(op(<var>A</var>))*<var>x</var></pre></p>
+</li>
+</ul>
+<p>Matrix type is indicated by the field &lt;<var>mtype</var>&gt; in the routine name
+        (see section 
+        <a href="GUID-68706DC5-8ED9-46F3-9E74-BFBC3E7A06A6.html#GUID-68706DC5-8ED9-46F3-9E74-BFBC3E7A06A6">Naming Conventions in Sparse BLAS
+          Level 2 and Level 3</a>).
+      </p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The routines with simplified interfaces support
+            only four sparse matrix storage formats, specifically:
+          </p>
+<ul class="nobullet" id="GUID-3A9AB1A4-4C95-4299-A436-3EE5AAA6DE32"><li><p>CSR format in the 3-array variation
+                accepted in the direct sparse solvers and in the CXML;
+              </p>
+</li>
+<li><p>diagonal format accepted in the CXML;
+              </p>
+</li>
+<li><p>coordinate format;
+              </p>
+</li>
+<li><p>BSR format in the 3-array variation.
+              </p>
+</li>
+</ul>
+</div>
+</p>
+<p>Note that routines with both typical (conventional)
+        and simplified interfaces use the same computational kernels that work with
+        certain internal data structures.
+        <p><p>The Intel&reg; oneAPI Math Kernel Library Sparse BLAS Level 2 and Level 3 routines do not support in-place operations.</p>
+</p>
+</p>
+<p>Complete list of all routines is given in the 
+        <a href="GUID-89D3F5E7-67D5-410F-AB5B-84A71080687B.html#TBL2-9"><span>“Sparse BLAS
+            Level 2 and Level 3 Routines”</span></a>.
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html">Sparse BLAS Level 2 and Level 3 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dss_reorder"/>
+<meta name="abstract" content="Computes or sets a permutation vector that minimizes the fill-in during the factorization phase."/>
+<meta name="description" content="Computes or sets a permutation vector that minimizes the fill-in during the factorization phase."/>
+<meta name="DC.subject" content="Sparse Solver, direct sparse solver interface, dss_reorder"/>
+<meta name="keywords" content="Sparse Solver, direct sparse solver interface, dss_reorder"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F0D0BC19-B6ED-412C-AC4A-FC594FE4AEA0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dss_reorder</title>
+
+</head>
+<body id="GUID-F0D0BC19-B6ED-412C-AC4A-FC594FE4AEA0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dss_reorder</span></h1>
+<!--Computes or sets a permutation vector that minimizes the fill-in during the factorization phase.--><div><p class="shortdesc">Computes or sets a permutation vector that minimizes the fill-in during the factorization phase.</p>
+<div class="section" id="GUID-8E5CD523-A29D-4904-8220-9B6E6E7A7AA0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_reorder</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">perm</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-1173B8FA-8D59-4392-800D-214E745A4D31"><h2 class="sectiontitle">Include Files</h2><ul id="d163e166"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_dss.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E79F44BE-2703-46BA-A499-55BB959F085D"><h2 class="sectiontitle">Description</h2><p><span/>If <span class="parmname">opt</span> contains the option <span class="keyword">MKL_DSS_AUTO_ORDER</span>, then the routine <span class="option">dss_reorder</span> computes a permutation vector that minimizes the fill-in during the factorization phase. For this option, the routine ignores the contents of the  <span class="parmname">perm</span> array.</p>
+<p> If <span class="parmname">opt</span> contains the option <span class="keyword">MKL_DSS_METIS_OPENMP_ORDER</span>, then the routine<span class="option"> dss_reorder</span> computes permutation vector using the parallel nested dissections algorithm to minimize the fill-in during the factorization phase. This option can be used to decrease the time of <span class="option">dss_reorder</span>  call on multi-core computers. For this option, the routine ignores the contents of the  <span class="parmname">perm</span> array.</p>
+<p>If <span class="parmname">opt</span> contains the option <span class="keyword">MKL_DSS_MY_ORDER</span>, then you must supply a permutation vector in the array <span class="parmname">perm</span>. In this case, the array <span class="parmname">perm</span> is of length <span class="parmname">nRows</span>, where <span class="parmname">nRows</span> is the number of rows in the matrix as defined by the previous call to <a class="allformats" href="GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC.html#GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC"><span class="option">dss_define_structure</span></a>.</p>
+<p> If 
+<span class="parmname">opt</span>
+  contains the option  <span class="keyword">MKL_DSS_GET_ORDER</span>, then the permutation vector computed during
+the <span class="option">dss_reorder</span> call is copied to the
+array 
+<span class="parmname">perm.</span>
+ In this case you must allocate the array <span class="parmname">perm</span> beforehand. The permutation vector is computed in the same way as if the option <span class="keyword">MKL_DSS_AUTO_ORDER</span> is set.</p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1792192e146"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1792192e146 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-23363A06-0A5F-454D-A946-3AD784D338CD"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">opt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Parameter to pass the DSS options. The default value for the permutation type is <span class="keyword">MKL_DSS_AUTO_ORDER</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">perm</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Array of length <span class="parmname">nRows</span>. Contains a user-defined permutation vector (accessed only if <span class="parmname">opt</span> contains <span class="keyword">MKL_DSS_MY_ORDER</span> or <span class="keyword">MKL_DSS_GET_ORDER</span>).</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-7076BF51-1A41-4CB8-9030-0578C5271B72"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">handle</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">TYPE (MKL_DSS_HANDLE)</span>, <span class="keyword">INTENT(INOUT)</span></p>
+<p> Pointer to the data structure storing internal DSS results (<span class="keyword">MKL_DSS_HANDLE</span>).</p>
+</td>
+</tr></table></div>
+<div class="section" id="RETURNVALUES_16051FCA6E0A4273882DBDB7FBBF16A6"><h2 class="sectiontitle">Return Values</h2><p><span class="keyword">MKL_DSS_SUCCESS</span></p>
+<p><span class="keyword">MKL_DSS_STATE_ERR</span></p>
+<p><span class="keyword">MKL_DSS_INVALID_OPTION</span></p>
+<p><span class="keyword">MKL_DSS_REORDER_ERR</span></p>
+<p><span class="keyword">MKL_DSS_REORDER1_ERR</span></p>
+<p><span class="keyword">MKL_DSS_I32BIT_ERR</span></p>
+<p><span class="keyword">MKL_DSS_FAILURE</span></p>
+<p><span class="keyword">MKL_DSS_OUT_OF_MEMORY</span></p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_TERM_LVL_ERR</span></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

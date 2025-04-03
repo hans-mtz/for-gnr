@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?spr"/>
+<meta name="abstract" content="Performs the symmetrical rank-1 update of a complex symmetric packed matrix."/>
+<meta name="description" content="Performs the symmetrical rank-1 update of a complex symmetric packed matrix."/>
+<meta name="DC.subject" content="?spr, LAPACK routines, auxiliary routines, complex symmetric packed matrix, symmetric rank-1 update, symmetric matrix, rank-1 update, packed storage"/>
+<meta name="keywords" content="?spr, LAPACK routines, auxiliary routines, complex symmetric packed matrix, symmetric rank-1 update, symmetric matrix, rank-1 update, packed storage"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8EA59F71-A459-4700-B352-271829F8AE7B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?spr</title>
+
+</head>
+<body id="GUID-8EA59F71-A459-4700-B352-271829F8AE7B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?spr</span></h1>
+<!--Performs the symmetrical rank-1 update of a complex symmetric packed matrix.--><div><p class="shortdesc">Performs the symmetrical rank-1 update of a complex symmetric packed matrix.</p>
+<div class="section" id="GUID-0B27DB6D-CB5D-4B28-9657-A5772497C38C"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call cspr</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">ap</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zspr</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">ap</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-12F89649-F3F4-4B77-9AF0-05616AB4F1BF"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E5293A2E-BC17-42E1-91A0-995C10F7FA19"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?spr</span> routines perform a matrix-vector operation defined as</p>
+<p><samp class="codeph"><var>a</var>:= <var>alpha</var>*<var>x</var>*<var>x</var><sup class="power"><var>H</var></sup> + <var>a</var></samp>,</p>
+<p>where:</p>
+<p><var>alpha</var> is a complex scalar</p>
+<p><var>x</var> is an <var>n</var>-element complex vector</p>
+<p><var>a</var> is an <var>n</var>-by-<var>n</var> complex symmetric matrix, supplied in packed form.</p>
+<p>These routines have their real equivalents in BLAS (see <a href="GUID-721DF3D5-24F6-491D-ACCC-206F730D6A90.html#GUID-721DF3D5-24F6-491D-ACCC-206F730D6A90"><span class="option">?spr</span></a> in Chapter <span>"BLAS and Sparse BLAS Routines"</span>).</p>
+</div>
+<div class="section" id="GUID-7896D385-4A8A-4CB9-895A-6D0C30A7433E"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DACC5D6C-F655-4E39-8C64-8E18C72AE1C6"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. Specifies whether the upper or lower triangular part of the matrix <var>a</var> is supplied in the packed array <var>ap</var>, as follows:</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, the upper triangular part of the matrix <var>a</var> is supplied in the array <var>ap</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, the lower triangular part of the matrix <var>a</var> is supplied in the array <var>ap</var> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Specifies the order of the matrix <var>a</var>.</p>
+<p>The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cspr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zspr</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cspr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zspr</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> at least <span class="keyword">(1</span> + (<var>n</var> - <span class="keyword">1)*abs</span>(<var>incx</var><span class="keyword">))</span>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Specifies the increment for the elements of <var>x</var>. The value of <var>incx</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cspr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zspr</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> at least <span class="keyword">(</span>(<var>n</var><span class="keyword">*</span>(<var>n</var> + <span class="keyword">1))/2)</span>. Before entry, with <var>uplo</var> = <span class="keyword">'U'</span> or <span class="keyword">'u'</span>, the array <var>ap</var> must contain the upper triangular part of the symmetric matrix packed sequentially, column-by-column, so that <samp class="codeph"><var>ap</var>(1)</samp> contains <var>A</var><span class="keyword">(1,1)</span>, <samp class="codeph"><var>ap</var>(2)</samp> and <samp class="codeph"><var>ap</var>(3)</samp> contain <var>A</var><span class="keyword">(1,</span><span class="keyword">2)</span> and <var>A</var><span class="keyword">(2,2)</span> respectively, and so on. </p>
+<p>Before entry, with <var>uplo</var> = <span class="keyword">'L'</span> or <span class="keyword">'l'</span>, the array <var>ap</var> must contain the lower triangular part of the symmetric matrix packed sequentially, column-by-column, so that <samp class="codeph"><var>ap</var>(1)</samp> contains <var>a</var><span class="keyword">(1,1)</span>, <samp class="codeph"><var>ap</var>(2)</samp> and <samp class="codeph"><var>ap</var>(3)</samp> contain <var>a</var><span class="keyword">(2,1)</span> and <var>a</var><span class="keyword">(3,1)</span> respectively, and so on. </p>
+<p>Note that the imaginary parts of the diagonal elements need not be set, they are assumed to be zero, and on exit they are set to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1BC31148-C185-4BB7-8B3D-2D2CEF3017D0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D1F5C113-578F-48B3-A964-2D940F62CE32"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>With <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, overwritten by the upper triangular part of the updated matrix.</p>
+<p>With <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, overwritten by the lower triangular part of the updated matrix.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

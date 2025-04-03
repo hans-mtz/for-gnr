@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_set_mpi"/>
+<meta name="abstract" content="Sets the implementation of the message-passing interface to be used by Intel&reg; oneAPI Math Kernel Library."/>
+<meta name="description" content="Sets the implementation of the message-passing interface to be used by Intel&reg; oneAPI Math Kernel Library."/>
+<meta name="DC.subject" content="specific hardware support, mkl_set_mpi, support functions"/>
+<meta name="keywords" content="specific hardware support, mkl_set_mpi, support functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF27C389-5BB7-450F-B7BF-43D592D5B1C4.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-75A3E2E0-FD03-466A-81BA-2ADB2825B45A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_set_mpi</title>
+
+</head>
+<body id="GUID-75A3E2E0-FD03-466A-81BA-2ADB2825B45A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_set_mpi</span></h1>
+<!--Sets the implementation of the message-passing interface to be used by Intel&reg; oneAPI Math Kernel Library.--><div><p class="shortdesc">Sets the implementation of the message-passing interface to be used by Intel&reg; oneAPI Math Kernel Library.</p>
+<div class="section" id="GUID-4A708C78-61F3-485F-A997-C9A85FE5351F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">status</span><span class="oper"> = </span><span class="kwd">mkl_set_mpi</span><span class="sep">(</span><span class="var">vendor</span><span class="delim">, </span><span class="var">custom_library_name</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-393E902E-0140-4CD0-8450-52D88CE71A40"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d848503e78" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d848503e81" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d848503e84" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d848503e78"><p><span class="parmname">vendor</span></p>
+</td>
+<td valign="top" headers="d848503e81"><p><span class="keyword">INTEGER*4</span></p>
+</td>
+<td valign="top" headers="d848503e84"><p>Specifies the implementation of the message-passing interface (MPI) to use:</p>
+<p>Possible values:</p>
+<ul id="GUID-8CAFBB2B-304A-4EED-8016-1AA11E023193"><li><p><span class="keyword">MKL_BLACS_CUSTOM</span> - a custom MPI library. Requires a prebuilt custom MPI BLACS library.</p>
+</li>
+<li><p><span class="keyword">MKL_BLACS_MSMPI</span> -  Microsoft MPI library.</p>
+</li>
+<li><p><span class="keyword">MKL_BLACS_INTELMPI</span> -  Intel&reg; MPI library.</p>
+</li>
+<li><p><span class="keyword">MKL_BLACS_MPICH</span> -   MPICH MPI library.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td valign="top" headers="d848503e78"><p><span class="parmname">custom_library_namevendor</span></p>
+</td>
+<td valign="top" headers="d848503e81"><p><span class="keyword">CHARACTER*</span></p>
+</td>
+<td valign="top" headers="d848503e84"><p>The filename (without a directory name) of the custom BLACS dynamic library to use. This library must be located in the directory with your application executable or with Intel&reg; oneAPI Math Kernel Library dynamic libraries. Can be<span class="keyword">NULL</span> or an empty string.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-C0980D3F-1962-4402-92EC-F4E87C70451F"><h2 class="sectiontitle">Description</h2><p>Call this function to set the MPI implementation to be used by Intel&reg; oneAPI Math Kernel Library on Windows* OS when dynamic Intel&reg; oneAPI Math Kernel Library libraries are used. For all other configurations, the function returns an error indicating that you cannot set the MPI implementation. You can specify your own prebuilt dynamic BLACS library for a custom MPI by setting<span class="parmname">vendor</span> to <span class="keyword">MKL_BLACS_CUSTOM</span> and optionally  passing  the name of the custom BLACS dynamic library. If the <span class="parmname">custom_library_path</span> parameter is <span class="parmname">NULL</span>or an empty string, Intel&reg; oneAPI Math Kernel Library uses the default platform-specific library name:<span class="filepath">mkl_blacs_custom_lp64.dll</span> or <span class="filepath">mkl_blacs_custom_ilp64.dll</span>, depending on whether the BLACS interface linked against your application is LP64 or ILP64.</p>
+</div>
+<div class="section" id="GUID-5A614D10-9E7E-4129-A23E-690F9082DEF1"><h2 class="sectiontitle">Return Values</h2><p><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d848503e180" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d848503e183" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d848503e186" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d848503e180"><p><span class="parmname">status</span></p>
+</td>
+<td valign="top" headers="d848503e183"><p><span class="keyword">INTEGER*4</span></p>
+</td>
+<td valign="top" headers="d848503e186"><p>The return status:</p>
+<ul id="GUID-28138491-1A0F-40B8-A827-0643E41AE784"><li><p> 0 - The function completed successfully.</p>
+</li>
+<li><p>-1 - The <span class="parmname">vendor</span> parameter is invalid.</p>
+</li>
+<li><p>-2 - The <span class="parmname">custom_library_name</span> parameter is invalid.</p>
+</li>
+<li><p>-3 - The MPI library cannot be set at this point.</p>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</p>
+<p id="P_CF_12869801591514">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d848503e226"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d848503e226 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AF27C389-5BB7-450F-B7BF-43D592D5B1C4.html">Miscellaneous</a></div>
+</div>
+<div/>
+</body>
+</html>

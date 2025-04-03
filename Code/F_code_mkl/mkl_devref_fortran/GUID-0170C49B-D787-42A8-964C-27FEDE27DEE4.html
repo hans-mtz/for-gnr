@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?stegr2"/>
+<meta name="abstract" content="Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix."/>
+<meta name="description" content="Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix."/>
+<meta name="DC.subject" content="sstegr2, dstegr2, ScaLAPACK routines, auxiliary routines, tridiagonal matrix, eigenvalues and eigenvectors"/>
+<meta name="keywords" content="sstegr2, dstegr2, ScaLAPACK routines, auxiliary routines, tridiagonal matrix, eigenvalues and eigenvectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0170C49B-D787-42A8-964C-27FEDE27DEE4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?stegr2</title>
+
+</head>
+<body id="GUID-0170C49B-D787-42A8-964C-27FEDE27DEE4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?stegr2</span></h1>
+<!-- Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix.--><div><p class="shortdesc"> Computes selected eigenvalues and eigenvectors of a real symmetric tridiagonal matrix.</p>
+<div class="section" id="GUID-CE8DCE21-6290-4B4C-9D9D-61E3933BBA9C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sstegr2</span><span class="delim">(</span><span class="var"> jobz</span><span class="sep">, </span><span class="var">range</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">nzc</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">zoffset</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dstegr2</span><span class="delim">(</span><span class="var"> jobz</span><span class="sep">, </span><span class="var">range</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">nzc</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">dol</span><span class="sep">, </span><span class="var">dou</span><span class="sep">, </span><span class="var">zoffset</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DAB6D13C-B867-4EF6-9BBF-97ECB8B39D33"><h2 class="sectiontitle">Description</h2><p><span class="option">?stegr2</span> computes selected eigenvalues and, optionally, eigenvectors of a real symmetric tridiagonal matrix <var>T</var>. It is invoked in the  ScaLAPACK MRRR driver <span class="option">p?syevr</span> and the corresponding Hermitian version either when only eigenvalues are to be computed, or when only a single processor is used (the sequential-like case). </p>
+<p><span class="option">?stegr2</span> has been adapted from LAPACK's <a href="GUID-B39E896C-377D-4755-ACDC-821F1EAC6739.html"><span class="option">?stegr</span></a>. Please note the following crucial changes. </p>
+<ol id="GUID-BBF5B7EA-3409-4D2E-8617-D677048A9EC5"><li><p>The calling sequence has two additional integer parameters,  <span class="parmname">dol</span> and <span class="parmname">dou</span>, that should satisfy <span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">dou</span><span class="eqsymbol">≥</span><span class="parmname">dol</span><span class="eqsymbol">≥</span>1.  <span class="option">?stegr2</span><em>only</em> computes the eigenpairs corresponding to eigenvalues <span class="parmname">dol</span> through <span class="parmname">dou</span>  in <span class="parmname">w</span>. (That is, instead of computing the eigenpairs belonging to <span><span class="parmname">w</span>(1)  through <span class="parmname">w</span>(<span class="parmname">m</span>)</span>, only the eigenvectors belonging to eigenvalues <span><span class="parmname">w</span>(<span class="parmname">dol</span>) through <span class="parmname">w</span>(<span class="parmname">dou</span>)</span> are computed. In this case, only the eigenvalues <span><span class="parmname">dol</span>:<span class="parmname">dou</span></span> are guaranteed to be fully accurate. </p>
+</li>
+<li><p><span class="parmname">m</span> is <em>not</em> the number of eigenvalues specified by <span class="parmname">range</span>, but is  <span class="parmname">m</span> = <span class="parmname">dou</span> - <span class="parmname">dol</span> + 1. This concerns the case where only eigenvalues are computed, but on more than one processor. Thus, in this case <span class="parmname">m</span> refers to the number of eigenvalues computed on this processor. </p>
+</li>
+<li><p>The arrays <span class="parmname">w</span> and <span class="parmname">z</span> might not contain all the wanted eigenpairs locally, instead this information is distributed over other  processors. </p>
+</li>
+</ol>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d7885e383"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d7885e383 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-C468C632-EBEA-44ED-8770-544322AED7B9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-99548922-28D7-4763-ACE3-745B2E1AF9B8"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span class="keyword">CHARACTER</span>*1</p>
+<p>= 'N':  Compute eigenvalues only;</p>
+<p>= 'V':  Compute eigenvalues and eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">range</span></dt>
+
+<dd><p><span class="keyword">CHARACTER</span>*1</p>
+<p>= 'A': all eigenvalues will be found.</p>
+<p>= 'V': all eigenvalues in the half-open interval (<span class="parmname">vl</span>,<span class="parmname">vu</span>] will be found.</p>
+<p>= 'I': <span>the
+<span class="parmname">il</span>-th through
+<span class="parmname">iu</span>-th eigenvalues
+(of the entire matrix)</span> will be found.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix.  <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstegr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstegr2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>On entry, the <span class="parmname">n</span> diagonal elements of the tridiagonal matrix <var>T</var>. Overwritten on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstegr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstegr2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>On entry, the (<span class="parmname">n</span>-1) subdiagonal elements of the tridiagonal matrix <var>T</var> in elements <span>1 to <span class="parmname">n</span>-1</span> of <span class="parmname">e</span>. <span class="parmname">e</span><span>(<span class="parmname">n</span>)</span> need not be set on input, but is used internally as workspace. Overwritten on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstegr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstegr2</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">vu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstegr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dstegr2</span></p>
+<p>If <span class="parmname">range</span>='V', the lower and upper bounds of the interval to be searched for eigenvalues. <span class="parmname">vl</span> &lt; <span class="parmname">vu</span>.</p>
+<p>Not referenced if <span class="parmname">range</span> = 'A' or 'I'.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">il, iu</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>If <span class="parmname">range</span>='I', the indices (in ascending order) of the <span>smallest and largest eigenvalues to be
+returned</span>.</p>
+<p>1 <span class="eqsymbol">≤</span><span class="parmname">il</span><span class="eqsymbol">≤</span><span class="parmname">iu</span><span class="eqsymbol">≤</span><span class="parmname">n</span>, if <span class="parmname">n</span> &gt; 0.</p>
+<p>Not referenced if <span class="parmname">range</span> = 'A' or 'V'.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">z</span>.  <span class="parmname">ldz</span><span class="eqsymbol">≥</span> 1, and if <span class="parmname">jobz</span> = 'V', then <span class="parmname">ldz</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nzc</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The number of eigenvectors to be held in the array <span class="parmname">z</span>, storing the matrix <var>Z</var>.  </p>
+<p>If <span class="parmname">range</span> = 'A', then <span class="parmname">nzc</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+<p>If <span class="parmname">range</span> = 'V', then <span class="parmname">nzc</span><span class="eqsymbol">≥</span> the number of eigenvalues in (<span class="parmname">vl</span>,<span class="parmname">vu</span>].</p>
+<p>If <span class="parmname">range</span> = 'I', then <span class="parmname">nzc</span><span class="eqsymbol">≥</span><span class="parmname">iu</span>-<span class="parmname">il</span>+1.</p>
+<p>If <span class="parmname">nzc</span> = -1, then a workspace query is assumed; the <span>routine </span>calculates the number of columns of the matrix <var>Z</var> that are needed to hold the eigenvectors. This value is returned as the first entry of the <span class="parmname">z</span> array, and no error message related to <span class="parmname">nzc</span> is issued.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The size of the array <span class="parmname">work</span>. <span class="parmname">lwork</span><span class="eqsymbol">≥</span> max(1,18*<span class="parmname">n</span>)</p>
+<p>if <span class="parmname">jobz</span> = 'V', and <span class="parmname">lwork</span><span class="eqsymbol">≥</span> max(1,12*<span class="parmname">n</span>) if <span class="parmname">jobz</span> = 'N'. If <span class="parmname">lwork</span> = -1, then a workspace query is assumed; the <span>routine </span>only calculates the optimal size of the <span class="parmname">work</span> array, returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The size of the array <span class="parmname">iwork</span>.  <span class="parmname">liwork</span><span class="eqsymbol">≥</span> max(1,10*<span class="parmname">n</span>) if the eigenvectors are desired, and <span class="parmname">liwork</span><span class="eqsymbol">≥</span> max(1,8*<span class="parmname">n</span>) if only the eigenvalues are to be computed.</p>
+<p>If <span class="parmname">liwork</span> = -1, then a workspace query is assumed; the <span>routine </span>only calculates the optimal size of the <span class="parmname">iwork</span> array, returns this value as the first entry of the <span class="parmname">iwork</span> array, and no error message related to <span class="parmname">liwork</span> is issued.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dol</span>, <span class="parmname">dou</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>From the eigenvalues <span><span class="parmname">w</span>(1:<span class="parmname">m</span>)</span>, only eigenvectors <var>Z</var>(:,<span class="parmname">dol</span>) to <var>Z</var>(:,<span class="parmname">dou</span>) are computed.</p>
+<p>If <span class="parmname">dol</span> &gt; 1, then <var>Z</var>(:,<span class="parmname">dol</span>-1-<span class="parmname">zoffset</span>) is used and overwritten.</p>
+<p>If <span class="parmname">dou</span> &lt; <span class="parmname">m</span>, then <var>Z</var>(:,<span class="parmname">dou</span>+1-<span class="parmname">zoffset</span>) is used and overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">zoffset</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Offset for storing the eigenpairs when <span class="parmname">z</span> is distributed in 1D-cyclic fashion</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-747258A9-8FA1-4596-A12E-D595CC156450"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-F6E60A53-ECDD-40EC-8E9D-64E84F4C10BF"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Globally summed over all processors, <span class="parmname">m</span> equals the total number of eigenvalues found.  0 <span class="eqsymbol">≤</span><span class="parmname">m</span><span class="eqsymbol">≤</span><span class="parmname">n</span>. If <span class="parmname">range</span> = 'A', <span class="parmname">m</span> = <span class="parmname">n</span>, and if <span class="parmname">range</span> = 'I', <span class="parmname">m</span> = <span class="parmname">iu</span>-<span class="parmname">il</span>+1. The local output equals <span class="parmname">m</span> = <span class="parmname">dou</span> - <span class="parmname">dol</span> + 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> array of size <span class="parmname">n</span> for <span class="option">sstegr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> array of size <span class="parmname">n</span> for <span class="option">dstegr2</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The first <span class="parmname">m</span> elements contain the selected eigenvalues in ascending order. Note that immediately after exiting this  <span>routine</span>, only the eigenvalues <span>from position <span class="parmname">dol</span>:<span class="parmname">dou</span></span> are reliable on this processor because the eigenvalue computation is done in parallel.          Other processors will hold reliable information on other parts of the <span class="parmname">w</span> array. This information is communicated in the ScaLAPACK driver.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sstegr2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span>  for <span class="option">dstegr2</span></p>
+<p>Array of size <span>(<span class="parmname">ldz</span>, max(1,<span class="parmname">m</span>) )</span>.</p>
+<p>If <span class="parmname">jobz</span> = 'V', and if <span class="parmname">info</span> = 0, then the first <span class="parmname">m</span> columns of  the matrix <var>Z</var> stored in <span class="parmname">z</span> contain some of the orthonormal eigenvectors of the matrix T corresponding to the selected eigenvalues, with the <var>i</var>-th column of <var>Z</var> holding the eigenvector associated with <span class="parmname">w</span><span>(<var>i</var>)</span>.</p>
+<p>If <span class="parmname">jobz</span> = 'N', then <span class="parmname">z</span> is not referenced.</p>
+<p>Note: the user must ensure that at least max(1,<span class="parmname">m</span>) columns  are supplied in the array <span class="parmname">z</span>; if <span class="parmname">range</span> = 'V', the exact value of <span class="parmname">m</span> is not known in advance and can be computed with a workspace query by setting <span class="parmname">nzc</span> = -1, see below.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">isuppz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> array of size 2*max(1,<span class="parmname">m</span>) </p>
+<p>The support of the eigenvectors in <span class="parmname">z</span>, i.e., the indices indicating the nonzero elements in <span class="parmname">z</span>. The <var>i</var>-th computed eigenvector is nonzero only in elements <span><span class="parmname">isuppz</span>( 2*<var>i</var>-1 ) through <span class="parmname">isuppz</span>( 2*<var>i</var> )</span>. This is relevant in the case when the matrix is split. <span class="parmname">isuppz</span> is only set if <span class="parmname">n</span>&gt;2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><span>(1)</span> returns the optimal (and minimal) <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>On exit, if <span class="parmname">info</span> = 0, <span class="parmname">iwork</span><span>(1)</span> returns the optimal <span class="parmname">liwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>On exit, <span class="parmname">info</span></p>
+<p>= 0:  successful exit</p>
+<p>other:if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value</p>
+<p>if <span class="parmname">info</span> = 10X, internal error in <span class="option">?larre2</span>,</p>
+<p>if <span class="parmname">info</span> = 20X, internal error in <a href="GUID-8BEB8807-EB55-4818-B0A6-AF31E50F4D79.html"><span class="option">?larrv</span></a>.</p>
+<p>Here, the digit X = ABS( <span class="parmname">iinfo</span> ) &lt; 10, where <span class="parmname">iinfo</span> is the nonzero error code returned by <span class="option">?larre2</span> or <span class="option">?larrv</span>, respectively.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

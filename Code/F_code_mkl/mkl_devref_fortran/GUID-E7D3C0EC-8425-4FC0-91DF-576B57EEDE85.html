@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_convert_bsr"/>
+<meta name="abstract" content="Converts internal matrix representation to BSR format or changes BSR block size."/>
+<meta name="description" content="Converts internal matrix representation to BSR format or changes BSR block size."/>
+<meta name="DC.subject" content="mkl_sparse_convert_bsr"/>
+<meta name="keywords" content="mkl_sparse_convert_bsr"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6313A228-4C03-42C0-8595-11E50F4CB80D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E7D3C0EC-8425-4FC0-91DF-576B57EEDE85"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_convert_bsr</title>
+
+</head>
+<body id="GUID-E7D3C0EC-8425-4FC0-91DF-576B57EEDE85">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_convert_bsr</span></h1>
+<!--Converts internal matrix representation to BSR format or changes BSR block size.--><div><p class="shortdesc">Converts internal matrix representation to BSR format or changes BSR block size.</p>
+<div class="section" id="GUID-C73BAB59-0953-4538-876C-1C0DA7A62B41"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_convert_bsr</span><span class="delim"> (</span><span class="var">source</span><span class="sep">, </span><span class="var">block_size</span><span class="sep">, </span><span class="var">block_layout</span><span class="sep">, </span><span class="var">operation</span><span class="sep">, </span><span class="var">dest</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-85E8643B-8AA2-423D-ABAA-9E46FDFC2FC6"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-F28D1782-845D-4993-A9E6-D1D643CD70C7"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-AD5F7725-5C6F-40AF-8305-FE49D7DEF6C7"><h2 class="sectiontitle">Description</h2><p>The<span class="option">mkl_sparse_convert_bsr</span> routine converts internal matrix representation to BSR format or changes BSR block size.</p>
+</div>
+<div class="section" id="GUID-6668C1A5-93AF-4E6F-80A3-42DB4370CC76"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BFBB8EBB-492E-42C3-92F2-AC784033A57C"><dt class="dlterm"><span class="parmname">source</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle containing internal data.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">block_size</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Size of the block in the output structure.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">block_layout</span></dt>
+
+<dd><p><samp class="codeph"> sparse_index_base_t</samp>. 
+          </p>
+<p>Specifies layout of blocks: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_LAYOUT_ROW_MAJOR 
+                </tt></p></td>
+
+<td valign="top" class="noborder"><p>Storage of elements of blocks uses row major layout. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_LAYOUT_COLUMN_MAJOR 
+                </tt></p></td>
+
+<td valign="top" class="noborder"><p>Storage of elements of blocks uses column major layout. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><samp class="codeph">C_INT</samp>. 
+          </p>
+<p>Specifies operation 
+            <samp class="codeph">op()</samp> on input matrix. 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_NON_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Non-transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>T</sup></samp>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_OPERATION_CONJUGATE_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Conjugate transpose, 
+                  <samp class="codeph">op(<var>A</var>) = 
+                    <var>A</var><sup>H</sup></samp>. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+<div class="section" id="GUID-E65F6089-1A41-42AB-A339-1145D69AF52F"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dest</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle containing internal data.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">stat</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">INTEGER</samp></p>
+<p>Value indicating whether the operation was successful or not, and why: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p>The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-6313A228-4C03-42C0-8595-11E50F4CB80D.html">Matrix Manipulation Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

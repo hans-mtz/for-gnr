@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sygst"/>
+<meta name="abstract" content="Reduces a real symmetric-definite generalized eigenvalue problem to the standard form."/>
+<meta name="description" content="Reduces a real symmetric-definite generalized eigenvalue problem to the standard form."/>
+<meta name="DC.subject" content="?sygst, LAPACK routines, generalized eigenvalue problems, real symmetric-definite problem, reducing generalized eigenvalue problems, LAPACK"/>
+<meta name="keywords" content="?sygst, LAPACK routines, generalized eigenvalue problems, real symmetric-definite problem, reducing generalized eigenvalue problems, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-094ED6E6-3512-4BAC-B1B6-C723E4F142F4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sygst</title>
+
+</head>
+<body id="GUID-094ED6E6-3512-4BAC-B1B6-C723E4F142F4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sygst</span></h1>
+<!--Reduces a real symmetric-definite generalized eigenvalue problem to the standard form.--><div><p class="shortdesc">Reduces a real symmetric-definite generalized eigenvalue problem to the standard form.</p>
+<div class="section" id="GUID-E0B32DEB-136F-4C78-AD07-880AE0414E78"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssygst</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsygst</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sygst</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="delim"> [</span><span class="sep">,</span><span class="var">itype</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-878E9E45-AE26-47AF-A84A-BB93E5D22BDC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-0EB0BAA4-2158-4DC0-8CAC-1970F31617A7"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces real symmetric-definite generalized eigenproblems</p>
+<p><samp class="codeph"><samp class="codeph"><var>A</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>B</var>*<var>z</var></samp>, <samp class="codeph"><var>A</var>*<var>B</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>z</var></samp>, or <samp class="codeph"><var>B</var>*<var>A</var>*<var>z</var> = <span class="eqsymbol">λ</span>*<var>z</var></samp></samp></p>
+<p>to the standard form <samp class="codeph"><var>C</var>*<var>y</var> = <span class="eqsymbol">λ</span>*<var>y</var></samp>. Here <var>A</var> is a real symmetric matrix, and <var>B</var> is a real symmetric positive-definite matrix. Before calling this routine, call <span class="option">?potrf</span> to compute the Cholesky factorization: <samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>B</var> = <var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp>.</p>
+</div>
+<div class="section" id="GUID-362FF5EB-0DBF-42CC-88CA-CF13711955DD"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-683DC423-4810-4D55-9C87-90B2EA26BAAA"><dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Must be 1 or 2 or 3. </p>
+<p>If <samp class="codeph"><var>itype</var> = 1</samp>, the generalized eigenproblem is <samp class="codeph"><var>A*z</var> = <var>lambda</var><var>*B*z</var></samp></p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: <samp class="codeph"><var>C</var> = inv(<var>U</var><sup class="power"><var>T</var></sup>)*<var>A</var><samp class="codeph">*inv(<var>U</var>)</samp></samp>, <samp class="codeph"><var>z</var> = inv(<var>U</var>)*<var>y</var></samp>;</p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: <samp class="codeph"><var>C</var> = inv(<var>L</var>)*<var>A</var>*inv(<var>L</var><sup class="power"><var>T</var></sup>)</samp>, <samp class="codeph"><var>z</var> = inv(<var>L</var><sup class="power"><var>T</var></sup>)*<var>y</var></samp>. </p>
+<p>If <samp class="codeph"><var>itype</var> = 2</samp>, the generalized eigenproblem is <samp class="codeph"><var>A</var>*<var>B</var>*<var>z</var> = <var>lambda</var>*<var>z</var></samp></p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: <samp class="codeph"><var>C</var> = <var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>T</var></sup></samp>, <samp class="codeph"><samp class="codeph"><var>z</var> = inv(<var>U</var>)*<var>y</var></samp></samp>;</p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: <samp class="codeph"><var>C</var> = <var>L</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>L</var></samp>, <samp class="codeph"><var>z</var> = inv(<var>L</var><sup class="power"><var>T</var></sup>)*<var>y</var></samp>.  </p>
+<p>If <samp class="codeph"><var>itype</var> = 3</samp>, the generalized eigenproblem is <samp class="codeph"><var>B*A</var>*<var>z</var> = <var>lambda</var>*<var>z</var></samp></p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>: <samp class="codeph"><var>C</var> = <var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>T</var></sup></samp>, <samp class="codeph"><var>z</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>y</var></samp>;</p>
+<p> for <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>: <samp class="codeph"><var>C</var> = <var>L</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>L</var></samp>, <samp class="codeph"><var>z</var> = <var>L</var>*<var>y</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>a</var> stores the upper triangle of <var>A</var>; you must supply <var>B</var> in the factored form <samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>T</var></sup><var>*U</var></samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>a</var> stores the lower triangle of <var>A</var>; you must supply <var>B</var> in the factored form <samp class="codeph"><var>B</var> = <var>L*L</var><sup class="power"><var>T</var></sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrices <var>A</var> and <var>B</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssygst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsygst</span>. </p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span>
+ contains the upper or lower triangle of <var>A</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>b</var><span>(<var>ldb</var>,*)</span>
+ contains the Cholesky-factored matrix <var>B</var>: </p>
+<p><samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>T</var></sup><var>*U</var></samp> or <samp class="codeph"><var>B</var> = <var>L*L</var><sup class="power"><var>T</var></sup></samp> (as returned by <span class="option">?potrf</span>). </p>
+<p>The second dimension of <var>b</var> must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; at least max(1, <var>n</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B39DFCA2-55AE-4994-ABD0-20EAC1A45521"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C2FC8DA6-1EC6-4D78-AF6E-CF46B6CC1183"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>The upper or lower triangle of <var>A</var> is overwritten by the upper or lower triangle of <var>C</var>, as specified by the arguments <var>itype</var> and <var>uplo</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0C5C668A-9E74-446B-876F-3BB98A223811"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">sygst</span> interface are the following:</p>
+<dl id="GUID-0F60F1A5-14A8-411A-8DF4-42544DD4D5D0"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>Holds the matrix <var>B</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p>Must be 1, 2, or 3. The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D80A9C58-C117-4B50-89E0-4CF230E441EA"><h2 class="sectiontitle">Application Notes</h2><p>Forming the reduced matrix <var>C</var> is a stable procedure. However, it involves implicit multiplication by <samp class="codeph">inv(<var>B</var>)</samp> (if <samp class="codeph"><var>itype</var> = 1</samp>) or <var>B</var> (if <samp class="codeph"><var>itype</var> = 2</samp> or 3). When the routine is used as a step in the computation of eigenvalues and eigenvectors of the original problem, there may be a significant loss of accuracy if <var>B</var> is ill-conditioned with respect to inversion.</p>
+<p>The approximate number of floating-point operations is <var>n</var><sup>3</sup>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5BECF668-947E-4144-B825-2796C91ABECF.html">Generalized Symmetric-Definite Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

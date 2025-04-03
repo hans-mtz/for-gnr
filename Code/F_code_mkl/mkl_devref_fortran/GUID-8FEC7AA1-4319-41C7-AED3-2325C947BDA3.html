@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Calling PDE Support Routines from Fortran"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-507CF9E6-12B2-4064-B086-8ECAFCFA9576.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8FEC7AA1-4319-41C7-AED3-2325C947BDA3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Calling PDE Support Routines from Fortran</title>
+
+</head>
+<body id="GUID-8FEC7AA1-4319-41C7-AED3-2325C947BDA3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Calling PDE Support Routines from
+	 Fortran</h1>
+<div><p>The calling interface for all the Intel&reg; oneAPI Math Kernel Library TT and Poisson Solver routines is designed to be easily used in C. However, you can invoke each TT or Poisson Solver routine directly from Fortran 90 or higher if you are familiar with the inter-language calling conventions of your platform.</p>
+<p><p>The TT or Poisson Solver interface cannot be invoked from FORTRAN 77 due to restrictions imposed by the use of the Intel&reg; oneAPI Math Kernel Library FFT interface.</p>
+</p>
+<p>The inter-language calling conventions include, but
+		are not limited to, the argument passing mechanisms for the language, the data
+		type mappings from C to Fortran, and how C external names are decorated on the
+		platform. 
+	 </p>
+<p>To promote portability and relieve you of dealing
+		with the calling conventions specifics, the Fortran header file 
+		<span class="filepath">mkl_trig_transforms.f90</span> for TT
+		routines and 
+		<span class="filepath">mkl_poisson.f90</span>
+		for Poisson Solver routines, used together with 
+		<span class="filepath">mkl_dfti.f90</span>,
+		declare a set of macros and introduce type definitions intended to hide the
+		inter-language calling conventions and provide an interface to the routines
+		that looks natural in Fortran. 
+	 </p>
+<p>For example, consider a hypothetical library routine,
+		
+  <span class="option">foo</span>, which takes a
+  double-precision vector of length 
+  <var>n</var>. C users access
+  such a function as follows: 
+  </p>
+<pre>MKL_INT n; 
+  double *x; 
+  … 
+  foo(x, &amp;n);</pre><p>As noted above, to invoke 
+	 <samp class="codeph">foo</samp>, Fortran users would
+	 need to know what Fortran data types correspond to C types 
+	 <samp class="codeph">MKL_INT</samp> and 
+	 <samp class="codeph">double</samp> (or 
+	 <samp class="codeph">float</samp> for
+	 single-precision), what argument-passing mechanism the C compiler uses and
+	 what, if any, name decoration is performed by the C compiler when generating
+	 the external symbol 
+	 <samp class="codeph">foo</samp>. However, with the
+	 Fortran header files 
+	 <span class="filepath">mkl_trig_transforms.f90</span> / 
+	 <span class="filepath">mkl_poisson.f90</span> and 
+	 <span class="filepath">mkl_dfti.f90</span>
+	 included, the invocation of 
+  <samp class="codeph">foo</samp> within a Fortran program
+  will look as follows for the LP64 interface (for the ILP64 interface, 
+  <span class="keyword">INTEGER*8</span> type will be used instead of 
+  <span class="keyword">INTEGER*4</span>): 
+  </p>
+<ul id="GUID-13FB21A9-4ACA-4F56-8A47-FFCE9F517CE3"><li id="LI_DE7FC35E36EE4F68BA68B199BC281383">For TT
+		interface, 
+		<pre>use mkl_dfti 
+use mkl_trig_transforms 
+INTEGER*4 n 
+DOUBLE PRECISION, ALLOCATABLE :: x 
+… 
+CALL FOO(x,n)
+      </pre></li>
+<li id="LI_585DAFD864324237AF6756890E93FFCB">For
+		Poisson Solver interface, 
+		<pre>use mkl_dfti 
+use mkl_poisson 
+INTEGER*4 n 
+DOUBLE PRECISION, ALLOCATABLE :: x 
+… 
+CALL FOO(x,n) 
+    </pre></li>
+</ul>
+<p>Note that in the above example, the header files 
+	 <span class="filepath">mkl_trig_transforms.f90 /
+		mkl_poisson.f90</span> and 
+	 <span class="filepath">mkl_dfti.f90</span> provide
+	 a definition for the subroutine 
+	 <samp class="codeph">FOO</samp>. To ease the use of
+	 Poisson Solver or TT routines in Fortran, the general approach of providing
+	 Fortran definitions of names is used throughout the libraries. Specifically, if
+	 a name from a Poisson Solver or TT interface is documented as having the
+	 C-specific name 
+	 <samp class="codeph">foo</samp>, then the Fortran
+	 header files provide an appropriate Fortran language type definition 
+	 <samp class="codeph">FOO</samp>. 
+  </p>
+<p>One of the key differences between Fortran and C is the
+	 language argument-passing mechanism: C programs use pass-by-value semantics and
+	 Fortran programs use pass-by-reference semantics. The Fortran headers ensure
+	 proper treatment of this difference. In particular, in the above example, the
+	 header files 
+	 <span class="filepath">mkl_trig_transforms.f90 /
+		mkl_poisson.f90</span> and 
+	 <span class="filepath">mkl_dfti.f90</span> hide
+	 the difference by defining a macro 
+  <span class="option">FOO</span> that takes the
+  address of the appropriate arguments. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-507CF9E6-12B2-4064-B086-8ECAFCFA9576.html">Partial Differential Equations Support</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

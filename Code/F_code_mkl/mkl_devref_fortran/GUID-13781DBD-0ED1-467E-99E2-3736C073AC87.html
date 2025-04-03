@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sctr"/>
+<meta name="abstract" content="Converts compressed sparse vectors into full storage form."/>
+<meta name="description" content="Converts compressed sparse vectors into full storage form."/>
+<meta name="DC.subject" content="?sctr, Sparse BLAS Level 1 routines and functions, scattering compressed sparse vector's elements into full storage form, converting compressed sparse vectors into full storage form, sparse vectors, converting to full-storage form"/>
+<meta name="keywords" content="?sctr, Sparse BLAS Level 1 routines and functions, scattering compressed sparse vector's elements into full storage form, converting compressed sparse vectors into full storage form, sparse vectors, converting to full-storage form"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-13781DBD-0ED1-467E-99E2-3736C073AC87"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sctr</title>
+
+</head>
+<body id="GUID-13781DBD-0ED1-467E-99E2-3736C073AC87">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sctr</span></h1>
+<!--Converts compressed sparse vectors into full storage form.--><div><p class="shortdesc">Converts compressed sparse vectors into full storage form.</p>
+<div class="section" id="GUID-3944208A-DE8E-42A9-9EA8-C0D8E35E831F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssctr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dsctr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call csctr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zsctr</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sctr</span><span class="delim">(</span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DB312ADD-BB16-4D98-AD20-92D27DF83048"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-3D516BEF-93E1-41E9-B262-7DD42DD64BF5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?sctr</span> routines scatter the elements of the compressed sparse vector (<var>nz</var>, <var>x</var>, <var>indx</var>) to a full-storage vector <var>y</var>. The routines modify only the elements of <var>y</var> whose indices are listed in the array <var>indx</var>: </p>
+<p><samp class="codeph"><var>y</var>(<var>indx</var>(<var>i</var>)) = <var>x</var>(<var>i</var>)</samp>, for <samp class="codeph"><var>i</var>=1,2,... ,<var>nz</var></samp>.</p>
+</div>
+<div class="section" id="GUID-5A713A1E-9934-4FEC-8762-BF92E9B1A6CE"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1707BD3E-2B74-437A-8D44-45D24AD7E0C7"><dt class="dlterm"><span class="parmname">nz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elements of <var>x</var> to be scattered.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies indices of elements to be scattered.</p>
+<p>Array, size at least <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssctr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsctr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csctr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsctr</span></p>
+<p>Array, size at least <var>nz</var>.</p>
+<p>Contains the vector to be converted to full-storage form.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EB9DB2AA-5371-4CB8-BF53-0C09800383D0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-066391FA-CC66-4AFB-A8C1-133E0799D986"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssctr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsctr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csctr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsctr</span></p>
+<p>Array, size at least max(<var>indx(i)</var>).</p>
+<p>Contains the vector <var>y</var> with updated elements.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-EDB2D1FC-BDC5-43CE-BB22-936FEE75B812"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">sctr</span> interface are the following:</p>
+<dl id="GUID-3D9F24A2-11C5-4861-A149-A3FB246D0913"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

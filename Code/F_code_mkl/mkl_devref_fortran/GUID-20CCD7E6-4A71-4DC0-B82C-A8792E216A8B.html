@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trnlspbc_check"/>
+<meta name="abstract" content="Checks the correctness of handle and arrays containing Jacobian matrix, objective function, lower and upper bounds, and stopping criteria."/>
+<meta name="description" content="Checks the correctness of handle and arrays containing Jacobian matrix, objective function, lower and upper bounds, and stopping criteria."/>
+<meta name="DC.subject" content="TR routines, ?trnlspbc_check, strnlspbc_check, dtrnlspbc_check"/>
+<meta name="keywords" content="TR routines, ?trnlspbc_check, strnlspbc_check, dtrnlspbc_check"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-35305884-74C3-44A0-AEC9-DB3C89057F31.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-20CCD7E6-4A71-4DC0-B82C-A8792E216A8B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trnlspbc_check</title>
+
+</head>
+<body id="GUID-20CCD7E6-4A71-4DC0-B82C-A8792E216A8B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trnlspbc_check</span></h1>
+<!--Checks the correctness of handle and arrays containing Jacobian matrix, objective function, lower and upper bounds, and stopping criteria.--><div><p class="shortdesc">Checks the correctness of handle and arrays containing Jacobian matrix, objective function, lower and upper bounds, and stopping criteria.</p>
+<div class="section" id="GUID-ADE081E3-9216-4AB2-A39C-22D18FFC5325"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">strnlspbc_check</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">fjac</span><span class="sep">, </span><span class="var">fvec</span><span class="sep">, </span><span class="var">LW</span><span class="sep">, </span><span class="var">UP</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">info</span><span class="sep"/><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">dtrnlspbc_check</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">fjac</span><span class="sep">, </span><span class="var">fvec</span><span class="sep">, </span><span class="var">LW</span><span class="sep">, </span><span class="var">UP</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">info</span><span class="sep"/><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-4BFDCC5F-AFBA-4100-AED0-DDDA3A987710"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C5A16F86-D1DE-4352-B1F4-4DB1045698D6"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?trnlspbc_check</span> routine checks the arrays passed into the solver as input parameters. If an array contains any <span class="keyword">INF</span> or <span class="keyword">NaN</span> values, the routine sets the flag in output array <var>info</var><span>(see the description of the values returned in the Output Parameters section for the <span class="parmname">info</span> array)</span>.</p>
+</div>
+<div class="section" id="GUID-4EA10037-8FF0-4198-8E5B-0BDC21F4B8AA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-DB206940-7386-46C8-80EF-E461CB9CD3BC"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd><p>Type <span><span class="keyword">INTEGER*8</span></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span> Length of <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span> Length of <var>F</var>(<var>x</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">fjac</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_check</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_check</span></p>
+<p>Array of size <var>m</var> by <var>n</var>. Contains the Jacobian matrix of the function.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">fvec</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_check</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_check</span></p>
+<p>Array of size <var>m</var>. Contains the function values at <span class="keyword">X</span>, where <samp class="codeph"><var>fvec</var></samp><samp class="codeph">(<var>i</var>)</samp><samp class="codeph"> = (<var>y</var><sub class="subb"><var>i</var></sub> – <var>f</var><sub class="subb"><var>i</var></sub>(<var>x</var>))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">LW</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_check</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_check</span></p>
+<p>Array of size <var>n</var>. </p>
+<p>Contains low bounds for <var>x</var> (<var>lw</var><sub class="subb"><var>i</var></sub> &lt; <var>x</var><sub class="subb"><var>i</var></sub> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">UP</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_check</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_check</span></p>
+<p>Array of size <var>n</var>. </p>
+<p>Contains upper bounds for <var>x</var> (<var>up</var><sub class="subb"><var>i</var></sub> &gt; <var>x</var><sub class="subb"><var>i</var></sub> ).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">eps</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_check</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_check</span></p>
+<p>Array of size 6; contains stopping criteria. <span>See the values in the Description section of the <a href="GUID-B6BADF1C-F90C-4D30-8B84-CF9A5F970E08.html#GUID-B6BADF1C-F90C-4D30-8B84-CF9A5F970E08"><span class="option"> ?trnlspbc_init</span></a>.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3D0A0D8E-540A-48FA-90BF-0665019BC533"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1ACA8401-224D-4D65-B9F6-7ED807C8A885"><dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array of size 6.</p>
+<p>Results of input parameter checking:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-F19E07C1-5B98-4CB4-A506-395CC0DF0CAE" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" colspan="2" valign="top" id="d275185e412">Parameter</th>
+<th class="cellrowborder" valign="top" width="19.866444073455757%" id="d275185e414">Used for</th>
+<th class="cellrowborder" valign="top" width="8.347245409015025%" id="d275185e416"><p> Value</p>
+</th>
+<th class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" id="d275185e419"><p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" rowspan="2" colspan="2" align="left" valign="top" headers="d275185e412 "><p><span class="parmname">info</span>(1) </p>
+</td>
+<td class="cellrowborder" rowspan="2" align="left" valign="top" width="19.866444073455757%" headers="d275185e414 "><p>Flags for <span class="parmname">handle</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">0</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The handle is valid.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">1</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The handle is not allocated.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" colspan="2" align="left" valign="top" headers="d275185e412 "><p><span class="parmname">info</span>(2) </p>
+</td>
+<td class="cellrowborder" rowspan="4" align="left" valign="top" width="19.866444073455757%" headers="d275185e414 "><p>Flags for <span class="parmname">fjac</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">0</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fjac</span> array is valid.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">1</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fjac</span> array is not allocated</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">2</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fjac</span> array contains <span class="keyword">NaN</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">3</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fjac</span> array contains <span class="keyword">Inf</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" colspan="2" align="left" valign="top" headers="d275185e412 "><p><span class="parmname">info</span>(3) </p>
+</td>
+<td class="cellrowborder" rowspan="4" align="left" valign="top" width="19.866444073455757%" headers="d275185e414 "><p>Flags for <span class="parmname">fvec</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">0</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fvec</span> array is valid.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">1</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fvec</span> array is not allocated</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">2</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fvec</span> array contains <span class="keyword">NaN</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">3</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">fvec</span> array contains <span class="keyword">Inf</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="5" colspan="2" align="left" valign="top" headers="d275185e412 "><p><span class="parmname">info</span>(4) </p>
+</td>
+<td class="cellrowborder" rowspan="5" align="left" valign="top" width="19.866444073455757%" headers="d275185e414 "><p>Flags for <span class="parmname">LW</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">0</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">LW</span> array is valid.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">1</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">LW</span> array is not allocated</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">2</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">LW</span> array contains <span class="keyword">NaN</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">3</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">LW</span> array contains <span class="keyword">Inf</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">4</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The lower bound is greater than the upper bound.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="5" colspan="2" align="left" valign="top" headers="d275185e412 "><p><span class="parmname">info</span>(5) </p>
+</td>
+<td class="cellrowborder" rowspan="5" align="left" valign="top" width="19.866444073455757%" headers="d275185e414 "><p>Flags for <span class="parmname">up</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">0</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">up</span> array is valid.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">1</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">up</span> array is not allocated</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">2</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">up</span> array contains <span class="keyword">NaN</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">3</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">up</span> array contains <span class="keyword">Inf</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">4</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The upper bound is less than the lower bound.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="5" colspan="2" align="left" valign="top" headers="d275185e412 "><p><span class="parmname">info</span>(6) </p>
+</td>
+<td class="cellrowborder" rowspan="5" align="left" valign="top" width="19.866444073455757%" headers="d275185e414 "><p>Flags for <span class="parmname">eps</span></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">0</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">eps</span> array is valid.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">1</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">eps</span> array is not allocated</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">2</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">eps</span> array contains <span class="keyword">NaN</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">3</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">eps</span> array contains <span class="keyword">Inf</span>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="8.347245409015025%" headers="d275185e416 "><samp class="codeph">4</samp></td>
+<td class="row-nocellborder" align="left" valign="top" width="41.736227045075125%" headers="d275185e419 "><p>The <span class="parmname">eps</span> array contains a value less than or equal to zero.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Information about completion of the task.</p>
+<p><span class="parmname">res</span> = <span class="keyword">TR_SUCCESS</span> - the routine completed the task normally.</p>
+<p><span class="keyword">TR_SUCCESS</span> is defined in the <span class="filepath">mkl_rci.fi</span> include file.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-35305884-74C3-44A0-AEC9-DB3C89057F31.html">Nonlinear Least Squares Problem with Linear (Bound) Constraints</a></div>
+</div>
+<div/>
+</body>
+</html>

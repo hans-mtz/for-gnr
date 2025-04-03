@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Fourier Transform Functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0191F247-778C-4C69-B54F-ABF951506FCD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CD8C749B-7CC1-466C-9815-06A7A1D77D30.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Fourier Transform Functions</title>
+
+</head>
+<body id="GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Fourier Transform Functions</h1>
+<div><p id="FORMULA">The general form of the discrete Fourier transform is 
+	 </p>
+<p><span><img class="img-middle" src="equations/GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21ee1.png"/></span></p>
+<p>for 
+		<samp class="codeph"><var>k</var><sub><var>l</var></sub> = 0, ... 
+		  <var>n</var><sub><var>l</var></sub>-1 (</samp><var>l</var> = 1, ..., 
+		<var>d)</var>, where 
+		<span class="eqsymbol">σ</span> is a scale factor, 
+		<span class="eqsymbol">δ</span> = -1 for the forward transform, and 
+		<span class="eqsymbol">δ</span> = +1 for the inverse (backward) transform. In the forward transform, the input (periodic) sequence 
+		<samp class="codeph">{<var>w</var><sub><var>j</var><sub>1</sub>, 
+			 <var>j</var><sub>2</sub>, ..., 
+			 <var>j</var><sub><var>d</var></sub></sub>}</samp>belongs to the set of complex-valued sequences and real-valued sequences. Respective domains for the backward transform are represented by complex-valued sequences and complex-valued conjugate-even sequences. 
+	 </p>
+<p>The Intel&reg; oneAPI Math Kernel Library (oneMKL) provides an interface for computing
+      a discrete Fourier transform through the fast Fourier transform algorithm. Prefixes 
+  <span class="option">Dfti</span> in function names and 
+  <span class="keyword">DFTI</span> in the names of configuration parameters stand for Discrete Fourier Transform Interface. 
+  </p>
+<p><span>The manual</span>describes the following implementations of the fast Fourier transform functions available in Intel&reg; oneAPI Math Kernel Library:</p>
+<ul id="GUID-2080332F-5AF3-4EC2-A48B-8CACEF636345"><li id="LI_5DAE0C8DF97D4DA8851E483479384F48">Fast Fourier transform (FFT) functions for single-processor or shared-memory systems (see 
+		<a href="GUID-CD8C749B-7CC1-466C-9815-06A7A1D77D30.html#GUID-CD8C749B-7CC1-466C-9815-06A7A1D77D30">FFT Functions</a>) 
+	 </li>
+<li id="LI_764E29D236C04EF7B4F7CD63C4FF2128"><a href="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html#GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278">Cluster FFT functions</a> for distributed-memory architectures (available only for Intel&reg; 64 and Intel&reg; Many Integrated Core architectures) 
+	 </li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Intel&reg; oneAPI Math Kernel Library also supports the FFTW3* interfaces to the fast Fourier transform functionality for shared memory paradigm (SMP) systems.</p>
+</div>
+<p id="USAGE_MODEL"> Both FFT and Cluster FFT functions compute an FFT in five steps: 
+  </p>
+<ol id="GUID-250DF432-7C67-4122-863B-42C73F9C7341"><li id="LI_53FEBE5FC87343FD9E3A0D1FDBD4640F"><p> Allocate a fresh descriptor for the problem with a call to the 
+		  <a href="GUID-2E31EB2D-15B4-481B-B40F-FE7B6CDDCEDF.html#GUID-2E31EB2D-15B4-481B-B40F-FE7B6CDDCEDF"><span class="option">DftiCreateDescriptor</span></a> or 
+		  <a href="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3.html#GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"><span class="option">DftiCreateDescriptorDM</span></a> function. The descriptor captures the configuration of the transform, such as the dimensionality (or rank), sizes, number of transforms, memory layout of the input/output data (defined by strides), and scaling factors. Many of the configuration settings are assigned default values in this call which you might need to modify in your application. 
+		</p>
+</li>
+<li id="LI_F5DF64E4DEA141479765A7389841B02C"><p> Optionally adjust the descriptor configuration with a call to the 
+		  <a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> or 
+		  <a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15"><span class="option">DftiSetValueDM</span></a> function as needed. Typically, you must carefully define the data storage layout for an FFT or the data distribution among processes for a Cluster FFT. The configuration settings of the descriptor, such as the default values, can be obtained with the 
+		  <a href="GUID-FB89D011-B5DB-40F0-80C7-77D09117B6D3.html#GUID-FB89D011-B5DB-40F0-80C7-77D09117B6D3"><span class="option">DftiGetValue</span></a> or 
+		  <a href="GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594.html#GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594"><span class="option">DftiGetValueDM</span></a> function. 
+		</p>
+</li>
+<li id="LI_DBA5B22C0CE24A91A8D19EBE7120EBDF"><p> Commit the descriptor with a call to the 
+		  <a href="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"><span class="option">DftiCommitDescriptor</span></a> or 
+		  <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a> function, that is, make the descriptor ready for the transform computation. Once the descriptor is committed, the parameters of the transform, such as the type and number of transforms, strides and distances, the type and storage layout of the data, and so on, are "frozen" in the descriptor. 
+		</p>
+</li>
+<li id="LI_1E6C4E30011549FBB98AA3FB1306361A"><p> Compute the transform with a call to the 
+		  <a href="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"><span class="option">DftiComputeForward</span></a>/<a href="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"><span class="option">DftiComputeBackward</span></a> or 
+		  <a href="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618.html#GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618"><span class="option">DftiComputeForwardDM</span></a>/<a href="GUID-23EBC314-CD93-44B9-A456-C867DF0BD984.html#GUID-23EBC314-CD93-44B9-A456-C867DF0BD984"><span class="option">DftiComputeBackwardDM</span></a> functions as many times as needed. Because the descriptor is defined and committed separately, all that the compute functions do is take the input and output data and compute the transform as defined. To modify any configuration parameters for another call to a compute function, use 
+		  <a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> followed by 
+		  <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptor</span></a> (<a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15"><span class="option">DftiSetValueDM</span></a> followed by 
+		  <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a>) or create and commit another descriptor. 
+		</p>
+</li>
+<li id="LI_08DFAA8C9EC8434F9DB6D09CB62312A5">Deallocate the descriptor with a call to the 
+		<a href="GUID-2CA4889C-D4AC-45DF-A39F-B54B05FDFD56.html#GUID-2CA4889C-D4AC-45DF-A39F-B54B05FDFD56"><span class="option">DftiFreeDescriptor</span></a> or 
+		<a href="GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB.html#GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB"><span class="option">DftiFreeDescriptorDM</span></a> function. This returns the memory internally consumed by the descriptor to the operating system. 
+	 </li>
+</ol>
+<p> All the above functions return an integer status value, which is zero upon successful completion of the operation. You can interpret a non-zero status with the help of the 
+	 <a href="GUID-F110C65B-C1B3-46A7-BACB-A452ACBF3187.html#GUID-F110C65B-C1B3-46A7-BACB-A452ACBF3187"><span class="option">DftiErrorClass</span></a> or 
+	 <a href="GUID-BDF77516-08C9-44DC-9533-8C608DF9EDD9.html#GUID-BDF77516-08C9-44DC-9533-8C608DF9EDD9"><span class="option">DftiErrorMessage</span></a> function. 
+  </p>
+<p>The FFT functions support lengths with arbitrary factors. You can improve performance of the Intel&reg; oneAPI Math Kernel Library FFT if the length of your data vector permits factorization into powers of optimized radices. See the<em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em> for specific radices supported efficiently. 
+  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The FFT functions assume the Cartesian representation of complex data (that is, the real and imaginary parts define a complex number). The Intel&reg; oneAPI Math Kernel Library Vector Mathematical Functions provide efficient tools for conversion to and from polar representation<span> (see 
+		  <a href="GUID-2D25B109-2EF0-4EA5-A46A-D5FA3C499863.html#APPC-EXC-25">Example 
+			 <span>"Conversion from Cartesian to polar representation of complex data"</span></a> and 
+		  <a href="GUID-2D25B109-2EF0-4EA5-A46A-D5FA3C499863.html#APPC-EXC-26">Example 
+			 <span>"Conversion from polar to Cartesian representation of complex data"</span>)</a></span>. 
+	 </p>
+</div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1619507e343"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1619507e343 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0191F247-778C-4C69-B54F-ABF951506FCD.html">Developer Reference for Intel&reg; oneAPI Math Kernel Library - Fortran</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-CD8C749B-7CC1-466C-9815-06A7A1D77D30.html">FFT Functions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html">Cluster FFT Functions</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?dotci"/>
+<meta name="abstract" content="Computes the conjugated dot product of a compressed sparse complex vector with a full-storage complex vector."/>
+<meta name="description" content="Computes the conjugated dot product of a compressed sparse complex vector with a full-storage complex vector."/>
+<meta name="DC.subject" content="?dotci, Sparse BLAS Level 1 routines and functions, dot product, sparse complex vectors, conjugated, sparse vectors, complex dot product, conjugated"/>
+<meta name="keywords" content="?dotci, Sparse BLAS Level 1 routines and functions, dot product, sparse complex vectors, conjugated, sparse vectors, complex dot product, conjugated"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-44303F2C-ACC7-4D24-89A5-EA16A0312C3C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?dotci</title>
+
+</head>
+<body id="GUID-44303F2C-ACC7-4D24-89A5-EA16A0312C3C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?dotci</span></h1>
+<!--Computes the conjugated dot product of a compressed sparse complex vector with a full-storage complex vector.--><div><p class="shortdesc">Computes the conjugated dot product of a compressed sparse complex vector with a full-storage complex vector.</p>
+<div class="section" id="GUID-F16FF4BC-20C4-4901-942D-DEBDD8935026"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="oper"> = </span><span class="kwd">cdotci</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="oper"> = </span><span class="kwd">zdotci</span><span class="delim">(</span><span class="var">nz</span><span class="var">z</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="oper"> = </span><span class="kwd">dotci</span><span class="delim">(</span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-CE1077DC-18C8-46E9-A197-2E837D14ED78"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-14B75365-6038-4503-B721-5A21ED037C62"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?dotci</span> routines return the dot product of <var>x</var> and <var>y</var> defined as <pre>conjg(<var>x</var>(1))*<var>y</var>(<var>indx</var>(1)) + ... + conjg(<var>x</var>(<var>nz</var>))*<var>y</var>(<var>indx</var>(<var>nz</var>))</pre></p>
+<p>where the triple (<var>nz</var>, <var>x</var>, <var>indx</var>) defines a sparse complex vector stored in compressed form, and <var>y</var> is a real vector in full storage form. The functions reference only the elements of <var>y</var> whose indices are listed in the array <var>indx</var>. The values in <var>indx</var> must be distinct.</p>
+</div>
+<div class="section" id="GUID-37922C85-1D87-410C-8860-EF6B64FF1BC6"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-43CDBFEA-98DC-4AF2-B538-590CE3B2B830"><dt class="dlterm"><span class="parmname">nz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elements in <var>x</var> and <var>indx</var> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cdotci</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zdotci</span></p>
+<p>Array, size at least <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the indices for the elements of <var>x</var>.</p>
+<p>Array, size at least <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cdotci</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zdotci</span></p>
+<p>Array, size at least max(<var>indx(i)</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-9198C8CA-5AC4-44EC-92AC-86B32089EAB2"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F56B59D3-410A-4675-A726-F0EC6955671C"><dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cdotci</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zdotci</span></p>
+<p>Contains the conjugated dot product of <var>x</var> and <var>y</var>, if <var>nz</var> is positive. Otherwise, it contains <tt>0</tt>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-885D399D-04C9-4224-8AE4-1C477318D7BB"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">dotci</span> interface are the following:</p>
+<dl id="GUID-F3FEE6F8-7B8B-49E9-84C6-9DA4E24F96A7"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements (<var>nz</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>Holds the vector with the number of elements (<var>nz</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements (<var>nz</var>).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

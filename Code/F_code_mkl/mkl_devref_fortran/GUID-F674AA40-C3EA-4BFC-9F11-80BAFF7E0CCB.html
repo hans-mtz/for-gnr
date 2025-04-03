@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="DftiCommitDescriptorDM"/>
+<meta name="abstract" content="Performs all initialization for the actual FFT computation."/>
+<meta name="description" content="Performs all initialization for the actual FFT computation."/>
+<meta name="DC.subject" content="DftiCommitDescriptorDM, fast Fourier transform, FFT functions, descriptor manipulation"/>
+<meta name="keywords" content="DftiCommitDescriptorDM, fast Fourier transform, FFT functions, descriptor manipulation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C9985E1-293E-4420-A99E-8005798AE914.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DftiCommitDescriptorDM</title>
+
+</head>
+<body id="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">DftiCommitDescriptorDM</span></h1>
+<!--Performs all initialization for the actual FFT computation.--><div><p class="shortdesc">Performs all initialization for the actual FFT computation.</p>
+<div class="section" id="GUID-CC3C350C-7204-4CFE-88D5-AAC3114C7FD0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">Status</span><span class="oper"> = </span><span class="kwd">DftiCommitDescriptorDM</span><span class="delim">(</span><span class="var">handle</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3FA5031E-AB3F-4F5F-BF44-E32680378EB2"><h2 class="sectiontitle">Include Files</h2><ul id="d163e224"><li id="d163e225"><span class="filepath">mkl_cdft.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-578CF23E-9AAE-4A36-9ADF-6CB8AF0C093A"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-316E9A78-33A4-4277-AD7B-DA59C72278F2"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd>The descriptor handle. Must be valid, that is, created in a call to <a class="allformats" href="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3.html#GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"><span class="option">DftiCreateDescriptorDM</span></a>.</dd>
+</dl>
+</div>
+<div class="section" id="GUID-ACDD6FA8-4F1F-4BFE-8C8A-4DED3651D6C8"><h2 class="sectiontitle">Description</h2><p><span/>The cluster FFT interface requires a function that completes initialization of a previously created descriptor before the descriptor can be used for FFT computations in a particular MPI process. The <span class="option">DftiCommitDescriptorDM</span> function performs all initialization that facilitates the actual FFT computation. For the current implementation, it may involve exploring many different factorizations of the input length to search for highly efficient computation method.</p>
+<p>Any changes of configuration parameters of a committed descriptor via the set value function <span>(see <a href="GUID-3A9886A4-61DD-4B70-A9BD-CE7D5E2BB5D4.html#GUID-3A9886A4-61DD-4B70-A9BD-CE7D5E2BB5D4">Descriptor Configuration Functions</a>) </span> requires a re-committal of the descriptor before a computation function can be invoked. Typically, this committal function is called right before a computation function call <span>(see <a href="GUID-61AF8BC3-E79A-4FD4-B7AF-5A9E4FC47CE9.html#GUID-61AF8BC3-E79A-4FD4-B7AF-5A9E4FC47CE9">FFT Computation Functions</a>)</span>.</p>
+</div>
+<div class="section" id="RETURNVALUES_C1DC562E667B46D3A9690C2A2A7DD12E"><h2 class="sectiontitle">Return Values</h2><p>The function returns <samp class="codeph">DFTI_NO_ERROR</samp> when completes successfully. If the function fails, it returns a value of another  error class constant (for the list of constants, refer to <a class="allformats" href="GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE.html#GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE">Error Codes</a>).</p>
+</div>
+<div class="section" id="GUID-A3F42FB8-3C7F-4D7A-BCF8-1208F9BEADA0"><h2 class="sectiontitle">Interface</h2><pre>   
+INTERFACE DftiCommitDescriptorDM
+   INTEGER(4) FUNCTION DftiCommitDescriptorDM(handle);
+     TYPE(DFTI_DESCRIPTOR_DM), POINTER :: handle
+ END FUNCTION
+END INTERFACE
+   </pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4C9985E1-293E-4420-A99E-8005798AE914.html">Cluster FFT Descriptor Manipulation Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laic1"/>
+<meta name="abstract" content="Applies one step of incremental condition estimation."/>
+<meta name="description" content="Applies one step of incremental condition estimation."/>
+<meta name="DC.subject" content="?laic1, LAPACK routines, auxiliary routines, incremental condition estimation"/>
+<meta name="keywords" content="?laic1, LAPACK routines, auxiliary routines, incremental condition estimation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-36CA7FB0-F29E-490B-A987-66070270515C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laic1</title>
+
+</head>
+<body id="GUID-36CA7FB0-F29E-490B-A987-66070270515C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laic1</span></h1>
+<!--Applies one step of incremental condition estimation.--><div><p class="shortdesc">Applies one step of incremental condition estimation.</p>
+<div class="section" id="GUID-294D95A7-7A14-4ACD-98C0-E8A86FE63C17"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaic1</span><span class="delim">( </span><span class="var">job</span><span class="sep">, </span><span class="var">j</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">sest</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">gamma</span><span class="sep">, </span><span class="var">sestpr</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">c</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaic1</span><span class="delim">( </span><span class="var">job</span><span class="sep">, </span><span class="var">j</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">sest</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">gamma</span><span class="sep">, </span><span class="var">sestpr</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">c</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call claic1</span><span class="delim">( </span><span class="var">job</span><span class="sep">, </span><span class="var">j</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">sest</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">gamma</span><span class="sep">, </span><span class="var">sestpr</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">c</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlaic1</span><span class="delim">( </span><span class="var">job</span><span class="sep">, </span><span class="var">j</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">sest</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">gamma</span><span class="sep">, </span><span class="var">sestpr</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">c</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-E65D7133-77AE-4B81-B007-7E7668669E80"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-F404BF57-A4BB-4A79-93E3-CB25EF13CCBF"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?laic1</span> applies one step of incremental condition estimation in its simplest version.</p>
+<p>Let <var>x</var>, <samp class="codeph">||<var>x</var>||<sub>2</sub> = 1</samp> (where <samp class="codeph">||<var>a</var>||<sub>2</sub></samp> denotes the 2-norm of <var>a</var>), be an approximate singular vector of an <var>j</var>-by-<var>j</var> lower triangular matrix <var>L</var>, such that</p>
+<p><samp class="codeph">||<var>L</var>*<var>x</var>||<sub>2</sub> = <var>sest</var></samp></p>
+<p>Then <span class="option">?laic1</span> computes <var>sestpr</var>, <var>s</var>, <var>c</var> such that the vector</p>
+<p><img src="GUID-02DC84D8-BFEE-4163-A8D6-14DED421856D-low.gif" alt="Equation" align="center" class=".eq"/></p>
+<p>is an approximate singular vector of</p>
+<p><img src="GUID-EB0F23CA-A62E-465F-AB43-009258D0092D-low.gif" alt="Equation" align="center" class=".eq"/>   (for complex flavors), or</p>
+<p><img src="GUID-5DB94A45-CDA0-45EA-A235-CB0A8AE01A89-low.gif" alt="Equation" align="center" class=".eq"/> (for real flavors), in the sense that</p>
+<p><samp class="codeph">||<var>Lhat</var>*<var>xhat</var>||<sub>2</sub> = <var>sestpr</var></samp>.</p>
+<p>Depending on <var>job</var>, an estimate for the largest or smallest singular value is computed.</p>
+<p>For real flavors,  <samp class="codeph">[<var>s</var><var>c</var>]<sup class="power"><var>T</var></sup></samp> and <samp class="codeph"><var>sestpr</var><sup class="power">2</sup></samp> is an eigenpair of the system </p>
+<p><br/><div class="imagecenter"><img src="GUID-E8D9FAB7-9486-4BF5-A738-5FE68A21F16F-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <samp class="codeph"><var>alpha</var> =  <var>x</var><sup class="power"><var>T</var></sup>*<var>w</var></samp> .</p>
+<p>For complex flavors, <samp class="codeph">[<var>s</var><var>c</var>]<sup class="power"><var>H</var></sup></samp> and <samp class="codeph"><var>sestpr</var><sup class="power">2</sup></samp> is an eigenpair of the system</p>
+<p><br/><div class="imagecenter"><img src="GUID-37D6DC5F-CBD4-4E25-B092-A397E14A19A7-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <samp class="codeph"><var>alpha</var> = <var>x</var><sup class="power"><var>H</var></sup>*<var>w</var></samp>.</p>
+</div>
+<div class="section" id="GUID-DD02249F-6880-44B9-95EE-16A9FCBF0BCA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-CA52AC0F-63CC-40EC-8863-1EF2C49A5668"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>job</var> =1</samp>, an estimate for the largest singular value is computed; </p>
+<p>If <samp class="codeph"><var>job</var> =2</samp>, an estimate for the smallest singular value is computed;</p>
+</dd>
+<dt class="dlterm"><span class="parmname">j</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Length of <var>x</var> and <var>w</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span>, <span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaic1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaic1</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claic1</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaic1</span>.</p>
+<p>Arrays, dimension (<var>j</var>) each. Contain vectors <var>x</var> and <var>w</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sest</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaic1</span>/<span class="option">claic1</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaic1</span>/<span class="option">zlaic1</span>. </p>
+<p>Estimated singular value of <var>j</var>-by-<var>j</var> matrix <var>L</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">gamma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaic1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaic1</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claic1</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaic1</span>.</p>
+<p>The diagonal element <var>gamma</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-73167089-55A3-492F-9F75-1A97C4645B2A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-4E2EA3B4-C73A-4127-900A-C4CE8CCE97DD"><dt class="dlterm"><span class="parmname">sestpr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaic1</span>/<span class="option">claic1</span>;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaic1</span>/<span class="option">zlaic1</span>. </p>
+<p>Estimated singular value of (<var>j</var>+1)-by-(<var>j</var>+1) matrix <var>Lhat</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span>, <span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaic1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaic1</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claic1</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaic1</span>.</p>
+<p>Sine and cosine needed in forming <var>xhat</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

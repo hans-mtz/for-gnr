@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Caveat on Parameter Modifications"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A0068460-37C4-487D-9E5C-9E29459AF74A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-CB845DD3-06D9-40C6-86AD-7688B2928C7A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Caveat on Parameter Modifications</title>
+
+</head>
+<body id="GUID-CB845DD3-06D9-40C6-86AD-7688B2928C7A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Caveat on Parameter Modifications</h1>
+<div><p>Flexibility of the Poisson Solver interface enables you to skip calls to the 
+      <a href="GUID-A136A543-BD61-4D81-AEE6-0580130E91D2.html#GUID-A136A543-BD61-4D81-AEE6-0580130E91D2"><span class="option">?_init_Helmholtz_2D/?_init_Helmholtz_3D</span></a>/<a href="GUID-89C1F318-7802-41F5-96F8-4245F4476BF1.html#GUID-89C1F318-7802-41F5-96F8-4245F4476BF1"><span class="option">?_init_sph_p/?_init_sph_np</span></a> routine and to initialize the basic data structures explicitly in your code. You may also need to modify contents of the 
+      <span class="parmname">ipar</span>, 
+      <span class="parmname">dpar</span>, and 
+      <span class="parmname">spar</span> arrays after initialization. When doing so, provide correct and consistent data in the arrays. Mistakenly altered arrays cause errors or incorrect results. You can perform a basic check for correctness and consistency of parameters by calling the 
+      <a href="GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868.html#GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868"><span class="option">?_commit_Helmholtz_2D/?_commit_Helmholtz_3D</span></a> routine; however, this does not ensure the correct solution but only reduces the chance of errors or wrong results. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>To supply correct and consistent parameters to Poisson Solver routines, you should have considerable experience in using the Poisson Solver interface and good understanding of the solution process, as well as elements contained in the 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">spar</span>, and 
+        <span class="parmname">dpar</span> arrays and dependencies between values of these elements. 
+      </p>
+</div>
+<p>In rare occurrences when you fail in tuning parameters for the Fast Helmholtz Solver, refer for technical support at 
+      <a href="http://www.intel.com/software/products/support/" target="_blank">http://www.intel.com/software/products/support/ 
+      </a>. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>The only way that ensures a proper solution of a Helmholtz problem is to follow a typical sequence of invoking the routines and not change the default set of parameters. So, avoid modifications of 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">dpar</span>, and 
+        <span class="parmname">spar</span> arrays unless it is necessary. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A0068460-37C4-487D-9E5C-9E29459AF74A.html">Common Parameters for the Poisson Solver</a></div>
+</div>
+<div/>
+</body>
+</html>

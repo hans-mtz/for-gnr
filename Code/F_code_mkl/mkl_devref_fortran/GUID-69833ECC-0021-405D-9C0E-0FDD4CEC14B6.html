@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_set_lu_smoother_hint"/>
+<meta name="abstract" content="Provides an estimate of the number and type of upcoming calls to LU smoother functionality."/>
+<meta name="description" content="Provides an estimate of the number and type of upcoming calls to LU smoother functionality."/>
+<meta name="DC.subject" content="mkl_sparse_set_lu_smoother_hint"/>
+<meta name="keywords" content="mkl_sparse_set_lu_smoother_hint"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F33EE682-B5D6-4DD4-9A0B-3CE317AE4D3E.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-69833ECC-0021-405D-9C0E-0FDD4CEC14B6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_set_lu_smoother_hint</title>
+
+</head>
+<body id="GUID-69833ECC-0021-405D-9C0E-0FDD4CEC14B6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_set_lu_smoother_hint</span></h1>
+<!-- Provides an estimate of the number and type of upcoming calls to LU smoother functionality. --><div><p class="shortdesc"> Provides an estimate of the number and type of upcoming calls to LU smoother functionality. </p>
+<div class="section" id="GUID-308FF519-F8B3-4A63-9931-500FE4ADB820"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_set_lu_smoother_hint </span><span class="delim">(</span><span class="var">A</span><span class="sep">, </span><span class="var">operation</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">expected_calls</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C843F8DB-F23F-4858-A064-822F50331957"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-F895AAA2-BE30-45ED-B5D1-E4BF1E13A3C1"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E1B6249D-AF36-49A3-BE0B-73186C1E88FB"><h2 class="sectiontitle">Description</h2><p> The <span class="option">mkl_sparse_set_lu_smoother_hint</span> function provides subsequent Inspector-Executor Sparse BLAS calls an estimate of the number of upcoming calls to the <span class="option">lu_smoother</span> routine that ultimately may influence the optimizations applied and specifies whether or not to perform an operation on the matrix.</p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d775726e63"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d775726e63 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-3B83C5D1-0F3E-4D1C-A207-12871C20F3B8"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8AE441D1-1A64-439C-9F02-0745BB0B8D15"><dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><span class="keyword">C_INT</span> .</p>
+<p>Specifies the operation <var>op()</var> on input matrix.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_OPERATION_NON_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p> Non-transpose, <samp class="codeph">op(<var>A</var>)</samp>= <var>A</var>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_OPERATION_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p> Transpose, <samp class="codeph">op(<var>A</var>)</samp>= <var>A</var><sup><var>T</var></sup>. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_OPERATION_CONJUGATE_TRANSPOSE</tt></p></td>
+
+<td valign="top" class="noborder"><p>Conjugate transpose, <samp class="codeph">op(<var>A</var>)</samp>= <var>A</var><sup><var>H</var></sup>. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">descr</span></dt>
+
+<dd><p><span class="keyword">MATRIX_DESCR</span> .</p>
+<p>Structure specifying sparse matrix properties.</p>
+<p><span class="keyword">sparse_matrix_type_t</span><var>type</var> - Specifies the type of a sparse matrix:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_GENERAL</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is processed as is. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_SYMMETRIC</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is symmetric (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_HERMITIAN</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is Hermitian (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is triangular (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is diagonal (only diagonal elements are processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_BLOCK_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-triangular (only the requested triangle is processed). 
+                Applies to BSR format only.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_BLOCK_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-diagonal (only diagonal blocks are processed). 
+                Applies to BSR format only.</p>
+</td>
+</tr></table><p><span class="keyword">sparse_fill_mode_t</span><var>mode</var> - Specifies the triangular matrix part for symmetric, Hermitian, triangular, and block-triangular matrices:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_FILL_MODE_LOWER</tt></p></td>
+
+<td valign="top" class="noborder"><p> The lower triangular matrix part is processed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_FILL_MODE_UPPER</tt></p></td>
+
+<td valign="top" class="noborder"><p> The upper triangular matrix part is processed. 
+                </p>
+</td>
+</tr></table><p><span class="keyword">sparse_diag_type_t</span><var>diag</var> - Specifies the diagonal type for non-general matrices:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_DIAG_NON_UNIT</tt></p></td>
+
+<td valign="top" class="noborder"><p>Diagonal elements might not be equal to one. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_DIAG_UNIT</tt></p></td>
+
+<td valign="top" class="noborder"><p>Diagonal elements are equal to one. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">expected_calls</span></dt>
+
+<dd><p><span class="keyword">C_INT</span> .</p>
+<p>Number of expected calls to execution routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle containing internal data.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">status</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Value indicating whether the operation was successful or not, and why.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p> The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-F33EE682-B5D6-4DD4-9A0B-3CE317AE4D3E.html">Inspector-executor Sparse BLAS Analysis Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_set_num_threads"/>
+<meta name="abstract" content="Specifies the number of OpenMP* threads to use."/>
+<meta name="description" content="Specifies the number of OpenMP* threads to use."/>
+<meta name="DC.subject" content="threading control, mkl_set_num_threads, MKL_Set_Num_Threads"/>
+<meta name="keywords" content="threading control, mkl_set_num_threads, MKL_Set_Num_Threads"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_set_num_threads</title>
+
+</head>
+<body id="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_set_num_threads</span></h1>
+<!--Specifies the number of OpenMP* threads to use.--><div><p class="shortdesc">Specifies the number of OpenMP* threads to use.</p>
+<div class="section" id="GUID-9D25982E-59BA-4012-9E3E-EB64A072AF33"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call mkl_set_num_threads</span><span class="sep">( </span><span class="var">nt</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-123EBD02-06E1-4CD1-BCB3-45C27A4711EB"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FB99EF31-9035-4B99-9971-FE6ADA53240B"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1151212e59" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1151212e62" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1151212e65" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1151212e59"><p><span class="parmname">nt</span></p>
+</td>
+<td valign="top" headers="d1151212e62"><p><span class="keyword">INTEGER</span></p>
+</td>
+<td valign="top" headers="d1151212e65"><p><span class="parmname">nt</span> &gt; 0 - The number of threads suggested by the user.</p>
+<p><span class="parmname">nt</span><span class="eqsymbol">≤</span> 0 -  Invalid value, which is ignored.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-A9859C45-A28A-46DB-BC13-6189B4D10A43"><h2 class="sectiontitle">Description</h2><p>This function enables you to specify how many OpenMP threads Intel&reg; oneAPI Math Kernel Library should use for internal parallel regions. If this number is not set (default), Intel&reg; oneAPI Math Kernel Library functions use the default number of threads for the OpenMP run-time library. The specified number of threads applies:</p>
+<ul id="GUID-4378E888-5CC9-4BB5-A723-53FB2F337494"><li><p>To all Intel&reg; oneAPI Math Kernel Library functions except the functions from the domains where the number of threads is set with<a href="GUID-D808F69D-5741-4DF6-950E-5B30A32D9B44.html">mkl_domain_set_num_threads</a></p>
+</li>
+<li><p> To all execution threads except the threads where the number of threads is set with <a href="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70.html">mkl_set_num_threads_local</a></p>
+</li>
+</ul>
+<p>The number specified is a hint, and Intel&reg; oneAPI Math Kernel Library may actually use a smaller number.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This function takes precedence over the <span class="keyword">MKL_NUM_THREADS</span>
+environment variable.</p>
+</div>
+</div>
+<div class="section" id="GUID-311E3423-9C26-42B4-83DA-5BEC3428DE8A"><h2 class="sectiontitle">Example</h2><pre>use mkl_service
+…
+<strong>call mkl_set_num_threads(4)</strong>
+call my_compute_using_mkl  !Intel MKL uses up to 4 OpenMP threads
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html">Threading Control</a></div>
+</div>
+<div/>
+</body>
+</html>

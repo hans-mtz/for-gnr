@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_progress"/>
+<meta name="abstract" content="Provides progress information."/>
+<meta name="description" content="Provides progress information."/>
+<meta name="DC.subject" content="mkl_progress, support functions, support routines, progress information"/>
+<meta name="keywords" content="mkl_progress, support functions, support routines, progress information"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF27C389-5BB7-450F-B7BF-43D592D5B1C4.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E982C8B0-E96D-414B-B263-BABF455963F7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_progress</title>
+
+</head>
+<body id="GUID-E982C8B0-E96D-414B-B263-BABF455963F7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_progress</span></h1>
+<!--Provides progress information.--><div><p class="shortdesc">Provides progress information.</p>
+<div class="section" id="GUID-E57E2241-2E18-4702-BCB8-E54C7EA2234D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">stopflag</span><span class="oper"> = </span><span class="kwd">mkl_progress</span><span class="delim">( </span><span class="var">thread_process</span><span class="sep">, </span><span class="var">step</span><span class="sep">, </span><span class="var">stage</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B1026904-2F26-4C7C-8BE7-82321DE6E035"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1744603e76" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1744603e79" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1744603e82" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1744603e76"><p><span class="parmname">thread_process</span></p>
+</td>
+<td valign="top" headers="d1744603e79"><p><span class="keyword">INTEGER*4</span></p>
+</td>
+<td valign="top" headers="d1744603e82">Indicates the number of thread or process the progress routine is called from:<ul id="GUID-F77F0C5C-61AC-434D-B022-6296F7FA9592"><li><p> The thread number for non-cluster components linked with OpenMP threading layer</p>
+</li>
+<li><p>Zero for non-cluster components linked with sequential threading layer</p>
+</li>
+<li>The process number (MPI rank) for non-cluster components</li>
+</ul>
+</td>
+</tr>
+<tr><td valign="top" headers="d1744603e76"><p><span class="parmname">step</span></p>
+</td>
+<td valign="top" headers="d1744603e79"><p><span class="keyword">INTEGER*4</span></p>
+</td>
+<td valign="top" headers="d1744603e82"><p>The linear progress indicator that shows the amount of work done. Increases from 0 to the linear size of the problem during the computation.</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1744603e76"><p><span class="parmname">stage</span></p>
+</td>
+<td valign="top" headers="d1744603e79"><p><span class="keyword">CHARACTER*(*)</span></p>
+</td>
+<td valign="top" headers="d1744603e82"><p>Message indicating the name of the routine or the name of the computation stage the progress routine is called from.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-D31C98A8-3913-420E-A341-1FF667230C32"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_progress</span> function  is intended to track progress of a lengthy computation and/or interrupt the computation. By default this routine does nothing but the user application can redefine it to obtain the computation progress information. You can set it  to perform certain operations during the routine computation, for instance, to print a progress indicator. A non-zero return value may be supplied by the redefined function to break the computation.</p>
+<p>Some Intel&reg; oneAPI Math Kernel Library functions from LAPACK, ScaLAPACK, DSS/PARDISO, and Parallel Direct Sparse Solver for Clusters regularly call the<span class="option">mkl_progress</span> function during the computation. Refer to the description of a  specific function from those domains to see whether the function supports this feature or not. </p>
+<p>If a LAPACK function  returns <span class="parmname">info</span>=-1002, the function was interrupted by <span class="option">mkl_progress</span>. Because ScaLAPACK does not support interruption of the computation, Intel&reg; oneAPI Math Kernel Library ignores any value returned by<span class="option">mkl_progress</span>.</p>
+<p> While a user-supplied <span class="option">mkl_progress</span> function usually redefines the default <span class="option">mkl_progress</span> function automatically, some configurations require calling the <span class="option">mkl_set_progress</span> function to replace the default <span class="option">mkl_progress</span> function. Call <span class="option">mkl_set_progress</span> to replace the default <span class="option">mkl_progress</span> on Windows* in any of the following cases:</p>
+<ul id="GUID-39D1FEBC-2B82-475F-8A1D-029F47A77922"><li><p>You are using the Single Dynamic Library (SDL) <span class="filepath">mkl_rt.lib</span>.</p>
+</li>
+<li><p>You link dynamically  with ScaLAPACK.</p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Warning</h3> <p>The <span class="option">mkl_progress</span> function only supports OpenMP* threading and sequential execution.  </p>
+</div>
+</div>
+<div class="section" id="GUID-B8BAD230-0A6D-412C-BDCE-032FE32017E7"><h2 class="sectiontitle">Return Values</h2><p><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d1744603e200" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d1744603e203" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d1744603e206" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d1744603e200"><p><span class="parmname">stopflag</span></p>
+</td>
+<td valign="top" headers="d1744603e203"><p><span class="keyword">INTEGER</span></p>
+</td>
+<td valign="top" headers="d1744603e206"><p>The stopping flag. A non-zero flag forces the routine to be interrupted. The zero flag is the default return value.</p>
+</td>
+</tr>
+</table>
+</p>
+</div>
+<div class="section" id="GUID-F3D3E85A-3DDC-47F0-8474-CA4AE56D86CA"><h2 class="sectiontitle">Example</h2><p>The following example prints the progress information to the standard output device:</p>
+<pre> integer function mkl_progress( thread_process, step, stage )
+ integer*4 thread_process, step
+ character*(*) stage
+ print*,'Thread:',thread_process,',stage:',stage,',step:',step
+ mkl_progress = 0
+ return
+ end</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AF27C389-5BB7-450F-B7BF-43D592D5B1C4.html">Miscellaneous</a></div>
+</div>
+<div/>
+</body>
+</html>

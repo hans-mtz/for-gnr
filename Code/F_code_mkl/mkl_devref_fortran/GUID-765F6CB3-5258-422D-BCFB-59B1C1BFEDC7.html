@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?syrfsx"/>
+<meta name="abstract" content="Uses extra precise iterative refinement to improve the solution to the system of linear equations with a symmetric indefinite coefficient matrix A and provides error bounds and backward error estimates."/>
+<meta name="description" content="Uses extra precise iterative refinement to improve the solution to the system of linear equations with a symmetric indefinite coefficient matrix A and provides error bounds and backward error estimates."/>
+<meta name="DC.subject" content="?syrfsx, LAPACK routines, solution refinement and error estimation, refining solutions of linear equations, symmetric indefinite matrix, errors in solutions of linear equations, linear equations, solving, extra precise interative refinement"/>
+<meta name="keywords" content="?syrfsx, LAPACK routines, solution refinement and error estimation, refining solutions of linear equations, symmetric indefinite matrix, errors in solutions of linear equations, linear equations, solving, extra precise interative refinement"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-765F6CB3-5258-422D-BCFB-59B1C1BFEDC7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?syrfsx</title>
+
+</head>
+<body id="GUID-765F6CB3-5258-422D-BCFB-59B1C1BFEDC7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?syrfsx</span></h1>
+<!--Uses extra precise iterative refinement to improve the solution to the system of linear equations with a symmetric  indefinite coefficient matrix A and provides error bounds and backward error estimates.--><div><p class="shortdesc">Uses extra precise iterative refinement to improve the solution to the system of linear equations with a symmetric  indefinite coefficient matrix A and provides error bounds and backward error estimates.</p>
+<div class="section" id="GUID-1F2B611F-DAF8-4E67-AC5F-718D2982AC1B"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssyrfsx</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">n_err_bnds</span><span class="sep">, </span><span class="var">err_bnds_norm</span><span class="sep">, </span><span class="var">err_bnds_comp</span><span class="sep">, </span><span class="var">nparams</span><span class="sep">, </span><span class="var">params</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dsyrfsx</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">n_err_bnds</span><span class="sep">, </span><span class="var">err_bnds_norm</span><span class="sep">, </span><span class="var">err_bnds_comp</span><span class="sep">, </span><span class="var">nparams</span><span class="sep">, </span><span class="var">params</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call csyrfsx</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">n_err_bnds</span><span class="sep">, </span><span class="var">err_bnds_norm</span><span class="sep">, </span><span class="var">err_bnds_comp</span><span class="sep">, </span><span class="var">nparams</span><span class="sep">, </span><span class="var">params</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zsyrfsx</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">equed</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">berr</span><span class="sep">, </span><span class="var">n_err_bnds</span><span class="sep">, </span><span class="var">err_bnds_norm</span><span class="sep">, </span><span class="var">err_bnds_comp</span><span class="sep">, </span><span class="var">nparams</span><span class="sep">, </span><span class="var">params</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-6117C272-47BC-4FB2-896C-7EE274974E46"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E7A3AAE8-414E-46A8-84CC-3200AE3ABB01"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine improves the computed solution to a system of linear equations when the coefficient matrix is symmetric indefinite,
+and provides error bounds and backward error estimates for the
+solution. In addition to a normwise error bound, the code provides
+a maximum componentwise error bound, if possible. See comments for
+<span class="parmname">err_bnds_norm</span> and <span class="parmname">err_bnds_comp</span> for details of the error bounds.</p>
+<p>The original system of linear equations may have been equilibrated
+before calling this routine, as described by the parameters <span class="parmname">equed</span>
+ 
+and <span class="parmname">s</span>
+ below. In this case, the solution and error bounds returned are for the original unequilibrated system.</p>
+</div>
+<div class="section" id="GUID-651A2CBB-3F9B-49CE-9BA4-19D731C93473"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-09406595-A836-402F-B2E4-307D43E4A613"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates whether the upper or lower triangular part of <var>A</var> is stored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of  <var>A</var> is stored. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of  <var>A</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">equed</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'Y'</span>.</p>
+<p>Specifies the form of equilibration that was done to <var>A</var>
+before calling this routine.</p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'N'</span></samp>, no equilibration was done.</p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>, both row and column equilibration was done, that is, <var>A</var> has been replaced by <samp class="codeph"><var>diag</var>(<var>s</var>)*<var>A</var>*<var>diag</var>(<var>s</var>)</samp>. The right-hand side <var>B</var>
+has been changed accordingly.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of linear equations; the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of right-hand sides; the number of columns of the matrices <var>B</var> and <var>X</var>; <var>nrhs</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">af</span>, <span class="parmname">b</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyrfsx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyrfsx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csyrfsx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsyrfsx</span>.</p>
+<p>Arrays: <samp class="codeph"><span class="parmname">a</span>(<span class="parmname">lda</span>,*)</samp>, <samp class="codeph"><span class="parmname">af</span>(<span class="parmname">ldaf</span>,*)</samp>, <samp class="codeph"><span class="parmname">b</span>(<span class="parmname">ldb</span>,*)</samp><span>, <samp class="codeph"><span class="parmname">work</span>(*)</samp></span>.</p>
+<p>The array <span class="parmname">a</span> contains the symmetric/Hermitian matrix <var>A</var> as specified by <span class="parmname">uplo</span>. If <span class="parmname">uplo</span> = <span class="keyword">'U'</span>, the leading  <var>n</var>-by-<var>n</var> upper triangular part of <span class="parmname">a</span>
+
+contains 
+the upper triangular part of the matrix <var>A</var>
+ and the strictly lower triangular part of <span class="parmname">a</span>
+is not referenced. If <span class="parmname">uplo</span> = <span class="keyword">'L'</span>, the leading  <var>n</var>-by-<var>n</var> lower triangular part of <span class="parmname">a</span>
+
+contains 
+the lower triangular part of the matrix <var>A</var>
+ and the strictly upper triangular part of <span class="parmname">a</span>
+is not referenced. <span>The second dimension of <span class="parmname">a</span>
+ must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</span></p>
+<p>The array <span class="parmname">af</span> contains the triangular factor  <var>L</var> or <var>U</var> from the Cholesky factorization <var>A</var> = <var>U</var><sup>T</sup>*<var>U</var> or <var>A</var> = <var>L</var>*<var>L</var><sup>T</sup> as computed by  <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">ssytrf</span></a> for real flavors or <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">dsytrf</span></a> for complex flavors.</p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations. <span>The second dimension of <var>b</var> must be at least <samp class="codeph">max(1,<var>nrhs</var>)</samp>.</span></p>
+<p><var>work(*)</var> is a workspace array. The dimension of <span class="parmname">work</span> must be at least <samp class="codeph">max(1,4*<var>n</var>)</samp> for real flavors, and at least <samp class="codeph">max(1,2*<var>n</var>)</samp> for complex flavors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldaf</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>af</var>; <samp class="codeph"><var>ldaf</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. Contains  details of the interchanges and the block structure of <var>D</var>  as determined by <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">ssytrf</span></a> for real flavors or <a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">dsytrf</span></a> for complex flavors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size  (<var>n</var>). The array <span class="parmname">s</span>
+ contains the scale factors for <var>A</var>.</p>
+<p>If <samp class="codeph"><span class="parmname">equed</span> = <span class="keyword">'N'</span></samp>, <span class="parmname">s</span>
+ is not accessed. </p>
+<p>If <span class="parmname">equed</span> = <span class="keyword">'Y'</span>, each element of <span class="parmname">s</span>
+ must be positive.</p>
+<p>Each element of <span class="parmname">s</span> should be a power of the radix to ensure a
+reliable solution and error estimates. Scaling by powers of the
+radix does not cause rounding errors unless the result underflows
+or overflows. Rounding errors during scaling lead to refining
+with a matrix that is not equivalent to the  input matrix,
+producing error estimates that may not be  reliable.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">b</span>; <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyrfsx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyrfsx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csyrfsx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsyrfsx</span>.</p>
+<p>Array, <span>size <var>ldx</var> by *</span>.</p>
+<p>The solution matrix <var>X</var> as computed by  <a class="allformats" href="GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD.html#GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD"><span class="option">?sytrs</span></a></p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>x</var>; <samp class="codeph"><var>ldx</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n_err_bnds</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Number of error bounds to return for each right hand side and each type (normwise or componentwise). See <span class="parmname">err_bnds_norm</span> and <span class="parmname">err_bnds_comp</span> descriptions in <em>Output Arguments</em> section below.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nparams</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of parameters set in <span class="parmname">params</span>. If  <span class="eqsymbol">≤</span> 0, the <span class="parmname">params</span> array is never referenced and default values are used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">params</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size <span class="parmname">nparams</span>. Specifies algorithm parameters. If an entry is less than 0.0, that entry will be filled with the default value used for that parameter. Only positions up to <span class="parmname">nparams</span> are accessed; defaults are used for higher-numbered parameters. If defaults are acceptable, you can pass <span class="parmname">nparams</span> = 0, which prevents the source code from accessing the <span class="parmname">params</span>
+argument.</p>
+<p><samp class="codeph"><span class="parmname">params</span>(1)</samp> : Whether to perform iterative refinement or not. Default: 1.0 (for single precision flavors), 1.0D+0 (for double precision flavors).</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>=0.0</p></td>
+
+<td valign="top" class="noborder"><p>No refinement is performed and no error bounds are computed.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>=1.0</p></td>
+
+<td valign="top" class="noborder"><p>Use the double-precision refinement algorithm, possibly with doubled-single computations if the compilation environment does not support double precision.</p>
+</td>
+</tr></table><p>(Other values are reserved for future use.)</p>
+<p><samp class="codeph"><span class="parmname">params</span>(2)</samp> : Maximum number of residual computations allowed for refinement.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>Default</p></td>
+
+<td valign="top" class="noborder"><p>10.0</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>Aggressive</p></td>
+
+<td valign="top" class="noborder"><p>Set to 100.0 to permit convergence using approximate factorizations or factorizations other than <em>LU</em>. If the factorization uses a technique other than Gaussian elimination, the guarantees in <span class="parmname">err_bnds_norm</span> and <span class="parmname">err_bnds_comp</span> may no longer be trustworthy.</p>
+</td>
+</tr></table><p><samp class="codeph"><span class="parmname">params</span>(3)</samp> : Flag determining if the code will attempt to find a solution with a small componentwise relative error in the double-precision algorithm. Positive is true, 0.0 is false. Default: 1.0 (attempt componentwise convergence).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Workspace array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>; used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Workspace array, size at least <samp class="codeph">max(1, 3*<var>n</var>)</samp>; used in complex flavors only.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-B193166A-A391-4011-9F34-5DA02A8716C8"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7B66E2F7-3B92-47B4-966B-D47E93A7AAF0"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyrfsx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyrfsx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csyrfsx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zsyrfsx</span>.</p>
+<p>The improved solution matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rcond</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Reciprocal scaled condition number. An estimate of the reciprocal Skeel condition number of the matrix <var>A</var> after equilibration (if done). If <span class="parmname">rcond</span> is less than the machine precision, in particular, if <span class="parmname">rcond</span> = 0, the matrix is singular to working precision. Note that the error may still be small even if this number is very small and the matrix appears ill-conditioned.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">berr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>nrhs</var>)</samp>. Contains the componentwise relative backward error for each solution vector <samp class="codeph"><var>x</var>(<var>j</var>)</samp>, that is, the smallest relative change in any element of <var>A</var> or <var>B</var> that makes <samp class="codeph"><var>x</var>(<var>j</var>)</samp> an exact solution.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">err_bnds_norm</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array of  size  <span><var>nrhs</var> by <var>n_err_bnds</var></span>. For each right-hand side, contains information about various error bounds and condition numbers corresponding to the normwise relative error<span>, which is defined as follows:</span></p>
+<p>Normwise relative error in the <var>i</var>-th solution vector</p>
+<p><img src="GUID-86F1B859-61C1-4BB8-A002-84C1B7AD8491-low.gif" align="center"/></p>
+<p>The array is indexed by the type of error information as described below. There are currently up to three pieces of information returned.</p>
+<p>The first index in <span class="parmname">err_bnds_norm(i,:)</span>
+ corresponds to the <var>i</var>-th right-hand side.</p>
+<p>The second index in <span class="parmname">err_bnds_norm(:,err)</span> contains the follwoing three fields:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=1</p></td>
+
+<td valign="top" class="noborder"><p>"Trust/don't trust" boolean. Trust the answer if the reciprocal condition number is less than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for single precision flavors and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for double precision flavors.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=2</p></td>
+
+<td valign="top" class="noborder"><p>"Guaranteed" error bound. The estimated forward error, almost certainly within a factor of 10 of the true error so long as the next entry is greater than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for single precision flavors and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for double precision flavors. This error bound should only be trusted if the previous boolean is true.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=3</p></td>
+
+<td valign="top" class="noborder"><p>Reciprocal condition number. Estimated normwise reciprocal condition number. Compared with the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for single precision flavors and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for double precision flavors
+ to determine if the error estimate is "guaranteed". These reciprocal condition numbers for some appropriately scaled matrix <var>Z</var> are:</p>
+<p><img src="GUID-EC7273D4-03D2-4D17-B3DC-5617F1A91813-low.png"/></p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">err_bnds_comp</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Array of  size  <span><var>nrhs</var> by <var>n_err_bnds</var></span>. For each right-hand side, contains information about various error bounds and condition numbers corresponding to the componentwise relative error<span>, which is defined as follows:</span></p>
+<p>Componentwise relative error in the <var>i</var>-th solution vector:</p>
+<p><img src="GUID-BE2CDA4A-F31A-4637-8AFC-9BDD114F279B-low.jpg" align="center"/></p>
+<p>The array is indexed by the right-hand side <var>i</var>, on which the componentwise relative error depends, and by the type of error information as described below. There are currently up to three pieces of information returned for each right-hand side. If componentwise accuracy is not requested (<span class="parmname">params(3)</span> = 0.0), then <span class="parmname">err_bnds_comp</span> is not accessed. If <span class="parmname">n_err_bnds</span> &lt; 3, then at most the first  <span class="parmname">(:,n_err_bnds)</span> entries are returned.</p>
+<p>The first index in <span class="parmname">err_bnds_comp(i,:)</span> corresponds to the <var>i</var>-th right-hand side.</p>
+<p>The second index in <span class="parmname">err_bnds_comp(:,err)</span> contains the following three fields:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=1</p></td>
+
+<td valign="top" class="noborder"><p>"Trust/don't trust" boolean. Trust the answer if the reciprocal condition number is less than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for single precision flavors and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for double precision flavors.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=2</p></td>
+
+<td valign="top" class="noborder"><p>"Guaranteed" error bpound. The estimated forward error, almost certainly within a factor of 10 of the true error so long as the next entry is greater than the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for single precision flavors and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for double precision flavors. This error bound should only be trusted if the previous boolean is true.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">err</span>=3</p></td>
+
+<td valign="top" class="noborder"><p>Reciprocal condition number. Estimated componentwise reciprocal condition number. Compared with the threshold <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>slamch</var>(<span class="eqsymbol">ε</span>)</samp> for single precision flavors and <samp class="codeph"><var>sqrt</var>(<var>n</var>)*<var>dlamch</var>(<span class="eqsymbol">ε</span>)</samp>
+for double precision flavors
+ to determine if the error estimate is "guaranteed". These reciprocal condition numbers for some appropriately scaled matrix <var>Z</var> are:</p>
+<p><img src="GUID-EC7273D4-03D2-4D17-B3DC-5617F1A91813-low.png"/></p>
+<p>Let <samp class="codeph"><var>z</var>=<var>s</var>*(<var>a</var>*diag(<var>x</var>))</samp>, where <var>x</var> is the solution for the current right-hand side and <var>s</var> scales each row of <samp class="codeph"><var>a</var>*diag(<var>x</var>)</samp> by a power of the radix so all absolute row sums of <var>z</var> are approximately 1.</p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">params</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Output parameter only if the input contains erroneous values, namely, in <span class="parmname">params(1)</span>, <span class="parmname">params(2)</span>, <span class="parmname">params(3)</span>. In such a case, the corresponding elements of <span class="parmname">params</span> are filled with default values on output.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><span class="parmname">info</span> = 0</samp>, the execution is successful. The solution to every right-hand side is guaranteed.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If 0 &lt; <span class="parmname">info</span><span class="eqsymbol">≤</span><var>n</var>:  <var>U</var><sub><span class="parmname">info</span>,<span class="parmname">info</span></sub> is exactly zero. The factorization has been completed, but the factor <var>U</var> is exactly singular, so the solution and error bounds could not be computed; <span class="parmname">rcond</span> = 0 is returned. </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>n</var>+<var>j</var></samp>: The solution corresponding to the <var>j</var>-th right-hand side is not guaranteed. The solutions corresponding to other right-hand sides <var>k</var> with <var>k</var> &gt; <var>j</var> may not be guaranteed as well, but only the first such right-hand side is reported. If a small componentwise error is not requested <samp class="codeph"><span class="parmname">params(3)</span> = 0.0</samp>, then the <var>j</var>-th right-hand side is the first with a normwise error bound that is not guaranteed (the smallest <var>j</var> such that <samp class="codeph"><span class="parmname">err_bnds_norm</span>(<var>j</var>,1) = 0.0</samp> or <samp class="codeph"><span class="parmname">err_bnds_comp</span>(<var>j</var>,1) = 0.0</samp>. See the definition of <span class="parmname">err_bnds_norm</span> and <span class="parmname">err_bnds_comp</span> for <var>err</var> = 1. To get information about all of the right-hand sides, check <span class="parmname">err_bnds_norm</span> or <span class="parmname">err_bnds_comp</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D.html">Refining the Solution and Estimating Its Error: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

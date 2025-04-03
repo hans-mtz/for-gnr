@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?pftri"/>
+<meta name="abstract" content="Computes the inverse of a symmetric (Hermitian) positive-definite matrix in RFP format using the Cholesky factorization."/>
+<meta name="description" content="Computes the inverse of a symmetric (Hermitian) positive-definite matrix in RFP format using the Cholesky factorization."/>
+<meta name="DC.subject" content="?pftri, LAPACK routines, triangular matrix factorization, inverting a matrix, Hermitian positive-definite matrix, symmetric positive-definite matrix, inverting the matrix, Cholesky factorization"/>
+<meta name="keywords" content="?pftri, LAPACK routines, triangular matrix factorization, inverting a matrix, Hermitian positive-definite matrix, symmetric positive-definite matrix, inverting the matrix, Cholesky factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?pftri</title>
+
+</head>
+<body id="GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?pftri</span></h1>
+<!--Computes the inverse of a symmetric (Hermitian) positive-definite matrix in RFP format using the Cholesky factorization.--><div><p class="shortdesc">Computes the inverse of a symmetric (Hermitian) positive-definite matrix in RFP format using the Cholesky factorization.</p>
+<div class="section" id="GUID-EA81A40B-8D72-4B92-B0E8-19F2FB06C71D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spftri</span><span class="delim">( </span><span class="var">transr</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dpftri</span><span class="delim">( </span><span class="var">transr</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cpftri</span><span class="delim">( </span><span class="var">transr</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zpftri</span><span class="delim">( </span><span class="var">transr</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-FF85CB5E-9AC1-41F0-9525-1C58D246BDC8"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-69FC9017-7710-4C94-895B-BB168A40832A"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the inverse <samp class="codeph">inv(<var>A</var>)</samp> of a symmetric positive definite or, for complex data, Hermitian positive-definite matrix <var>A</var> using the Cholesky factorization:</p>
+<table cellpadding="4" cellspacing="0" summary="" border="0" class="noborder"><tr><td valign="top" width="68%"><samp class="codeph"><span class="parmname">A</span> = <span class="parmname">U</span><sup><span class="parmname">T</span></sup><span class="parmname">*U</span></samp> for real data, <samp class="codeph"><span class="parmname">A</span> = <span class="parmname">U</span><sup><span class="parmname">H</span></sup><span class="parmname">*U</span></samp> for complex data</td>
+<td valign="top" width="32%">if <samp class="codeph"><var>uplo</var>=<span class="keyword">'U'</span></samp></td>
+</tr>
+<tr><td valign="top"><samp class="codeph"><span class="parmname">A</span> = <span class="parmname">L*L</span><sup><span class="parmname">T</span></sup></samp> for real data, <samp class="codeph"><span class="parmname">A</span> = <span class="parmname">L*L</span><sup><span class="parmname">H</span></sup></samp> for complex data</td>
+<td valign="top">if <samp class="codeph"><var>uplo</var>=<span class="keyword">'L'</span></samp></td>
+</tr>
+</table>
+<p>Before calling this routine, call <a class="allformats" href="GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76.html#GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76"><span class="option">?pftrf</span></a> to factorize <var>A</var>.</p>
+<p>The matrix <var>A</var> is in the Rectangular Full Packed (RFP) format. For the description of the RFP format, see <a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a>.</p>
+</div>
+<div class="section" id="GUID-562C2C10-CB51-4163-8A1C-45E152ED1D97"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">transr</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span>,  <span class="keyword">'T'</span> (for real data) or <span class="keyword">'C'</span> (for complex data).</p>
+<p>If <span class="parmname">transr</span> = <span class="keyword">'N'</span>, the Normal <span class="parmname">transr</span> of RFP <var>U</var> (if <span class="parmname">uplo</span> = <span class="keyword">'U'</span>) or <var>L</var> (if <span class="parmname">uplo</span> = <span class="keyword">'L'</span>)   is stored.</p>
+<p>If <span class="parmname">transr</span> = <span class="keyword">'T'</span>, the Transpose <span class="parmname">transr</span> of RFP <var>U</var> (if <span class="parmname">uplo</span> = <span class="keyword">'U'</span>) or <var>L</var> (if <span class="parmname">uplo</span> = <span class="keyword">'L'</span> is stored.</p>
+<p>If <span class="parmname">transr</span> = <span class="keyword">'C'</span>, the Conjugate-Transpose <span class="parmname">transr</span> of RFP <var>U</var> (if <span class="parmname">uplo</span> = <span class="keyword">'U'</span>) or <var>L</var> (if <span class="parmname">uplo</span> = <span class="keyword">'L'</span> is stored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates how the input matrix <var>A</var> has been factored:</p>
+<p>If <span class="parmname">uplo</span> = <span class="keyword">'U'</span>, <var>A</var> = <var>U</var><sup>T</sup>*<var>U</var> for real data or <var>A</var> = <var>U</var><sup>H</sup>*<var>U</var> for complex data, and <var>U</var> is stored.</p>
+<p>If <span class="parmname">uplo</span> = <span class="keyword">'L'</span>, <var>A</var> = <var>L</var>*<var>L</var><sup>T</sup> for real data or <var>A</var> = <var>L</var>*<var>L</var><sup>H</sup> for complex data, and <var>L</var> is stored.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">spftri</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dpftri</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpftri</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpftri</span>.</p>
+<p>Array, size <samp class="codeph">(<span class="parmname">n</span>*(<span class="parmname">n</span>+1)/2)</samp>. The array <span class="parmname">a</span> contains the factor <var>U</var> or <var>L</var> matrix <var>A</var> in the RFP format.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-23A8B6EC-8B1D-4068-9681-1005D687FFFA"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>The symmetric/Hermitian inverse of the original matrix in the same storage format.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><span class="parmname">info</span>=0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><span class="parmname">info</span> = <var>i</var></samp>, the <samp class="codeph">(<var>i</var>,<var>i</var>)</samp> element of the factor <span class="keyword">U</span> or <span class="keyword">L</span> is zero, and the inverse could not be computed.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html">Matrix Inversion: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

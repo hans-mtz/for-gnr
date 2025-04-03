@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Summary Statistics Usage Examples"/>
+<meta name="DC.subject" content="summary statistics usage examples"/>
+<meta name="keywords" content="summary statistics usage examples"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-44CA0D4A-ADEF-4B94-8032-F90F99E96710.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AC75C2EC-D341-4900-B00C-A7D2C607CA8F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Summary Statistics Usage Examples</title>
+
+</head>
+<body class="no-rel-links" id="GUID-AC75C2EC-D341-4900-B00C-A7D2C607CA8F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Summary Statistics Usage Examples</h1>
+<div><p>The following examples show various standard
+      operations with Summary Statistics routines. 
+    </p>
+<div class="section" id="GUID-1DC567E9-AF86-4447-889E-FBB9D18AF6BB"><h2 class="sectiontitle">Calculating Fixed Estimates for Fixed
+        Data</h2><p>The example shows recurrent calculation of the same
+        estimates with a given set of variables for the complete life cycle of the task
+        in the case of a variance-covariance matrix. The set of vector components to
+        process remains unchanged, and the data comes in blocks. Before you call the 
+      <span class="option">vslSSCompute</span>
+      routine, initialize pointers to arrays for mean and covariance and set buffers.
+      
+      </p>
+<pre>….
+double w[2];
+double indices[DIM] = {1, 0, 1};
+		
+/* calculating mean for 1st and 3d random vector components */
+		
+/* Initialize parameters of the task */
+p = DIM;
+n = N;
+		
+xstorage   = VSL_SS_MATRIX_STORAGE_ROWS;
+covstorage = VSL_SS_MATRIX_STORAGE_FULL;
+		
+w[0] = 0.0; w[1] = 0.0;
+		
+for ( i = 0; i &lt; p; i++ ) mean[i] = 0.0;
+for ( i = 0; i &lt; p*p; i++ ) cov[i] = 0.0;
+		
+status = vsldSSNewTask( &amp;task, &amp;p, &amp;n, &amp;xstorage, x, 0, indices );
+		
+status = vsldSSEditTask  ( task, VSL_SS_ED_ACCUM_WEIGHT, w    );
+status = vsldSSEditCovCor( task, mean, cov, &amp;covstorage, 0, 0 );
+	</pre><p> You can process data arrays that come in blocks as
+        follows: 
+      </p>
+<pre>for ( i = 0; i &lt; num_of_blocks; i++ )
+{
+    status = vsldSSCompute( task, VSL_SS_COV, VSL_SS_METHOD_FAST );
+    /* Read new data block into array x */
+}
+…</pre></div>
+<div class="section" id="GUID-268A9ACA-5762-43ED-9F41-30981E684ADB"><h2 class="sectiontitle">Calculating Different Estimates for
+        Variable Data</h2><p>The context of your calculation may change in the
+        process of data analysis. The example below shows the data that comes in two
+        blocks. You need to estimate a covariance matrix for the complete data, and the
+        third central moment for the second block of the data using the weights that
+        were accumulated for the previous datasets. The second block of the data is
+        stored in another array. You can proceed as follows: 
+      </p>
+<pre>/* Set parameters for the task */
+p = DIM;
+n = N;
+xstorage   = VSL_SS_MATRIX_STORAGE_ROWS;
+covstorage = VSL_SS_MATRIX_STORAGE_FULL;
+
+w[0] = 0.0; w[1] = 0.0;
+
+for ( i = 0; i &lt; p; i++ ) mean[i] = 0.0;
+for ( i = 0; i &lt; p*p; i++ ) cov[i] = 0.0;
+
+/* Create task */
+status = vsldSSNewTask( &amp;task, &amp;p, &amp;n, &amp;xstorage, x1, 0, indices );
+
+/* Initialize the task parameters */
+status = vsldSSEditTask( task, VSL_SS_ED_ACCUM_WEIGHT, w );
+status = vsldSSEditCovCor( task, mean, cov, &amp;covstorage, 0, 0 );
+
+/* Calculate covariance for the x1 data */
+status = vsldSSCompute( task, VSL_SS_COV, VSL_SS_METHOD_FAST );
+
+/* Initialize array of the 3d central moments and pass the pointer to the task */
+for ( i = 0; i &lt; p; i++ ) c3_m[i] = 0.0;
+
+/* Modify task context */
+status = vsldSSEditTask( task, VSL_SS_ED_3C_MOM, c3_m );
+status = vsldSSEditTask( task, VSL_SS_ED_OBSERV, x2 );
+
+/* Calculate covariance for the x1 &amp; x2 data block */
+/* Calculate the 3d central moment for the 2nd data block using earlier accumulated weight */
+status = vsldSSCompute(task, VSL_SS_COV|VSL_SS_3C_MOM, VSL_SS_METHOD_FAST );
+…
+status = vslSSDeleteTask( &amp;task );</pre><p> Similarly, you can modify indices of the variables
+        to be processed for the next data block. 
+      </p>
+</div>
+</div>
+<div/>
+</body>
+</html>

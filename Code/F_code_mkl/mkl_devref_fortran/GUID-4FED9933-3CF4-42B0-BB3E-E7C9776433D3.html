@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Solving Systems of Linear Equations: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="matrix equation, AX = B"/>
+<meta name="keywords" content="matrix equation, AX = B"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A76FB023-4172-4F12-B612-6D675328FA43.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-66F60167-A653-4DC5-BAF4-D003BBBAA746.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2039BD5D-44D1-487A-9B68-87BD46019A5F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-674C9C39-E08F-4C9C-865A-AA3D8881D974.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FE593312-5EA4-4914-BEF9-682D5DB72416.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D042EC84-E4D6-46CD-B885-541A5C2EE813.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D78BC1ED-58C9-481B-9286-193EDE0E7AE0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BD2A730B-941D-442A-A9FE-D91DF0B18D30.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78F448C7-AC85-45E7-A90A-2D1A249BA71A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-916E575F-6707-47FB-89F1-59D3F0AAB70C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-22836745-C221-448A-8718-DAC263C52A96.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-82B40C5D-1ED1-408B-B7CE-7817844879E8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-023D672F-3647-4C4C-9BD0-86E47EC0AA2D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-EE37DE18-7E9E-4CB2-8D36-9E4E61CE6578.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-29A1B330-50B2-4792-8BC6-CD372D185EEB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2B415C3A-F27C-45B1-BD61-1048118AE28A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-65AB242A-E790-4222-BB85-4355DC389BC6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-71E82DE1-EA67-43D4-B40F-FCBE0E751FA3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-382CC62B-BD54-45BE-B5FE-E9716511CC3C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4FED9933-3CF4-42B0-BB3E-E7C9776433D3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Solving Systems of Linear Equations: LAPACK Computational Routines</title>
+
+</head>
+<body id="GUID-4FED9933-3CF4-42B0-BB3E-E7C9776433D3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Solving Systems of Linear Equations: LAPACK
+    Computational Routines</h1>
+<div><p>This section describes the LAPACK routines for
+      solving systems of linear equations. Before calling most of these routines, you
+      need to factorize the matrix of your system of equations (see 
+      <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html#GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED">Routines for Matrix
+        Factorization</a>). However, the
+      factorization is not necessary if your system of equations has a triangular
+      matrix.
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3.html">LAPACK Linear Equation Computational Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0.html">?getrs</a><br/>
+Solves a system of linear equations with an LU-factored square coefficient matrix, with multiple right-hand sides. </li>
+<li class="ulchildlink"><a href="GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7.html">?gbtrs</a><br/>
+Solves a system of linear equations with an LU-factored band coefficient matrix, with multiple right-hand sides.</li>
+<li class="ulchildlink"><a href="GUID-A76FB023-4172-4F12-B612-6D675328FA43.html">?gttrs</a><br/>
+Solves a system of linear equations with a tridiagonal coefficient matrix using the LU factorization computed by <span class="optionn">?gttrf</span>.</li>
+<li class="ulchildlink"><a href="GUID-66F60167-A653-4DC5-BAF4-D003BBBAA746.html">?dttrsb</a><br/>
+Solves a system of linear equations with a  diagonally dominant tridiagonal coefficient matrix using the LU factorization computed by <span class="optionn">?dttrfb</span>.</li>
+<li class="ulchildlink"><a href="GUID-2039BD5D-44D1-487A-9B68-87BD46019A5F.html">?potrs</a><br/>
+Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite coefficient matrix. </li>
+<li class="ulchildlink"><a href="GUID-674C9C39-E08F-4C9C-865A-AA3D8881D974.html">?pftrs</a><br/>
+Solves a system of linear equations with a Cholesky-factored symmetric (Hermitian) positive-definite coefficient matrix using the Rectangular Full Packed (RFP) format.</li>
+<li class="ulchildlink"><a href="GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF.html">?pptrs</a><br/>
+Solves a system of linear equations with a packed Cholesky-factored symmetric (Hermitian) positive-definite coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF.html">?pbtrs</a><br/>
+Solves a system of linear equations with a  Cholesky-factored symmetric (Hermitian) positive-definite band coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-FE593312-5EA4-4914-BEF9-682D5DB72416.html">?pttrs</a><br/>
+Solves a system of linear equations with a symmetric (Hermitian) positive-definite tridiagonal coefficient matrix using the factorization computed by <span class="option">?pttrf</span>.</li>
+<li class="ulchildlink"><a href="GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD.html">?sytrs</a><br/>
+Solves a system of linear equations with a  UDU<sup>T</sup>- or LDL<sup>T</sup>-factored symmetric coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-D042EC84-E4D6-46CD-B885-541A5C2EE813.html">?sytrs_aa</a><br/>
+Solves a system of linear equations A * X = B with a symmetric matrix.</li>
+<li class="ulchildlink"><a href="GUID-D78BC1ED-58C9-481B-9286-193EDE0E7AE0.html">?sytrs_rook</a><br/>
+Solves a system of linear equations with a  UDU- or LDL-factored symmetric coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-BD2A730B-941D-442A-A9FE-D91DF0B18D30.html">?hetrs</a><br/>
+Solves a system of linear equations with a  UDU<sup>T</sup>- or LDL<sup>T</sup>-factored Hermitian coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-78F448C7-AC85-45E7-A90A-2D1A249BA71A.html">?hetrs_aa</a><br/>
+<var>B</var>Solves a system of linear equations <var>A</var>*<var>X</var> =  with a complex Hermitian matrix.</li>
+<li class="ulchildlink"><a href="GUID-916E575F-6707-47FB-89F1-59D3F0AAB70C.html">?hetrs_rook</a><br/>
+Solves a system of linear equations with a  UDU- or LDL-factored Hermitian coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-22836745-C221-448A-8718-DAC263C52A96.html">?sytrs2</a><br/>
+Solves a system of linear equations with a  UDU- or LDL-factored symmetric coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-82B40C5D-1ED1-408B-B7CE-7817844879E8.html">?hetrs2</a><br/>
+Solves a system of linear equations with a  UDU- or LDL-factored Hermitian coefficient matrix.</li>
+<li class="ulchildlink"><a href="GUID-023D672F-3647-4C4C-9BD0-86E47EC0AA2D.html">?sytrs_3</a><br/>
+Solves a system of linear equations A * X = B with a real or complex symmetric matrix.</li>
+<li class="ulchildlink"><a href="GUID-EE37DE18-7E9E-4CB2-8D36-9E4E61CE6578.html">?hetrs_3</a><br/>
+Solves a system of linear equations A * X = B with a complex Hermitian matrix using the factorization computed by <span class="option">?hetrf_rk</span>.</li>
+<li class="ulchildlink"><a href="GUID-29A1B330-50B2-4792-8BC6-CD372D185EEB.html">?sptrs</a><br/>
+Solves a system of linear equations with a  UDU- or LDL-factored symmetric coefficient matrix using packed storage.</li>
+<li class="ulchildlink"><a href="GUID-2B415C3A-F27C-45B1-BD61-1048118AE28A.html">?hptrs</a><br/>
+Solves a system of linear equations with a  UDU- or LDL-factored Hermitian coefficient matrix using packed storage.</li>
+<li class="ulchildlink"><a href="GUID-65AB242A-E790-4222-BB85-4355DC389BC6.html">?trtrs</a><br/>
+Solves a system of linear equations with a triangular coefficient matrix, with multiple right-hand sides. </li>
+<li class="ulchildlink"><a href="GUID-71E82DE1-EA67-43D4-B40F-FCBE0E751FA3.html">?tptrs</a><br/>
+Solves a system of linear equations with a packed triangular coefficient matrix, with multiple right-hand sides.</li>
+<li class="ulchildlink"><a href="GUID-382CC62B-BD54-45BE-B5FE-E9716511CC3C.html">?tbtrs</a><br/>
+Solves a system of linear equations with a band triangular coefficient matrix, with multiple right-hand sides.</li>
+</ul>
+</div>
+</body>
+</html>

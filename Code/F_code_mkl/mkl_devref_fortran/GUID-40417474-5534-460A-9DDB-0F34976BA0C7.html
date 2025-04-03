@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gttrf"/>
+<meta name="abstract" content="Computes the LU factorization of a tridiagonal matrix."/>
+<meta name="description" content="Computes the LU factorization of a tridiagonal matrix."/>
+<meta name="DC.subject" content="?gttrf, LAPACK routines, triangular factorization, tridiagonal matrix, LAPACK, LU factorization"/>
+<meta name="keywords" content="?gttrf, LAPACK routines, triangular factorization, tridiagonal matrix, LAPACK, LU factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-40417474-5534-460A-9DDB-0F34976BA0C7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gttrf</title>
+
+</head>
+<body id="GUID-40417474-5534-460A-9DDB-0F34976BA0C7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gttrf</span></h1>
+<!--Computes the LU factorization of a tridiagonal matrix.--><div><p class="shortdesc">Computes the LU factorization of a tridiagonal matrix.</p>
+<div class="section" id="GUID-5DED99E6-9115-44FC-BC7F-3191D387F6C8"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgttrf</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgttrf</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgttrf</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgttrf</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call gttrf</span><span class="delim">( </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="delim"> [</span><span class="sep">, </span><span class="var">ipiv</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-C50D920B-0A38-405B-B9D5-870F0D5644CA"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B425479E-29CD-4F21-8DEF-9FD93F2C6D99"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the <var>LU</var> factorization of a real or complex tridiagonal  matrix <var>A</var> using elimination with partial pivoting and row interchanges.</p>
+<p>The factorization has the form</p>
+<p><pre><var>A</var> = <var>L*U</var>,</pre></p>
+<p>where <var>L</var> is a product of permutation and unit lower bidiagonal matrices and <var>U</var> is upper triangular with nonzeroes in only the main diagonal and first two superdiagonals.</p>
+</div>
+<div class="section" id="GUID-DFBBE382-D503-49D3-B5BB-02F007B15BE8"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dl</span>, <span class="parmname">d</span>, <span class="parmname">du</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sgttrf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgttrf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgttrf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgttrf</span>.</p>
+<p>Arrays containing elements of <var>A</var>. </p>
+<p>The array <var>dl</var> of dimension <samp class="codeph">(<var>n</var> - 1)</samp> contains the subdiagonal elements of <var>A</var>. </p>
+<p>The array <var>d</var> of dimension <var>n</var> contains the diagonal elements of <var>A</var>. </p>
+<p>The array <var>du</var> of dimension <samp class="codeph">(<var>n</var> - 1)</samp> contains the superdiagonal elements of <var>A</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-4B0EAF8E-9658-4B56-8E7B-A2230EF41B17"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dl</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by the <samp class="codeph">(<span class="parmname">n</span>-1)</samp> multipliers that define the matrix <var>L</var> from the <var>LU</var> factorization of <var>A</var>. <span>The matrix <var>L</var> has unit diagonal elements, and the <samp class="codeph">(<span class="parmname">n</span>-1)</samp> elements of <span class="parmname">dl</span> form the subdiagonal. All other elements of <var>L</var> are zero.</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by the <span class="parmname">n</span>
+ diagonal elements of the upper triangular matrix <var>U</var> from the <var>LU</var> factorization of <var>A</var>. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">du</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by the <samp class="codeph">(<span class="parmname">n</span>-1)</samp> elements of the first superdiagonal of <var>U</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">du2</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sgttrf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgttrf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgttrf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgttrf</span>.</p>
+<p>Array, dimension <samp class="codeph">(<span class="parmname">n</span>
+-2)</samp>. On exit, <var>du2</var> contains <samp class="codeph">(<span class="parmname">n</span>-2)</samp> elements of the second superdiagonal of <var>U</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, dimension (<span class="parmname">n</span>). The pivot indices: for 1 ≤ <var>i</var>
+ ≤  <span class="parmname">n</span>,
+row <var>i</var> was interchanged with row <span class="parmname">ipiv</span>(<var>i</var>). <span class="parmname">ipiv</span>(<var>i</var>)
+is always <var>i</var>
+or <var>i</var>+1; 
+<span class="parmname">ipiv</span>(<var>i</var>)
+= <var>i</var>
+indicates a row interchange was not required.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var>, <var>u</var><sub class="subb"><var>i</var><var>i</var></sub></samp>is 0. The factorization has been completed, but <var>U</var> is exactly singular. Division by zero will occur if you use the factor <var>U</var> for solving a system of linear equations.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-B899DDED-AA78-4823-AA92-1BF48C813DC0"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gttrf</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dl</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>n</var>-1).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">du</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>n</var>-1).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">du2</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>n</var>-2).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-05AB3053-F178-40B3-93C4-A3D142C0132B"><h2 class="sectiontitle">Application Notes</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7.html#GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7"><span class="option">?gbtrs</span></a></p></td>
+
+<td valign="top" class="noborder"><p>to solve <samp class="codeph"><var>A*X</var> = <var>B</var></samp> or <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var></samp> or <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var></samp></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><a href="GUID-55877F0D-D603-4A37-B110-F5350BB8F8C4.html#GUID-55877F0D-D603-4A37-B110-F5350BB8F8C4"><span class="option">?gbcon</span></a></p></td>
+
+<td valign="top" class="noborder"><p>to estimate the condition number of <var>A</var>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

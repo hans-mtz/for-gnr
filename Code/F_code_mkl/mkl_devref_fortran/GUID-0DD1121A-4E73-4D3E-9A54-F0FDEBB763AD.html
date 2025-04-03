@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Cluster FFT Interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0DD1121A-4E73-4D3E-9A54-F0FDEBB763AD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Cluster FFT Interface</title>
+
+</head>
+<body id="GUID-0DD1121A-4E73-4D3E-9A54-F0FDEBB763AD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Cluster FFT Interface</h1>
+<div><p>To use the cluster FFT functions, you need to 
+      <span>access the module 
+        <span class="keyword">MKL_CDFT</span> through the "<span class="keyword">use</span>" statement</span>. 
+    </p>
+<p>The Fortran interface provides a derived type 
+      <samp class="codeph">DFTI_DESCRIPTOR_DM</samp>; a number of named constants representing various names of configuration parameters and their possible values; and a number of overloaded functions through the generic functionality of Fortran 95. 
+    </p>
+<p>To provide communication between parallel processes through MPI, the following include statement must be present in your code: 
+    </p>
+<ul id="GUID-1204CDA4-6AB4-46CF-BA86-7AD1CBE5A87F"><li>Fortran: 
+        <p><samp class="codeph">INCLUDE "mpif.h"</samp></p>
+<p>(for some MPI versions, 
+          <samp class="codeph">"mpif90.h"</samp> header may be used instead). 
+        </p>
+</li>
+</ul>
+<p>There are three main categories of the cluster FFT functions in Intel&reg; oneAPI Math Kernel Library:</p>
+<ol id="GUID-462BAF2C-9AE0-4F08-99C0-DF0F665813B8"><li><p><strong>Descriptor Manipulation</strong>. There are three functions in this category. The 
+          <a href="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3.html#GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"><span class="option">DftiCreateDescriptorDM</span></a> function creates an FFT descriptor whose storage is allocated dynamically. The 
+          <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a> function "commits" the descriptor to all its settings. The 
+          <a href="GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB.html#GUID-683DB582-85CC-43A8-9A68-25A61EE5EEDB"><span class="option">DftiFreeDescriptorDM</span></a> function frees up the memory allocated for the descriptor. 
+        </p>
+</li>
+<li><p><strong>FFT Computation</strong>. There are two functions in this category. The 
+          <a href="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618.html#GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618"><span class="option">DftiComputeForwardDM</span></a> function performs the forward FFT computation, and the 
+          <a href="GUID-23EBC314-CD93-44B9-A456-C867DF0BD984.html#GUID-23EBC314-CD93-44B9-A456-C867DF0BD984"><span class="option">DftiComputeBackwardDM</span></a> function performs the backward FFT computation. 
+        </p>
+</li>
+<li><p><strong>Descriptor Configuration</strong>. There are two functions in this category. The 
+          <a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15"><span class="option">DftiSetValueDM</span></a> function sets one specific configuration value to one of the many configuration parameters. The 
+          <a href="GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594.html#GUID-3EF3BA3A-EBF5-497F-AAE3-E4CFC600E594"><span class="option">DftiGetValueDM</span></a> function gets the current value of any of these configuration parameters, all of which are readable. These parameters, though many, are handled one at a time. 
+        </p>
+</li>
+</ol>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CD616B57-0E6D-45A1-884E-B0860D8C9278.html">Cluster FFT Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

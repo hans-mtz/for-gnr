@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?syr2"/>
+<meta name="abstract" content="Performs a rank-2 update of a distributed symmetric matrix."/>
+<meta name="description" content="Performs a rank-2 update of a distributed symmetric matrix."/>
+<meta name="DC.subject" content="p?syr2, pssyr2, pdsyr2, PBLAS Level 2 routines, rank-2 update, distributed symmetric matrix, updating, rank-2, distributed matrix-vector operation, symmetric matrix"/>
+<meta name="keywords" content="p?syr2, pssyr2, pdsyr2, PBLAS Level 2 routines, rank-2 update, distributed symmetric matrix, updating, rank-2, distributed matrix-vector operation, symmetric matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7FAF01D7-0A66-4329-AC90-A2B3BD1658C0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?syr2</title>
+
+</head>
+<body id="GUID-7FAF01D7-0A66-4329-AC90-A2B3BD1658C0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?syr2</span></h1>
+<!--Performs a rank-2 update of a distributed  symmetric matrix.--><div><p class="shortdesc">Performs a rank-2 update of a distributed  symmetric matrix.</p>
+<div class="section" id="GUID-6AF768C4-8BC1-42BD-A43D-A8874F569176"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pssyr2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdsyr2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F2EE5AC0-95BD-4794-B25F-F48D7F666D55"><h2 class="sectiontitle">Include Files</h2><ul id="d163e233"><li id="d163e234"><span class="filepath">mkl_pblas.h</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-304374C9-D4CB-485E-A033-EF4D5C193C4C"><h2 class="sectiontitle">Description</h2><p>The <span class="option">p?syr2</span> routines perform a distributed matrix-vector operation defined as <pre>sub(<var>A</var>) := <var>alpha</var>*sub(<var>x</var>)*sub(<var>y</var>)'+ <var>alpha</var>*sub(<var>y</var>)*sub(<var>x</var>)' + sub(<var>A</var>),</pre></p>
+<p>where:</p>
+<p><var>alpha</var> is a scalar,</p>
+<p><samp class="codeph">sub(<var>A</var>)</samp> is a <span class="parmname">n</span>-by-<span class="parmname">n</span> distributed symmetric matrix,
+
+		<samp class="codeph">sub(<var>A</var>)=<var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1)</samp>
+,</p>
+<p><samp class="codeph">sub(<var>x</var>)</samp> and  <samp class="codeph">sub(<var>y</var>)</samp> are distributed vectors.</p>
+<p><samp class="codeph">
+sub(<var>x</var>)</samp>
+denotes <samp class="codeph"><var>X</var>(<span class="parmname">ix</span>, <span class="parmname">jx</span>:<span class="parmname">jx</span>+<span class="parmname">n</span>-1)</samp> if <samp class="codeph"><span class="parmname">incx</span> = <span class="parmname">m_x</span></samp>, and <samp class="codeph"><var>X</var>(<span class="parmname">ix</span>: <span class="parmname">ix</span>+<span class="parmname">n</span>-1, <span class="parmname">jx</span>)</samp> if <samp class="codeph"><span class="parmname">incx</span> = 1,</samp></p>
+<p><samp class="codeph">sub(<var>y</var>)</samp>
+denotes <samp class="codeph"><var>Y</var>(<span class="parmname">iy</span>, <span class="parmname">jy</span>:<span class="parmname">jy</span>+<span class="parmname">n</span>-1)</samp> if <samp class="codeph"><span class="parmname">incy</span> = <span class="parmname">m_y</span></samp>, and <samp class="codeph"><var>Y</var>(<span class="parmname">iy</span>: <span class="parmname">iy</span>+<span class="parmname">n</span>-1, <span class="parmname">jy</span>)</samp> if <samp class="codeph"><span class="parmname">incy</span> = 1</samp>.</p>
+</div>
+<div class="section" id="GUID-C9914A87-DC5C-44CB-BC47-C7A711856468"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-80D85ECC-3475-4ED1-AC27-CB50701EE6F2"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the distributed symmetric matrix <samp class="codeph">sub(<var>A</var>)</samp>
+ is used:</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, then the upper  triangular part of the <samp class="codeph">sub(<var>A</var>)</samp>
+ is used.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, then the low  triangular part of the <samp class="codeph">sub(<var>A</var>)</samp>
+ is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Specifies the order of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>, <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>(global)<span><span class="keyword">REAL</span>  for <span class="option">pssyr2</span></span></p>
+<p><span class="keyword">DOUBLE REAL</span> for <span class="option">pdsyr2</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local)<span><span class="keyword">REAL</span>  for <span class="option">pssyr2</span></span></p>
+<p><span class="keyword">DOUBLE REAL</span> for <span class="option">pdsyr2</span></p>
+<p>Array, size at least
+	<samp class="codeph">(<span class="parmname">jx</span>-1)*<span class="parmname">m_x</span> + <span class="parmname">ix</span>+(<span class="parmname">n</span>-1)*abs(<span class="parmname">incx</span>))</samp>.</p>
+<p>This array contains the entries of the distributed vector <samp class="codeph">sub(<var>x</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span>, <span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>X</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>x</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword"> INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword"> INTEGER</span>.  </span>Specifies the increment for the elements of <samp class="codeph">sub(<var>x</var>)</samp>. Only two values are supported, namely 1 and <span class="parmname">m_x</span>. <span class="parmname">incx</span> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>(local)<span><span class="keyword">REAL</span>  for <span class="option">pssyr2</span></span></p>
+<p><span class="keyword">DOUBLE REAL</span> for <span class="option">pdsyr2</span></p>
+<p>Array, size at least
+						<samp class="codeph">(<span class="parmname">jy</span>-1)*<span class="parmname">m_y</span> + <span class="parmname">iy</span>+(<span class="parmname">n</span>-1)*abs(<span class="parmname">incy</span>))</samp>.</p>
+<p>This array contains the entries of the distributed vector <samp class="codeph">sub(<var>y</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iy</span>, <span class="parmname">jy</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>Y</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>y</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descy</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>Y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p>(global) <span><span class="keyword"> INTEGER</span>.  </span>Specifies the increment for the elements of <samp class="codeph">sub(<var>y</var>)</samp>. Only two values are supported, namely 1 and <span class="parmname">m_y</span>.
+ <span class="parmname">incy</span> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)<span><span class="keyword">REAL</span>  for <span class="option">pssyr2</span></span></p>
+<p><span class="keyword">DOUBLE REAL</span> for <span class="option">pdsyr2</span></p>
+<p>Array, size
+						<samp class="codeph">(<span class="parmname">lld_a</span>, LOCq(<span class="parmname">ja</span>+<span class="parmname">n</span>-1))</samp>. This array contains the local pieces of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+<p>Before entry with <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, the  <var>n</var>-by-<var>n</var> upper triangular part of the distributed matrix
+ <samp class="codeph">sub(<var>A</var>)</samp>
+
+ must contain the upper triangular part of the distributed symmetric matrix and the strictly lower triangular part of <samp class="codeph">sub(<var>A</var>)</samp>
+
+
+ is not referenced, and with <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, the  <var>n</var>-by-<var>n</var>
+
+ lower triangular part of the distributed matrix
+ <samp class="codeph">sub(<var>A</var>)</samp>
+
+ must contain the lower triangular part of the distributed symmetric matrix and the strictly upper triangular part of <samp class="codeph">sub(<var>A</var>)</samp>
+
+ is
+ not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>A</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>A</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5E722057-8894-4CBE-9591-D63437F9682A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-264A45AB-87F0-425A-AF4E-9C80B99A9AB9"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>With <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, the upper triangular part of the array <var>a</var> is overwritten by the upper triangular part of the updated distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+<p>With <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, the lower triangular part of the array <var>a</var> is overwritten by the lower triangular part of the updated distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html">PBLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

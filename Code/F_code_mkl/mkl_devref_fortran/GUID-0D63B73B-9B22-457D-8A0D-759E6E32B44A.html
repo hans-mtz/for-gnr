@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pmpcol"/>
+<meta name="abstract" content="Finds the collaborators of a process."/>
+<meta name="description" content="Finds the collaborators of a process."/>
+<meta name="DC.subject" content="pmpcol, ScaLAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="pmpcol, ScaLAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0D63B73B-9B22-457D-8A0D-759E6E32B44A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pmpcol</title>
+
+</head>
+<body id="GUID-0D63B73B-9B22-457D-8A0D-759E6E32B44A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pmpcol</span></h1>
+<!--Finds the collaborators of a process.--><div><p class="shortdesc"><em>Finds the collaborators of a process.</em></p>
+<div class="section" id="GUID-B9627CD7-BDF2-4790-9F4C-C17B3904DB33"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pmpcol</span><span class="delim">(</span><span class="var"> myproc</span><span class="sep">, </span><span class="var">nprocs</span><span class="sep">, </span><span class="var">iil</span><span class="sep">, </span><span class="var">needil</span><span class="sep">, </span><span class="var">neediu</span><span class="sep">, </span><span class="var">pmyils</span><span class="sep">, </span><span class="var">pmyius</span><span class="sep">, </span><span class="var">colbrt</span><span class="sep">, </span><span class="var">frstcl</span><span class="sep">, </span><span class="var">lastcl </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-772E8FD7-9EF2-4248-91BC-61270063FCC9"><h2 class="sectiontitle">Description</h2><p>Using the output from <a href="GUID-0134BE6F-AB7C-4F7C-A8A2-956132BE7FAA.html"><span class="option">pmpim2</span></a> and given the information on eigenvalue clusters, <span class="option">pmpcol</span> finds the collaborators of <span class="parmname">myproc</span>. </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d103945e104"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d103945e104 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-6A19316C-8840-461E-9BB2-956064229025"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-9AA24F6F-55D1-4553-A904-E8C725EE848A"><dt class="dlterm"><span class="parmname">myproc</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The processor number, 0 <span class="eqsymbol">≤</span><span class="parmname">myproc</span> &lt; <span class="parmname">nprocs</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nprocs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The total number of processors available.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iil</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The index of the leftmost eigenvalue in the eigenvalue cluster.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">needil</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leftmost position in the eigenvalue cluster needed by <span class="parmname">myproc</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">neediu</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The rightmost position in the eigenvalue cluster needed by <span class="parmname">myproc</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pmyils</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> array</p>
+<p>For each processor <var>p</var>,  0 &lt;  <var>p</var><span class="eqsymbol">≤</span><span class="parmname">nprocs</span>, <span class="parmname">pmyils</span><span>(<var>p</var>)</span> is the index of the first eigenvalue in the eigenvalue cluster to be computed.</p>
+<p><span class="parmname">pmyils</span><span>(<var>p</var>)</span> equals zero if <var>p</var> stays idle.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pmyius</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> array</p>
+<p>For each processor <var>p</var>,  <span class="parmname">pmyius</span><span>(<var>p</var>)</span> is the index of the last eigenvalue in the eigenvalue cluster to be computed.</p>
+<p><span class="parmname">pmyius</span><span>(<var>p</var>)</span> equals zero if <var>p</var> stays idle.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7BF25581-7B5B-4A61-93F7-EE32A7C67675"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-2F8FD23C-4B7B-4E4A-BB65-3F8D4FE491E2"><dt class="dlterm"><span class="parmname">colbrt</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span></p>
+<p><span>Equals <span class="keyword">.TRUE.</span></span> if <span class="parmname">myproc</span> collaborates.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">frstcl</span>, <span class="parmname">lastcl</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>First and last collaborator of <span class="parmname">myproc</span>   .</p>
+<p><span class="parmname">myproc</span> collaborates with:</p>
+<p><span class="parmname">frstcl</span>, ..., <span class="parmname">myproc</span>-1, <span class="parmname">myproc</span>+1, ...,<span class="parmname">lastcl</span></p>
+<p>If <span class="parmname">myproc</span> = <span class="parmname">frstcl</span>, there are no collaborators on the left. If <span class="parmname">myproc</span> = <span class="parmname">lastcl</span>, there are no collaborators on the right.</p>
+<p>If <span class="parmname">frstcl</span> = 0 and <span class="parmname">lastcl</span> = <span class="parmname">nprocs</span>-1, then <span class="parmname">myproc</span> collaborates with everybody</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

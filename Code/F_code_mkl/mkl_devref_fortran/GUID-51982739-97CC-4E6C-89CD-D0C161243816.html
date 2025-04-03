@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lacon"/>
+<meta name="abstract" content="Estimates the 1-norm of a square matrix, using reverse communication for evaluating matrix-vector products."/>
+<meta name="description" content="Estimates the 1-norm of a square matrix, using reverse communication for evaluating matrix-vector products."/>
+<meta name="DC.subject" content="?lacon, LAPACK routines, auxiliary routines, square matrix, 1-norm estimation, LAPACK"/>
+<meta name="keywords" content="?lacon, LAPACK routines, auxiliary routines, square matrix, 1-norm estimation, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-51982739-97CC-4E6C-89CD-D0C161243816"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lacon</title>
+
+</head>
+<body id="GUID-51982739-97CC-4E6C-89CD-D0C161243816">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lacon</span></h1>
+<!--Estimates the 1-norm of a square matrix, using reverse communication for evaluating matrix-vector products.--><div><p class="shortdesc">Estimates the 1-norm of a square matrix, using reverse communication for evaluating matrix-vector products.</p>
+<div class="section" id="GUID-FB568D68-C5C8-4639-9A86-B8465D98E379"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slacon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">isgn</span><span class="sep">, </span><span class="var">est</span><span class="sep">, </span><span class="var">kase</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlacon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">isgn</span><span class="sep">, </span><span class="var">est</span><span class="sep">, </span><span class="var">kase</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clacon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">est</span><span class="sep">, </span><span class="var">kase</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlacon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">est</span><span class="sep">, </span><span class="var">kase</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-33184CBB-873A-4594-8803-0D3433611595"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-68681170-1CCE-42F5-8B03-92555B0BE4E7"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine estimates the 1-norm of a square, real/complex matrix <var>A</var>. Reverse communication is used for evaluating matrix-vector products.</p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>The <span class="option">?lacon</span>
+ routine is not thread-safe. It is deprecated and retained for the backward compatibility only. Use the thread-safe <a href="GUID-DBB012CA-94E8-423A-98D5-FB05C156484D.html#GUID-DBB012CA-94E8-423A-98D5-FB05C156484D"><span class="option">?lacn2</span></a>
+ routine instead.</p>
+</div>
+</div>
+<div class="section" id="GUID-B9CFD015-7C30-45EB-9CB6-C8987DC140ED"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-1C0A253D-934F-407F-81D0-BD52CC128BB1"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 1</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span>, <span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slacon</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlacon</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clacon</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlacon</span>.</p>
+<p>Arrays, <span class="keyword">DIMENSION</span> (<var>n</var>) each. </p>
+<p><var>v</var> is a workspace array.</p>
+<p><var>x</var> is used as input after an intermediate return. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">isgn</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var>), used with real flavors only. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">est</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slacon</span>/<span class="option">clacon</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlacon</span>/<span class="option">zlacon</span></p>
+<p>An estimate that with <span class="parmname">kase</span>=1 or 2 should be unchanged from the previous call to <span class="option">?lacon</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">kase</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>On the initial call to <span class="option">?lacon</span>, <var>kase</var> should be 0.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4472AA13-72AB-4FDF-BB9E-3CEF02969625"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-83D4D592-3A29-44ED-B2C2-6F96CB192C0E"><dt class="dlterm"><span class="parmname">est</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slacon</span>/<span class="option">clacon</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlacon</span>/<span class="option">zlacon</span></p>
+<p>An estimate (a lower bound) for norm(<var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">kase</span></dt>
+
+<dd><p>On an intermediate return, <var>kase</var> will be 1 or 2, indicating whether <var>x</var> should be overwritten by <var>A</var>*<var>x</var> or <var>A</var><sup class="power"><var>T</var></sup>*<var>x</var>    for  real flavors and <var>A</var>*<var>x</var> or <var>A</var><sup class="power"><var>H</var></sup>*<var>x</var>     for  complex flavors. On the final return from <span class="option">?lacon</span>, <var>kase</var> will again be 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p>On the final return, <samp class="codeph"><var>v</var> = <var>A</var>*<var>w</var></samp>, where <samp class="codeph"><var>est</var> = norm(<var>v</var>)/norm(<var>w</var>)</samp> (<var>w</var> is not returned). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>On an intermediate return, <var>x</var> should be overwritten by </p>
+<p><samp class="codeph"><var>A</var>*<var>x</var></samp>,     if <samp class="codeph"><var>kase</var> = 1</samp>, </p>
+<p><samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup>*<var>x</var></samp>,    if <samp class="codeph"><var>kase</var> = 2</samp> (for real flavors), </p>
+<p><samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup>*<var>x</var></samp>,    if <samp class="codeph"><var>kase</var> = 2</samp> (for complex flavors), </p>
+<p> and <span class="option">?lacon</span> must be re-called with all the other parameters unchanged. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

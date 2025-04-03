@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laqtr"/>
+<meta name="abstract" content="Solves a real quasi-triangular system of equations, or a complex quasi-triangular system of special form, in real arithmetic."/>
+<meta name="description" content="Solves a real quasi-triangular system of equations, or a complex quasi-triangular system of special form, in real arithmetic."/>
+<meta name="DC.subject" content="?laqtr, LAPACK routines, auxiliary routines, solving linear equations, linear equations, solving, quasi-triangular system of equations"/>
+<meta name="keywords" content="?laqtr, LAPACK routines, auxiliary routines, solving linear equations, linear equations, solving, quasi-triangular system of equations"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-89F9A544-C9DB-43E5-96D0-F025BF8DC0B2"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laqtr</title>
+
+</head>
+<body id="GUID-89F9A544-C9DB-43E5-96D0-F025BF8DC0B2">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laqtr</span></h1>
+<!--Solves a real quasi-triangular system of equations, or a complex quasi-triangular system of special form, in real arithmetic.--><div><p class="shortdesc">Solves a real quasi-triangular system of equations, or a complex quasi-triangular system of special form, in real arithmetic.</p>
+<div class="section" id="GUID-8B0E8BC0-4AB0-4F2E-831D-63F0B340C8B8"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaqtr</span><span class="delim">( </span><span class="var">ltran</span><span class="sep">, </span><span class="var">lreal</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaqtr</span><span class="delim">( </span><span class="var">ltran</span><span class="sep">, </span><span class="var">lreal</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-61282E4C-E9A1-4023-AA9D-A5A8E9D81F93"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A570E0CD-78BA-44C4-9789-08E3237482CA"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?laqtr</span> solves the real quasi-triangular system </p>
+<p><samp class="codeph"><span class="keyword">op</span>(<var>T</var>) * <var>p</var> = <var>scale</var>*<var>c</var></samp>,                      if <samp class="codeph"><var>lreal</var> = <span class="keyword">.TRUE.</span></samp></p>
+<p>or the complex quasi-triangular systems</p>
+<p><samp class="codeph"><span class="keyword">op</span>(<var>T</var> + <var class="varname">i</var><var>B</var>)*(<var>p</var>+<var class="varname">i</var><var>q</var>) = <var>scale</var>*(<var>c</var>+<var class="varname">i</var><var>d</var>)</samp>,  if <samp class="codeph"><var>lreal</var> = <span class="keyword">.FALSE.</span></samp></p>
+<p>in real arithmetic, where <var>T</var> is upper quasi-triangular.</p>
+<p>If <samp class="codeph"><var>lreal</var> = <span class="keyword">.FALSE.</span></samp>, then the first diagonal block of <var>T</var> must be 1-by-1, <var>B</var> is the specially structured matrix</p>
+<p><br/><div class="imagecenter"><img src="GUID-16BF3268-A89A-4D27-BF74-4CC265337B6B-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p><samp class="codeph"><span class="keyword">op</span><var>(A)</var> = <var>A</var></samp> or <var>A</var><sup class="power"><var>T</var></sup>, <var>A</var><sup class="power"><var>T</var></sup> denotes the transpose of matrix <var>A</var>.</p>
+<p>On input, </p>
+<p><br/><div class="imagecenter"><img src="GUID-CDA2620A-05AE-4228-85B0-F30313F213FF-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>This routine is designed for the condition number estimation in routine <span class="option">?trsna</span>.</p>
+</div>
+<div class="section" id="GUID-7961C0E8-189D-4E24-AB80-C64D300D6D83"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A8CF9684-1AED-4668-ABE3-FC3A7D007FF2"><dt class="dlterm"><span class="parmname">ltran</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>On entry, <var>ltran</var> specifies the option of conjugate transpose:</p>
+<p>= <span class="keyword">.FALSE.</span>, <samp class="codeph"><span class="keyword">op</span>(<var>T</var> + <var class="varname">i</var><var>B</var>) = <var>T</var> + <var class="varname">i</var><var>B</var></samp>, </p>
+<p>= <span class="keyword">.TRUE.</span>,  <samp class="codeph"><span class="keyword">op</span>(<var>T</var> + <var class="varname">i</var><var>B</var>) = (<var>T</var> + <var class="varname">i</var><var>B</var>)<sup class="power"><var>T</var></sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lreal</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>On entry, <var>lreal</var> specifies the input matrix structure:</p>
+<p>= <span class="keyword">.FALSE.</span>, the input is complex</p>
+<p>= <span class="keyword">.TRUE.</span>, the input is real.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>On entry, <var>n</var> specifies the order of <samp class="codeph"><var>T</var> + <var>i</var><var>B</var></samp>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqtr</span></p>
+<p>Array, dimension (<var>ldt</var>,<var>n</var>). On entry, <var>t</var> contains a matrix in Schur canonical form. If <samp class="codeph"><var>lreal</var> = <span class="keyword">.FALSE.</span></samp>, then the first diagonal block of <var>t</var> must be 1-by-1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the matrix <var>T</var>. </p>
+<p><samp class="codeph"><var>ldt</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqtr</span></p>
+<p>Array, dimension (<var>n</var>). On entry, <var>b</var> contains the elements to form the matrix <var>B</var> as described above. If <samp class="codeph"><var>lreal</var> = <span class="keyword">.TRUE.</span></samp>, <var>b</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqtr</span></p>
+<p>On entry, <var>w</var> is the diagonal element of the matrix <var>B</var>. </p>
+<p>If <samp class="codeph"><var>lreal</var> = <span class="keyword">.TRUE.</span></samp>, <var>w</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqtr</span></p>
+<p>Array, dimension (2<var>n</var>). On entry, <var>x</var> contains the right hand side of the system.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqtr</span></p>
+<p>Workspace array, dimension (<var>n</var>). </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-88BE658F-4816-4D12-83C1-35CF876012F6"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F19CEB45-3F08-47D7-AD79-5E0575125DBF"><dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqtr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqtr</span></p>
+<p>On exit, <var>scale</var> is the scale factor.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>On exit, <var>X</var> is overwritten by the solution.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>: successful exit. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>: the some diagonal 1-by-1 block has been perturbed by a small number <span class="keyword">smin</span> to keep nonsingularity. </p>
+<p>If <samp class="codeph"><var>info</var> = 2</samp>: the some diagonal 2-by-2 block has been perturbed by a small number in <a class="allformats" href="GUID-01B57EFA-FB7B-4134-8E8F-D6C08824942E.html#GUID-01B57EFA-FB7B-4134-8E8F-D6C08824942E"><span class="option">?laln2</span></a> to keep nonsingularity.</p>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For higher speed, this routine does not check the inputs for errors.</p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

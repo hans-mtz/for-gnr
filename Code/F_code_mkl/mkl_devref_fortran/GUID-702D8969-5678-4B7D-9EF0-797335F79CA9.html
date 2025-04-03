@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS)"/>
+<meta name="DC.subject" content="Iterative Sparse Solvers, Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS), Reverse Communication Interface, RCI ISS"/>
+<meta name="keywords" content="Iterative Sparse Solvers, Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS), Reverse Communication Interface, RCI ISS"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CACC422-8069-440F-8272-344094F0186B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-41A45ECD-8372-4E98-8B32-9990C887B8EE.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-702D8969-5678-4B7D-9EF0-797335F79CA9"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS)</title>
+
+</head>
+<body id="GUID-702D8969-5678-4B7D-9EF0-797335F79CA9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Iterative Sparse Solvers based on Reverse Communication Interface (RCI ISS)</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library supports iterative sparse solvers (ISS) based on the reverse communication interface (RCI), referred to here as the RCI ISS interface. The RCI ISS interface implements a group of user-callable routines that are used in the step-by-step solving process of a symmetric positive definite system (RCI conjugate gradient solver, or RCI CG), and of a non-symmetric indefinite (non-degenerate) system (RCI flexible generalized minimal residual solver, or RCI FGMRES) of linear algebraic equations. This interface uses the general RCI scheme described in [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DONG95">Dong95</a>]. 
+    </p>
+<p>See the 
+      <a href="GUID-0B8132E3-4DDB-451C-83DC-1EB9C8DE75FC.html#GUID-0B8132E3-4DDB-451C-83DC-1EB9C8DE75FC">Appendix A Linear Solvers Basics</a> for discussion of terms and concepts related to the ISS routines. 
+    </p>
+<p>The term 
+      <em>RCI</em> indicates that when the solver needs the results of certain operations (for example, matrix-vector multiplications), the user performs them and passes the result to the solver. This makes the solver more universal as it is independent of the specific implementation of the operations like the matrix-vector multiplication. To perform such operations, the user can use the built-in sparse matrix-vector multiplications and triangular solvers routines described in 
+      <a href="GUID-0FDAE661-C4A2-43F6-A288-52667018D255.html#GUID-0FDAE661-C4A2-43F6-A288-52667018D255">Sparse BLAS Level 2 and Level 3 Routines</a>. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The RCI CG solver is implemented in two versions: for system of equations with a single right-hand side, and for systems of equations with multiple right-hand sides. 
+      </p>
+<p>The CG method may fail to compute the solution or compute the wrong solution if the matrix of the system is not symmetric and not positive definite. 
+      </p>
+<p>The FGMRES method may fail if the matrix is degenerate. 
+      </p>
+</div>
+<p><a href="#TBL8-4">Table 
+        <span>"RCI CG Interface Routines"</span></a> lists the names of the routines, and describes their general use. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL8-4" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">RCI ISS Interface Routines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="44%" id="d816782e73">Routine 
+        </th>
+<th class="row-nocellborder" valign="top" width="56.00000000000001%" id="d816782e75">Description 
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="44%" headers="d816782e73 "><p><a href="GUID-D5EC768D-AB3E-402C-A620-D49A7FE74321.html#GUID-D5EC768D-AB3E-402C-A620-D49A7FE74321">dcg_init</a>, 
+            <a href="GUID-BDE6DF91-4B2D-43B6-B29A-081D570B4223.html#GUID-BDE6DF91-4B2D-43B6-B29A-081D570B4223">dcgmrhs_init</a>, 
+            <a href="GUID-4CB407E4-2915-4DA2-BC6F-8A582D856590.html#GUID-4CB407E4-2915-4DA2-BC6F-8A582D856590">dfgmres_init</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d816782e75 ">Initializes the solver. 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d816782e73 "><p><a href="GUID-C1B76FB5-E87B-4717-B3A2-A611F8D93D1D.html#GUID-C1B76FB5-E87B-4717-B3A2-A611F8D93D1D">dcg_check</a>, 
+            <a href="GUID-C08B3013-0604-4D06-87E5-A61E7673AB0A.html#GUID-C08B3013-0604-4D06-87E5-A61E7673AB0A">dcgmrhs_check</a>, 
+            <a href="GUID-37F4E928-CC79-4029-9168-FE3EE3450B2B.html#GUID-37F4E928-CC79-4029-9168-FE3EE3450B2B">dfgmres_check</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d816782e75 ">Checks the consistency and correctness of the user defined data. 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d816782e73 "><p><a href="GUID-C47541C6-E556-4754-978C-9EB0EE41AFE6.html#GUID-C47541C6-E556-4754-978C-9EB0EE41AFE6">dcg</a>, 
+            <a href="GUID-FFB4E4BD-2EB7-43EF-9522-79710A21315B.html#GUID-FFB4E4BD-2EB7-43EF-9522-79710A21315B">dcgmrhs</a>, 
+            <a href="GUID-A81B3DEA-5CB7-462A-A791-777DA8E4E946.html#GUID-A81B3DEA-5CB7-462A-A791-777DA8E4E946">dfgmres</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d816782e75 ">Computes the approximate solution vector. 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="44%" headers="d816782e73 "><p><a href="GUID-3F53A6B6-245D-4E69-95CF-73DF431CB261.html#GUID-3F53A6B6-245D-4E69-95CF-73DF431CB261">dcg_get</a>, 
+            <a href="GUID-FE88F7C1-2706-4C79-91CD-C9E0B7F89C70.html#GUID-FE88F7C1-2706-4C79-91CD-C9E0B7F89C70">dcgmrhs_get</a>, 
+            <a href="GUID-A795E55E-D415-4087-BB92-E7F4EFA76DDB.html#GUID-A795E55E-D415-4087-BB92-E7F4EFA76DDB">dfgmres_get</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="56.00000000000001%" headers="d816782e75 ">Retrieves the number of the current iteration. 
+        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The 
+    Intel&reg; oneAPI Math Kernel Library RCI ISS interface routines are normally invoked in this order: 
+  </p>
+<ol id="GUID-4720216F-75DB-453F-ADC9-BD1AC9BA9FB3"><li><samp class="codeph">&lt;<em>system_type</em>&gt;_init</samp></li>
+<li><samp class="codeph">&lt;<em>system_type</em>&gt;_check</samp></li>
+<li><samp class="codeph">&lt;<em>system_type</em>&gt;</samp></li>
+<li><samp class="codeph">&lt;<em>system_type</em>&gt;_get</samp></li>
+</ol>
+<p>Advanced users can change that order if they need it. Others should follow the above order of calls. 
+  </p>
+<p>The following diagram indicates the typical order in which the RCI ISS interface routines are invoked. 
+  </p>
+<div class="figtop" id="SSR_FIG8-3"><span class="figcap">Typical Order for Invoking RCI ISS interface Routines</span></div>
+<p><span><br/><div class="imagecenter"><img src="GUID-66B47989-3B6E-48BF-AC5D-1926D15F16C1-low.gif" width="296" height="302" alt="Typical Order for Invoking RCI ISS interface Routines" align="center"/></div><br/></span></p>
+<p>See the code examples that use the RCI ISS interface routines to solve systems of linear equations in the 
+    Intel&reg; oneAPI Math Kernel Library installation directory. 
+  </p>
+<ul id="GUID-D439B7B6-E7EA-4D5D-9F8C-68DD935EC26D"><li><span class="filepath">examples/solverf/source</span></li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-78889273-7E77-426A-9B5E-23A7C2378D78.html">Sparse Solver Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html">CG Interface Description</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html">FGMRES Interface Description</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-4CACC422-8069-440F-8272-344094F0186B.html">RCI ISS Routines</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-41A45ECD-8372-4E98-8B32-9990C887B8EE.html">RCI ISS Implementation Details</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

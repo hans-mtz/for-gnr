@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gelqt"/>
+<meta name="abstract" content="?gelqt computes a blocked LQ factorization of a real or complex m-by-n matrix A using the compact WY representation of Q."/>
+<meta name="description" content="?gelqt computes a blocked LQ factorization of a real or complex m-by-n matrix A using the compact WY representation of Q."/>
+<meta name="DC.subject" content="?gelqt, sgelqt, dgelqt, cgelqt, zgelqt, LAPACK routines"/>
+<meta name="keywords" content="?gelqt, sgelqt, dgelqt, cgelqt, zgelqt, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6B0E54F0-D2C1-4761-85BD-741CF46EF12E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gelqt</title>
+
+</head>
+<body id="GUID-6B0E54F0-D2C1-4761-85BD-741CF46EF12E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gelqt</span></h1>
+<!--?gelqt  computes a blocked LQ factorization of a real or complex   m -by- n  matrix  A  using the compact WY representation of  Q .--><div><p class="shortdesc"><span class="option">?gelqt</span> computes a blocked LQ factorization of a real or complex  <var>m</var>-by-<var>n</var> matrix <var>A</var> using the compact WY representation of <var>Q</var>.</p>
+<div id="SYNTAX_8E707DAC49F645C0BCFA825E9B2DF08E"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgelqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgelqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgelqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgelqt</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">mb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_8C9FAA2128814BBCBC853F502615830D"><h2 class="sectiontitle">Description</h2><p><span class="option">?gelqt</span> computes a blocked LQ factorization of a real or complex <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var> using the compact WY representation of <var>Q</var>. </p>
+<p>The matrix <var>V</var> stores the elementary reflectors <var>H</var>(<var>i</var>) in the <var>i</var>-th row above the diagonal. For example, if <span class="parmname">m</span>=5 and <span class="parmname">n</span>=3, the matrix <var>V</var> is </p>
+<p><pre>
+V = ( 1 v<sub>1</sub> v<sub>1</sub> v<sub>1</sub> v<sub>1</sub> ) 
+    (    1 v<sub>2</sub> v<sub>2</sub> v<sub>2</sub> ) 
+    (       1 v<sub>3</sub> v<sub>3</sub> ) </pre></p>
+<p>where the <var>v</var><sub><var>i</var></sub>s represent the vectors which define <var>H</var>(<var>i</var>), which are returned in the array <span class="parmname">a</span>. The 1 elements along the diagonal of <var>V</var> are not stored in <span class="parmname">a</span>. Let <var>k</var> = min(<span class="parmname">m</span>,<span class="parmname">n</span>). The number of blocks is <var>b</var> = ceiling(<var>k</var>/<var>mb</var>), where each block is of order <var>mb</var> except for the last block, which is of order <var>ib</var> = <var>k</var> - (<var>b</var>-1)*<var>mb</var>. For each of the <var>b</var> blocks, a upper triangular block reflector factor is computed: <var>T1</var>, <var>T2</var>, ..., <var>TB</var>. The <var>mb</var>-by-<var>mb</var> (and <var>ib</var>-by-<var>ib</var> for the last block) <var>T</var>'s are stored in the <var>mb</var>-by-<span class="parmname">k</span> matrix <var>T</var> as </p>
+<p><var>T</var> = (<var>T1</var><samp class="codeph"/><var>T2</var> ... <var>TB</var>).</p>
+</div>
+<div class="section" id="ARGUMENTS_66A586994C6241B3BC2579CE814C87D7"><h2 class="sectiontitle">Input Parameters</h2><p/>
+<dl id="GUID-D20AD56D-50FD-49AC-A89D-B8ADD1D1E730"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>A</var>. <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of the matrix <var>A</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The block size to be used in the blocked QR. min(<span class="parmname">m</span>, <span class="parmname">n</span>) <span class="eqsymbol">≥</span><span class="parmname">mb</span><span class="eqsymbol">≥</span> 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelqt</span></p>
+<p>Array of size (<span class="parmname">lda</span>,<span class="parmname">n</span>). On entry, the <span class="parmname">m</span>-by-<span class="parmname">n</span> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">m</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">t</span>. <span class="parmname">ldt</span><span class="eqsymbol">≥</span><span class="parmname">mb</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_0CAE557C00744231BDA3715545376837"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9602D74C-4750-4250-9725-75430E6C4574"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the elements on and below the diagonal of the array contain the <span class="parmname">m</span>-by-min(<span class="parmname">m</span>, <span class="parmname">n</span>) lower trapezoidal matrix <var>L</var> (<var>L</var> is lower triangular if <span class="parmname">m</span><span class="eqsymbol">≤</span><span class="parmname">n</span>); the elements above the diagonal are the rows of <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelqt</span></p>
+<p>Array of size  (<span class="parmname">ldt</span>, min(<span class="parmname">m</span>, <span class="parmname">n</span>)). The upper triangular block reflectors stored in compact form as a sequence of upper triangular blocks. See Description for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL </span> for <span class="option">sgelqt</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgelqt</span></p>
+<p><span class="keyword">COMPLEX </span> for <span class="option">cgelqt</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zgelqt</span></p>
+<p>Array of size (<span class="parmname">mb</span>*<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><span class="parmname">info</span> =  0: successful exit.</p>
+<p><span class="parmname">info</span> &lt;  0: if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

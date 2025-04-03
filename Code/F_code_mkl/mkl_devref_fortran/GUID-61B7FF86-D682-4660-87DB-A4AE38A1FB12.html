@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laqhe"/>
+<meta name="abstract" content="Scales a Hermitian matrix."/>
+<meta name="description" content="Scales a Hermitian matrix."/>
+<meta name="DC.subject" content="?laqhe, LAPACK routines, auxiliary routines, matrix equilibration, general rectangular matrix, equilibration"/>
+<meta name="keywords" content="?laqhe, LAPACK routines, auxiliary routines, matrix equilibration, general rectangular matrix, equilibration"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-61B7FF86-D682-4660-87DB-A4AE38A1FB12"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laqhe</title>
+
+</head>
+<body id="GUID-61B7FF86-D682-4660-87DB-A4AE38A1FB12">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laqhe</span></h1>
+<!--Scales a Hermitian matrix.--><div><p class="shortdesc">Scales a Hermitian matrix.</p>
+<div class="section" id="GUID-C935C8D3-08F2-418D-ABB0-4E8B82E46201"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call claqhe</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">equed</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlaqhe</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">s</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">equed</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-AC876A66-5C16-4BF4-81CC-D2D04CD200E2"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-40A0C3C1-C9FF-4B76-A1C9-D2E41CBFEF5A"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine equilibrates a Hermitian matrix <var>A</var> using the scaling factors in the vector <var>s</var>.</p>
+</div>
+<div class="section" id="GUID-B80C180D-81AC-4979-A275-3B8C68153F23"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-ED0699F1-5C84-4DCB-86A9-876FAD55B497"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether to store the upper or lower part of the Hermitian matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangular part of <var>A</var>; </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangular part of <var>A</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. </p>
+<p><samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">claqhe</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqhe</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>,<var>n</var>). On entry, the Hermitian matrix <var>A</var>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>a</var> contains the upper triangular part of matrix <var>A</var> and the strictly lower triangular part of <var>a</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>a</var> contains the lower triangular part of matrix <var>A</var> and the strictly upper triangular part of <var>a</var> is not referenced. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. </p>
+<p><samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(<var>n</var>,1)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">claqhe</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlaqhe</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The scale factors for <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scond</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">claqhe</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlaqhe</span></p>
+<p>Ratio of the smallest <var>s</var>(<var>i</var>) to the largest <var>s</var>(<var>i</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">amax</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">claqhe</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlaqhe</span></p>
+<p>Absolute value of largest matrix entry.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D2875FA0-0B93-4FC5-B4FA-02DFC1F6FF0E"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2AB32D71-122C-4E4F-BF7D-820102F16987"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>,  <var>a</var> contains the equilibrated matrix <samp class="codeph">diag(<var>s</var>)*A*diag(<var>s</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">equed</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>Specifies whether or not equilibration was done. </p>
+<p>If <samp class="codeph"><var>equed</var>  = <span class="keyword">'N'</span></samp>: No equilibration.</p>
+<p>If <samp class="codeph"><var>equed</var> = <span class="keyword">'Y'</span></samp>: Equilibration was done, that is, <var>A</var> has been replaced by <samp class="codeph">diag(<var>s</var>)*A*diag(<var>s</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-27166FBB-C2A5-416E-81D9-D13CBAA2AE82"><h2 class="sectiontitle">Application Notes</h2><p>The routine uses internal parameters <var>thresh</var>, <var>large</var>, and <var>small</var>. The parameter <var>thresh</var> is a threshold value used to decide if scaling should be done based on the ratio of the scaling factors. If <samp class="codeph"><var>scond</var> &lt; <var>thresh</var></samp>, scaling is done. </p>
+<p>The <var>large</var> and <var>small</var> parameters are threshold values used to decide if scaling should be done based on the absolute size of the largest matrix element. If <samp class="codeph"><var>amax</var> &gt; <var>large</var></samp> or <samp class="codeph"><var>amax</var> &lt; <var>small</var></samp>,  scaling is done.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

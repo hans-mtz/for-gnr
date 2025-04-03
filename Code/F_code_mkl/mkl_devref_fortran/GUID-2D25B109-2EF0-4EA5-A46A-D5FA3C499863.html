@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Auxiliary Data Transformations"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A1AC8705-B637-4694-96CA-708C8FFDAF40.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2D25B109-2EF0-4EA5-A46A-D5FA3C499863"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Auxiliary Data Transformations</title>
+
+</head>
+<body id="GUID-2D25B109-2EF0-4EA5-A46A-D5FA3C499863">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"> Auxiliary Data Transformations</h1>
+<div><p>This section presents C examples for conversion from the Cartesian to polar representation of complex data and vice versa. 
+    </p>
+<div class="example" id="APPC-EXC-25"><h2 class="sectiontitle">Conversion from Cartesian to polar representation of complex data</h2><pre>// Cartesian-&gt;polar conversion of complex data
+// Cartesian representation: z = re + I*im
+// Polar representation: z = r * exp( I*phi )
+#include &lt;mkl_vml.h&gt;
+ 
+void 
+variant1_Cartesian2Polar(int n,const double *re,const double *im,
+                         double *r,double *phi)
+{
+    vdHypot(n,re,im,r);         // compute radii r[]
+    vdAtan2(n,im,re,phi);       // compute phases phi[]
+}
+ 
+void 
+variant2_Cartesian2Polar(int n,const MKL_Complex16 *z,double *r,double *phi,
+                         double *temp_re,double *temp_im)
+{
+    vzAbs(n,z,r);               // compute radii r[]
+    vdPackI(n, (double*)z + 0, 2, temp_re);
+    vdPackI(n, (double*)z + 1, 2, temp_im);
+    vdAtan2(n,temp_im,temp_re,phi); // compute phases phi[]
+}</pre></div>
+<p>  
+    </p>
+<div class="example" id="APPC-EXC-26"><h2 class="sectiontitle"> Conversion from polar to Cartesian representation of complex data</h2><pre>// Polar-&gt;Cartesian conversion of complex data.
+// Polar representation: z = r * exp( I*phi )
+// Cartesian representation: z = re + I*im
+#include &lt;mkl_vml.h&gt;
+ 
+void
+variant1_Polar2Cartesian(int n,const double *r,const double *phi,
+                         double *re,double *im)
+{
+    vdSinCos(n,phi,im,re);      // compute direction, i.e. z[]/abs(z[])
+    vdMul(n,r,re,re);           // scale real part
+    vdMul(n,r,im,im);           // scale imaginary part
+}
+ 
+void
+variant2_Polar2Cartesian(int n,const double *r,const double *phi,
+                         MKL_Complex16 *z,
+                         double *temp_re,double *temp_im)
+{
+    vdSinCos(n,phi,temp_im,temp_re); // compute direction, i.e. z[]/abs(z[])
+    vdMul(n,r,temp_im,temp_im); // scale imaginary part
+    vdMul(n,r,temp_re,temp_re); // scale real part
+    vdUnpackI(n,temp_re,(double*)z + 0, 2); // fill in result.re
+    vdUnpackI(n,temp_im,(double*)z + 1, 2); // fill in result.im
+}</pre></div>
+<p/>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A1AC8705-B637-4694-96CA-708C8FFDAF40.html">Fourier Transform Functions Code Examples</a></div>
+</div>
+<div/>
+</body>
+</html>

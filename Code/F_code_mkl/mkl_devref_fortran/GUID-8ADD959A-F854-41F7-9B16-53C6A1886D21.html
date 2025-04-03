@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?larzc"/>
+<meta name="abstract" content="Applies (multiplies by) the conjugate transpose of an elementary reflector as returned by p?tzrzf to a general matrix."/>
+<meta name="description" content="Applies (multiplies by) the conjugate transpose of an elementary reflector as returned by p?tzrzf to a general matrix."/>
+<meta name="DC.subject" content="ScaLAPACK routines, auxiliary routines, p?larzc, complex matrix, complex elementary reflector, ScaLAPACK, elementary reflector"/>
+<meta name="keywords" content="ScaLAPACK routines, auxiliary routines, p?larzc, complex matrix, complex elementary reflector, ScaLAPACK, elementary reflector"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8ADD959A-F854-41F7-9B16-53C6A1886D21"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?larzc</title>
+
+</head>
+<body id="GUID-8ADD959A-F854-41F7-9B16-53C6A1886D21">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?larzc</span></h1>
+<!--Applies (multiplies by) the conjugate transpose of an elementary reflector as returned by  p?tzrzf  to a general matrix.--><div><p class="shortdesc">Applies (multiplies by) the conjugate transpose of an elementary reflector as returned by <span class="option">p?tzrzf</span> to a general matrix.</p>
+<div class="section" id="GUID-B8493407-CBE2-4452-B1C7-D4291F838BDC"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pclarzc</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">iv</span><span class="sep">, </span><span class="var">jv</span><span class="sep">, </span><span class="var">descv</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlarzc</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">iv</span><span class="sep">, </span><span class="var">jv</span><span class="sep">, </span><span class="var">descv</span><span class="sep">, </span><span class="var">incv</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ic</span><span class="sep">, </span><span class="var">jc</span><span class="sep">, </span><span class="var">descc</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-CEC32FB5-8EBB-4BFD-8DDC-6F0C4B3381E0"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?larzc</span><span>routine </span>applies a complex elementary reflector <samp class="codeph"><var>Q</var><sup class="power"><var>H</var></sup></samp> to a complex <var>m</var>-by-<var>n</var> distributed matrix <samp class="codeph">sub(<var>C</var>) = <samp class="codeph"><var>C</var>(<var>ic</var>:<var>ic</var>+<var>m</var>-1</samp>, <samp class="codeph"><var>jc</var>:<var>jc</var>+<var>n</var>-1)</samp></samp>, from either the left or the right. <var>Q</var> is represented in the form</p>
+<p><samp class="codeph"><var>Q</var> = <var>i</var>-<var>tau</var>*<var>v</var>*<var>v'</var></samp>,</p>
+<p>where <var>tau</var> is a complex scalar and <var>v</var> is a complex vector.</p>
+<p>If <samp class="codeph"><var>tau</var> = 0</samp>, then <var>Q</var> is taken to be the unit matrix.</p>
+<p><var>Q</var> is a product of <var>k</var> elementary reflectors as returned by <a href="GUID-0492967A-2902-4B0E-BF35-CE4BFF6BB410.html#GUID-0492967A-2902-4B0E-BF35-CE4BFF6BB410"><span class="option">p?tzrzf</span></a>.</p>
+</div>
+<div class="section" id="GUID-B5A6BEE9-6325-48EB-9C4C-25A0EFAB6D99"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-5D7B1A35-977A-45A8-A26B-B71509B62776"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span></p>
+<p>if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>: form <samp class="codeph"><samp class="codeph"><var>Q</var><sup class="power"><var>H</var></sup></samp>*sub(<var>C</var>)</samp>;</p>
+<p>if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>: form <samp class="codeph">sub(<var>C</var>)*Q<var/><sup class="power"><var>H</var></sup></samp> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of rows in the distributed matrix sub(<var>C</var>).  <samp class="codeph">(<var>m </var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of columns in the distributed matrix sub(<var>C</var>). <samp class="codeph">(<var>n </var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.</span></p>
+<p>The columns of the distributed 
+matrix sub(<var>A</var>) containing the meaningful part of the Householder reflectors.</p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>m</var><span class="eqsymbol"> ≥ </span><var>l </var></samp><span class="eqsymbol">≥</span> 0, </p>
+<p>if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <samp class="codeph"><var>n</var><span class="eqsymbol"> ≥</span><var> l </var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p>(local).</p>
+</dd>
+<dt class="dlterm"/>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">pclarzc</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlarzc</span>. </p>
+<p>Pointer into the local memory to an array of size  <span>(<var>lld_v</var>,*)</span> containing the local pieces of the global distributed matrix <var>V </var> representing the Householder transformation <var>Q</var>,</p>
+<p><var>V</var><samp class="codeph">(<var>iv</var>:<var>iv</var>+l-1, <var>jv</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> and <samp class="codeph"><var>incv</var> = 1</samp>,</p>
+<p><var>V</var><samp class="codeph">(<var>iv</var>, <var>jv</var>:<var>jv</var>+<var>l</var>-1)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> and <samp class="codeph"><var>incv</var> = <var>m_v</var></samp>,</p>
+<p><var>V</var><samp class="codeph">(<var>iv</var>:<var>iv</var>+<var>l</var>-1, <var>jv</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp> and <samp class="codeph"><var>incv</var> = 1</samp>,</p>
+<p><var>V</var><samp class="codeph">(<var>iv</var>, <var>jv</var>:<var>jv</var>+<var>l</var>-1)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp> and <samp class="codeph"><var>incv</var> = <var>m_v</var></samp>.</p>
+<p>The vector <span class="parmname">v</span> in the representation of <var>Q</var>. <span class="parmname">v</span> is not used if <samp class="codeph"><var>tau</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iv</span>, <span class="parmname">jv</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row and column indices in the global matrix <var>V </var> indicating the first row and the first column of the matrix sub(<var>V</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descv</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incv</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The global increment for the elements of <var>V</var>. Only two values of <var>incv</var> are supported in this version, namely 1 and <var>m_v</var>.</p>
+<p><var>incv</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclarzc</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlarzc</span>. </p>
+<p>Array of size <var>LOCc</var>(<var>jv</var>) if <samp class="codeph"><var>incv</var> = 1</samp>, and <var>LOCr</var>(<var>iv</var>) otherwise. This array contains the Householder scalars related to the Householder vectors.</p>
+<p><var>tau</var> is tied to the distributed matrix <var>V</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclarzc</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlarzc</span>. </p>
+<p>Pointer into the local memory to an array of size <span>(<var>lld_c</var>, <var>LOCc</var>(<var>jc</var>+<var>n</var>-1) )</span>, containing the local pieces of sub(<var>C</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ic</span>, <span class="parmname">jc</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row and column indices in the global matrix <var>C</var> indicating the first row and the first column of the matrix sub(<var>C</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descc</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local).</p>
+<pre>If <var>incv</var> = 1,
+  if <var>side</var> = <span class="keyword">'L'</span> ,
+    if <var>ivcol</var> = <var>iccol</var>,
+      <var>lwork</var><span class="eqsymbol"> ≥</span><var> nqc</var>0
+    else
+      <var>lwork </var><span class="eqsymbol">≥</span><var> mpc</var>0 + <span class="keyword">max</span>(1, <var>nqc</var>0)
+    end if
+  else if <var>side</var> = <span class="keyword">'R'</span> ,
+    <var>lwork </var><span class="eqsymbol">≥ </span><var>nqc</var>0 + <span class="keyword">max</span>(<span class="keyword">max</span>(1, <var>mpc</var>0), <span class="keyword">numroc</span>(<span class="keyword">numroc</span>(<var>n</var>+<var>icoffc</var>, <var>nb_v</var>, 0, 0, <var>npcol</var>),
+           <var>nb_v</var>, 0, 0, <var>lcmq</var>))  end if
+else if <var>incv</var> = <var>m_v</var>,
+  if <var>side</var> = <span class="keyword">'L'</span> ,
+    <var>lwork</var><span class="eqsymbol"> ≥ </span><var>mpc</var>0 + <span class="keyword">max</span>(<span class="keyword">max</span>(1, <var>nqc</var>0), <span class="keyword">numroc</span>(<span class="keyword">numroc</span>(<var>m</var>+<var>iroffc</var>, <var>mb_v</var>, 0, 0, <var>nprow</var>),
+           <var>mb_v</var>, 0, 0, <var>lcmp</var>))
+  else if <var>side</var> = <span class="keyword">'R'</span>,
+    if <var>ivrow</var> = <var>icrow</var>,
+      <var>lwork</var><span class="eqsymbol"> ≥</span><var> mpc</var>0
+    else
+      <var>lwork</var><span class="eqsymbol"> ≥ </span><var>nqc</var>0 + <span class="keyword">max</span>(1, <var>mpc</var>0)
+    end if
+  end if
+         end if</pre><p>Here <var>lcm</var> is the least common multiple of <var>nprow</var> and <var>npcol</var>;  </p>
+<p><samp class="codeph"><var>lcm</var> = <span class="keyword">ilcm</span>(<var>nprow</var>, <var>npcol</var>)</samp>, <samp class="codeph"><var>lcmp</var> = <var>lcm</var>/<var>nprow</var></samp>, <samp class="codeph"><var>lcmq</var>= <var>lcm</var>/<var>npcol</var></samp>,</p>
+<p><samp class="codeph"><var>iroffc</var> = <span class="keyword">mod</span>(<var>ic</var>-1, <var>mb_c</var>), <var>icoffc</var>= <span class="keyword">mod</span>(<var>jc</var>-1, <var>nb_c</var>)</samp>,</p>
+<p><samp class="codeph"><var>icrow</var> = <span class="keyword">indxg2p</span>(<var>ic</var>, <var>mb_c</var>, <var>myrow</var>, <var>rsrc_c</var>, <var>nprow</var>)</samp>,</p>
+<p><samp class="codeph"><var>iccol</var> = <span class="keyword">indxg2p</span>(<var>jc</var>, <var>nb_c</var>, <var>mycol</var>, <var>csrc_c</var>, <var>npcol</var>)</samp>,</p>
+<p><samp class="codeph"><var>mpc0</var> = <span class="keyword">numroc</span>(<var>m</var>+<var>iroffc</var>, <var>mb_c</var>, <var>myrow</var>, <var>icrow</var>, <var>nprow</var>)</samp>,</p>
+<p><samp class="codeph"><var>nqc0</var> = <span class="keyword">numroc</span>(<var>n</var>+<var>icoffc</var>, <var>nb_c</var>, <var>mycol</var>, <var>iccol</var>, <var>npcol</var>)</samp>,</p>
+<p><span class="keyword">ilcm</span>, <span class="keyword">indxg2p</span>, and <span class="keyword">numroc</span> are ScaLAPACK tool functions;</p>
+<p><var>myrow</var>, <var>mycol</var>, <var>nprow</var>, and <var>npcol</var> can be determined by calling the <span>subroutine </span><span class="keyword">blacs_gridinfo</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-51A0B99B-E145-4596-BE4F-2747C391266F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E4118A1F-FACF-4315-88BD-5ADCBBD6BBF1"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>(local). </p>
+<p>On exit, sub(<var>C</var>) is overwritten by the <samp class="codeph"><var>Q</var><sup class="power"><var>H</var></sup>*sub(<var>C</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, or <samp class="codeph">sub(<var>C</var>)*<var>Q</var><sup class="power"><var>H</var></sup></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

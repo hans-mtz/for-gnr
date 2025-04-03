@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laein"/>
+<meta name="abstract" content="Computes a specified right or left eigenvector of an upper Hessenberg matrix by inverse iteration."/>
+<meta name="description" content="Computes a specified right or left eigenvector of an upper Hessenberg matrix by inverse iteration."/>
+<meta name="DC.subject" content="?laein, LAPACK routines, auxiliary routines, upper Hessenberg matrix, computing a specified eigenvector"/>
+<meta name="keywords" content="?laein, LAPACK routines, auxiliary routines, upper Hessenberg matrix, computing a specified eigenvector"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-78D8E56C-5FA7-4B98-9E58-4B9AF223D4FD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laein</title>
+
+</head>
+<body id="GUID-78D8E56C-5FA7-4B98-9E58-4B9AF223D4FD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laein</span></h1>
+<!--Computes a specified right or left eigenvector of an upper Hessenberg matrix by inverse iteration.--><div><p class="shortdesc">Computes a specified right or left eigenvector of an upper Hessenberg matrix by inverse iteration.</p>
+<div class="section" id="GUID-E74E4ED8-E2EB-4CE2-8E91-37A96E8EC583"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaein</span><span class="delim">( </span><span class="var">rightv</span><span class="sep">, </span><span class="var">noinit</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">vr</span><span class="sep">, </span><span class="var">vi</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">eps3</span><span class="sep">, </span><span class="var">smlnum</span><span class="sep">, </span><span class="var">bignum</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaein</span><span class="delim">( </span><span class="var">rightv</span><span class="sep">, </span><span class="var">noinit</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">vr</span><span class="sep">, </span><span class="var">vi</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">eps3</span><span class="sep">, </span><span class="var">smlnum</span><span class="sep">, </span><span class="var">bignum</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call claein</span><span class="delim">( </span><span class="var">rightv</span><span class="sep">, </span><span class="var">noinit</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">eps3</span><span class="sep">, </span><span class="var">smlnum</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlaein</span><span class="delim">( </span><span class="var">rightv</span><span class="sep">, </span><span class="var">noinit</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">eps3</span><span class="sep">, </span><span class="var">smlnum</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-61631A08-D932-4D51-AAA3-295AACDA22B0"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-ABCB8187-30ED-44C1-9D46-1809B63D5465"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?laein</span> uses inverse iteration to find a right or left eigenvector corresponding to the eigenvalue (<var>wr</var>,<var>wi</var>) of a real upper Hessenberg matrix <var>H</var> (for real flavors <span class="option">slaein</span>/<span class="option">dlaein</span>) or to the eigenvalue <var>w</var> of a complex upper Hessenberg matrix <var>H</var> (for complex flavors <span class="option">claein</span>/<span class="option">zlaein</span>).</p>
+</div>
+<div class="section" id="GUID-47C80FC3-FF73-44E8-A8E8-9B37238E88D8"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-3746BA28-2329-4C20-A9AB-0CE15D6C3CB0"><dt class="dlterm"><span class="parmname">rightv</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>rightv</var> = <span class="keyword">.TRUE.</span></samp>, compute right eigenvector; </p>
+<p>if <samp class="codeph"><var>rightv</var> = <span class="keyword">.FALSE.</span></samp>, compute left eigenvector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">noinit</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>noinit</var> = <span class="keyword">.TRUE.</span></samp>, no initial vector is supplied in (<var>vr</var>,<var>vi</var>) or in <var>v</var> (for complex flavors);</p>
+<p>if <samp class="codeph"><var>noinit</var> = <span class="keyword">.FALSE.</span></samp>, initial vector is supplied in (<var>vr</var>,<var>vi</var>) or in <var>v</var> (for complex flavors).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>H</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claein</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaein</span>.</p>
+<p>Array <var>h</var>(<var>ldh</var>, *). </p>
+<p>The second dimension of <var>h</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>. Contains the upper Hessenberg matrix <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>h</var>; <samp class="codeph"><var>ldh</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span>. </p>
+<p>The real and imaginary parts of the eigenvalue of <var>H</var> whose corresponding right or left eigenvector is to be computed (for real flavors of the routine).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">claein</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaein</span>.</p>
+<p>The eigenvalue of <var>H</var> whose corresponding right or left eigenvector is to be computed (for complex flavors of the routine).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vr</span>, <span class="parmname">vi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span>. </p>
+<p>Arrays, dimension (<var>n</var>) each. Used for real flavors only. On entry, if <samp class="codeph"><var>noinit</var> = <span class="keyword">.FALSE.</span></samp> and <var>wi</var> = 0.0, <var>vr</var> must contain a real starting vector for inverse iteration using the real eigenvalue <var>wr</var>; </p>
+<p>if <samp class="codeph"><var>noinit</var> = <span class="keyword">.FALSE.</span></samp> and <samp class="codeph"><var>wi</var><span class="eqsymbol">≠</span> 0.0</samp>, <var>vr</var> and <var>vi</var> must contain the real and imaginary parts of a complex starting vector for inverse iteration using the complex eigenvalue (<var>wr</var>,<var>wi</var>);otherwise <var>vr</var> and <var>vi</var> need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">claein</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaein</span>.</p>
+<p>Array, dimension (<var>n</var>). Used for complex flavors only. On entry, if <samp class="codeph"><var>noinit</var> = <span class="keyword">.FALSE.</span></samp>, <var>v</var> must contain a starting vector for inverse iteration; otherwise <var>v</var> need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claein</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaein</span>.</p>
+<p>Workspace array <var>b</var>(<var>ldb</var>, *). The second dimension of <var>b</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>b</var>; </p>
+<p><samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span><var>n</var>+1</samp> for real flavors;</p>
+<p><samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> for complex flavors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span>. </p>
+<p>Workspace array, dimension (<var>n</var>).</p>
+<p>Used for real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">claein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlaein</span>. </p>
+<p>Workspace array, dimension (<var>n</var>).</p>
+<p>Used for complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">eps3</span>, <span class="parmname">smlnum</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span>/<span class="option">claein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span>/<span class="option">zlaein</span>.</p>
+<p><var>eps3</var> is a small machine-dependent value which is used to perturb close eigenvalues, and to replace zero pivots.</p>
+<p><var>smlnum</var> is a machine-dependent value close to underflow threshold. A suggested value for <var>smlnum</var> is <samp class="codeph"><span class="keyword">slamch</span>('s') * (<var>n</var>/<span class="keyword">slamch</span>('p')</samp> for <span class="option">slaein</span>/<span class="option">claein</span> or <samp class="codeph"><span class="keyword">dlamch</span>('s') * (<var>n</var>/<span class="keyword">dlamch</span>('p')</samp> for <span class="option">dlaein</span>/<span class="option">zlaein</span>. See <a href="GUID-7D137664-6F3E-4832-BEDD-39EAF5AE9F52.html">lamch</a>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">bignum</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaein</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaein</span>. </p>
+<p><var>bignum</var> is a machine-dependent value close to overflow threshold. Used for real flavors only. A suggested value for <var>bignum</var> is <samp class="codeph">1 / slamch('s')</samp> for <span class="option">slaein</span>/<span class="option">claein</span> or <samp class="codeph">1 / dlamch('s')</samp> for <span class="option">dlaein</span>/<span class="option">zlaein</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0E8E45F-7D1A-4B39-BFE3-7491FA918606"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-27C89803-D34B-4A69-ADD2-9278C703C2BB"><dt class="dlterm"><span class="parmname">vr</span>, <span class="parmname">vi</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>wi</var> = 0.0</samp> (real eigenvalue), <var>vr</var> contains the computed real eigenvector; if <samp class="codeph"><var>wi</var><span class="eqsymbol">≠</span> 0.0</samp> (complex eigenvalue), <var>vr</var> and <var>vi</var> contain the real and imaginary parts of the computed complex eigenvector. The eigenvector is normalized so that the component of largest magnitude has magnitude 1; here the magnitude of a complex number (<var>x</var>,<var>y</var>) is taken to be <samp class="codeph">|<var>x</var>| + |<var>y</var>|</samp>. </p>
+<p><var>vi</var> is not referenced if <samp class="codeph"><var>wi</var> = 0.0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p>On exit, <var>v</var> contains the computed eigenvector, normalized so that the component of largest magnitude has magnitude 1; here the magnitude of a complex number (<var>x</var>,<var>y</var>) is taken to be <samp class="codeph">|<var>x</var>| + |<var>y</var>|</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, inverse iteration did not converge. For real flavors, <var>vr</var> is set to the last iterate, and so is <var>vi</var>, if <samp class="codeph"><var>wi</var><span class="eqsymbol">≠</span> 0.0</samp>. For complex flavors, <var>v</var> is set to the last iterate.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

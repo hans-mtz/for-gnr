@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Creating the Wrapper Library"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-36D9B389-11DF-4017-9D0F-4DD261675589.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2E413992-3DB0-4AB1-9BAD-DD8D5195FB81"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Creating the Wrapper Library</title>
+
+</head>
+<body id="GUID-2E413992-3DB0-4AB1-9BAD-DD8D5195FB81">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Creating the Wrapper Library</h1>
+<div><p>Three header files are
+		used to compile the Fortran wrapper library: 
+		<span class="filepath">fftw2_mkl.h</span>, 
+		<span class="filepath">fftw2_f77_mkl.h</span>,
+		and 
+		<span class="filepath">fftw.h</span>. The 
+		<span class="filepath">fftw2_mkl.h</span> and 
+		<span class="filepath">fftw2_f77_mkl.h</span>
+		files are located in the 
+		<span class="filepath">.\interfaces\fftw2xf\wrappers</span>subdirectory in the Intel&reg; oneAPI Math Kernel Library directory.</p>
+<p>The file 
+		<span class="filepath">fftw.h</span>, used to
+		compile libraries 
+		and located in the 
+		<span class="filepath">.\include\fftw</span>subdirectory in the Intel&reg; oneAPI Math Kernel Library directory, slightly differs from the original FFTW (www.fftw.org) header file<span class="filepath">fftw.h</span>. 
+	 </p>
+<p>The source code for the wrappers, makefiles, and
+		files with lists of functions are located in the 
+		<span class="filepath">.\interfaces\fftw2xf</span>subdirectory in the Intel&reg; oneAPI Math Kernel Library directory. 
+	 </p>
+<p>A wrapper library contains 
+		wrappers for complex and real transforms in a serial and
+		multi-threaded mode for double- or single-precision floating-point data types. A makefile
+		parameter manages the data type. 
+	 </p>
+<p>Parameters of a makefile also specify the platform
+		(required), compiler, and data precision. The
+		makefile comment heading provides the exact description of these parameters. 
+	 </p>
+<p>Because a C compiler
+		builds the Fortran wrapper library, function names in the wrapper library and
+		Fortran object module may be different. The file 
+		<span class="filepath">fftw2_f77_mkl.h</span> in
+		the 
+		<span class="filepath">.\interfaces\fftw2xf\source</span>subdirectory in the Intel&reg; oneAPI Math Kernel Library directory defines function names according to the names in the Fortran module. If a required name is missing in the file, you can modify the file to add the name before building the library.</p>
+<p>To build the library, run the 
+		<span class="keyword">make</span> command on Linux* OS and
+		macOS* or the 
+		<span class="keyword">nmake</span> command on Windows* OS
+		with appropriate parameters. 
+	 </p>
+<p>For example, on Linux OS the command 
+	 </p>
+<p><samp class="codeph">make
+		  libintel64</samp></p>
+<p>builds a double-precision wrapper library for Intel&reg;
+		64 architecture based applications using the Intel&reg; C++ Compiler or the Intel&reg;
+		Fortran Compiler (Compilers and data precision are
+		chosen by default.) 
+	 </p>
+<p>Each makefile creates the library in the directory with Intel&reg; oneAPI Math Kernel Library libraries corresponding to the platform used. For example,<span class="filepath">./lib/ia32</span> (on
+		Linux OS and macOS) or 
+		<span class="filepath">.\lib\ia32</span> (on
+		Windows* OS). 
+	 </p>
+<p>In the names of a wrapper library, the suffix
+		corresponds to the compiler used and the letter preceding the underscore is 
+		<span><samp class="codeph">"f"</samp> for the Fortran</span> programming
+		language. 
+	 </p>
+<p>For example, 
+	 </p>
+<p><span class="filepath">fftw2xf_intel.lib</span> (on Windows OS);
+		
+		<span class="filepath">libfftw2xf_intel.a</span>
+		(on Linux OS and macOS); 
+	 </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-36D9B389-11DF-4017-9D0F-4DD261675589.html">Installing FFTW2 Interface Wrappers</a></div>
+</div>
+<div/>
+</body>
+</html>

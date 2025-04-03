@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sparse Linear Systems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0B8132E3-4DDB-451C-83DC-1EB9C8DE75FC.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E2C4841D-D095-4D0E-983E-180B3F68FFBC.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-901B4568-D14F-4ABB-ACFD-39DBE23E5E9B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-863A7B42-D87A-47CE-9FF4-3D0C0FF4F071"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sparse Linear Systems</title>
+
+</head>
+<body id="GUID-863A7B42-D87A-47CE-9FF4-3D0C0FF4F071">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Sparse Linear Systems</h1>
+<div><p>In many real-life applications, most of the elements in 
+      <var>A</var> are zero. Such a matrix is referred to as sparse. Conversely, matrices with very few zero elements are called dense. For sparse matrices, computing the solution to the equation 
+      <samp class="codeph"><var>Ax</var> = 
+        <var>b</var></samp> can be made much more efficient with respect to both storage and computation time, if the sparsity of the matrix can be exploited. The more an algorithm can exploit the sparsity without sacrificing the correctness, the better the algorithm.
+    </p>
+<p>Generally speaking, computer software that finds solutions to systems of linear equations is called a solver. A solver designed to work specifically on sparse systems of equations is called a sparse solver. Solvers are usually classified into two groups - direct and iterative.
+    </p>
+<p><strong>Iterative Solvers</strong> start with an initial approximation to a solution and attempt to estimate the difference between the approximation and the true result. Based on the difference, an iterative solver calculates a new approximation that is closer to the true result than the initial approximation. This process is repeated until the difference between the approximation and the true result is sufficiently small. The main drawback to iterative solvers is that the rate of convergence depends greatly on the values in the matrix 
+      <var>A</var>. Consequently, it is not possible to predict how long it will take for an iterative solver to produce a solution. In fact, for ill-conditioned matrices, the iterative process will not converge to a solution at all. However, for well-conditioned matrices it is possible for iterative solvers to converge to a solution very quickly. Consequently, if an application involves well-conditioned matrices iterative solvers can be very efficient.
+    </p>
+<p><strong>Direct Solvers</strong>, on the other hand, factor the matrix 
+      <var>A</var> into the product of two triangular matrices and then perform a forward and backward triangular solve. 
+    </p>
+<p>This approach makes the time required to solve a systems of linear equations relatively predictable, based on the size of the matrix. In fact, for sparse matrices, the solution time can be predicted based on the number of non-zero elements in the array 
+      <var>A</var>.
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0B8132E3-4DDB-451C-83DC-1EB9C8DE75FC.html">Appendix A: Linear Solvers Basics</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-E2C4841D-D095-4D0E-983E-180B3F68FFBC.html">Matrix Fundamentals</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-901B4568-D14F-4ABB-ACFD-39DBE23E5E9B.html">Direct Method</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

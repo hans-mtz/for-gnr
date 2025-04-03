@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larfx"/>
+<meta name="abstract" content="Applies an elementary reflector to a general rectangular matrix, with loop unrolling when the reflector has order less than or equal to 10."/>
+<meta name="description" content="Applies an elementary reflector to a general rectangular matrix, with loop unrolling when the reflector has order less than or equal to 10."/>
+<meta name="DC.subject" content="?larfx, LAPACK routines, auxiliary routines, general rectangular matrix, elementary reflector, LAPACK"/>
+<meta name="keywords" content="?larfx, LAPACK routines, auxiliary routines, general rectangular matrix, elementary reflector, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D033DE50-2471-422A-B144-FF6CD37B2472"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larfx</title>
+
+</head>
+<body id="GUID-D033DE50-2471-422A-B144-FF6CD37B2472">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larfx</span></h1>
+<!--Applies an elementary reflector to a general rectangular matrix, with loop unrolling when the reflector has order less than or equal to 10.--><div><p class="shortdesc">Applies an elementary reflector to a general rectangular matrix, with loop unrolling when the reflector has order less than or equal to 10.</p>
+<div class="section" id="GUID-EE94C80D-6051-4548-851E-D9775C3B95D8"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slarfx</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarfx</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clarfx</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarfx</span><span class="delim">( </span><span class="var">side</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">v</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-5C8DD091-5006-4698-8388-D3C7B92E4DE6"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-791C6CA6-CA23-411B-9257-E282E27F93F5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?larfx</span> applies a real/complex elementary reflector <var>H</var> to a real/complex <var>m</var>-by-<var>n</var> matrix <var>C</var>, from either the left or the right. </p>
+<p><var>H</var> is represented in the following forms: </p>
+<p><ul id="GUID-97663574-8AE2-4B96-9C23-88BE8E62EB08"><li><p><samp class="codeph"><var>H</var> = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup class="power"><var>T</var></sup></samp>, where <var>tau</var> is a real scalar and v is a real vector.</p>
+</li>
+<li><p><samp class="codeph"><var>H</var> = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var><sup class="power"><var>H</var></sup></samp>, where <var>tau</var> is a complex scalar and v is a complex vector.</p>
+</li>
+</ul>
+</p>
+<p>If <samp class="codeph"><var>tau</var> = 0</samp>, then <var>H</var> is taken to be the unit matrix.</p>
+</div>
+<div class="section" id="GUID-CDA660B0-87F5-4E85-AFC0-99A2A3ABDBFB"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-92482086-8B21-41A0-8404-F0C3D5F57285"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>: form <samp class="codeph"><var>H</var>*<var>C</var></samp></p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>: form <samp class="codeph"><var>C</var>*<var>H</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of the matrix <var>C</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfx</span></p>
+<p>Array, size </p>
+<p>(<var>m</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> or </p>
+<p>(<var>n</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p>The vector <var>v</var> in the representation of <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfx</span></p>
+<p>The value <var>tau</var> in the representation of <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfx</span></p>
+<p>Array, size <span><var>ldc</var> by <var>n</var></span>. On entry, the <var>m</var>-by-<var>n</var> matrix <span class="keyword">C</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>c</var>. <var>lda</var><span class="eqsymbol">≥</span> (1,<var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfx</span></p>
+<p>Workspace array, size </p>
+<p>(<var>n</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> or </p>
+<p>(<var>m</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p><var>work</var> is not referenced if <var>H</var> has order &lt; 11. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-854EA6CF-D532-4260-B0C2-F469BED5EC2F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A18DE887-DA4D-4F38-9368-529B455378B1"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>On exit, <span class="keyword">C</span> is overwritten by the matrix <samp class="codeph"><var>H</var>*<var>C</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, or <samp class="codeph"><var>C</var>*<var>H</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

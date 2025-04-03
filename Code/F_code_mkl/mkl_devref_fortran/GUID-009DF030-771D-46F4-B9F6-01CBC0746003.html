@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?tzrzf"/>
+<meta name="abstract" content="Reduces the upper trapezoidal matrix A to upper triangular form."/>
+<meta name="description" content="Reduces the upper trapezoidal matrix A to upper triangular form."/>
+<meta name="DC.subject" content="LAPACK routines, RZ factorization, ?tzrzf, trapezoidal matrix, LAPACK"/>
+<meta name="keywords" content="LAPACK routines, RZ factorization, ?tzrzf, trapezoidal matrix, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-009DF030-771D-46F4-B9F6-01CBC0746003"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?tzrzf</title>
+
+</head>
+<body id="GUID-009DF030-771D-46F4-B9F6-01CBC0746003">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?tzrzf</span></h1>
+<!--Reduces the upper trapezoidal matrix A to upper triangular form.--><div><p class="shortdesc">Reduces the upper trapezoidal matrix A to upper triangular form.</p>
+<div class="section" id="GUID-72938070-4745-47FC-853A-393A91A31DCF"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call stzrzf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtzrzf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctzrzf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztzrzf</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call tzrzf</span><span class="delim">(</span><span class="var">a</span><span class="delim"> [</span><span class="sep">, </span><span class="var">tau</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-A7E04A40-9AAD-4034-8D86-6BA35DFBE4C4"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C8FB8D0D-C7DD-4DC0-8C20-CE1A830D3D4D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces the <var>m</var>-by-<var>n</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≤</span><var>n</var></samp>) real/complex upper trapezoidal matrix <var>A</var> to upper triangular form by means of orthogonal/unitary transformations. The upper trapezoidal matrix <var>A</var> = [<var>A</var>1 <var>A</var>2] = [<var>A</var><sub>1:<var>m</var>, 1:<var>m</var></sub>, <var>A</var><sub>1:<var>m</var>, <var>m</var>+1:<var>n</var></sub>] is factored as</p>
+<p><samp class="codeph"><var>A</var> = [<var>R</var><var>0</var>]*<var>Z</var></samp>,</p>
+<p>where <var>Z</var> is an <var>n</var>-by-<var>n</var> orthogonal/unitary matrix, <var>R</var> is an <var>m</var>-by-<var>m</var> upper triangular matrix, and <var>0</var> is the <var>m</var>-by-(<var>n-m</var>) zero matrix.</p>
+<p>See <a href="GUID-A63BB130-6652-478C-8F10-46E029E2261B.html#GUID-A63BB130-6652-478C-8F10-46E029E2261B">larz</a> that applies an elementary reflector returned by <span class="option">?tzrzf</span> to a general matrix.</p>
+<p>The <span class="option">?tzrzf</span> routine replaces the deprecated <span class="option">?tzrqf</span> routine.</p>
+</div>
+<div class="section" id="GUID-F419E50A-03DD-4784-AD71-278626C97C7F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8084FB5D-ED79-4205-8493-63080B2D5D23"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>A</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<var>n</var><span class="eqsymbol">≥</span><var>m</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stzrzf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtzrzf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctzrzf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztzrzf</span>. </p>
+<p>Arrays: <var>a</var>(<var>lda</var>,<span class="keyword">*),</span><var>work</var>(<var>lwork</var><span class="keyword">).</span></p>
+<p>The leading <var>m</var>-by-<var>n</var> upper trapezoidal part of the array <var>a</var> contains the matrix <var>A</var> to be factorized. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array;</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)</samp>.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3E64D096-F4C3-48D6-8AFC-40BDAF37B4F0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C110AF0C-D44A-4E44-A99E-5ECA071499D7"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten on exit by the factorization data as follows:</p>
+<p>the leading <var>m</var>-by-<var>m</var> upper triangular part of <var>a</var> contains the upper triangular matrix <var>R</var>, and elements <var>m</var> +1 to <var>n</var> of the first <var>m</var> rows of <var>a</var>, with the array <var>tau</var>, represent the orthogonal matrix <var>Z</var> as a product of <var>m</var> elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">stzrzf</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtzrzf</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctzrzf</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztzrzf</span>. </p>
+<p>Array, size at least max (1, <var>m</var>). Contains scalar factors of the elementary reflectors for the matrix <var>Z</var>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-62D9BEB8-4795-4CD4-8897-3D65F6F76B16"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in 
+the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">tzrzf</span> interface are the following:</p>
+<dl id="GUID-F09EE09A-273F-4599-840F-21F09DB95940"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length (<var>m</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-290AB8E8-C566-46C2-A222-6CFCA22E729B"><h2 class="sectiontitle">Application Notes</h2><p>The factorization is obtained by Householder's method. The <var>k</var>-th transformation matrix, <var>Z</var>(<var>k</var>), which is used to introduce zeros into the (<var>m</var> - <var>k</var> + 1)-th  row of <var>A</var>, is given in the form</p>
+<p><br/><div class="imagecenter"><img src="GUID-CF49A45B-6124-4CCE-A84F-083AFC66F0B9-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where   for real flavors</p>
+<p><br/><div class="imagecenter"><img src="GUID-742A8C9B-D7D4-4F7C-8DD6-334B527D86D0-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>and for complex flavors</p>
+<p><br/><div class="imagecenter"><img src="GUID-9AFAA569-D010-4123-A009-ED21B8CEDFDC-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p><var>tau</var> is a scalar and <var>z</var>(<var>k</var>) is an <var>l</var>-element vector. <var>tau</var> and <var>z</var>(<var>k</var>) are chosen to annihilate the elements of the <var>k-</var>th row of <var>A</var>2.</p>
+<p>The scalar <var>tau</var> is returned in the <var>k-</var>th element of <var>tau</var> and the vector <var>u</var>(<var>k</var>) in the <var>k-</var>th row of <var>A</var>, such that the elements of <var>z</var>(<var>k</var>) are stored in <samp class="codeph"><var>a</var>(<var>k</var>, <var>m</var>+1), ..., <var>a</var>(<var>k</var>, <var>n</var>).</samp></p>
+<p>The elements of <var>R</var> are returned in the upper triangular part of <var>A</var>.</p>
+<p>The matrix  <var>Z</var> is given by</p>
+<p><samp class="codeph"><samp class="codeph"><var>Z</var> = <var>Z</var>(1)*<var>Z</var>(2)*...*<var>Z</var>(<var>m</var>)</samp></samp>.</p>
+<p>For better performance, try using <samp class="codeph"><var>lwork</var> =<var>m</var>*<var>blocksize</var></samp>, where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the blocked algorithm. </p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>In first case the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>Related routines include:</p>
+<dl id="GUID-92203EC4-CE7C-433A-AFF6-AF2FEBE67AB2"><dt class="dlterm"><a href="GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC.html#GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC">ormrz</a></dt>
+
+<dd><p>to apply matrix Q (for real matrices)</p>
+</dd>
+<dt class="dlterm"><a href="GUID-43A1749C-F74A-494E-8C63-2443784D7B13.html#GUID-43A1749C-F74A-494E-8C63-2443784D7B13">unmrz</a></dt>
+
+<dd><p>to apply matrix Q (for complex matrices).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

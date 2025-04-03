@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_?_syrkd"/>
+<meta name="abstract" content="Computes the product of sparse matrix with its transpose (or conjugate transpose) and stores the result as a dense matrix."/>
+<meta name="description" content="Computes the product of sparse matrix with its transpose (or conjugate transpose) and stores the result as a dense matrix."/>
+<meta name="DC.subject" content="mkl_sparse_s_syrkd, mkl_sparse_d_syrkd, mkl_sparse_c_syrkd, mkl_sparse_z_syrkd"/>
+<meta name="keywords" content="mkl_sparse_s_syrkd, mkl_sparse_d_syrkd, mkl_sparse_c_syrkd, mkl_sparse_z_syrkd"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B934158D-3F4E-4E85-BCC8-78052BC4BB29"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_?_syrkd</title>
+
+</head>
+<body id="GUID-B934158D-3F4E-4E85-BCC8-78052BC4BB29">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_?_syrkd</span></h1>
+<!--Computes the product of sparse matrix with its transpose (or conjugate transpose) and stores the result as a dense matrix. --><div><p class="shortdesc">Computes the product of sparse matrix with its transpose (or conjugate transpose) and stores the result as a dense matrix. </p>
+<div class="section" id="GUID-BAE44887-3588-4917-8990-8842FFF8D54B"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_s_syrkd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_d_syrkd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_c_syrkd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_z_syrkd</span><span class="delim"> (</span><span class="var">operation</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">C</span><span class="sep">, </span><span class="var">layout</span><span class="sep">, </span><span class="var">ldc</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-37792985-BB30-4289-BC5B-C8808994AA86"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-C0B3BFC4-A2F1-4D20-BCB8-4A66EE1AB5F7"><li id="LI_A200D2E3A8CE4480ACB2969DA99F63C5"><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-07A3C51A-19DF-4D02-AB96-BCF15D90B8B2"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_sparse_?_syrkd</span> routine performs a sparse matrix-matrix operation which results in a dense matrix C that is either symmetric (real case) or Hermitian (complex case):<pre><var>C</var> := <var>beta</var>*<var>C</var> + <var>alpha</var>*<var>A</var>*op(<var>A</var>)</pre>or<pre><var>C</var> := <var>beta</var>*<var>C</var> + <var>alpha</var>*op(<var>A</var>)*<var>A</var></pre>depending on the matrix modifier <span class="keyword">op</span> which can be the transpose for real matrices or conjugate transpose for complex matrices. Here, <var>A</var> is a sparse matrix and <var>C</var> is a dense matrix.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> This routine is not supported for sparse matrices in COO or CSC formats. It  supports only CSR and BSR formats. Additionally, this routine
+supports only the sorted CSR and sorted BSR formats for the input matrix.  If data is unsorted, call the
+<a href="GUID-664E0947-6D7C-45C7-B622-D84674233A65.html">mkl_sparse_order</a> routine before either <span class="option">mkl_sparse_syrk</span> or <a href="#GUID-B934158D-3F4E-4E85-BCC8-78052BC4BB29">mkl_sparse_?_syrkd</a>. </div>
+</div>
+<div class="section" id="GUID-F581AEF0-17E0-4771-998E-D92D0BE99A26"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0DC9C375-5784-43EA-B0F4-B29A61DD46FB"><dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Specifies the operation <span class="option">op()</span> performed on the input matrix.</p>
+<p><span class="keyword">SPARSE_OPERATION_NON_TRANSPOSE</span>, Non-transpose,  <samp class="codeph"><var>C</var> := <var>beta</var>*<var>C</var> + <var>alpha</var>*<var>A</var>*op(<var>A</var>)</samp> where op(*) is the transpose (real matrices)  or conjugate transpose (complex matrices).</p>
+<p><span class="keyword">SPARSE_OPERATION_TRANSPOSE</span>,  Transpose,<samp class="codeph"><var>C</var> := <var>beta</var>*<var>C</var> + <var>alpha</var>*<var>A</var><sup>T</sup>*<var>A</var></samp> for real matrix A.</p>
+<p><span class="keyword">SPARSE_OPERATION_CONJUGATE_TRANSPOSE</span> Conjugate transpose,<samp class="codeph"><var>C</var> := <var>beta</var>*<var>C</var> + <var>alpha</var>*<var>A</var><sup>H</sup>*<var>A</var></samp> for complex matrix A.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_syrkd</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_syrkd</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_syrkd</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_syrkd</span></p>
+<p>Scalar parameter <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_syrkd</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_syrkd</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_syrkd</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_syrkd</span></p>
+<p>Scalar parameter <var>beta</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">layout</span></dt>
+
+<dd><p>Describes the storage scheme for the dense matrix.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-8C53898C-6D88-40A7-931F-0D319952A201" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="60.56782334384858%"><p><span class="parmname">layout</span> = <span class="keyword">SPARSE_LAYOUT_COLUMN_MAJOR</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="39.43217665615142%">Storage of elements uses column-major layout.
+ </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="60.56782334384858%"><p><span class="parmname">layout</span> = <span class="keyword">SPARSE_LAYOUT_ROW_MAJOR</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="39.43217665615142%">Storage of elements uses row-major layout.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Leading dimension of matrix <span class="parmname">C</span>.</p>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> Only the upper triangular part of matrix C is processed. Therefore, you must  set real values of <em>alpha</em> and <em>beta</em> for complex matrices in order to obtain a Hermitian matrix.</p>
+</div>
+</div>
+<div class="section" id="GUID-10C05C0D-7DD2-4677-954C-B6BE05A103FA"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-451B57A0-BF61-41A5-A96D-468B5E59279A"><dt class="dlterm"><span class="parmname">C</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Resulting dense matrix. Only the upper triangular part of the matrix is
+computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stat</span></dt>
+
+<dd><p><samp class="codeph">INTEGER</samp></p>
+<p>Value indicating whether the operation was successful or not, and why: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p>The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html">Inspector-Executor Sparse BLAS Execution Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

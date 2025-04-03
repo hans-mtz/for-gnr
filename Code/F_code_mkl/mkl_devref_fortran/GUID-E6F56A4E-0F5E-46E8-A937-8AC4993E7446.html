@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetf2"/>
+<meta name="abstract" content="Computes the factorization of a complex Hermitian matrix, using the diagonal pivoting method (unblocked algorithm)."/>
+<meta name="description" content="Computes the factorization of a complex Hermitian matrix, using the diagonal pivoting method (unblocked algorithm)."/>
+<meta name="DC.subject" content="LAPACK routines, auxiliary routines, ?hetf2, ?heft2, factorization, diagonal pivoting, Hermitian matrix, complex, complex Hermitian matrix, factorization with diagonal pivoting method"/>
+<meta name="keywords" content="LAPACK routines, auxiliary routines, ?hetf2, ?heft2, factorization, diagonal pivoting, Hermitian matrix, complex, complex Hermitian matrix, factorization with diagonal pivoting method"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E6F56A4E-0F5E-46E8-A937-8AC4993E7446"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetf2</title>
+
+</head>
+<body id="GUID-E6F56A4E-0F5E-46E8-A937-8AC4993E7446">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetf2</span></h1>
+<!--Computes the factorization of a complex Hermitian matrix, using the diagonal pivoting method (unblocked algorithm).--><div><p class="shortdesc">Computes the factorization of a complex Hermitian matrix, using the diagonal pivoting method (unblocked algorithm).</p>
+<div class="section" id="GUID-97BC0749-D792-41FA-9FDD-C43B1F18D7CD"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call chetf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-231E32BF-1AD1-43B8-9FDC-7A3C0B4B89FC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-51870B1E-8668-4404-9979-CD8831E06E51"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the factorization of a complex Hermitian matrix <var>A</var> using the Bunch-Kaufman diagonal pivoting method:</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var>*<var>D</var>*<var>U</var><sup><var>H</var></sup></samp> or <samp class="codeph"><var>A</var> = <var>L</var>*<var>D</var>*<var>L</var><sup><var>H</var></sup></samp></p>
+<p>where <var>U</var> (or <var>L</var>) is a product of permutation and unit upper (lower)  triangular matrices, <var>U</var><sup><var>H</var></sup> is the conjugate transpose of <var>U</var>, and <var>D</var> is  Hermitian and block diagonal with 1-by-1 and 2-by-2 diagonal blocks. </p>
+<p>This is the unblocked version of the algorithm, calling <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html#GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1">BLAS Level 2 Routines</a>.</p>
+</div>
+<div class="section" id="GUID-1EFBAB5C-ADF7-4A42-BA46-E7FE347BE81F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E2FF4297-7BEE-4E2C-8F24-353D077C690E"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the Hermitian matrix <var>A</var> is stored:</p>
+<p>= <span class="keyword">'U'</span>:  Upper triangular</p>
+<p>= <span class="keyword">'L'</span>:  Lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chetf2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetf2</span>. </p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, the Hermitian matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>A</var> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>A</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>A</var> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>A</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-42A0FE25-5EA7-4661-95AC-0A736AB964C0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8D5783F1-7265-4B70-A24A-66D6E308C6D9"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the block diagonal matrix <var>D</var> and the multipliers used to obtain the factor <var>U</var> or <var>L</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>Details of the interchanges and the block structure of <var>D</var></p>
+<p>If <samp class="codeph"><var>ipiv</var>(<var>k</var>) &gt; 0</samp>, then rows and columns <var>k</var> and <var>ipiv</var>(<var>k</var>) were interchanged and <var>D(k,k)</var> is a 1-by-1 diagonal block. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> and <samp class="codeph"><var>ipiv</var>(<var>k</var>) = <var>ipiv</var>( <var>k</var>-1) &lt; 0</samp>, then rows and columns <var>k</var>-1 and -<var>ipiv</var>(<var>k</var>) were interchanged and <var>D(k-1:k,k-1:k )</var> is a 2-by-2 diagonal block. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> and <samp class="codeph"><var>ipiv</var>(<var>k</var>) = <var>ipiv</var>( <var>k</var>+1) &lt; 0</samp>, then rows and columns <var>k</var>+1 and -<var>ipiv</var>(<var>k</var>) were interchanged and <var>D(k:k</var>+1, <var>k:k</var>+1) is a 2-by-2 diagonal block.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0: successful exit</p>
+<p>&lt; 0: if <samp class="codeph"><var>info</var> = -<var>k</var></samp>, the <var>k</var>-th argument had an illegal value</p>
+<p>&gt; 0: if <samp class="codeph"><var>info</var> =  <var>k</var></samp>, <var>D(k,k)</var> is exactly zero. The factorization has been completed, but the block diagonal matrix <var>D</var> is exactly singular, and division by zero will occur if it is used to solve a system of equations.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

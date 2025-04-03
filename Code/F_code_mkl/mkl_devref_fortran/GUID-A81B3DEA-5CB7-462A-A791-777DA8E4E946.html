@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dfgmres"/>
+<meta name="abstract" content="Makes the FGMRES iterations."/>
+<meta name="description" content="Makes the FGMRES iterations."/>
+<meta name="DC.subject" content="RCI GFMRES sparse solver routines, dfgres, Sparse Solver, iterative sparse solver interface, dfgmres"/>
+<meta name="keywords" content="RCI GFMRES sparse solver routines, dfgres, Sparse Solver, iterative sparse solver interface, dfgmres"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CACC422-8069-440F-8272-344094F0186B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A81B3DEA-5CB7-462A-A791-777DA8E4E946"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dfgmres</title>
+
+</head>
+<body id="GUID-A81B3DEA-5CB7-462A-A791-777DA8E4E946">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dfgmres</span></h1>
+<!--Makes the FGMRES iterations.--><div><p class="shortdesc">Makes the FGMRES iterations.</p>
+<div class="section" id="GUID-1EF1A45C-7517-4EE9-865D-E95144A6EF63"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">dfgmres</span><span class="sep">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">RCI_request</span><span class="sep">, </span><span class="var">ipar</span><span class="sep">, </span><span class="var">dpar</span><span class="sep">, </span><span class="var">tmp</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-F2C5C5F3-3C0E-411C-BC4D-AA4B4FCCD5ED"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8D173A63-4C9F-46FB-A367-6130FDE764DF"><h2 class="sectiontitle">Description</h2><p><span/>The routine <span class="option">dfgmres</span> performs the FGMRES iterations [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SAAD03">Saad03</a>], using the value that was in the array <span class="parmname">x</span> before the first call as an initial approximation of  the solution vector. To update the current approximation to the solution, the <span class="option">dfgmres_get</span> routine must be called. The RCI FGMRES iterations can be continued after the call to the <span class="option">dfgmres_get</span> routine only if the value of the parameter <span class="parmname">ipar</span><samp class="codeph">(13)</samp> is not equal to 0 (default value). Note that the updated solution  overwrites the right-hand side in the vector <var class="varname">b</var> if the parameter <span class="parmname">ipar</span><samp class="codeph">(13)</samp> is positive, and the restarted version of the FGMRES method can not be run. If you want to keep the right-hand side, you must be save it in a different memory location before the first call to the <span class="option">dfgmres_get</span> routine with a positive <span class="parmname">ipar</span><samp class="codeph">(13)</samp>.</p>
+<p>The parameter <span class="parmname">RCI_request</span> gives information about the task completion and requests results of certain operations that the solver requires.</p>
+<p>The lengths of all the vectors must be defined in a previous call to the <span class="option">dfgmres_init</span> routine.</p>
+</div>
+<div class="section" id="GUID-8F2ACFAB-96D7-4FC6-AF43-3AA640B00F29"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4C9A93C5-C5D6-4371-BDEB-C07731EFFFF5"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Sets the size of the problem.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <var class="varname">n</var>. Contains the initial approximation to the solution vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <var class="varname">n</var>. Contains the right-hand side vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <samp class="codeph">(13)</samp>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-59679902-4526-4685-954A-C7D1CC863EEF"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-08FB3AFC-B281-4ADE-B2A5-994270BC7F17"><dt class="dlterm"><span class="parmname">RCI_request</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Informs about result of work of the
+routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Array of size <span class="parmname">128</span>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p class="regular"><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmname">128</span>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <samp class="codeph">((2*<span class="parmname">ipar</span>(15)+1)*<span class="parmname">n</span>+<span class="parmname">ipar</span>(15)*<span class="parmname">ipar</span>(15)+9)/2 + 1)</samp>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="RETURNVALUES_C240A1521FE54C8396CBB9BFC28DA328"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-A0ACA1B4-C9AE-48E8-978A-06084EDA50DF"><dt class="dlterm"><span class="parmname">RCI_request</span>=0</dt>
+
+<dd class="ddretval"><p>Indicates that the task completed normally and the solution is found and stored in the vector <span class="parmname">x</span>. This occurs only if the stopping tests are fully automatic. For the user defined stopping tests, see the description of the <span class="parmname">RCI_request</span>= 2 or 4.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>=-1</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the maximum number of iterations was reached, but the relative stopping criterion was not met. This situation occurs only if you request both tests.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= -10</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because of an attempt to divide by zero. Usually this happens if the matrix is degenerate or almost degenerate. However, it may happen if the parameter <span class="parmname">dpar</span> is altered, or if the method is not stopped when the solution is found.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= -11</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because it entered an infinite cycle. Usually this happens because the values <span class="parmname">ipar</span><samp class="codeph">(8)</samp>, <span class="parmname">ipar</span><samp class="codeph">(9)</samp>, <span class="parmname">ipar</span><samp class="codeph">(10)</samp> were altered outside of the routine, or the <span class="option">dfgmres_check</span> routine was not called.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= -12</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because errors were found in the method parameters. Usually this happens if the parameters <span class="parmname">ipar</span> and <span class="parmname">dpar</span> were altered by mistake outside the routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 1</dt>
+
+<dd class="ddretval"><p>Indicates that you must multiply the matrix by <var class="varname">tmp</var><samp class="codeph"><span class="parmnamen">(</span><span class="parmname">ipar</span><span class="parmnamen">(22)</span><span class="parmnamen">)</span></samp>, put the result in the <var class="varname">tmp</var><samp class="codeph"><span class="parmnamen">(</span><span class="parmname">ipar</span><span class="parmnamen">(23)</span><span class="parmnamen">)</span></samp>, and return control back to the routine <span class="option">dfgmres</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 2</dt>
+
+<dd class="ddretval"><p>Indicates that you must perform the stopping tests. If they fail, return control to the <span class="option">dfgmres</span> routine. Otherwise, the FGMRES solution is found, and you can run the <span class="option">fgmres_get</span> routine to update the computed solution in the vector <var class="varname">x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 3</dt>
+
+<dd class="ddretval"><p>Indicates that you must apply the inverse preconditioner to <samp class="codeph"><span class="parmname">ipar</span><span class="parmnamen">(22)</span></samp>, put the result in the <samp class="codeph"><span class="parmname">ipar</span><span class="parmnamen">(23)</span></samp>, and return control back to the routine <span class="option">dfgmres</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 4</dt>
+
+<dd class="ddretval"><p>Indicates that you must check the norm of the currently generated vector. If it is not zero within the computational/rounding errors, return control to the <span class="option">dfgmres</span> routine. Otherwise, the FGMRES solution is found, and you can run the <span class="option">dfgmres_get</span> routine to update the computed solution in the vector <var class="varname">x</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4CACC422-8069-440F-8272-344094F0186B.html">RCI ISS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLACS Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0191F247-778C-4C69-B54F-ABF951506FCD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3189B117-8455-4F84-BE8D-CB3F56D0CF02.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-896F8C19-5C04-4519-832D-FBC8100676CD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E2F19D84-56C9-44E4-ABF7-1C26A827B1FD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B92D8C88-5DB5-4F8D-860D-CB94AD0B25C7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2E9A1829-F05E-4A93-897B-594A59E135B1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FD476AD1-0A04-48DD-85E1-AE06C22CA219.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7336B11C-2B31-466B-8173-0F84835CC0BD.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLACS Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLACS Routines</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library<span>implements</span> FORTRAN 77 routines from the BLACS (Basic Linear Algebra Communication Subprograms) package. These routines are used to support a linear algebra oriented message passing interface that may be implemented efficiently and uniformly across a large range of distributed memory platforms.
+	 </p>
+<p>The BLACS routines make linear algebra applications both easier to program and more portable. For this purpose, they are used in Intel&reg; oneAPI Math Kernel Library intended for the Linux* and Windows* OSs as the communication layer of ScaLAPACK and Cluster FFT.</p>
+<p>On computers, a linear algebra matrix is represented by a two dimensional array (2D array), and therefore the BLACS operate on 2D arrays. See description of the basic 
+		<a href="GUID-3189B117-8455-4F84-BE8D-CB3F56D0CF02.html#GUID-3189B117-8455-4F84-BE8D-CB3F56D0CF02">matrix shapes</a> in a special 
+		<span>topic</span>.
+	 </p>
+<p>The BLACS routines implemented in Intel&reg; oneAPI Math Kernel Library are of four categories:<ul id="GUID-59F322B2-3A64-4485-B861-5BD704D9606D"><li id="LI_A756FE5297DF46C78A22ABCB3E38A3E7">Combines
+		</li>
+<li id="LI_36DE829798274A3A9BF1153A0700998F">Point to Point Communication
+		</li>
+<li id="LI_C155F5523AF140AABC293E268AF0A108">Broadcast
+		</li>
+<li id="LI_DA9F15AA99AA4473BB7A965B55AA7539">Support.
+		</li>
+</ul>
+</p>
+<p>The 
+		<a href="GUID-E2F19D84-56C9-44E4-ABF7-1C26A827B1FD.html#GUID-E2F19D84-56C9-44E4-ABF7-1C26A827B1FD">Combines</a> take data distributed over processes and combine the data to produce a result. The 
+		<a href="GUID-B92D8C88-5DB5-4F8D-860D-CB94AD0B25C7.html#GUID-B92D8C88-5DB5-4F8D-860D-CB94AD0B25C7">Point to Point</a> routines are intended for point-to-point communication and 
+		<a href="GUID-2E9A1829-F05E-4A93-897B-594A59E135B1.html#GUID-2E9A1829-F05E-4A93-897B-594A59E135B1">Broadcast</a> routines send data possessed by one process to all processes within a scope.
+	 </p>
+<p>The 
+		<a href="GUID-FD476AD1-0A04-48DD-85E1-AE06C22CA219.html#GUID-FD476AD1-0A04-48DD-85E1-AE06C22CA219">Support routines</a> perform distinct tasks that can be used for initialization, destruction, information, and miscellaneous tasks.
+	 </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1670091e79"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1670091e79 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div/>
+</body>
+</html>

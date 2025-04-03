@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D2528D78-17BC-49A0-99F2-28B9BA6C64B5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2EB693ED-69F3-48C7-B100-31F030797DDD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1760738E-5820-4B7C-8128-FF2D3F3631E3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C7F5DB40-39D9-4EC4-A912-1EED65DC2F22.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B022A752-ED38-443D-9E19-5CB37172A36C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C342AC66-0077-45E4-9130-562CFEC3F0D7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AE6CB76F-0244-4F24-91A7-025E162551DF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-84AB85AB-9C9D-4E24-B3B3-9B8DF859DBBA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6C321648-BCE7-411F-B394-E249F31FA6D2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-496E5BE2-2984-40AA-A2C1-DF1E25A7D275.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AD6C57C2-B53E-49FF-B9C5-8AC33A289150.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Symmetric Eigenvalue Problems: ScaLAPACK
+    Computational Routines</h1>
+<div><p>To solve a symmetric eigenproblem with ScaLAPACK, you
+      usually need to reduce the matrix to real tridiagonal form 
+      <var>T</var> and then find
+      the eigenvalues and eigenvectors of the tridiagonal matrix 
+      <var>T</var>. ScaLAPACK
+      includes routines for reducing the matrix to a tridiagonal form by an
+      orthogonal (or unitary) similarity transformation 
+      <samp class="codeph"><var>A</var> = 
+        <var>QTQ</var><sup class="power"><var>H</var></sup></samp> as well as for
+      solving tridiagonal symmetric eigenvalue problems. These routines are listed in
+      
+      <a href="#TBL6-4">Table 
+        <span>"Computational Routines for Solving Symmetric
+          Eigenproblems"</span></a>. 
+    </p>
+<p>There are different routines for symmetric
+      eigenproblems, depending on whether you need eigenvalues only or eigenvectors
+      as well, and on the algorithm used (either the 
+      <var>QTQ</var> algorithm,
+      or bisection followed by inverse iteration). 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL6-4" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Solving Symmetric
+    Eigenproblems</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="33.33333333333333%" id="d127816e54">Operation 
+        </th>
+<th class="cellrowborder" valign="top" width="24.242424242424242%" id="d127816e56">Dense symmetric/Hermitian matrix 
+        </th>
+<th class="cellrowborder" valign="top" width="24.242424242424242%" id="d127816e58">Orthogonal/unitary matrix 
+        </th>
+<th class="row-nocellborder" valign="top" width="18.181818181818183%" id="d127816e60">Symmetric tridiagonal matrix 
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="d127816e54 ">Reduce to tridiagonal form 
+          <var>A</var> = 
+          <var>QTQ</var><sup class="power"><var>H</var></sup></td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e56 "><a href="GUID-C7F5DB40-39D9-4EC4-A912-1EED65DC2F22.html#GUID-C7F5DB40-39D9-4EC4-A912-1EED65DC2F22"><span class="option">p?sytrd</span></a>/<a href="GUID-84AB85AB-9C9D-4E24-B3B3-9B8DF859DBBA.html#GUID-84AB85AB-9C9D-4E24-B3B3-9B8DF859DBBA"><span class="option">p?hetrd</span></a></td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e58 ">  
+        </td>
+<td class="row-nocellborder" valign="top" width="18.181818181818183%" headers="d127816e60 ">  
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="d127816e54 ">Multiply matrix after reduction 
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e56 ">  
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e58 "><a href="GUID-B022A752-ED38-443D-9E19-5CB37172A36C.html#GUID-B022A752-ED38-443D-9E19-5CB37172A36C"><span class="option">p?ormtr</span></a>/<a href="GUID-6C321648-BCE7-411F-B394-E249F31FA6D2.html#GUID-6C321648-BCE7-411F-B394-E249F31FA6D2"><span class="option">p?unmtr</span></a></td>
+<td class="row-nocellborder" valign="top" width="18.181818181818183%" headers="d127816e60 ">  
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="d127816e54 ">Find all eigenvalues and eigenvectors of
+          a tridiagonal matrix 
+          <var>T</var> by a 
+          <var>QTQ</var> method 
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e56 ">  
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e58 ">  
+        </td>
+<td class="row-nocellborder" valign="top" width="18.181818181818183%" headers="d127816e60 "><a href="GUID-43194A76-1612-4587-B31C-E5B16041A46D.html#GUID-43194A76-1612-4587-B31C-E5B16041A46D"><span class="option">steqr2</span></a><sup>*</sup></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="d127816e54 ">Find selected eigenvalues of a
+          tridiagonal matrix 
+          <var>T</var> via
+          bisection 
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e56 ">  
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e58 ">  
+        </td>
+<td class="row-nocellborder" valign="top" width="18.181818181818183%" headers="d127816e60 "><a href="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65.html#GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65"><span class="option">p?stebz</span></a></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33.33333333333333%" headers="d127816e54 ">Find selected eigenvectors of a
+          tridiagonal matrix 
+          <var>T</var> by inverse
+          iteration 
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e56 ">  
+        </td>
+<td class="cellrowborder" valign="top" width="24.242424242424242%" headers="d127816e58 ">  
+        </td>
+<td class="row-nocellborder" valign="top" width="18.181818181818183%" headers="d127816e60 "><a href="GUID-AD6C57C2-B53E-49FF-B9C5-8AC33A289150.html#GUID-AD6C57C2-B53E-49FF-B9C5-8AC33A289150"><span class="option">p?stein</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><sup>*</sup> This routine
+    is described as part of auxiliary ScaLAPACK routines. 
+  </p>
+</div>
+<div/>
+</body>
+</html>

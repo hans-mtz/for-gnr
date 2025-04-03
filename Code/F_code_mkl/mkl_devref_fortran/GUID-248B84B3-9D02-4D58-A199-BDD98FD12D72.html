@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_INPUT_DISTANCE, DFTI_OUTPUT_DISTANCE"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3.html#GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-248B84B3-9D02-4D58-A199-BDD98FD12D72"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_INPUT_DISTANCE, DFTI_OUTPUT_DISTANCE</title>
+
+</head>
+<body id="GUID-248B84B3-9D02-4D58-A199-BDD98FD12D72">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_INPUT_DISTANCE, DFTI_OUTPUT_DISTANCE</h1>
+<div><p>The FFT interface in Intel&reg; oneAPI Math Kernel Library enables computation of multiple transforms. To compute multiple transforms, you need tospecify the data distribution of the multiple sets of data. The distance between the first data elements of consecutive data sets, 
+      <span class="keyword">DFTI_INPUT_DISTANCE</span> for input data or 
+      <span class="keyword">DFTI_OUTPUT_DISTANCE</span> for output data, specifies the distribution. The configuration setting is a value of 
+      <span><span class="keyword">INTEGER</span> data type</span>. 
+    </p>
+<p> The default value for both configuration settings is one. You must set this parameter explicitly if the number of transforms is greater than one (see 
+      <a href="GUID-76671365-D14B-418B-8333-D750BF63F6E9.html"><span class="keyword">DFTI_NUMBER_OF_TRANSFORMS</span></a>). 
+    </p>
+<p>The distance is counted in elements of the data type defined by the descriptor configuration (rather than by the type of the variable passed to the computation functions). Specifically, the 
+      <span class="keyword">DFTI_FORWARD_DOMAIN, DFTI_COMPLEX_STORAGE</span>, and 
+      <span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE</span> configuration parameters define the type of the elements as shown in 
+      <a href="GUID-2C619B0B-84D2-4CF0-9E5A-FFB4287A1BFB.html#TBL11-5">Table 
+        <span>"Assumed Element Types of the Input/Output Data"</span></a>. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> The configuration parameters 
+        <span class="keyword">DFTI_INPUT_DISTANCE</span> and 
+        <span class="keyword">DFTI_OUTPUT_DISTANCE</span> define the distance within input and output data, and not within the forward-domain and backward-domain data. If the distances in the forward and backward domains differ, set 
+        <span class="keyword">DFTI_INPUT_DISTANCE</span> and 
+        <span class="keyword">DFTI_OUTPUT_DISTANCE</span> explicitly and then commit the descriptor before calling computation functions. 
+      </p>
+</div>
+<p> For in-place transforms (<span class="keyword">DFTI_PLACEMENT=DFTI_INPLACE</span>), the configuration set by 
+      <span class="keyword">DFTI_OUTPUT_DISTANCE</span> is ignored when the element types in the forward and backward domains are the same. If they are different, set 
+      <span class="keyword">DFTI_OUTPUT_DISTANCE</span> explicitly (even though the transform is in-place). Ensure a consistent configuration for in-place transforms, that is, the locations of the data sets on input and output must coincide. 
+    </p>
+<p>This example 
+      illustrates setting of the 
+      <span class="keyword">DFTI_INPUT_DISTANCE</span> configuration parameter: 
+    </p>
+<pre>INTEGER :: dims(d) = [n1, n2, …, nd]
+INTEGER :: distance = n1*n2*…*nd
+status = DftiCreateDescriptor( hand, precision, DFTI_COMPLEX, d, dims)
+status = DftiSetValue( hand, DFTI_NUMBER_OF_TRANSFORMS, howmany )
+status = DftiSetValue( hand, DFTI_INPUT_DISTANCE,  distance );
+</pre><p>To better understand configuration of the distances, see these code examples in your Intel&reg; oneAPI Math Kernel Library directory:</p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__CONFIG_NUMBER_OF_TRANSFORMS_F90">./examples/dftf/source/config_number_of_transforms.f90</span></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3.html#GUID-1B3415B3-F71C-4441-9E0D-1A3AA5D7DFC3"><span class="keyword">DFTI_PLACEMENT</span></a> </div>
+<div><a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> </div>
+<div><a href="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"><span class="option">DftiCommitDescriptor</span></a> </div>
+<div><a href="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"><span class="option">DftiComputeForward</span></a> </div>
+<div><a href="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"><span class="option">DftiComputeBackward</span></a> </div></div></div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?stebz"/>
+<meta name="abstract" content="Computes the eigenvalues of a symmetric tridiagonal matrix by bisection."/>
+<meta name="description" content="Computes the eigenvalues of a symmetric tridiagonal matrix by bisection."/>
+<meta name="DC.subject" content="p?stebz, ScaLAPACK routines, symmetric eigenproblems"/>
+<meta name="keywords" content="p?stebz, ScaLAPACK routines, symmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?stebz</title>
+
+</head>
+<body id="GUID-E362299B-F0FA-47C6-98CF-9D1F9A56CE65">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?stebz</span></h1>
+<!--Computes the eigenvalues of a symmetric tridiagonal matrix by bisection.--><div><p class="shortdesc">Computes the eigenvalues of a symmetric tridiagonal matrix by bisection.</p>
+<div class="section" id="GUID-A33E226F-4F42-4525-AF59-00788551D2F4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psstebz</span><span class="delim">(</span><span class="var">ictxt</span><span class="sep">, </span><span class="var">range</span><span class="sep">, </span><span class="var">order</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">abstol</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nsplit</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdstebz</span><span class="delim">(</span><span class="var">ictxt</span><span class="sep">, </span><span class="var">range</span><span class="sep">, </span><span class="var">order</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">abstol</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nsplit</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-02738086-BCBA-4CB2-B733-909F30A50E1D"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-CAB27412-506E-49C9-9F32-D63196C40443"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?stebz</span><span> routine </span>computes the eigenvalues of a symmetric tridiagonal matrix in parallel. These may be all eigenvalues, all eigenvalues in the interval <samp class="codeph">[<var>vl</var><var>vu</var>]</samp>, or the eigenvalues <span>indexed </span><span class="parmname">il</span> through <span class="parmname">iu</span>. A static partitioning of work is done at the beginning of <span class="option">p?stebz</span> which results in all processes finding an (almost) equal number of eigenvalues. </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1701830e252"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1701830e252 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-A6658B35-4B6E-4537-8DCC-E39743DD0E46"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-7EE0D285-D16A-4049-ABD1-2B5D7B6E19BA"><dt class="dlterm"><span class="parmname">ictxt</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The<span class="keyword"> BLACS</span> context handle.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">range</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'A'</span> or <span class="keyword">'V'</span> or <span class="keyword">'I'</span>.</p>
+<p>If <samp class="codeph"><var>range</var> = <span class="keyword">'A'</span></samp>, the<span> routine </span>computes all eigenvalues. </p>
+<p>If <samp class="codeph"><var>range</var> = <span class="keyword">'V'</span></samp>, the<span> routine </span>computes eigenvalues in the interval <samp class="codeph">[<var>vl</var>, <var>vu</var>]</samp>. </p>
+<p>If <samp class="codeph"><var>range</var> =<span class="keyword">'I'</span></samp>, the<span> routine </span>computes eigenvalues <span>with indices </span><span class="parmname">il</span> through <span class="parmname">iu</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">order</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'B'</span> or <span class="keyword">'E'</span>.</p>
+<p>If <samp class="codeph"><var>order</var> = <span class="keyword">'B'</span></samp>, the eigenvalues are to be ordered from smallest to largest within each split-off block. </p>
+<p>If <samp class="codeph"><var>order</var> = <span class="keyword">'E'</span></samp>, the eigenvalues for the entire matrix are to be ordered from smallest to largest.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the tridiagonal matrix <var>T</var><samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span>, <span class="parmname">vu</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstebz</span>. </p>
+<p>If <samp class="codeph"><var>range</var> = <span class="keyword">'V'</span></samp>, the<span> routine </span>computes the lower and the upper bounds for the eigenvalues on the interval <samp class="codeph">[<var>1</var>, <var>vu</var>]</samp>.</p>
+<p>If <samp class="codeph"><var>range</var> = <span class="keyword">'A'</span></samp> or <span class="keyword">'I'</span>, <span class="parmname">vl</span> and <span class="parmname">vu</span> are not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">il</span>, <span class="parmname">iu</span></dt>
+
+<dd><p>(global) </p>
+<p><span><span class="keyword">INTEGER</span>. </span>Constraint: <samp class="codeph">1≤<var>il</var>≤<var>iu</var>≤<var>n</var></samp>. </p>
+<p>If <samp class="codeph"><var>range</var> = <span class="keyword">'I'</span></samp>, the index of the smallest eigenvalue is returned for <span class="parmname">il</span> and of the largest eigenvalue for <span class="parmname">iu</span> (assuming that the eigenvalues are in ascending order) must be returned.</p>
+<p>If <samp class="codeph"><var>range</var> = <span class="keyword">'A'</span></samp> or <span class="keyword">'V'</span>, <span class="parmname">il</span> and <span class="parmname">iu</span> are not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">abstol</span></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstebz</span>. </p>
+<p>The absolute tolerance to which each eigenvalue is required. An eigenvalue (or cluster) is considered to have converged if it lies in an interval of width <span class="parmname">abstol</span>. If <samp class="codeph"><var>abstol</var>≤0</samp>, then the tolerance is taken as <var>ulp</var>||<var>T</var>||, where <var>ulp</var> is the machine precision, and ||<var>T</var>|| means the 1-norm of <var>T</var></p>
+<p>Eigenvalues will be computed most accurately when <span class="parmname">abstol</span> is set to the underflow threshold <span class="keyword">slamch</span>(<span class="keyword">'U'</span>), not 0. Note that if eigenvectors are desired later by inverse iteration (<span class="option">p?stein</span>), <span class="parmname">abstol</span> should be set to <samp class="codeph">2*<span class="option">p?lamch</span>('S')</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>(global) <span class="keyword"/></p>
+<p><span class="keyword">REAL</span> for <span class="option">psstebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstebz</span>. </p>
+<p>Array of size <span class="parmname">n</span>.</p>
+<p> Contains <var>n</var> diagonal elements of the tridiagonal matrix <var>T</var>. To avoid overflow, the matrix must be scaled so that its largest entry is no greater than the <samp class="codeph"><span class="parmname">overflow</span><sup class="power">(1/2)</sup> *<span class="parmname"> underflow</span><sup class="power">(1/4)</sup></samp> in absolute value, and for greatest accuracy, it should not be much smaller than that. </p>
+</dd>
+<dt class="dlterm"><var>e</var></dt>
+
+<dd><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstebz</span>. </p>
+<p>Array of size <samp class="codeph"><var>n</var> - 1</samp>.</p>
+<p>Contains <samp class="codeph">(<var>n</var>-1)</samp> off-diagonal elements of the tridiagonal matrix <var>T</var>. To avoid overflow, the matrix must be scaled so that its largest entry is no greater than <samp class="codeph">overflow<sup class="power">(1/2)</sup> * underflow<sup class="power">(1/4)</sup></samp> in absolute value, and for greatest accuracy, it should not be much smaller than that. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psstebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstebz</span>. </p>
+<p>Array of size <samp class="codeph">max(5<var>n</var>, 7)</samp>. This is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array must be <samp class="codeph">≥ <span class="keyword">max</span>(5<var>n</var>, 7)</samp>.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <span class="parmname">lwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>Array of size <samp class="codeph">max(4<var>n</var>, 14)</samp>. This is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>The size of the <span class="parmname">iwork</span> array must ≥<samp class="codeph"><span class="keyword">max</span>(4<var>n</var>, 14, <span class="keyword">NPROCS</span>)</samp>.</p>
+<p>If <samp class="codeph"><var>liwork</var> = -1</samp>, then <span class="parmname">liwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-BAEB34A6-B581-4E3C-BD69-6B7A413B8959"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D2DA2164-C129-406E-992A-2552CB37C050"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The actual number of eigenvalues found. <samp class="codeph">0≤<var>m</var>≤<var>n</var></samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">nsplit</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of diagonal blocks detected in <var>T</var>. <samp class="codeph">1≤<var>nsplit</var>≤<var>n</var></samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>(global) </p>
+<p><span class="keyword">REAL</span> for <span class="option">psstebz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdstebz</span>. </p>
+<p>Array of size  <span class="parmname">n</span>. On exit, the first <span class="parmname">m</span> elements of <span class="parmname">w</span> contain the eigenvalues on all processes.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iblock</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Array of size  <span class="parmname">n</span>. At each row/column <var>j</var> where <span class="parmname">e</span><span>(<var>j</var>)</span> is zero or small, the matrix <var>T</var> is considered to split into a block diagonal matrix. On exit <span class="parmname">iblock</span><span>(<var>i</var>)</span> specifies which block (from 1 to the number of blocks) the eigenvalue <span class="parmname">w</span><span>(<var>i</var>)</span> belongs to. </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>In the (theoretically impossible) event that bisection does not converge for some or all eigenvalues, <span class="parmname">info</span> is set to 1 and the ones for which it did not are identified by a negative block number.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">isplit</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>Array of size  <span class="parmname">n</span>. </p>
+<p>Contains the splitting points, at which <var>T</var> breaks up into submatrices. The first submatrix consists of rows/columns 1 to <span class="parmname">isplit</span><span>(1)</span>, the second of rows/columns <samp class="codeph"><var>isplit</var><span>(1)</span>+1</samp> through <samp class="codeph"><var>isplit</var><span>(2)</span></samp>, and so on, and the <span class="parmname">nsplit</span>-th submatrix consists of rows/columns <samp class="codeph"><var>isplit</var><span>(<var>nsplit</var>-1)</span>+1</samp> through <samp class="codeph"><var>isplit</var><span>(<var>nsplit</var>)</span>=<var>n</var></samp>. (Only the first <span class="parmname">nsplit</span> elements are used, but since the  <span class="parmname">nsplit</span> values are not known, <span class="parmname">n</span> words must be reserved for <span class="parmname">isplit</span>.) </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> &lt; 0</samp>, if <samp class="codeph"><var>info</var></samp> = -<var>i</var>, the <var>i</var>-th argument has an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var><span class="eqsymbol">&gt;</span> 0</samp>, some or all of the eigenvalues fail to converge or are not computed. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, bisection fails to converge for some eigenvalues; these eigenvalues are flagged by a negative block number. The effect is that the eigenvalues may not be as accurate as the absolute and relative tolerances. </p>
+<p>If <samp class="codeph"><var>info</var> = 2</samp>, mismatch between the number of eigenvalues output and the number desired. </p>
+<p>If <samp class="codeph"><var>info</var> = 3</samp>: <samp class="codeph"><var>range</var>='<var>I'</var></samp>, and the Gershgorin interval initially used is incorrect. No eigenvalues are computed. Probable cause: the machine has a sloppy floating-point arithmetic. Increase the <var>fudge</var> parameter, recompile, and try again.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html">Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hpr2"/>
+<meta name="abstract" content="Performs a rank-2 update of a Hermitian packed matrix."/>
+<meta name="description" content="Performs a rank-2 update of a Hermitian packed matrix."/>
+<meta name="DC.subject" content="?hpr2, BLAS Level 2 routines, rank-2 update, Hermitian matrix, packed storage, updating:rank-2, matrix-vector operation:rank-2 update"/>
+<meta name="keywords" content="?hpr2, BLAS Level 2 routines, rank-2 update, Hermitian matrix, packed storage, updating:rank-2, matrix-vector operation:rank-2 update"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AFB0853F-CFF5-4601-B513-E778EF974F46"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hpr2</title>
+
+</head>
+<body id="GUID-AFB0853F-CFF5-4601-B513-E778EF974F46">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hpr2</span></h1>
+<!--Performs a rank-2 update of a Hermitian packed matrix.--><div><p class="shortdesc">Performs a rank-2 update of a Hermitian packed matrix.</p>
+<div class="section" id="GUID-9F8EB534-6520-4470-85AC-6AD8F2467AD4"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chpr2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">ap</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhpr2</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">ap</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hpr2</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">alpha</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-FA1786E6-2024-492A-8CE7-E52B2F51A050"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-73D6CC06-7AC9-4EB8-99A5-67D4A6A2612E"><h2 class="sectiontitle">Description</h2><p/>
+<p>The <span class="option">?hpr2</span> routines perform a matrix-vector operation defined as <pre><var>A</var> := <var>alpha</var>*<var>x</var>*conjg(<var>y</var>') + conjg(<var>alpha</var>)*<var>y</var>*conjg(<var>x</var>') + <var>A</var>,</pre></p>
+<p>where:</p>
+<p><var>alpha</var> is a scalar,</p>
+<p><var>x</var> and <var>y</var> are <var>n</var>-element vectors,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> Hermitian matrix, supplied in packed form.</p>
+</div>
+<div class="section" id="GUID-4B7100FF-FF22-4E27-98DF-0843401A35B6"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-D4C1DE42-1B87-4840-80C5-2BBB4CF4EF3B"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the matrix  <var>A</var> is supplied in the packed array <span class="parmname">ap</span>.</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, then the upper triangular part of the matrix  <var>A</var> is supplied in the packed array <span class="parmname">ap</span> .</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, then the low triangular part of the matrix  <var>A</var> is supplied in the packed array <span class="parmname">ap</span> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chpr2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhpr2</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chpr2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhpr2</span></p>
+<p>Array, dimension at least <samp class="codeph">(1 +(<var>n</var> - 1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of <var>incx</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chpr2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhpr2</span></p>
+<p>Array, size at least <samp class="codeph">(1 +(<var>n</var> - 1)*abs(<var>incy</var>))</samp>. Before entry, the incremented array <var>y</var> must contain the <var>n</var>-element vector <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of 
+<var>y</var>.</p>
+<p>The value of <var>incy</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chpr2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhpr2</span></p>
+<p>Array, size at least <samp class="codeph">((<var>n</var>*(<var>n</var> + 1))/2)</samp>. </p>
+<p>Before entry with 
+      <samp class="codeph"><span class="parmname">uplo</span> = 
+          <span class="keyword">'U'</span></samp> or 
+        <span class="keyword">'u'</span>, the array 
+      <var>ap</var> must contain the upper triangular part of the Hermitian matrix packed sequentially, column-by-column, so that 
+      <samp class="codeph"><var>ap</var>(1)</samp> contains 
+      <var>A</var><sub>1, 1</sub>, 
+      <samp class="codeph"><var>ap</var>(2)</samp> and 
+      <samp class="codeph"><var>ap</var>(3)</samp> contain 
+      <var>A</var><sub>1, 2</sub> and 
+      <var>A</var><sub>2, 2</sub> respectively, and so on. 
+    </p>
+<p>Before entry with 
+      <samp class="codeph"><span class="parmname">uplo</span> = 
+          <span class="keyword">'L'</span></samp> or 
+        <span class="keyword">'l'</span>, the array 
+      <var>ap</var> must contain the lower triangular part of the Hermitian matrix packed sequentially, column-by-column, so that 
+      <samp class="codeph"><var>ap</var>(1)</samp> contains 
+      <var>A</var><sub>1, 1</sub>, 
+      <samp class="codeph"><var>ap</var>(2)</samp> and 
+      <samp class="codeph"><var>ap</var>(3)</samp> contain 
+      <var>A</var><sub>2, 1</sub> and 
+      <var>A</var><sub>3, 1</sub> respectively, and so on. 
+    </p>
+<p>The imaginary parts of the diagonal elements need not be set and are assumed to be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-9A77A2E0-F610-44EE-A3EE-81327B90A3FD"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-25363D46-EA52-4513-AA2A-1F8E21DB12F1"><dt class="dlterm"><b class="parmname">:
+                                            </b></dt><dd><p> </p></dd><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>With <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, overwritten by the upper triangular part of the updated matrix.</p>
+<p>With <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, overwritten by the lower triangular part of the updated matrix. </p>
+<p>The imaginary parts of the diagonal elements need are set to zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-649E1D17-6F8B-41B5-BC8F-EEE0938F4177"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hpr2</span> interface are the following:</p>
+<dl id="GUID-D5565B11-BC58-4C3D-8157-FA302FC38477"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Holds the array <var>ap</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?la_gbrcond_x"/>
+<meta name="abstract" content="Computes the infinity norm condition number of op(A)*diag(x) for general banded matrices."/>
+<meta name="description" content="Computes the infinity norm condition number of op(A)*diag(x) for general banded matrices."/>
+<meta name="DC.subject" content="?la_gbrcond_x, cla_gbrcond_x, zla_gbrcond_x, la_gbrcond_x"/>
+<meta name="keywords" content="?la_gbrcond_x, cla_gbrcond_x, zla_gbrcond_x, la_gbrcond_x"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-158F4854-5D9A-47F0-891D-7F37201730BE"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?la_gbrcond_x</title>
+
+</head>
+<body id="GUID-158F4854-5D9A-47F0-891D-7F37201730BE">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?la_gbrcond_x</span></h1>
+<!--Computes the infinity norm condition number of op(A)*diag(x) for general banded matrices.--><div><p class="shortdesc">Computes the infinity norm condition number of op(A)*diag(x) for general banded matrices.</p>
+<div class="section" id="GUID-AAD7EC69-AB5B-4A9D-9D58-5848B62C02F6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cla_gbrcond_x</span><span class="delim">( </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zla_gbrcond_x</span><span class="delim">( </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-952621B5-E6BB-46FA-AD8D-8161653FE685"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-6D4640C5-0DC9-405C-982F-EC8304C9D976"><h2 class="sectiontitle">Description</h2><p>The function computes the infinity norm condition number of</p>
+<p><samp class="codeph">op(<var>A</var>) * diag(<var>x</var>)</samp></p>
+<p>where the <span class="parmname">x</span> is a <span class="keyword">COMPLEX</span> vector for <span class="option">cla_gbrcond_x</span> and a <span class="keyword">DOUBLE COMPLEX</span> vector for <span class="option">zla_gbrcond_x</span>.</p>
+</div>
+<div class="section" id="GUID-1CBE9A71-1F79-484E-9025-6CCE6B448E37"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BFB01EC8-B586-4C9E-95C7-9DB54D6E2706"><dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.  Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span> or <span class="keyword">'C'</span>.</p>
+<p>Specifies the form of the system of equations:</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, the system has the form <var>A*X</var> = <var>B</var> (No transpose)</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, the system has the form <var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var> (Transpose)</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, the system has the form  <var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var> (Conjugate Transpose = Transpose)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of linear equations, that is, the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">kl</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The number of subdiagonals within the band of <var>A</var>; <var>kl</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ku</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The number of superdiagonals within the band of <var>A</var>; <var>ku</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span>, <span class="parmname">afb</span>, <span class="parmname">x</span>, <span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cla_gbrcond_x</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zla_gbrcond_x</span></p>
+<p>Arrays:</p>
+<p><span class="parmname">ab</span>(<span class="parmname">ldab</span>,*) contains the original band matrix <var>A</var> stored in rows from 1 to <var>kl</var> + <var>ku</var> + 1. The <var>j</var>-th column of <var>A</var> is stored in the <var>j</var>-th column of the array <var>ab</var> as follows:</p>
+<p><samp class="codeph"><var>ab</var>(<var>ku</var>+1+<var>i</var>-<var>j</var>,<var>j</var>) = A(<var>i</var>,<var>j</var>)</samp></p>
+<p>for</p>
+<p><samp class="codeph">max(1,<var>j</var>-<var>ku</var>)  <span class="eqsymbol">≤</span><var>i</var><span class="eqsymbol">≤</span> min(<var>n</var>,<var>j</var>+<var>kl</var>)</samp></p>
+<p><span class="parmname">afb</span>(<span class="parmname">ldafb</span>,*) contains details of the LU factorization of the band matrix <var>A</var>, as returned by <span class="option">?gbtrf</span>. <var>U</var> is stored as an upper triangular band matrix with <samp class="codeph"><var>kl</var>+<var>ku</var></samp> superdiagonals in rows 1 to <samp class="codeph"><var>kl</var>+<var>ku</var>+1</samp>, and the multipliers used during the factorization are stored in rows <samp class="codeph"><var>kl</var>+<var>ku</var>+2</samp> to <samp class="codeph">2*<var>kl</var>+<var>ku</var>+1</samp>.</p>
+<p><span class="parmname">x</span>, <span class="keyword">DIMENSION</span><var>n</var>. The vector <samp class="codeph"><var>x</var></samp> in the formula  <samp class="codeph">op(<var>A</var>) * diag(<var>x</var>)</samp>.</p>
+<p><span class="parmname">work</span> is a workspace array of <span class="keyword">DIMENSION</span> (2*<var>n</var>).</p>
+<p>The second dimension of <span class="parmname">ab</span> and <span class="parmname">afb</span> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>ab</var>. <span class="parmname">ldab</span><span class="eqsymbol">≥</span><samp class="codeph"><var>kl</var>+<var>ku</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldafb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The leading dimension of <span class="parmname">afb</span>. <span class="parmname">ldafb</span><span class="eqsymbol">≥</span><samp class="codeph">2*<var>kl</var>+<var>ku</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array with <span class="keyword">DIMENSION</span><var>n</var>. The pivot indices from the factorization <samp class="codeph"><var>A</var> = <var>P</var>*<var>L</var>*<var>U</var></samp> as computed by <span class="option">?gbtrf</span>. Row <var>i</var> of the matrix was interchanged with row <samp class="codeph"><span class="parmname">ipiv</span>(<var>i</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cla_gbrcond_x</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zla_gbrcond_x</span></p>
+<p>Array <span class="parmname">rwork</span> with <span class="keyword">DIMENSION</span><var>n</var> is a workspace.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A97558AC-F1D6-4A9B-966B-A93E3E4D50D4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-867562DD-EDD1-4C81-922E-E714864F1764"><dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful.</p>
+<p>If <var>i</var> &gt; 0, the <var>i</var>-th parameter is invalid.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">?gbtrf</span></a> </div></div></div>
+</body>
+</html>

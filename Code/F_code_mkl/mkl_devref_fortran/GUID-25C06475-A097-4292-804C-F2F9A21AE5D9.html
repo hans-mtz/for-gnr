@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_domain_get_max_threads"/>
+<meta name="abstract" content="Gets the number of OpenMP* threads targeted for parallelism for a particular function domain."/>
+<meta name="description" content="Gets the number of OpenMP* threads targeted for parallelism for a particular function domain."/>
+<meta name="DC.subject" content="threading control, mkl_domain_get_max_threads, MKL_Domain_Get_Max_Threads"/>
+<meta name="keywords" content="threading control, mkl_domain_get_max_threads, MKL_Domain_Get_Max_Threads"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-25C06475-A097-4292-804C-F2F9A21AE5D9"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_domain_get_max_threads</title>
+
+</head>
+<body id="GUID-25C06475-A097-4292-804C-F2F9A21AE5D9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_domain_get_max_threads</span></h1>
+<!--Gets the number of OpenMP* threads targeted for parallelism for a particular function domain.--><div><p class="shortdesc">Gets the number of OpenMP* threads targeted for parallelism for a particular function domain.</p>
+<div class="section" id="GUID-65704438-BA4F-4E4B-B2C0-670A669C547C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">nt</span><span class="oper"> = </span><span class="kwd">mkl_domain_get_max_threads</span><span class="sep">( </span><span class="var">domain</span><span class="sep"> )</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2195B7F4-83B9-4490-B582-F2B44260D035"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d299201e63" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d299201e66" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d299201e69" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d299201e63"><p><span class="parmname">domain</span></p>
+</td>
+<td valign="top" headers="d299201e66"><p><span class="keyword">INTEGER</span></p>
+</td>
+<td valign="top" headers="d299201e69"><p>The named constant that defines  the targeted domain.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-599F14D0-A156-40D9-A09B-3F79C0F7B64D"><h2 class="sectiontitle">Description</h2><p>Computational functions of the Intel&reg; oneAPI Math Kernel Library function domain defined by the<span class="parmname">domain</span> parameter use the value returned by this function as a limit of the number of OpenMP threads they should request for parallel computations. The <span class="option">mkl_domain_get_max_threads</span> function returns the thread-local number of threads or, if that value is zero or not set, the global number of threads. To determine this number, the function inspects  the environment settings and return values of the function calls below in the order they are listed until it finds a non-zero value:</p>
+<ul id="GUID-C1B3D4D1-ADAA-4CB5-928D-011B05DEFE34"><li><p>A  call to <a href="GUID-9BB4E3E3-8720-478D-9C7F-D04EAF951F70.html">mkl_set_num_threads_local</a></p>
+</li>
+<li><p>The last  of the calls to <a href="GUID-9999ED2B-CFD6-4687-B690-DA81E0870D67.html">mkl_set_num_threads</a> or <a href="GUID-D808F69D-5741-4DF6-950E-5B30A32D9B44.html">mkl_domain_set_num_threads</a>( …, <span class="keyword">MKL_DOMAIN_ALL</span>)</p>
+</li>
+<li><p>A  call to <span class="option">mkl_domain_set_num_threads</span>( …, <span class="parmname">domain</span>)</p>
+</li>
+<li><p>The <span class="keyword">MKL_DOMAIN_NUM_THREADS</span> environment variable with the <span class="keyword">MKL_DOMAIN_ALL</span> tag</p>
+</li>
+<li><p>The <span class="keyword">MKL_DOMAIN_NUM_THREADS</span> environment variable (with the specific domain tag)</p>
+</li>
+<li><p>The <span class="keyword">MKL_NUM_THREADS</span> environment variable</p>
+</li>
+<li><p>A  call to <span class="option">omp_set_num_threads</span></p>
+</li>
+<li><p>The  <span class="keyword">OMP_NUM_THREADS</span> environment variable</p>
+</li>
+</ul>
+<p>Actual number of threads used by the Intel&reg; oneAPI Math Kernel Library computational functions may vary depending on the problem size and on whether dynamic adjustment of the number of threads is enabled (see the description of<a href="GUID-341B837A-9381-451D-B2BE-C049969CF545.html">mkl_set_dynamic</a>). For a list of supported values of the <span class="parmname">domain</span> argument,  see <a href="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html#GUID-BA946DFB-85E7-4289-94AD-311454A6D366">Table "Intel MKL Function Domains".</a></p>
+</div>
+<div class="section" id="GUID-B73E925A-6E86-4C35-B284-4CB743E4916B"><h2 class="sectiontitle">Return Values</h2><p><table cellpadding="4" cellspacing="0" summary="" id="SIMPLETABLE_13B3D675465F48FCA9E7E929287DC1FA" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d299201e203" width="12.396694214876034%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d299201e206" width="31.40495867768595%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d299201e209" width="56.19834710743802%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d299201e203"><p><span class="parmname">nt</span></p>
+</td>
+<td valign="top" headers="d299201e206"><p><span class="keyword">INTEGER</span>*4</p>
+</td>
+<td valign="top" headers="d299201e209"><p>The maximum number of threads for Intel&reg; oneAPI Math Kernel Library functions from a given domain to use in internal parallel regions.</p>
+<p> If an invalid value of <span class="parmname">domain</span> is supplied, the function
+returns the number of threads for <span class="keyword">MKL_DOMAIN_ALL</span></p>
+</td>
+</tr>
+</table>
+</p>
+</div>
+<div class="section" id="GUID-E67B55AD-D32A-442E-8B7B-2CE089E214CD"><h2 class="sectiontitle">Example</h2><pre>use mkl_service
+…
+if (1 &lt; <strong>mkl_domain_get_max_threads(MKL_DOMAIN_BLAS)</strong>) then
+print *, "Intel MKL BLAS functions employ threading"
+end if
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html">Threading Control</a></div>
+</div>
+<div/>
+</body>
+</html>

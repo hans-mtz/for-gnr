@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?latrz"/>
+<meta name="abstract" content="Reduces an upper trapezoidal matrix to upper triangular form by means of orthogonal/unitary transformations."/>
+<meta name="description" content="Reduces an upper trapezoidal matrix to upper triangular form by means of orthogonal/unitary transformations."/>
+<meta name="DC.subject" content="p?latrz, ScaLAPACK routines, auxiliary routines, trapezoidal matrix, reduction to triangular form"/>
+<meta name="keywords" content="p?latrz, ScaLAPACK routines, auxiliary routines, trapezoidal matrix, reduction to triangular form"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-12B32D09-8482-4B68-9315-994D8C1832B6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?latrz</title>
+
+</head>
+<body id="GUID-12B32D09-8482-4B68-9315-994D8C1832B6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?latrz</span></h1>
+<!--Reduces an upper trapezoidal matrix to upper triangular form by means of orthogonal/unitary transformations.--><div><p class="shortdesc">Reduces an upper trapezoidal matrix to upper triangular form by means of orthogonal/unitary transformations.</p>
+<div class="section" id="GUID-A39BEA55-C1D6-4565-B86C-DE0F8E688CC2"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslatrz</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlatrz</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclatrz</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlatrz</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-ABB00CE5-6A0D-4017-ACDF-31E7ADACB0E6"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?latrz</span><span>routine </span>reduces the <var>m</var>-by-<var>n</var><samp class="codeph">(<var>m </var><span class="eqsymbol">≤</span><var> n</var>)</samp> real/complex upper trapezoidal matrix <samp class="codeph">sub(<var>A</var>) = [<var>A</var>(<var>ia</var>:<var>ia</var>+<var>m</var>-1, <var>ja</var>:<var>ja</var>+<var>m</var>-1)</samp><samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>m</var>-1, <var>ja</var>+<var>n-l</var>:<var>ja</var>+<var>n</var>-1)]</samp> to upper triangular form by means of orthogonal/unitary transformations.</p>
+<p>The upper trapezoidal matrix sub(<var>A</var>) is factored as </p>
+<p><samp class="codeph">sub(<var>A</var>) = ( <var>R</var> 0 )*<var>Z</var></samp>, </p>
+<p>where <var>Z</var> is an <var>n</var>-by-<var>n</var> orthogonal/unitary matrix and <var>R</var> is an <var>m</var>-by<var>-</var><var>m</var> upper triangular matrix.</p>
+</div>
+<div class="section" id="GUID-09EE4B63-8556-4FCB-AE3E-D63DA2E5C807"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0B6A81A0-9BD1-4C8E-AB9E-68F97DDF46E6"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of rows in the distributed matrix sub(<var>A</var>). <samp class="codeph"><var>m </var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of columns in the distributed matrix sub(<var>A</var>). <samp class="codeph"><var>n </var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of columns of the distributed matrix sub(<var>A</var>) containing the meaningful part of the Householder reflectors. <samp class="codeph"><var>l</var><span class="eqsymbol"> &gt;</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslatrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlatrz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclatrz</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlatrz</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph"><span>(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</span></samp>. On entry, the local pieces of the <var>m</var>-by-<var>n</var> distributed matrix sub(<var>A</var>), which is to be factored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The row index in the global matrix <var>A</var> indicating the first row of sub(<var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The column index in the global matrix <var>A</var> indicating the first column of sub(<var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. </p>
+<p>The array descriptor for the distributed matrix <var>A</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pslatrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlatrz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclatrz</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlatrz</span>. </p>
+<p>Workspace array of size <var>lwork</var>.</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol"> ≥ </span><var>nq</var>0 + max(1, <var>mp</var>0)</samp>, where</p>
+<p><samp class="codeph"><var>iroff</var> = mod(<var>ia</var>-1, <var>mb_a</var>), </samp></p>
+<p><samp class="codeph"><var>icoff</var> = mod(<var>ja</var>-1, <var>nb_a</var>)</samp>,</p>
+<p><samp class="codeph"><var>iarow</var> = <span class="keyword">indxg2p</span>(<var>ia</var>, <var>mb_a</var>, <var>myrow</var>, <var>rsrc</var>_a, <var>nprow</var>)</samp>,</p>
+<p><samp class="codeph"><var>iacol</var> = <span class="keyword">indxg2p</span>(<var>ja</var>, <var>nb_a</var>, <var>mycol</var>, <var>csrc_a</var>, <var>npcol</var>)</samp>,</p>
+<p><samp class="codeph"><var>mp</var>0   = <span class="keyword">numroc</span>(<var>m</var>+<var>iroff</var>, <var>mb_a</var>, <var>myrow</var>, <var>iarow</var>, <var>nprow</var>)</samp>,</p>
+<p><samp class="codeph"><var>nq</var>0   = <span class="keyword">numroc</span>(<var>n</var>+<var>icoff</var>, <var>nb_a</var>, <var>mycol</var>, <var>iacol</var>, <var>npcol</var>)</samp>,</p>
+<p><span class="keyword">numroc</span>, <span class="keyword">indxg2p</span>, and <span class="keyword">numroc</span> are ScaLAPACK tool functions; <var>myrow</var>, <var>mycol</var>, <var>nprow</var>, and <var>npcol</var> can be determined by calling the <span>subroutine </span><span class="keyword">blacs_gridinfo</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D1529872-CB1F-40D5-A651-D32B911A4BF9"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-4A12D016-D924-44CA-AF73-70A72CD2A0F1"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the leading <var>m</var>-by-<var>m</var> upper triangular part of sub(<var>A</var>) contains the upper triangular matrix <var>R</var>, and elements <samp class="codeph"><var>n</var>-<var>l</var>+1</samp> to <var>n</var> of the first <var>m</var> rows of sub(<var>A</var>), with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Z</var> as a product of <var>m</var> elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslatrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlatrz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclatrz</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlatrz</span>. </p>
+<p>Array of size<samp class="codeph"><var>LOCr</var>(<var>ja</var>+<var>m</var>-1)</samp>. This array contains the scalar factors of the elementary reflectors. <var>tau</var> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6BE8D0B6-BFD9-4426-AA46-1F1CC123D577"><h2 class="sectiontitle">Application Notes</h2><p>The factorization is obtained by Householder's method. <span>The <var>k</var>-th transformation matrix, <samp class="codeph"><var>Z</var>(<var>k</var>)</samp>, which is used (or, in case of complex <span>routines</span>, whose conjugate transpose is used) to introduce zeros into the <samp class="codeph">(<var>m</var> - <var>k</var> + 1)</samp>-th row of sub(<var>A</var>), is given in the form</span></p>
+<p><span><br/><div class="imagecenter"><img src="GUID-FA36DC07-75DC-434C-9988-495A06FCC1D3-low.jpg" width="112" height="45" alt="Equation" align="center" class=".eq"/></div><br/></span></p>
+<p>where  </p>
+<p><span><br/><div class="imagecenter"><img src="GUID-8CD075B8-6E87-41E1-AE2D-E81A6A6CE8F1-low.jpg" width="292" height="70" alt="Equation" align="center" class=".eq"/></div><br/></span></p>
+<p><var>tau</var> is a scalar and <samp class="codeph"><var>z</var>( <var>k</var> )</samp> is an (<var>n-m</var>)-element vector. <var>tau</var> and <samp class="codeph"><var>z</var>( <var>k</var> )</samp>  are chosen to annihilate the elements of the <var>k</var>-th row of sub(<var>A</var>).  The scalar <var>tau</var> is returned in the <var>k</var>-th element of <var>tau</var> and the vector <samp class="codeph"><var>u</var>( <var>k</var> )</samp> in the <var>k</var>-th row of sub(<var>A</var>), such that the elements of <samp class="codeph"><var>z(</var><var>k</var> )</samp> are  in <var>A</var><samp class="codeph">( <var>k</var>, <var>m</var> + 1 ), ..., </samp><var>A</var><samp class="codeph">( <var>k</var>, <var>n</var> )</samp>. The elements of <var>R</var> are returned in  the upper triangular part of sub(<var>A</var>).</p>
+<p><var>Z</var> is given by <pre><var>Z</var> =  <var>Z</var>(1)<var>Z</var>(2)...<var>Z</var>(<var>m</var>).</pre></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

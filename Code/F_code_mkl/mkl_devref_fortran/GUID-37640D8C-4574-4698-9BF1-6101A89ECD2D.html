@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="LAPACK Linear Equation Driver Routines"/>
+<meta name="DC.subject" content="Driver Routines"/>
+<meta name="keywords" content="Driver Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-637284D3-4D1F-4D6C-9509-382CB2DD1A3D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CC4330E-D9A9-4923-A2CE-F60D69EDCAA8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2D23A395-C952-457D-9847-BCD02DC3DEF3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-78E9D200-9E3B-4F85-B51D-893BC0193213.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-36E347A0-A1DF-48F0-A554-A98A3704A3B5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-52A39FD5-0990-4411-9C1D-6EBBF37BA153.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2F21835C-6D85-4C5B-9651-E72B373BA685.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1811FAD9-A0DB-4845-9F2C-7CE5D07BDF15.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4CAE7DE-83FF-476D-A3E0-0B647FBE853C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF85B82D-D4DE-4F2F-B688-698FCA5E8F03.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DD2CD6BB-9D77-4EE9-A327-973D2422C930.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7CC9FE3F-F0CD-4E07-9B53-044EEA405957.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8AAFC4A3-6AAB-455A-B401-5333B7AED21A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7A249694-4C22-4B88-866D-BC3EA27BB629.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-93FA2315-CC25-4B42-A523-E4183813B040.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9D4C4C2F-66C8-469D-8576-96B5B0D5AA8D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-483E3E21-1981-47BD-B9E4-812425DA9E5C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3F01B6CD-6B58-4D39-8DF2-0321CD37CF49.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D7402B4F-733E-4F5C-BA63-0B83D6951A0F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAA9F2C6-3F0E-4937-9227-A1F02A54283B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E61D14A0-32F2-4CB9-8F79-927BF259E0C6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D9B44BC2-DF7A-4FB6-B33B-76CE4BD5D35D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2293FDD3-7E56-444D-8BA1-79F6FAA168CD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-17DF5CAD-57AF-486D-A083-8D2C61FBB7A5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-EC7A1733-B8FA-4242-93F9-EE1EA8B1CE78.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CB65B531-AED3-4740-B5A9-E5314F2F48D5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4D16BEC0-858E-44B4-A420-E00E06CE5984.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0DA4CD74-A35C-4E8C-8B96-3C6E4FDACF1B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF94AD1C-1CBC-4D77-AC03-9193D1B8DAB7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-67C23C0F-0CD3-41A4-BE4B-E313A268F2D4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-45E49BC1-2339-4C96-979E-4D0333C49C6F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-097383B3-FE12-4B7E-BC76-1BE24BE0F8BA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7A636BAA-D356-41F4-AD1C-B546C50BE138.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7CE178A0-732C-4F67-A82C-35978166EC57.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>LAPACK Linear Equation Driver Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-37640D8C-4574-4698-9BF1-6101A89ECD2D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">LAPACK Linear Equation Driver Routines</h1>
+<div><p><a href="#TBL3-3">Table "Driver Routines for Solving Systems of Linear Equations"</a> lists the LAPACK driver routines for solving systems of
+    linear equations with real or complex matrices.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL3-3" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Driver Routines for Solving Systems of Linear Equations</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="24.937655860349132%" id="d433628e33"><p>Matrix type, storage scheme</p>
+</th>
+<th class="cellrowborder" valign="top" width="24.937655860349132%" id="d433628e36"><p>Simple Driver</p>
+</th>
+<th class="cellrowborder" valign="top" width="24.937655860349132%" id="d433628e39"><p>Expert Driver</p>
+</th>
+<th class="row-nocellborder" valign="top" width="25.187032418952622%" id="d433628e42"><p>Expert Driver using Extra-Precise Interative Refinement</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>general</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-4CC4330E-D9A9-4923-A2CE-F60D69EDCAA8.html#GUID-4CC4330E-D9A9-4923-A2CE-F60D69EDCAA8"><span class="option">?gesv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-2D23A395-C952-457D-9847-BCD02DC3DEF3.html#GUID-2D23A395-C952-457D-9847-BCD02DC3DEF3"><span class="option">?gesvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p><a href="GUID-78E9D200-9E3B-4F85-B51D-893BC0193213.html#GUID-78E9D200-9E3B-4F85-B51D-893BC0193213"><span class="option">?gesvxx</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>general band</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-36E347A0-A1DF-48F0-A554-A98A3704A3B5.html#GUID-36E347A0-A1DF-48F0-A554-A98A3704A3B5"><span class="option">?gbsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-52A39FD5-0990-4411-9C1D-6EBBF37BA153.html#GUID-52A39FD5-0990-4411-9C1D-6EBBF37BA153"><span class="option">?gbsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p><a href="GUID-2F21835C-6D85-4C5B-9651-E72B373BA685.html#GUID-2F21835C-6D85-4C5B-9651-E72B373BA685"><span class="option">?gbsvxx</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>general tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-1811FAD9-A0DB-4845-9F2C-7CE5D07BDF15.html#GUID-1811FAD9-A0DB-4845-9F2C-7CE5D07BDF15"><span class="option">?gtsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-D4CAE7DE-83FF-476D-A3E0-0B647FBE853C.html#GUID-D4CAE7DE-83FF-476D-A3E0-0B647FBE853C"><span class="option">?gtsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>diagonally dominant tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-BF85B82D-D4DE-4F2F-B688-698FCA5E8F03.html#GUID-BF85B82D-D4DE-4F2F-B688-698FCA5E8F03"><span class="option">?dtsvb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p/>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>symmetric/Hermitian positive-definite</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-DD2CD6BB-9D77-4EE9-A327-973D2422C930.html#GUID-DD2CD6BB-9D77-4EE9-A327-973D2422C930"><span class="option">?posv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-7CC9FE3F-F0CD-4E07-9B53-044EEA405957.html#GUID-7CC9FE3F-F0CD-4E07-9B53-044EEA405957"><span class="option">?posvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p><a href="GUID-8AAFC4A3-6AAB-455A-B401-5333B7AED21A.html#GUID-8AAFC4A3-6AAB-455A-B401-5333B7AED21A"><span class="option">?posvxx</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>symmetric/Hermitian positive-definite, storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-7A249694-4C22-4B88-866D-BC3EA27BB629.html#GUID-7A249694-4C22-4B88-866D-BC3EA27BB629"><span class="option">?ppsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-93FA2315-CC25-4B42-A523-E4183813B040.html#GUID-93FA2315-CC25-4B42-A523-E4183813B040"><span class="option">?ppsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>symmetric/Hermitian positive-definite, band</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-9D4C4C2F-66C8-469D-8576-96B5B0D5AA8D.html#GUID-9D4C4C2F-66C8-469D-8576-96B5B0D5AA8D"><span class="option">?pbsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-483E3E21-1981-47BD-B9E4-812425DA9E5C.html#GUID-483E3E21-1981-47BD-B9E4-812425DA9E5C"><span class="option">?pbsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>symmetric/Hermitian positive-definite,
+        tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-3F01B6CD-6B58-4D39-8DF2-0321CD37CF49.html#GUID-3F01B6CD-6B58-4D39-8DF2-0321CD37CF49"><span class="option">?ptsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-D7402B4F-733E-4F5C-BA63-0B83D6951A0F.html#GUID-D7402B4F-733E-4F5C-BA63-0B83D6951A0F"><span class="option">?ptsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>symmetric/Hermitian indefinite</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-AAA9F2C6-3F0E-4937-9227-A1F02A54283B.html#GUID-AAA9F2C6-3F0E-4937-9227-A1F02A54283B"><span class="option">?sysv</span></a>/<a href="GUID-CB65B531-AED3-4740-B5A9-E5314F2F48D5.html#GUID-CB65B531-AED3-4740-B5A9-E5314F2F48D5"><span class="option">?hesv</span></a></p>
+<p><a href="GUID-D9B44BC2-DF7A-4FB6-B33B-76CE4BD5D35D.html#GUID-D9B44BC2-DF7A-4FB6-B33B-76CE4BD5D35D"><span class="option">?sysv_rook</span></a>/<a href="GUID-2293FDD3-7E56-444D-8BA1-79F6FAA168CD.html#GUID-2293FDD3-7E56-444D-8BA1-79F6FAA168CD"><span class="option">?sysv_rk</span></a><span>/<a href="GUID-DF94AD1C-1CBC-4D77-AC03-9193D1B8DAB7.html#GUID-DF94AD1C-1CBC-4D77-AC03-9193D1B8DAB7"><span class="option">?hesv_rook</span></a></span>/<a href="GUID-0DA4CD74-A35C-4E8C-8B96-3C6E4FDACF1B.html#GUID-0DA4CD74-A35C-4E8C-8B96-3C6E4FDACF1B"><span class="option">?hesv_rk</span></a></p>
+<p><a href="GUID-E61D14A0-32F2-4CB9-8F79-927BF259E0C6.html#GUID-E61D14A0-32F2-4CB9-8F79-927BF259E0C6"><span class="option">?sysv_aa</span></a>/<a href="GUID-4D16BEC0-858E-44B4-A420-E00E06CE5984.html#GUID-4D16BEC0-858E-44B4-A420-E00E06CE5984"><span class="option">?hesv_aa</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-17DF5CAD-57AF-486D-A083-8D2C61FBB7A5.html#GUID-17DF5CAD-57AF-486D-A083-8D2C61FBB7A5"><span class="option">?sysvx</span></a>/<a href="GUID-67C23C0F-0CD3-41A4-BE4B-E313A268F2D4.html#GUID-67C23C0F-0CD3-41A4-BE4B-E313A268F2D4"><span class="option">?hesvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p><a href="GUID-EC7A1733-B8FA-4242-93F9-EE1EA8B1CE78.html#GUID-EC7A1733-B8FA-4242-93F9-EE1EA8B1CE78"><span class="option">?sysvxx</span></a>/<a href="GUID-45E49BC1-2339-4C96-979E-4D0333C49C6F.html#GUID-45E49BC1-2339-4C96-979E-4D0333C49C6F"><span class="option">?hesvxx</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>symmetric/Hermitian indefinite, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-097383B3-FE12-4B7E-BC76-1BE24BE0F8BA.html#GUID-097383B3-FE12-4B7E-BC76-1BE24BE0F8BA"><span class="option">?spsv</span></a>/<a href="GUID-7A636BAA-D356-41F4-AD1C-B546C50BE138.html#GUID-7A636BAA-D356-41F4-AD1C-B546C50BE138"><span class="option">?hpsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F.html#GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F"><span class="option">?spsvx</span></a>/<a href="GUID-7CE178A0-732C-4F67-A82C-35978166EC57.html#GUID-7CE178A0-732C-4F67-A82C-35978166EC57"><span class="option">?hpsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>complex symmetric</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-AAA9F2C6-3F0E-4937-9227-A1F02A54283B.html#GUID-AAA9F2C6-3F0E-4937-9227-A1F02A54283B"><span class="option">?sysv</span></a></p>
+<p><a href="GUID-D9B44BC2-DF7A-4FB6-B33B-76CE4BD5D35D.html#GUID-D9B44BC2-DF7A-4FB6-B33B-76CE4BD5D35D"><span class="option">?sysv_rook</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-17DF5CAD-57AF-486D-A083-8D2C61FBB7A5.html#GUID-17DF5CAD-57AF-486D-A083-8D2C61FBB7A5"><span class="option">?sysvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e33 "><p>complex symmetric, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e36 "><p><a href="GUID-097383B3-FE12-4B7E-BC76-1BE24BE0F8BA.html#GUID-097383B3-FE12-4B7E-BC76-1BE24BE0F8BA"><span class="option">?spsv</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="24.937655860349132%" headers="d433628e39 "><p><a href="GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F.html#GUID-C063C68C-D5A7-4706-9E95-E4B5139A480F"><span class="option">?spsvx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="25.187032418952622%" headers="d433628e42 "><p/>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this table
+   <span class="keyword">?</span> stands for
+   <span class="keyword">s</span> (single precision real),
+   <span class="keyword">d</span> (double precision real),
+   <span class="keyword">c</span> (single precision complex),
+   or
+   <span class="keyword">z</span> (double precision complex).
+   In the description of
+  <span class="option">?gesv</span> and
+  <span class="option">?posv</span> routines, the
+  <span class="keyword">?</span> sign stands for combined
+  character codes
+  <span class="keyword">ds</span> and
+  <span class="keyword">zc</span> for the mixed precision
+  subroutines.</p>
+</div>
+<div/>
+</body>
+</html>

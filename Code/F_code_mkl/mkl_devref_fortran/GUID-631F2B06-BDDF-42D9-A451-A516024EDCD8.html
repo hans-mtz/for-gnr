@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laeda"/>
+<meta name="abstract" content="Used by ?stedc. Computes the Z vector determining the rank-one modification of the diagonal matrix. Used when the original matrix is dense."/>
+<meta name="description" content="Used by ?stedc. Computes the Z vector determining the rank-one modification of the diagonal matrix. Used when the original matrix is dense."/>
+<meta name="DC.subject" content="?laeda, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="keywords" content="?laeda, LAPACK routines, auxiliary routines, symmetric eigenvalue problems, auxiliary"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-631F2B06-BDDF-42D9-A451-A516024EDCD8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laeda</title>
+
+</head>
+<body id="GUID-631F2B06-BDDF-42D9-A451-A516024EDCD8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laeda</span></h1>
+<!--Used by  ?stedc . Computes the Z vector determining the rank-one modification of the diagonal matrix. Used when the original matrix is dense.--><div><p class="shortdesc">Used by <span class="option">?stedc</span>. Computes the Z vector determining the rank-one modification of the diagonal matrix. Used when the original matrix is dense.</p>
+<div class="section" id="GUID-553D2E22-0F83-4F45-8548-087033D34E20"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaeda</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">tlvls</span><span class="sep">, </span><span class="var">curlvl</span><span class="sep">, </span><span class="var">curpbm</span><span class="sep">, </span><span class="var">prmptr</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">givptr</span><span class="sep">, </span><span class="var">givcol</span><span class="sep">, </span><span class="var">givnum</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">qptr</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ztemp</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaeda</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">tlvls</span><span class="sep">, </span><span class="var">curlvl</span><span class="sep">, </span><span class="var">curpbm</span><span class="sep">, </span><span class="var">prmptr</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">givptr</span><span class="sep">, </span><span class="var">givcol</span><span class="sep">, </span><span class="var">givnum</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">qptr</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ztemp</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-CB488538-2EC3-4C08-AF97-104A59B4EBDB"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-75087961-1970-4C72-8D3B-0806F5934A99"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?laeda</span> computes the <var>Z</var> vector corresponding to the merge step in the <var>curlvl</var>-th step of the merge process with <var>tlvls</var> steps for the <var>curpbm</var>-th problem.</p>
+</div>
+<div class="section" id="GUID-28CEAC90-5C5D-4402-9FC9-966277B2BADC"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-966E72C4-B40F-43A8-A982-831A48804175"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The dimension of the symmetric tridiagonal matrix (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">tlvls</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The total number of merging levels in the overall divide and conquer tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">curlvl</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The current level in the overall merge routine, <samp class="codeph">0 ≤ <var>curlvl</var> ≤ <var>tlvls</var></samp> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">curpbm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The current problem in the current level in the overall merge routine (counting from upper left to lower right).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">prmptr</span>, <span class="parmname">perm</span>, <span class="parmname">givptr</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Arrays, dimension (<var>n</var> log<sub>2</sub><var>n</var> ) each.</p>
+<p>The array <var>prmptr</var>(*) contains a list of pointers which indicate where in <var>perm</var> a level's permutation is stored. <samp class="codeph"><var>prmptr</var>(i+1) - <var>prmptr</var>(i)</samp> indicates the size of the permutation and also the size of the full, non-deflated problem.</p>
+<p>The array <var>perm</var>(*) contains the permutations (from deflation and sorting) to be applied to each eigenblock.</p>
+<p>The array <var>givptr</var>(*) contains a list of pointers which indicate where in <var>givcol</var> a level's Givens rotations are stored. <samp class="codeph"><var>givptr</var>(i+1) - <var>givptr</var>(i)</samp> indicates the number of Givens rotations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">givcol</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, dimension (2, <var>n</var> log<sub>2</sub><var>n</var> ).</p>
+<p>Each pair of numbers indicates a pair of columns to take place in a Givens rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">givnum</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaeda</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaeda</span>. </p>
+<p>Array, dimension (2, <var>n</var> log<sub>2</sub><var>n</var>). </p>
+<p>Each number indicates the <var>S</var> value to be used in the corresponding Givens rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaeda</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaeda</span>. </p>
+<p>Array, dimension ( <var>n</var><sup class="power">2</sup>). </p>
+<p>Contains the square eigenblocks from previous levels, the starting positions for blocks are given by <var>qptr</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">qptr</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, dimension (<var>n</var>+2). Contains a list of pointers which indicate where in <var>q</var> an eigenblock is stored. <samp class="codeph"><span class="keyword">sqrt</span>( <var>qptr</var>(i+1) - <var>qptr</var>(i)</samp>) indicates the size of the block.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ztemp</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaeda</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaeda</span>. </p>
+<p>Workspace array, dimension (<var>n</var>). </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-02B3A8E6-3821-4C2F-85F6-59D8D68551D1"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3C0C321E-1969-4573-A8A9-F5208F211EA4"><dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaeda</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaeda</span>. </p>
+<p>Array, dimension (<var>n</var>). Contains the updating vector (the last row of the first sub-eigenvector matrix and the first row of the second sub-eigenvector matrix).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?poequ"/>
+<meta name="abstract" content="Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive definite distributed matrix and reduce its condition number."/>
+<meta name="description" content="Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive definite distributed matrix and reduce its condition number."/>
+<meta name="DC.subject" content="p?poequ, ScaLAPACK routines, matrix equilibration, scaling factors, symmetric positive definite distributed matrix, equilibration, computing scaling factors, Hermitian positive definite distributed matrix"/>
+<meta name="keywords" content="p?poequ, ScaLAPACK routines, matrix equilibration, scaling factors, symmetric positive definite distributed matrix, equilibration, computing scaling factors, Hermitian positive definite distributed matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D9C8E93A-B463-4E4D-90FD-C215D80A5421.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-34074084-8CE7-4B20-8C44-9CF9F486B63F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?poequ</title>
+
+</head>
+<body id="GUID-34074084-8CE7-4B20-8C44-9CF9F486B63F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?poequ</span></h1>
+<!--Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive definite distributed matrix and reduce its condition number.--><div><p class="shortdesc">Computes row and column scaling factors intended to equilibrate a symmetric (Hermitian) positive definite distributed matrix and reduce its condition number.</p>
+<div class="section" id="GUID-C6674197-CCDC-4588-9AF8-EF575094E03D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pspoequ</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdpoequ</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcpoequ</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzpoequ</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">sc</span><span class="sep">, </span><span class="var">scond</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3CD0D77C-0140-4827-8BBC-45B32DD8224A"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-3AEBA449-89A9-4283-9CE3-FD78B32ECA51"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?poequ</span><span> routine </span>computes row and column scalings intended to equilibrate a real symmetric or complex Hermitian positive definite distributed matrix sub(<var>A</var>) = <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1) and reduce its condition number (with respect to the two-norm). The output arrays <span class="parmname">sr</span> and <span class="parmname">sc</span> return the row and column scale factors </p>
+<p><br/><div class="imagecenter"><img src="GUID-A8D0AF36-FDB1-4887-80D9-0625E5A08A29-low.gif" width="116" height="60" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>These factors are chosen so that the scaled distributed matrix <var>B</var> with elements <var>b</var><sub class="subb"><var>i</var><var>j</var></sub>=<var>s</var>(<var>i</var>)*<var>a</var><sub class="subb"><var>i</var><var>j</var></sub>*<var>s</var>(<var>j</var>) has ones on the diagonal.</p>
+<p>This choice of <span class="parmname">sr</span> and <span class="parmname">sc</span> puts the condition number of <var>B</var> within a factor <span class="parmname">n</span> of the smallest possible condition number over all possible diagonal scalings.</p>
+<p>The auxiliary function <span class="option">p?laqsy</span> uses scaling factors computed by <span class="option">p?geequ</span> to scale a general rectangular matrix.</p>
+</div>
+<div class="section" id="GUID-912F2134-CBBD-4DA3-891E-D52E108BDED6"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8EC230D0-E8B4-4D00-B7F1-D87C36CD46F5"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of rows  and columns to be operated on, that is, the order of the distributed matrix sub(<var>A</var>) <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pspoequ</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdpoequ</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcpoequ</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzpoequ</span>. </p>
+<p>Pointer into the local memory to an array of local size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>.</p>
+<p>The array <var>a</var> contains the <span class="parmname">n</span>-by-<span class="parmname">n</span> symmetric/Hermitian positive definite distributed matrix sub(<var>A</var>) whose scaling factors are to be computed. Only the diagonal elements of sub(<var>A</var>) are referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1F469581-FCCF-4081-9BCC-C78940817628"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-216BDA00-2A17-43AC-BE8D-00F9993AEB02"><dt class="dlterm"><span class="parmname">sr</span>, <span class="parmname">sc</span></dt>
+
+<dd><p>(local) <span class="keyword"/></p>
+<p><span class="keyword">REAL</span> for single precision flavors;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Arrays of  sizes <samp class="codeph"><var>LOCr</var>(<var>m_a)</var></samp> and <samp class="codeph"><var>LOCc</var>(<var>n_a)</var></samp>, respectively. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the array <samp class="codeph"><var>sr</var>(<var>ia:ia+n-1</var>)</samp> contains the row scale factors for sub(<var>A</var>). <span class="parmname">sr</span> is aligned with the distributed matrix <var>A</var>, and replicated across every process column. <span class="parmname">sr</span> is tied to the distributed matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the array <samp class="codeph"><var>sc</var>(<var>ja:ja+n-1</var>)</samp> contains the column scale factors for sub(<var>A</var>). <span class="parmname">sc</span> is aligned with the distributed matrix <var>A</var>, and replicated down every process row. <span class="parmname">sc</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scond</span></dt>
+
+<dd><p>(global) <span class="keyword"/></p>
+<p><span class="keyword">REAL</span> for single precision flavors;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, <span class="parmname">scond</span> contains the ratio of the smallest <span><span class="parmname">sr</span>(<var>i</var>) ( or <span class="parmname">sc</span>(<var>j</var>)) to the largest <span class="parmname">sr</span>(<var>i</var>) ( or <span class="parmname">sc</span>(<var>j</var>))</span>, with </p>
+<p><samp class="codeph"><var>ia</var>≤i≤<var>ia+n-1</var></samp> and <samp class="codeph"><var>ja</var>≤j≤<var>ja+n-1</var></samp>. </p>
+<p>If <samp class="codeph"><var>scond</var><span class="eqsymbol">≥</span> 0.1</samp> and <span class="parmname">amax</span> is neither too large nor too small, it is not worth scaling by <span class="parmname">sr</span> ( or <span class="parmname">sc</span> ). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">amax</span></dt>
+
+<dd><p>(global) </p>
+<p><span class="keyword">REAL</span> for single precision flavors;</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>Absolute value of the largest matrix element. If <span class="parmname">amax</span> is very close to overflow or very close to underflow, the matrix should be scaled.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful.</p>
+<p><samp class="codeph"><var>info</var> &lt; 0</samp>: </p>
+<p>If the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>. </p>
+<p><samp class="codeph"><var>info</var><span class="eqsymbol">&gt;</span> 0</samp>: </p>
+<p>If <span class="parmname">info</span> = <var>k</var>, the <var>k</var>-th diagonal entry of sub(<var>A</var>) is nonpositive.</p>
+</dd>
+</dl>
+<p> </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D9C8E93A-B463-4E4D-90FD-C215D80A5421.html">Matrix Equilibration: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_ORDERING"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0CFC5C96-8341-469B-B6E9-EBBE4BA9CE29"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_ORDERING</title>
+
+</head>
+<body id="GUID-0CFC5C96-8341-469B-B6E9-EBBE4BA9CE29">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_ORDERING</h1>
+<div><p>Some FFT algorithms apply an explicit permutation stage that is time consuming [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#4_VANLOAN">4</a>]. The exclusion of this step is similar to applying an FFT to input data whose order is scrambled, or allowing a scrambled order of the FFT results. In applications such as convolution and power spectrum calculation, the order of result or data is unimportant and thus using scrambled data is acceptable if it leads to better performance. The following options are available in Intel&reg; oneAPI Math Kernel Library:</p>
+<ul id="GUID-E8334617-1CCA-4C15-916A-185807FFD172"><li><p><samp class="codeph">DFTI_ORDERED</samp>: Forward transform data ordered, backward transform data ordered (default option). 
+        </p>
+</li>
+<li><p><samp class="codeph">DFTI_BACKWARD_SCRAMBLED</samp>: Forward transform data ordered, backward transform data scrambled. 
+        </p>
+</li>
+</ul>
+<p><a href="#TBL11-14">Table 
+        <span>"Scrambled Order Transform"</span></a> tabulates the effect of this configuration setting. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL11-14" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Scrambled Order Transform</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="36%" id="d101320e62"> </th>
+<th class="cellrowborder" valign="top" width="32%" id="d101320e63"><p><span class="keywordb">DftiComputeForward</span></p>
+</th>
+<th class="row-nocellborder" valign="top" width="32%" id="d101320e67"><p><span class="keywordb">DftiComputeBackward</span></p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="36%" headers="d101320e62 "><p><span class="keywordb">DFTI_ORDERING</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="32%" headers="d101320e63 "><p class="b">Input → Output 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="32%" headers="d101320e67 "><p class="b">Input → Output 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36%" headers="d101320e62 "><p><samp class="codeph">DFTI_ORDERED</samp></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="32%" headers="d101320e63 "><p>ordered → ordered 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="32%" headers="d101320e67 "><p>ordered → ordered 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36%" headers="d101320e62 "><p><samp class="codeph">DFTI_BACKWARD_SCRAMBLED</samp></p>
+</td>
+<td class="cellrowborder" align="left" valign="top" width="32%" headers="d101320e63 "><p>ordered → scrambled 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="32%" headers="d101320e67 "><p>scrambled → ordered 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The word "scrambled" in this table means "permit scrambled order if possible". In some situations permitting out-of-order data gives no performance advantage and an implementation may choose to ignore the suggestion. </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> </div></div></div>
+</body>
+</html>

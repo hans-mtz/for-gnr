@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?ungqr"/>
+<meta name="abstract" content="Generates the complex unitary matrix Q of the QR factorization formed by p?geqrf."/>
+<meta name="description" content="Generates the complex unitary matrix Q of the QR factorization formed by p?geqrf."/>
+<meta name="DC.subject" content="p?ungqr, ScaLAPACK routines, QR factorization, computing the elements of, unitary matrix Q"/>
+<meta name="keywords" content="p?ungqr, ScaLAPACK routines, QR factorization, computing the elements of, unitary matrix Q"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DB367ED2-4F94-42A8-8AAC-022A9EB05A46"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?ungqr</title>
+
+</head>
+<body id="GUID-DB367ED2-4F94-42A8-8AAC-022A9EB05A46">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?ungqr</span></h1>
+<!--Generates the complex unitary matrix  Q  of the  QR  factorization formed by  p?geqrf .--><div><p class="shortdesc">Generates the complex unitary matrix <var>Q</var> of the <var>QR</var> factorization formed by <span class="option">p?geqrf</span>.</p>
+<div class="section" id="GUID-06F4A3AC-5B79-4D2D-811C-01D9DB57DEFD"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pcungqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzungqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C90DC282-4E58-4ED1-80AC-613DEC17FD46"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-381722D3-676C-40E1-9B6E-069CA8025932"><h2 class="sectiontitle">Description</h2><p><span/>This<span> routine </span>generates the whole or part of <span class="parmname">m</span>-by-<span class="parmname">n</span> complex distributed matrix <var>Q</var> denoting <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">m</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1) with orthonormal columns, which is defined as the first <span class="parmname">n</span> columns of a product of <var>k</var> elementary reflectors of order <span class="parmname">m</span></p>
+<p><var>Q</var> = <var>H</var>(1)*<var>H</var>(2)*...*<var>H</var>(<span class="parmname">k</span>)</p>
+<p>as returned by <a class="allformats" href="GUID-C9186306-C07B-43AF-A0DE-575A1D91C5F2.html#GUID-C9186306-C07B-43AF-A0DE-575A1D91C5F2"><span class="option">p?geqrf</span></a>. </p>
+</div>
+<div class="section" id="GUID-5BCC8300-CD7D-4AE4-838B-4921E0E1B016"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A762461F-DC7A-463B-8A84-E0CC89348C82"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix sub(<var>Q</var>); <samp class="codeph">(<var>m</var><span class="eqsymbol">≥</span>0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of columns in the matrix sub(<var>Q</var>) (<span class="parmname">m</span><span class="eqsymbol">≥</span><span class="parmname">n</span><span class="eqsymbol">≥</span>0). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of elementary reflectors whose product defines the matrix <var>Q</var> (<span class="parmname">n</span><span class="eqsymbol">≥</span><span class="parmname">k</span><span class="eqsymbol">≥</span>0). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcungqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzungqr</span></p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. The <var>j</var>-th column must contain the vector that defines the elementary reflector <var>H</var>(<var>j</var>), <span class="parmname">ja</span>≤ <var>j</var>≤ <span class="parmname">ja</span> +<span class="parmname">k</span>-1, as returned by <a class="allformats" href="GUID-C9186306-C07B-43AF-A0DE-575A1D91C5F2.html#GUID-C9186306-C07B-43AF-A0DE-575A1D91C5F2"><span class="option">p?geqrf</span></a> in the <span class="parmname">k</span> columns of its distributed matrix argument <var>A</var>(<span class="parmname">ia</span>:*, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">k</span>-1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the submatrix <var>A</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcungqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzungqr</span></p>
+<p>Array of size <samp class="codeph"><var>LOCc</var>(<var>ja</var>+<var>k</var>-1)</samp>. </p>
+<p>Contains the scalar factor <span class="parmname">tau</span><span>(<var>j</var>)</span> of elementary reflectors <var>H</var><span>(<var>j</var>)</span> as returned by <a class="allformats" href="GUID-C9186306-C07B-43AF-A0DE-575A1D91C5F2.html#GUID-C9186306-C07B-43AF-A0DE-575A1D91C5F2"><span class="option">p?geqrf</span></a>. <span class="parmname">tau</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcungqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzungqr</span></p>
+<p>Workspace array of size of  <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>, </span>size of <span class="parmname">work</span>, must be at least <span class="parmname">lwork</span><span class="eqsymbol">≥</span><var>nb_a*</var>(<var>nqa</var>0 + <var>mpa</var>0 + <var>nb_a</var>), where</p>
+<p><var>iroffa</var> = <span class="keyword">mod</span>(<var>ia</var>-1, <var>mb_a</var>), </p>
+<p><var>icoffa</var> = <span class="keyword">mod</span>(<var>ja</var>-1, <var>nb_a</var>), </p>
+<p><var>iarow</var> = <span class="keyword">indxg2p</span>(<var>ia</var>, <var>mb_a</var>, <span class="keyword">MYROW</span>, <var>rsrc_a</var>, <span class="keyword">NPROW</span>), </p>
+<p><var>iacol</var> = <span class="keyword">indxg2p</span>(<var>ja</var>, <var>nb_a</var>, <span class="keyword">MYCOL</span>, <var>csrc_a</var>, <span class="keyword">NPCOL</span>), </p>
+<p><var>mpa</var>0 = <span class="keyword">numroc</span>(<var>m</var>+<var>iroffa</var>, <var>mb_a</var>, <span class="keyword">MYROW</span>, <var>iarow</var>, <span class="keyword">NPROW</span>), </p>
+<p><var>nqa</var>0 = <span class="keyword">numroc</span>(<var>n</var>+<var>icoffa</var>, <var>nb_a</var>, <span class="keyword">MYCOL</span>, <var>iacol</var>, <span class="keyword">NPCOL</span>) </p>
+<p><span class="keyword">indxg2p</span> and <span class="keyword">numroc</span> are ScaLAPACK tool functions; <span class="keyword">MYROW</span>, <span class="keyword">MYCOL</span>, <span class="keyword">NPROW</span> and <span class="keyword">NPCOL</span> can be determined by calling the <span>subroutine </span><span class="option">blacs_gridinfo</span>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <span class="parmname">lwork</span> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <a href="GUID-E523C816-D553-4D4E-8458-5404828CC07B.html">pxerbla</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-BEE5BAFD-57BC-4A98-BC18-5F02E6482DF3"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C5CAEBDB-6F20-4FB3-8A7B-D0569E226B34"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Contains the local pieces of the <span class="parmname">m</span>-by-<span class="parmname">n</span> distributed matrix <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><var>work</var><span>(1)</span></samp></dt>
+
+<dd><p>On exit <samp class="codeph"><var>work</var><span>(1)</span></samp> contains the minimum value of <span class="parmname">lwork</span> required for optimum performance. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p><samp class="codeph">= 0</samp>: the execution is successful.</p>
+<p><samp class="codeph">&lt; 0</samp>: if the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-121329C6-0B64-44C1-817C-C0F651BE6129.html">Orthogonal Factorizations: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

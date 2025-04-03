@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laln2"/>
+<meta name="abstract" content="Solves a 1-by-1 or 2-by-2 linear system of equations of the specified form."/>
+<meta name="description" content="Solves a 1-by-1 or 2-by-2 linear system of equations of the specified form."/>
+<meta name="DC.subject" content="?laln2, LAPACK routines, auxiliary routines, solving linear equations, linear equations, solving, solving linear equations. See linear equations"/>
+<meta name="keywords" content="?laln2, LAPACK routines, auxiliary routines, solving linear equations, linear equations, solving, solving linear equations. See linear equations"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-01B57EFA-FB7B-4134-8E8F-D6C08824942E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laln2</title>
+
+</head>
+<body id="GUID-01B57EFA-FB7B-4134-8E8F-D6C08824942E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laln2</span></h1>
+<!--Solves a 1-by-1 or 2-by-2 linear system of equations of the specified form.--><div><p class="shortdesc">Solves a 1-by-1 or 2-by-2 linear system of equations of the specified form.</p>
+<div class="section" id="GUID-4745746E-E6FC-4107-856D-B5A54D421FB6"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaln2</span><span class="delim">( </span><span class="var">ltrans</span><span class="sep">, </span><span class="var">na</span><span class="sep">, </span><span class="var">nw</span><span class="sep">, </span><span class="var">smin</span><span class="sep">, </span><span class="var">ca</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d1</span><span class="sep">, </span><span class="var">d2</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">xnorm</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaln2</span><span class="delim">( </span><span class="var">ltrans</span><span class="sep">, </span><span class="var">na</span><span class="sep">, </span><span class="var">nw</span><span class="sep">, </span><span class="var">smin</span><span class="sep">, </span><span class="var">ca</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d1</span><span class="sep">, </span><span class="var">d2</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ldx</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">xnorm</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-643D1126-E665-43BF-A0A0-F18129881BC1"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9F9F330E-61DB-45B8-9CAE-80B811BDBA7C"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine solves a system of the form </p>
+<p><samp class="codeph">(<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>)*<var>X</var> = <var>s</var>*<var>B,</var></samp>   or    <samp class="codeph">(<var>ca</var>*<var>A</var><sup class="power"><var>T</var></sup> - <var>w</var>*<var>D</var>)*<var>X</var> = <var>s</var>*<var>B</var></samp></p>
+<p>with possible scaling (<var>s</var>) and perturbation of <var>A</var>.</p>
+<p><var>A</var> is an <var>na</var>-by-<var>na</var> real matrix, <var>ca</var> is a real scalar, <var>D</var> is an <var>na</var>-by-<var>na</var> real diagonal matrix, <var>w</var> is a real or complex value, and <var>X</var> and <var>B</var> are <var>na</var>-by-1 matrices: real if <var>w</var> is real, complex if <var>w</var> is complex. The parameter <var>na</var> may be 1 or 2.</p>
+<p>If <var>w</var> is complex, <var>X</var> and <var>B</var> are represented as <var>na</var>-by-2 matrices, the first column of each being the real part and the second being the imaginary part.</p>
+<p>The routine computes the scaling factor <samp class="codeph"><var>s</var> ( ≤ 1 )</samp> so chosen that <var>X</var> can be computed without overflow. <var>X</var> is further scaled if necessary to assure that <samp class="codeph">norm(<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>)*norm(<var>X</var>)</samp> is less than overflow.</p>
+<p>If both singular values of <samp class="codeph">(<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>)</samp> are less than <var>smin</var>, <var>smin</var>*<var>I</var> (where <var>I</var> stands for identity) will be used instead of (<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>). If only one singular value is less than <var>smin</var>, one element of (<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>) will be perturbed enough to make the smallest singular value roughly <var>smin</var>. </p>
+<p>If both singular values are at least <samp class="codeph"><var>smin</var>, (<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>)</samp> will not be perturbed. In any case, the perturbation will be at most some small multiple of <samp class="codeph">max(<var>smin</var>, <var>ulp</var>*norm(<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>))</samp>. </p>
+<p>The singular values are computed by infinity-norm approximations, and thus will only be correct to a factor of 2 or so.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>All input quantities are assumed to be smaller than overflow by a reasonable factor (see <var>bignum</var>).</p>
+</div>
+</div>
+<div class="section" id="GUID-BE547DEE-D28E-400E-AD2A-42774A096E76"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E0C6961F-E4FA-4523-AD3D-2396A4F96EFA"><dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">.TRUE.</span></samp>, <var>A</var>- transpose will be used. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">.FALSE.</span></samp>, <var>A</var> will be used (not transposed.)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">na</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The size of the matrix <var>A</var>, possible values 1 or 2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nw</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. This parameter must be 1 if <var>w</var> is real, and 2 if <var>w</var> is complex. Possible values 1 or 2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">smin</span></dt>
+
+<dd><p><span class="keyword"> REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>The desired lower bound on the singular values of <var>A</var>. </p>
+<p>This should be a safe distance away from underflow or overflow, for example, between (<dfn class="term">underflow/machine_precision</dfn>) and  (<dfn class="term">machine_precision</dfn> * <dfn class="term">overflow</dfn>). (See <var>bignum</var> and <var>ulp</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ca</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>The coefficient by which <var>A</var> is multiplied.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>,<var>na</var>). </p>
+<p>The <var>na</var>-by-<var>na</var> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>a</var>. Must be at least <var>na</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d1</span>, <span class="parmname">d2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>The (1,1) and (2,2) elements in the diagonal matrix <var>D</var>, respectively. <var>d2</var> is not used if <samp class="codeph"><var>nw</var> = 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldb</var>,<var>nw</var>). The <var>na</var>-by-<var>nw</var> matrix <var>B</var> (right-hand side). If <var>nw</var> =2 (<var>w</var> is complex), column 1 contains the real part of <var>B</var> and column 2 contains the imaginary part.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>b</var>. Must be at least <var>na</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>The real and imaginary part of the scalar <var>w</var>, respectively. </p>
+<p><var>wi</var> is not used if <samp class="codeph"><var>nw</var> = 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldx</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the output array <var>x</var>. Must be at least <var>na</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5B600E3C-66C8-42F0-914D-3FDD8B4F300A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2E65B029-7A60-4A98-8942-2BA62FFF2446"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldx</var>,<var>nw</var>). The <var>na</var>-by-<var>nw</var> matrix <var>X</var> (unknowns), as computed by the routine. If <samp class="codeph"><var>nw</var> = 2</samp> (<var>w</var> is complex), on exit, column 1 will contain the real part of <var>X</var> and column 2 will contain the imaginary part.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>The scale factor that <var>B</var> must be multiplied by to insure that overflow does not occur when computing <var>X</var>. Thus <samp class="codeph">(<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>) <var>X</var></samp> will be <var>scale</var>*<var>B</var>, not <var>B</var> (ignoring perturbations of <var>A</var>.) It will be at most 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">xnorm</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaln2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaln2</span>.</p>
+<p>The infinity-norm of <var>X</var>, when <var>X</var> is regarded as an <var>na</var>-by-<var>nw</var> real matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>An error flag. It will be zero if no error occurs, a negative number if an argument is in error, or a positive number if <samp class="codeph">(<var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var>)</samp>  had to be perturbed. The possible values are: </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>: no error occurred, and (<samp class="codeph"><var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var></samp>) did not have to be perturbed. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>: (<samp class="codeph"><var>ca</var>*<var>A</var> - <var>w</var>*<var>D</var></samp>) had to be perturbed to make its smallest (or only) singular value greater than <var>smin</var>.</p>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For higher speed, this routine does not check the inputs for errors.</p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

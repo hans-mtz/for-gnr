@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?potf2"/>
+<meta name="abstract" content="Computes the Cholesky factorization of a symmetric/Hermitian positive-definite matrix (unblocked algorithm)."/>
+<meta name="description" content="Computes the Cholesky factorization of a symmetric/Hermitian positive-definite matrix (unblocked algorithm)."/>
+<meta name="DC.subject" content="LAPACK routines, auxiliary routines, ?potf2, spotf2, dpotf2, cpotf2, zpotf2, factorization, Cholesky, LAPACK, Hermitian positive-definite matrix, Cholesky factorization, symmetric positive-definite matrix"/>
+<meta name="keywords" content="LAPACK routines, auxiliary routines, ?potf2, spotf2, dpotf2, cpotf2, zpotf2, factorization, Cholesky, LAPACK, Hermitian positive-definite matrix, Cholesky factorization, symmetric positive-definite matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0B05C432-282C-4F97-8C2F-1146D5309A24"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?potf2</title>
+
+</head>
+<body id="GUID-0B05C432-282C-4F97-8C2F-1146D5309A24">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?potf2</span></h1>
+<!--Computes the Cholesky factorization of a symmetric/Hermitian positive-definite matrix (unblocked algorithm).--><div><p class="shortdesc">Computes the Cholesky factorization of a symmetric/Hermitian positive-definite matrix (unblocked algorithm).</p>
+<div class="section" id="GUID-C7BDD2A5-0440-428F-A4D9-D011440A2184"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call spotf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dpotf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cpotf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zpotf2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-C889F1AA-7270-43B4-B0D3-5A019A4A4B90"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-877198E3-D48A-4792-A9FC-C784A8DCA008"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?potf2</span> computes the Cholesky factorization of a real symmetric or complex Hermitian positive definite matrix <var>A</var>. The factorization has the form</p>
+<p><samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> for real flavors, <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>H</var></sup>*<var>U</var></samp> for complex flavors if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, or</p>
+<p><samp class="codeph"><var>A</var> =  <var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp> for real flavors, <samp class="codeph"><var>A</var> = <var>L</var>*<var>L</var><sup class="power"><var>H</var></sup></samp> for complex flavors if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, </p>
+<p>where <var>U</var> is an upper triangular matrix, and <var>L</var> is lower triangular. </p>
+<p>This is the unblocked version of the algorithm, calling <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html#GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1">BLAS Level 2 Routines</a></p>
+</div>
+<div class="section" id="GUID-DA092D3F-91C3-47BF-B30B-E76617A8FE4A"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-531F4CD5-E470-4A83-ACAC-EFF6C0C2FE60"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the symmetric/Hermitian matrix <var>A</var> is stored.</p>
+<p>= <span class="keyword">'U'</span>:  upper triangular</p>
+<p>= <span class="keyword">'L'</span>:  lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">spotf2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> or <span class="option">dpotf2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cpotf2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zpotf2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, the symmetric/Hermitian  matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>a</var> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>a</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>a</var> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>a</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. </p>
+<p><samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-345160BB-0AE7-4135-A591-E37399EF5220"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-435C5DCE-236A-45B0-AB90-45E806547BD3"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, If <samp class="codeph"><var>info</var> = 0</samp>, the factor <var>U</var> or <var>L</var> from the Cholesky factorization <samp class="codeph"><var>A</var>=<var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp>  (<samp class="codeph"><var>A</var>=<var>U</var><sup class="power"><var>H</var></sup>*<var>U</var></samp>), or <samp class="codeph"><var>A</var>=  <var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp> (<samp class="codeph"><var>A</var> = <var>L</var>*<var>L</var><sup class="power"><var>H</var></sup></samp>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0: successful exit</p>
+<p>&lt; 0: if <samp class="codeph"><var>info</var> = -<var>k</var></samp>, the <var>k</var>-th argument had an illegal value</p>
+<p>&gt; 0: if <samp class="codeph"><var>info</var> = <var>k</var></samp>, the leading minor of order <var>k</var> is not positive definite, and the factorization could not be completed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

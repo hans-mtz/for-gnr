@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="vRngMultinomial"/>
+<meta name="abstract" content="Generates multinomially distributed random numbers."/>
+<meta name="description" content="Generates multinomially distributed random numbers."/>
+<meta name="DC.subject" content="vector statistics functions, Multinomial, VS routines, generator routines"/>
+<meta name="keywords" content="vector statistics functions, Multinomial, VS routines, generator routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-13BAFBF5-E363-4915-AC3F-353B283B095B.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-82CFE626-8C2F-46F5-BE50-38180834C492"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>vRngMultinomial</title>
+
+</head>
+<body id="GUID-82CFE626-8C2F-46F5-BE50-38180834C492">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">vRngMultinomial</span></h1>
+<!--Generates multinomially distributed random numbers.--><div><p class="shortdesc">Generates multinomially distributed random numbers.</p>
+<div class="section" id="GUID-6E025ECB-EC40-43D4-91E6-D30F7FA11F54"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status </span><span class="oper">= </span><span class="kwd">virngmultinomial</span><span class="delim">( </span><span class="var">method</span><span class="sep">, </span><span class="var">stream</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">ntrial</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">p</span><span class="delim"> );</span></p></dl></div>
+<div class="section" id="GUID-939936B1-01A6-464C-BB85-72BD84057258"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-C03EE1D0-9E29-47A0-A772-E367C8B2C8D6"><li><span class="filepath">mkl.fi</span></li>
+<li><span class="filepath">mkl_vsl.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-B4901861-DDED-45C0-9B23-5E91C55C2D38"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-EFD59500-F9B8-4CAB-9A8E-C4750643E5A9"><dt class="dlterm"><span class="parmname">method</span></dt>
+
+<dd><p><samp class="codeph">INTEGER, INTENT(IN)</samp></p>
+<p>Generation method. The specific value is as follows:</p>
+<pre>VSL_RNG_METHOD_MULTINOMIAL_ MULTPOISSON</pre></dd>
+<dt class="dlterm"><span class="parmname">stream</span></dt>
+
+<dd><p><samp class="codeph">TYPE (VSL_STREAM_STATE), INTENT(IN)</samp></p>
+<p>Pointer to the stream state structure.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><samp class="codeph">INTEGER, INTENT(IN)</samp></p>
+<p>Number of random values to be generated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ntrial</span></dt>
+
+<dd><p><samp class="codeph">INTEGER(KIND=4), INTENT(IN)</samp></p>
+<p>Number of independent trials <var>m</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><samp class="codeph">INTEGER(KIND=4), INTENT(IN)</samp></p>
+<p>Number of possible outcomes.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">p</span></dt>
+
+<dd><p><samp class="codeph">REAL(KIND=8), INTENT(IN)</samp></p>
+<p>Probability vector of <span class="parmname">k</span> possible outcomes.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-18861CB0-EC97-4E26-B1FF-11B9304CC99B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-876FCF05-D2CB-42C4-9E06-853E0873AC2E"><dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p><samp class="codeph">INTEGER(KIND=4), INTENT(OUT)</samp></p>
+<p/>
+<p>Array of <var>n</var> random vectors of dimension <var>k</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1CAFBF46-767D-46D9-981D-BA5FBE7F3F04"><h2 class="sectiontitle">Description</h2><p>The <span class="option">vRngMultinomial</span> function generates multinomially distributed random numbers with <var>m</var> independent trials and <var>k</var> possible mutually exclusive outcomes, with corresponding probabilities <samp class="codeph">p<sub>i</sub></samp>, where <samp class="codeph">p<sub>i</sub>∈R; 0 ≤p<sub>i</sub>≤ 1, m∈N, k∈N</samp>.</p>
+<p>The probability distribution is given by:</p>
+<p><br/><div class="imagecenter"><img src="GUID-749B9421-ABAF-41EA-B8B9-3C9941EF5B72-low.png" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d975686e200"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d975686e200 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For information on random number generators used for statistical computations in MKL Vector Statistics, see <a href="https://software.intel.com/en-us/mkl-vsnotes" target="_blank">MKL Vector Statistics</a>. </p>
+</div>
+</div>
+<div class="section" id="RETURNVALUES_F83025A7CAEE4DEC92A29B53C71749E3"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-88BF7055-3A0F-4F5A-B2EF-73CAA50D4D62"><dt class="dlterm"><samp class="codeph">VSL_ERROR_OK, VSL_STATUS_OK</samp></dt>
+
+<dd class="ddretval"><p>Indicates no error (execution was successful).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_ERROR_NULL_PTR</samp></dt>
+
+<dd class="ddretval"><p><var>stream</var> is a NULL pointer.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_BAD_STREAM</samp></dt>
+
+<dd class="ddretval"><p><var>stream</var> is not a valid random stream.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_BAD_UPDATE</samp></dt>
+
+<dd class="ddretval"><p>A callback function for an abstract BRNG returns an invalid number of updated entries in a buffer; that is, <samp class="codeph">&lt; 0</samp> or <samp class="codeph">&gt; nmax</samp>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_NO_NUMBERS</samp></dt>
+
+<dd class="ddretval"><p>A callback function for an abstract BRNG returns <samp class="codeph">0</samp> as the number of updated entries in a buffer.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_RNG_ERROR_ARS5_NOT_SUPPORTED</samp></dt>
+
+<dd class="ddretval"><p>An ARS-5 random number generator is not supported on the CPU running the application.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">VSL_DISTR_MULTINOMIAL_BAD_PROBABILITY_ARRAY</samp></dt>
+
+<dd class="ddretval"><p>Bad multinomial distribution probability array.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-13BAFBF5-E363-4915-AC3F-353B283B095B.html">Discrete Distributions</a></div>
+</div>
+<div/>
+</body>
+</html>

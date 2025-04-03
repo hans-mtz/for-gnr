@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_THREAD_LIMIT"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FB89D011-B5DB-40F0-80C7-77D09117B6D3.html#GUID-FB89D011-B5DB-40F0-80C7-77D09117B6D3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html#GUID-00171BFB-C51C-4415-B338-E83C8095901D"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5FE5EAED-1F14-49E3-9968-951E40E09D2C.html#GUID-5FE5EAED-1F14-49E3-9968-951E40E09D2C"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4B411FDD-CDFE-48FB-9E0A-39F6C7427527"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_THREAD_LIMIT</title>
+
+</head>
+<body id="GUID-4B411FDD-CDFE-48FB-9E0A-39F6C7427527">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_THREAD_LIMIT</h1>
+<div><p> In some situations you may need to limit the number of threads that the 
+  <span class="option">DftiComputeForward</span> and 
+  <span class="option">DftiComputeBackward</span>functions use. For example, if more than one thread calls Intel&reg; oneAPI Math Kernel Library, it might be important that the thread calling these functions does not oversubscribe computing resources (CPU cores). Similarly, a known limit of the maximum number of threads to be used in computations might help the<span class="option">DftiCommitDescriptor</span> function to select a more optimal computation method. 
+  </p>
+<p> Set the parameter 
+    <span class="keyword">DFTI_THREAD_LIMIT</span> as follows: 
+  </p>
+<ul id="GUID-7D9C9AB6-D16B-4ED8-A27C-D5BB3569D08F"><li>To a positive number, to specify the maximum number of threads to be used by the compute functions. 
+    </li>
+<li>To zero (the default value), to use the maximum number of threads permitted in Intel&reg; oneAPI Math Kernel Library FFT functions. See "Techniques to Set the Number of Threads" in the<em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em> for more information. 
+    </li>
+</ul>
+<p>On an attempt to set a negative value, the 
+  <span class="option">DftiSetValue</span> function returns an error and does not update the descriptor. 
+  </p>
+<p> The value of the 
+    <span class="keyword">DFTI_THREAD_LIMIT</span> configuration parameter returned by the 
+  <span class="option">DftiGetValue</span> function is defined as follows: 
+  <ul id="GUID-F9501243-6ED5-4EB3-AF34-089885C9CD79"><li>1 if Intel&reg; oneAPI Math Kernel Library runs in the sequential mode</li>
+<li>Depends of the commit status of the descriptor if Intel&reg; oneAPI Math Kernel Library runs in a threaded mode:
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-98C19FF1-DA36-4B70-B7E2-9BBCD1F8C853" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="28.57142857142857%" id="d585284e92"><p>Commit Status 
+                </p>
+</th>
+<th class="row-nocellborder" valign="top" width="71.42857142857143%" id="d585284e95"><p>Value 
+                </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="28.57142857142857%" headers="d585284e92 "><p>Not committed 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="71.42857142857143%" headers="d585284e95 "><p>The value of 
+                  <span class="keyword">DFTI_THREAD_LIMIT</span> set in a previous call to the 
+                <span class="option">DftiSetValue</span> function or the default value 
+                </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="28.57142857142857%" headers="d585284e92 "><p>Committed 
+                </p>
+</td>
+<td class="row-nocellborder" valign="top" width="71.42857142857143%" headers="d585284e95 "><p> The upper limit on the number of threads used by the 
+                <span class="option">DftiComputeForward</span> and 
+                <span class="option">DftiComputeBackward</span> functions 
+                </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</p>
+<p>To better understand the use of the 
+    <span class="keyword">DFTI_THREAD_LIMIT</span>configuration parameter, see this example in your Intel&reg; oneAPI Math Kernel Library directory:</p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__CONFIG_THREAD_LIMIT_F90">./examples/dftf/source/config_thread_limit.f90</span></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-FB89D011-B5DB-40F0-80C7-77D09117B6D3.html#GUID-FB89D011-B5DB-40F0-80C7-77D09117B6D3"><span class="option">DftiGetValue</span></a> </div>
+<div><a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> </div>
+<div><a href="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8.html#GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"><span class="option">DftiCommitDescriptor</span></a> </div>
+<div><a href="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"><span class="option">DftiComputeForward</span></a> </div>
+<div><a href="GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C.html#GUID-4C9D9504-96EA-4E38-9BD4-367CEF57862C"><span class="option">DftiComputeBackward</span></a> </div>
+<div><a href="GUID-00171BFB-C51C-4415-B338-E83C8095901D.html#GUID-00171BFB-C51C-4415-B338-E83C8095901D">Threading Control Functions 
+        </a> </div>
+<div><a href="GUID-5FE5EAED-1F14-49E3-9968-951E40E09D2C.html#GUID-5FE5EAED-1F14-49E3-9968-951E40E09D2C"><span class="keyword">DFTI_COMMIT_STATUS</span></a></div></div></div>
+</body>
+</html>

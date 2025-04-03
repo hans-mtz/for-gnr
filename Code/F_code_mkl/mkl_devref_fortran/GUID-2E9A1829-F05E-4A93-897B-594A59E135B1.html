@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLACS Broadcast Routines"/>
+<meta name="DC.subject" content="BLACS, broadcast"/>
+<meta name="keywords" content="BLACS, broadcast"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DF6EF62B-73C7-42D6-8C55-3AC9DB8F42C0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CC058F7B-2778-41DC-ACE9-DB12008BCAFA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BA97ECC0-5062-40E0-82C7-294B99FAA6FB.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-57CE30FF-8C8B-45CC-9A4A-1B8A6C1FE193.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-90BBC48B-5223-41C9-A408-66F20325A778.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2E9A1829-F05E-4A93-897B-594A59E135B1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLACS Broadcast Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-2E9A1829-F05E-4A93-897B-594A59E135B1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLACS Broadcast Routines</h1>
+<div><p>This 
+      <span>topic 
+      </span> describes BLACS broadcast routines.
+    </p>
+<p>A broadcast sends data possessed by one process to all processes within a scope. Broadcast, much like point to point communication, has two complementary operations. The process that owns the data to be broadcast issues a 
+      <dfn class="term">broadcast</dfn>/<dfn class="term">send</dfn>. All processes within the same scope must then issue the complementary 
+      <dfn class="term">broadcast</dfn>/<dfn class="term">receive</dfn>. 
+    </p>
+<p>The BLACS define that both broadcast/send and broadcast/receive are 
+      <dfn class="term">globally-blocking</dfn>. Broadcasts/receives cannot be locally-blocking since they must post a receive. Note that receives cannot be locally-blocking. When a given process can leave, a broadcast/receive operation is topology dependent, so, to avoid a hang as topology is varied, the broadcast/receive must be treated as if no process can leave until all processes have called the operation.
+    </p>
+<p>Broadcast/sends could be defined to be 
+      <dfn class="term">locally-blocking</dfn>. Since no information is being received, as long as locally-blocking point to point sends are used, the broadcast/send will be locally blocking. However, defining one process within a scope to be locally-blocking while all other processes are globally-blocking adds little to the programmability of the code. On the other hand, leaving the option open to have globally-blocking broadcast/sends may allow for optimization on some platforms.
+    </p>
+<p>The fact that broadcasts are defined as globally-blocking has several important implications. The first is that scoped operations (broadcasts or combines) must be strictly ordered, that is, all processes within a scope must agree on the order of calls to separate scoped operations. This constraint falls in line with that already in place for the computation of message IDs, and is present in point to point communication as well.
+    </p>
+<p>A less obvious result is that scoped operations with 
+      <samp class="codeph">SCOPE = 'ALL'</samp> must be ordered with respect to any other scoped operation. This means that if there are two broadcasts to be done, one along a column, and one involving the entire process grid, all processes within the process column issuing the column broadcast must agree on which broadcast will be performed first.
+    </p>
+<p>The convention used in the communication routine names follows the template 
+      <span class="keyword">?xxyy2d</span>, where the letter in the 
+      <span class="keyword">?</span> position indicates the data type being sent, 
+      <span class="keyword">xx</span> is replaced to indicate the shape of the matrix, and the 
+      <span class="keyword">yy</span> positions are used to indicate the type of communication to perform:
+    </p>
+<dl id="GUID-8501787E-C995-42D2-80CD-9D4B79DE3DF9"><dt class="dlterm"><span class="keyword">i</span></dt>
+
+<dd><p>integer
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">s</span></dt>
+
+<dd><p>single precision real
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">d</span></dt>
+
+<dd><p>double precision real
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">c</span></dt>
+
+<dd><p>single precision complex
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">z</span></dt>
+
+<dd><p>double precision complex
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">ge</span></dt>
+
+<dd><p>The data to be communicated is stored in a general rectangular matrix.
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">tr</span></dt>
+
+<dd><p>The data to be communicated is stored in a trapezoidal matrix.
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">bs</span></dt>
+
+<dd><p>Broadcast/send. A process begins the broadcast of data within a scope.
+          </p>
+</dd>
+<dt class="dlterm"><span class="keyword">br</span></dt>
+
+<dd><p>Broadcast/receive A process receives and participates in the broadcast of data within a scope.
+          </p>
+</dd>
+</dl>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL16-3" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">BLACS Broadcast Routines</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="33%" id="d361002e142"><p>Routine name
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="67%" id="d361002e145"><p>Operation performed
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="33%" headers="d361002e142 "><p><a href="GUID-CC058F7B-2778-41DC-ACE9-DB12008BCAFA.html#GUID-CC058F7B-2778-41DC-ACE9-DB12008BCAFA">gebs2d</a></p>
+<p><a href="GUID-BA97ECC0-5062-40E0-82C7-294B99FAA6FB.html#GUID-BA97ECC0-5062-40E0-82C7-294B99FAA6FB">trbs2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d361002e145 "><p>Start a broadcast along a scope.
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="33%" headers="d361002e142 "><p><a class="allformats" href="GUID-57CE30FF-8C8B-45CC-9A4A-1B8A6C1FE193.html#GUID-57CE30FF-8C8B-45CC-9A4A-1B8A6C1FE193">gebr2d</a></p>
+<p><a class="allformats" href="GUID-90BBC48B-5223-41C9-A408-66F20325A778.html#GUID-90BBC48B-5223-41C9-A408-66F20325A778">trbr2d</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="67%" headers="d361002e145 "><p>Receive and participate in a broadcast along a scope.
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p id="P_CF_128498338457233">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d361002e193"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d361002e193 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div/>
+</body>
+</html>

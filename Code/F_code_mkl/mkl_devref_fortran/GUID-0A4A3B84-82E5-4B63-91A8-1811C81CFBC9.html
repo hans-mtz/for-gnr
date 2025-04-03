@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="BLAS Level 1 Routines That Can Work With Sparse Vectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0A4A3B84-82E5-4B63-91A8-1811C81CFBC9"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>BLAS Level 1 Routines That Can Work With Sparse Vectors</title>
+
+</head>
+<body id="GUID-0A4A3B84-82E5-4B63-91A8-1811C81CFBC9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">BLAS Level 1 Routines That Can Work With Sparse Vectors</h1>
+<div><p>The following BLAS Level 1 routines will give correct results when you pass to them a compressed-form array 
+      <var>x</var>(with the increment 
+      <samp class="codeph"><var>incx</var>=1)</samp>: 
+    </p>
+<dl id="GUID-DAFCDEA4-6ABB-4B51-BAB6-B458F9A8B3F6"><dt class="dlterm"><a href="GUID-684BB993-83CA-4605-BD49-E493806C1E53.html#GUID-684BB993-83CA-4605-BD49-E493806C1E53"><span class="option">?asum</span></a></dt>
+
+<dd><p>sum of absolute values of vector elements 
+          </p>
+</dd>
+<dt class="dlterm"><a href="GUID-10169923-CC6B-406A-AC40-8264490A4C2E.html#GUID-10169923-CC6B-406A-AC40-8264490A4C2E"><span class="option">?copy</span></a></dt>
+
+<dd><p>copying a vector 
+          </p>
+</dd>
+<dt class="dlterm"><a href="GUID-D70DD83F-0F8C-478F-8076-F22F13D62EF3.html#GUID-D70DD83F-0F8C-478F-8076-F22F13D62EF3"><span class="option">?nrm2</span></a></dt>
+
+<dd><p>Euclidean norm of a vector 
+          </p>
+</dd>
+<dt class="dlterm"><a href="GUID-748A576A-55D8-47FF-B947-F4D68BAAE434.html#GUID-748A576A-55D8-47FF-B947-F4D68BAAE434"><span class="option">?scal</span></a></dt>
+
+<dd><p>scaling a vector 
+          </p>
+</dd>
+<dt class="dlterm"><a href="GUID-7F3EDB80-DD78-4B12-8344-7227ED141678.html#GUID-7F3EDB80-DD78-4B12-8344-7227ED141678"><span class="option">i?amax</span></a></dt>
+
+<dd><p>index of the element with the largest absolute value for real flavors, or the largest sum 
+            <samp class="codeph">|Re(<span class="parmname">x</span>(<span class="parmname">i</span>))|+|Im(<span class="parmname">x</span>(<span class="parmname">i</span>))|</samp> for complex flavors. 
+          </p>
+</dd>
+<dt class="dlterm"><a href="GUID-B428AA04-37F9-49FE-AD12-96F2D23EFE18.html#GUID-B428AA04-37F9-49FE-AD12-96F2D23EFE18"><span class="option">i?amin</span></a></dt>
+
+<dd><p>index of the element with the smallest absolute value for real flavors, or the smallest sum 
+            <samp class="codeph">|Re(<span class="parmname">x</span>(<span class="parmname">i</span>))|+|Im(<span class="parmname">x</span>(<span class="parmname">i</span>))|</samp> for complex flavors. 
+          </p>
+</dd>
+</dl>
+<p>The result 
+      <var>i</var> returned by 
+  <span class="option">i?amax</span> and 
+  <span class="option">i?amin</span> should be interpreted as index in the compressed-form array, so that the largest (smallest) value is 
+  <samp class="codeph"><var>x</var>(<var>i</var>)</samp>; the corresponding index in full-storage array is 
+  <samp class="codeph"><var>indx</var>(<var>i</var>)</samp>. 
+  </p>
+<p>You can also call 
+    <a href="GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23.html#GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23"><span class="option">?rotg</span></a> to compute the parameters of Givens rotation and then pass these parameters to the Sparse BLAS routines 
+    <a href="GUID-A049DC64-EB0F-4B0E-AEB1-A0531E1F80F6.html#GUID-A049DC64-EB0F-4B0E-AEB1-A0531E1F80F6"><span class="option">?roti</span></a>. 
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

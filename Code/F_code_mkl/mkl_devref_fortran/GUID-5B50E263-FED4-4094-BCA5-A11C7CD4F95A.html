@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="FFTW Support Functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-76BE8F76-C694-4321-A2AC-1934E500A682.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-5B50E263-FED4-4094-BCA5-A11C7CD4F95A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>FFTW Support Functions</title>
+
+</head>
+<body id="GUID-5B50E263-FED4-4094-BCA5-A11C7CD4F95A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">FFTW Support Functions</h1>
+<div><p> The FFTW wrappers provide memory allocation functions to be used with FFTW:</p>
+<div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">void* fftw_malloc(size_t </span><span class="var">n</span><span class="delim">);</span></p></div><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">void fftw_free(void* </span><span class="var">x</span><span class="delim">);</span></p></div><p>The
+<span class="option">fftw_malloc</span> wrapper aligns the memory on a 16-byte boundary.</p>
+<p>If <span class="option">fftw_malloc</span> fails to allocate memory, it aborts the application.  
+
+ To override this behavior, set a global variable <span class="keyword">fftw_malloc_hook</span> and optionally the complementary variable <span class="keyword">fftw_free_hook</span>:</p>
+<p><samp class="codeph"> void *(*fftw_malloc_hook) (size_t n);</samp></p>
+<p><samp class="codeph"> void (*fftw_free_hook) (void *p);</samp></p>
+<p>The wrappers
+use the function <span class="option">fftw_die</span> to abort the application in cases when a
+caller cannot be informed of an error otherwise (for example, in computational
+functions that return <samp class="codeph">void</samp>). To override this behavior, set a global variable <span class="keyword">fftw_die_hook</span>:</p>
+<p><samp class="codeph">void (*fftw_die_hook)(const char
+*error_string);</samp></p>
+<p><samp class="codeph">void fftw_die(const char
+*s);</samp></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-76BE8F76-C694-4321-A2AC-1934E500A682.html">Wrappers Reference</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Matrix Factorization: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="factorization, triangular factorization, Bunch-Kaufman factorization, LU, LAPACK, Cholesky, Bunch-Kaufman"/>
+<meta name="keywords" content="factorization, triangular factorization, Bunch-Kaufman factorization, LU, LAPACK, Cholesky, Bunch-Kaufman"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9544C788-A2E3-4B56-94CA-04C81C15ADF0.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-70978EF9-49CB-4475-9CDE-DEFB1B9DF910.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-04EB4C92-B11E-4BA0-898A-E239C2B5C5E8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-40417474-5534-460A-9DDB-0F34976BA0C7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E0C00886-6E12-4E84-941F-555E7F14FEDE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-15A9E907-2600-430B-BF11-DFA0A375711B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-11BCB871-887C-4F29-9500-863F83DF6B41.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6481BA8A-F9FB-410B-A080-BDE6457F97D1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-35B3D213-C161-4CD1-9F0A-591FC1790D19.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E4F0C583-4A62-4B8C-8035-580C08F2F9BC.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D1A222DA-9CF5-47C4-83ED-B68923634F15.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3F601047-5DCE-4FCF-9158-73E238FE7F5E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7C6574A1-164E-4A4A-A0F9-75949A5B35F7.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Matrix Factorization: LAPACK Computational Routines</title>
+
+</head>
+<body id="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Matrix Factorization: LAPACK Computational
+    Routines</h1>
+<div><p>This section describes the LAPACK routines for matrix
+      factorization. The following factorizations are supported:
+    </p>
+<ul id="GUID-6DC0B7FB-71DA-4FE3-A71B-770B2AD6EFBE"><li><p><var>LU</var> factorization
+        </p>
+</li>
+<li><p>Cholesky factorization of real symmetric
+          positive-definite matrices
+        </p>
+</li>
+<li><p>Cholesky factorization of real symmetric
+          positive-definite matrices with pivoting
+        </p>
+</li>
+<li><p>Cholesky factorization of Hermitian
+          positive-definite matrices
+        </p>
+</li>
+<li><p>Cholesky factorization of Hermitian
+          positive-definite matrices with pivoting
+        </p>
+</li>
+<li><p>Bunch-Kaufman factorization of real and complex
+          symmetric matrices
+        </p>
+</li>
+<li><p>Bunch-Kaufman factorization of Hermitian
+          matrices.
+        </p>
+</li>
+</ul>
+<p>You can compute:
+    </p>
+<ul id="GUID-F5FED14E-41C6-4225-AC6C-731260E6BFEF"><li><p>the 
+          <var>LU</var>
+          factorization using full and band storage of matrices
+        </p>
+</li>
+<li><p>the Cholesky factorization using full, packed, RFP, and band storage
+        </p>
+</li>
+<li><p>the Bunch-Kaufman factorization using full and packed storage.
+        </p>
+</li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3.html">LAPACK Linear Equation Computational Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html">?getrf</a><br/>
+Computes the LU factorization of a general m-by-n matrix. </li>
+<li class="ulchildlink"><a href="GUID-9544C788-A2E3-4B56-94CA-04C81C15ADF0.html">mkl_?getrfnp</a><br/>
+Computes the LU factorization of a general m-by-n matrix   without pivoting.</li>
+<li class="ulchildlink"><a href="GUID-70978EF9-49CB-4475-9CDE-DEFB1B9DF910.html">mkl_?getrfnpi</a><br/>
+Performs LU factorization (complete or incomplete) of a general matrix without pivoting.</li>
+<li class="ulchildlink"><a href="GUID-04EB4C92-B11E-4BA0-898A-E239C2B5C5E8.html">?getrf2</a><br/>
+Computes LU factorization using partial pivoting with row interchanges.</li>
+<li class="ulchildlink"><a href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html">?gbtrf</a><br/>
+Computes the LU factorization of a general <var>m</var>-by-<var>n</var> band matrix.</li>
+<li class="ulchildlink"><a href="GUID-40417474-5534-460A-9DDB-0F34976BA0C7.html">?gttrf</a><br/>
+Computes the LU factorization of a tridiagonal matrix.</li>
+<li class="ulchildlink"><a href="GUID-E0C00886-6E12-4E84-941F-555E7F14FEDE.html">?dttrfb</a><br/>
+Computes the factorization of a diagonally dominant tridiagonal matrix.</li>
+<li class="ulchildlink"><a href="GUID-15A9E907-2600-430B-BF11-DFA0A375711B.html">?potrf</a><br/>
+Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite matrix.</li>
+<li class="ulchildlink"><a href="GUID-11BCB871-887C-4F29-9500-863F83DF6B41.html">?potrf2</a><br/>
+Computes Cholesky factorization using a recursive algorithm.</li>
+<li class="ulchildlink"><a href="GUID-6481BA8A-F9FB-410B-A080-BDE6457F97D1.html">?pstrf</a><br/>
+Computes the Cholesky factorization with complete pivoting of a real symmetric (complex Hermitian) positive semidefinite matrix.</li>
+<li class="ulchildlink"><a href="GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76.html">?pftrf</a><br/>
+Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite matrix using the Rectangular Full Packed  (RFP) format .</li>
+<li class="ulchildlink"><a href="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF.html">?pptrf</a><br/>
+Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite  matrix using packed storage.</li>
+<li class="ulchildlink"><a href="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html">?pbtrf</a><br/>
+Computes the Cholesky factorization of a symmetric (Hermitian) positive-definite band matrix.</li>
+<li class="ulchildlink"><a href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html">?pttrf</a><br/>
+Computes the factorization of a symmetric (Hermitian) positive-definite tridiagonal matrix.</li>
+<li class="ulchildlink"><a href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html">?sytrf</a><br/>
+Computes the Bunch-Kaufman factorization of a symmetric matrix. </li>
+<li class="ulchildlink"><a href="GUID-35B3D213-C161-4CD1-9F0A-591FC1790D19.html">?sytrf_aa</a><br/>
+Computes the factorization of a symmetric matrix using Aasen's algorithm.</li>
+<li class="ulchildlink"><a href="GUID-E4F0C583-4A62-4B8C-8035-580C08F2F9BC.html">?sytrf_rook</a><br/>
+Computes the bounded Bunch-Kaufman factorization of a symmetric matrix.</li>
+<li class="ulchildlink"><a href="GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665.html">?sytrf_rk</a><br/>
+Computes the factorization of a real or complex symmetric indefinite matrix using the bounded Bunch-Kaufman (rook) diagonal pivoting method (BLAS3 blocked algorithm).</li>
+<li class="ulchildlink"><a href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html">?hetrf</a><br/>
+Computes the Bunch-Kaufman factorization of a complex Hermitian matrix. </li>
+<li class="ulchildlink"><a href="GUID-D1A222DA-9CF5-47C4-83ED-B68923634F15.html">?hetrf_aa</a><br/>
+ Computes the factorization of a complex hermitian matrix using Aasen's algorithm.</li>
+<li class="ulchildlink"><a href="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7.html">?hetrf_rook</a><br/>
+Computes the bounded Bunch-Kaufman factorization of a complex Hermitian matrix.</li>
+<li class="ulchildlink"><a href="GUID-3F601047-5DCE-4FCF-9158-73E238FE7F5E.html">?hetrf_rk</a><br/>
+Computes the factorization of a complex Hermitian indefinite matrix using the bounded Bunch-Kaufman (rook) diagonal pivoting method (BLAS3 blocked algorithm).</li>
+<li class="ulchildlink"><a href="GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A.html">?sptrf</a><br/>
+Computes the Bunch-Kaufman factorization of a symmetric matrix using packed storage.</li>
+<li class="ulchildlink"><a href="GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE.html">?hptrf</a><br/>
+Computes the Bunch-Kaufman factorization of a complex Hermitian matrix using packed storage.</li>
+<li class="ulchildlink"><a href="GUID-7C6574A1-164E-4A4A-A0F9-75949A5B35F7.html">mkl_?spffrt2, mkl_?spffrtx</a><br/>
+Computes the partial LDL<sup>T</sup> factorization of a symmetric matrix using packed storage.</li>
+</ul>
+</div>
+</body>
+</html>

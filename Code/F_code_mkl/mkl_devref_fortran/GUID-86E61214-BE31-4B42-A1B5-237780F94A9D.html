@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Two-stage Algorithm for Inspector-executor Sparse BLAS routines"/>
+<meta name="DC.subject" content="sparse_request_t, sparse_stage_nnz_count, sparse_stage_finalize_mult, sparse_stage_full_mult, two-stage algorithm"/>
+<meta name="keywords" content="sparse_request_t, sparse_stage_nnz_count, sparse_stage_finalize_mult, sparse_stage_full_mult, two-stage algorithm"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5F55E186-B077-4FB8-827D-222793C5129D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-86E61214-BE31-4B42-A1B5-237780F94A9D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Two-stage Algorithm for Inspector-executor Sparse BLAS routines</title>
+
+</head>
+<body id="GUID-86E61214-BE31-4B42-A1B5-237780F94A9D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"> Two-stage Algorithm for Inspector-executor Sparse BLAS routines</h1>
+<div><p>You can use a two-stage algorithm for Inspector-executor Sparse BLAS routines which produce a sparse matrix. The applicable routines are: 
+    </p>
+<ul id="GUID-6CA5747C-1C93-4A98-82FC-F78C26485296"><li><a href="GUID-7968023F-69F1-4E45-BCD1-D4161A26740B.html">mkl_sparse_sp2m</a> (<a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html">BSR</a>/<a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html">CSR</a>/<a href="GUID-910E399F-11B5-46B8-9750-87EF52679AE8.html">CSC</a> formats) 
+      </li>
+<li><a href="GUID-C09039C6-8ABD-403A-9980-3BEBF0FF3573.html">mkl_sparse_sypr</a> (<a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html">CSR</a> format) 
+      </li>
+<li><a href="GUID-E881BC80-5BDD-4CFD-88E2-9B57F89E737D.html">mkl_sparse_syrk</a> (<a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html">CSR</a> format) through the 
+        <a href="GUID-C09039C6-8ABD-403A-9980-3BEBF0FF3573.html">mkl_sparse_sypr</a> interface. 
+      </li>
+</ul>
+<p>In the two-stage algorithm: 
+    </p>
+<ol id="GUID-C1D37520-38C4-4EA6-8542-12D93E26E94D"><li>The first stage constructs the structure of the output matrix. 
+        <ul id="GUID-0CFE1573-AB33-4187-9510-2A2610471288"><li>For the 
+            <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html">BSR</a>/<a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html">CSR</a> storage formats, fill out 
+            <span class="keyword">rows_start</span> and either 
+            <span class="keyword">rows_end</span> or 
+            <span class="keyword">rowIndex</span> arrays for 4 or 3 array. 
+          </li>
+<li>For the 
+            <a href="GUID-910E399F-11B5-46B8-9750-87EF52679AE8.html">CSC</a> storage format, fill out 
+            <span class="keyword">cols_start</span> and either 
+            <span class="keyword">cols_end</span> or 
+            <span class="keyword">colIndex</span> arrays for 4 or 3 array. 
+          </li>
+</ul>
+This stage also allows the user to estimate memory required for the desired operation. 
+      </li>
+<li>The second stage constructs other arrays and performs the desired operation. 
+      </li>
+</ol>
+<p>You can separate the calls for each stage. You can also perform the entire computation in a single call using the 
+      <span class="parmname">sparse_request_t</span> parameter: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-C00E1114-0322-4652-93F6-6726A8A679F0" frame="border" border="1" cellspacing="0" rules="all"><caption><span class="tablecap"> Values for 
+    <span class="parmname">sparse_request_t 
+    </span>parameter</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="26.31578947368421%" id="d1000502e144">Value 
+        </th>
+<th class="cellrowborder" valign="top" width="73.68421052631578%" id="d1000502e146"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="26.31578947368421%" headers="d1000502e144 "><var> SPARSE_STAGE_NNZ_COUNT</var></td>
+<td class="cellrowborder" valign="top" width="73.68421052631578%" headers="d1000502e146 "><p> In the first stage, the algorithm computes only the row (CSR/BSR format) or column (CSC format) pointer array of the matrix storage format. The computed number of non-zeroes in the output matrix helps to calculate the amount of memory required. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="26.31578947368421%" headers="d1000502e144 "><var> SPARSE_STAGE_FINALIZE_MULT</var></td>
+<td class="cellrowborder" valign="top" width="73.68421052631578%" headers="d1000502e146 "><p> In the second stage, the algorithm computes the remaining column (CSR/BSR format) or row (CSC format) index and value arrays for the output matrix. Use this value only after calling the function with SPARSE_STAGE_NNZ_COUNT first. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="26.31578947368421%" headers="d1000502e144 "><var> SPARSE_STAGE_FULL_MULT</var></td>
+<td class="cellrowborder" valign="top" width="73.68421052631578%" headers="d1000502e146 "><p> Combine the two stages by performing the entire computation in a single step. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> This example uses the two-stage algorithm for mkl_sparse_sp2m routine with a matrix in CSR format: 
+  </p>
+<p><strong>First stage (<span class="keyword">sparse_request_t</span> = 
+      <var>SPARSE_STAGE_NNZ_COUNT</var>)</strong></p>
+<ol id="GUID-C98FB31D-EAED-4D76-91C9-FE94A549BE65"><li>The algorithm calls the 
+      <a href="GUID-7968023F-69F1-4E45-BCD1-D4161A26740B.html">mkl_sparse_sp2m</a> routine with the request parameter set to 
+      <var>SPARSE_STAGE_NNZ_COUNT</var>. 
+    </li>
+<li> The algorithm exports the computed 
+      <span class="keyword">rows_start</span> and 
+      <span class="keyword">rows_end</span> arrays using the 
+      <a href="GUID-B1A7855A-9BDD-481B-AEB9-093045CA6540.html">mkl_sparse_x_export_csr</a> routine. 
+    </li>
+<li>These arrays are used to calculate the number of non-zeroes (nnz) of the resulting output matrix. 
+    </li>
+</ol>
+<p>Note that at this stage, the arrays related to column index and values for the output matrix have not been computed. 
+  </p>
+<pre>
+status = mkl_sparse_sp2m ( op<var>A</var>, descr<var>A</var>, csr<var>A</var>, op<var>B</var>, descr<var>B</var>, csr<var>B</var>, SPARSE_STAGE_NNZ_COUNT, &amp;csr<var>C</var>);
+
+/* optional calculation of nnz of resulting output matrix for computing memory requirement */
+
+status = mkl_sparse_x_export_csr ( csrC, &amp;indexing, &amp;rows, &amp;cols, &amp;rows_start, &amp;rows_end, &amp;col_indx, &amp;values);
+
+MKL_INT nnz = rows_end[rows-1] - rows_start[0];
+</pre><p><strong>Second stage (<span class="keyword">sparse_request_t</span> = 
+      <var>SPARSE_STAGE_FINALIZE_MULT</var>)</strong></p>
+<p>The algorithm computes the remaining storage arrays (related to column index and values for the output matrix) and performs the desired operation. 
+  </p>
+<pre>status = mkl_sparse_sp2m ( op<var>A</var>, descr<var>A</var>, csr<var>A</var>, op<var>B</var>, descr<var>B</var>, csr<var>B</var>, SPARSE_STAGE_FINALIZE_MULT, &amp;csrC);</pre><p>Alternatively, you can perform both operations in a single step: 
+  </p>
+<p><strong>Single stage operation (<span class="keyword">sparse_request_t</span> = 
+      <var>SPARSE_STAGE_FULL_MULT</var>)</strong></p>
+<pre>status = mkl_sparse_sp2m ( op<var>A</var>, descr<var>A</var>, csr<var>A</var>, op<var>B</var>, descr<var>B</var>, csr<var>B</var>, SPARSE_STAGE_FULL_MULT, &amp;csrC);</pre></div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5F55E186-B077-4FB8-827D-222793C5129D.html">Inspector-executor Sparse BLAS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

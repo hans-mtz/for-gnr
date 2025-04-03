@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dfgmres_init"/>
+<meta name="abstract" content="Initializes the solver."/>
+<meta name="description" content="Initializes the solver."/>
+<meta name="DC.subject" content="dfgmres_init, RCI FGMRES sparse solver routines:dfgmres_init, Sparse Solver, iterative sparse solver interface"/>
+<meta name="keywords" content="dfgmres_init, RCI FGMRES sparse solver routines:dfgmres_init, Sparse Solver, iterative sparse solver interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CACC422-8069-440F-8272-344094F0186B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4CB407E4-2915-4DA2-BC6F-8A582D856590"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dfgmres_init</title>
+
+</head>
+<body id="GUID-4CB407E4-2915-4DA2-BC6F-8A582D856590">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dfgmres_init</span></h1>
+<!--Initializes the solver.--><div><p class="shortdesc">Initializes the solver.</p>
+<div class="section" id="GUID-5425762E-30F5-476F-B3A3-1095911A2A4B"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">dfgmres_init</span><span class="sep">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">RCI_request</span><span class="sep">, </span><span class="var">ipar</span><span class="sep">, </span><span class="var">dpar</span><span class="sep">, </span><span class="var">tmp</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-04C0416B-F177-424A-957F-32F0EB635946"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-603CC1DF-281B-4ED9-B2BF-A47720BFEAB2"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">dfgmres_init</span>initializes the solver. After initialization all subsequent invocations of Intel&reg; oneAPI Math Kernel Library RCI FGMRES routines use the values of all parameters that are returned by<span class="option">dfgmres_init</span>. Advanced users can skip this step and set the values in the <span class="parmname">ipar</span> and <span class="parmname">dpar</span> arrays directly.</p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>You can modify the contents of these arrays after they are passed to the solver routine only if you are sure that the values are correct and consistent. You can perform a basic check for correctness and consistency by calling the <span class="option">dfgmres_check</span> routine, but it does not guarantee that the method will work correctly.</p>
+</div>
+</div>
+<div class="section" id="GUID-40749BF9-D1A3-41FD-8455-A76CA6B85271"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-563602A7-05C8-4581-A4BD-473E33C01147"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Sets the size of the problem.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmname">n</span>. Contains the initial approximation to the solution vector. Normally it is equal to 0 or to <span class="parmname">b</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmname">n</span>. Contains the right-hand side vector.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3E15C60F-34BE-48EC-BB99-4CE8272914DB"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E5E8DD81-2887-4284-BF4A-C44B47982F0C"><dt class="dlterm"><span class="parmname">RCI_request</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Gives information about the result of the
+routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Array of size <span class="parmnamen">128</span>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <span class="parmnamen">128</span>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array of size <samp class="codeph">((2*<span class="parmname">ipar</span>(15) + 1)*<span class="parmname">n</span> + <span class="parmname">ipar</span>(15)*(<span class="parmname">ipar</span>(15) + 9)/2 + 1)</samp>. Refer to the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0145BB8-D203-4580-AF2B-A9878C7969F2"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-79E189F9-F176-43C9-B13C-A0BD5CCCDB38"><dt class="dlterm"><span class="parmname">RCI_request</span><span class="parmnamen">= 0</span></dt>
+
+<dd class="ddretval"><p>Indicates that  the task completed normally.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span><span class="parmnamen">= -10000</span></dt>
+
+<dd class="ddretval"><p>Indicates failure to complete the task.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4CACC422-8069-440F-8272-344094F0186B.html">RCI ISS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

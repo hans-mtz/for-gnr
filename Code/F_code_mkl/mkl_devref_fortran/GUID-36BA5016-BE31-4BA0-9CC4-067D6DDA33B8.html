@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="DftiCommitDescriptor"/>
+<meta name="abstract" content="Performs all initialization for the actual FFT computation."/>
+<meta name="description" content="Performs all initialization for the actual FFT computation."/>
+<meta name="DC.subject" content="DftiCommitDescriptor, fast Fourier transform, FFT functions, descriptor manipulation"/>
+<meta name="keywords" content="DftiCommitDescriptor, fast Fourier transform, FFT functions, descriptor manipulation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-106A043B-0305-482B-80BA-B10DC819780A.html"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DftiCommitDescriptor</title>
+
+</head>
+<body id="GUID-36BA5016-BE31-4BA0-9CC4-067D6DDA33B8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">DftiCommitDescriptor</span></h1>
+<!--Performs all initialization for the actual FFT computation.--><div><p class="shortdesc">Performs all initialization for the actual FFT computation.</p>
+<div class="section" id="GUID-EA6E47CE-80DA-4E58-8A52-043DA200061A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">status</span><span class="oper"> = </span><span class="kwd">DftiCommitDescriptor</span><span class="delim">( </span><span class="var">desc_handle</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-AA880247-F7BB-4C51-B24C-F8F0D2C82066"><h2 class="sectiontitle">Include Files</h2><ul id="d163e218"><li id="d163e219"><span class="filepath">mkl_dfti.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FF2E0C98-FF9D-4E5D-BAF8-5D94321A0E3B"><h2 class="sectiontitle">Input Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d428407e66" width="21.1864406779661%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d428407e69" width="32.20338983050847%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d428407e72" width="46.61016949152542%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d428407e66"><p><span class="parmname">desc_handle
+</span></p>
+</td>
+<td valign="top" headers="d428407e69"><p><span class="keyword">DFTI_DESCRIPTOR</span></p>
+</td>
+<td valign="top" headers="d428407e72"><p>FFT descriptor.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-55D4FEAD-9391-443A-9CA2-4BC44E0E62B0"><h2 class="sectiontitle">Output Parameters</h2><table cellpadding="4" cellspacing="0" summary="" border="0" class="ParamTbl"><tr><th valign="bottom" align="left" id="d428407e90" width="21.1864406779661%"><p>Name</p>
+</th>
+<th valign="bottom" align="left" id="d428407e93" width="32.20338983050847%"><p>Type</p>
+</th>
+<th valign="bottom" align="left" id="d428407e96" width="46.61016949152542%"><p>Description</p>
+</th>
+</tr>
+<tr><td valign="top" headers="d428407e90"><p><span class="parmname">desc_handle
+</span></p>
+</td>
+<td valign="top" headers="d428407e93"><p><span class="keyword">DFTI_DESCRIPTOR</span></p>
+</td>
+<td valign="top" headers="d428407e96"><p>Updated FFT descriptor.</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d428407e90"><p><span class="parmname">status
+</span></p>
+</td>
+<td valign="top" headers="d428407e93"><p><span class="keyword">INTEGER</span></p>
+</td>
+<td valign="top" headers="d428407e96"><p>Function completion status.</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="section" id="GUID-8F5568F1-61F8-4C5E-9371-40FC6584B006"><h2 class="sectiontitle">Description</h2><p><span/>This function completes initialization of a previously created descriptor, which is required before the descriptor can be used for FFT computations. Typically, committing the descriptor performs all initialization that is required for the actual FFT computation. The initialization done by the function may involve exploring different factorizations of the input length to find the optimal computation method.</p>
+<p>If you call the <span class="option">DftiSetValue</span> function to change configuration parameters of a committed descriptor <span>(see <a href="GUID-6CFE851C-961E-464E-9612-2846164817DC.html#GUID-6CFE851C-961E-464E-9612-2846164817DC">Descriptor Configuration Functions</a>)</span>, you must re-commit the descriptor before invoking a computation function. Typically, a committal function call is immediately followed by a computation function call <span>(see <a href="GUID-A9A3E3D5-94C9-411E-8D4A-628D0143E1E2.html#GUID-A9A3E3D5-94C9-411E-8D4A-628D0143E1E2">FFT Computation Functions</a>)</span>.</p>
+<p>The function returns zero when it completes successfully. <span>See <a href="GUID-DB93E334-20B0-443D-A0CF-46B4F187D3FB.html#GUID-DB93E334-20B0-443D-A0CF-46B4F187D3FB">Status Checking Functions</a> for more information on the returned status.</span></p>
+</div>
+<div class="section" id="GUID-F7285101-A22C-443B-A1E1-7387CC15F06E"><h2 class="sectiontitle">Interface</h2><pre> 
+INTERFACE DftiCommitDescriptor
+!Note that the body provided here is to illustrate the different
+!argument list and types of dummy arguments. The interface
+!does not guarantee what the actual function names are.
+!Users can only rely on the function name following the
+!keyword INTERFACE
+ FUNCTION some_actual function_1 ( Desc_Handle )
+ INTEGER :: some_actual function_1
+ TYPE(DFTI_DESCRIPTOR), POINTER :: Desc_Handle
+ END FUNCTION some_actual function_1
+END INTERFACE DftiCommitDescriptor 
+ </pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-106A043B-0305-482B-80BA-B10DC819780A.html">FFT Descriptor Manipulation Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

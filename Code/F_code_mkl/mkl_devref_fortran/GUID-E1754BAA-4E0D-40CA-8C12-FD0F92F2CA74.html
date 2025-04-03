@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larre"/>
+<meta name="abstract" content="Given the tridiagonal matrix T, sets small off-diagonal elements to zero and for each unreduced block Ti, finds base representations and eigenvalues."/>
+<meta name="description" content="Given the tridiagonal matrix T, sets small off-diagonal elements to zero and for each unreduced block Ti, finds base representations and eigenvalues."/>
+<meta name="DC.subject" content="?larre, LAPACK routines, auxiliary routines, general tridiagonal matrix"/>
+<meta name="keywords" content="?larre, LAPACK routines, auxiliary routines, general tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1180C2ED-C57A-44B7-A6DD-47CAB1AFEC66.html#GUID-1180C2ED-C57A-44B7-A6DD-47CAB1AFEC66"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1E8477BE-5F67-45C4-95E0-461C19C838CB.html#GUID-1E8477BE-5F67-45C4-95E0-461C19C838CB"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912.html#GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4A9E3EB-E0E1-4547-8B7A-63A155940228.html#GUID-D4A9E3EB-E0E1-4547-8B7A-63A155940228"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larre</title>
+
+</head>
+<body id="GUID-E1754BAA-4E0D-40CA-8C12-FD0F92F2CA74">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larre</span></h1>
+<!--Given the tridiagonal matrix T, sets small off-diagonal elements to zero and for each unreduced block T i , finds base representations and eigenvalues.--><div><p class="shortdesc">Given the tridiagonal matrix T, sets small off-diagonal elements to zero and for each unreduced block T<sub class="subb"><var>i</var></sub>, finds base representations and eigenvalues.</p>
+<div class="section" id="GUID-42FBB02C-C637-4786-9151-78A94C8C2CC7"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarre</span><span class="delim">( </span><span class="var">range</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">spltol</span><span class="sep">, </span><span class="var">nsplit</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarre</span><span class="delim">( </span><span class="var">range</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">vl</span><span class="sep">, </span><span class="var">vu</span><span class="sep">, </span><span class="var">il</span><span class="sep">, </span><span class="var">iu</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">e2</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">spltol</span><span class="sep">, </span><span class="var">nsplit</span><span class="sep">, </span><span class="var">isplit</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">iblock</span><span class="sep">, </span><span class="var">indexw</span><span class="sep">, </span><span class="var">gers</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-A28D4D16-460B-4A9E-99F0-939862DC4655"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-60360096-75C6-4B50-B690-CE526C92B959"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>To find the desired eigenvalues of a given real symmetric tridiagonal matrix <var>T</var>, the routine sets any "small" off-diagonal elements to zero, and for each unreduced block <var>T</var><sub class="subb"><var>i</var></sub>, it finds </p>
+<ul id="GUID-911F587E-C4AD-4EDE-AE6F-22E9F81D4DCF"><li><p>a suitable shift at one end of the block spectrum</p>
+</li>
+<li><p>the base representation, <var>T</var><sub class="subb"><var>i</var></sub> - <span class="eqsymbol">σ</span><sub class="subb"><var>i</var></sub><var>*I</var> = <var>L</var><sub class="subb"><var>i</var></sub><var>*D</var><sub class="subb"><var>i</var></sub><var>*L</var><sub class="subb"><var>i</var></sub><sup class="power"><var>T</var></sup>, and</p>
+</li>
+<li><p>eigenvalues of each <var>L</var><sub class="subb"><var>i</var></sub><var>*D</var><sub class="subb"><var>i</var></sub><var>*L</var><sub class="subb"><var>i</var></sub><sup class="power"><var>T</var></sup>.</p>
+</li>
+</ul>
+<p>The representations and eigenvalues found are then used by <span class="option">?stemr</span> to compute the eigenvectors of a symmetric tridiagonal matrix. The accuracy varies depending on whether bisection is used to find a few eigenvalues or the <span class="keyword">dqds</span> algorithm  (subroutine <span class="option">?lasq2</span>) to compute all and discard any unwanted one. As an added benefit, <span class="option">?larre</span> also outputs the <var>n</var> Gerschgorin intervals for the matrices <var>L</var><sub class="subb"><var>i</var></sub>*<var>D</var><sub class="subb"><var>i</var></sub><var>*L</var><sub class="subb"><var>i</var></sub><sup class="power"><var>T</var></sup>.</p>
+</div>
+<div class="section" id="GUID-E4715311-9DDC-4121-9588-04F5B34A2970"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E69F73EE-BB90-4715-B158-E99F38C480CD"><dt class="dlterm"><span class="parmname">range</span></dt>
+
+<dd><p><span class="keyword">CHARACTER</span>. </p>
+<p>= <span class="keyword">'A'</span>: ("All")       all eigenvalues will be found.</p>
+<p>= <span class="keyword">'V'</span>: ("Value")   all 
+eigenvalues in the half-open interval
+(<span class="parmname">vl</span>, <span class="parmname">vu</span>] will be found.</p>
+<p>= <span class="keyword">'I'</span>: ("Index")   the <span class="parmname">il</span>-th through <span class="parmname">iu</span>-th eigenvalues of the entire matrix will be found.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix. <var>n</var> &gt; 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vl</span>, <span class="parmname">vu</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>If <span class="parmname">range</span>=<span class="keyword">'V'</span>, the lower and upper bounds for the eigenvalues. Eigenvalues less than or equal to <span class="parmname">vl</span>, or greater than <span class="parmname">vu</span>, are not returned.  <span class="parmname">vl</span> &lt; <span class="parmname">vu</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">il</span>, <span class="parmname">iu</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <span class="parmname">range</span>=<span class="keyword">'I'</span>,  the indices (in ascending order) of the smallest and largest eigenvalues to be returned. 1 ≤ <span class="parmname">il</span> ≤ <span class="parmname">iu</span> ≤ <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The <var>n</var> diagonal elements of the diagonal matrices <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The first (<var>n</var>-1) entries contain the subdiagonal elements of the tridiagonal matrix <var>T</var>; <var>e</var>(<var>n</var>) need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The first (<var>n</var>-1) entries contain the squares of the subdiagonal elements of the tridiagonal matrix <var>T</var>; <var>e2</var>(<var>n</var>) need not be set.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rtol1</span>,  <span class="parmname">rtol2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Parameters for bisection. An interval <span class="keyword">[LEFT,RIGHT]</span> has converged if <samp class="codeph">RIGHT-LEFT.LT.MAX( <span class="parmname">rtol1</span>*gap, <span class="parmname">rtol2</span>*max(|LEFT|,|RIGHT|) )</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">spltol</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>The threshold for splitting.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (6*<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (5*<var>n</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DC584E4E-8E0F-401F-878B-D29836C44133"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-87A5760E-6204-4B68-BDB1-506B6A992A70"><dt class="dlterm"><span class="parmname">vl</span>, <span class="parmname">vu</span></dt>
+
+<dd><p>On exit, if <span class="parmname">range</span>=<span class="keyword">'I'</span> or =<span class="keyword">'A'</span>, contain the bounds on the desired part of the spectrum.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, the <var>n</var> diagonal elements of the diagonal matrices <var>D</var><sub class="subb"><var>i</var></sub> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On exit, the subdiagonal elements of the unit bidiagonal matrices <var>L</var><sub class="subb"><var>i</var></sub> . The entries <span class="parmname">e</span>( <span class="parmname">isplit</span>( <var>i</var>) ), 1 ≤ <var>i</var> ≤ <span class="parmname">nsplit</span>, contain the base points <var>sigma</var><sub><var>i</var></sub> on output.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e2</span></dt>
+
+<dd><p>On exit, the entries <span class="parmname">e2</span>( <span class="parmname">isplit</span>( <var>i</var>) ),
+1 ≤ <var>i</var> ≤ <span class="parmname">nsplit</span>, have been set to zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nsplit</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of blocks <var>T</var> splits into. <samp class="codeph">1 ≤ <span class="parmname">nsplit</span> ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">isplit</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The splitting points, at which <var>T</var> breaks up into blocks. The first block consists of rows/columns 1 to <var>isplit</var>(1), the second of rows/columns <samp class="codeph"><var>isplit</var>(1)+1</samp> through <var>isplit</var>(2), etc., and the <var>nsplit</var>-th consists of rows/columns <samp class="codeph"><var>isplit</var>(<var>nsplit</var>-1)+1</samp> through <samp class="codeph"><var>isplit</var>(<var>nsplit</var>)=<var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The total number of eigenvalues (of all the <var>L</var><sub class="subb"><var>i</var></sub><var>*D</var><sub class="subb"><var>i</var></sub><var>*L</var><sub class="subb"><var>i</var></sub><sup class="power"><var>T</var></sup>) found.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The first <var>m</var> elements contain the eigenvalues. The eigenvalues of each of the blocks, <var>L</var><sub class="subb"><var>i</var></sub><var>*D</var><sub class="subb"><var>i</var></sub><var>*L</var><sub class="subb"><var>i</var></sub><sup class="power"><var>T</var></sup>, are sorted in ascending order. The routine may use the remaining <var>n</var>-<var>m</var> elements as workspace.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The error bound on the corresponding eigenvalue in <var>w</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The separation from the right neighbor eigenvalue in <var>w</var>. The gap is only with respect to the eigenvalues of the same block as each block has its own representation tree. Exception: at the right end of a block the left gap is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iblock</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The indices of the blocks (submatrices) associated with the corresponding eigenvalues in <var>w</var>; <samp class="codeph"><var>iblock</var>(<var>i</var>)=1</samp> if eigenvalue <var>w</var>(<var>i</var>) belongs to the first block from the top, =2 if <var>w</var>(<var>i</var>) belongs to the second block, etc. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">indexw</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Array, <span class="keyword">DIMENSION</span> (<var>n</var>).</p>
+<p> The indices of the eigenvalues within each block (submatrix);          for example, <var>indexw</var>(<var>i</var>)= 10 and <var>iblock</var>(<var>i</var>)=2 imply that the <var>i</var>-th eigenvalue <var>w</var>(<var>i</var>) is the 10-th eigenvalue in the second block.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">gers</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (2*<var>n</var>). The <var>n</var> Gerschgorin intervals (the <var>i</var>-th Gerschgorin interval is <samp class="codeph">(<span class="parmname">gers</span>(2*<var>i</var>-1), <span class="parmname">gers</span>(2*<var>i</var>))</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarre</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarre</span></p>
+<p>The minimum pivot in the Sturm sequence for <var>T</var> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>:  successful exit </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>:  A problem occured in <span class="option">?larre</span>. If <samp class="codeph"><var>info</var> = 5</samp>, the Rayleigh Quotient Iteration failed to converge to
+full accuracy.</p>
+<p>If <samp class="codeph"><var>info</var> &lt; 0</samp>: One of the called subroutines signaled an internal problem. Inspection of the corresponding parameter <span class="parmname">info</span> for further information is required.</p>
+<ul id="GUID-54712625-F957-40E6-9672-E8C96FCFE8FE"><li><p>If <samp class="codeph"><var>info</var> = -1</samp>, there is a problem in <span class="option">?larrd</span></p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -2</samp>, no base representation could be found in <span class="keyword">maxtry</span> iterations. Increasing <span class="keyword">maxtry</span> and recompilation might be a remedy.</p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -3</samp>, there is a problem in <span class="option">?larrb</span> when computing the refined root representation for <span class="option">?lasq2</span>.</p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -4</samp>, there is a problem in <span class="option">?larrb</span> when preforming bisection on the desired part of the spectrum.</p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -5</samp>, there is a problem in <span class="option">?lasq2</span>.</p>
+</li>
+<li><p>If <samp class="codeph"><var>info</var> = -6</samp>, there is a problem in <span class="option">?lasq2</span>.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-1180C2ED-C57A-44B7-A6DD-47CAB1AFEC66.html#GUID-1180C2ED-C57A-44B7-A6DD-47CAB1AFEC66"><span class="option">?stemr</span></a> </div>
+<div><a href="GUID-1E8477BE-5F67-45C4-95E0-461C19C838CB.html#GUID-1E8477BE-5F67-45C4-95E0-461C19C838CB"><span class="option">?lasq2</span></a> </div>
+<div><a href="GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912.html#GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912"><span class="option">?larrb</span></a> </div>
+<div><a href="GUID-D4A9E3EB-E0E1-4547-8B7A-63A155940228.html#GUID-D4A9E3EB-E0E1-4547-8B7A-63A155940228"><span class="option">?larrd</span></a> </div></div></div>
+</body>
+</html>

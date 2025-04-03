@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="gemm_*_pack"/>
+<meta name="abstract" content="Pack the matrix into the buffer allocated previously."/>
+<meta name="description" content="Pack the matrix into the buffer allocated previously."/>
+<meta name="DC.subject" content="sgemm_pack, dgemm_pack"/>
+<meta name="keywords" content="sgemm_pack, dgemm_pack"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-16188573-1301-4078-8837-95670AF6FF48"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>gemm_*_pack</title>
+
+</head>
+<body id="GUID-16188573-1301-4078-8837-95670AF6FF48">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">gemm_*_pack</span></h1>
+<!--Pack the matrix into the buffer allocated previously.--><div><p class="shortdesc">Pack the matrix into the buffer allocated previously.</p>
+<div class="section" id="GUID-5482FEF9-955D-4E84-B795-33951F31C937"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call gemm_s8u8s32_pack</span><span class="delim"> (</span><span class="var">identifier</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">src</span><span class="sep">, </span><span class="var">ld</span><span class="sep">, </span><span class="var">dest</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call gemm_s16s16s32_pack</span><span class="delim"> (</span><span class="var">identifier</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">src</span><span class="sep">, </span><span class="var">ld</span><span class="sep">, </span><span class="var">dest</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-1394087F-6A3D-4CF8-BB97-7E0F188A463B"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-8458C76D-1111-4A5D-B805-629C4DF1C93A"><li><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-ADB135C3-8AF1-489D-BCD4-4EBF2948FE0F"><h2 class="sectiontitle">Description</h2><p> The <span class="option">gemm_*_pack</span> routine is one of a set of related routines
+that enable the use of an internal packed storage.
+Call <span class="option">gemm_*_pack</span> after you allocate a buffer   whose size is given by <span class="option">gemm_*_pack_get_size</span>. The  <span class="option">gemm_*_pack</span> routine packs the identified matrix into the buffer allocated previously. </p>
+<p>The <span class="option">gemm_*_pack</span> routine performs this operation:</p>
+<p><samp class="codeph"><span class="parmname">dest</span> := op(<span class="parmname">src</span>)</samp> as part of the computation <samp class="codeph"><var>C</var> := <var>alpha</var>*(op(<var>A</var>) + <var>A_offset</var>)*(op(<var>B</var>) + <var>B_offset</var>) + <var>beta</var>*<var>C</var> + <var>C_offset</var></samp> for integer types.</p>
+<p><samp class="codeph"><var>C</var> := <var>alpha</var>*op(<var>A</var>) * op(<var>B</var>) + <var>beta</var>*<var>C</var></samp> for bfloat16 type.</p>
+<p id="GEMM_LIST"> where:<ul class="simple"><li><samp class="codeph"> op(<var>X</var>)</samp> is one of the operations <samp class="codeph"> op(<var>X</var>) = <var>X</var></samp> or <samp class="codeph"> op(<var>X</var>) = <var>X</var><sup>T</sup></samp></li>
+<li><var>alpha</var> and
+<var>beta</var> are scalars,</li>
+<li><span class="parmname">src</span> is a matrix,</li>
+<li><var>A</var> , <var>A_offset</var>,<var>B</var>, <var>B_offset</var>,<var>c</var>,and
+<var>C_offset</var> are matrices</li>
+<li><samp class="codeph">op(<span class="parmname">src</span>)</samp> is an <span class="parmname">m</span>-by-<span class="parmname">k</span> matrix if <span class="parmname">identifier</span> = <span><samp class="codeph">'A'</samp> or <samp class="codeph">'a'</samp></span>,</li>
+<li><samp class="codeph">op(<span class="parmname">src</span>)</samp> is a <span class="parmname">k</span>-by-<span class="parmname">n</span> matrix if <span class="parmname">identifier</span> = <span><samp class="codeph">'B'</samp> or <samp class="codeph">'b'</samp></span>,</li>
+<li><span class="parmname">dest</span> is the buffer previously allocated to store the matrix packed into an internal format</li>
+<li><var>A_offset</var> is an
+<span class="parmname">m</span>-by-<span class="parmname">k</span> matrix.</li>
+<li><var>B_offset</var> is an
+<span class="parmname">k</span>-by-<span class="parmname">n</span> matrix.</li>
+<li><var>C_offset</var> is an
+<span class="parmname">m</span>-by-<span class="parmname">n</span> matrix.</li>
+</ul>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> For best performance, use the same number of threads for packing and for computing.</p>
+<p>If packing for both <var>A</var> and <var>B</var> matrices, you must use the same number of threads for packing <var>A</var> as for packing <var>B</var>.</p>
+</div>
+</div>
+<div class="section" id="GUID-094648A2-53F5-438F-9DF3-89EC458DB720"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C11B6DB5-7694-4ED4-9CD5-6BDBDA60F1F3"><dt class="dlterm"><span class="parmname">identifier</span></dt>
+
+<dd><span><span class="keyword">CHARACTER*1</span>. </span><p>Specifies which matrix is to be packed:</p>
+<p>If <span class="parmname">identifier</span> = <span><samp class="codeph">'A'</samp> or <samp class="codeph">'a'</samp></span>, the <var>A</var> matrix is packed.</p>
+<p>If <span class="parmname">identifier</span> = <span><samp class="codeph">'B'</samp> or <samp class="codeph">'b'</samp></span>, the <var>B</var> matrix is packed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><span><span class="keyword">CHARACTER*1</span>. </span><p>Specifies the form of <samp class="codeph">op(<span class="parmname">src</span>)</samp> used in the packing:</p>
+<p>If <span class="parmname">trans</span> = <span><samp class="codeph">'N'</samp> or <samp class="codeph">'n'</samp></span>  <samp class="codeph">op(<span class="parmname">src</span>) = <span class="parmname">src</span></samp>.</p>
+<p>If <span class="parmname">trans</span> = <span><samp class="codeph">'T'</samp> or <samp class="codeph">'t'</samp></span>  <samp class="codeph">op(<span class="parmname">src</span>) = <span class="parmname">src</span><sup>T</sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><span><span class="keyword">INTEGER</span>. </span><p>Specifies the number of rows of matrix op(<var>A</var>) and of the matrix <var>C</var>. The value of <span class="parmname">m</span> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><span><span class="keyword">INTEGER</span>. </span><p>Specifies the number of columns of matrix op(<var>B</var>) and the number of columns of matrix <var>C</var>.  The value of <span class="parmname">n</span> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><span><span class="keyword">INTEGER</span>. </span><p>Specifies the number of columns of matrix op(<var>A</var>) and the number of rows of matrix op(<var>B</var>).  The value of <span class="parmname">k</span> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">src</span></dt>
+
+<dd><p><span class="keyword">INTEGER*1</span> for <samp class="codeph">gemm_s8u8s32_pack</samp> and <span class="keyword">INTEGER*2</span> for <samp class="codeph">gemm_s16s16s32_pack</samp></p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-0996BED7-25FE-427E-88D6-A6A1D3B6301F" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="NaN%" id="d210179e538"> </th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d210179e539"><p><span class="parmname">trans</span> = 		<span class="keyword">'N'</span> or <span class="keyword">'n'</span></p>
+</th>
+<th class="cellrowborder" valign="top" width="NaN%" id="d210179e549"><p><span class="parmname">trans</span> = 		<span class="keyword">'T'</span> or <span class="keyword">'t'</span></p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="NaN%" headers="d210179e538 "><p><span class="parmname">identifier</span> = 		<span class="keyword">'A'</span> or <span class="keyword">'a'</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d210179e539 "><p>Size <samp class="codeph"><span class="parmname">ld</span>*<span class="parmname">k</span></samp>.</p>
+<p>Before entry, the leading <span class="parmname">m</span>-by-<span class="parmname">k</span> part of the array <span class="parmname">src</span> must contain the matrix <var>A</var>.</p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d210179e549 "><p>Size <samp class="codeph"><span class="parmname">ld</span>*<span class="parmname">m</span></samp>.</p>
+<p>Before entry, the leading <span class="parmname">k</span>-by-<span class="parmname">m</span> part of the array <span class="parmname">src</span> must contain the matrix <var>A</var>.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%" headers="d210179e538 "><p><span class="parmname">identifier</span> = 		<span class="keyword">'B'</span> or <span class="keyword">'b'</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d210179e539 "><p>Size <samp class="codeph"><span class="parmname">ld</span>*<span class="parmname">n</span></samp>.</p>
+<p>Before entry, the leading <span class="parmname">k</span>-by-<span class="parmname">n</span> part of the array <span class="parmname">src</span> must contain the matrix <var>B</var>.</p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%" headers="d210179e549 "><p>Size <samp class="codeph"><span class="parmname">ld</span>*<span class="parmname">k</span></samp>.</p>
+<p>Before entry, the leading <span class="parmname">n</span>-by-<span class="parmname">k</span> part of the array <span class="parmname">src</span> must contain the matrix <var>B</var>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ld</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <span class="parmname">src</span> as declared in the calling (sub)program.</p>
+<table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder"><tr><td valign="top"> </td>
+<td valign="top"><p><span class="parmname">trans</span> = <samp class="codeph">'N'</samp> or <samp class="codeph">'n'</samp></p>
+</td>
+<td valign="top"><p><span class="parmname">trans</span> = <samp class="codeph">'T'</samp> or <samp class="codeph">'t'</samp></p>
+</td>
+</tr>
+<tr><td valign="top"><p><span class="parmname">identifier</span> = <samp class="codeph">'A'</samp> or <samp class="codeph">'a'</samp></p>
+</td>
+<td valign="top"><p><span class="parmname">ld</span> must be at least <samp class="codeph">max(1, <span class="parmname">m</span>)</samp>.</p>
+</td>
+<td valign="top"><p><span class="parmname">ld</span> must be at least <samp class="codeph">max(1, <span class="parmname">k</span>)</samp>.</p>
+</td>
+</tr>
+<tr><td valign="top"><p><span class="parmname">identifier</span> = <samp class="codeph">'B'</samp> or <samp class="codeph">'b'</samp></p>
+</td>
+<td valign="top"><p><span class="parmname">ld</span> must be at least <samp class="codeph">max(1, <span class="parmname">k</span>)</samp>.</p>
+</td>
+<td valign="top"><p><span class="parmname">ld</span> must be at least <samp class="codeph">max(1, <span class="parmname">n</span>)</samp>.</p>
+</td>
+</tr>
+</table>
+</dd>
+<dt class="dlterm"><span class="parmname">dest</span></dt>
+
+<dd><span>INTEGER*1</span> for <samp class="codeph">gemm_s8u8s32_pack</samp> or <span>INTEGER*2</span> for <samp class="codeph">gemm_s16s16s32_pack</samp><p>Buffer for the packed matrix.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E613DAE8-3D2D-43F4-972D-E644B96D1792"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">dest</span></p></td>
+
+<td valign="top" class="noborder"><span>INTEGER*1</span> for <samp class="codeph">gemm_s8u8s32_pack</samp> or <span>INTEGER*2</span> for <samp class="codeph">gemm_s16s16s32_pack</samp><p>Overwritten by the matrix <samp class="codeph">op(<span class="parmname">src</span>)</samp>stored in a format internal to Intel&reg; oneAPI Math Kernel Library.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-751608D3-6453-404D-A51C-E39D3CB6D9B4"><h2 class="sectiontitle">Example</h2><p>See the following examples in the MKL installation directory to understand the use of these routines:</p>
+<p> gemm_s8u8s32_pack: examples\blas\source\gemm_s8u8s32_computex.f
+</p>
+<p> gemm_s16s16s32_pack: examples\blas\source\gemm_s16s16s32_computex.f
+</p>
+</div>
+<div class="section" id="GUID-D3D2B639-B2EA-4037-8293-1380E9ED6D1D"><h2 class="sectiontitle">Application Notes</h2></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-8F12581B-B0ED-49F5-8061-B84AD89F39C4.html"><span class="option">gemm_*_pack_get_size</span></a>  to return the number of bytes needed to store the packed matrix.</div>
+<div><a href="GUID-A04AF30D-38CE-424A-AE9A-5988303A3FE8.html"><span class="option">gemm_*_compute</span></a>  to compute a matrix-matrix product with general integer matrices (where one or both input matrices are stored in a packed data structure) and add the result to a scalar-matrix product.</div></div></div>
+</body>
+</html>

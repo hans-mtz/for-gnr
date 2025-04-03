@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?unmql"/>
+<meta name="abstract" content="Multiplies a complex matrix by the unitary matrix Q of the QL factorization formed by ?geqlf."/>
+<meta name="description" content="Multiplies a complex matrix by the unitary matrix Q of the QL factorization formed by ?geqlf."/>
+<meta name="DC.subject" content="?unmql, LAPACK routines, QL factorization"/>
+<meta name="keywords" content="?unmql, LAPACK routines, QL factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-13237152-FC00-4E7F-B378-E2D4963FC1BF"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?unmql</title>
+
+</head>
+<body id="GUID-13237152-FC00-4E7F-B378-E2D4963FC1BF">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?unmql</span></h1>
+<!--Multiplies a complex matrix by the unitary matrix Q of the QL factorization formed by  ?geqlf .--><div><p class="shortdesc">Multiplies a complex matrix by the unitary matrix Q of the QL factorization formed by <span class="option">?geqlf</span>.</p>
+<div class="section" id="GUID-681EC392-3F5E-46AE-AEAB-D277D62505ED"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cunmql</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zunmql</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call unmql</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="delim"> [</span><span class="sep">,</span><span class="var">side</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-D60A8548-C069-44FF-9D85-E96ECCFC9A92"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A5D03D35-4E59-4907-9E9C-21301892EA45"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine multiplies a complex <var>m</var>-by-<var>n</var> matrix <var>C</var> by <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup>, where <var>Q</var> is the unitary matrix <var>Q</var> of the <var>QL</var> factorization formed by the routine <a href="GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D.html#GUID-8108B38A-37BB-44C3-8FC9-2003907AC87D">geqlf</a>. </p>
+<p>Depending on the parameters <var>side</var> and <var>trans</var>, the routine <a href="#GUID-13237152-FC00-4E7F-B378-E2D4963FC1BF">unmql</a> can form one of the matrix products <var>Q*C</var>, <var>Q</var><sup class="power"><var>H</var></sup><var>*C</var>, <var>C*Q</var>, or <var>C*Q</var><sup class="power"><var>H</var></sup> (overwriting the result over <var>C</var>).</p>
+</div>
+<div class="section" id="GUID-005D494A-689D-4F51-A9DE-4E0CF6B8D9B7"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-779517A6-279C-4707-B75E-C82581A6E7D0"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be either <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup> is applied to <var>C</var> from the left. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <var>Q</var> or <var>Q</var><sup class="power"><var>H</var></sup> is applied to <var>C</var> from the right.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be either <span class="keyword">'N'</span> or <span class="keyword">'C'</span>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, the routine multiplies <var>C</var> by <var>Q</var>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, the routine multiplies <var>C</var> by <var>Q</var><sup class="power"><var>H</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>C</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>C</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elementary reflectors whose product defines the matrix <var>Q</var>. Constraints: </p>
+<p><samp class="codeph">0 <span class="eqsymbol">≤</span><var>k</var><span class="eqsymbol">≤</span><var>m</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph">0 <span class="eqsymbol">≤</span><var>k</var><span class="eqsymbol">≤</span><var>n</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">tau</span>, <span class="parmname">c</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cunmql</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zunmql</span>. </p>
+<p>Arrays: <var>a</var><span>(<var>lda</var>,*)</span>, <var>tau</var><span>(*)</span>, <var>c</var><span>(<var>ldc</var>,*)</span><span>, <var>work</var>(<var>lwork</var>)</span>.</p>
+<p>On entry, the <var>i</var>-th column of <var>a</var> must contain the vector which defines the elementary reflector <samp class="codeph"><var>H</var>(<var>i</var>)</samp>, for i = 1,2,...,<var>k</var>, as returned by <span class="option">cgeqlf</span>/<span class="option">zgeqlf</span> in the last <var>k</var> columns of its array argument <var>a</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>k</var>).</p>
+<p><span><var>tau</var>(<var>i</var>)</span> must contain the scalar factor of the elementary reflector <samp class="codeph"><var>H</var>(<var>i</var>)</samp>, as returned by <span class="option">cgeqlf</span>/<span class="option">zgeqlf</span>. </p>
+<p>The size of <var>tau</var> must be at least max(1, <var>k</var>).</p>
+<p><var>c</var><span>(<var>ldc</var>,*)</span> contains the <var>m</var>-by-<var>n</var> matrix <var>C</var>.</p>
+<p>The second dimension of <var>c</var> must be at least max(1, <var>n</var>)</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var><span>; <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp></span>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>c</var>; <samp class="codeph"><var>ldc</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array. Constraints: </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2DBC7561-7691-4BF4-9FB3-826DC9FD7D90"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D0F928C9-7F92-4059-9097-DCBE8B379E36"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the product <var>Q*C</var>, <var>Q</var><sup class="power"><var>H</var></sup><var>*C</var>, <var>C*Q</var>, or <var>C*Q</var><sup class="power"><var>H</var></sup> (as specified by <var>side</var> and <var>trans</var>).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-772AAA49-3324-42EF-93E2-6B359628B71A"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">unmql</span> interface are the following:</p>
+<dl id="GUID-F438DED0-B0C7-4F3D-9AC0-F9BE35B42DB3"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>r,k</var>).</p>
+<p><samp class="codeph"><var>r</var> = <var>m</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>.</p>
+<p><samp class="codeph"><var>r</var> = <var>n</var></samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length (<var>k</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Holds the matrix <var>C</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>Must be <span class="keyword">'L'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'L'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'C'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-55E189CB-2D11-4069-9E02-6A1C22242231"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp> (if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>) or <samp class="codeph"><var>lwork</var> = <var>m</var>*<var>blocksize</var></samp> (if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>) where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>In first case the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The real counterpart of this routine is <a href="GUID-908FFBB1-0F9C-4B4D-BE96-3A3AD65CA9E4.html#GUID-908FFBB1-0F9C-4B4D-BE96-3A3AD65CA9E4">ormql</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

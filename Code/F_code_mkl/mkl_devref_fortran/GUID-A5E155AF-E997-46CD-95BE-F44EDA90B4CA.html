@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?ptcon"/>
+<meta name="abstract" content="Estimates the reciprocal of the condition number of a symmetric (Hermitian) positive-definite tridiagonal matrix."/>
+<meta name="description" content="Estimates the reciprocal of the condition number of a symmetric (Hermitian) positive-definite tridiagonal matrix."/>
+<meta name="DC.subject" content="?ptcon, LAPACK routines, condition number estimation, condition number, symmetric positive-definite matrix, tridiagonal, Hermitian positive-definite matrix, estimating the condition number, tridiagonal matrix"/>
+<meta name="keywords" content="?ptcon, LAPACK routines, condition number estimation, condition number, symmetric positive-definite matrix, tridiagonal, Hermitian positive-definite matrix, estimating the condition number, tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A5E155AF-E997-46CD-95BE-F44EDA90B4CA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?ptcon</title>
+
+</head>
+<body id="GUID-A5E155AF-E997-46CD-95BE-F44EDA90B4CA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?ptcon</span></h1>
+<!--Estimates the reciprocal of the condition number of a symmetric (Hermitian) positive-definite tridiagonal matrix.--><div><p class="shortdesc">Estimates the reciprocal of the condition number of a symmetric (Hermitian) positive-definite tridiagonal matrix.</p>
+<div class="section" id="GUID-ED18630B-5F23-424D-ABE2-DFA325468089"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sptcon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dptcon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cptcon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zptcon</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ptcon</span><span class="delim">( </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">anorm</span><span class="sep">, </span><span class="var">rcond</span><span class="delim"> [</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-DFF3EBEB-CFD2-4FAB-8DFF-2C67EDA604D1"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C1E7C5E5-5DCC-4E43-859C-1A6BA2DE4400"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the reciprocal of the condition number (in the 1-norm) of a real symmetric or complex Hermitian positive-definite tridiagonal matrix using the factorization <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>T</var></sup></samp> for real flavors and <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>H</var></sup></samp> for complex flavors or <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>T</var></sup><var>*D*U</var></samp> for real flavors and  <samp class="codeph"><var>A</var> = <var>U</var><sup class="power"><var>H</var></sup><var>*D*U</var></samp> for complex flavors computed by <a class="allformats" href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html#GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682"><span class="option">?pttrf</span></a> :</p>
+<p><samp class="codeph"><span class="eqsymbol">κ</span><sub class="subnb">1</sub>(<var>A</var>) = ||<var>A</var>||<sub class="subnb">1</sub> ||<var>A</var><sup>-1</sup>||<sub class="subnb">1</sub></samp> (since <var>A</var> is symmetric or Hermitian, <samp class="codeph"><span class="eqsymbol">κ</span><sub><span class="eqsymbol">∞</span></sub>(<var>A</var>) = <span class="eqsymbol">κ</span><sub class="subnb">1</sub>(<var>A</var>)</samp>).</p>
+<p>The norm <samp class="codeph">||<var>A</var><sup>-1</sup>||</samp> is computed by a direct method, and the reciprocal of the condition number is computed as <samp class="codeph"><var>rcond</var> = 1 / (||<var>A</var>|| ||<var>A</var><sup>-1</sup>||)</samp>. </p>
+<p>Before calling this routine:</p>
+<ul id="GUID-22A771D5-3783-4741-BD39-8755DE7E1FAB"><li><p>compute <var>anorm</var> as <samp class="codeph">||<var>A</var>||<sub class="subnb">1</sub> = max<sub><var>j</var></sub><span class="eqsymbol">Σ</span><sub class="subb"><var>i</var></sub> |<var>a</var><sub class="subb"><var>i</var><var>j</var></sub>|</samp></p>
+</li>
+<li><p>call <a class="allformats" href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html#GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682"><span class="option">?pttrf</span></a> to compute the factorization of <var>A</var>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-2EE06D01-E3B7-4F19-B4C7-750F4BFE5C78"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span><span>, <span class="parmname">work</span></span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors.</p>
+<p>Arrays, dimension (<var>n</var>).</p>
+<p>The array <var>d</var> contains the <var>n</var> diagonal elements of the diagonal matrix <var>D</var> from the factorization of <var>A</var>, as computed by <a class="allformats" href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html#GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682"><span class="option">?pttrf</span></a> ;</p>
+<p><var>work</var> is a workspace array.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">e</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">sptcon</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dptcon</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cptcon</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zptcon</span>. </p>
+<p>Array, size <samp class="codeph">(<var>n</var> -1)</samp>. </p>
+<p>Contains off-diagonal elements of the unit bidiagonal factor <var>U</var> or <var>L</var> from the factorization computed by <a class="allformats" href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html#GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682"><span class="option">?pttrf</span></a> .</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">anorm</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors.</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>The 1- norm of the <em>original</em> matrix <var>A</var><span> (see <em>Description</em>)</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-87DC9D26-B56F-4C20-B5AA-EA1862A79F7A"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rcond</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for single precision flavors</p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>An estimate of the reciprocal of the condition number. The routine sets <var>rcond</var> =0 if the estimate underflows; in this case the matrix is singular (to working precision). However, anytime <var>rcond</var> is small compared to 1.0, for the working precision, the matrix may be poorly conditioned or even singular.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-0950DEBF-A851-42C6-9762-4FE436D5CDA7"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">gtcon</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">d</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">e</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length (<var>n</var>-1).</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-FBBDAFD1-A4DF-4304-98C6-F8ABAF7D7C1E"><h2 class="sectiontitle">Application Notes</h2><p>The computed <var>rcond</var> is never less than <var>r</var> (the reciprocal of the true condition number) and in practice is nearly always less than 10<var>r</var>. A call to this routine involves solving a number of systems of linear equations <samp class="codeph"><var>A</var>*<var>x</var> = <var>b</var></samp>; the number is usually 4 or 5 and never more than 11. Each solution requires approximately <samp class="codeph">4*<var>n</var>(<var>kd</var> + 1)</samp> floating-point operations for real flavors and <samp class="codeph">16*<var>n</var>(<var>kd</var> + 1)</samp> for complex flavors.</p>
+<p> </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241.html">Estimating the Condition Number: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

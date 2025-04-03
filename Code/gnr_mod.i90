@@ -1,0 +1,100 @@
+# 1 "/Volumes/SSD Hans 1/Github/gnr/Code/gnr_mod.f90"
+!------------------------------------------------------------------------------
+! Institution, Affiliation
+!------------------------------------------------------------------------------
+!
+! MODULE: GNR
+!
+!> @author
+!> Hans Martinez}
+!
+! DESCRIPTION:
+!> GNR estimates gross output production function and productivity following GNR(2020)
+!
+! REVISION HISTORY:
+! dd Mmm yyyy - Initial Version
+! TODO_dd_mmm_yyyy - TODO_describe_appropriate_changes - TODO_name
+!------------------------------------------------------------------------------
+module gnr_mod
+    use iso_c_binding, only: c_float, c_double, c_int
+    use nrutil
+    use matrix 
+    implicit none
+    
+contains
+    function share_regression(s,D,r) result(gamma0)
+        integer(c_int), intent(in) :: r !polynomial degree
+        real(c_double), intent(in) :: s(:), D(:, :)
+        integer(c_int) :: m, n, i, count
+! real(c_double) :: i_elas, resid(size(s))
+        real(c_double), allocatable :: gamma0(:), D_expanded(:,:)
+        n = size(D, 1)
+        m = size(D, 2)
+! Calculate the number of columns in the expanded matrix
+        do i = 0, r
+            count = count + (m ** i)
+        end do
+        
+! Allocate memory for the expanded matrix
+        allocate(D_expanded(n, count))
+        allocate(gamma0(count+1)) !adding the constant
+
+        D_expanded(:,:)=expand_matrix(D,r) !Expanding the polynomial
+
+        gamma0(:)=OLS(s,D_expanded) ! OLS of initial values
+
+        
+    end function share_regression
+
+    function expand_matrix(X, degree) result(Y)
+        real(c_double), intent(in) :: X(:,:)
+        integer(c_int), intent(in) :: degree
+        real(c_double), allocatable :: Y(:,:)
+        integer(c_int) :: n, m, i, j, k, count
+        
+        n = size(X, 1)
+        m = size(X, 2)
+        count = 0
+        
+! Calculate the number of columns in the expanded matrix
+        do i = 0, degree
+            count = count + (m ** i)
+        end do
+        
+! Allocate memory for the expanded matrix
+        allocate(Y(n, count))
+        
+! Fill the expanded matrix with the combinations
+        count = 1
+        do i = 1, m
+            Y(:, count) = X(:, i)
+            count = count + 1
+        end do
+        
+        do i = 1, m
+            do j = i, m
+                do k = 2, degree
+                    Y(:, count) = X(:, i) * X(:, j)
+                    count = count + 1
+                end do
+            end do
+        end do
+        
+    end function expand_matrix
+
+    function predict(coefficients, data) result(predictions)
+        real(c_double), intent(in) :: coefficients(:), data(:, :)
+        real(c_double), allocatable :: predictions(:)
+        integer(c_int) :: n
+        
+        n = size(data, 1)
+
+! Allocate memory for the predictions
+        allocate(predictions(n))
+        
+! Calculate the predictions
+        predictions = mmul(data, coefficients)
+        
+    end function predict
+    
+end module gnr_mod

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Generalized Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines"/>
+<meta name="DC.subject" content="eigenvalue problems, general matrix, general matrix, eigenvalue problems, orthogonal matrix, unitary matrix, upper Hessenberg matrix, triangular matrix, quasi-triangular matrix, LAPACK"/>
+<meta name="keywords" content="eigenvalue problems, general matrix, general matrix, eigenvalue problems, orthogonal matrix, unitary matrix, upper Hessenberg matrix, triangular matrix, quasi-triangular matrix, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-74029E83-CB28-4B2F-8C5D-CA4A69FC6A1E.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7E36D59F-76D0-46E4-800F-D4CB4755205A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0AFF9E7B-96B8-4295-AB7D-CABD82054AFE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFAF7A3C-A508-4402-B351-5851A691416F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E293F7CB-F19D-44FC-9696-39291DA1F19A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-93E22168-39EF-498E-A92E-7B231A23B2CF.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-DA7A6784-370F-4857-B5D8-6E5C0D7E43FE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4EF87F9E-03A1-4701-AF95-3BDA7FDD7F60.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-12D542CF-2A34-40B4-A2AF-89375F0C5DB8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B2E62CEF-E067-47E3-A04B-4CC12F34C56F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C1C88A57-E871-473D-AB89-146EA35DCFBA.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7BD8C3BA-2122-4727-891E-B086CB265D38"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Generalized Nonsymmetric Eigenvalue Problems: LAPACK Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-7BD8C3BA-2122-4727-891E-B086CB265D38">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Generalized Nonsymmetric Eigenvalue Problems:
+    LAPACK Computational Routines</h1>
+<div><p>This 
+      <span>topic 
+      </span> describes LAPACK routines for solving generalized nonsymmetric
+      eigenvalue problems, reordering the generalized Schur factorization of a pair
+      of matrices, as well as performing a number of related computational tasks. 
+    </p>
+<p>A 
+      <em>generalized nonsymmetric eigenvalue problem</em> is as follows: given a
+      pair of nonsymmetric (or non-Hermitian) 
+      <var>n</var>-by-<var>n</var> matrices 
+      <var>A</var> and 
+      <var>B</var>, find the 
+      <dfn class="term">generalized eigenvalues</dfn><span class="eqsymbol">λ</span> and the
+      corresponding 
+      <dfn class="term">generalized eigenvectors</dfn><var>x</var> and 
+      <var>y</var> that satisfy
+      the equations 
+    </p>
+<p><samp class="codeph"><var>Ax</var> = 
+        <span class="eqsymbol">λ</span><var>Bx</var></samp> (right generalized
+      eigenvectors 
+      <var>x</var>) 
+    </p>
+<p>and 
+    </p>
+<p><samp class="codeph"><var>y</var><sup><var>H</var></sup><var>A</var> = 
+        <span class="eqsymbol">λ</span><var>y</var><sup><var>H</var></sup><var>B</var></samp> (left generalized
+      eigenvectors 
+      <var>y</var>). 
+    </p>
+<p><a href="#TBL4-6">Table 
+        <span>"Computational Routines for Solving Generalized
+          Nonsymmetric Eigenvalue Problems"</span></a> lists LAPACK routines<span> (FORTRAN 77 interface)</span> used to solve the
+      generalized nonsymmetric eigenvalue problems and the generalized Sylvester
+      equation.<span> The corresponding routine names
+        in the Fortran 95 interface are without the first symbol. 
+      </span></p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL4-6" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Solving Generalized
+    Nonsymmetric Eigenvalue Problems</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="15%" id="d917934e130"><p>Routine name 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="85%" id="d917934e133"><p>Operation performed 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a href="GUID-7E36D59F-76D0-46E4-800F-D4CB4755205A.html#GUID-7E36D59F-76D0-46E4-800F-D4CB4755205A">gghrd</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Reduces a pair of matrices to generalized upper
+            Hessenberg form using orthogonal/unitary transformations. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a class="allformats" href="GUID-0AFF9E7B-96B8-4295-AB7D-CABD82054AFE.html#GUID-0AFF9E7B-96B8-4295-AB7D-CABD82054AFE">ggbal</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Balances a pair of general real or complex
+            matrices. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a href="GUID-FFAF7A3C-A508-4402-B351-5851A691416F.html#GUID-FFAF7A3C-A508-4402-B351-5851A691416F">ggbak</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Forms the right or left eigenvectors of a
+            generalized eigenvalue problem. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a href="GUID-E293F7CB-F19D-44FC-9696-39291DA1F19A.html">gghd3</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p> Reduces a pair of matrices to generalized upper Hessenberg form. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a class="allformats" href="GUID-93E22168-39EF-498E-A92E-7B231A23B2CF.html#GUID-93E22168-39EF-498E-A92E-7B231A23B2CF">hgeqz</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Implements the QZ method for finding the
+            generalized eigenvalues of the matrix pair (H,T). 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a class="allformats" href="GUID-DA7A6784-370F-4857-B5D8-6E5C0D7E43FE.html#GUID-DA7A6784-370F-4857-B5D8-6E5C0D7E43FE">tgevc</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Computes some or all of the right and/or left
+            generalized eigenvectors of a pair of upper triangular matrices 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a href="GUID-4EF87F9E-03A1-4701-AF95-3BDA7FDD7F60.html#GUID-4EF87F9E-03A1-4701-AF95-3BDA7FDD7F60">tgexc</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Reorders the generalized Schur decomposition of
+            a pair of matrices (A,B) so that one diagonal block of (A,B) moves to another
+            row index. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a class="allformats" href="GUID-12D542CF-2A34-40B4-A2AF-89375F0C5DB8.html#GUID-12D542CF-2A34-40B4-A2AF-89375F0C5DB8">tgsen</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Reorders the 
+            <dfn class="term">generalized</dfn> Schur decomposition
+            of a pair of matrices (A,B) so that a selected cluster of eigenvalues appears
+            in the leading diagonal blocks of (A,B). 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a href="GUID-B2E62CEF-E067-47E3-A04B-4CC12F34C56F.html#GUID-B2E62CEF-E067-47E3-A04B-4CC12F34C56F">tgsyl</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Solves the generalized Sylvester equation. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="15%" headers="d917934e130 "><p><a href="GUID-B2E62CEF-E067-47E3-A04B-4CC12F34C56F.html#GUID-B2E62CEF-E067-47E3-A04B-4CC12F34C56F">tgsyl</a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="85%" headers="d917934e133 "><p>Estimates reciprocal condition numbers for
+            specified eigenvalues and/or eigenvectors of a pair of matrices in generalized
+            real Schur canonical form. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

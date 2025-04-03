@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trnlspbc_init"/>
+<meta name="abstract" content="Initializes the solver of nonlinear least squares problem with linear (boundary) constraints."/>
+<meta name="description" content="Initializes the solver of nonlinear least squares problem with linear (boundary) constraints."/>
+<meta name="DC.subject" content="TR routines, ?trnlspbc_init, strnlspbc_init, dtrnlspbc_init"/>
+<meta name="keywords" content="TR routines, ?trnlspbc_init, strnlspbc_init, dtrnlspbc_init"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-35305884-74C3-44A0-AEC9-DB3C89057F31.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B6BADF1C-F90C-4D30-8B84-CF9A5F970E08"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trnlspbc_init</title>
+
+</head>
+<body id="GUID-B6BADF1C-F90C-4D30-8B84-CF9A5F970E08">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trnlspbc_init</span></h1>
+<!--Initializes the solver of nonlinear least  squares problem with linear (boundary) constraints.--><div><p class="shortdesc">Initializes the solver of nonlinear least  squares problem with linear (boundary) constraints.</p>
+<div class="section" id="GUID-3CEB7C1F-6121-4697-AFF9-567E2DB15E3C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">strnlspbc_init</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">LW</span><span class="sep">, </span><span class="var">UP</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">iter1</span><span class="sep">, </span><span class="var">iter2</span><span class="sep">, </span><span class="var">rs</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">dtrnlspbc_init</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">LW</span><span class="sep">, </span><span class="var">UP</span><span class="sep">, </span><span class="var">eps</span><span class="sep">, </span><span class="var">iter1</span><span class="sep">, </span><span class="var">iter2</span><span class="sep">, </span><span class="var">rs</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-08377E00-53E2-4429-9D91-3F3C509413EE"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?trnlspbc_init</span> routine initializes the solver.</p>
+<p>After initialization, all subsequent invocations of the  <span class="option">?trnlspbc_solve</span> routine should use the values of the handle returned by <span class="option">?trnlspbc_init</span>.  This handle stores internal data, including
+pointers to the arrays <em>x</em>, <em>LW</em>,
+<em>UP</em>, and <em>eps</em>. It is important
+to not move or deallocate these arrays until after
+calling the <span class="option">?trnlspbc_delete</span> routine.</p>
+<p>The <span class="parmname">eps</span> array contains a number indicating the stopping criteria:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-2C" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="25%" id="d1364659e180"><p><span class="parmname">eps</span> Value</p>
+</th>
+<th class="row-nocellborder" align="left" valign="top" width="75%" id="d1364659e185"><p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1364659e180 "><p><span>1</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1364659e185 "><p><samp class="codeph">Δ &lt; <span class="parmname">eps</span></samp><samp class="codeph">(1)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1364659e180 "><p><span>2</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1364659e185 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub>
+ &lt; <span class="parmname">eps</span></samp><samp class="codeph">(2)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1364659e180 "><p><span>3</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1364659e185 "><p>The Jacobian matrix is singular.</p>
+<p><samp class="codeph">||<var>J</var>(<var>x</var>)<sub>(1:<var>m</var>,<var>j</var>)</sub>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(3)</samp><samp class="codeph">, <var>j</var> = 1, ..., 
+<var>n</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1364659e180 "><p><span>4</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1364659e185 "><p><samp class="codeph">||s||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(4)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1364659e180 "><p><span>5</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1364659e185 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub> - ||<var>F</var>(<var>x</var>) - <var>J</var>(<var>x</var>)<var>s</var>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(5)</samp></p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>If eps<span>(5)</span> &gt; 0, an extra scaling is applied to ‘s’ after it has been selected, to ensure that it does not leave the specified domain, but scales it down to not cross the boundary. This preserves the solution inside the boundary, but may result in getting stuck in a local minimum on the boundary and exiting early due to this stopping criteria</p>
+<p>If eps<span>(5)</span> &lt; 0, the previous behavior is maintained, which may result in the solution, x, leaving the boundary.  If this occurs, try starting over with a different initial condition.</p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1364659e180 "><p><span>6</span></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1364659e185 "><p>The trial step precision. If <samp class="codeph"><span class="parmname">eps</span></samp><samp class="codeph">(6)</samp> = 0, then the trial step meets the required precision (<span class="eqsymbol">≤</span> 1.0*10<sup>-10</sup>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note:</p>
+<ul id="GUID-21ECCE02-6F1F-4375-82D6-4C26580601AD"><li id="LI_E7D1C034EAA64249ABDF5677E5875ED5"><p><samp class="codeph"><var>J</var>(<var>x</var>)</samp> is the Jacobian matrix.</p>
+</li>
+<li id="LI_1D162AD1A5854DACA030711872673221"><p><samp class="codeph">Δ</samp> is the trust-region area.</p>
+</li>
+<li id="LI_077A590F9879405681D1F9EC6FDDEFB6"><p><samp class="codeph"><var>F</var>(<var>x</var>)</samp> is the value of the functional.</p>
+</li>
+<li id="LI_A2B2C1298A8043EBBF7B8DB0FCA49398"><p><samp class="codeph">s</samp> is the trial step.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-5F1A796B-22FA-434D-8576-EC92D392BEB4"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-F081F0E6-D753-4E67-AF42-41368B30AD61"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span>  Length of <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Length of <var>F</var>(<var>x</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_init</span></p>
+<p>Array of size <var>n</var>. Initial guess. A reference to this array
+is stored in handle for later use and modification by <span class="option">?trnlspbc_solve</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">LW</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_init</span></p>
+<p>Array of size <var>n</var>. </p>
+<p>Contains low bounds for <var>x</var> (<var>lw</var><sub class="subb"><var>i</var></sub> &lt; <var>x</var><sub class="subb"><var>i</var></sub> ). A reference to this array
+is stored in handle for later use by <span class="option">?trnlspbc_solve</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">UP</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_init</span></p>
+<p>Array of size <var>n</var>. </p>
+<p>Contains upper bounds for <var>x</var> (<var>up</var><sub class="subb"><var>i</var></sub> &gt; <var>x</var><sub class="subb"><var>i</var></sub> ). A reference to this array
+is stored in handle for later use by <span class="option">?trnlspbc_solve</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">eps</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_init</span></p>
+<p>Array of size 6; contains stopping criteria. <span>See the values in the Description section.</span> A reference to this array
+is stored in handle for later use by <span class="option">?trnlspbc_solve</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iter1</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span>  Specifies the maximum number of iterations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iter2</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Specifies the maximum number of iterations of trial step calculation.</p>
+<p/>
+</dd>
+<dt class="dlterm"><span class="parmname">rs</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_init</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_init</span></p>
+<p>Definition of initial size of the trust region (boundary of the trial step). The recommended minimum value is 0.1, and the recommended maximum value is 100.0. Based on your knowledge of the objective function and initial guess you can increase or decrease the initial trust region. It can influence the iteration process, for example, the direction of the iteration process and the number of iterations. If you set   <span class="parmname">rs</span> to 0.0, the solver uses the default value, which is 100.0.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-931256A0-85F7-4802-910F-92DFA20FDFE5"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0D29D7A4-42DD-4E9F-9407-F820A43203B2"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd><p>Type <span><span class="keyword">INTEGER*8</span></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Informs about the task completion.</p>
+<ul id="GUID-47F99015-4215-49F6-AEDE-63A78F204E98"><li id="LI_C7FE585455E643CAB1BB9D5D3866D14F"><p><span class="parmname">res</span> = <span class="keyword">TR_SUCCESS</span> - the routine completed the task normally.</p>
+</li>
+<li id="LI_5BFE349191F742D985404CE144E94BB9"><p><span class="parmname">res</span> = <span class="keyword">TR_INVALID_OPTION</span> - there was an error in the input parameters.</p>
+</li>
+<li id="LI_502FA0AE59D244E1B5A9711B71D7970D"><p><span class="parmname">res</span> = <span class="keyword">TR_OUT_OF_MEMORY</span> -  there was a memory error.</p>
+</li>
+</ul>
+<p><span class="keyword">TR_SUCCESS</span>, <span class="keyword">TR_INVALID_OPTION</span>, and <span class="keyword">TR_OUT_OF_MEMORY</span> are defined in the <span class="filepath">mkl_rci.fi</span> include file.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-35305884-74C3-44A0-AEC9-DB3C89057F31.html">Nonlinear Least Squares Problem with Linear (Bound) Constraints</a></div>
+</div>
+<div/>
+</body>
+</html>

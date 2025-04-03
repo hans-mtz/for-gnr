@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trnlspbc_solve"/>
+<meta name="abstract" content="Solves a nonlinear least squares problem with linear (bound) constraints using the Trust-Region algorithm."/>
+<meta name="description" content="Solves a nonlinear least squares problem with linear (bound) constraints using the Trust-Region algorithm."/>
+<meta name="DC.subject" content="TR routines, ?trnlspbc_solve, strnlspbc_solve, dtrnlspbc_solve"/>
+<meta name="keywords" content="TR routines, ?trnlspbc_solve, strnlspbc_solve, dtrnlspbc_solve"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-35305884-74C3-44A0-AEC9-DB3C89057F31.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A14FCB10-5DED-4B73-A503-71D3903E35C8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trnlspbc_solve</title>
+
+</head>
+<body id="GUID-A14FCB10-5DED-4B73-A503-71D3903E35C8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trnlspbc_solve</span></h1>
+<!--Solves a nonlinear least squares problem with linear (bound) constraints using the Trust-Region algorithm.--><div><p class="shortdesc">Solves a nonlinear least squares problem with linear (bound) constraints using the Trust-Region algorithm.</p>
+<div class="section" id="GUID-EDCC5885-BA82-4CEE-B588-F3331E889D87"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">strnlspbc_solve</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">fvec</span><span class="sep">, </span><span class="var">fjac</span><span class="sep">, </span><span class="var">RCI_Request</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">dtrnlspbc_solve</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">fvec</span><span class="sep">, </span><span class="var">fjac</span><span class="sep">, </span><span class="var">RCI_Request</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-507A1377-A354-453E-9EBC-081BAF6A8363"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-172A2EFD-BC45-4805-A3A5-71A5BF609C7D"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?trnlspbc_solve</span> routine, based on RCI, uses the Trust-Region algorithm to solve nonlinear least squares problems with linear (bound) constraints. The problem is stated as follows:</p>
+<p><br/><div class="imagecenter"><img src="GUID-D29DE063-F241-45D5-B711-C29CE7F5EF7D-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where</p>
+<p><samp class="codeph"><var>l</var><sub><var>i</var></sub><span class="eqsymbol">≤</span><var>x</var><sub><var>i</var></sub><span class="eqsymbol">≤</span><var>u</var><sub><var>i</var></sub></samp></p>
+<p><samp class="codeph"><var>i</var> = 1, ..., <var>n</var></samp>.</p>
+<p>The <span class="parmname">RCI_Request</span> parameter provides additional information:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-2A" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="25%" id="d1214622e148"><p><span class="parmname">RCI_Request</span> Value</p>
+</th>
+<th class="row-nocellborder" align="center" valign="top" width="75%" id="d1214622e153"><p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>2</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p>Request to calculate the Jacobian matrix and put the result into <span class="parmname">fjac</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p>Request to recalculate the function at vector <span class="keyword">X</span> and put the result into <span class="parmname">fvec</span></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>0</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p>One successful iteration step on the current trust-region radius (that does not mean that the value of <var>x</var> has changed)</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>-1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p>The algorithm has exceeded the maximum number of iterations</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>-2</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p><samp class="codeph">Δ &lt; <span class="parmname">eps</span></samp><samp class="codeph">(1)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>-3</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(2)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>-4</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p>The Jacobian matrix is singular.</p>
+<p><samp class="codeph">||<var>J</var>(<var>x</var>)<sub>(1:<var>m</var>,<var>j</var>)</sub>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(3)</samp><samp class="codeph">, <var>j</var> = 1, ..., <var>n</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>-5</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p><samp class="codeph">||<var>s</var>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(4)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d1214622e148 "><p>-6</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d1214622e153 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub> - ||<var>F</var>(<var>x</var>) - <var>J</var>(<var>x</var>)<var>s</var>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(5)</samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note:</p>
+<ul id="GUID-A145A41A-A8F1-4CEA-A769-A0F7D49E7403"><li><p><samp class="codeph"><var>J</var>(<var>x</var>)</samp> is the Jacobian matrix.</p>
+</li>
+<li><p><samp class="codeph">Δ</samp> is the trust-region area.</p>
+</li>
+<li><p><samp class="codeph"><var>F</var>(<var>x</var>)</samp> is the value of the functional.</p>
+</li>
+<li><p><samp class="codeph">s</samp> is the trial step.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-EFC088C5-EA8E-4E4F-96D9-4CEB74260409"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BAAF74C6-67EF-4CA9-A99F-21EC2F2D6FF2"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd><p>Type <span><span class="keyword">INTEGER*8</span></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">fvec</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_solve</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_solve</span></p>
+<p>Array of size <var>m</var>. Contains the function values at <span class="keyword">X</span>, where <samp class="codeph"><var>fvec</var></samp><samp class="codeph">(<var>i</var>)</samp><samp class="codeph"> = (<var>y</var><sub class="subb"><var>i</var></sub> – <var>f</var><sub class="subb"><var>i</var></sub>(<var>x</var>))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">fjac</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_solve</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_solve</span></p>
+<p>Array of size <var>m</var> by <var>n</var>. Contains the Jacobian matrix of the function.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0E81B48-1E41-4C17-AA9B-39B50D193571"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-ECA81AEE-0ABB-46E2-AAC9-2DE6D1BD517C"><dt class="dlterm"><span class="parmname">fvec</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlspbc_solve</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlspbc_solve</span></p>
+<p>Array of size <var>m</var>. Updated function evaluated at <span class="keyword">x</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_Request</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Informs about the task stage.</p>
+<p><span>See the Description section for the parameter values and their meaning.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Informs about the task completion.</p>
+<p><span class="parmname">res</span> = <span class="keyword">TR_SUCCESS</span> means the routine completed the task normally.</p>
+<p><span class="keyword">TR_SUCCESS</span> is defined in the <span class="filepath">mkl_rci.fi</span> include file.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-35305884-74C3-44A0-AEC9-DB3C89057F31.html">Nonlinear Least Squares Problem with Linear (Bound) Constraints</a></div>
+</div>
+<div/>
+</body>
+</html>

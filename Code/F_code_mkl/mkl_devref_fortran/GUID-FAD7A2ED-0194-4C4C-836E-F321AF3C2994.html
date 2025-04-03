@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?la_gbrcond"/>
+<meta name="abstract" content="Estimates the Skeel condition number for a general banded matrix."/>
+<meta name="description" content="Estimates the Skeel condition number for a general banded matrix."/>
+<meta name="DC.subject" content="?la_gbrcond, sla_gbrcond, dla_gbrcond, la_gbrcond"/>
+<meta name="keywords" content="?la_gbrcond, sla_gbrcond, dla_gbrcond, la_gbrcond"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-FAD7A2ED-0194-4C4C-836E-F321AF3C2994"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?la_gbrcond</title>
+
+</head>
+<body id="GUID-FAD7A2ED-0194-4C4C-836E-F321AF3C2994">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?la_gbrcond</span></h1>
+<!--Estimates the Skeel condition number for a general banded matrix.--><div><p class="shortdesc">Estimates the Skeel condition number for a general banded matrix.</p>
+<div class="section" id="GUID-F95A33C3-A545-4078-82AB-89EFA7B4F7ED"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sla_gbrcond</span><span class="delim">( </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">cmode</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dla_gbrcond</span><span class="delim">( </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kl</span><span class="sep">, </span><span class="var">ku</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">afb</span><span class="sep">, </span><span class="var">ldafb</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">cmode</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-6F6DDB4D-24FA-45FD-8191-B7D9DD6884D7"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-F497393E-E77C-446C-85C4-302F6508803F"><h2 class="sectiontitle">Description</h2><p>The function estimates the Skeel condition number of</p>
+<p><samp class="codeph">op(<var>A</var>) * op2(<var>C</var>)</samp></p>
+<p>where</p>
+<p>the <span class="parmname">cmode</span> parameter determines <samp class="codeph">op2</samp> as follows:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-1B" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="d1839549e194"><p><span class="parmname">cmode</span> Value</p>
+</th>
+<th class="row-nocellborder" align="center" valign="top" width="50%" id="d1839549e199"><p>op2(C)</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d1839549e194 "><p>1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d1839549e199 "><p><var>C</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d1839549e194 "><p>0</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d1839549e199 "><p><var>I</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d1839549e194 "><p>-1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d1839549e199 "><p><samp class="codeph">inv(<var>C</var>)</samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Skeel condition number</p>
+<p><samp class="codeph">cond(<var>A</var>) = norminf(|inv(<var>A</var>)||<var>A</var>|)</samp></p>
+<p>  is computed by computing scaling factors <var>R</var> such that</p>
+<p><samp class="codeph">diag(<var>R</var>)*<var>A</var>*op2(<var>C</var>)</samp></p>
+<p> is row equilibrated and by computing the standard infinity-norm condition number.</p>
+</div>
+<div class="section" id="GUID-C631F13A-7C61-4433-83D8-BAD7C3ECF88B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-F3487129-1AC9-4E3A-A82A-F0EF09D3086D"><dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.  Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span> or <span class="keyword">'C'</span>.</p>
+<p>Specifies the form of the system of equations:</p>
+<p>If <samp class="codeph"><span class="parmname">trans</span> = <span class="keyword">'N'</span></samp>, the system has the form <var>A*X</var> = <var>B</var>.</p>
+<p>If <samp class="codeph"><span class="parmname">trans</span> = <span class="keyword">'T'</span></samp>, the system has the form <var>A</var><sup class="power"><var>T</var></sup>*<var>X</var> = <var>B</var>.</p>
+<p>If <samp class="codeph"><span class="parmname">trans</span> = <span class="keyword">'C'</span></samp>, the system has the form  <var>A</var><sup class="power"><var>H</var></sup>*<var>X</var> = <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of linear equations, that is, the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">kl</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The number of subdiagonals within the band of <var>A</var>; <var>kl</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ku</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The number of superdiagonals within the band of <var>A</var>; <var>ku</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span>, <span class="parmname">afb</span>, <span class="parmname">c</span>, <span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sla_gbrcond</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dla_gbrcond</span></p>
+<p>Arrays:</p>
+<p><span class="parmname">ab</span>(<span class="parmname">ldab</span>,*) contains the original band matrix <var>A</var> stored in rows from 1 to <var>kl</var> + <var>ku</var> + 1. The <var>j</var>-th column of <var>A</var> is stored in the <var>j</var>-th column of the array <var>ab</var> as follows:</p>
+<p><samp class="codeph"><var>ab</var>(<var>ku</var>+1+<var>i</var>-<var>j</var>,<var>j</var>) = A(<var>i</var>,<var>j</var>)</samp></p>
+<p>for</p>
+<p><samp class="codeph">max(1,<var>j</var>-<var>ku</var>)  <span class="eqsymbol">≤</span><var>i</var><span class="eqsymbol">≤</span> min(<var>n</var>,<var>j</var>+<var>kl</var>)</samp></p>
+<p><span class="parmname">afb</span>(<span class="parmname">ldafb</span>,*) contains details of the LU factorization of the band matrix <var>A</var>, as returned by <span class="option">?gbtrf</span>. <var>U</var> is stored as an upper triangular band matrix with <samp class="codeph"><var>kl</var>+<var>ku</var></samp> superdiagonals in rows 1 to <samp class="codeph"><var>kl</var>+<var>ku</var>+1</samp>, and the multipliers used during the factorization are stored in rows <samp class="codeph"><var>kl</var>+<var>ku</var>+2</samp> to <samp class="codeph">2*<var>kl</var>+<var>ku</var>+1</samp>.</p>
+<p><span class="parmname">c</span>, <span class="keyword">DIMENSION</span><var>n</var>. The vector <samp class="codeph"><var>C</var></samp> in the formula  <samp class="codeph">op(<var>A</var>) * op2(<var>C</var>)</samp>.</p>
+<p><span class="parmname">work</span> is a workspace array of <span class="keyword">DIMENSION</span> (5*<var>n</var>).</p>
+<p>The second dimension of <span class="parmname">ab</span> and <span class="parmname">afb</span> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>ab</var>. <span class="parmname">ldab</span><span class="eqsymbol">≥</span><samp class="codeph"><var>kl</var>+<var>ku</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldafb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The leading dimension of <span class="parmname">afb</span>. <span class="parmname">ldafb</span><span class="eqsymbol">≥</span><samp class="codeph">2*<var>kl</var>+<var>ku</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array with <span class="keyword">DIMENSION</span><var>n</var>. The pivot indices from the factorization <samp class="codeph"><var>A</var> = <var>P</var>*<var>L</var>*<var>U</var></samp> as computed by <span class="option">?gbtrf</span>. Row <var>i</var> of the matrix was interchanged with row <samp class="codeph"><span class="parmname">ipiv</span>(<var>i</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cmode</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Determines  <samp class="codeph">op2(<var>C</var>)</samp> in the formula <samp class="codeph">op(<var>A</var>) * op2(<var>C</var>)</samp> as follows:</p>
+<p>If <samp class="codeph"><span class="parmname">cmode</span> = 1</samp>, <samp class="codeph">op2(<var>C</var>)</samp> = <samp class="codeph"><var>C</var></samp>.</p>
+<p>If <samp class="codeph"><span class="parmname">cmode</span> = 0</samp>, <samp class="codeph">op2(<var>C</var>)</samp> = <samp class="codeph"><var>I</var></samp>.</p>
+<p>If <samp class="codeph"><span class="parmname">cmode</span> = -1</samp>, <samp class="codeph">op2(<var>C</var>)</samp> = <samp class="codeph">inv(<var>C</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Workspace array with <span class="keyword">DIMENSION</span><var>n</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4804CF52-7923-4562-9EDD-0D1F90581F26"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-83739ED6-146F-4986-82D2-93CC1FD84F1D"><dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful.</p>
+<p>If <var>i</var> &gt; 0, the <var>i</var>-th parameter is invalid.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">?gbtrf</span></a> </div></div></div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dcsrilut"/>
+<meta name="abstract" content="ILUT preconditioner based on the incomplete LU factorization with a threshold of a sparse matrix."/>
+<meta name="description" content="ILUT preconditioner based on the incomplete LU factorization with a threshold of a sparse matrix."/>
+<meta name="DC.subject" content="preconditioners based on incomplete LU factorization, dcsrilut, Sparse Solver"/>
+<meta name="keywords" content="preconditioners based on incomplete LU factorization, dcsrilut, Sparse Solver"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9A97100-09F8-46ED-A055-3DB4EF10DE0B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-77769EA3-8A8C-4DD8-BC0F-B07D59563BAA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dcsrilut</title>
+
+</head>
+<body id="GUID-77769EA3-8A8C-4DD8-BC0F-B07D59563BAA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dcsrilut</span></h1>
+<!--ILUT preconditioner based on the incomplete LU factorization with a threshold of a sparse matrix.--><div><p class="shortdesc">ILUT preconditioner based on the incomplete LU factorization with a threshold of a sparse matrix.</p>
+<div class="section" id="GUID-0A7E3768-4B43-4F24-B874-545D096BA78A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dcsrilut</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">bilut</span><span class="sep">, </span><span class="var">ibilut</span><span class="sep">, </span><span class="var">jbilut</span><span class="sep">, </span><span class="var">tol</span><span class="sep">, </span><span class="var">maxfil</span><span class="sep">, </span><span class="var">ipar</span><span class="sep">, </span><span class="var">dpar</span><span class="sep">, </span><span class="var">ierr</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-5E825E1C-ECD6-49C2-9057-C0710C0CA8F9"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5B73EE9F-0BE7-47CB-9B28-5840DC7DE754"><h2 class="sectiontitle">Description</h2><p><span/>The routine <span class="option">dcsrilut</span> computes a preconditioner <var>B</var> [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SAAD03">Saad03</a>] of a given sparse matrix <var>A</var> stored in the format accepted in the direct sparse solvers:
+</p>
+<p><samp class="codeph"><var>A</var>~<var>B</var>=<var>L</var>*<var>U</var></samp> ,
+where <var>L</var> is a lower triangular matrix with unit diagonal and <var>U</var> is an upper triangular matrix with non-unit diagonal. </p>
+<p>The following threshold criteria are used to generate the incomplete factors <var>L</var> and <var>U</var>: </p>
+<p>1) the resulting entry must be greater than the  matrix  current row norm  multiplied by the parameter <span class="parmname">tol</span>, and </p>
+<p>2) the number of the non-zero elements in each row of the resulting <var>L</var> and <var>U</var> factors must not be greater than the value of the parameter <span class="parmname">maxfil</span>.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>This routine supports only one-based indexing of the array parameters.</p>
+</div>
+</div>
+<div class="section" id="GUID-03AD7EED-3F23-491F-BE34-6C46C0D6351B"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4A9CFEBD-F029-4C67-9958-37B2BAA19E48"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Size (number of rows or columns) of the original square <span class="parmname">n</span>-by-<span class="parmname">n</span> matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array containing all non-zero elements of the matrix <var>A</var>. The length of the array is equal to their number. Refer to <span class="parmname">values</span> array description in the <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a> section for more details.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Array of size <samp class="codeph">(<span class="parmname">n</span>+1)</samp> containing indices of non-zero elements in the array <var>a</var>. <samp class="codeph"><span class="parmname">ia</span>(i)</samp> is the index of the first non-zero element from the row <var>i</var>. The value of the last element <samp class="codeph"><span class="parmname">ia</span>(<span class="parmname">n</span>+1)</samp> is equal to the number of non-zeros in the matrix <var>A</var>, plus one. Refer to the <span class="parmname">rowIndex</span> array description in the <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a>  for more details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Array of size equal to the size of the array <span class="parmname">a</span>. This array contains the column numbers for each non-zero element of the matrix <var>A</var>. It is important that the indices are
+in increasing order per row. Refer to the <span class="parmname">columns</span> array description in the <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a> for more details.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>If column indices are not stored in ascending order for each row of matrix, the result of the routine might not be correct.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">tol</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Tolerance for threshold criterion for the resulting entries of the preconditioner.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">maxfil</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Maximum fill-in, which is half of the preconditioner bandwidth.  The number of non-zero elements in the rows of the preconditioner cannot exceed <samp class="codeph">(2*<span class="parmname">maxfil</span>+1)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Array of size <span class="parmname">128</span>.  This parameter is used to specify the integer set of data for both the ILUT and RCI
+FGMRES computations. Refer to the <span class="parmname">ipar</span> array description in the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a> for more details on FGMRES parameter entries. The  entries specific to ILUT are listed below.</p>
+<dl id="GUID-A7EFA411-9218-4E1A-8BC7-AA45C1DB643B"><dt class="dlterm"><span class="parmname">ipar</span><samp class="codeph">(31)</samp></dt>
+
+<dd><p> specifies how the routine operates if the value of the computed diagonal  element is less than the current matrix row norm multiplied by the value of the parameter <span class="parmname">tol</span>. If <span class="parmname">ipar</span><samp class="codeph">(31)</samp> = 0, then the calculation is stopped and the routine returns non-zero error value. Otherwise, the value of the diagonal element is set to a value determined by <span class="parmname">dpar</span><samp class="codeph">(31)</samp> (see its description below), and the calculations continue.</p>
+</dd>
+<dt class="dlterm"/>
+
+<dd><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>There is no default value for  <span class="parmname">ipar</span><samp class="codeph">(31)</samp> even if the preconditioner is used within the RCI ISS context. Always set the value of this entry.</p>
+</div>
+</dd>
+</dl>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You must declare the array 
+							 <span class="parmname">ipar</span> with length 128. While defining the array
+							 in the code as 
+							 <samp class="codeph"><span class="keyword">INTEGER</span><span class="parmname">ipar</span></samp><samp class="codeph">(31)</samp>works, there is no guarantee of future compatibility with Intel&reg; oneAPI Math Kernel Library.</p>
+</div>
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span> Array of size <span class="parmname">128</span>.  This parameter specifies the double precision set of data for both ILUT and RCI
+FGMRES computations. Refer to the <span class="parmname">dpar</span> array description in the <a class="allformats" href="GUID-56F0C6ED-0A49-48C4-AF7B-33C3851A39CA.html#RCI_ID_COMMONPARAMETERS">FGMRES Common Parameters</a> for more details on FGMRES parameter entries. The  entries that are specific to ILUT are listed below.</p>
+<dl id="GUID-161AAEE9-5CCC-4560-97A1-AA2F5416F5D7"><dt class="dlterm"><span class="parmname">dpar</span><samp class="codeph">(31)</samp></dt>
+
+<dd><p>used to adjust the value of small diagonal elements. Diagonal elements with a value less than the current matrix row norm multiplied by <span class="parmname">tol</span> are replaced with the value of <span class="parmname">dpar</span><samp class="codeph">(31)</samp> multiplied by the matrix row norm.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>There is no default value for  <span class="parmname">dpar</span><samp class="codeph">(31)</samp> entry even if the preconditioner is used within RCI ISS context. Always set the value of this entry.</p>
+</div>
+</dd>
+<dt class="dlterm"/>
+
+<dd/>
+</dl>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You must declare the array 
+							 <span class="parmname">dpar</span> with length 128. While defining the array
+							 in the code as 
+							 <samp class="codeph"><span class="keyword">DOUBLE PRECISION</span><span class="parmname">ipar</span></samp><samp class="codeph">(31)</samp>works, there is no guarantee of future compatibility with Intel&reg; oneAPI Math Kernel Library.</p>
+</div>
+</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-81B109B7-BF07-4269-B022-31A062375E60"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-22E8FAA3-28B3-4776-9288-AE818FD8C780"><dt class="dlterm"><span class="parmname">bilut</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span>. </span>Array containing non-zero elements of the resulting preconditioning matrix <var>B</var>, stored in the format accepted in the direct sparse solvers. Refer to the <span class="parmname">values</span> array description in the <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a> for more details. The size of the array is equal to <samp class="codeph">(2*<span class="parmname">maxfil</span>+1)*<span class="parmname">n</span>-<span class="parmname">maxfil</span>*(<span class="parmname">maxfil</span>+1)+1</samp>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Provide enough memory for this array before calling the routine. Otherwise, the routine may fail to complete successfully with a correct result.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ibilut</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Array of size <samp class="codeph">(<span class="parmname">n</span>+1)</samp> containing indices of non-zero elements in the array <span class="parmname">bilut</span>. <span class="parmname">ibilut</span><samp class="codeph">(i)</samp> is the index of the first non-zero element from the row <var>i</var>. The value of the last element <span class="parmname">ibilut</span><samp class="codeph">(<span class="parmname">n</span>+1)</samp> is equal to the number of non-zeros in the matrix <var>B</var>, plus one. Refer to the <span class="parmname">rowIndex</span> array description in the <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a> for more details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jbilut</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Array, its size is equal to the size of the array <span class="parmname">bilut</span>. This array contains the column numbers for each non-zero element of the matrix <var>B</var>. Refer to the <span class="parmname">columns</span> array description in the <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a> for more details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ierr</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.  </span>Error flag, gives information about the routine completion.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="RETURNVALUES_9B4C3A24DDC24E4B87A6DCE2DC046A1E"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-94C91DEA-7DA8-4349-9088-8E6C60ECAE3E"><dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=0</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the task completed normally.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-101</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because of an error: the number of elements in some matrix row specified in the sparse format is equal to or less than 0. </p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-102</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the value of the computed diagonal element is less than the product of the given tolerance and the current matrix row norm, and it cannot be replaced as <samp class="codeph"><span class="parmname">ipar</span><samp class="codeph">(31)</samp>=0</samp>. </p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-103</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the element <span class="parmname">ia</span><samp class="codeph">(i + 1)</samp> is less than or equal to the element <span class="parmname">ia</span><samp class="codeph">(i)</samp> (see <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a>).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-104</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted  because the memory is insufficient for the internal work arrays.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-105</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the input value of <span class="parmname">maxfil</span> is less than 0.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-106</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the size <span class="parmname">n</span> of the input matrix is less than 0.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=-107</samp></dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because an element of the array <span class="parmname">ja</span> is less than 1, or greater than <span class="parmname">n</span> (see <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a>).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=101</samp></dt>
+
+<dd class="ddretval"><p>The value of <span class="parmname">maxfil</span> is greater than or equal to <span class="parmname">n</span>. The calculation is performed with the value of <span class="parmname">maxfil</span> set to <samp class="codeph">(<span class="parmname">n</span>-1)</samp>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=102</samp></dt>
+
+<dd class="ddretval"><p>The value of <span class="parmname">tol</span> is less than 0. The calculation is performed with the value of the parameter set to <samp class="codeph">(-<span class="parmname">tol</span>)</samp></p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=103</samp></dt>
+
+<dd class="ddretval"><p>The absolute value of <span class="parmname">tol</span> is greater than value of <span class="parmname">dpar</span><samp class="codeph">(31)</samp>; it can result  in instability of the calculation.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">ierr</span>=104</samp></dt>
+
+<dd class="ddretval"><p>The value of <span class="parmname">dpar</span><samp class="codeph">(31)</samp> is equal to 0. It can cause calculations to fail.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-20D39D29-64F4-498E-8011-78551336130C"><h2 class="sectiontitle">Interfaces</h2><div class="section" id="GUID-BE15EAA3-BB94-488D-948F-713AC4C91422"><h2 class="sectiontitle">FORTRAN 77 and Fortran 95:</h2><pre>SUBROUTINE dcsrilut (n, a, ia, ja, bilut, ibilut, jbilut, tol, maxfil, ipar, dpar, ierr)
+INTEGER n, ierr, ipar(*), maxfil
+INTEGER ia(*), ja(*), ibilut(*), jbilut(*)
+DOUBLE PRECISION a(*), bilut(*), dpar(*), tol</pre></div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9A97100-09F8-46ED-A055-3DB4EF10DE0B.html">Preconditioners based on Incomplete LU Factorization Technique</a></div>
+</div>
+<div/>
+</body>
+</html>

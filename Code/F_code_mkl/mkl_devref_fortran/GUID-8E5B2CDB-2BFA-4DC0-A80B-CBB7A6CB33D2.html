@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?orgqr"/>
+<meta name="abstract" content="Generates the real orthogonal matrix Q of the QR factorization formed by ?geqrf."/>
+<meta name="description" content="Generates the real orthogonal matrix Q of the QR factorization formed by ?geqrf."/>
+<meta name="DC.subject" content="?orgqr, LAPACK routines, QR factorization, computing the elements of, orthogonal matrix Q"/>
+<meta name="keywords" content="?orgqr, LAPACK routines, QR factorization, computing the elements of, orthogonal matrix Q"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?orgqr</title>
+
+</head>
+<body id="GUID-8E5B2CDB-2BFA-4DC0-A80B-CBB7A6CB33D2">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?orgqr</span></h1>
+<!--Generates the real orthogonal matrix Q of the QR factorization formed by  ?geqrf . --><div><p class="shortdesc">Generates the real orthogonal matrix Q of the QR factorization formed by <span class="option">?geqrf</span>. </p>
+<div class="section" id="GUID-3F04D25E-F895-49D5-85AA-C299292217FD"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sorgqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dorgqr</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call orgqr</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> [</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-8205A266-A5F3-491C-B978-BBD9A0739695"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-90DD94AE-0D40-4207-B84D-D6B6A24D209A"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine generates the whole or part of <var>m</var>-by-<var>m</var> orthogonal matrix <var>Q</var> of the <var>QR</var> factorization formed by the routine <a class="allformats" href="GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A.html#GUID-8E285C9D-50B5-4ADA-8ADA-35FA32FF201A"><samp class="codeph">?geqrf</samp></a><span> or <a href="GUID-E2CB414B-855F-4C4B-988D-8A9A3A9C4BB7.html#GUID-E2CB414B-855F-4C4B-988D-8A9A3A9C4BB7">geqpf</a>. Use this routine after a call to <span class="option">sgeqrf</span>/<span class="option">dgeqrf</span> or <span class="option">sgeqpf</span>/<span class="option">dgeqpf</span></span>. </p>
+<p>Usually <var>Q</var> is determined from the <var>QR</var> factorization of an <var>m</var> by <var>p</var> matrix <var>A</var> with <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span><var>p</var></samp>. To compute the whole matrix <var>Q</var>, use: </p>
+<p><pre><span class="keyword">call</span> <span class="option">?orgqr</span>(<var>m</var>, <var>m</var>, <var>p</var>, <var>a</var>, <var>lda</var>, <var>tau</var><samp class="codeph">, <var>work</var>, <var>lwork</var>, <var>info</var></samp>)</pre></p>
+<p>To compute the leading <var>p</var> columns of <var>Q</var> (which form an orthonormal basis in the space spanned by the columns of <var>A</var>): </p>
+<p><pre><span class="keyword">call</span> <span class="option">?orgqr</span>(<var>m</var>, <var>p</var>, <var>p</var>, <var>a</var>, <var>lda</var><samp class="codeph">, <var>work</var>, <var>lwork</var>, <var>info</var></samp>)</pre></p>
+<p>To compute the matrix <var>Q</var><sup class="power"><var>k</var></sup> of the <var>QR</var> factorization of leading <var>k</var> columns of the matrix <var>A</var>: </p>
+<p><pre><span class="keyword">call</span> <span class="option">?orgqr</span>(<var>m</var>, <var>m</var>, <var>k</var>, <var>a</var>, <var>lda</var>, <var>tau</var><samp class="codeph">, <var>work</var>, <var>lwork</var>, <var>info</var></samp>)</pre></p>
+<p>To compute the leading <var>k</var> columns of <var>Q</var><sup class="power"><var>k</var></sup> (which form an orthonormal basis in the space spanned by leading <var>k</var> columns of the matrix <var>A</var>): </p>
+<p><pre><span class="keyword">call</span> <span class="option">?orgqr</span>(<var>m</var>, <var>k</var>, <var>k</var>, <var>a</var>, <var>lda</var>, <var>tau</var><samp class="codeph">, <var>work</var>, <var>lwork</var>, <var>info</var></samp>)</pre></p>
+</div>
+<div class="section" id="GUID-EE5845BD-3638-4023-B927-FB6B25265689"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-FA6C0014-844D-4D43-BFA9-986F9228DD15"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the orthogonal matrix <var>Q</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns of <var>Q</var> to be computed </p>
+<p>(0 <span class="eqsymbol">≤</span><samp class="codeph"><var>n</var><span class="eqsymbol">≤</span><var>m</var></samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elementary reflectors whose product defines the matrix <var>Q</var> (0 <span class="eqsymbol">≤</span><var>k</var><span class="eqsymbol">≤</span><var>n</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">tau</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sorgqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dorgqr</span></p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span> and <var>tau</var><span>(*)</span> are the arrays returned by <span class="option">sgeqrf</span> / <span class="option">dgeqrf</span> or <span class="option">sgeqpf</span> / <span class="option">dgeqpf</span>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>). </p>
+<p>The size of <var>tau</var> must be at least max(1, <var>k</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array (<samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var></samp>). </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7079B172-82DC-4D60-83D7-EBEEEB5A61E3"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8138F6C0-C837-4A36-8970-1C7F5A41349C"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by <var>n</var> leading columns of the <var>m</var>-by-<var>m</var> orthogonal matrix <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If 
+<samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-8AF8CDBD-6933-4968-B0B6-AB71C360D02A"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">orgqr</span> interface are the following:</p>
+<dl id="GUID-F26484E4-EAE6-4191-9CF4-CA861D9A47E6"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length (<var>k</var>)</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D951D9A3-4FF9-4589-8EF4-566BC6C1A9D9"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp>, where <var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The computed <var>Q</var> differs from an exactly orthogonal matrix by a matrix <var>E</var> such that </p>
+<p><samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)|*|<var>A</var>||<sub>2</sub></samp> where <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>The total number of floating-point operations is approximately <samp class="codeph">4*<var>m</var>*<var>n</var>*<var>k</var> - 2*(<var>m</var> + <var>n</var>)*<var>k</var><sup class="power">2</sup> + (4/3)*<var>k</var><sup class="power">3</sup></samp>. </p>
+<p>If <samp class="codeph"><var>n</var> = <var>k</var></samp>, the number is approximately <samp class="codeph">(2/3)*<var>n</var><sup class="power">2</sup>*(3<var>m</var> - <var>n</var>)</samp>.</p>
+<p>The complex counterpart of this routine is <a href="GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7.html#GUID-1CC8F7D6-D7A4-4319-B8B0-E8E648B892A7">ungqr</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

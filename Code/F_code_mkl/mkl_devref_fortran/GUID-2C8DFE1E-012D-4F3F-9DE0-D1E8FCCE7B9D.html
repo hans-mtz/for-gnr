@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?latrz"/>
+<meta name="abstract" content="Factors an upper trapezoidal matrix by means of orthogonal/unitary transformations."/>
+<meta name="description" content="Factors an upper trapezoidal matrix by means of orthogonal/unitary transformations."/>
+<meta name="DC.subject" content="?latrz, slatrz, dlatrz, clatrz, zlatrz, LAPACK routines, auxiliary routines, trapezoidal matrix, factorization, upper trapezoidal matrix"/>
+<meta name="keywords" content="?latrz, slatrz, dlatrz, clatrz, zlatrz, LAPACK routines, auxiliary routines, trapezoidal matrix, factorization, upper trapezoidal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2C8DFE1E-012D-4F3F-9DE0-D1E8FCCE7B9D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?latrz</title>
+
+</head>
+<body id="GUID-2C8DFE1E-012D-4F3F-9DE0-D1E8FCCE7B9D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?latrz</span></h1>
+<!--Factors an upper trapezoidal matrix by means of orthogonal/unitary transformations.--><div><p class="shortdesc">Factors an upper trapezoidal matrix by means of orthogonal/unitary transformations.</p>
+<div class="section" id="GUID-B8C004C8-54A7-434C-A07D-F556771A39EC"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slatrz</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlatrz</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clatrz</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlatrz</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-03DE572A-7285-4EA5-B591-0328FFEAAE2D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-4F623669-0BBD-40E7-AC6E-813546ABB36B"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?latrz</span> factors the <var>m</var>-by-(<var>m</var>+<var>l</var>) real/complex upper trapezoidal matrix</p>
+<p><samp class="codeph">[<var>A</var>1   <var>A</var>2] = [<var>A</var>(1:<var>m</var>,1:<var>m</var>)  <var>A</var>(1: <var>m</var>, <var>n</var>-<var>l</var>+1:<var>n</var>)]</samp></p>
+<p>as   ( <var>R</var> 0 )* <var>Z</var>, by means  of orthogonal/unitary transformations. <var>Z</var> is an (<var>m+l</var>)-by-(<var>m+l</var>) orthogonal/unitary  matrix and <var>R</var> and <var>A</var>1 are <var>m</var>-by -<var>m</var> upper triangular matrices.</p>
+</div>
+<div class="section" id="GUID-46BC7667-DDE9-4A79-9867-E2235350805F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E58A360A-D6F7-4870-8BD0-AB0256ECF88F"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of rows of the matrix <var>A</var>. <samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of columns of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of columns of the matrix <var>A</var> containing the meaningful part of the Householder vectors. </p>
+<p><samp class="codeph"><var>n</var>-<var>m</var><span class="eqsymbol">≥</span><var>l</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrz</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, the leading <var>m</var>-by-<var>n</var> upper trapezoidal part of the array <var>a</var> must contain the matrix to be factorized.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1,<var>m</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrz</span>.</p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>m</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-073C817D-4726-4AC0-BF33-C708BA9D9914"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-65FD0145-97A7-4CFD-A702-B89B6C660F51"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the leading <var>m</var>-by-<var>m</var> upper triangular part of <var>a</var> contains the upper triangular matrix <var>R</var>, and elements <var>n</var>-<var>l</var>+1 to <var>n</var> of the first <var>m</var> rows of <var>a</var>, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Z</var> as a product of <var>m</var> elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrz</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrz</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrz</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>m</var>). </p>
+<p>The scalar factors of the elementary reflectors.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-485949E3-0DDD-4240-A4FF-26C8B47D0605"><h2 class="sectiontitle">Application Notes</h2><p>The factorization is obtained by Householder's method. The <var>k</var>-th transformation matrix, <var>z</var>(<var>k</var>), which is used to introduce zeros into the (<var>m</var> - <var>k</var> + 1)-th  row of <var>A</var>, is given in the form</p>
+<p><br/><div class="imagecenter"><img src="GUID-222DCE7B-D210-4041-B25E-FEF24EB36501-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where   for real flavors</p>
+<p><br/><div class="imagecenter"><img src="GUID-AC1C000C-B898-4217-815B-2D9BD9307B07-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>and for complex flavors</p>
+<p><br/><div class="imagecenter"><img src="GUID-83B65E8B-31D6-4642-A5EC-E7A2F13E333C-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p><var>tau</var> is a scalar and <var>z</var>(<var>k</var>) is an <var>l</var>-element vector. <var>tau</var> and <var>z</var>(<var>k</var>) are chosen to annihilate the elements of the <var>k-</var>th row of <var>A</var>2.</p>
+<p>The scalar <var>tau</var> is returned in the <var>k-</var>th element of <var>tau</var> and the vector <var>u</var>(<var>k</var>) in the <var>k-</var>th row of <var>A</var>2, such that the elements of <var>z</var>(<var>k</var>) are in <samp class="codeph"><var>a</var>(<var>k</var>, <var>l</var>+1), ..., <var>a</var>(<var>k</var>, <var>n</var>).</samp></p>
+<p>The elements of <var>r</var> are returned in the upper triangular part of <var>A</var>1.</p>
+<p><var>Z</var> is given by</p>
+<p><samp class="codeph"><samp class="codeph"><var>Z</var> = <var>Z</var>(1)*<var>Z</var>(2)*...*<var>Z</var>(<var>m</var>)</samp></samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

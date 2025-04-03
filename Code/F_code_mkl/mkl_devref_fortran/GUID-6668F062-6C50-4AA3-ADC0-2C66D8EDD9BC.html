@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lacpy"/>
+<meta name="abstract" content="Copies all or part of one two-dimensional array to another."/>
+<meta name="description" content="Copies all or part of one two-dimensional array to another."/>
+<meta name="DC.subject" content="p?lacpy, ScaLAPACK routines, auxiliary routines, copying, matrices, two-dimensional, ScaLAPACK"/>
+<meta name="keywords" content="p?lacpy, ScaLAPACK routines, auxiliary routines, copying, matrices, two-dimensional, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6668F062-6C50-4AA3-ADC0-2C66D8EDD9BC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lacpy</title>
+
+</head>
+<body id="GUID-6668F062-6C50-4AA3-ADC0-2C66D8EDD9BC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lacpy</span></h1>
+<!--Copies all or part of one two-dimensional array to another.--><div><p class="shortdesc">Copies all or part of one two-dimensional array to another.</p>
+<div class="section" id="GUID-5C8A15F5-0612-4290-A1B5-E477F2EC1146"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslacpy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlacpy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pclacpy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzlacpy</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-EDDF7996-1666-4399-AB5D-446D555D5365"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?lacpy</span><span>routine </span>copies all or part of a distributed matrix <var>A </var> to another distributed matrix <var>B</var>. No communication is performed, <span class="option">p?lacpy</span> performs a local copy sub(<var>B</var>):= sub(<var>A</var>), where sub(<var>A</var>) denotes <var>A</var><samp class="codeph">(<var>ia</var>:<var>ia</var>+<var>m</var>-1,<var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> and sub(<var>B</var>) denotes <var>B</var><samp class="codeph">(<var>ib</var>:<var>ib</var>+<var>m</var>-1,<var>jb</var>:<var>jb</var>+<var>n</var>-1)</samp>.</p>
+</div>
+<div class="section" id="GUID-1D5CE6C6-D898-4A17-BD45-0531B9B98D4C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E58A2681-6F1A-4D99-B47C-C9D898207E84"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Specifies the part of the distributed matrix sub(<var>A</var>) to be copied: </p>
+<p>= <span class="keyword">'U'</span>:   Upper triangular part; the strictly lower triangular part of sub(<var>A</var>) is not referenced; </p>
+<p>= <span class="keyword">'L'</span>:   Lower triangular part; the strictly upper triangular part of sub(<var>A</var>) is not referenced. </p>
+<p>Otherwise: all of the matrix sub(<var>A</var>) is copied.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of rows in the distributed matrix sub(<var>A</var>).  <samp class="codeph">(<var>m</var><span class="eqsymbol">≥</span>0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of columns in the distributed matrix sub(<var>A</var>). <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span>0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslacpy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlacpy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclacpy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlacpy</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_a</var>, <var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>. </p>
+<p>On entry, this array contains the local pieces of the distributed matrix  sub(<var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A </var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix A.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ib</span>, <span class="parmname">jb</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>B</var> indicating the first row and the first column of sub(<var>B</var>) respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descb</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. The array descriptor for the distributed matrix A.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-940819E7-8CC0-474B-9ACD-A9510AC12779"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1A44ACCA-5499-4BB8-81DD-86FF5985C3BF"><dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslacpy</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlacpy</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclacpy</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlacpy</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph">(<var>lld_b</var>, <var>LOCc</var>(<var>jb</var>+<var>n</var>-1))</samp>. This array  contains on exit the local pieces of the distributed matrix sub(B) set as follows:</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>B</var>(<var>ib</var>+<var>i</var>-1, <var>jb</var>+<var>j</var>-1) = <var>A</var>(<var>ia</var>+<var>i</var>-1, <var>ja</var>+<var>j</var>-1), 1≤<var>i</var>≤<var>j</var>, 1≤<var>j</var>≤<var>n</var>;</p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>B</var>(<var>ib</var>+<var>i</var>-1, <var>jb</var>+<var>j</var>-1) = <var>A</var>(<var>ia</var>+<var>i</var>-1, <var>ja</var>+<var>j</var>-1), <var>j</var>≤<var>i</var>≤<var>m</var>, 1≤<var>j</var>≤<var>n</var>;</p>
+<p>otherwise, <var>B</var>(<var>ib</var>+<var>i</var>-1, <var>jb</var>+<var>j</var>-1) = <var>A</var>(<var>ia</var>+<var>i</var>-1, <var>ja</var>+<var>j</var>-1), 1≤<var>i</var>≤<var>m</var>, 1≤<var>j</var>≤<var>n</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lahqr"/>
+<meta name="abstract" content="Computes the eigenvalues and Schur factorization of an upper Hessenberg matrix, using the double-shift/single-shift QR algorithm."/>
+<meta name="description" content="Computes the eigenvalues and Schur factorization of an upper Hessenberg matrix, using the double-shift/single-shift QR algorithm."/>
+<meta name="DC.subject" content="?lahqr, LAPACK routines, auxiliary routines, Schur factorization, upper Hessenberg matrix, eigenvalues"/>
+<meta name="keywords" content="?lahqr, LAPACK routines, auxiliary routines, Schur factorization, upper Hessenberg matrix, eigenvalues"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-744097BB-4976-4115-9E52-E57BE96B2028"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lahqr</title>
+
+</head>
+<body id="GUID-744097BB-4976-4115-9E52-E57BE96B2028">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lahqr</span></h1>
+<!--Computes the eigenvalues and Schur factorization of an upper Hessenberg matrix, using the double-shift/single-shift QR algorithm.--><div><p class="shortdesc">Computes the eigenvalues and Schur factorization of an upper Hessenberg matrix, using the double-shift/single-shift QR algorithm.</p>
+<div class="section" id="GUID-C4FD762C-9DCC-4DF0-AF71-CF4D96F8B105"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slahqr</span><span class="delim">( </span><span class="var">wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlahqr</span><span class="delim">( </span><span class="var">wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clahqr</span><span class="delim">( </span><span class="var">wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlahqr</span><span class="delim">( </span><span class="var">wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-A4DA619C-1338-4148-9ECC-DB6284CFF4E3"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-785B7028-9E67-47B2-B86E-3C570714F856"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine is an auxiliary routine called by <a href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C"><span class="option">?hseqr</span></a> to update the eigenvalues and Schur decomposition already computed by <span class="option">?hseqr</span>, by dealing with the Hessenberg submatrix in rows and columns <var>ilo</var> to <var>ihi</var>.</p>
+</div>
+<div class="section" id="GUID-7ECA894C-B404-4D2F-AC0E-BF10D4442E9D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-F1EDA4A3-902A-459E-9124-10105B3E7905"><dt class="dlterm"><span class="parmname">wantt</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>wantt</var> = <span class="keyword">.TRUE.</span></samp>, the full Schur form <var>T</var> is required; </p>
+<p>If <samp class="codeph"><var>wantt</var> = <span class="keyword">.FALSE.</span></samp>, eigenvalues only are required.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wantz</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.TRUE.</span></samp>, the matrix of Schur vectors <var>Z</var> is required; </p>
+<p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.FALSE.</span></samp>, Schur vectors are not required.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>H</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>It is assumed that <var>h</var> is already upper quasi-triangular in rows and columns <var>ihi</var>+1:<var>n</var>, and that <samp class="codeph"><var>h</var>(<var>ilo</var>,<var>ilo</var>-1) = 0</samp> (unless <samp class="codeph"><var>ilo</var> = 1</samp>). The routine <span class="option">?lahqr</span> works primarily with the Hessenberg submatrix in rows and columns <var>ilo</var> to <var>ihi</var>, but applies transformations to all of <var>h</var> if <samp class="codeph"><var>wantt</var> = <span class="keyword">.TRUE.</span></samp>. </p>
+<p>Constraints: </p>
+<p><samp class="codeph">1 ≤ <var>ilo</var> ≤ max(1,<var>ihi</var>); <var>ihi</var> ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span>, <span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slahqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlahqr</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clahqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlahqr</span>.</p>
+<p>Arrays: </p>
+<p><var>h</var>(<var>ldh</var>,*) contains the upper Hessenberg matrix <var>h</var>. </p>
+<p>The second dimension of <var>h</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+<p><var>z</var>(<var>ldz</var>,*) </p>
+<p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.TRUE.</span></samp>, then, on entry, <var>z</var> must contain the current matrix <var>z</var> of transformations accumulated by <span class="option">?hseqr</span>.  The second dimension of <var>z</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp></p>
+<p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.FALSE.</span></samp>, then <var>z</var> is not referenced..</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>h</var>; at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>z</var>; at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iloz</span>, <span class="parmname">ihiz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Specify the rows of <var>z</var> to which transformations must be applied if <samp class="codeph"><var>wantz</var> = <span class="keyword">.TRUE.</span></samp>.</p>
+<p><samp class="codeph">1 ≤ <var>iloz</var> ≤ <var>ilo</var></samp>; <samp class="codeph"><var>ihi</var> ≤ <var>ihiz</var> ≤ <var>n</var></samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DD59F4F1-DBB1-4612-A61E-82B95429F7AE"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-4035D240-2D90-4644-A074-D37024EEB16A"><dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>On exit, if <var>info</var>= 0 and <var>wantt</var> = <span class="keyword">.TRUE.</span>,  then, <ul id="GUID-02A684F0-2F51-4C05-9022-54AAAE2321C8"><li><p>for <span class="option">slahqr/dlahqr</span>, <var>h</var> is upper quasi-triangular in rows and columns <var>ilo</var>:<var>ihi</var> with any 2-by-2 diagonal blocks in standard form.</p>
+</li>
+<li>for <span class="option">clahqr/zlahqr</span>, <var>h</var> is upper triangular in rows and columns <var>ilo</var>:<var>ihi</var>.</li>
+</ul>
+</p>
+<p>If <var>info</var>= 0 and <var>wantt</var> = <span class="keyword">.FALSE.</span>, the contents of <var>h</var> are unspecified on exit. If <var>info</var> is positive, see description of <span class="parmname">info</span>  for the output state of <var>h</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slahqr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlahqr</span></p>
+<p>Arrays, <span class="keyword">DIMENSION</span> at least <samp class="codeph">max(1, <var>n</var>)</samp> each. Used with real flavors only. The real and imaginary parts, respectively, of the computed eigenvalues <var>ilo</var> to <var>ihi</var> are stored in the corresponding elements of <var>wr</var> and <var>wi</var>. If two eigenvalues are computed as a complex conjugate pair, they are stored in consecutive elements of <var>wr</var> and <var>wi</var>, say the i-th and (i+1)-th, with <samp class="codeph"><var>wi</var>(i)&gt; 0</samp> and <samp class="codeph"><var>wi</var>(i+1) &lt; 0</samp>. </p>
+<p>If <samp class="codeph"><var>wantt</var> = <span class="keyword">.TRUE.</span></samp>, the eigenvalues are stored in the same order as on the diagonal of the Schur form returned in <var>h</var>, with <samp class="codeph"><var>wr</var>(i) = <var>h</var>(i,i)</samp>, and, if <samp class="codeph"><var>h</var>(i:i+1, i:i+1)</samp> is a 2-by-2 diagonal block, <samp class="codeph"><var>wi</var>(i) = sqrt(<var>h</var>(i+1,i)*<var>h</var>(i,i+1))</samp> and <samp class="codeph"><var>wi</var>(i+1) = -<var>wi</var>(i)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">clahqr</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlahqr</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> at least <samp class="codeph">max(1, <var>n</var>)</samp>. Used with complex flavors only. The computed eigenvalues <var>ilo</var> to <var>ihi</var> are stored in the corresponding elements of <var>w</var>. </p>
+<p>If <samp class="codeph"><var>wantt</var> = <span class="keyword">.TRUE.</span></samp>, the eigenvalues are stored in the same order as on the diagonal of the Schur form returned in <var>h</var>, with <samp class="codeph"><var>w</var>(i) = <var>h</var>(i,i)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.TRUE.</span></samp>, then, on exit <var>z</var> has been updated; transformations are applied only to the submatrix <var>z</var>(<var>iloz</var>:<var>ihiz</var>, <var>ilo</var>:<var>ihi</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>With <samp class="codeph"><var>info</var> &gt; 0</samp>, </p>
+<ul id="GUID-B68DFADA-E602-4CF0-84F9-19D463FD7DDB"><li><p>if <var>info</var> = <var>i</var>, <span class="option">?lahqr</span> failed to compute all the eigenvalues <var>ilo</var> to <var>ihi</var> in a total of 30  iterations per eigenvalue; elements <samp class="codeph">i+1:<var>ihi</var></samp> of <var>wr</var> and <var>wi</var> (for <span class="option">slahqr</span>/<span class="option">dlahqr</span>) or <var>w</var>  (for <span class="option">clahqr</span>/<span class="option">zlahqr</span>) contain those eigenvalues which have been successfully computed.</p>
+</li>
+<li><p>if <var>wantt</var> is <span class="keyword">.FALSE.</span>, then on exit
+the remaining unconverged eigenvalues are the
+eigenvalues of the upper Hessenberg matrix
+rows and columns <var>ilo</var> through <var>info</var> of the final
+output value of <var>h</var>.</p>
+</li>
+<li><p>if <var>wantt</var> is <span class="keyword">.TRUE.</span>, then on exit
+<br/>(initial value of <var>h</var>)*<var>u</var>  = <var>u</var>*(final value of <var>h</var>),          
+          
+   <samp class="codeph">(*)</samp><br/>                         where <var>u</var> is an orthognal matrix.    The final
+value of <var>h</var> is upper Hessenberg and triangular in
+rows and columns <samp class="codeph"><var>info</var>+1</samp> through <var>ihi</var>.</p>
+</li>
+<li><p>if <var>wantz</var> is <span class="keyword">.TRUE.</span>, then on exit
+<br/>(final value of <var>z</var>)  = (initial value of <var>z</var>)* <var>u</var>,          
+          
+   <br/>                         where <var>u</var> is an orthognal matrix in <samp class="codeph">(*)</samp> regardless of the value of <var>wantt</var>.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

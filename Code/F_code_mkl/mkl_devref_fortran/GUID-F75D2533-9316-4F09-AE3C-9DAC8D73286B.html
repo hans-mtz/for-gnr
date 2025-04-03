@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?gehd2"/>
+<meta name="abstract" content="Reduces a general matrix to upper Hessenberg form by an orthogonal/unitary similarity transformation (unblocked algorithm)."/>
+<meta name="description" content="Reduces a general matrix to upper Hessenberg form by an orthogonal/unitary similarity transformation (unblocked algorithm)."/>
+<meta name="DC.subject" content="p?gehd2, ScaLAPACK routines, auxiliary routines, general matrix, reduction to upper Hessenberg form"/>
+<meta name="keywords" content="p?gehd2, ScaLAPACK routines, auxiliary routines, general matrix, reduction to upper Hessenberg form"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F75D2533-9316-4F09-AE3C-9DAC8D73286B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?gehd2</title>
+
+</head>
+<body id="GUID-F75D2533-9316-4F09-AE3C-9DAC8D73286B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?gehd2</span></h1>
+<!--Reduces a general matrix to upper Hessenberg form by an orthogonal/unitary similarity transformation (unblocked algorithm).--><div><p class="shortdesc">Reduces a general matrix to upper Hessenberg form by an orthogonal/unitary similarity transformation (unblocked algorithm).</p>
+<div class="section" id="GUID-D7FAEB97-0CC8-4744-8B21-2C530BF874DF"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psgehd2</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdgehd2</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcgehd2</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzgehd2</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-4062AAF0-10FB-4914-AEB3-7C0BC3899B1B"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?gehd2</span><span>routine </span>reduces a real/complex general distributed matrix sub(<var>A</var>) to upper Hessenberg form <var>H</var> by an orthogonal/unitary similarity transformation:  <samp class="codeph"><var>Q'</var>*sub(<var>A</var>)*<var>Q</var> = <var>H</var></samp>,  where <samp class="codeph">sub(<var>A</var>) = <var>A</var>(<var>ia</var>+<var>n</var>-1 :<var>ia</var>+<var>n</var>-1, <var>ja</var>+<var>n</var>-1 :<var>ja</var>+<var>n</var>-1)</samp>.</p>
+</div>
+<div class="section" id="GUID-36D1A42D-9688-47AB-B5FE-5EA0C3691779"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4FD76610-AEE3-4870-A2EA-D3A6D5BF598E"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the distributed submatrix <var>A</var>. <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>It is assumed that the matrix sub(<var>A</var>) is already upper triangular in rows <samp class="codeph"><var>ia</var>:<var>ia</var>+<var>ilo</var>-2</samp> and <samp class="codeph"><var>ia</var>+<var>ihi</var>:<var>ia</var>+<var>n</var>-1</samp> and columns <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>jlo</var>-2</samp> and <samp class="codeph"><var>ja</var>+<var>jhi</var>:<var>ja</var>+<var>n</var>-1</samp>. <span>See <em>Application Notes</em> for further information. </span></p>
+<p>If <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>, <samp class="codeph">1 ≤ <var>ilo</var> ≤ <var>ihi</var> ≤ <var>n</var></samp>; otherwise set <samp class="codeph"><var>ilo</var> = 1</samp>, <samp class="codeph"><var>ihi</var> = <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local).</p>
+<p><span class="keyword">REAL</span> for <span class="option">psgehd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgehd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgehd2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzgehd2</span>. </p>
+<p>Pointer into the local memory to an array of size<samp class="codeph"><span>(<var>lld_a</var>, <var>LOC</var><sub><var>c</var></sub>(<var>ja</var>+<var>n</var>-1))</span></samp>. </p>
+<p>On entry, this array contains the local pieces of the <var>n</var>-by-<var>n</var> general distributed matrix sub(<var>A</var>) to be reduced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psgehd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgehd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgehd2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzgehd2</span>. </p>
+<p>This is a workspace array of size <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The size of the array <var>work</var>. </p>
+<p><var>lwork</var> is local input and must be at least <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>nb</var> + max( <var>npa</var>0, <var>nb</var> )</samp>, where <samp class="codeph"><var>nb</var> = <var>mb_a</var> = <var>nb_a</var>, <var>iroffa</var> =  mod( <var>ia</var>-1, <var>nb</var> ), </samp><samp class="codeph"><var>iarow</var> = <span class="keyword">indxg2p</span> ( <var>ia</var>, <var>nb</var>, <var>myrow</var>, <var>rsrc_a</var>, <var>nprow</var> ),</samp><samp class="codeph"><var>npa</var>0 = <span class="keyword">numroc</span>(<var>ihi+iroffa</var>, <var>nb</var>, <var>myrow</var>, <var>iarow</var>, <var>nprow</var> )</samp>. </p>
+<p><span class="keyword">indxg2p</span> and <span class="keyword">numroc</span> are ScaLAPACK tool functions;<var>myrow</var>, <var>mycol</var>, <var>nprow</var>, and <var>npcol</var> can be determined by calling the <span>subroutine </span><span class="keyword">blacs_gridinfo</span>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <var>lwork</var> is global input and a workspace query is assumed; the <span>routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <a href="GUID-E523C816-D553-4D4E-8458-5404828CC07B.html"><span class="option">pxerbla</span></a>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0153E986-B8B8-4D6D-B95D-DD7E73F28ACF"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-CEC269C8-8570-48FA-859A-8EF68E0CB661"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local). On exit, the upper triangle and the first subdiagonal of sub(<var>A</var>) are overwritten with the upper Hessenberg matrix <var>H</var>, and the elements below the first subdiagonal, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors.<span> (see <em>Application Notes</em> below)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">psgehd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgehd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgehd2</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzgehd2</span>. </p>
+<p>Array of size <samp class="codeph"><var>LOCc</var>(<var>ja</var>+<var>n</var>-2)</samp> The scalar factors of the elementary reflectors (see <em>Application Notes</em> below). Elements <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>ilo</var>-2</samp> and <samp class="codeph"><var>ja</var>+<var>ihi</var>:<var>ja</var>+<var>n</var>-2</samp> of the global vector <var>tau</var> are set to zero. <span class="parmname">tau</span> is tied to the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>On exit, <samp class="codeph"><span><var>work</var>(1)</span></samp><samp class="codeph"/> returns the minimal and optimal <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>if <span class="parmname">info</span> &lt;  0: If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had  an illegal value, then <samp class="codeph"><var>info</var> = - (<var>i</var>*100+<var>j</var>)</samp>, if the <var>i</var>-th  argument is a scalar and had an illegal value, then <samp class="codeph"><var>info</var> = -<var>i</var></samp>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-28D9E360-DD83-49F7-AC3E-6AB6E40958BE"><h2 class="sectiontitle">Application Notes</h2><p>The matrix <var>Q</var> is represented as a product of (<var>ihi-ilo</var>) elementary reflectors <pre><var>Q</var> = <var>H</var>(<var>ilo</var>)*<var>H</var>(<var>ilo</var>+1)*...*<var>H</var>(<var>ihi</var>-1).</pre></p>
+<p>Each <samp class="codeph"><var>H</var>(<var>i</var>)</samp> has the form <pre><samp class="codeph"><var>H</var>(<var>i</var>) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v'</var>,</samp></pre></p>
+<p>where <var>tau</var> is a real/complex scalar, and <var>v</var> is a real/complex vector with <samp class="codeph"><var>v</var>(1: <var>i</var>)=0</samp>, <samp class="codeph"><var>v</var>(<var>i</var>+1)=1</samp> and <samp class="codeph"><var>v</var>(<var>ihi</var>+1:<var>n</var>)=0</samp>; <samp class="codeph"><var>v</var>(<var>i</var>+2:<var>ihi</var>)</samp> is stored on exit in <samp class="codeph"><var>A</var>(<var>ia</var>+<var>ilo</var>+<var>i</var>:<var>ia</var>+<var>ihi</var>-1</samp>, <samp class="codeph"><var>ia</var>+<var>ilo</var>+<var>i</var>-2)</samp>, and <var>tau</var> in <span class="parmname">tau</span><samp class="codeph"><span>(<var>ja</var>+<var>ilo</var>+<var>i</var>-2)</span></samp>.</p>
+<p>The contents of <samp class="codeph"><var>A</var>(<var>ia</var>:<var>ia</var>+<var>n</var>-1</samp>, <samp class="codeph"><var>ja</var>:<var>ja</var>+<var>n</var>-1)</samp> are illustrated by the following example, with <samp class="codeph"><var>n</var> = 7</samp>, <samp class="codeph"><var>ilo</var> = 2</samp> and <samp class="codeph"><var>ihi</var> = 6</samp>:</p>
+<p><span><br/><div class="imagecenter"><img src="GUID-F3DDCFCF-40D1-4AAB-8284-71360296E62F-low.gif" width="420" height="170" alt="Equation" align="center" class=".eq"/></div><br/></span></p>
+<p>where <var>a</var> denotes an element of the original matrix sub(<var>A</var>), <var>h</var> denotes a modified element of the upper Hessenberg matrix <var>H</var>, and <var>vi</var> denotes an element of the vector defining <samp class="codeph"><var>H</var>(<var>ja</var>+<var>ilo</var>+<var>i</var>-2)</samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

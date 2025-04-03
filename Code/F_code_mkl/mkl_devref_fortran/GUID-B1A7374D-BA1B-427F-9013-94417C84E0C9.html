@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Parameters That Define Boundary Conditions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A0068460-37C4-487D-9E5C-9E29459AF74A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868.html#GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C6F60AC1-C8FB-459C-A717-F7B9EA8FF5C8.html#GUID-C6F60AC1-C8FB-459C-A717-F7B9EA8FF5C8"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B1A7374D-BA1B-427F-9013-94417C84E0C9"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Parameters That Define Boundary Conditions</title>
+
+</head>
+<body id="GUID-B1A7374D-BA1B-427F-9013-94417C84E0C9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Parameters That Define Boundary Conditions</h1>
+<div><p>Poisson Solver routines for the Cartesian solver use the following common parameters to define the boundary conditions. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL13-6" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Parameters to Define Boundary Conditions for the Cartesian Solver</span></caption><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="14.285714285714285%" id="d1326338e26"><p>Parameter 
+          </p>
+</th>
+<th class="row-nocellborder" colspan="1" valign="top" id="d1326338e29"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1326338e26 "><p id="BD_AX"><span class="parmname">bd_ax</span></p>
+</td>
+<td class="row-nocellborder" colspan="1" valign="top" headers="d1326338e29 "><p><span class="keyword">double*</span> for 
+          <span class="option">d_commit_Helmholtz_2D/d_commit_Helmholtz_3D</span> and 
+          <span class="option">d_Helmholtz_2D/d_Helmholtz_3D</span>, 
+          <span class="keyword"/></p>
+<p><span class="keyword">float*</span> for 
+          <span class="option">s_commit_Helmholtz_2D/s_commit_Helmholtz_3D</span> and 
+          <span class="option">s_Helmholtz_2D/s_Helmholtz_3D</span>. 
+          </p>
+<p>Contains values of the boundary condition on the leftmost boundary of the domain along the 
+            <var>x</var>-axis. 
+          </p>
+<ul id="GUID-80433358-E2C7-4B30-B94B-4764CBDC48CE"><li><p>2D problem: the size of the array is 
+                <span class="parmname">ny</span>+1. Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-7FC29B60-F239-4B3D-A0FA-DE4F26FC544B"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[0] is 'D'): values of the function 
+                    <var>G</var>(<span class="parmname">ax</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[0] is 'N'): values of the function 
+                    <var>g</var>(<span class="parmname">ax</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>. 
+                  </p>
+</li>
+</ul>
+<p>The value corresponding to the index 
+                <var>j</var> is placed in 
+                <span class="parmname">bd_ax</span>[<var>j</var>]. 
+              </p>
+</li>
+<li><p>3D problem: the size of the array is (<span class="parmname">ny</span>+1)*(<span class="parmname">nz</span>+1). Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-05FCB5ED-8612-49CC-BFCA-6184FD8C6B25"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[0] is 'D'): values of the function 
+                    <var>G</var>(<span class="parmname">ax</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[0] is 'N'): the values of the function 
+                    <var>g</var>(<span class="parmname">ax</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+</ul>
+<p>The values are packed in the array so that the value corresponding to indices 
+                <var>(j, k)</var> is placed in 
+                <span class="parmname">bd_ax</span>[<var>j+k</var>*(<span class="parmname">ny</span>+1)]. 
+              </p>
+</li>
+</ul>
+<p>For periodic boundary conditions (the value of 
+            <span class="parmname">BCtype</span>[0] is 'P'), this parameter is not used, so it can accept a dummy pointer. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1326338e26 "><p id="BD_BX"><span class="parmname">bd_bx</span></p>
+</td>
+<td class="row-nocellborder" colspan="1" valign="top" headers="d1326338e29 "><p><span class="keyword">double*</span> for 
+          <span class="option">d_commit_Helmholtz_2D/d_commit_Helmholtz_3D</span> and 
+          <span class="option">d_Helmholtz_2D/d_Helmholtz_3D</span>, 
+          <span class="keyword"/></p>
+<p><span class="keyword">float*</span> for 
+          <span class="option">s_commit_Helmholtz_2D/s_commit_Helmholtz_3D</span> and 
+          <span class="option">s_Helmholtz_2D/s_Helmholtz_3D</span>. 
+          </p>
+<p>Contains values of the boundary condition on the rightmost boundary of the domain along the 
+            <var>x</var>-axis. 
+          </p>
+<ul id="GUID-4317B63F-389B-4044-8C9E-270B571C67D5"><li><p>2D problem: the size of the array is 
+                <span class="parmname">ny</span>+1. Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-29939D41-0CC3-4BD5-9B0A-E9D8564E330A"><li><p> Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[1] is 'D'): values of the function 
+                    <var>G</var>(<span class="parmname">bx</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[1] is 'N'): values of the function 
+                    <var>g</var>(<span class="parmname">bx</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>. 
+                  </p>
+</li>
+</ul>
+<p>The value corresponding to the index 
+                <var>j</var> is placed in 
+                <span class="parmname">bd_bx</span>[<var>j</var>]. 
+              </p>
+</li>
+<li><p>3D problem: the size of the array is (<span class="parmname">ny</span>+1)*(<span class="parmname">nz</span>+1). Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-B6E7B321-837A-45B0-B014-AAED21351F44"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[1] is 'D'): values of the function 
+                    <var>G</var>(<span class="parmname">bx</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[1] is 'N'): values of the function 
+                    <var>g</var>(<span class="parmname">bx</span>, 
+                    <var>y</var><sub class="subb"><var>j</var></sub>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>j</var>=0, ..., 
+                    <span class="parmname">ny</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+</ul>
+<p>The values are packed in the array so that the value corresponding to indices 
+                <var>(j, k)</var> is placed in 
+                <span class="parmname">bd_bx</span>[<var>j+k</var>*(<span class="parmname">ny</span>+1)]. 
+              </p>
+</li>
+</ul>
+<p>For periodic boundary conditions (the value of 
+            <span class="parmname">BCtype</span>[1] is 'P'), this parameter is not used, so it can accept a dummy pointer. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1326338e26 "><p id="BD_AY"><span class="parmname">bd_ay</span></p>
+</td>
+<td class="row-nocellborder" colspan="1" valign="top" headers="d1326338e29 "><p><span class="keyword">double*</span> for 
+          <span class="option">d_commit_Helmholtz_2D/d_commit_Helmholtz_3D</span> and 
+          <span class="option">d_Helmholtz_2D/d_Helmholtz_3D</span>, 
+          <span class="keyword"/></p>
+<p><span class="keyword">float*</span> for 
+          <span class="option">s_commit_Helmholtz_2D/s_commit_Helmholtz_3D</span> and 
+          <span class="option">s_Helmholtz_2D/s_Helmholtz_3D</span>. 
+          </p>
+<p>Contains values of the boundary condition on the leftmost boundary of the domain along the 
+            <var>y</var>-axis. 
+          </p>
+<ul id="GUID-E8E7548F-B4C0-480F-8BA4-09B5D7308580"><li><p>2D problem: the size of the array is 
+                <span class="parmname">nx</span>+1. Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-47E8CB4F-A08C-4071-8ED0-E4E9D1D90A56"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[2] is 'D'): values of the function 
+                    <var>G</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                    <span class="parmname">ay</span>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[2] is 'N'): values of the function 
+                    <var>g</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                    <span class="parmname">ay</span>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>. 
+                  </p>
+</li>
+</ul>
+<p>The value corresponding to the index 
+                <var>i</var> is placed in 
+                <span class="parmname">bd_ay</span>[<var>i</var>]. 
+              </p>
+</li>
+<li><p>3D problem: the size of the array is (<span class="parmname">nx</span>+1)*(<span class="parmname">nz</span>+1). Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-38DA481F-42F2-4DCB-B820-35BA12107B26"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[2] is 'D'): values of the function 
+                    <var>G</var>(<var>x</var><sub class="subb"><var>i</var></sub>,<span class="parmname">ay</span>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[2] is 'N'): values of the function 
+                    <var>g</var>(<var>x</var><sub class="subb"><var>i</var></sub>,<span class="parmname">ay</span>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+</ul>
+<p>The values are packed in the array so that the value corresponding to indices 
+                <var>(i, k)</var> is placed in 
+                <span class="parmname">bd_ay</span>[<var>i+k</var>*(<span class="parmname">nx</span>+1)]. 
+              </p>
+</li>
+</ul>
+<p>For periodic boundary conditions (the value of 
+            <span class="parmname">BCtype</span>[2] is 'P'), this parameter is not used, so it can accept a dummy pointer. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1326338e26 "><p id="BD_BY"><span class="parmname">bd_by</span></p>
+</td>
+<td class="row-nocellborder" colspan="1" valign="top" headers="d1326338e29 "><p><span class="keyword">double*</span> for 
+          <span class="option">d_commit_Helmholtz_2D/d_commit_Helmholtz_3D</span> and 
+          <span class="option">d_Helmholtz_2D/d_Helmholtz_3D</span>, 
+          <span class="keyword"/></p>
+<p><span class="keyword">float*</span> for 
+          <span class="option">s_commit_Helmholtz_2D/s_commit_Helmholtz_3D</span> and 
+          <span class="option">s_Helmholtz_2D/s_Helmholtz_3D</span>. 
+          </p>
+<p>Contains values of the boundary condition on the rightmost boundary of the domain along the 
+            <var>y</var>-axis. 
+          </p>
+<ul id="GUID-57FBD514-463F-45DD-9823-B286B3164BDD"><li><p>2D problem: the size of the array is 
+                <span class="parmname">nx</span>+1. Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-0A52E513-35D4-4FA4-A0E9-8FB967977162"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[3] is 'D'): values of the function 
+                    <var>G</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                    <span class="parmname">by</span>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[3] is 'N'): values of the function 
+                    <var>g</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                    <span class="parmname">by</span>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>. 
+                  </p>
+</li>
+</ul>
+<p>The value corresponding to the index 
+                <var>i</var> is placed in 
+                <span class="parmname">bd_by</span>[<var>i</var>]. 
+              </p>
+</li>
+<li><p>3D problem: the size of the array is (<span class="parmname">nx</span>+1)*(<span class="parmname">nz</span>+1). Its contents depend on the boundary conditions as follows: 
+              </p>
+<ul id="GUID-3BCA1DA6-EFD4-4D1C-BC31-88A67C30CD4C"><li><p>Dirichlet boundary condition (value of 
+                    <span class="parmname">BCtype</span>[3] is 'D'): values of the function 
+                    <var>G</var>(<var>x</var><sub class="subb"><var>i</var></sub>,<span class="parmname">by</span>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                    <span class="parmname">BCtype</span>[3] is 'N'): values of the function 
+                    <var>g</var>(<var>x</var><sub class="subb"><var>i</var></sub>,<span class="parmname">by</span>, 
+                    <var>z</var><sub class="subb"><var>k</var></sub>), 
+                    <var>i</var>=0, ..., 
+                    <span class="parmname">nx</span>, 
+                    <var>k</var>=0, ..., 
+                    <span class="parmname">nz</span>. 
+                  </p>
+</li>
+</ul>
+<p>The values are packed in the array so that the value corresponding to indices 
+                <var>(i, k)</var> is placed in 
+                <span class="parmname">bd_by</span>[<var>i+k</var>*(<span class="parmname">nx</span>+1)]. 
+              </p>
+</li>
+</ul>
+<p>For periodic boundary conditions (the value of 
+            <span class="parmname">BCtype</span>[3] is 'P'), this parameter is not used, so it can accept a dummy pointer. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1326338e26 "><p id="BD_AZ"><span class="parmname">bd_az</span></p>
+</td>
+<td class="row-nocellborder" colspan="1" valign="top" headers="d1326338e29 "><p><span class="keyword">double*</span> for 
+          <span class="option">d_commit_Helmholtz_3D</span> and 
+          <span class="option">d_Helmholtz_3D</span>, 
+          </p>
+<p><span class="keyword">float*</span> for 
+          <span class="option">s_commit_Helmholtz_3D</span> and 
+          <span class="option">s_Helmholtz_3D</span>. 
+          </p>
+<p>Used only by 
+          <span class="option">?_commit_Helmholtz_3D</span> and 
+          <span class="option">?_Helmholtz_3D</span>. Contains values of the boundary condition on the leftmost boundary of the domain along the 
+          <var>z</var>-axis. 
+          </p>
+<p>The size of the array is (<span class="parmname">nx</span>+1)*(<span class="parmname">ny</span>+1). Its contents depend on the boundary conditions as follows: 
+          </p>
+<ul id="GUID-2A70F6E4-4BDD-4B3C-AB19-1F7C450C89B2"><li><p>Dirichlet boundary condition (value of 
+                <span class="parmname">BCtype</span>[4] is 'D'): values of the function 
+                <var>G</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                <var>y</var><sub class="subb"><var>j</var></sub>,<span class="parmname">az</span>), 
+                <var>i</var>=0, ..., 
+                <span class="parmname">nx</span>, 
+                <var>j</var>=0, ..., 
+                <span class="parmname">ny</span>. 
+              </p>
+</li>
+<li><p>Neumann boundary condition (value of 
+                <span class="parmname">BCtype</span>[4] is 'N'), values of the function 
+                <var>g</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                <var>y</var><sub class="subb"><var>j</var></sub>,<span class="parmname">az</span>), 
+                <var>i</var>=0, ..., 
+                <span class="parmname">nx</span>, 
+                <var>j</var>=0, ..., 
+                <span class="parmname">ny</span>. 
+              </p>
+</li>
+</ul>
+<p>The values are packed in the array so that the value corresponding to indices 
+            <var>(i, j)</var> is placed in 
+            <span class="parmname">bd_az</span>[<var>i+j</var>*(<span class="parmname">nx</span>+1)]. 
+          </p>
+<p>For periodic boundary conditions (the value of 
+            <span class="parmname">BCtype</span>[4] is 'P'), this parameter is not used, so it can accept a dummy pointer. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="14.285714285714285%" headers="d1326338e26 "><p id="BD_BZ"><span class="parmname">bd_bz</span></p>
+</td>
+<td class="row-nocellborder" colspan="1" valign="top" headers="d1326338e29 "><p><span class="keyword">double*</span> for 
+          <span class="option">d_commit_Helmholtz_3D</span> and 
+          <span class="option">d_Helmholtz_3D</span>, 
+          <span class="keyword"/></p>
+<p><span class="keyword">float*</span> for 
+          <span class="option">s_commit_Helmholtz_3D</span> and 
+          <span class="option">s_Helmholtz_3D</span>. 
+          </p>
+<p>Used only by 
+          <span class="option">?_commit_Helmholtz_3D</span> and 
+          <span class="option">?_Helmholtz_3D</span>. Contains values of the boundary condition on the rightmost boundary of the domain along the 
+          <var>z</var>-axis. 
+          </p>
+<p>The size of the array is (<span class="parmname">nx</span>+1)*(<span class="parmname">ny</span>+1). Its contents depend on the boundary conditions as follows: 
+          </p>
+<ul id="GUID-993A54D9-A194-4C28-BE39-C2482AB1EFA2"><li><p>Dirichlet boundary condition (value of 
+                <span class="parmname">BCtype</span>[5] is 'D'): values of the function 
+                <var>G</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                <var>y</var><sub class="subb"><var>j</var></sub>,<span class="parmname">bz</span>), 
+                <var>i</var>=0, ..., 
+                <span class="parmname">nx</span>, 
+                <var>j</var>=0, ..., 
+                <span class="parmname">ny</span>. 
+              </p>
+</li>
+<li><p> Neumann boundary condition (value of 
+                <span class="parmname">BCtype</span>[5] is 'N'): values of the function 
+                <var>g</var>(<var>x</var><sub class="subb"><var>i</var></sub>, 
+                <var>y</var><sub class="subb"><var>j</var></sub>,<span class="parmname">bz</span>), 
+                <var>i</var>=0, ..., 
+                <span class="parmname">nx</span>, 
+                <var>j</var>=0, ..., 
+                <span class="parmname">ny</span>. 
+              </p>
+</li>
+</ul>
+<p>The values are packed in the array so that the value corresponding to indices 
+            <var>(i, j)</var> is placed in 
+            <span class="parmname">bd_bz</span>[<var>i+j</var>*(<span class="parmname">nx</span>+1)]. 
+          </p>
+<p>For periodic boundary conditions (the value of 
+            <span class="parmname">BCtype</span>[5] is 'P'), this parameter is not used, so it can accept a dummy pointer. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A0068460-37C4-487D-9E5C-9E29459AF74A.html">Common Parameters for the Poisson Solver</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868.html#GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868"><span class="option">?_commit_Helmholtz_2D/?_commit_Helmholtz_3D</span></a> </div>
+<div><a href="GUID-C6F60AC1-C8FB-459C-A717-F7B9EA8FF5C8.html#GUID-C6F60AC1-C8FB-459C-A717-F7B9EA8FF5C8"><span class="option">?_Helmholtz_2D/?_Helmholtz_3D</span></a> </div></div></div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="FFT Code Examples"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A1AC8705-B637-4694-96CA-708C8FFDAF40.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-00422EBE-93C3-4BC9-A621-9BF0A0E93888.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>FFT Code Examples</title>
+
+</head>
+<body id="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">FFT Code Examples</h1>
+<div><p>This section presents examples of using the FFT interface functions described in “<a href="GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE.html#GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE">Fourier Transform Functions”</a>. 
+    </p>
+<p>Here are the examples of two one-dimensional computations. These examples use the default settings for all of the configuration parameters, which are specified in 
+      <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html#GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A">“Configuration Settings”</a>. 
+    </p>
+<p>In the Fortran examples, the 
+      <samp class="codeph">use mkl_dfti</samp> statement assumes that: 
+    </p>
+<ul id="GUID-00ACBC90-DC99-4325-85FE-849628E3429B"><li>The 
+        <span class="filepath">mkl_dfti.f90</span> module definition file is already compiled. 
+      </li>
+<li>The 
+        <samp class="codeph">mkl_dfti.mod</samp> module file is available. 
+      </li>
+</ul>
+<div class="example" id="APPC-EXC-6"><h2 class="sectiontitle">One-dimensional In-place FFT</h2><pre>! Fortran example.
+! 1D complex to complex, and real to conjugate-even
+Use MKL_DFTI
+Complex :: X(32)
+Real :: Y(34)
+type(DFTI_DESCRIPTOR), POINTER :: My_Desc1_Handle, My_Desc2_Handle
+Integer :: Status
+!...put input data into X(1),...,X(32); Y(1),...,Y(32)
+ 
+! Perform a complex to complex transform
+Status = DftiCreateDescriptor( My_Desc1_Handle, DFTI_SINGLE,&amp;
+   DFTI_COMPLEX, 1, 32 )
+Status = DftiCommitDescriptor( My_Desc1_Handle )
+Status = DftiComputeForward( My_Desc1_Handle, X )
+Status = DftiFreeDescriptor(My_Desc1_Handle)
+! result is given by {X(1),X(2),...,X(32)}
+ 
+! Perform a real to complex conjugate-even transform
+Status = DftiCreateDescriptor(My_Desc2_Handle, DFTI_SINGLE,&amp;
+   DFTI_REAL, 1, 32)
+Status = DftiCommitDescriptor(My_Desc2_Handle)
+Status = DftiComputeForward(My_Desc2_Handle, Y)
+Status = DftiFreeDescriptor(My_Desc2_Handle)
+! result is given in CCS format.
+ </pre></div>
+<p>  
+    </p>
+<div class="example" id="APPC-EXC-7"><h2 class="sectiontitle"> One-dimensional Out-of-place FFT</h2><pre>! Fortran example.
+! 1D complex to complex, and real to conjugate-even
+Use MKL_DFTI
+Complex :: X_in(32)
+Complex :: X_out(32)
+Real :: Y_in(32)
+Real :: Y_out(34)
+type(DFTI_DESCRIPTOR), POINTER :: My_Desc1_Handle, My_Desc2_Handle
+Integer :: Status
+...put input data into X_in(1),...,X_in(32); Y_in(1),...,Y_in(32)
+! Perform a complex to complex transform
+Status = DftiCreateDescriptor( My_Desc1_Handle, DFTI_SINGLE,
+DFTI_COMPLEX, 1, 32 )
+Status = DftiSetValue( My_Desc1_Handle, DFTI_PLACEMENT, DFTI_NOT_INPLACE)
+Status = DftiCommitDescriptor( My_Desc1_Handle )
+Status = DftiComputeForward( My_Desc1_Handle, X_in, X_out )
+Status = DftiFreeDescriptor(My_Desc1_Handle)
+! result is given by {X_out(1),X_out(2),...,X_out(32)}
+! Perform a real to complex conjugate-even transform
+Status = DftiCreateDescriptor(My_Desc2_Handle, DFTI_SINGLE,
+DFTI_REAL, 1, 32)
+Status = DftiSetValue( My_Desc2_Handle, DFTI_PLACEMENT, DFTI_NOT_INPLACE)
+Status = DftiCommitDescriptor(My_Desc2_Handle)
+Status = DftiComputeForward(My_Desc2_Handle, Y_in, Y_out)
+Status = DftiFreeDescriptor(My_Desc2_Handle)
+! result is given by Y_out in CCS format.
+ </pre></div>
+<p>  
+    </p>
+<div class="example" id="APPC-EXC-10"><h2 class="sectiontitle">Two-dimensional FFT</h2><p>The following is an example of two simple two-dimensional transforms. Notice that the data and result parameters in computation functions are all declared as assumed-size rank-1 array 
+        <span class="keyword">DIMENSION(0:*)</span>. Therefore two-dimensional array must be transformed to one-dimensional array by 
+        <span class="keyword">EQUIVALENCE</span> statement or other facilities of Fortran. 
+      </p>
+<pre>! Fortran example.
+! 2D complex to complex, and real to conjugate-even
+Use MKL_DFTI
+Complex ::  X_2D(32,100)
+Real :: Y_2D(34, 102)
+Complex ::  X(3200)
+Real :: Y(3468)
+Equivalence (X_2D, X)
+Equivalence (Y_2D, Y)
+type(DFTI_DESCRIPTOR), POINTER :: My_Desc1_Handle, My_Desc2_Handle
+Integer :: Status, L(2)
+!...put input data into X_2D(j,k), Y_2D(j,k), 1&lt;=j=32,1&lt;=k&lt;=100
+!...set L(1) = 32, L(2) = 100
+!...the transform is a 32-by-100
+ 
+! Perform a complex to complex transform
+Status = DftiCreateDescriptor( My_Desc1_Handle, DFTI_SINGLE,&amp;
+          DFTI_COMPLEX, 2, L)
+Status = DftiCommitDescriptor( My_Desc1_Handle)
+Status = DftiComputeForward( My_Desc1_Handle, X)
+Status = DftiFreeDescriptor(My_Desc1_Handle)
+! result is given by X_2D(j,k), 1&lt;=j&lt;=32, 1&lt;=k&lt;=100
+ 
+! Perform a real to complex conjugate-even transform
+Status = DftiCreateDescriptor( My_Desc2_Handle, DFTI_SINGLE,&amp;
+          DFTI_REAL, 2, L)
+Status = DftiCommitDescriptor( My_Desc2_Handle)
+Status = DftiComputeForward( My_Desc2_Handle, Y)
+Status = DftiFreeDescriptor(My_Desc2_Handle)
+! result is given by the complex value z(j,k) 1&lt;=j&lt;=32; 1&lt;=k&lt;=100
+! and is stored in CCS format
+ </pre></div>
+<p>  
+    </p>
+<p>The following example 
+      demonstrates how you can change the default configuration settings by using the 
+  <span class="option">DftiSetValue</span> function. 
+  </p>
+<p>For instance, to preserve the input data after the FFT computation, the configuration of 
+    <span class="keyword">DFTI_PLACEMENT</span> should be changed to "not in place" from the default choice of "in place." 
+  </p>
+<p>The code below illustrates how this can be done: 
+  </p>
+<div class="example" id="APPC-EXC-12"><h2 class="sectiontitle">Changing Default Settings</h2><pre>! Fortran example
+! 1D complex to complex, not in place
+Use MKL_DFTI
+Complex :: X_in(32), X_out(32)
+type(DFTI_DESCRIPTOR), POINTER :: My_Desc_Handle
+Integer :: Status
+!...put input data into X_in(j), 1&lt;=j&lt;=32
+Status = DftiCreateDescriptor( My_Desc_Handle,&amp; DFTI_SINGLE, DFTI_COMPLEX, 1, 32)
+Status = DftiSetValue( My_Desc_Handle, DFTI_PLACEMENT, DFTI_NOT_INPLACE)
+Status = DftiCommitDescriptor( My_Desc_Handle)
+Status = DftiComputeForward( My_Desc_Handle, X_in, X_out)
+Status = DftiFreeDescriptor (My_Desc_Handle)
+! result is X_out(1),X_out(2),...,X_out(32)
+  </pre></div>
+<p>  
+  </p>
+<div class="example" id="APPC-EXC-14"><h2 class="sectiontitle">Using Status Checking Functions</h2><p>This example illustrates the use of status checking functions described in 
+      <a href="GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE.html#GUID-D844F46D-3C4D-43CD-95E1-AB76F8A21BAE"><span>“Fourier Transform Functions”</span></a>. 
+    </p>
+<pre>! Fortran
+type(DFTI_DESCRIPTOR), POINTER :: desc
+integer status
+! ...descriptor creation and other code
+status =  DftiCommitDescriptor(desc)
+if (status .ne. 0) then
+  if (.not. DftiErrorClass(status,DFTI_NO_ERROR) then
+     print *, 'Error: ‘, DftiErrorMessage(status)
+  endif
+endif 
+
+ </pre></div>
+<p>  
+  </p>
+<div class="example" id="APPC-EXC-15"><h2 class="sectiontitle">Computing 2D FFT by One-Dimensional Transforms</h2><p>Below is an example where a 20-by-40 two-dimensional FFT is computed explicitly using one-dimensional transforms. 
+      <span>Notice that the data and result parameters in computation functions are all declared as assumed-size rank-1 array 
+        <span class="keyword">DIMENSION(0:*)</span>. Therefore two-dimensional array must be transformed to one-dimensional array by 
+        <span class="keyword">EQUIVALENCE</span> statement or other facilities of Fortran. 
+      </span></p>
+<pre>! Fortran
+use mkl_dfti
+Complex ::  X_2D(20,40)
+Complex ::  X(800)
+Equivalence (X_2D, X)
+INTEGER :: STRIDE(2)
+type(DFTI_DESCRIPTOR), POINTER :: Desc_Handle_Dim1
+type(DFTI_DESCRIPTOR), POINTER :: Desc_Handle_Dim2
+! ...
+Status = DftiCreateDescriptor(Desc_Handle_Dim1, DFTI_SINGLE,&amp;
+                                 DFTI_COMPLEX, 1, 20 )
+Status = DftiCreateDescriptor(Desc_Handle_Dim2, DFTI_SINGLE,&amp;
+                                 DFTI_COMPLEX, 1, 40 )
+! perform 40 one-dimensional transforms along 1st dimension
+Status = DftiSetValue( Desc_Handle_Dim1, DFTI_NUMBER_OF_TRANSFORMS, 40 )
+Status = DftiSetValue( Desc_Handle_Dim1, DFTI_INPUT_DISTANCE, 20 )
+Status = DftiSetValue( Desc_Handle_Dim1, DFTI_OUTPUT_DISTANCE, 20 )
+Status = DftiCommitDescriptor( Desc_Handle_Dim1 )
+Status = DftiComputeForward( Desc_Handle_Dim1, X )
+! perform 20 one-dimensional transforms along 2nd dimension
+Stride(1) = 0; Stride(2) = 20
+Status = DftiSetValue( Desc_Handle_Dim2, DFTI_NUMBER_OF_TRANSFORMS, 20 )
+Status = DftiSetValue( Desc_Handle_Dim2, DFTI_INPUT_DISTANCE, 1 )
+Status = DftiSetValue( Desc_Handle_Dim2, DFTI_OUTPUT_DISTANCE, 1 )
+Status = DftiSetValue( Desc_Handle_Dim2, DFTI_INPUT_STRIDES, Stride )
+Status = DftiSetValue( Desc_Handle_Dim2, DFTI_OUTPUT_STRIDES, Stride )
+Status = DftiCommitDescriptor( Desc_Handle_Dim2 )
+Status = DftiComputeForward( Desc_Handle_Dim2, X )
+Status = DftiFreeDescriptor( Desc_Handle_Dim1 )
+Status = DftiFreeDescriptor( Desc_Handle_Dim2 )
+ 
+</pre></div>
+<p>  
+  </p>
+<p>The following code illustrates real multi-dimensional transforms with CCE format storage of conjugate-even complex matrix. 
+    <span><a href="#APPC-EXC-16">Example 
+        <span>“Two-Dimensional REAL In-place FFT (Fortran Interface)”</span></a> is two-dimensional in-place transform and 
+      <a href="#APPC-EXC-17">Example 
+        <span>“Two-Dimensional REAL Out-of-place FFT (Fortran Interface)”</span></a> is two-dimensional out-of-place transform in Fortran interface. 
+    </span><span>Note that the data and result parameters in computation functions are all declared as assumed-size rank-1 array 
+      <span class="keyword">DIMENSION(0:*)</span>. Therefore two-dimensional array must be transformed to one-dimensional array by 
+      <span class="keyword">EQUIVALENCE</span> statement or other facilities of Fortran. 
+    </span></p>
+<div class="example" id="APPC-EXC-16"><h2 class="sectiontitle">Two-Dimensional REAL In-place FFT</h2><pre>! Fortran example.
+! 2D and real to conjugate-even
+Use MKL_DFTI
+Real :: X_2D(34,100) ! 34  = (32/2 + 1)*2
+Real :: X(3400)
+Equivalence (X_2D, X)
+type(DFTI_DESCRIPTOR), POINTER :: My_Desc_Handle
+Integer :: Status, L(2)
+Integer :: strides_in(3)
+Integer :: strides_out(3)
+! ...put input data into X_2D(j,k), 1&lt;=j=32,1&lt;=k&lt;=100
+! ...set L(1) = 32, L(2) = 100
+! ...set strides_in(1) = 0, strides_in(2) = 1, strides_in(3) = 34
+! ...set strides_out(1) = 0, strides_out(2) = 1, strides_out(3) = 17
+! ...the transform is a 32-by-100
+! Perform a real to complex conjugate-even transform
+Status = DftiCreateDescriptor( My_Desc_Handle, DFTI_SINGLE,&amp;
+DFTI_REAL, 2, L )
+Status = DftiSetValue(My_Desc_Handle, DFTI_CONJUGATE_EVEN_STORAGE,&amp;
+DFTI_COMPLEX_COMPLEX)
+Status = DftiSetValue(My_Desc_Handle, DFTI_INPUT_STRIDES, strides_in)
+Status = DftiSetValue(My_Desc_Handle, DFTI_OUTPUT_STRIDES, strides_out)
+Status = DftiCommitDescriptor( My_Desc_Handle)
+Status = DftiComputeForward( My_Desc_Handle, X )
+Status = DftiFreeDescriptor(My_Desc_Handle)
+! result is given by the complex value z(j,k) 1&lt;=j&lt;=17; 1&lt;=k&lt;=100 and
+! is stored in real matrix X_2D in CCE format.</pre></div>
+<p/>
+<div class="example" id="APPC-EXC-17"><h2 class="sectiontitle">Two-Dimensional REAL Out-of-place FFT</h2><pre>! Fortran example.
+! 2D and real to conjugate-even
+Use MKL_DFTI
+Real :: X_2D(32,100)
+Complex :: Y_2D(17, 100) ! 17 = 32/2 + 1
+Real :: X(3200)
+Complex :: Y(1700)
+Equivalence (X_2D, X)
+Equivalence (Y_2D, Y)
+type(DFTI_DESCRIPTOR), POINTER :: My_Desc_Handle
+Integer :: Status, L(2)
+Integer :: strides_out(3)
+ 
+! ...put input data into X_2D(j,k), 1&lt;=j=32,1&lt;=k&lt;=100
+! ...set L(1) = 32, L(2) = 100
+! ...set strides_out(1) = 0, strides_out(2) = 1, strides_out(3) = 17
+ 
+! ...the transform is a 32-by-100
+! Perform a real to complex conjugate-even transform
+Status = DftiCreateDescriptor( My_Desc_Handle, DFTI_SINGLE,&amp;
+DFTI_REAL, 2, L )
+Status = DftiSetValue(My_Desc_Handle,&amp;
+DFTI_CONJUGATE_EVEN_STORAGE, DFTI_COMPLEX_COMPLEX)
+Status = DftiSetValue( My_Desc_Handle, DFTI_PLACEMENT, DFTI_NOT_INPLACE )
+Status = DftiSetValue(My_Desc_Handle,&amp;
+DFTI_OUTPUT_STRIDES, strides_out)
+ 
+Status = DftiCommitDescriptor(My_Desc_Handle)
+Status = DftiComputeForward(My_Desc_Handle, X, Y)
+Status = DftiFreeDescriptor(My_Desc_Handle)
+! result is given by the complex value z(j,k) 1&lt;=j&lt;=17; 1&lt;=k&lt;=100 and
+! is stored in complex matrix Y_2D in CCE format.
+ </pre></div>
+<p>  
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A1AC8705-B637-4694-96CA-708C8FFDAF40.html">Fourier Transform Functions Code Examples</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-00422EBE-93C3-4BC9-A621-9BF0A0E93888.html">Examples of Using OpenMP* Threading for FFT Computation</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

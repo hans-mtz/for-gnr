@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasd2"/>
+<meta name="abstract" content="Merges the two sets of singular values together into a single sorted set. Used by ?bdsdc."/>
+<meta name="description" content="Merges the two sets of singular values together into a single sorted set. Used by ?bdsdc."/>
+<meta name="DC.subject" content="?lasd2, LAPACK routines, auxiliary routines, merging sets of singular values"/>
+<meta name="keywords" content="?lasd2, LAPACK routines, auxiliary routines, merging sets of singular values"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6DDF7EE3-CC13-424B-82EC-E1A50E71FBA2"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasd2</title>
+
+</head>
+<body id="GUID-6DDF7EE3-CC13-424B-82EC-E1A50E71FBA2">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasd2</span></h1>
+<!--Merges the two sets of singular values together into a single  sorted set. Used by  ?bdsdc .--><div><p class="shortdesc">Merges the two sets of singular values together into a single  sorted set. Used by <span class="option">?bdsdc</span>.</p>
+<div class="section" id="GUID-CC2CCEEE-0295-4303-A55E-EE656ADC99EA"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasd2</span><span class="delim">( </span><span class="var">nl</span><span class="sep">, </span><span class="var">nr</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">dsigma</span><span class="sep">, </span><span class="var">u2</span><span class="sep">, </span><span class="var">ldu2</span><span class="sep">, </span><span class="var">vt2</span><span class="sep">, </span><span class="var">ldvt2</span><span class="sep">, </span><span class="var">idxp</span><span class="sep">, </span><span class="var">idx</span><span class="sep">, </span><span class="var">idxp</span><span class="sep">, </span><span class="var">idxq</span><span class="sep">, </span><span class="var">coltyp</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasd2</span><span class="delim">( </span><span class="var">nl</span><span class="sep">, </span><span class="var">nr</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">dsigma</span><span class="sep">, </span><span class="var">u2</span><span class="sep">, </span><span class="var">ldu2</span><span class="sep">, </span><span class="var">vt2</span><span class="sep">, </span><span class="var">ldvt2</span><span class="sep">, </span><span class="var">idxp</span><span class="sep">, </span><span class="var">idx</span><span class="sep">, </span><span class="var">idxp</span><span class="sep">, </span><span class="var">idxq</span><span class="sep">, </span><span class="var">coltyp</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-86C37B49-9ADB-48E5-8AE9-EA77152B8D9B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-DD9864E1-CA95-486D-A228-83192E0CFA2E"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?lasd2</span> merges the two sets of singular values together into a single  sorted set. Then it tries to deflate the size of the problem. There are two ways in which deflation can occur:  when two or more singular values are close together or if there is a tiny entry in the <var>Z</var> vector. For each such occurrence the order of the related secular equation problem is reduced by one.</p>
+<p>The routine <span class="option">?lasd2</span> is called from <a href="GUID-93A1A83C-3B63-4D71-B979-42342CB69023.html#GUID-93A1A83C-3B63-4D71-B979-42342CB69023"><span class="option">?lasd1</span></a>.</p>
+</div>
+<div class="section" id="GUID-41217574-B5F3-4FD7-BB9E-6A2B6B99CCD9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-833FBA9E-4729-4CAB-B3C1-BFFA8AE2E4DA"><dt class="dlterm"><span class="parmname">nl</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The row dimension of the upper block. </p>
+<p><samp class="codeph"><var>nl</var><span class="eqsymbol">≥</span> 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nr</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The row dimension of the lower block. </p>
+<p><samp class="codeph"><var>nr</var><span class="eqsymbol">≥</span> 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sqre</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span></p>
+<p>If <samp class="codeph"><var>sqre</var> = 0</samp>): the lower block is an <var>nr</var>-by-<var>nr</var> square matrix </p>
+<p>If <samp class="codeph"><var>sqre</var> = 1</samp>): the lower block is an <var>nr</var>-by-(<var>nr</var>+1) rectangular matrix. The bidiagonal matrix has <samp class="codeph"><var>n</var> = <var>nl</var> + <var>nr</var> + 1</samp> rows and <samp class="codeph"><var>m</var> = <var>n</var> + <var>sqre</var><span class="eqsymbol">≥</span><var>n</var></samp> columns.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On entry <var>d</var> contains the singular values of the two submatrices to be combined. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Contains the diagonal element associated with the added row.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Contains the off-diagonal element associated with the added row.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldu</var>, <var>n</var>). On entry <var>u</var> contains the left singular vectors of two submatrices in the two square blocks with corners at (1,1), (<var>nl</var>, <var>nl</var>), and (<var>nl</var>+2, <var>nl</var>+2), (<var>n</var>,<var>n</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldu</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The leading dimension of the array <var>u</var>. </p>
+<p><samp class="codeph"><var>ldu</var><span class="eqsymbol">≥</span><var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldu2</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The leading dimension of the output array <var>u2</var>. <samp class="codeph"><var>ldu2</var><span class="eqsymbol">≥</span><var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldvt</var>, <var>m</var>). On entry, <var>vt</var><sup class="power"><var>T</var></sup> contains the right singular vectors of two submatrices in the two square blocks with corners at (1,1), (<var>nl</var>+1, <var>nl</var>+1), and (<var>nl</var>+2, <var>nl</var>+2), (<var>m</var>, <var>m</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldvt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The leading dimension of the array <var>vt</var>. <samp class="codeph"><var>ldvt</var><span class="eqsymbol">≥</span><var>m</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldvt2</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> The leading dimension of the output array <var>vt2</var>. <samp class="codeph"><var>ldvt2</var><span class="eqsymbol">≥</span><var>m</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">idxp</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var>). This will contain the permutation used to place deflated values of <var>D</var> at the end of the array. On output <var>idxp</var>(2:<var>k</var>) points to the nondeflated <var>d</var>-values and <var>idxp</var>(<var>k</var>+1:<var>n</var>) points to the deflated singular values. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">idx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var>). This will contain the permutation used to sort the contents of <var>d</var> into ascending order. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">coltyp</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (<var>n</var>). As workspace, this array contains a label that indicates which of the following types a column in the <var>u2</var> matrix or a row in the <var>vt2</var> matrix is: </p>
+<p>1 : non-zero in the upper half only </p>
+<p>2 : non-zero in the lower half only </p>
+<p>3 : dense </p>
+<p>4 : deflated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">idxq</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> Array, <span class="keyword">DIMENSION</span> (<var>n</var>). This parameter contains the permutation that separately sorts the two sub-problems in <var>D</var> in the ascending order. Note that entries in the first half of this permutation must first be moved one position backwards and entries in the second half must have <samp class="codeph"><var>nl</var>+1</samp> added to their values.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5F88B47C-58F3-4D74-85A6-F36D67025844"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-7A258D55-C108-495C-A8C7-E23CA1C86AC8"><dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> Contains the dimension of the non-deflated matrix, This is the order of the related secular equation. <samp class="codeph">1 ≤ <var>k</var> ≤ <var>n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit <var>D</var> contains the trailing (<var>n</var>-<var>k</var>) updated singular values (those which were 
+deflated) sorted into increasing order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p>On exit <var>u</var> contains the trailing (<var>n</var>-<var>k</var>) updated left singular vectors (those which were deflated) in its last <var>n</var>-<var>k</var> columns.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On exit, <var>z</var> contains the updating row vector in the secular equation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dsigma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). Contains a copy of the diagonal elements (<samp class="codeph"><var>k</var>-1</samp> singular values and one zero) in the secular equation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldu2</var>, <var>n</var>). Contains a copy of the first <samp class="codeph"><var>k</var>-1</samp> left singular vectors which will be used by <span class="option">?lasd3</span> in a matrix multiply (<span class="option">?gemm</span>) to solve for the new left singular vectors. <var>u2</var> is arranged into four blocks. The first block contains a column with 1 at <samp class="codeph"><var>nl</var>+1</samp> and zero everywhere else; the second block contains non-zero entries only at and above <var>nl</var>; the third contains non-zero entries only below <samp class="codeph"><var>nl</var>+1</samp>; and the fourth is dense.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt</span></dt>
+
+<dd><p>On exit, <var>vt</var><sup class="power"><var>T</var></sup> contains the trailing (<var>n</var>-<var>k</var>) updated right singular vectors (those which were deflated) in its last <var>n</var>-<var>k</var> columns. In case <samp class="codeph"><var>sqre</var> =1</samp>, the last row of <var>vt</var> spans the right null space.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasd2</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldvt2</var>, <var>n</var>). <var>vt2</var><sup class="power"><var>T</var></sup> contains a copy of the first <var>k</var> right singular vectors which will be used by <span class="option">?lasd3</span> in a matrix multiply (<span class="option">?gemm</span>) to solve for the new right singular vectors. <var>vt2</var> is arranged into three blocks. The first block contains a row that corresponds to the special 0 diagonal element in <var>sigma</var>; the second block contains non-zeros only at and before <samp class="codeph"><var>nl</var> +1</samp>; the third block contains non-zeros only at and after <samp class="codeph"><var>nl</var> +2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">idxc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> Array, <span class="keyword">DIMENSION</span> (<var>n</var>). This will contain the permutation used to arrange the columns of the deflated <var>u</var> matrix into three groups: the first group contains non-zero entries only at and above <var>nl</var>, the second contains non-zero entries only below <samp class="codeph"><var>nl</var>+2</samp>, and the third is dense.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">coltyp</span></dt>
+
+<dd><p>On exit, it is an array of dimension 4, with <var>coltyp</var>(<var>i</var>) being the dimension of the <var>i</var>-th type columns.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>):  successful exit </p>
+<p>If <samp class="codeph"><var>info</var> = -<var>i</var> &lt; 0</samp>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

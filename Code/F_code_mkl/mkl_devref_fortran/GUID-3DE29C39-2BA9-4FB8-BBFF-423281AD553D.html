@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sygs2/?hegs2"/>
+<meta name="abstract" content="Reduces a symmetric/Hermitian positive-definite generalized eigenproblem to standard form, using the factorization results obtained from ?potrf (unblocked algorithm)."/>
+<meta name="description" content="Reduces a symmetric/Hermitian positive-definite generalized eigenproblem to standard form, using the factorization results obtained from ?potrf (unblocked algorithm)."/>
+<meta name="DC.subject" content="LAPACK routines, auxiliary routines, ?sygs2/?hegs2, ssygs2, dsygs2, chegs2, zhegs2, generalized eigenvalue problems, real symmetric-definite problem, complex Hermitian positive-definite problem, symmetric matrix, reducing to standard form, LAPACK, Hermitian matrix"/>
+<meta name="keywords" content="LAPACK routines, auxiliary routines, ?sygs2/?hegs2, ssygs2, dsygs2, chegs2, zhegs2, generalized eigenvalue problems, real symmetric-definite problem, complex Hermitian positive-definite problem, symmetric matrix, reducing to standard form, LAPACK, Hermitian matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3DE29C39-2BA9-4FB8-BBFF-423281AD553D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sygs2/?hegs2</title>
+
+</head>
+<body id="GUID-3DE29C39-2BA9-4FB8-BBFF-423281AD553D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sygs2/?hegs2</span></h1>
+<!--Reduces a symmetric/Hermitian positive-definite generalized eigenproblem to standard form, using the factorization results obtained from  ?potrf  (unblocked algorithm).--><div><p class="shortdesc">Reduces a symmetric/Hermitian positive-definite generalized eigenproblem to standard form, using the factorization results obtained from <span class="option">?potrf</span> (unblocked algorithm).</p>
+<div class="section" id="GUID-65F23461-799A-417C-9507-1EEFC65F4793"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call ssygs2</span><span class="delim">( </span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dsygs2</span><span class="delim">( </span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call chegs2</span><span class="delim">( </span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhegs2</span><span class="delim">( </span><span class="var">itype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-6E6433AB-E83E-4D13-A9BC-DC8FF29F86A5"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E7072D8C-E55B-455C-BFF7-AE929E661C94"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?sygs2</span>/<span class="option">?hegs2</span> reduces a real symmetric-definite or a complex Hermitian positive-definite generalized eigenproblem  to standard form. </p>
+<p>If <samp class="codeph"><var>itype</var> = 1</samp>, the problem is</p>
+<p><samp class="codeph"><var>A</var>*<var>x</var> = λ*<var>B</var>*<var>x</var></samp></p>
+<p>and <var>A</var> is overwritten by <samp class="codeph">inv(<var>U</var><sup class="power"><var>H</var></sup>)*<var>A</var>*inv(<var>U</var>)</samp> or <samp class="codeph">inv(<var>L</var>)*<var>A</var>*inv(<var>L</var><sup class="power"><var>H</var></sup>)</samp> for complex flavors and by <samp class="codeph">inv(<var>U</var><sup class="power"><var>T</var></sup>)*<var>A</var>*inv(<var>U</var>)</samp> or <samp class="codeph">inv(<var>L</var>)*<var>A</var>*inv(<var>L</var><sup class="power"><var>T</var></sup>)</samp>for real flavors.</p>
+<p>If <samp class="codeph"><var>itype</var> = 2</samp> or <samp class="codeph">3</samp>, the problem is </p>
+<p><samp class="codeph"><var>A</var>*<var>B</var>*<var>x</var> = λ*<var>x</var></samp>, or  <samp class="codeph"><var>B</var>*<var>A</var>*<var>x</var> = λ*<var>x</var></samp>, </p>
+<p>and <var>A</var> is overwritten by <samp class="codeph"><var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>H</var></sup></samp> or   <samp class="codeph"><var>L</var><sup class="power"><var>H</var></sup>*<var>A</var>*<var>L</var></samp> for complex flavors and by <samp class="codeph"><var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>T</var></sup></samp> or   <samp class="codeph"><var>L</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>L</var></samp> for real flavors. Here <samp class="codeph"><var>U</var><sup class="power"><var>T</var></sup></samp> and <samp class="codeph"><var>L</var><sup class="power"><var>T</var></sup></samp> are the transpose while <samp class="codeph"><var>U</var><sup class="power"><var>H</var></sup></samp> and <samp class="codeph"><var>L</var><sup class="power"><var>H</var></sup></samp> are conjugate transpose of <var>U</var>  and <var>L</var>.</p>
+<p><var>B</var> must be previously factorized by <span class="option">?potrf</span> as follows:</p>
+<p><ul id="GUID-B37EA4D8-089B-4098-96D6-A93F5CBECA75"><li><p><samp class="codeph"><var>U</var><sup class="power"><var>H</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>L</var>*<var>L</var><sup class="power"><var>H</var></sup></samp>  for complex flavors</p>
+</li>
+<li><p><samp class="codeph"><var>U</var><sup class="power"><var>T</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>L</var>*<var>L</var><sup class="power"><var>T</var></sup></samp> for real flavors </p>
+</li>
+</ul>
+</p>
+</div>
+<div class="section" id="GUID-4E334038-FD14-4169-9F9B-71BF8A5539C5"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-94F5CFAF-B867-451E-ACAF-265D147AF2B0"><dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>For complex flavors:</p>
+<p>= 1: compute <samp class="codeph">inv(<var>U</var><sup class="power"><var>H</var></sup>)*<var>A</var>*inv(<var>U</var>)</samp> or <samp class="codeph">inv(<var>L</var>)*<var>A</var>*inv(<var>L</var><sup class="power"><var>H</var></sup>)</samp>; </p>
+<p>= 2 or 3: compute  <samp class="codeph"><var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>H</var></sup></samp> or<samp class="codeph"><var>L</var><sup class="power"><var>H</var></sup>*<var>A</var>*<var>L</var></samp>.</p>
+<p>For real flavors:</p>
+<p>= 1: compute <samp class="codeph">inv(<var>U</var><sup class="power"><var>T</var></sup>)*<var>A</var>*inv(<var>U</var>)</samp> or <samp class="codeph">inv(<var>L</var>)*<var>A</var>*inv(<var>L</var><sup class="power"><var>T</var></sup>)</samp>; </p>
+<p>= 2 or 3: compute  <samp class="codeph"><var>U</var>*<var>A</var>*<var>U</var><sup class="power"><var>T</var></sup></samp> or<samp class="codeph"><var>L</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>L</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. Specifies whether the upper or lower triangular part of the symmetric/Hermitian matrix <var>A</var> is stored, and how <var>B</var> has been factorized.</p>
+<p>= <span class="keyword">'U'</span>:  upper triangular</p>
+<p>= <span class="keyword">'L'</span>:  lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrices <var>A</var> and <var>B</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssygs2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsygs2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">chegs2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhegs2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, the symmetric/Hermitian matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>a</var> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>a</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>a</var> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>a</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The leading dimension of the array <var>a</var>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssygs2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsygs2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">chegs2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhegs2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldb</var>, <var>n</var>). </p>
+<p>The triangular factor from the Cholesky factorization of <var>B</var> as returned by <span class="option">?potrf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>b</var>. <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-FB3ECA82-75DC-4CF8-A965-4E48C08A7236"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-02FC33B5-8334-4802-90D6-2D2CDD14860B"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, If <samp class="codeph"><var>info</var> = 0</samp>, the transformed matrix, stored in the same format as <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0:  successful exit.</p>
+<p>&lt; 0:  if <samp class="codeph"><var>info</var> = -<var>i</var></samp>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

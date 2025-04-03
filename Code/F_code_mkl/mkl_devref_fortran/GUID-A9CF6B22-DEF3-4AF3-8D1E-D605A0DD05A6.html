@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Matrix Inversion: LAPACK Computational Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BCC7FBF6-311F-437A-B9C9-F2529EE175A8.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1B333271-FE8C-4A98-8A70-F0FC29925BA1.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-932B0A5D-D7A0-4AB1-8CC0-70F67F2EBC2A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A5B920CD-65EC-4AB2-BA66-2A46EA241619.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-50312D46-C692-464B-889F-CC56E144F496.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1576D150-4AD0-4CAF-BD65-F4EE78F9BCDC.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E789C810-50C8-414F-9CF9-9E3A6AB61FED.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-F561B8C2-12CD-49D0-93D1-F066CFF60005.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6911A877-78B4-46AA-9CD8-27BAEF2F609B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6627C65C-C5F0-4DD2-8DED-7D9451CE9B8C.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9A2DE6CA-69B8-4B9C-9709-C4AD0E167725.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C2AA1F15-D2C5-425B-90BD-1012163DA3EE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-828A8350-E5DB-4699-A6F6-DF6EE9E9130B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FE8B98E7-CD7A-49D0-A4E8-097AF05F8EB6.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Matrix Inversion: LAPACK Computational Routines</title>
+
+</head>
+<body id="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Matrix Inversion: LAPACK Computational
+    Routines</h1>
+<div><p>It is seldom necessary to compute an explicit inverse
+      of a matrix. In particular, do not attempt to solve a system of equations 
+      <samp class="codeph"><var>Ax</var> = 
+        <var>b</var></samp> by
+      first computing 
+      <samp class="codeph"><var>A</var><sup>-1</sup></samp> and then forming the
+      matrix-vector product 
+      <samp class="codeph"><var>x</var> = 
+        <var>A</var><sup>-1</sup><var>b</var></samp>. Call a solver
+      routine instead (see 
+      <a href="GUID-4FED9933-3CF4-42B0-BB3E-E7C9776433D3.html#GUID-4FED9933-3CF4-42B0-BB3E-E7C9776433D3">Routines for Solving Systems of Linear
+        Equations</a>); this is more efficient and more accurate.
+    </p>
+<p>However, matrix inversion routines are provided for
+      the rare occasions when an explicit inverse matrix is needed.
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3.html">LAPACK Linear Equation Computational Routines</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6.html">?getri</a><br/>
+Computes the inverse of an LU-factored general matrix. </li>
+<li class="ulchildlink"><a href="GUID-BCC7FBF6-311F-437A-B9C9-F2529EE175A8.html">mkl_?getrinp</a><br/>
+Computes the inverse of an LU-factored general matrix without pivoting.</li>
+<li class="ulchildlink"><a href="GUID-1B333271-FE8C-4A98-8A70-F0FC29925BA1.html">?potri</a><br/>
+Computes the inverse of a symmetric (Hermitian) positive-definite matrix using the Cholesky factorization. </li>
+<li class="ulchildlink"><a href="GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B.html">?pftri</a><br/>
+Computes the inverse of a symmetric (Hermitian) positive-definite matrix in RFP format using the Cholesky factorization.</li>
+<li class="ulchildlink"><a href="GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2.html">?pptri</a><br/>
+Computes the inverse of a packed symmetric (Hermitian) positive-definite matrix using Cholesky factorization.</li>
+<li class="ulchildlink"><a href="GUID-932B0A5D-D7A0-4AB1-8CC0-70F67F2EBC2A.html">?sytri</a><br/>
+Computes the inverse of a symmetric  matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>T</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup> Bunch-Kaufman factorization.</li>
+<li class="ulchildlink"><a href="GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C.html">?sytri_rook</a><br/>
+Computes the inverse of a symmetric  matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>T</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup> bounded Bunch-Kaufman factorization.</li>
+<li class="ulchildlink"><a href="GUID-A5B920CD-65EC-4AB2-BA66-2A46EA241619.html">?hetri</a><br/>
+Computes the inverse of a complex Hermitian matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>H</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>H</sup> Bunch-Kaufman factorization.</li>
+<li class="ulchildlink"><a href="GUID-50312D46-C692-464B-889F-CC56E144F496.html">?hetri_rook</a><br/>
+Computes the inverse of a complex Hermitian matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>H</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>H</sup> bounded Bunch-Kaufman factorization.</li>
+<li class="ulchildlink"><a href="GUID-1576D150-4AD0-4CAF-BD65-F4EE78F9BCDC.html">?sytri2</a><br/>
+Computes the inverse of a symmetric indefinite matrix through setting the leading dimension of the workspace and calling <span class="option">?sytri2x</span>.</li>
+<li class="ulchildlink"><a href="GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57.html">?hetri2</a><br/>
+Computes the inverse of a Hermitian indefinite matrix through setting the leading dimension of the workspace and calling <span class="option">?hetri2x</span>.</li>
+<li class="ulchildlink"><a href="GUID-E789C810-50C8-414F-9CF9-9E3A6AB61FED.html">?sytri2x</a><br/>
+Computes the inverse of a symmetric indefinite matrix after <span class="option">?sytri2</span>sets the leading dimension of the workspace.</li>
+<li class="ulchildlink"><a href="GUID-F561B8C2-12CD-49D0-93D1-F066CFF60005.html">?hetri2x</a><br/>
+Computes the inverse of a Hermitian indefinite matrix after <span class="option">?hetri2</span>sets the leading dimension of the workspace.</li>
+<li class="ulchildlink"><a href="GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C.html">?sytri_3</a><br/>
+Computes the inverse of a real or complex symmetric matrix.</li>
+<li class="ulchildlink"><a href="GUID-6911A877-78B4-46AA-9CD8-27BAEF2F609B.html">?hetri_3</a><br/>
+Computes the inverse of a complex Hermitian matrix using the factorization computed by <span class="option">?hetrf_rk</span>.</li>
+<li class="ulchildlink"><a href="GUID-6627C65C-C5F0-4DD2-8DED-7D9451CE9B8C.html">?sptri</a><br/>
+Computes the inverse of a symmetric  matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>T</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>T</sup> Bunch-Kaufman factorization of matrix in packed storage.</li>
+<li class="ulchildlink"><a href="GUID-9A2DE6CA-69B8-4B9C-9709-C4AD0E167725.html">?hptri</a><br/>
+Computes the inverse of a complex Hermitian matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>H</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>H</sup> Bunch-Kaufman factorization of matrix in packed storage.</li>
+<li class="ulchildlink"><a href="GUID-C2AA1F15-D2C5-425B-90BD-1012163DA3EE.html">?trtri</a><br/>
+Computes the inverse of a triangular matrix.</li>
+<li class="ulchildlink"><a href="GUID-828A8350-E5DB-4699-A6F6-DF6EE9E9130B.html">?tftri</a><br/>
+Computes the inverse of a triangular matrix stored in the Rectangular Full Packed (RFP) format.</li>
+<li class="ulchildlink"><a href="GUID-FE8B98E7-CD7A-49D0-A4E8-097AF05F8EB6.html">?tptri</a><br/>
+Computes the inverse of a triangular matrix using packed storage.</li>
+</ul>
+</div>
+</body>
+</html>

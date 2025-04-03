@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sfrk"/>
+<meta name="abstract" content="Performs a symmetric rank-k operation for matrix in RFP format."/>
+<meta name="description" content="Performs a symmetric rank-k operation for matrix in RFP format."/>
+<meta name="DC.subject" content="?sfrk, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?sfrk, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7D89EB9A-7DED-4E36-B6B0-9C3B31DDBF6D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sfrk</title>
+
+</head>
+<body id="GUID-7D89EB9A-7DED-4E36-B6B0-9C3B31DDBF6D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sfrk</span></h1>
+<!--Performs a symmetric rank-k operation for matrix in RFP format.--><div><p class="shortdesc">Performs a symmetric rank-k operation for matrix in RFP format.</p>
+<div class="section" id="GUID-55BC48F2-EBCC-4281-B275-ED6FEA7C6A0E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssfrk</span><span class="delim">(</span><span class="var">transr</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsfrk</span><span class="delim">(</span><span class="var">transr</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">c</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F50B72B6-4A65-45CD-8D75-98414CC6ABAE"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-56A19E32-A70E-4079-B11F-DE642663007C"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?sfrk</span> routines perform a matrix-matrix operation using symmetric matrices. The operation is defined as </p>
+<p><pre><var>C</var> := <var>alpha</var>*<var>A</var>*<var>A</var><sup class="power"><var>T</var></sup> + <var>beta</var>*<var>C</var>,</pre></p>
+<p>or</p>
+<p><pre><var>C</var> := <var>alpha</var>*<var>A</var><sup class="power"><var>T</var></sup>*<var>A</var> + <var>beta</var>*<var>C</var>,</pre></p>
+<p>where:</p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><var>C</var> is an <var>n</var>-by-<var>n</var> symmetric matrix in <a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">rectangular full packed (RFP) format</a>,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>k</var> matrix in the first case and a <var>k</var>-by-<var>n</var> matrix in the second case.</p>
+</div>
+<div class="section" id="GUID-FF2FE22F-BE3F-4017-978B-A4E6D0687166"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-00F8DC8A-D7DB-4515-BC9A-89A99D09637F"><dt class="dlterm"><span class="parmname">transr</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>if <samp class="codeph"><span class="parmname">transr</span> = 'N'</samp> or <samp class="codeph">'n'</samp>, the normal form of RFP <var>C</var> is stored;</p>
+<p>if <samp class="codeph"><span class="parmname">transr</span>= 'T'</samp> or <samp class="codeph">'t'</samp>, the transpose form of RFP <var>C</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the array <span class="parmname">c</span> is used.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, then the upper  triangular part of the array <span class="parmname">c</span> is used.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, then the low  triangular part of the array <span class="parmname">c</span> is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies the operation:</p>
+<p>if <samp class="codeph"><span class="parmname">trans</span> = 'N'</samp> or <samp class="codeph">'n'</samp>, then <samp class="codeph"><var>C</var> := <var>alpha</var>*<var>A</var>*<var>A</var><sup class="power"><var>T</var></sup> + <var>beta</var>*<var>C</var></samp>;</p>
+<p>if <samp class="codeph"><span class="parmname">trans </span>= 'T'</samp> or <samp class="codeph">'t'</samp>, then <samp class="codeph"><var>C</var> := <var>alpha</var>*<var>A</var><sup class="power"><var>T</var></sup>*<var>A</var> + <var>beta</var>*<var>C</var></samp>;</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>C</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>On entry with <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span>, <var>k</var> specifies the number of columns of the matrix <var>A</var>, and on entry with <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <span class="keyword">'t'</span>, <var>k</var> specifies the number of rows of the matrix <var>A</var>.</p>
+<p>The value of <var>k</var> must be at least zero. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssfrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsfrk</span></p>
+<p>Specifies the scalar <var>alpha</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssfrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsfrk</span></p>
+<p>Array, <span class="keyword">DIMENSION</span><samp class="codeph">(<var>lda</var>,<var>ka</var>)</samp>, where <var>ka</var> is <var>k</var> when <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span>, and is <var>n</var> otherwise. Before entry with <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span>, the leading <var>n</var>-by-<var>k</var> part of the array <var>a</var> must contain the matrix <var>A</var>, otherwise the leading <var>k</var>-by-<var>n</var> part of the array <var>a</var> must contain the matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Specifies the leading dimension of <var>a</var> as declared in the calling (sub)program. When <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span>, then <var>lda</var> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>, otherwise <var>lda</var> must be at least <samp class="codeph">max(1, <var>k</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssfrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsfrk</span></p>
+<p>Specifies the scalar <var>beta</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssfrk</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsfrk</span></p>
+<p>Array, size <samp class="codeph">(<span class="parmname">n</span>*(<span class="parmname">n</span>+1)/2
+)</samp>. Before entry contains the symmetric matrix <var>C</var> in <a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">RFP format</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-008A6A3F-2B54-4C27-9B1B-E3599A2BCC68"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-DB791A0E-97DF-4C1D-91B0-83963596EBF1"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">trans</span> = 'N'</samp> or <samp class="codeph">'n'</samp>, then <span class="parmname">c</span> contains 
+<var>C</var> := <var>alpha</var>*<var>A</var>*<var>A</var>' + <var>beta</var>*<var>C</var>;</p>
+<p>if <samp class="codeph"><span class="parmname">trans </span>= 'T'</samp> or <samp class="codeph">'t'</samp>, then 	<span class="parmname">c</span> contains 
+
+<samp class="codeph"><var>C</var> := <var>alpha</var>*<var>A</var>'*<var>A</var> + <var>beta</var>*<var>C</var></samp>;</p>
+<p/>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

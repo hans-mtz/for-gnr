@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="xerbla_array"/>
+<meta name="abstract" content="Assists other languages in calling the xerbla function."/>
+<meta name="description" content="Assists other languages in calling the xerbla function."/>
+<meta name="DC.subject" content="xerbla_array, LAPACK routines, utility functions and routines"/>
+<meta name="keywords" content="xerbla_array, LAPACK routines, utility functions and routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0266BC87-3391-43C2-BCC7-2C1278C922C7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>xerbla_array</title>
+
+</head>
+<body id="GUID-0266BC87-3391-43C2-BCC7-2C1278C922C7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">xerbla_array</span></h1>
+<!--Assists other languages in calling the  xerbla  function.--><div><p class="shortdesc">Assists other languages in calling the <span class="option">xerbla</span> function.</p>
+<div class="section" id="GUID-FEA1135A-7934-4BAD-AA93-DBA380400B9F"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call xerbla_array</span><span class="delim">( </span><span class="var">srname_array</span><span class="sep">, </span><span class="var">srname_len</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-A3DD5ADC-BD8B-4DE4-9EAD-E3C6CE652D08"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-71C44F4E-9A0C-411A-B610-E4C677774AF4"><h2 class="sectiontitle">Description</h2><p>The routine assists other languages in calling the error handling <span class="option">xerbla</span> function. Rather than taking a Fortran string argument as the function
+name, <span class="option">xerbla_array</span> takes an array of single characters along with
+the array length. The routine then copies up to 32 characters
+of that array into a Fortran string and passes that to <span class="option">xerbla</span>. If
+called with a non-positive <span class="parmname">srname_len</span>, the routine will call
+<span class="option">xerbla</span> with a string of all blank characters.</p>
+<p>If some macro or other device makes <span class="option">xerbla_array</span> available to <span class="keyword">C99</span> by a name <span class="option">lapack_xerbla</span> and with a common Fortran calling
+convention, a <span class="keyword">C99</span> program could invoke <span class="option">xerbla</span> via:</p>
+<p><pre>{
+   int flen = strlen(__func__);
+   lapack_xerbla(__func__, &amp;flen, &amp;info);
+}</pre></p>
+<p>Providing <span class="option">xerbla_array</span> is not necessary for intercepting LAPACK errors. <span class="option">xerbla_array</span> calls <span class="option">xerbla</span>.</p>
+</div>
+<div class="section" id="GUID-5EE75835-FEFB-484D-940A-97F888D04AA9"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-F5FFAB12-718B-462F-B2CC-D9161284579F"><dt class="dlterm"><span class="parmname">srname_array</span></dt>
+
+<dd><p><span class="keyword">CHARACTER(1)</span>. </p>
+<p>Array, dimension (<span class="parmname">srname_len</span>). The name of the routine that called <span class="option">xerbla_array</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">srname_len</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>The length of the name in <span class="parmname">srname_array</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Position of the invalid parameter in the parameter list of the
+calling routine.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html">LAPACK Utility Functions and Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

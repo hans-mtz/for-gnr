@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="DftiCreateDescriptorDM"/>
+<meta name="abstract" content="Allocates memory for the descriptor data structure and preliminarily initializes it."/>
+<meta name="description" content="Allocates memory for the descriptor data structure and preliminarily initializes it."/>
+<meta name="DC.subject" content="DftiCreateDescriptorDM, fast Fourier transform, FFT functions, descriptor manipulation"/>
+<meta name="keywords" content="DftiCreateDescriptorDM, fast Fourier transform, FFT functions, descriptor manipulation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4C9985E1-293E-4420-A99E-8005798AE914.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DftiCreateDescriptorDM</title>
+
+</head>
+<body id="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">DftiCreateDescriptorDM</span></h1>
+<!--Allocates memory for the descriptor data structure and preliminarily initializes it.--><div><p class="shortdesc">Allocates memory for the descriptor data structure and preliminarily initializes it.</p>
+<div class="section" id="GUID-E92453AC-44D3-4754-ABE1-D7BEE2BB0018"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">Status</span><span class="oper"> = </span><span class="kwd">DftiCreateDescriptorDM</span><span class="delim">(</span><span class="var">comm</span><span class="sep">, </span><span class="var">handle</span><span class="sep">, </span><span class="var">v1</span><span class="sep">, </span><span class="var">v2</span><span class="sep">, </span><span class="var">dim</span><span class="sep">, </span><span class="var">size</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">Status</span><span class="oper"> = </span><span class="kwd">DftiCreateDescriptorDM</span><span class="delim">(</span><span class="var">comm</span><span class="sep">, </span><span class="var">handle</span><span class="sep">, </span><span class="var">v1</span><span class="sep">, </span><span class="var">v2</span><span class="sep">, </span><span class="var">dim</span><span class="sep">, </span><span class="var">sizes</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-C5CB1BB8-73B5-4548-8376-BA05C3688E11"><h2 class="sectiontitle">Include Files</h2><ul id="d163e224"><li id="d163e225"><span class="filepath">mkl_cdft.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-DAB2727E-450C-4DDD-9DE4-5C844485DE85"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-9B2EB3C9-7651-482B-AF86-B408862259A7"><dt class="dlterm"><span class="parmname">comm</span></dt>
+
+<dd>MPI communicator, e.g. <span class="keyword">MPI_COMM_WORLD</span>.</dd>
+<dt class="dlterm"><span class="parmname">v1</span></dt>
+
+<dd>Precision of the transform.</dd>
+<dt class="dlterm"><span class="parmname">v2</span></dt>
+
+<dd>Type of the forward domain. Must be <samp class="codeph">DFTI_COMPLEX</samp>  for complex-to-complex transforms or <samp class="codeph">DFTI_REAL</samp> for real-to-complex transforms.</dd>
+<dt class="dlterm"><span class="parmname">dim</span></dt>
+
+<dd>Dimension of the transform.</dd>
+<dt class="dlterm"><span class="parmname">size</span></dt>
+
+<dd>Length of the transform in a one-dimensional case.</dd>
+<dt class="dlterm"><span class="parmname">sizes</span></dt>
+
+<dd>Lengths of the transform in a multi-dimensional case.</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3E44F662-BB2A-4AD2-B2A0-B1810816D506"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2E4AB389-DFA0-4057-A666-22C3E778924B"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd>Pointer to the descriptor handle of transform. If the function completes successfully, the pointer to the created handle is stored in the variable.</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0C1FCBF0-5EF2-4107-82F3-A6BEB3F96CEC"><h2 class="sectiontitle">Description</h2><p><span/>This function allocates memory in a particular MPI process for the descriptor data structure and instantiates it with default configuration settings with respect to the precision, domain, dimension, and length of the desired transform. The domain is understood to be the domain of the forward transform. The result is a pointer to the created descriptor. This function is slightly different from the "initialization" function <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a> in a more traditional software packages or libraries used for computing the FFT. This function does not perform any significant computation work, such as twiddle factors computation, because the default configuration settings can still be changed using the function <a href="GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15.html#GUID-1D3271D6-9EB1-47AC-A64D-BAEA16E18F15"><span class="option">DftiSetValueDM</span></a>.</p>
+<p>The value of the parameter <span class="parmname">v1</span> is specified through named constants <span class="keyword">DFTI_SINGLE</span> and <samp class="codeph">DFTI_DOUBLE</samp>. It corresponds to precision of input data, output data, and computation. A setting of <samp class="codeph">DFTI_SINGLE</samp> indicates single-precision floating-point data type and a setting of <samp class="codeph">DFTI_DOUBLE</samp> indicates double-precision floating-point data type.</p>
+<p>The parameter <span class="parmname">dim</span> is a simple positive integer indicating the dimension of the transform.</p>
+<p><span>In Fortran, length is an integer or an array of integers.</span></p>
+</div>
+<div class="section" id="RETURNVALUES_59A82E4286AE4AAD834536162C3C34BA"><h2 class="sectiontitle">Return Values</h2><p>The function returns <samp class="codeph">DFTI_NO_ERROR</samp> when completes successfully. In this case, the pointer to the created descriptor handle is stored in <span class="parmname">handle</span>. If the function fails, it returns a value of another  error class constant <span>(for the list of constants, refer to <a href="GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE.html#GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE">Error Codes</a>). </span></p>
+</div>
+<div class="section" id="GUID-0A548CB4-5A20-4824-A2B0-A44CCE17DA11"><h2 class="sectiontitle">Interface</h2><pre>   
+INTERFACE DftiCreateDescriptorDM
+    INTEGER(4) FUNCTION DftiCreateDescriptorDMn(C,H,P1,P2,D,L)
+        TYPE(DFTI_DESCRIPTOR_DM), POINTER :: H
+        INTEGER(4) C,P1,P2,D,L(*)
+    END FUNCTION
+    INTEGER(4) FUNCTION DftiCreateDescriptorDM1(C,H,P1,P2,D,L)
+        TYPE(DFTI_DESCRIPTOR_DM), POINTER :: H
+        INTEGER(4) C,P1,P2,D,L
+    END FUNCTION
+END INTERFACE
+   </pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4C9985E1-293E-4420-A99E-8005798AE914.html">Cluster FFT Descriptor Manipulation Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

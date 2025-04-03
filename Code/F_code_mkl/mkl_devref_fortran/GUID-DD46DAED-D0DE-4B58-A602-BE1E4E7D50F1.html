@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="ilaenv"/>
+<meta name="abstract" content="Environmental enquiry function that returns values for tuning algorithmic performance."/>
+<meta name="description" content="Environmental enquiry function that returns values for tuning algorithmic performance."/>
+<meta name="DC.subject" content="ilaenv, LAPACK routines, utility functions and routines, environmental enquiry"/>
+<meta name="keywords" content="ilaenv, LAPACK routines, utility functions and routines, environmental enquiry"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-359B626B-4113-49C5-AD0F-02980BEFD8CE.html#GUID-359B626B-4113-49C5-AD0F-02980BEFD8CE"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-DD46DAED-D0DE-4B58-A602-BE1E4E7D50F1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>ilaenv</title>
+
+</head>
+<body id="GUID-DD46DAED-D0DE-4B58-A602-BE1E4E7D50F1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">ilaenv</span></h1>
+<!--Environmental enquiry function that returns values for tuning algorithmic performance.--><div><p class="shortdesc">Environmental enquiry function that returns values for tuning algorithmic performance.</p>
+<div class="section" id="GUID-2C652FF1-1110-4531-ADEC-534C6D612333"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">value</span><span class="oper"> = </span><span class="kwd">ilaenv</span><span class="delim">( </span><span class="var">ispec</span><span class="sep">, </span><span class="var">name</span><span class="sep">, </span><span class="var">opts</span><span class="sep">, </span><span class="var">n1</span><span class="sep">, </span><span class="var">n2</span><span class="sep">, </span><span class="var">n3</span><span class="sep">, </span><span class="var">n4</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-7829CAF2-2621-4D5E-8FDE-3F290B6E322D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-0C87E92E-1DB7-40CD-AF77-74504A04A99A"><h2 class="sectiontitle">Description</h2><p>The enquiry function <span class="option">ilaenv</span> is called from the LAPACK routines to choose problem-dependent parameters for the local environment. See <var>ispec</var> below for a description of the parameters.</p>
+<p>This version provides a set of parameters that should give good, but not optimal, performance on many of the currently available computers.</p>
+<p id="P_CF_128498338457233">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d1654076e96"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d1654076e96 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-14D25EA5-1176-4F97-A39C-3552B54A9C87"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-08673F15-AD8E-4855-9AC7-A5BABF8B6F48"><dt class="dlterm"><span class="parmname">ispec</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Specifies the parameter to be returned as the value of <span class="option">ilaenv</span>:</p>
+<p>= 1: the optimal blocksize; if this value is 1, an unblocked algorithm will give the best performance.</p>
+<p>= 2: the minimum block size for which the block routine should be used; if the usable block size is less than this value, an unblocked routine should be used.</p>
+<p>= 3: the crossover point (in a block routine, for <var>n</var> less than this value, an unblocked routine should be used)</p>
+<p>= 4: the number of shifts, used in the nonsymmetric eigenvalue routines (deprecated)</p>
+<p>= 5: the minimum column dimension for blocking to be used; rectangular blocks must have dimension at least <var>k</var>-by-<var>m</var>, where <span class="keyword">k</span> is given by <samp class="codeph"><span class="option">ilaenv</span>(<span class="keyword">2</span>,...)</samp> and <span class="keyword">m</span> by <samp class="codeph"><span class="option">ilaenv</span>(<span class="keyword">5</span>,...)</samp></p>
+<p>= 6: the crossover point for the SVD (when reducing an <var>m</var>-by-<var>n</var> matrix to bidiagonal form, if <samp class="codeph">max(<span class="keyword">m,n</span>)/min(<span class="keyword">m,n</span>)</samp> exceeds this value, a <var>QR</var> factorization is used first to reduce the matrix to a triangular form.)</p>
+<p>= 7: the number of processors</p>
+<p>= 8: the crossover point for the multishift <var>QR</var> and <var>QZ</var> methods for nonsymmetric eigenvalue problems (deprecated).</p>
+<p>= 9: maximum size of the subproblems at the bottom of the computation tree in the divide-and-conquer algorithm (used by <span class="option">?gelsd</span> and <span class="option">?gesdd</span>)</p>
+<p>=10: ieee NaN arithmetic can be trusted not to trap</p>
+<p>=11: infinity arithmetic can be trusted not to trap</p>
+<p>12 ≤  <var>ispec</var> ≤ 16:  <span class="option">?hseqr</span> or one of its subroutines, see <span class="option">iparmq</span> for detailed explanation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">name</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*(*)</span>. </span>The name of the calling subroutine, in either upper case or lower case. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">opts</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*(*)</span>. </span>The character options to the subroutine <var>name</var>, concatenated into a single character string. For example, <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, and <samp class="codeph"><var>diag</var> = <span class="keyword">'N'</span></samp> for a triangular routine would be specified as <samp class="codeph"><var>opts</var> = <span class="keyword">'UTN'</span></samp>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Use only uppercase characters for the <span class="parmname">opts</span> string. </p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">n1</span>, <span class="parmname">n2</span>, <span class="parmname">n3</span>, <span class="parmname">n4</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Problem dimensions for the subroutine <var>name</var>;  these may not all be required.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D1605E63-D755-48B4-828E-44038B317473"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-4CE17BB6-0D26-48D7-A1F6-7F13D98B3C66"><dt class="dlterm"><b class="parmname">Fortran:
+                                            </b></dt><dd><p> </p></dd><dt class="dlterm"><span class="parmname">value</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>value</var><span class="eqsymbol">≥</span> 0</samp>: the value of the parameter specified by <var>ispec</var>;</p>
+<p>If <samp class="codeph"><var>value</var> = -<var>k</var> &lt; 0</samp>: the <var>k</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2FC5D6A9-8D9C-466E-8379-9633A3A29787"><h2 class="sectiontitle">Application Notes</h2><p>The following conventions have been used when calling <span class="option">ilaenv</span> from the LAPACK routines:</p>
+<ol id="GUID-8733C335-6524-40A0-A277-F8ECBC2EE426"><li><p><var>opts</var> is a concatenation of all of the character options to subroutine <var>name</var>, in the same order that they appear in the argument list for <var>name</var>, even if they are not used in determining the value of the parameter specified by <var>ispec</var>.</p>
+</li>
+<li><p>The problem dimensions <var>n1</var>, <var>n2</var>, <var>n3</var>, <var>n4</var> are specified in the order that they appear in the argument list for <var>name</var>. <var>n1</var> is used first, <var>n2</var> second, and so on, and unused problem dimensions are passed a value of -1.</p>
+</li>
+<li><p>The parameter value returned by <span class="option">ilaenv</span> is checked for validity in the calling subroutine. For example, <span class="option">ilaenv</span> is used to retrieve the optimal blocksize for <span class="option">strtri</span> as follows:</p>
+<p><pre>  nb = ilaenv( 1, 'strtri', uplo // diag, n, -1, -1, -1&gt; )
+  if( nb.le.1 ) nb = max( 1, n )</pre></p>
+</li>
+</ol>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html">LAPACK Utility Functions and Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html#GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C"><span class="option">?hseqr</span></a> </div>
+<div><a href="GUID-359B626B-4113-49C5-AD0F-02980BEFD8CE.html#GUID-359B626B-4113-49C5-AD0F-02980BEFD8CE"><span class="option">iparmq</span></a> </div></div></div>
+</body>
+</html>

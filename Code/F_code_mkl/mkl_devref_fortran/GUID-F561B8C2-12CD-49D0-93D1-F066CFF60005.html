@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetri2x"/>
+<meta name="abstract" content="Computes the inverse of a Hermitian indefinite matrix after ?hetri2sets the leading dimension of the workspace."/>
+<meta name="description" content="Computes the inverse of a Hermitian indefinite matrix after ?hetri2sets the leading dimension of the workspace."/>
+<meta name="DC.subject" content="?hetri2x, chetri2x, zhetri2x, hetri2x, LAPACK routines, matrix inversion, inverting a matrix, Hermitian matrix, inverting the matrix"/>
+<meta name="keywords" content="?hetri2x, chetri2x, zhetri2x, hetri2x, LAPACK routines, matrix inversion, inverting a matrix, Hermitian matrix, inverting the matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57.html#GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F561B8C2-12CD-49D0-93D1-F066CFF60005"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetri2x</title>
+
+</head>
+<body id="GUID-F561B8C2-12CD-49D0-93D1-F066CFF60005">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetri2x</span></h1>
+<!--Computes the inverse of a Hermitian indefinite matrix after  ?hetri2 sets the leading dimension of the workspace.--><div><p class="shortdesc">Computes the inverse of a Hermitian indefinite matrix after <span class="option">?hetri2</span>sets the leading dimension of the workspace.</p>
+<div class="section" id="GUID-5C12EA1B-C4B6-4296-B553-293015C39526"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chetri2x</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetri2x</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hetri2x</span><span class="delim">( </span><span class="var">a</span><span class="sep">,</span><span class="var">ipiv</span><span class="sep">,</span><span class="var">nb</span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-6B5BBFCD-A5F8-4D86-8E12-A6A482FA2E02"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-F766D860-80DA-454A-8A25-D87E7A9A68C4"><h2 class="sectiontitle">Description</h2><p>The routine computes the inverse <samp class="codeph">inv(<var>A</var>)</samp> of a Hermitian indefinite  matrix <var>A</var> using the factorization <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power"><var>H</var></sup></samp> or <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>H</var></sup></samp> computed by <span class="option">?hetrf</span>.</p>
+<p>The <span class="option">?hetri2x</span> actually computes the inverse after the <span class="option">?hetri2</span> routine <span>sets the leading dimension of the workspace</span> before calling <span class="option">?hetri2x</span>.</p>
+</div>
+<div class="section" id="GUID-421E6831-6DCA-4095-8382-BF8D02070290"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates how the input matrix <var>A</var> has been factored: </p>
+<p>If <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp>, the array <var>a</var> stores the factorization <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power"><var>H</var></sup></samp>. </p>
+<p>If <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp>, the array <var>a</var> stores the factorization <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power"><var>H</var></sup></samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span>, <span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chetri2x</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetri2x</span></p>
+<p>Arrays:</p>
+<p><span class="parmname">a</span>(<span class="parmname">lda</span>,*) contains the <var>nb</var> (block size) diagonal matrix <var>D</var> and the multipliers used to obtain the factor <span class="keyword">U</span> or <span class="keyword">L</span> as returned by <span class="option">?hetrf</span>.</p>
+<p>The second dimension of <span class="parmname">a</span> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+<p><span class="parmname">work</span> is a workspace array of the dimension <samp class="codeph">(<var>n</var>+<var>nb</var>+1)*(<var>nb</var>+3)</samp></p>
+<p>where</p>
+<p><var>nb</var> is the block size as set by <span class="option">?hetrf</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; <samp class="codeph"><span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. </p>
+<p>Details of the interchanges and the <var>nb</var> structure of <var>D</var> as returned by <span class="option">?hetrf</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nb</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>Block size.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-278876BD-C06F-4628-8E87-01B5810EC1E7"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>If <span class="parmname">info</span> = 0, the symmetric inverse of the original matrix.</p>
+<p>If <span class="parmname">info</span> = <span class="keyword">'U'</span>, the upper triangular part of the inverse is formed and the part of  <var>A</var> below the diagonal is not referenced.</p>
+<p>If <span class="parmname">info</span> = <span class="keyword">'L'</span>, the lower triangular part of the inverse is formed and the part of  <var>A</var> above the diagonal is not referenced.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful. </p>
+<p>If <span class="parmname">info</span> =<var>-i</var>, the <var>i-</var>th parameter had an illegal value.</p>
+<p>If <span class="parmname">info</span> = <var>i</var>, <samp class="codeph"><var>D</var><sub class="subb"><var>i</var><var>i</var></sub></samp>= 0;   <var>D</var> is singular and its inversion could not be computed.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-943D2C9C-75C9-4326-B191-EE2A6569B851"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hetri2x</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>A</var> of size (<samp class="codeph"><var>n</var>,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nb</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the block size.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Indicates how the input matrix <var>A</var> has been factored. Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html">Matrix Inversion: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"><span class="option">?hetrf</span></a> </div>
+<div><a href="GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57.html#GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57"><span class="option">?hetri2</span></a> </div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?la_hercond_c"/>
+<meta name="abstract" content="Computes the infinity norm condition number of op(A)*inv(diag(c)) for Hermitian indefinite matrices."/>
+<meta name="description" content="Computes the infinity norm condition number of op(A)*inv(diag(c)) for Hermitian indefinite matrices."/>
+<meta name="DC.subject" content="?la_hercond_c, cla_hercond_c, zla_hercond_c, la_hercond_c"/>
+<meta name="keywords" content="?la_hercond_c, cla_hercond_c, zla_hercond_c, la_hercond_c"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-431C8BB5-137C-4774-800B-8C33DF9ECB97"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?la_hercond_c</title>
+
+</head>
+<body id="GUID-431C8BB5-137C-4774-800B-8C33DF9ECB97">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?la_hercond_c</span></h1>
+<!--Computes the infinity norm condition number of op(A)*inv(diag(c)) for Hermitian indefinite matrices.--><div><p class="shortdesc">Computes the infinity norm condition number of op(A)*inv(diag(c)) for Hermitian indefinite matrices.</p>
+<div class="section" id="GUID-EB6D4174-5EDB-4318-8B13-2AE753A85154"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cla_hercond_c</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">capply</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zla_hercond_c</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">capply</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-B14CCD74-945A-47E5-B354-A3CE176A6DEA"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5C522C25-49E0-45CD-9E56-9416E1D820EE"><h2 class="sectiontitle">Description</h2><p>The function computes the infinity norm condition number of</p>
+<p><samp class="codeph">op(<var>A</var>) * inv(diag(c))</samp></p>
+<p>where the <span class="parmname">c</span> is a <span class="keyword">REAL</span> vector for <span class="option">cla_hercond_c</span> and a <span class="keyword">DOUBLE PRECISION</span> vector for <span class="option">zla_hercond_c</span>.</p>
+</div>
+<div class="section" id="GUID-AF950DAE-F7E0-447A-BA5F-A1F1FF1BBF33"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-05D4DC25-C2C8-4817-A6B0-EECA21102AB3"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.  Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Specifies the triangle of A to store:</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the upper triangle of  <var>A</var> is stored,</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the lower triangle of  <var>A</var> is stored.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of linear equations, that is, the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cla_hercond_c</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zla_hercond_c</span></p>
+<p>Array, <span class="keyword">DIMENSION</span><samp class="codeph">(<var>lda</var>, <var>*</var>)</samp>. On entry, the <var>n</var>-by-<var>n</var> matrix A. The second dimension of <span class="parmname">a</span> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <span class="parmname">lda</span><span class="eqsymbol">≥</span><samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">af</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cla_hercond_c</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zla_hercond_c</span></p>
+<p>Array, <span class="keyword">DIMENSION</span><samp class="codeph">(<var>lda</var>f, <var>*</var>)</samp>.  The block diagonal matrix D and the
+multipliers used to obtain the factor <span class="keyword">U</span> or <span class="keyword">L</span> as computed by
+<span class="option">?hetrf</span>. The second dimension of <span class="parmname">af</span> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldaf</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>af</var>. <span class="parmname">ldaf</span><span class="eqsymbol">≥</span><samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array with <span class="keyword">DIMENSION</span><var>n</var>.  Details of the interchanges and the block
+structure of D as determined by <span class="option">?hetrf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cla_hercond_c</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zla_hercond_c</span></p>
+<p>Array <span class="parmname">c</span> with <span class="keyword">DIMENSION</span><var>n</var>. The vector <var>c</var> in the formula</p>
+<p><samp class="codeph">op(<var>A</var>) * inv(diag(<var>c</var>))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">capply</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>.  If  <span class="keyword">.TRUE.</span>, then the function uses the vector <var>c</var> from the formula</p>
+<p><samp class="codeph">op(<var>A</var>) * inv(diag(<var>c</var>))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cla_hercond_c</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zla_hercond_c</span></p>
+<p>Array <span class="keyword">DIMENSION</span> 2*<var>n</var>. Workspace.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cla_hercond_c</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zla_hercond_c</span></p>
+<p>Array <span class="keyword">DIMENSION</span><var>n</var>. Workspace.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-480DAD09-983C-4EDE-B15D-06C5721B2522"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E226A94A-3B41-4863-A166-42BFBB0A820E"><dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful.</p>
+<p>If <var>i</var> &gt; 0, the <var>i</var>-th parameter is invalid.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"><span class="option">?hetrf</span></a> </div></div></div>
+</body>
+</html>

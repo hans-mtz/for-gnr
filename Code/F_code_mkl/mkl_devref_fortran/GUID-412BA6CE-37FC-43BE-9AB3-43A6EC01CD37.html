@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Usage Examples for CNR Support Functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-48D42214-B574-4DE9-BC8A-0F2A80C12D0B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-412BA6CE-37FC-43BE-9AB3-43A6EC01CD37"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Usage Examples for CNR Support Functions</title>
+
+</head>
+<body id="GUID-412BA6CE-37FC-43BE-9AB3-43A6EC01CD37">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Usage Examples for CNR Support Functions</h1>
+<div><p>The following examples illustrate usage of support functions for conditional numerical reproducibility. 
+    </p>
+<div class="section" id="SECTION_A945FFE9B4C74AE3A1B78A11D519C321"><h2 class="sectiontitle">Setting Automatically Detected CNR Branch</h2><pre>    PROGRAM MAIN 
+    INCLUDE 'mkl.fi'
+    INTEGER*4 MY_CBWR_BRANCH
+C Find the available MKL_CBWR_BRANCH automatically
+    MY_CBWR_BRANCH = MKL_CBWR_GET_AUTO_BRANCH()
+C User code without Intel MKL calls
+C Piece of the code where CNR of Intel MKL is needed
+C The performance of Intel MKL functions might be reduced for CNR mode
+    IF (MKL_CBWR_SET (MY_CBWR_BRANCH) .NE. MKL_CBWR_SUCCESS) THEN
+        PRINT *, 'Error in setting MKL_CBWR_BRANCH! Aborting…'
+        RETURN
+    ENDIF
+C CNR calls to Intel MKL + any other code
+    END
+</pre></div>
+<div class="section" id="SECTION_2E44E59343404AA393383FC3A5F7F0E4"><h2 class="sectiontitle">Use of the 
+      <span class="option">mkl_cbwr_get</span> Function</h2><pre>    PROGRAM MAIN
+    INCLUDE 'mkl.fi'
+    INTEGER*4 MY_CBWR_BRANCH
+C Piece of the code where CNR of Intel MKL is analyzed
+    MY_CBWR_BRANCH = MKL_CBWR_GET(MKL_CBWR_BRANCH)
+    IF (MY_CBWR_BRANCH .EQ. MKL_CBWR_AUTO) THEN
+C actions in case of automatic mode
+    ELSE IF (MY_CBWR_BRANCH .EQ. MKL_CBWR_SSSE3) THEN
+C actions for SSSE3 code
+    ELSE
+C all other cases
+    ENDIF
+C User code
+    END
+</pre></div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d511193e89"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d511193e89 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-48D42214-B574-4DE9-BC8A-0F2A80C12D0B.html">Conditional Numerical Reproducibility Control</a></div>
+</div>
+<div/>
+</body>
+</html>

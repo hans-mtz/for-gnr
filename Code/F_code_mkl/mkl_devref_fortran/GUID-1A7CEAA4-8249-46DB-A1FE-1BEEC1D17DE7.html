@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?spgvd"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, eigenvectors of a real generalized symmetric definite eigenproblem with matrices in packed storage using a divide and conquer method."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, eigenvectors of a real generalized symmetric definite eigenproblem with matrices in packed storage using a divide and conquer method."/>
+<meta name="DC.subject" content="?spgvd, LAPACK routines, driver routines, generalized symmetric definite eigenproblems"/>
+<meta name="keywords" content="?spgvd, LAPACK routines, driver routines, generalized symmetric definite eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C620318B-8DB6-4CC3-8D4F-B9AFF2EA6B1F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1A7CEAA4-8249-46DB-A1FE-1BEEC1D17DE7"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?spgvd</title>
+
+</head>
+<body id="GUID-1A7CEAA4-8249-46DB-A1FE-1BEEC1D17DE7">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?spgvd</span></h1>
+<!--Computes all eigenvalues and, optionally, eigenvectors of a real generalized symmetric definite eigenproblem with matrices in packed storage using a divide and conquer method.--><div><p class="shortdesc">Computes all eigenvalues and, optionally, eigenvectors of a real generalized symmetric definite eigenproblem with matrices in packed storage using a divide and conquer method.</p>
+<div class="section" id="GUID-01FE72F1-7BD9-4681-9288-02BE1743CAAF"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sspgvd</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">bp</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dspgvd</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ap</span><span class="sep">, </span><span class="var">bp</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call spgvd</span><span class="delim">(</span><span class="var">ap</span><span class="sep">, </span><span class="var">bp</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">itype</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">z</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F84C5517-E2F5-466D-91B8-8AE9DCB97FD2"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-6D7B93FB-B435-42BD-A89A-8F685E33A286"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all the eigenvalues, and optionally, the eigenvectors of a real generalized symmetric-definite eigenproblem, of the form</p>
+<p><samp class="codeph"><samp class="codeph"><var>A</var>*<var>x</var> = <span class="eqsymbol">λ</span>*<var>B</var>*<var>x</var></samp>, <samp class="codeph"><var>A</var>*<var>B</var>*<var>x</var> = <span class="eqsymbol">λ</span>*<var>x</var></samp>, or <samp class="codeph"><var>B</var>*<var>A</var>*<var>x</var> = <span class="eqsymbol">λ</span>*<var>x</var></samp></samp>.</p>
+<p>Here <var>A</var> and <var>B</var> are assumed to be symmetric, stored in packed format, and <var>B</var> is also positive definite. </p>
+<p>If eigenvectors are desired, it uses a divide and conquer algorithm.</p>
+</div>
+<div class="section" id="GUID-929EDEC1-0A26-4071-A2CC-DC3DCE90F358"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E7EE14DA-197F-4293-9958-EAFFE71A3440"><dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Must be 1 or 2 or 3. Specifies the problem type to be solved: </p>
+<p>if <samp class="codeph"><var>itype</var> = 1</samp>, the problem type is <samp class="codeph"><var>A*x</var> = <var>lambda</var><var>*B*x</var></samp>; </p>
+<p>if <samp class="codeph"><var>itype</var> = 2</samp>, the problem type is <var>A</var>*<var>B</var>*<var>x</var> = <var>lambda</var>*<var>x</var>; </p>
+<p>if <samp class="codeph"><var>itype</var> = 3</samp>, the problem type is <samp class="codeph"><var>B*A</var>*x = <var>lambda</var>*<var>x</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then compute eigenvalues only. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then compute eigenvalues and eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, arrays <var>ap</var> and <var>bp</var> store the upper triangles of <var>A</var> and <var>B</var>;</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, arrays <var>ap</var> and <var>bp</var> store the lower triangles of <var>A</var> and <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrices <var>A</var> and <var>B</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ap</span>, <span class="parmname">bp</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspgvd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspgvd</span>. </p>
+<p>Arrays:</p>
+<p><var>ap</var><span>(*)</span> contains the packed upper or lower triangle of the symmetric matrix <var>A</var>, as specified by <var>uplo</var>. </p>
+<p>The dimension of <var>ap</var> must be at least max(1, <var>n</var>*(<var>n</var>+1)/2).</p>
+<p><var>bp</var><span>(*)</span> contains the packed upper or lower triangle of the symmetric matrix <var>B</var>, as specified by <var>uplo</var>. </p>
+<p>The dimension of <var>bp</var> must be at least max(1, <var>n</var>*(<var>n</var>+1)/2).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>z</var>; <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> 1</samp>. If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, <samp class="codeph"><var>ldz</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>.</p>
+<p>Constraints: </p>
+<p>If <samp class="codeph"><var>n</var><span class="eqsymbol">≤</span> 1</samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp> and <samp class="codeph"><var>n</var>&gt;1</samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 2<var>n</var></samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>n</var>&gt;1</samp>, <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 2<var>n</var><sup class="power">2</sup>+6<var>n</var>+1</samp>.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the required sizes of the <var>work</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Workspace array, dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>iwork</var>. </p>
+<p>Constraints: </p>
+<p>If <samp class="codeph"><var>n</var><span class="eqsymbol">≤</span> 1</samp>, <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp> and <samp class="codeph"><var>n</var>&gt;1</samp>, <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 1</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp> and <samp class="codeph"><var>n</var>&gt;1</samp>, <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 5<var>n</var>+3</samp>.</p>
+<p>If <samp class="codeph"><var>liwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the required sizes of the <var>work</var> and <var>iwork</var> arrays, returns these values as the first entries of the <var>work</var> and <var>iwork</var> arrays, and no error message related to <var>lwork</var> or <var>liwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>. <span>See <em>Application Notes</em> for details.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A86C0134-7A86-4457-9A41-3840E41BEA8F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-18C368AD-80AA-4B2D-8BEC-DFB4E4690347"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>On exit, the contents of <var>ap</var> are overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bp</span></dt>
+
+<dd><p>On exit, contains the triangular factor <var>U</var> or <var>L</var> from the Cholesky factorization <samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>T</var></sup><var>*U</var></samp> or <samp class="codeph"><var>B</var> = <var>L*</var><var>L</var><sup class="power"><var>T</var></sup></samp>, in the same storage format as <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span>, <span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sspgv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dspgv</span>. </p>
+<p>Arrays:</p>
+<p><var>w</var><span>(*)</span>, size at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, contains the eigenvalues in ascending order. </p>
+<p><span class="keyword">z</span><span>(<var>ldz</var>,*)</span>. </p>
+<p>The second dimension of <var>z</var> must be at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then if <samp class="codeph"><var>info</var> = 0</samp>, <var>z</var> contains the matrix <var>Z</var> of eigenvectors. The eigenvectors are normalized as follows:</p>
+<p>if <samp class="codeph"><var>itype</var> = 1</samp> or <samp class="codeph">2</samp>, <samp class="codeph"><var>Z</var><sup class="power"><var>T</var></sup>*<var>B</var>*<var>Z</var> = I</samp>; </p>
+<p>if <samp class="codeph"><var>itype</var> = 3</samp>, <samp class="codeph"><var>Z</var><sup class="power"><var>T</var></sup>*inv(<var>B</var>)*<var>Z</var> = I</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>iwork</var><samp class="codeph">(1)</samp> returns the required minimal size of <var>liwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th argument had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, <span class="option">spptrf</span>/<span class="option">dpptrf</span> and <span class="option">sspevd</span>/<span class="option">dspevd</span> returned an error code:</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, <span class="option">sspevd</span>/<span class="option">dspevd</span> failed to converge, and <var>i</var> off-diagonal elements of an intermediate tridiagonal did not converge to zero;</p>
+<p>If <samp class="codeph"><var>info</var> = <var>n</var> + <var>i</var></samp>, for <samp class="codeph">1 <span class="eqsymbol">≤</span><var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, then the leading minor of order <var>i</var> of <var>B</var> is not positive-definite. The factorization of <var>B</var> could not be completed and no eigenvalues or eigenvectors were computed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0B51CDCA-5E49-426B-99A9-78AD3B53CE84"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">spgvd</span> interface are the following:</p>
+<dl id="GUID-D078B3C8-9D5E-4E16-9C9D-F499AC604AE8"><dt class="dlterm"><span class="parmname">ap</span></dt>
+
+<dd><p>Holds the array <var>A</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bp</span></dt>
+
+<dd><p>Holds the array <var>B</var> of size (<var>n*(n+1)/2</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>Holds the matrix <var>Z</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p>Must be 1, 2, or 3. The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>z</var> as follows: </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, if <var>z</var> is present, </p>
+<p><samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, if <var>z</var> is omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-8325D9AE-C490-4940-80EB-69294729AC7B"><h2 class="sectiontitle">Application Notes</h2><p>If it is not clear how much workspace to supply, use a generous value of <var>lwork</var> (or <var>liwork</var>) for the first run, or set  <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>). </p>
+<p>If <var>lwork</var> (or <var>liwork</var>) has any of admissible sizes, which is no less than the minimal value described, then the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>) on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>, <samp class="codeph"><var>iwork</var>(1)</samp>) for subsequent runs.</p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>), then the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>). This operation is called a workspace query.</p>
+<p>Note that if <var>lwork</var> (<var>liwork</var>) is less than the minimal required value and is not equal to -1, then the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C620318B-8DB6-4CC3-8D4F-B9AFF2EA6B1F.html">Generalized Symmetric Definite Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pardiso"/>
+<meta name="abstract" content="Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides."/>
+<meta name="description" content="Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides."/>
+<meta name="DC.subject" content="pardiso, parallel direct sparse solver interface, sparse solver"/>
+<meta name="keywords" content="pardiso, parallel direct sparse solver interface, sparse solver"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7E829836-0FEF-46B2-8943-86A022193462.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pardiso</title>
+
+</head>
+<body id="GUID-431916D5-B76D-48A1-ABB5-1A0613FDC0FA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">pardiso</span></h1>
+<!--Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.--><div><p class="shortdesc">Calculates the solution of a set of sparse linear equations with single or multiple right-hand sides.</p>
+<div class="section" id="GUID-38A41F1A-9502-4824-A8BD-BE0799523545"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pardiso</span><span class="sep"> (</span><span class="var">pt</span><span class="sep">, </span><span class="var">maxfct</span><span class="sep">, </span><span class="var">mnum</span><span class="sep">, </span><span class="var">mtype</span><span class="sep">, </span><span class="var">phase</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">perm</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">iparm</span><span class="sep">, </span><span class="var">msglvl</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">error</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-DB3DD7BE-7DB9-4E9A-BC0B-7C21F611817E"><h2 class="sectiontitle">Include Files</h2><ul id="d163e110"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_pardiso.f90</span></li>
+</ul>
+</div>
+<div class="section" id="PARDISO"><h2 class="sectiontitle">Description</h2><p><span/>The routine <span class="option">pardiso</span>
+ calculates the solution of a set of sparse linear equations <pre class="indent"><var>A</var>*<var>X</var> = <var>B</var></pre> with single or multiple right-hand sides, using a parallel <var>LU</var>, <var>LDL</var>,  or <var>LL</var><sup><var>T</var></sup> factorization, where <var>A</var> is an <span class="parmname">n</span>-by-<span class="parmname">n</span> matrix, and <var>X</var> and <var>B</var> are <span class="parmname">n</span>-by-<span class="parmname">nrhs</span> vectors or matrices.</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a> for details. The case of <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(24)</samp></a>=10 does not support this feature.</p>
+</div>
+</p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d518904e195"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d518904e195 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div class="section" id="GUID-FB4D5442-2BE8-4687-A6F6-D2AAE34B8A87"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-614BAFB8-061A-4EFE-914C-BC27DB58A156"><dt class="dlterm"/>
+
+<dd><div class="Note"><h3 class="NoteTipHead">Note</h3> <p id="INPUT_PARAMETERS">The types given for parameters in this section are specified in FORTRAN 77 notation. See <a href="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html#GUID-E1E2E435-241F-47CB-83D5-9322CA21473E">Intel MKL PARDISO Parameters in Tabular Form</a>for detailed description of types of Intel&reg; oneAPI Math Kernel Library PARDISO parameters in Fortran 90 notation.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span> for 32-bit or 64-bit architectures</p>
+<p><span class="keyword">INTEGER*8</span> for 64-bit architectures</p>
+<p>Array with size of 64.</p>
+<p>Handle to internal data structure. The entries must be set to zero prior to the first call to <span class="option">pardiso</span>. Unique for factorization.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>After the first call to <span class="option">pardiso</span> do not directly modify <span class="parmname">pt</span>, as that could cause a serious memory leak.</p>
+</div>
+<p>Use the <a href="GUID-13CCE899-B2DD-47F7-A739-9491CEEA48CE.html">pardiso_handle_store</a> or <a href="GUID-9ED49D39-6E90-487D-B087-E483D84ECFB2.html#GUID-9ED49D39-6E90-487D-B087-E483D84ECFB2"><span class="keyword">pardiso_handle_store_64</span></a> routine to store the content of <span class="parmname">pt</span> to a file. Restore the contents of <span class="parmname">pt</span> from the file using <a href="GUID-AC122A6E-151E-46DB-A99A-140597C60A8F.html">pardiso_handle_restore</a> or <a href="GUID-FF7588E5-1765-4C06-9B57-A1F14BB44744.html#GUID-FF7588E5-1765-4C06-9B57-A1F14BB44744"><span class="keyword">pardiso_handle_restore_64</span></a>. Use <span class="keyword">pardiso_handle_store</span> and <span class="keyword">pardiso_handle_restore</span> with <span class="keyword">pardiso</span>, and <span class="keyword">pardiso_handle_store_64</span> and <span class="keyword">pardiso_handle_restore_64</span> with <span class="keyword">pardiso_64</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">maxfct</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Maximum number of factors with identical sparsity structure that must be kept in memory at the same time. In most applications this value is equal to 1. It is possible to store several different factorizations with the same nonzero structure at the same time in the internal data structure management of the solver.</p>
+<p><span class="option">pardiso</span> can process several matrices with an identical matrix sparsity pattern and it can store the factors of these matrices at the same time. Matrices with a different sparsity structure can be kept in memory with different memory address pointers <span class="parmname">pt</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mnum</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Indicates the actual matrix for the solution phase. With this scalar you can define which matrix to factorize. The value must be: <samp class="codeph">1 <span class="eqsymbol">≤</span><span class="parmname">mnum</span><span class="eqsymbol">≤</span><span class="parmname">maxfct</span></samp>. </p>
+<p>In most applications this value is 1. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">mtype</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Defines the matrix type, which influences the pivoting method. The Intel&reg; oneAPI Math Kernel Library PARDISO solver supports the following matrices:</p>
+<dl id="GUID-269EB410-AC0B-4FFD-A54D-213705E89BE1"><dt class="dlterm"><span class="parmnamen">1</span></dt>
+
+<dd><p>real and structurally symmetric</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">2</span></dt>
+
+<dd><p>real and symmetric positive definite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">-2</span></dt>
+
+<dd><p>real and symmetric indefinite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">3</span></dt>
+
+<dd><p>complex and structurally symmetric </p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">4</span></dt>
+
+<dd><p>complex and Hermitian positive definite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">-4</span></dt>
+
+<dd><p>complex and Hermitian indefinite</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">6</span></dt>
+
+<dd><p>complex and symmetric</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">11</span></dt>
+
+<dd><p>real and nonsymmetric</p>
+</dd>
+<dt class="dlterm"><span class="parmnamen">13</span></dt>
+
+<dd><p>complex and nonsymmetric</p>
+</dd>
+</dl>
+</dd>
+<dt class="dlterm"><span class="parmname">phase</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p id="PHASE">Controls the execution of the solver. Usually it is a two- or three-digit integer. The first digit indicates the starting phase of execution and the second digit indicates the ending phase. Intel&reg; oneAPI Math Kernel Library PARDISO has the following phases of execution:<ul class="bullet" id="GUID-57F3B9AB-CB23-41F4-832D-D317E900AF90"><li><p>Phase 1: Fill-reduction analysis and symbolic factorization</p>
+</li>
+<li><p>Phase 2: Numerical factorization</p>
+</li>
+<li><p>Phase 3: Forward and Backward solve including optional iterative refinement</p>
+<p>This phase can be divided into two or three separate substitutions: forward, backward, and diagonal (see <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html#GUID-70E6283E-35F8-4935-84DB-E4FBDD5B5A12">Separate Forward and Backward Substitution</a>).</p>
+</li>
+<li><p>Memory release phase (<span class="parmname">phase</span>= 0 or <span class="parmname">phase</span>= -1)</p>
+</li>
+</ul>
+</p>
+<p>If a previous call to the routine has computed information from previous phases, execution may start at any phase. The <span class="parmname">phase</span> parameter can have the following values:</p>
+<dl id="GUID-5B157A61-F0AD-47EA-BE18-069BD3CE9454"><dt><strong><span class="parmname">phase</span></strong></dt>
+<dd><strong>Solver Execution Steps</strong></dd>
+<dt class="dlterm"><samp class="codeph">11 
+</samp></dt>
+
+<dd><p>Analysis</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">12 </samp></dt>
+
+<dd><p>Analysis, numerical factorization</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">13 </samp></dt>
+
+<dd><p>Analysis, numerical factorization, solve, iterative refinement</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">22 </samp></dt>
+
+<dd><p>Numerical factorization</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">23 </samp></dt>
+
+<dd><p>Numerical factorization, solve, iterative refinement</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">33 </samp></dt>
+
+<dd><p>Solve, iterative refinement</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">331 </samp></dt>
+
+<dd><p>like  <span class="parmname">phase</span>=33, but only forward substitution</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">332 </samp></dt>
+
+<dd><p>like  <span class="parmname">phase</span>=33, but only diagonal substitution (if available)</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">333 </samp></dt>
+
+<dd><p>like  <span class="parmname">phase</span>=33, but only backward substitution</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">  0 </samp></dt>
+
+<dd><p>Release internal memory for <var>L</var> and <var>U</var> matrix number <span class="parmname">mnum</span></p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1 </samp></dt>
+
+<dd><p>Release all internal memory for all matrices</p>
+</dd>
+</dl>
+<p>If <samp class="codeph"><span class="parmname">iparm</span>(36)</samp><samp class="codeph"> = 0</samp>, phases 331, 332, and 333 perform this decomposition: </p>
+<p><span><img class="img-middle" src="equations/GUID-431916D5-B76D-48A1-ABB5-1A0613FDCee1.png"/></span></p>
+<p>If <samp class="codeph"><span class="parmname">iparm</span>(36)</samp><samp class="codeph"> = 2</samp>, phases 331, 332, and 333 perform a different decomposition: </p>
+<p><span><img class="img-middle" src="equations/GUID-431916D5-B76D-48A1-ABB5-1A0613FDCee2.png"/></span></p>
+<p>You can supply a custom implementation for phase 332 instead of calling <span class="option">pardiso</span>. For example, it can be implemented with  dense LAPACK functionality. Custom implementation also allows you to substitute the matrix <var>S</var> with your own. </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>For very large Schur complement matrices use LAPACK functionality to compute the Schur complement vector instead of the Intel&reg; oneAPI Math Kernel Library PARDISO phase 332 implementation.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Number of equations in the sparse linear systems of equations <samp class="codeph"><var>A</var>*<var>X</var> = <var>B</var></samp>. Constraint: <samp class="codeph"><span class="parmname">n</span> &gt; 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p>Array. Contains the non-zero elements of the coefficient matrix <var>A</var> corresponding to the indices in <span class="parmname">ja</span>. The coefficient matrix can be either real or complex. The matrix must be stored in the three-array variant of the compressed sparse row (CSR3) or in the three-array variant of the block compressed sparse row (BSR3) format, and the matrix must be stored with increasing values of <span class="parmname">ja</span> for each row. </p>
+<p>For CSR3 format, the size of <span class="parmname">a</span> is the same as that of <span class="parmname">ja</span>. Refer to the <span class="parmname">values</span> array description in <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format</a> for more details.</p>
+<p>For BSR3 format the size of <span class="parmname">a</span> is the size of <span class="parmname">ja</span> multiplied by the square of the block size.   Refer to the <span class="parmname">values</span> array description in <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a> for more details.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>If you set <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM37"><samp class="codeph"><span class="parmname">iparm</span>(37)</samp></a>to a negative value, Intel&reg; oneAPI Math Kernel Library PARDISO converts the data from CSR3 format to an internal variable BSR (VBSR) format. See<a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html#GUID-D309FCF9-4568-44D1-A199-E54E04D624C8">Sparse Data Storage</a>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array, size <samp class="codeph">(<span class="parmname">n</span>+1)</samp>. </p>
+<p>For CSR3 format, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> (<samp class="codeph"><span class="parmname">i</span><span class="eqsymbol">≤</span><span class="parmname">n</span></samp>) points to the first column index of row <var>i</var> in the array <span class="parmname">ja</span>. That is, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> gives the index of the element in array <span class="parmname">a</span> that contains the first non-zero element from row <var>i</var> of <var>A</var>. The last element <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">n</span>+1)</samp> is taken to be equal to the number of non-zero elements in <var>A</var>, plus one. Refer to <span class="parmname">rowIndex</span> array description in <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format</a> for more details. </p>
+<p>For BSR3 format, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> (<samp class="codeph"><span class="parmname">i</span><span class="eqsymbol">≤</span><span class="parmname">n</span></samp>) points to the first column index of row <var>i</var> in the array <span class="parmname">ja</span>. That is, <samp class="codeph"><span class="parmname">ia</span>(<var>i</var>)</samp> gives the index of the element in array <span class="parmname">a</span> that contains the first non-zero block from row <var>i</var> of <var>A</var>. The last element <span class="parmname">ia</span><samp class="codeph">(<span class="parmname">n</span>+1)</samp> is taken to be equal to the number of non-zero blcoks in <var>A</var>, plus one. Refer to <span class="parmname">rowIndex</span> array description in <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a> for more details. </p>
+<p>The array <span class="parmname">ia</span> is accessed in all phases of the solution process. </p>
+<p>Indexing of <span class="parmname">ia</span> is one-based by default, but it can be changed to zero-based by setting the appropriate value to the parameter
+<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(35)</samp></a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>For CSR3 format, array <samp class="codeph"><span class="parmname">ja</span></samp> contains column indices of the sparse matrix <var>A</var>. It is important that the indices are in increasing order per row. For structurally symmetric matrices it is assumed that all diagonal elements are stored (even if they are zeros) in the list of non-zero elements in <span class="parmname">a</span> and <span class="parmname">ja</span>. For symmetric matrices, the solver needs only the upper triangular part of the system as is shown for <span class="parmname">columns</span> array in <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of CSR Format</a>.</p>
+<p>For BSR3 format, array <samp class="codeph"><span class="parmname">ja</span></samp> contains column indices of the sparse matrix <var>A</var>. It is important that the indices are in increasing order per row. For structurally symmetric matrices it is assumed that all diagonal blocks are stored (even if they are zeros) in the list of non-zero blocks in <span class="parmname">a</span> and <span class="parmname">ja</span>. For symmetric matrices, the solver needs only the upper triangular part of the system as is shown for <span class="parmname">columns</span> array in <a href="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1.html#GUID-9BD4DADE-6059-4042-BC2A-F41048A47953">Three Array Variation of BSR Format</a>.</p>
+<p>The array <span class="parmname">ja</span> is accessed in all phases of the solution process. </p>
+<p>Indexing of <span class="parmname">ja</span> is one-based by default, but it can be changed to zero-based by setting the appropriate value to the parameter
+<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(35)</samp></a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">perm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array, size (<span class="parmname">n</span>). Depending on the value of <span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp> and <samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span>, holds the permutation vector of size <span class="parmname">n</span>, specifies elements used for computing a partial solution, or specifies differing values of the input matrices for low rank update. </p>
+<ul id="GUID-CC61C899-715B-4FB3-A49C-FABA1F435FF7"><li><p>If  <span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp> = 1, <samp class="codeph"><span class="parmname">iparm</span>(31)</samp> = 0, and <samp class="codeph"><span class="parmname">iparm</span>(36)</samp> = 0</span>, <span class="parmname">perm</span> specifies the fill-in reducing ordering to the solver. Let <var>A</var> be the original matrix and <samp class="codeph"><var>C</var> = <var>P</var>*<var>A</var>*<var>P</var><sup class="power"><var>T</var></sup></samp> be the permuted matrix. Row (column) <samp class="codeph"><var>i</var></samp> of <var>C</var> is the <samp class="codeph"><span class="parmname">perm</span>(<var>i</var>)</samp> row (column) of <var>A</var>. The array  <span class="parmname">perm</span>  is also used to return the permutation vector calculated during fill-in reducing ordering stage. </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Be aware that setting <samp class="codeph"><span class="parmname">iparm</span>(5)</samp> = 1 prevents use of a parallel algorithm for the solve step.</p>
+</div>
+</li>
+<li><p>If  <span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></span> = 2, <samp class="codeph"><span class="parmname">iparm</span>(31)</samp> = 0, and <samp class="codeph"><span class="parmname">iparm</span>(36)</samp> = 0, the permutation vector computed in phase 11 is returned in the <span class="parmname">perm</span> array.</p>
+</li>
+<li><p>If  <samp class="codeph"><span class="parmname">iparm</span>(5)</samp> = 0, <samp class="codeph"><span class="parmname">iparm</span>(31)</samp> &gt; 0, and <samp class="codeph"><span class="parmname">iparm</span>(36)</samp> = 0,  <span class="parmname">perm</span> specifies elements of the right-hand side to use or of the solution to compute for a partial solution. </p>
+</li>
+<li><p>If  <samp class="codeph"><span class="parmname">iparm</span>(5)</samp> = 0, <samp class="codeph"><span class="parmname">iparm</span>(31)</samp> = 0, and <samp class="codeph"><span class="parmname">iparm</span>(36)</samp> &gt; 0,  <span class="parmname">perm</span> specifies elements for a Schur complement. </p>
+</li>
+<li><p>If <samp class="codeph"><span class="parmname">iparm</span>(39)</samp> = 1, <span class="parmname">perm</span> specifies values that differ in <var>A</var> for low rank update (see <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html#LOW_RANK">Low Rank Update</a>). The size of the array must be at least 2*<var>ndiff</var> + 1, where <var>ndiff</var> is the number of values of <var>A</var> that are different. The values of <span class="parmname">perm</span> should be:</p>
+<samp class="codeph"><span class="parmname">perm</span> = {<var>ndiff</var>, <var>row_index1</var>, <var>column_index1</var>, <var>row_index2</var>, <var>column_index2</var>, ...., <var>row_index_ndiff</var>, <var>column_index_ndiff</var>}</samp><p>where <var>row_index_m</var> and <var>column_index_m</var> are the row and column indices of the <var>m</var>-th differing non-zero value in matrix <var>A</var>. The row and column index pairs can be in any order, but must use zero-based indexing regardless of the value of <samp class="codeph"><span class="parmname">iparm</span>(35)</samp>.</p>
+</li>
+</ul>
+<p>See <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM5"><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></a>, <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM31"><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></a>, and <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM39"><samp class="codeph"><span class="parmname">iparm</span>(39)</samp></a> for more details.</p>
+<p>Indexing  of <span class="parmname">perm</span> is one-based by default, but unless <samp class="codeph"><span class="parmname">iparm</span>(39)</samp> = 1 it can be changed to zero-based by setting the appropriate value to the parameter
+<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(35)</samp></a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Number of right-hand sides that need to be solved for.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iparm</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Array, size (<samp class="codeph">64</samp>). This array is used to pass various parameters to Intel&reg; oneAPI Math Kernel Library PARDISO and to return some useful information after execution of the solver.</p>
+<p>See <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html">pardiso iparm Parameter</a> for more details about the <span class="parmname">iparm</span> parameters. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">msglvl</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Message level information. If <samp class="codeph"><span class="parmname">msglvl</span> = 0</samp> then <samp class="codeph"><span class="keyword">pardiso</span></samp> generates no output, if <samp class="codeph"><span class="parmname">msglvl</span> = 1</samp> the solver prints statistical information to the screen.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p>Array, size (<span class="parmname">n</span><span>, </span><span class="parmname">nrhs</span>). On entry, contains the right-hand side vector/matrix  <var>B</var>, which is placed in memory contiguously. The <samp class="codeph"><span class="parmname">b</span>(i+(k-1)×<span class="parmname">nrhs</span>)</samp> element  must hold the <span class="keyword">i</span>-th component of <span class="keyword">k</span>-th
+right-hand  side vector. Note that <span class="parmname">b</span> is only accessed in the solution phase.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="FUNCTN_PARDISO_OUTPUTPARAM"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-AA7BE346-2BC0-4A5A-8AA7-FA06AB7BBAD9"><dt class="dlterm"/>
+
+<dd><p id="OUTPUT_PARAMETERS">(See also <a href="GUID-E1E2E435-241F-47CB-83D5-9322CA21473E.html#GUID-E1E2E435-241F-47CB-83D5-9322CA21473E">Intel MKL PARDISO Parameters in Tabular Form</a>.)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pt</span></dt>
+
+<dd><p>Handle to internal data structure.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">perm</span></dt>
+
+<dd><p>See the Input Parameter description of the <span class="parmname">perm</span> array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iparm</span></dt>
+
+<dd><p>On output, some <span class="parmname">iparm</span> values report information such as the numbers of non-zero elements in the factors.</p>
+<p>See <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html">pardiso iparm Parameter</a> for more details about the <span class="parmname">iparm</span> parameters. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On output, the array is replaced with the solution if <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM6"><samp class="codeph"><span class="parmname">iparm</span><samp class="codeph">(6)</samp></samp></a> = 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">DOUBLE PRECISION</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">REAL</span> - for real types of matrices (<span class="parmname">mtype</span>=1, 2, -2 and 11) and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p><span class="keyword">DOUBLE COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for double precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=0)</p>
+<p><span class="keyword">COMPLEX</span> - for complex types of matrices (<span class="parmname">mtype</span>=3, 6, 13, 14 and -4) and for single precision Intel&reg; oneAPI Math Kernel Library PARDISO (<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM28"><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></a>=1)</p>
+<p>Array, size (<span class="parmname">n</span><span>, </span><span class="parmname">nrhs</span>). If <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM6"><samp class="codeph"><span class="parmname">iparm</span><samp class="codeph">(6)</samp></samp></a>=0 it contains solution vector/matrix <var>X</var>, which is placed contiguously in memory. The <samp class="codeph"><span class="parmname">x</span>(i+(k-1)× <span class="parmname">n</span>)</samp> element must hold the
+<span class="keyword">i</span>-th  component of the <span class="keyword">k</span>-th solution
+vector.
+Note that <var>x</var> is only accessed in the solution phase.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">error</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The error indicator according to the below table:</p>
+<dl id="GUID-A32C8FF2-CA1A-47A6-8834-28E98E4C647B"><dt><strong><var>error</var></strong></dt>
+<dd><strong>Information</strong></dd>
+<dt class="dlterm"><samp class="codeph">0 </samp></dt>
+
+<dd><p>no error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-1 </samp></dt>
+
+<dd><p>input inconsistent</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-2 </samp></dt>
+
+<dd><p>not enough memory</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-3 </samp></dt>
+
+<dd><p>reordering problem</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-4 </samp></dt>
+
+<dd><p>Zero pivot, numerical factorization or iterative refinement problem. If the error appears during the solution phase, try to change the pivoting perturbation (<span><samp class="codeph"><span class="parmname">iparm</span>(10)</samp></span>) and also increase the number of iterative refinement steps. If it does not help, consider changing the scaling, matching and pivoting options (<span><samp class="codeph"><span class="parmname">iparm</span>(11)</samp>, <samp class="codeph"><span class="parmname">iparm</span>(13)</samp>, <samp class="codeph"><span class="parmname">iparm</span>(21)</samp></span>)</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-5 </samp></dt>
+
+<dd><p>unclassified (internal) error</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-6 </samp></dt>
+
+<dd><p> reordering failed (matrix types 11 and 13 only)</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-7 </samp></dt>
+
+<dd><p>diagonal matrix is singular</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-8 </samp></dt>
+
+<dd><p>32-bit integer overflow problem</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-9 </samp></dt>
+
+<dd><p>not enough memory for OOC</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-10 </samp></dt>
+
+<dd><p>error opening OOC files</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-11 </samp></dt>
+
+<dd><p>read/write error with OOC files</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-12 </samp></dt>
+
+<dd><p>(<span class="option">pardiso_64</span> only)  <span class="option">pardiso_64</span> called from 32-bit library</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-13 </samp></dt>
+
+<dd><p>interrupted by the (user-defined) <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html">mkl_progress</a> function</p>
+</dd>
+<dt class="dlterm"><samp class="codeph">-15 </samp></dt>
+
+<dd><p>internal error which can appear for <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(24)</samp></a>=10 and <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></a>=1. Try switch matching off (set <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM35"><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></a>=0 and rerun.)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html">oneMKL PARDISO - Parallel Direct Sparse Solver Interface</a></div>
+</div>
+<div class="See Also"/>
+</body>
+</html>

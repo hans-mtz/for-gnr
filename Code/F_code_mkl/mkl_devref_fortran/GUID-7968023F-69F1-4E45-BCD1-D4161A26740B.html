@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_sp2m"/>
+<meta name="abstract" content="Computes the product of two sparse matrices. The result is stored in a newly allocated sparse matrix."/>
+<meta name="description" content="Computes the product of two sparse matrices. The result is stored in a newly allocated sparse matrix."/>
+<meta name="DC.subject" content="mkl_sparse_sp2m"/>
+<meta name="keywords" content="mkl_sparse_sp2m"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7968023F-69F1-4E45-BCD1-D4161A26740B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_sp2m</title>
+
+</head>
+<body id="GUID-7968023F-69F1-4E45-BCD1-D4161A26740B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_sp2m</span></h1>
+<!-- Computes the product of two sparse matrices.  The result is stored in a newly allocated sparse matrix.--><div><p class="shortdesc"> Computes the product of two sparse matrices.  The result is stored in a newly allocated sparse matrix.</p>
+<div class="section" id="GUID-35D1D68E-CBCC-4E38-A7D9-87A81C80D4A7"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat  = mkl_sparse_sp2m</span><span class="delim"> (</span><span class="var">opA</span><span class="sep">, </span><span class="var">descrA</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">opB</span><span class="sep">, </span><span class="var">descrB</span><span class="sep">, </span><span class="var">B</span><span class="sep">, </span><span class="var">request</span><span class="sep">, </span><span class="var">C</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F11B05FE-C14D-42CB-BA18-0B4A7941FD3B"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-535D7DC2-357E-4A91-A8D5-3AD6C571682A"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E14039D2-E0DB-42B1-9662-FD6B2597434B"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_sparse_sp2m</span> routine performs a matrix-matrix operation:</p>
+<pre><var>C</var> := op<var>A</var>(<var>A</var>) *op<var>B</var>(<var>B</var>)</pre><p>where <var>A</var>,<span class="keyword">B</span>, and <var>C</var> are sparse matrices, <var>opA</var> and <var>opB</var> are matrix modifiers for matrices <var>A</var> and <var>B</var>, respectively.</p>
+</div>
+<div class="section" id="GUID-BEDD508D-3CEF-4BF4-AE29-4D51B8063204"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-09C75D62-2AA7-4D3C-81BD-31C2C9A3A165"><dt class="dlterm"><span class="parmname">opA</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Specifies operation on input matrix.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-F32131B0-6E2A-43E5-B56A-5D1647B43530" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="59.67741935483871%"><span class="keyword"> SPARSE_OPERATION_NON_TRANSPOSE</span></td>
+<td class="cellrowborder" valign="top" width="40.322580645161295%"><p>Non-transpose, op(<var>A</var>)=<var>A</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="59.67741935483871%"><span class="keyword"> SPARSE_OPERATION_TRANSPOSE</span></td>
+<td class="cellrowborder" valign="top" width="40.322580645161295%"><p>Transpose, op(<var>A</var>)=<var>A</var><sup><var>T</var></sup></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="59.67741935483871%"><span class="keyword"> SPARSE_OPERATION_CONJUGATE_TRANSPOSE</span></td>
+<td class="cellrowborder" valign="top" width="40.322580645161295%"><p>Conjugate transpose, op(<var>A</var>)=<var>A</var><sup><var>H</var></sup></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">opB</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Specifies operation on input matrix.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-6564CF6D-9A3E-45E5-8114-71DCF868179C" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="59.67741935483871%"><span class="keyword"> SPARSE_OPERATION_NON_TRANSPOSE</span></td>
+<td class="cellrowborder" valign="top" width="40.322580645161295%"><p>Non-transpose, op(<var>B</var>)=<var>B</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="59.67741935483871%"><span class="keyword"> SPARSE_OPERATION_TRANSPOSE</span></td>
+<td class="cellrowborder" valign="top" width="40.322580645161295%"><p>Transpose, op(<var>B</var>)=<var>B</var><sup><var>T</var></sup></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="59.67741935483871%"><span class="keyword"> SPARSE_OPERATION_CONJUGATE_TRANSPOSE</span></td>
+<td class="cellrowborder" valign="top" width="40.322580645161295%"><p>Conjugate transpose, op(<var>B</var>)=<var>B</var><sup><var>H</var></sup></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">descrA</span></dt>
+
+<dd><p><span class="keyword">MATRIX_DESCR</span>.</p>
+<p>Structure that specifies sparse matrix properties.  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> Currently, only SPARSE_MATRIX_TYPE_GENERAL is supported.</div>
+<p><span class="keyword">sparse_matrix_type_t</span><var>type</var> specifies the type of  sparse matrix.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-5000781B-593A-480C-A6E5-A4A2C3E2B6B7" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_GENERAL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The matrix is processed as is.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_SYMMETRIC</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is symmetric (only the requested triangle is processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_HERMITIAN</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The matrix is Hermitian (only the requested triangle is processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_TRIANGULAR</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is triangular (only the requested triangle is processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_DIAGONAL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The matrix is diagonal (only diagonal elements are processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_BLOCK_TRIANGULAR</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is block-triangular (only the requested triangle is processed). This applies to BSR format only.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_BLOCK_DIAGONAL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is block-diagonal (only the requested triangle is processed). This applies to BSR format only.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="keyword">sparse_fill_mode_t</span><var>mode</var> specifies the triangular matrix portion for symmetric, Hermitian, triangular, and block-triangular matrices.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-6C458BDF-6108-43F8-A909-111B4F64E9A7" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_FILL_MODE_LOWER</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The lower triangular matrix is processed.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_FILL_MODE_UPPER</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The upper triangular matrix is processed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="keyword">sparse_diag_type_t</span><var>diag</var> specifies the type of diagonal for non-general matrices.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-3F0D058C-7585-45DB-8EBC-FB79F6389295" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_DIAG_NON_UNIT</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>Diagonal elements must not be equal to 1.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_DIAG_UNIT</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>Diagonal elements are equal to 1.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">descrB</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p>Structure that specifies sparse matrix properties.  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> Currently, only SPARSE_MATRIX_TYPE_GENERAL is supported.</div>
+<p><span class="keyword">sparse_matrix_type_t</span><var>type</var> specifies the type of  sparse matrix.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-98799D7B-320B-4AF2-AAD4-4873034585AA" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_GENERAL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The matrix is processed as is.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_SYMMETRIC</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is symmetric (only the requested triangle is processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_HERMITIAN</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The matrix is Hermitian (only the requested triangle is processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_TRIANGULAR</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is triangular (only the requested triangle is processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_DIAGONAL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The matrix is diagonal (only diagonal elements are processed).</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_BLOCK_TRIANGULAR</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is block-triangular (only the requested triangle is processed). This applies to BSR format only.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_MATRIX_TYPE_BLOCK_DIAGONAL</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> The matrix is block-diagonal (only the requested triangle is processed). This applies to BSR format only.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="keyword">sparse_fill_mode_t</span><var>mode</var> specifies the triangular matrix portion for symmetric, Hermitian, triangular, and block-triangular matrices.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-46EDADAA-E3F5-4525-ADF7-10C9696497A8" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_FILL_MODE_LOWER</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The lower triangular matrix is processed.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_FILL_MODE_UPPER</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The upper triangular matrix is processed.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="keyword">sparse_diag_type_t</span><var>diag</var> specifies the type of diagonal for non-general matrices.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-B83CF609-BF4E-4D29-9968-6DE919D3D9EE" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_DIAG_NON_UNIT</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>Diagonal elements must not be equal to 1.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword"> SPARSE_DIAG_UNIT</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>Diagonal elements are equal to 1.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname"> A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">B</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the sparse matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">request</span></dt>
+
+<dd><p><span class="keyword">C_INT</span>.</p>
+<p> Specifies whether the full computations are
+performed at once or using the two-stage algorithm.
+See <a href="GUID-86E61214-BE31-4B42-A1B5-237780F94A9D.html">Two-stage Algorithm
+for Inspector-executor Sparse BLAS Routines</a>.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-C9464CE3-1A35-435F-B48D-75445EA5CA35" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"> SPARSE_STAGE_NNZ_COUNT</td>
+<td class="cellrowborder" valign="top" width="NaN%"> Only <span class="keyword">rowIndex</span> (BSR/CSR format) or <span class="keyword">colIndex</span> (CSC format) array of the matrix is computed internally. The computation can be extracted to measure the memory required for full operation.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%">SPARSE_STAGE_FINALIZE_MULT_NO_VAL</td>
+<td class="cellrowborder" valign="top" width="NaN%">Finalize computations of the matrix structure (values will not be computed). Use only after the call with SPARSE_STAGE_NNZ_COUNT parameter.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"> SPARSE_STAGE_FINALIZE_MULT</td>
+<td class="cellrowborder" valign="top" width="NaN%"> Finalize computation.  Can also be used when the matrix structure remains unchanged and only values of the resulting matrix <var>C</var> need to be recomputed. </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%">SPARSE_STAGE_FULL_MULT_NO_VAL</td>
+<td class="cellrowborder" valign="top" width="NaN%">Perform computations of the matrix structure.</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"> SPARSE_STAGE_FULL_MULT</td>
+<td class="cellrowborder" valign="top" width="NaN%"> Perform the entire computation in a single step.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-771EE79A-203B-4542-AE08-DEDCD11A6C9B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9E8FAB35-E3A2-48E6-89C1-63CA6A787C8F"><dt class="dlterm"><span class="parmname">C</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains  the resulting sparse matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stat</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p> Value indicating whether the operation was successful or not, and why:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-B26A4A03-FF6E-4507-AB6D-33E64073E4E8" frame="border" border="1" cellspacing="0" rules="all"><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_SUCCESS</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The operation was successful.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_NOT_INITIALIZED</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The routine encountered an empty handle or matrix array.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_ALLOC_FAILED</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>Internal memory allocation failed.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_INVALID_VALUE</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The input parameters contain an invalid value.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_EXECUTION_FAILED</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p> Execution failed.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_INTERNAL_ERROR</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>An error in algorithm implementation occurred.</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><span class="keyword">SPARSE_STATUS_NOT_SUPPORTED</span></td>
+<td class="cellrowborder" valign="top" width="NaN%"><p>The requested operation is not supported.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html">Inspector-Executor Sparse BLAS Execution Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

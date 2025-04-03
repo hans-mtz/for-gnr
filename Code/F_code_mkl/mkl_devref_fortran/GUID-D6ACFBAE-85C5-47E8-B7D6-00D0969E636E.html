@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="b?trexc"/>
+<meta name="abstract" content="Reorders the Schur factorization of a general matrix."/>
+<meta name="description" content="Reorders the Schur factorization of a general matrix."/>
+<meta name="DC.subject" content="bstrexc, ScaLAPACK routines, auxiliary routines, bdtrexc, general matrix, Schur factorization reordering"/>
+<meta name="keywords" content="bstrexc, ScaLAPACK routines, auxiliary routines, bdtrexc, general matrix, Schur factorization reordering"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D6ACFBAE-85C5-47E8-B7D6-00D0969E636E"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>b?trexc</title>
+
+</head>
+<body id="GUID-D6ACFBAE-85C5-47E8-B7D6-00D0969E636E">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">b?trexc</span></h1>
+<!-- Reorders the Schur factorization of a general matrix.--><div><p class="shortdesc"> Reorders the Schur factorization of a general matrix.</p>
+<div class="section" id="GUID-93F4F404-CFE3-4BC3-AA4A-8DC5DAF83ADF"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call bstrexc</span><span class="delim">(</span><span class="var"> n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">ifst</span><span class="sep">, </span><span class="var">ilst</span><span class="sep">, </span><span class="var">nitraf</span><span class="sep">, </span><span class="var">itraf</span><span class="sep">, </span><span class="var">ndtraf</span><span class="sep">, </span><span class="var">dtraf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call bdtrexc</span><span class="delim">(</span><span class="var"> n</span><span class="sep">, </span><span class="var">t</span><span class="sep">, </span><span class="var">ldt</span><span class="sep">, </span><span class="var">ifst</span><span class="sep">, </span><span class="var">ilst</span><span class="sep">, </span><span class="var">nitraf</span><span class="sep">, </span><span class="var">itraf</span><span class="sep">, </span><span class="var">ndtraf</span><span class="sep">, </span><span class="var">dtraf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-6014DC95-B3D4-47FC-8B6A-2E9F95F38CC9"><h2 class="sectiontitle">Description</h2><p><span class="option">b?trexc</span> reorders the real Schur factorization of a real matrix <span><var>A</var> = <var>Q</var> * <var>T</var> * <var>Q</var><sup>T</sup></span>, so that the diagonal block of <var>T</var> with row index <span class="parmname">ifst</span> is moved to row <span class="parmname">ilst</span>. </p>
+<p>The real Schur form <var>T</var> is reordered by an orthogonal similarity transformation <span><var>Z</var><sup>T</sup> * <var>T</var> * <var>Z</var></span>. In contrast to the LAPACK <span>routine </span><a href="GUID-CAFC1A46-A123-4D82-8515-01E92CE63CAA.html"><span class="option">?trexc</span></a>, the orthogonal matrix <var>Z</var> is not explicitly constructed but represented by parameters contained in the arrays <span class="parmname">itraf</span> and <span class="parmname">dtraf</span>. See Application Notes for  further details. </p>
+<p><var>T</var> must be in Schur canonical form (as returned by <a href="GUID-3F910967-04C1-4C67-8467-F431B2CD8E1C.html"><span class="option">?hseqr</span></a>), that is, block upper triangular with 1-by-1 and 2-by-2 diagonal blocks; each 2-by-2 diagonal block has its diagonal elements equal and its off-diagonal elements of opposite sign. </p>
+</div>
+<div class="section" id="GUID-69A969F2-CE33-4C0F-9373-3D3944115230"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-74EE87C0-B9A5-46FC-B385-9BF1170B351A"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix <var>T</var>. <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">bstrexc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">bdtrexc</span></p>
+<p>Array of size <span>(<span class="parmname">ldt</span>,<span class="parmname">n</span>)</span>.</p>
+<p>The upper quasi-triangular matrix <var>T</var>, in Schur canonical form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">t</span>. <span class="parmname">ldt</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">n</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ifst</span>, <span class="parmname">ilst</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Specify the reordering of the diagonal blocks of <var>T</var>. The block with row index <span class="parmname">ifst</span> is moved to row <span class="parmname">ilst</span>, by a sequence of transpositions between adjacent blocks.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nitraf</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Length of the array <span class="parmname">itraf</span>.</p>
+<p>As a minimum requirement, <span class="parmname">nitraf</span><span class="eqsymbol">≥</span> max(1,|<span class="parmname">ilst</span>-<span class="parmname">ifst</span>|).</p>
+<p>If there are 2-by-2 blocks in <span class="parmname">t</span> then <span class="parmname">nitraf</span> must be larger; a safe choice is <span class="parmname">nitraf</span><span class="eqsymbol">≥</span> max(1,2*|<span class="parmname">ilst</span>-<span class="parmname">ifst</span>|).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ndtraf</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Length of the array <span class="parmname">dtraf</span>.</p>
+<p>As a minimum requirement, <span class="parmname">ndtraf</span><span class="eqsymbol">≥</span> max(1,2*|<span class="parmname">ilst</span>-<span class="parmname">ifst</span>|).</p>
+<p>If there are 2-by-2 blocks in <span class="parmname">t</span> then <span class="parmname">ndtraf</span> must be larger; a safe choice is <span class="parmname">ndtraf</span><span class="eqsymbol">≥</span> max(1,5*|<span class="parmname">ilst</span>-<span class="parmname">ifst</span>|).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">bstrexc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">bdtrexc</span></p>
+<p>(Workspace)             array of size <span class="parmname">n</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-AB4CDACF-A4A5-4CEC-A336-80FC886DE241"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-E31E4430-DFB1-4D00-B138-33F2FF15C043"><dt class="dlterm"><span class="parmname">t</span></dt>
+
+<dd><p>On exit, the reordered upper quasi-triangular matrix, in Schur canonical form.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ifst</span>, <span class="parmname">ilst</span></dt>
+
+<dd><p>If <span class="parmname">ifst</span> pointed on entry to the second row of a 2-by-2 block, it is changed to point to the first row; <span class="parmname">ilst</span> always points to the first row of the block in its final position (which may differ from its input value by +1 or -1).</p>
+<p>1 <span class="eqsymbol">≤</span><span class="parmname">ifst</span><span class="eqsymbol">≤</span><span class="parmname">n</span>; 1 <span class="eqsymbol">≤</span><span class="parmname">ilst</span><span class="eqsymbol">≤</span><span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nitraf</span></dt>
+
+<dd><p>Actual length of the array <span class="parmname">itraf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itraf</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> array, length <span class="parmname">nitraf</span></p>
+<p>List of parameters for representing the transformation matrix <var>Z</var>. See Application Notes for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ndtraf</span></dt>
+
+<dd><p>Actual length of the array <span class="parmname">dtraf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dtraf</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">bstrexc</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">bdtrexc</span></p>
+<p>Array, length <span class="parmname">ndtraf</span></p>
+<p>List of parameters for representing the transformation matrix <var>Z</var>. See Application Notes for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value</p>
+<p>= 1:  two adjacent blocks were too close to swap (the problem is very ill-conditioned); <span class="parmname">t</span> may have been partially reordered, and <span class="parmname">ilst</span> points to the first row of the current position of the block being moved.</p>
+<p>= 2:  the 2 by 2 block to be reordered split into two 1 by 1 blocks and the second block failed to swap with an adjacent block. <span class="parmname">ilst</span> points to the first row of the current position of the whole block being moved.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-6CE8CA75-52AF-4425-9A66-F022C04C01F0"><h2 class="sectiontitle">Application Notes</h2><p>The orthogonal transformation matrix <var>Z</var> is a product of <span class="parmname">nitraf</span> elementary orthogonal transformations. The parameters defining these transformations are stored in the arrays <span class="parmname">itraf</span> and <span class="parmname">dtraf</span> as follows: </p>
+<p>Consider the <var>i</var>-th transformation acting on rows/columns <var>pos</var>, <var>pos</var>+1, ... If this transformation is </p>
+<ul id="GUID-F349A119-DBFF-49D2-9974-2DE10961A606"><li><p>a Givens rotation with cosine <var>c</var> and sine <var>s</var> then </p>
+<span class="parmname">itraf</span><span>(<var>i</var>)</span>= <var>pos</var>, <span class="parmname">dtraf</span><span>(<var>i</var>)</span> = <var>c</var>,    <span class="parmname">dtraf</span><span>(<var>i</var>+1)</span> = <var>s</var>; 
+				</li>
+<li><p>a Householder reflector <var>H</var> = <var>I</var> - <span class="parmname">t</span> * <var>v</var> * <var>v</var>' with <var>v</var> = [ 1; <var>v2</var>; <var>v3</var> ] then </p>
+<p><span class="parmname">itraf</span><span>(<var>i</var>)</span> = <span class="parmname">n</span> + <var>pos</var>, <span class="parmname">dtraf</span><span>(<var>i</var>)</span> = <span class="parmname">t</span>,  <span class="parmname">dtraf</span><span>(<var>i</var>+1)</span> = <var>v2</var>,  <span class="parmname">dtraf</span><span>(<var>i</var>+2)</span> = v3; </p>
+</li>
+<li><p>a Householder reflector H = I - <span class="parmname">t</span>* <var>v</var> * <var>v</var>' with <var>v</var> = [ <var>v1</var>; <var>v2</var>; 1 ] then </p>
+<p><span class="parmname">itraf</span><span>(<var>i</var>)</span> = 2*<span class="parmname">n</span> + <var>pos</var>, <span class="parmname">dtraf</span><span>(<var>i</var>)</span> = <var>v1</var>,  <span class="parmname">dtraf</span><span>(<var>i</var>+1)</span> = <var>v2</var>,  <span class="parmname">dtraf</span><span>(<var>i</var>+2)</span> = <span class="parmname">t</span>; </p>
+</li>
+</ul>
+<p>Note that the parameters in <span class="parmname">dtraf</span> are stored consecutively. </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lartgp"/>
+<meta name="abstract" content="Generates a plane rotation."/>
+<meta name="description" content="Generates a plane rotation."/>
+<meta name="DC.subject" content="?lartgp, slartgp, dlartgp, LAPACK routines, auxiliary routines, plane rotation"/>
+<meta name="keywords" content="?lartgp, slartgp, dlartgp, LAPACK routines, auxiliary routines, plane rotation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23.html#GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF9104E4-C69F-41A2-810C-FABD2D4F1BF1.html#GUID-BF9104E4-C69F-41A2-810C-FABD2D4F1BF1"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9773676-7D2D-40AE-9B57-E6F6DF980A50.html#GUID-A9773676-7D2D-40AE-9B57-E6F6DF980A50"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A80B4932-AD08-4E21-89FC-50CC1622AB70"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lartgp</title>
+
+</head>
+<body id="GUID-A80B4932-AD08-4E21-89FC-50CC1622AB70">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lartgp</span></h1>
+<!--Generates a plane rotation.--><div><p class="shortdesc">Generates a plane rotation.</p>
+<div class="section" id="GUID-966C8AC1-2BFB-4CC9-ABE5-A9A7A648D17C"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slartgp</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlartgp</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">cs</span><span class="sep">, </span><span class="var">sn</span><span class="sep">, </span><span class="var">r</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call lartgp</span><span class="delim">( </span><span class="var">f</span><span class="sep">,</span><span class="var">g</span><span class="sep">,</span><span class="var">cs</span><span class="sep">,</span><span class="var">sn</span><span class="sep">,</span><span class="var">r</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-2BFF3F2F-BC90-4807-B08C-9CF708A47F23"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-1D7F5770-7D8C-4758-B0F5-24C42B3C39AD"><h2 class="sectiontitle">Description</h2><p>The routine generates a plane rotation so that</p>
+<p><br/><div class="imagecenter"><img src="GUID-05962D93-3443-45BE-8F91-66EB05870177-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <samp class="codeph"><var>cs</var><sup class="power"><var>2</var></sup> + <var>sn</var><sup class="power"><var>2</var></sup> = 1</samp></p>
+<p>This is a slower, more accurate version of the BLAS Level 1 routine <span class="option">?rotg</span>, except for the following differences:</p>
+<ul id="GUID-2EA200B6-2474-411E-B55C-2B267C126171"><li><p><span class="parmname">f</span> and <span class="parmname">g</span> are unchanged on return.</p>
+</li>
+<li><p>If <span class="parmname">g</span>=0, then <span class="parmname">cs</span>=(+/-)1 and <span class="parmname">sn</span>=0.</p>
+</li>
+<li><p>If <span class="parmname">f</span>=0 and <span class="parmname">g</span><span class="eqsymbol">≠</span> 0, then <span class="parmname">cs</span>=0 and <span class="parmname">sn</span>=(+/-)1.</p>
+</li>
+</ul>
+<p>The sign is chosen so that <span class="parmname">r</span><span class="eqsymbol">≥</span> 0.</p>
+</div>
+<div class="section" id="GUID-37BED838-E81A-4008-9A3C-9E6747F96ABD"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-387C1C68-0580-4F91-9312-8C57077ED9B2"><dt class="dlterm"><span class="parmname">f</span>, <span class="parmname">g</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartgp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartgp</span></p>
+<p>The first and second component of the vector to be rotated.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-76240A07-7BDE-4550-8DDE-A9DBD7C5531F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-DEB7B862-10D3-4F3B-A8B1-DFC146145612"><dt class="dlterm"><span class="parmname">cs</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartgp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartgp</span></p>
+<p>The cosine of the rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sn</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartgp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartgp</span></p>
+<p>The sine of the rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slartgp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlartgp</span></p>
+<p>The nonzero component of the rotated vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p><samp class="codeph">If <var>info</var> =-1</samp>,<var>f</var> is NaN.</p>
+<p><samp class="codeph">If <var>info</var> = -2</samp>, <var>g</var> is NaN.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-692FB7F6-34AF-4547-8BDB-2ECA0ED6469A"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95  Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">?lartgp</span> interface are as follows:</p>
+<dl id="GUID-AD22C891-8E15-451E-A4AE-321E5C3EB4E8"><dt class="dlterm"><span class="parmname">f</span></dt>
+
+<dd><p>Holds the first component of the vector to be rotated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">g</span></dt>
+
+<dd><p>Holds the second component of the vector to be rotated.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cs</span></dt>
+
+<dd><p>Holds the cosine of the rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sn</span></dt>
+
+<dd><p>Holds the sine of the rotation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p>Holds the nonzero component of the rotated vector.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23.html#GUID-C0A38FCD-1A6C-432D-BC2F-929B6AB5DB23"><span class="option">?rotg</span></a> </div>
+<div><a href="GUID-BF9104E4-C69F-41A2-810C-FABD2D4F1BF1.html#GUID-BF9104E4-C69F-41A2-810C-FABD2D4F1BF1"><span class="option">?lartg</span></a> </div>
+<div><a href="GUID-A9773676-7D2D-40AE-9B57-E6F6DF980A50.html#GUID-A9773676-7D2D-40AE-9B57-E6F6DF980A50"><span class="option">?lartgs</span></a> </div></div></div>
+</body>
+</html>

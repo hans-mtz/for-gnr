@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lamsh"/>
+<meta name="abstract" content="Sends multiple shifts through a small (single node) matrix to maximize the number of bulges that can be sent through."/>
+<meta name="description" content="Sends multiple shifts through a small (single node) matrix to maximize the number of bulges that can be sent through."/>
+<meta name="DC.subject" content="?lamsh, ScaLAPACK routines, auxiliary routines, single node matrix"/>
+<meta name="keywords" content="?lamsh, ScaLAPACK routines, auxiliary routines, single node matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B8123029-A8CA-4547-8E2F-5BB58C5A4343"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lamsh</title>
+
+</head>
+<body id="GUID-B8123029-A8CA-4547-8E2F-5BB58C5A4343">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lamsh</span></h1>
+<!--Sends multiple shifts through a small (single node) matrix to maximize the number of bulges that can be sent through.--><div><p class="shortdesc">Sends multiple shifts through a small (single node) matrix to maximize the number of bulges that can be sent through.</p>
+<div class="section" id="GUID-47CDD99D-D9FD-4D21-A9BE-2CD2D65FE88D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slamsh</span><span class="delim">(</span><span class="var">s</span><span class="sep">, </span><span class="var">lds</span><span class="sep">, </span><span class="var">nbulge</span><span class="sep">, </span><span class="var">jblk</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ulp</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlamsh</span><span class="delim">(</span><span class="var">s</span><span class="sep">, </span><span class="var">lds</span><span class="sep">, </span><span class="var">nbulge</span><span class="sep">, </span><span class="var">jblk</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ulp</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call clamsh</span><span class="delim">(</span><span class="var">s</span><span class="sep">, </span><span class="var">lds</span><span class="sep">, </span><span class="var">nbulge</span><span class="sep">, </span><span class="var">jblk</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ulp</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlamsh</span><span class="delim">(</span><span class="var">s</span><span class="sep">, </span><span class="var">lds</span><span class="sep">, </span><span class="var">nbulge</span><span class="sep">, </span><span class="var">jblk</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ulp</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-D05CF9EC-2DA4-49DB-B9C1-45393A1A577A"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">?lamsh</span><span>routine </span>sends multiple shifts through a small (single node) matrix to see how small consecutive subdiagonal elements are modified by subsequent shifts in an effort to maximize the number of bulges that can be sent through. The <span>subroutine </span>should only be called when there are multiple shifts/bulges <samp class="codeph">(<var>nbulge </var><span class="eqsymbol">&gt;</span> 1)</samp> and the first shift is starting in the middle of an unreduced Hessenberg matrix because of two or more small consecutive subdiagonal elements.</p>
+</div>
+<div class="section" id="GUID-69E161ED-A0B3-466B-BBEB-3A1CC1347634"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-27AC92EE-7A5D-4D53-95BE-8D4A17164062"><dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">slamsh</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlamsh</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clamsh</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlamsh</span></p>
+<p>Array of size <span>(<span class="parmname">lds</span>, 2*<span class="parmname">jblk</span>)</span>. </p>
+<p>On entry, the matrix of shifts. Only the 2x2 diagonal of <var>s</var> is referenced. It is assumed that <var>s</var> has <var>jblk</var> double shifts (size 2).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lds</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>On entry, the leading dimension of <var>S</var>; unchanged on exit. <samp class="codeph">1&lt;<var>nbulge</var><span class="eqsymbol"> ≤</span><var> jblk </var><span class="eqsymbol">≤ </span><var>lds</var>/2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nbulge</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>On entry, the number of bulges to send through <samp class="codeph"><var>h</var> (<span class="eqsymbol">&gt;</span>1)</samp>. <var>nbulge</var> should be less than the maximum determined <samp class="codeph">(<var>jblk</var>). 1&lt;<var>nbulge </var><span class="eqsymbol">≤</span><var> jblk</var><span class="eqsymbol"> ≤</span><var> lds</var>/2</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jblk</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>On entry, the number of double shifts determined for  <var>S</var>; unchanged on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">slamsh</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlamsh</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clamsh</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlamsh</span></p>
+<p>Array of size <samp class="codeph">(<span class="parmname">ldh</span>, <span class="parmname">n</span>)</samp>. </p>
+<p>On entry, the local matrix to apply the shifts on.</p>
+<p><var>h</var> should be aligned so that the starting row is 2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p>(local) </p>
+<p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>On entry, the leading dimension of <var>H</var>; unchanged on exit.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>On entry, the size of <var>H</var>. If all the bulges are expected to go through, <var>n</var> should be at least <samp class="codeph">4<var>nbulge</var>+2</samp>. Otherwise, <var>nbulge</var> may be reduced by this <span>routine</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ulp</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">slamsh</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlamsh</span></p>
+<p><span class="keyword">REAL</span> for <span class="option">clamsh</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zlamsh</span></p>
+<p>On entry, machine precision. Unchanged on exit.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-16086EA3-F518-43BE-AE1D-761ECD094E94"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0B9F33BD-59AF-449E-B62F-D93A60B66C10"><dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p>On exit, the data is rearranged in the best order for applying.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nbulge</span></dt>
+
+<dd><p>On exit, the maximum number of bulges that can be sent through.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>On exit, the data is destroyed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

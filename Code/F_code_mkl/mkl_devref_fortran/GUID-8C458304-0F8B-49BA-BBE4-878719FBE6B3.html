@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?lared2d"/>
+<meta name="abstract" content="Redistributes an array assuming that the input array byrow is distributed across columns and that all process rows contain the same copy of byrow."/>
+<meta name="description" content="Redistributes an array assuming that the input array byrow is distributed across columns and that all process rows contain the same copy of byrow."/>
+<meta name="DC.subject" content="p?lared2d, ScaLAPACK routines, auxiliary routines, 1D array redistribution"/>
+<meta name="keywords" content="p?lared2d, ScaLAPACK routines, auxiliary routines, 1D array redistribution"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8C458304-0F8B-49BA-BBE4-878719FBE6B3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?lared2d</title>
+
+</head>
+<body id="GUID-8C458304-0F8B-49BA-BBE4-878719FBE6B3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?lared2d</span></h1>
+<!--Redistributes an array assuming that the input array  byrow  is distributed across columns and that all process rows contain the same copy of  byrow .--><div><p class="shortdesc">Redistributes an array assuming that the input array <var>byrow</var> is distributed across columns and that all process rows contain the same copy of <var>byrow</var>.</p>
+<div class="section" id="GUID-A8AAA6A0-AE37-4BD2-A45C-026B621F16A0"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslared2d</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desc</span><span class="sep">, </span><span class="var">byrow</span><span class="sep">, </span><span class="var">byall</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlared2d</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desc</span><span class="sep">, </span><span class="var">byrow</span><span class="sep">, </span><span class="var">byall</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-5FD5E759-9235-432C-B367-ED99B085788D"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?lared2d</span><span>routine </span>redistributes a 1D array. It assumes that the input array <span class="parmname">byrow</span> is distributed across columns and that all process rows contain the same copy of <span class="parmname">byrow</span>. The output array <span class="parmname">byall</span> will be identical on all processes and will contain the entire array.</p>
+</div>
+<div class="section" id="GUID-97272179-3E3E-41D6-9731-2806263E5299"><h2 class="sectiontitle">Input Parameters</h2><p><var>np</var> = Number of local rows in <span class="parmname">byrow</span>()</p>
+<dl id="GUID-49594ECF-3316-4E5E-8DD5-1C3FDD3C3C2B"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>The number of elements to be redistributed. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span><span class="parmname">ia</span>, <span class="parmname">ja</span> must be equal to 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desc</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>. A 2D array descriptor, which describes <span class="parmname">byrow</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">byrow</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslared2d</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlared2d</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclared2d</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlared2d</span>. </p>
+Distributed block cyclic array of global size <span class="parmname">n</span> and of  local size <var>np</var>. <span class="parmname">byrow</span> is distributed across the process columns. All process rows are assumed to contain the same value.</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local). </p>
+<p><span class="keyword">REAL</span> for <span class="option">pslared2d</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlared2d</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclared2d</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlared2d</span>. <span class="keyword"/></p>
+<p>size <span class="parmname">lwork</span>. Used to hold the buffers sent from one process to another.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>The size of the <span class="parmname">work</span> array. <span class="parmname">lwork</span><span class="eqsymbol"> ≥ </span><samp class="codeph"><span class="keyword">numroc</span>(<var>n</var>, <span><var>desc</var>(<var>nb_</var>)</span>, 0, 0, <var>npcol</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-CA8A0F92-602C-4535-A584-E05172EAEA2A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-5C178941-4735-455E-A560-A5E6D4C198EA"><dt class="dlterm"><span class="parmname">byall</span></dt>
+
+<dd><p>(global). <span><span class="keyword">REAL</span> for <span class="option">pslared2d</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlared2d</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pclared2d</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzlared2d</span>. </p>
+<p>Global size <span class="parmname">n</span>, local size <span class="parmname">n</span>. <span class="parmname">byall</span> is exactly duplicated on all processes. It contains the same values as <span class="parmname">byrow</span>, but it is replicated across all processes rather than being distributed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

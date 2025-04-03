@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Usage Examples for the Memory Functions"/>
+<meta name="DC.subject" content="mkl_mem_stat, usage example, mkl_malloc, mkl_free"/>
+<meta name="keywords" content="mkl_mem_stat, usage example, mkl_malloc, mkl_free"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C44DA051-9CF1-416C-B935-C844C0707BA1.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B46596A9-7EF0-4613-B749-E277466B55A4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Usage Examples for the Memory Functions</title>
+
+</head>
+<body id="GUID-B46596A9-7EF0-4613-B749-E277466B55A4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Usage Examples for the Memory Functions</h1>
+<div><div class="tbstyle(tblExampleLong)" id="CH14EX14-7"><p><strong> Usage Example 
+          for 1-dimensional Arrays</strong></p>
+<pre>      PROGRAM FOO
+      INCLUDE 'mkl.fi'
+ 
+      DOUBLE PRECISION     A,B,C
+      POINTER    (A_PTR,A(1)), (B_PTR,B(1)), (C_PTR,C(1))
+      INTEGER    N, I
+      REAL*8     ALPHA, BETA
+      INTEGER*8  ALLOCATED_BYTES
+      INTEGER*8  PEAK_MEMORY
+      INTEGER*4  ALLOCATED_BUFFERS
+ 
+#ifdef _SYSTEM_BITS32
+        INTEGER*4 MKL_MALLOC, MKL_CALLOC, MKL_REALLOC
+        INTEGER*4 ALLOC_SIZE, NUM, SIZE
+#else
+        INTEGER*8 MKL_MALLOC, MKL_CALLOC, MKL_REALLOC
+        INTEGER*8 ALLOC_SIZE, NUM, SIZE
+#endif
+ 
+      EXTERNAL   MKL_MALLOC, MKL_FREE, MKL_CALLOC, MKL_REALLOC
+
+      ALPHA = 1.1; BETA = -1.2
+      N = 1000
+      SIZE = 8
+      NUM = N*N
+      ALLOC_SIZE = SIZE*NUM
+      PEAK_MEMORY = MKL_PEAK_MEM_USAGE(MKL_PEAK_MEM_ENABLE)
+      A_PTR = MKL_MALLOC(ALLOC_SIZE,64)
+      B_PTR = MKL_MALLOC(ALLOC_SIZE,64)
+      C_PTR = MKL_CALLOC(NUM,SIZE,64)
+      DO I=1,N*N
+        A(I) = I
+        B(I) = -I
+      END DO
+ 
+      CALL DGEMM('N','N',N,N,N,ALPHA,A,N,B,N,BETA,C,N);
+ 
+      ALLOCATED_BYTES = MKL_MEM_STAT(ALLOCATED_BUFFERS)
+      PRINT *,'DGEMM uses ',ALLOCATED_BYTES,' bytes in ',
+     $  ALLOCATED_BUFFERS,' buffers '
+ 
+      CALL MKL_FREE_BUFFERS
+      CALL MKL_FREE(A_PTR)
+      CALL MKL_FREE(B_PTR)
+      CALL MKL_FREE(C_PTR)
+
+      ALLOCATED_BYTES = MKL_MEM_STAT(ALLOCATED_BUFFERS)
+      IF (ALLOCATED_BYTES &gt; 0) THEN
+       PRINT *,'MKL MEMORY LEAK!'
+       PRINT *,'AFTER MKL_FREE_BUFFERS there are ',
+     $    ALLOCATED_BYTES,' bytes in ',
+     $    ALLOCATED_BUFFERS,' buffers'
+      END IF
+
+      PEAK_MEMORY = MKL_PEAK_MEM_USAGE(MKL_PEAK_MEM_RESET)
+      PRINT *,'Peak memory allocated by Intel MKL memory allocator ',
+     $  PEAK_MEMORY,' bytes. ',
+     $  'Start to count new memory peak'
+
+      A_PTR = MKL_MALLOC(ALLOC_SIZE,64)
+      A_PTR = MKL_REALLOC(A_PTR,ALLOC_SIZE*SIZE)
+      CALL MKL_FREE(A_PTR)
+      PEAK_MEMORY = MKL_PEAK_MEM_USAGE(MKL_PEAK_MEM)
+      PRINT *,'After reset of peak memory counter',
+     $  'Peak memory allocated by Intel MKL memory allocator ',
+     $  PEAK_MEMORY,' bytes'
+
+      STOP
+      END
+</pre></div>
+<div class="example"><p><strong>Usage Example 
+          for 2-dimensional Arrays</strong></p>
+<pre>      PROGRAM FOO
+      INTEGER    N
+      PARAMETER  (N=100)
+      DOUBLE PRECISION     A,B,C
+      POINTER    (A_PTR,A(N,*)), (B_PTR,B(N,*)), (C_PTR,C(N,*))
+      INTEGER    I,J
+      REAL*8     ALPHA, BETA
+      INTEGER*8  ALLOCATED_BYTES
+      INTEGER*4  ALLOCATED_BUFFERS
+
+#ifdef _SYSTEM_BITS32
+        INTEGER*4 MKL_MALLOC
+        INTEGER*4 ALLOC_SIZE
+#else
+        INTEGER*8 MKL_MALLOC
+        INTEGER*8 ALLOC_SIZE
+#endif
+
+      INTEGER    MKL_MEM_STAT
+      EXTERNAL   MKL_MALLOC, MKL_FREE, MKL_MEM_STAT
+
+      ALPHA = 1.1; BETA = -1.2
+      ALLOC_SIZE = 8*N*N
+      A_PTR = MKL_MALLOC(ALLOC_SIZE,64)
+      B_PTR = MKL_MALLOC(ALLOC_SIZE,64)
+      C_PTR = MKL_MALLOC(ALLOC_SIZE,64)
+      DO I=1,N
+        DO J=1,N
+           A(I,J) = I
+           B(I,J) = -I
+           C(I,J) = 0.0
+        END DO
+      END DO
+
+      CALL DGEMM('N','N',N,N,N,ALPHA,A,N,B,N,BETA,C,N);
+
+      ALLOCATED_BYTES = MKL_MEM_STAT(ALLOCATED_BUFFERS)
+      PRINT *,'DGEMM uses ',ALLOCATED_BYTES,' bytes in ',
+     $  ALLOCATED_BUFFERS,' buffers '
+
+      CALL MKL_FREE_BUFFERS
+      CALL MKL_FREE(A_PTR)
+      CALL MKL_FREE(B_PTR)
+      CALL MKL_FREE(C_PTR)
+
+      ALLOCATED_BYTES = MKL_MEM_STAT(ALLOCATED_BUFFERS)
+      IF (ALLOCATED_BYTES &gt; 0) THEN
+        PRINT *,'MKL MEMORY LEAK!'
+        PRINT *,'AFTER MKL_FREE_BUFFERS there are ',
+     $    ALLOCATED_BYTES,' bytes in ',
+     $    ALLOCATED_BUFFERS,' buffers'
+      END IF
+
+      STOP
+      END
+</pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C44DA051-9CF1-416C-B935-C844C0707BA1.html">Memory Management</a></div>
+</div>
+<div/>
+</body>
+</html>

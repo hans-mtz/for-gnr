@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?gebal"/>
+<meta name="abstract" content="Balances a general real/complex matrix."/>
+<meta name="description" content="Balances a general real/complex matrix."/>
+<meta name="DC.subject" content="psgebal, ScaLAPACK routines, auxiliary routines, pdgebal"/>
+<meta name="keywords" content="psgebal, ScaLAPACK routines, auxiliary routines, pdgebal"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-62E9F1AE-AE64-4AE3-AB97-B5FA63F17E4A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?gebal</title>
+
+</head>
+<body id="GUID-62E9F1AE-AE64-4AE3-AB97-B5FA63F17E4A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?gebal</span></h1>
+<!-- Balances a general real/complex matrix.--><div><p class="shortdesc"> Balances a general real/complex matrix.</p>
+<div class="section" id="GUID-9FAA0639-9EB7-43E8-A367-DB20BEEDAC5A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psgebal</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdgebal</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcgebal</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span><span><span class="kwd">call pzgebal</span><span class="delim">(</span><span class="var"> job</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></span></p></dl></div>
+<div class="section" id="GUID-C862ACDD-F301-45DF-A801-4A5E0E2E10CB"><h2 class="sectiontitle">Description</h2><p><span class="option">p?gebal</span> balances a general real/complex matrix <var>A</var>.  This involves, first, permuting <var>A</var> by a similarity transformation to isolate eigenvalues in the first 1 to <span class="parmname">ilo</span>-1 and last <span class="parmname">ihi</span>+1 to <span class="parmname">n</span> elements on the diagonal; and second, applying a diagonal similarity transformation to rows and columns <span class="parmname">ilo</span> to <span class="parmname">ihi</span> to make the rows and columns as close in norm as possible.  Both steps are optional. </p>
+<p>Balancing may reduce the 1-norm of the matrix, and improve the accuracy of the computed eigenvalues and/or eigenvectors. </p>
+</div>
+<div class="section" id="GUID-3B50C444-DB51-4C99-9584-F2079EA7853D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0D0CEE07-0980-4663-B759-DD9A3B2E9999"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>(global ) <span class="keyword">CHARACTER*1</span></p>
+<p>Specifies the operations to be performed on <span class="parmname">a</span>:</p>
+<p>= 'N':  none:  simply set <span class="parmname">ilo</span> = 1, <span class="parmname">ihi</span> = <span class="parmname">n</span>, <span><span class="parmname">scale</span>(<var>i</var>) = 1.0 for <var>i</var> = 1,...,<span class="parmname">n</span></span>;</p>
+<p>= 'P':  permute only;</p>
+<p>= 'S':  scale only;</p>
+<p>= 'B':  both permute and scale.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>The order of the matrix <var>A </var>  (<span class="parmname">n</span><span class="eqsymbol">≥</span> 0).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">psgebal</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgebal</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgebal</span></p>
+<p><span class="keyword">COMPLEX DOUBLE</span> for <span class="option">pzgebal</span></p>
+<p>(local )              Pointer into the local memory to an array of size <span>(<var>lld_a</var>,<var> LOC</var><sub><var>c</var></sub>(<span class="parmname">n</span>))</span></p>
+<p>This array contains the local pieces of global input matrix <var>A</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4D5E2449-7C8B-47C2-B1B9-58BC765EBFAD"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-14D43A12-9EE5-4571-BF9D-C5FBF861DFC2"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit,  <span class="parmname">a</span> is overwritten by the balanced matrix.</p>
+<p>If <span class="parmname">job</span> = 'N', <span class="parmname">a</span> is not referenced.</p>
+<p>See Notes for further details.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p><span class="parmname">ilo</span> and <span class="parmname">ihi</span> are set to integers such that on exit matrix elements <var>A</var>(<var>i</var>,<var>j</var>) are zero if <var>i</var> &gt; <var>j</var> and <var>j</var> = 1,...,<span class="parmname">ilo</span>-1 or <var>i</var> = <span class="parmname">ihi</span>+1,...,<span class="parmname">n</span>.</p>
+<p>If <span class="parmname">job</span> = 'N' or 'S', <span class="parmname">ilo</span> = 1 and <span class="parmname">ihi</span> = <span class="parmname">n</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">psgebal</span> and <span class="option">pcgebal</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgebal</span> and <span class="option">pzgebal</span></p>
+<p>(global )             array of size <span class="parmname">n</span>. </p>
+<p>Details of the permutations and scaling factors applied to <span class="parmname">a</span>.  If <var>p</var><var>j</var> is the index of the row and column interchanged with row and column <var>j</var> and <var>d</var><var>j</var> is the scaling factor applied to row and column <var>j</var>, then</p>
+<p><span class="parmname">scale</span>(<var>j</var>) = <var>p</var><var>j</var>    for <var>j</var> = 1,...,<span class="parmname">ilo</span>-1, <span class="parmname">ihi</span>+1,..., n </p>
+<p><span class="parmname">scale</span>(<var>j</var>) = <var>d</var><var>j</var>    for <var>j</var> = <span class="parmname">ilo</span>,...,<span class="parmname">ihi</span></p>
+<p>The order in which the interchanges are made is <span class="parmname">n</span> to <span class="parmname">ihi</span>+1, then 1 to <span class="parmname">ilo</span>-1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global ) <span class="keyword">INTEGER</span></p>
+<p>= 0:  successful exit.</p>
+<p>&lt; 0:  if <span class="parmname">info</span> = -<var>i</var>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-182247BA-736D-426D-836D-2E813623B54E"><h2 class="sectiontitle">Application Notes</h2><p>The permutations consist of row and column interchanges which put the matrix in the form </p>
+<p><br/><img src="GUID-EB09853F-1B5B-48C8-A6DD-C439901002A6-low.gif"/><br/></p>
+<p>where <var>T1</var> and <var>T2</var> are upper triangular matrices whose eigenvalues lie along the diagonal.  The column indices <span class="parmname">ilo</span> and <span class="parmname">ihi</span> mark the starting and ending columns of the submatrix B. Balancing consists of applying a diagonal similarity transformation <var>D</var><sup>-1</sup><var>B</var><var>D</var> to make the 1-norms of each row of <var>B</var> and its corresponding column nearly equal. The output matrix is </p>
+<p><br/><img src="GUID-C4E7D049-FA0D-4F61-9B51-2E3927A3E853-low.gif"/><br/></p>
+<p>Information about the permutations <var>P</var> and the diagonal matrix <var>D</var> is returned in the vector <span class="parmname">scale</span>. </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

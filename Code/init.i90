@@ -1,0 +1,38 @@
+# 1 "/Volumes/SSD Hans 1/Github/gnr/Code/init.f90"
+MODULE INIT
+  IMPLICIT NONE
+CONTAINS
+  
+  SUBROUTINE READ_DATA()
+    USE io
+    IMPLICIT NONE	
+    INTEGER, PARAMETER :: N_variables=14, N_obs=35712 ! Number of variables and obs in the dataset
+    REAL(8) :: dataset(N_obs,N_variables)	! Array where we will read in the data
+    REAL(8), DIMENSION(N_obs, 3) :: D	! Array to store X
+    REAL(8), DIMENSION(N_obs) :: s		! Array to store Y values
+    
+    call read_file("../Data/colombia.raw", dataset)
+    WRITE(*,*) "DONE reading data"
+
+! INTEGER :: i,&
+!      l_covariates(N_covariates), &          ! space to assign which columns of the dataset contain the X's
+!      l_y					! space to assign which column contains Y
+    
+! OPEN(1,file='data.raw')	                ! opening the file dataset.txt where the dataset is saved in
+! DO i = 1, N_individuals		        ! ascii format and asigning it to handle 1
+!    READ(1,fmt=*)	dataset(i,:)	        ! reading from handle 1 into the array I created
+! END DO					! That is, loading the dataset into memory
+! CLOSE(1)					! Closing the file since now I have its contents in the dataset array
+    
+! ! Now let's assign the data
+! l_covariates=(/2,3/)	                ! Telling it which columns contain the X's
+! l_y=1	                                ! first column of the dataset contains the Y's
+
+    D=dataset(:,3:5)	                ! assigning X
+! Z=dataset(:,)
+    s=dataset(:,2)	                        ! assigning Y
+! Done reading my data, now moving to the main program
+    
+  END SUBROUTINE READ_DATA
+  
+END MODULE INIT

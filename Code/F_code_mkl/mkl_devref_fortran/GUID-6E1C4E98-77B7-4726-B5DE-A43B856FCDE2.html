@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sytd2/?hetd2"/>
+<meta name="abstract" content="Reduces a symmetric/Hermitian matrix to real symmetric tridiagonal form by an orthogonal/unitary similarity transformation(unblocked algorithm)."/>
+<meta name="description" content="Reduces a symmetric/Hermitian matrix to real symmetric tridiagonal form by an orthogonal/unitary similarity transformation(unblocked algorithm)."/>
+<meta name="DC.subject" content="LAPACK routines, auxiliary routines, ?sytd2/?hetd2, ssytd2, dsytd2, chetd2, zhetd2, generalized eigenvalue problems, real symmetric-definite problem, complex Hermitian-definite problem, symmetric matrix, reducing to tridiagonal form, Hermitian matrix, LAPACK"/>
+<meta name="keywords" content="LAPACK routines, auxiliary routines, ?sytd2/?hetd2, ssytd2, dsytd2, chetd2, zhetd2, generalized eigenvalue problems, real symmetric-definite problem, complex Hermitian-definite problem, symmetric matrix, reducing to tridiagonal form, Hermitian matrix, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6E1C4E98-77B7-4726-B5DE-A43B856FCDE2"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sytd2/?hetd2</title>
+
+</head>
+<body id="GUID-6E1C4E98-77B7-4726-B5DE-A43B856FCDE2">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sytd2/?hetd2</span></h1>
+<!--Reduces a symmetric/Hermitian matrix to real symmetric tridiagonal form by an orthogonal/unitary similarity transformation(unblocked algorithm).--><div><p class="shortdesc">Reduces a symmetric/Hermitian matrix to real symmetric tridiagonal form by an orthogonal/unitary similarity transformation(unblocked algorithm).</p>
+<div class="section" id="GUID-A402504A-29BF-4907-B645-6230F66A3B6C"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call ssytd2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dsytd2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call chetd2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetd2</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-1477F5AC-E247-406B-8682-236A0008BD86"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-F60A16F7-65CA-42E5-8452-7FC0C808662E"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?sytd2</span>/<span class="option">?hetd2</span> reduces a real symmetric/complex Hermitian matrix <var>A</var> to real symmetric tridiagonal form <var>T</var> by an orthogonal/unitary similarity transformation: <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>Q</var> = <var>T </var></samp>   (<samp class="codeph"><var>Q</var><sup class="power"><var>H</var></sup>*<var>A</var>*<var>Q</var> = <var>T </var></samp>).</p>
+</div>
+<div class="section" id="GUID-C2BDB397-5960-4A30-9BAB-022886810E89"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-FCFE8F49-5FCD-400A-B1F6-15D1BAF898C0"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the symmetric/Hermitian matrix <var>A</var> is stored:</p>
+<p>= <span class="keyword">'U'</span>:  upper triangular</p>
+<p>= <span class="keyword">'L'</span>:  lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">chetd2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetd2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, the symmetric/Hermitian matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <var>a</var> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <var>a</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <var>a</var> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <var>a</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-AFD67B9A-3902-42C4-A1C9-CA7990342E2D"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-A17D477C-064F-4AEF-B998-B95397C5D013"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the diagonal and first superdiagonal of <var>a</var> are overwritten by the corresponding elements of the tridiagonal matrix <var>T</var>, and the elements above the first superdiagonal, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors; </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the diagonal and first subdiagonal of <var>a</var> are overwritten by the corresponding elements of the tridiagonal matrix <var>T</var>, and the elements below the first subdiagonal, with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytd2</span>/<span class="option">chetd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytd2</span>/<span class="option">zhetd2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The diagonal elements of the tridiagonal matrix <var>T</var>:</p>
+<p><samp class="codeph"><var>d</var>(<var>i</var>) = <var>a</var>(<var>i</var>,<var>i</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytd2</span>/<span class="option">chetd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytd2</span>/<span class="option">zhetd2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>-1). </p>
+<p>The off-diagonal elements of the tridiagonal matrix <var>T</var>:</p>
+<p><var>e</var>(<var>i</var>) = <var>a</var>(<var>i</var>,<var>i</var>+1) if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, </p>
+<p><var>e</var>(<var>i</var>) = <var>a</var>(<var>i</var>+1,<var>i</var>) if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytd2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytd2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">chetd2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetd2</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>The first <samp class="codeph"><var>n</var>-1</samp> elements contain scalar factors of the elementary reflectors. <var>tau</var>(<var>n</var>) is used as workspace.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  if <samp class="codeph"><var>info</var> = -<var>i</var></samp>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

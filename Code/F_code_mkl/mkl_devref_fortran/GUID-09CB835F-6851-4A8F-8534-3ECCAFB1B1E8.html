@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trnlsp_get"/>
+<meta name="abstract" content="Retrieves the number of iterations, stop criterion, initial residual, and final residual."/>
+<meta name="description" content="Retrieves the number of iterations, stop criterion, initial residual, and final residual."/>
+<meta name="DC.subject" content="TR routines, ?trnlsp_get, strnlsp_get, dtrnlsp_get"/>
+<meta name="keywords" content="TR routines, ?trnlsp_get, strnlsp_get, dtrnlsp_get"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97CD4402-169E-473E-897E-2D67A7665DFE.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-09CB835F-6851-4A8F-8534-3ECCAFB1B1E8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trnlsp_get</title>
+
+</head>
+<body id="GUID-09CB835F-6851-4A8F-8534-3ECCAFB1B1E8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trnlsp_get</span></h1>
+<!--Retrieves the number of iterations, stop criterion, initial residual, and final residual.--><div><p class="shortdesc">Retrieves the number of iterations, stop criterion, initial residual, and final residual.</p>
+<div class="section" id="GUID-B2CFE4C9-A269-49DD-85BF-01E730554B28"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">strnlsp_get</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">iter</span><span class="sep">, </span><span class="var">st_cr</span><span class="sep">, </span><span class="var">r1</span><span class="sep">, </span><span class="var">r2</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="var">res</span><span class="delim"> = </span><span class="kwd">dtrnlsp_get</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">iter</span><span class="sep">, </span><span class="var">st_cr</span><span class="sep">, </span><span class="var">r1</span><span class="sep">, </span><span class="var">r2</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-31E6AD78-6377-428D-ADA9-C620C09D83B7"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-521767FE-EADC-49C8-A667-F3BC031A5B0E"><h2 class="sectiontitle">Description</h2><p>The routine retrieves the current number of iterations, the stop criterion, the initial residual, and final residual. </p>
+<p>The initial residual is the value of the functional <samp class="codeph">(||<var>y</var> - <var>f</var>(<var>x</var>)||)</samp> of the initial <var>x</var> values provided by the user.</p>
+<p>The final residual is the value of the functional <samp class="codeph">(||<var>y</var> - <var>f</var>(<var>x</var>)||)</samp> of the final <var>x</var> resulting from the algorithm operation.</p>
+<p>The <span class="parmname">st_cr</span> parameter contains a number indicating the stop criterion:</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL14-1B" class="NoLineStandard" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="25%" id="d82120e154"><p><span class="parmname">st_cr</span> Value</p>
+</th>
+<th class="row-nocellborder" align="center" valign="top" width="75%" id="d82120e159"><p>Description</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d82120e154 "><p>1</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d82120e159 "><p>The algorithm has exceeded the maximum number of iterations</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d82120e154 "><p>2</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d82120e159 "><p><samp class="codeph">Δ &lt; <span class="parmname">eps</span></samp><samp class="codeph">(1)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d82120e154 "><p>3</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d82120e159 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(2)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d82120e154 "><p>4</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d82120e159 "><p>The Jacobian matrix is singular.</p>
+<p><samp class="codeph">||<var>J</var>(<var>x</var>)<sub>(1:<var>m</var>,<var>j</var>)</sub>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(3)</samp><samp class="codeph">, <var>j</var> = 1, ..., <var>n</var></samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d82120e154 "><p>5</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d82120e159 "><p><samp class="codeph">||s||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(4)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="25%" headers="d82120e154 "><p>6</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="75%" headers="d82120e159 "><p><samp class="codeph">||<var>F</var>(<var>x</var>)||<sub>2</sub> - ||<var>F</var>(<var>x</var>) - <var>J</var>(<var>x</var>)<var>s</var>||<sub>2</sub> &lt; <span class="parmname">eps</span></samp><samp class="codeph">(5)</samp></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note:</p>
+<ul id="GUID-A246FADF-13BE-4344-B302-040BB86D6409"><li><p><samp class="codeph"><var>J</var>(<var>x</var>)</samp> is the Jacobian matrix.</p>
+</li>
+<li><p><samp class="codeph">Δ</samp> is the trust-region area.</p>
+</li>
+<li><p><samp class="codeph"><var>F</var>(<var>x</var>)</samp> is the value of the functional.</p>
+</li>
+<li><p><samp class="codeph">s</samp> is the trial step.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-2D65E9BC-2BE5-415D-952A-EA21DCD593B7"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-80AAD8A2-C416-46DE-88B1-F1AB945B06BA"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd><p>Type <span><span class="keyword">INTEGER*8</span></span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DF749EA1-1D89-4DE4-85B1-ACD278E8AFFA"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-34CD3B5E-7F7E-450A-A1D1-1FB5C1FB8A66"><dt class="dlterm"><span class="parmname">iter</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Contains the current number of iterations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">st_cr</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Contains the stop criterion.</p>
+<p><span>See the Description section for the parameter values and their meanings.</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">r1</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlsp_get</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlsp_get</span></p>
+<p>Contains the residual, <samp class="codeph">(||<var>y</var> - <var>f</var>(<var>x</var>)||)</samp> given the initial <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strnlsp_get</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrnlsp_get</span></p>
+<p>Contains the final residual, that is, the value of the functional <samp class="codeph">(||<var>y</var> - <var>f</var>(<var>x</var>)||)</samp> of the final <var>x</var> resulting from the algorithm operation.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">res</span></dt>
+
+<dd><p><span><span><span class="keyword">INTEGER</span>. </span></span> Indicates the task completion.</p>
+<p><span class="parmname">res</span> = <span class="keyword">TR_SUCCESS</span> - the routine completed the task normally.</p>
+<p><span class="keyword">TR_SUCCESS</span> is defined in the <span class="filepath">mkl_rci.fi</span> include file.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-97CD4402-169E-473E-897E-2D67A7665DFE.html">Nonlinear Least Squares Problem without Constraints</a></div>
+</div>
+<div/>
+</body>
+</html>

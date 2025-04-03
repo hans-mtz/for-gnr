@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="cluster_sparse_solver iparm Parameter"/>
+<meta name="DC.subject" content="Sparse Solvers, cluster_sparse_solver iparm parameter"/>
+<meta name="keywords" content="Sparse Solvers, cluster_sparse_solver iparm parameter"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-FFD8E244-D14B-49F1-B27D-920383E114E8.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>cluster_sparse_solver iparm Parameter</title>
+
+</head>
+<body class="no-rel-links" id="GUID-35A4D7F4-D6DF-4057-967D-406B5073354B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">cluster_sparse_solver iparm Parameter</h1>
+<div><p>The following table describes all individual components of the Parallel Direct Sparse Solver for Clusters Interface 
+      <span class="parmname">iparm</span> parameter. Components which are not used must be initialized with 0. Default values are denoted with an asterisk (*). 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-313A3EA7-CCEA-40D0-8226-EB9D4228FC3E" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="14.91300745650373%" id="d416165e32">Component 
+            </th>
+<th class="row-nocellborder" colspan="2" valign="top" id="d416165e34">Description 
+            </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><p><samp class="codeph" id="IPARM1"/><span><samp class="codeph"><span class="parmname">iparm</span>(1)</samp></span></p>
+<p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Use default values. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><span><samp class="codeph"><span class="parmname">iparm</span>(2)</samp></span> - 
+              <samp class="codeph"><span class="parmname">iparm</span>(64)</samp> are filled with default values. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">!=0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">You must supply all values in components 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(2)</samp></span> - 
+              <samp class="codeph"><span class="parmname">iparm</span>(64)</samp>. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><p><samp class="codeph" id="IPARM2"/><span><samp class="codeph"><span class="parmname">iparm</span>(2)</samp></span></p>
+<p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Fill-in reducing ordering for the input matrix. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">The nested dissection algorithm from the METIS package 
+              <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#KARYPIS98">[Karypis98]</a>. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">3 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">The parallel version of the nested dissection algorithm. It can decrease the time of computations on multi-core computers, especially when Phase 1 takes significant time. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">10 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">The MPI version of the nested dissection and symbolic factorization algorithms. The input matrix for the reordering must be distributed among different MPI processes without any intersection. Use 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(41)</samp></span> and 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(42)</samp></span>to set the bounds of the domain. During all of Phase 1, the entire matrix is not gathered on any one process, which can decrease computation time (especially when Phase 1 takes significant time) and decrease memory usage for each MPI process on the cluster. 
+              <div class="Note"><h3 class="NoteTipHead">Note</h3> <p>If you set 
+                  <samp class="codeph"><span><samp class="codeph"><span class="parmname">iparm</span>(2)</samp></span> = 10</samp>, 
+                  <samp class="codeph"><span class="parmname">comm</span> = -1</samp> (MPI communicator), and if there is one MPI process, optimization and full parallelization with the OpenMP version of the nested dissection and symbolic factorization algorithms proceeds. This can decrease computation time on multi-core computers. In this case, set 
+                  <samp class="codeph"><span><samp class="codeph"><span class="parmname">iparm</span>(41)</samp></span> = 1</samp> and 
+                  <samp class="codeph"><span><samp class="codeph"><span class="parmname">iparm</span>(42)</samp></span> = 
+                    <span class="parmname">n</span></samp> for one-based indexing, or to 
+                  <samp class="codeph">0</samp> and 
+                  <samp class="codeph"><span class="parmname">n</span> - 1</samp>, respectively, for zero-based indexing. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM3"/><span><samp class="codeph"><span class="parmname">iparm</span>(3)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph">iparm(5)</samp><samp class="codeph"/><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>User permutation. 
+              </p>
+<p>This parameter controls whether user supplied fill-in reducing permutation is used instead of the integrated multiple-minimum degree or nested dissection algorithms. Another use of this parameter is to control obtaining the fill-in reducing permutation vector calculated during the reordering stage of 
+                Intel&reg; oneAPI Math Kernel Library PARDISO. 
+              </p>
+<p>This option is useful for testing reordering algorithms, adapting the code to special applications problems (for instance, to move zero diagonal elements to the end of 
+                <samp class="codeph"><var>P</var>*<var>A</var>*<var>P</var><sup class="power"><var>T</var></sup></samp>), or for using the permutation vector more than once for matrices with identical sparsity structures. For definition of the permutation, see the description of the 
+                <span class="parmname">perm</span> parameter. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>You can only set one of 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></span>, 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM31"><span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span></a>, and 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM36"><span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span></a>, so be sure that the 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span> (partial solution) and the 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span> (Schur complement) parameters are 0 if you set 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></span>. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">User permutation in the 
+              <span class="parmname">perm</span> array is ignored. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">Intel&reg; oneAPI Math Kernel Library PARDISO uses the user supplied fill-in reducing permutation from the<span class="parmname">perm</span> array. 
+              <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM2"><samp class="codeph"><span class="parmname">iparm</span>(2)</samp></a> is ignored. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 ">Intel&reg; oneAPI Math Kernel Library PARDISO returns the permutation vector computed at phase 1 in the<span class="parmname">perm</span> array. 
+            </td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM6"/><span><samp class="codeph"><span class="parmname">iparm</span>(6)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Write solution on 
+                <span class="parmname">x</span>. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The array 
+                  <span class="parmname">x</span> is always used. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>The array 
+                <span class="parmname">x</span> contains the solution; right-hand side vector 
+                <span class="parmname">b</span> is kept unchanged. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>The solver stores the solution on the right-hand side 
+                <span class="parmname">b</span>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM7"/><span><samp class="codeph"><span class="parmname">iparm</span>(7)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Number of iterative refinement steps performed. 
+              </p>
+<p>Reports the number of iterative refinement steps that were actually performed during the solve step. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM8"/><span><samp class="codeph"><span class="parmname">iparm</span>(8)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Iterative refinement step. 
+              </p>
+<p>On entry to the solve and iterative refinement step, 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(8)</samp></span> must be set to the maximum number of iterative refinement steps that the solver performs. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>The solver automatically performs two steps of iterative refinement when perturbed pivots are obtained during the numerical factorization. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">&gt;0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Maximum number of iterative refinement steps that the solver performs. The solver performs not more than the absolute value of 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(8)</samp></span> steps of iterative refinement. The solver might stop the process before the maximum number of steps if 
+              </p>
+<ul id="GUID-7BA17405-C4D1-468A-AF71-C3610D92DAAE"><li><p>a satisfactory level of accuracy of the solution in terms of backward error is achieved, 
+                  </p>
+</li>
+<li><p> or if it determines that the required accuracy cannot be reached. In this case Parallel Direct Sparse Solver for Clusters Interface returns -4 in the 
+                    <span class="parmname">error</span> parameter. 
+                  </p>
+</li>
+</ul>
+<p>The number of executed iterations is reported in 
+                <a href="#IPARM7"><span><samp class="codeph"><span class="parmname">iparm</span>(7)</samp></span></a>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">&lt;0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Same as above, but the accumulation of the residuum uses extended precision real and complex data types. 
+              </p>
+<p>Perturbed pivots result in iterative refinement (independent of 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(8)</samp></span><samp class="codeph">=0</samp>) and the number of executed iterations is reported in 
+                <a href="#IPARM7"><span><samp class="codeph"><span class="parmname">iparm</span>(7)</samp></span></a>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM9"/><span><samp class="codeph"><span class="parmname">iparm</span>(9)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM10"/><span><samp class="codeph"><span class="parmname">iparm</span>(10)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Pivoting perturbation. 
+              </p>
+<p>This parameter instructs Parallel Direct Sparse Solver for Clusters Interface how to handle small pivots or zero pivots for nonsymmetric matrices (<samp class="codeph"><span class="parmname">mtype</span> =11</samp> or 
+                <samp class="codeph"><span class="parmname">mtype</span> =13</samp>) and symmetric matrices (<samp class="codeph"><span class="parmname">mtype</span> =-2</samp>, 
+                <samp class="codeph"><span class="parmname">mtype</span> =-4</samp>, or 
+                <samp class="codeph"><span class="parmname">mtype</span> =6</samp>). For these matrices the solver uses a complete supernode pivoting approach. When the factorization algorithm reaches a point where it cannot factor the supernodes with this pivoting strategy, it uses a pivoting perturbation strategy similar to 
+                <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LI99">[Li99]</a>, 
+                <a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHENK04">[Schenk04]</a>. 
+              </p>
+<p>Small pivots are perturbed with 
+                <samp class="codeph">eps = 10<sup>-<span><samp class="codeph"><span class="parmname">iparm</span>(10)</samp></span></sup></samp>. 
+              </p>
+<p>The magnitude of the potential pivot is tested against a constant threshold of 
+              </p>
+<p><samp class="codeph">alpha = eps*||<var>A2</var>||<sub class="subb">inf</sub>,</samp></p>
+<p>where 
+                <samp class="codeph">eps = 10<sup class="power">(-<span><samp class="codeph"><span class="parmname">iparm</span>(10)</samp></span>)</sup></samp>, 
+                <samp class="codeph"><var>A2</var> = 
+                  <var>P</var>*<var>P</var><sub class="subb">MPS</sub>*<var>D</var><sub class="subb">r</sub>*<var>A</var>*<var>D</var><sub class="subb">c</sub>*<span class="parmname">P</span></samp>, and 
+                <samp class="codeph">||<var>A2</var>||<sub class="subb">inf</sub></samp> is the infinity norm of the scaled and permuted matrix 
+                <var>A</var>. Any tiny pivots encountered during elimination are set to the sign 
+                <samp class="codeph">(<var>l</var><sub class="subb"><samp class="codeph">I</samp><samp class="codeph">I</samp></sub>)*eps*||<var>A2</var>||<sub class="subb">inf</sub></samp>, which trades off some numerical stability for the ability to keep pivots from getting too small. Small pivots are therefore perturbed with 
+                <samp class="codeph">eps = 10<sup class="power"><samp class="codeph">(-<span><samp class="codeph"><span class="parmname">iparm</span>(10)</samp></span>)</samp></sup></samp>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">13* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>The default value for nonsymmetric matrices(<span class="parmname">mtype</span> =11, 
+                <span class="parmname">mtype</span>=13), 
+                <samp class="codeph">eps = 10<sup>-13</sup></samp>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">8* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>The default value for symmetric indefinite matrices (<span class="parmname">mtype</span> =-2, 
+                <span class="parmname">mtype</span>=-4, 
+                <span class="parmname">mtype</span>=6), 
+                <samp class="codeph">eps = 10<sup>-8</sup></samp>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM11"/><span><samp class="codeph"><span class="parmname">iparm</span>(11)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Scaling vectors. 
+              </p>
+<p> Parallel Direct Sparse Solver for Clusters Interface uses a maximum weight matching algorithm to permute large elements on the diagonal and to scale. 
+              </p>
+<p> Use 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(11)</samp></span> = 1 (scaling) and 
+                <a href="#IPARM13"><span><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></span></a> = 1 (matching) for highly indefinite symmetric matrices, for example, from interior point optimizations or saddle point problems. Note that in the analysis phase (<span class="parmname">phase</span><span class="parmnamen">=11</span>) you must provide the numerical values of the matrix 
+                <var>A</var> in array 
+                <span class="parmname">a</span> in case of scaling and symmetric weighted matching. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Disable scaling. Default for symmetric indefinite matrices. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Enable scaling. Default for nonsymmetric matrices. 
+              </p>
+<p>Scale the matrix so that the diagonal elements are equal to 1 and the absolute values of the off-diagonal entries are less or equal to 1. This scaling method is applied to nonsymmetric matrices (<span class="parmname">mtype</span> = 11, 
+                <span class="parmname">mtype</span> = 13). The scaling can also be used for symmetric indefinite matrices (<span class="parmname">mtype</span> = -2, 
+                <span class="parmname">mtype</span> = -4, 
+                <span class="parmname">mtype</span> = 6) when the symmetric weighted matchings are applied (<a href="#IPARM13"><span><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></span></a> = 1). 
+              </p>
+<p>Note that in the analysis phase (<span class="parmname">phase</span>=11) you must provide the numerical values of the matrix 
+                <var>A</var> in case of scaling. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM12"/><span><samp class="codeph"><span class="parmname">iparm</span>(12)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p> Solve with transposed or conjugate transposed matrix 
+                <var>A</var>. 
+              </p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p> For real matrices, the terms 
+                    <em>transposed</em> and 
+                    <em>conjugate transposed</em> are equivalent. 
+                  </p>
+</div>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Solve a linear system 
+                <var>AX</var> = 
+                <var>B</var>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Solve a conjugate transposed system 
+                <var>A</var><sup><var>H</var></sup><var>X</var> = 
+                <var>B</var> based on the factorization of the matrix 
+                <var>A</var>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Solve a transposed system 
+                <var>A</var><sup><var>T</var></sup><var>X</var> = 
+                <var>B</var> based on the factorization of the matrix 
+                <var>A</var>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM13"/><span><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Improved accuracy using (non-) symmetric weighted matching. 
+              </p>
+<p> Parallel Direct Sparse Solver for Clusters Interface can use a maximum weighted matching algorithm to permute large elements close the diagonal. This strategy adds an additional level of reliability to the factorization methods and complements the alternative of using more complete pivoting techniques during the numerical factorization. 
+              </p>
+<p class="bold">   
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Disable matching. Default for symmetric indefinite matrices. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Enable matching. Default for nonsymmetric matrices. 
+              </p>
+<p>Maximum weighted matching algorithm to permute large elements close to the diagonal. 
+              </p>
+<p>It is recommended to use 
+                <a href="#IPARM11"><span><samp class="codeph"><span class="parmname">iparm</span>(11)</samp></span></a> = 1 (scaling) and 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></span>= 1 (matching) for highly indefinite symmetric matrices, for example from interior point optimizations or saddle point problems. 
+              </p>
+<p>Note that in the analysis phase (<span class="parmname">phase</span>=11) you must provide the numerical values of the matrix 
+                <var>A</var> in case of symmetric weighted matching. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM14"/><span><samp class="codeph"><span class="parmname">iparm</span>(14)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Number of perturbed pivots. 
+              </p>
+<p>After factorization, contains the number of perturbed pivots for the matrix types: 1, 3, 11, 13, -2, -4 and 6. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM15"/><span><samp class="codeph"><span class="parmname">iparm</span>(15)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Peak memory on symbolic factorization. 
+              </p>
+<p>The total peak memory in kilobytes that the solver needs during the analysis and symbolic factorization phase. 
+              </p>
+<p>This value is only computed in phase 1. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM16"/><span><samp class="codeph"><span class="parmname">iparm</span>(16)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Permanent memory on symbolic factorization. 
+              </p>
+<p>Permanent memory from the analysis and symbolic factorization phase in kilobytes that the solver needs in the factorization and solve phases. 
+              </p>
+<p>This value is only computed in phase 1. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM17"/><span><samp class="codeph"><span class="parmname">iparm</span>(17)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Size of factors/Peak memory on numerical factorization and solution. 
+              </p>
+<p>This parameter provides the size in kilobytes of the total memory consumed by in-core 
+                Intel&reg; oneAPI Math Kernel Library PARDISO for internal floating point arrays. This parameter is computed in phase 1. See<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM63"><span><samp class="codeph"><span class="parmname">iparm</span>(63)</samp></span></a> for the OOC mode. 
+              </p>
+<p>The total peak memory consumed by 
+                Intel&reg; oneAPI Math Kernel Library PARDISO is<samp class="codeph">max(<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM15"><span><samp class="codeph"><span class="parmname">iparm</span>(15)</samp></span></a>, 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM16"><span><samp class="codeph"><span class="parmname">iparm</span>(16)</samp></span></a>+<span><samp class="codeph"><span class="parmname">iparm</span>(17)</samp></span>)</samp></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM18"/><span><samp class="codeph"><span class="parmname">iparm</span>(18)</samp></span><p>input/output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Report the number of non-zero elements in the factors. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">&lt;0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Enable reporting if 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(18)</samp></span> &lt; 0 on entry. The default value is -1. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">&gt;=0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Disable reporting. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><span><samp class="codeph"><span class="parmname">iparm</span>(19)</samp></span> - 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(20)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM21"/><span><samp class="codeph"><span class="parmname">iparm</span>(21)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Pivoting for symmetric indefinite matrices. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Apply 1x1 diagonal pivoting during the factorization process. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Apply 1x1 and 2x2 Bunch-Kaufman pivoting during the factorization process. Bunch-Kaufman pivoting is available for matrices of 
+                <samp class="codeph"><span class="parmname">mtype</span>=-2</samp>, 
+                <samp class="codeph"><span class="parmname">mtype</span>=-4</samp>, or 
+                <samp class="codeph"><span class="parmname">mtype</span>=6</samp>. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM22"/><span><samp class="codeph"><span class="parmname">iparm</span>(22)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Inertia: number of positive eigenvalues. 
+              </p>
+<p>Intel&reg; oneAPI Math Kernel Library PARDISO reports the number of positive eigenvalues for symmetric indefinite matrices. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM23"/><span><samp class="codeph"><span class="parmname">iparm</span>(23)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Inertia: number of negative eigenvalues. 
+              </p>
+<p>Intel&reg; oneAPI Math Kernel Library PARDISO reports the number of negative eigenvalues for symmetric indefinite matrices. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM24"/><span><samp class="codeph"><span class="parmname">iparm</span>(24)</samp></span> - 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(26)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM27"/><span><samp class="codeph"><span class="parmname">iparm</span>(27)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Matrix checker. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Do not check the sparse matrix representation for errors. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Check integer arrays 
+                <span class="parmname">ia</span> and 
+                <span class="parmname">ja</span>. In particular, check whether the column indices are sorted in increasing order within each row. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM28"/><span><samp class="codeph"><span class="parmname">iparm</span>(28)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Single or double precision Parallel Direct Sparse Solver for Clusters Interface. 
+              </p>
+<p>See 
+                <a href="#IPARM8"><span><samp class="codeph"><span class="parmname">iparm</span>(8)</samp></span></a> for information on controlling the precision of the refinement steps. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Input arrays (<span class="parmname">a</span>, 
+                <span class="parmname">x</span> and 
+                <span class="parmname">b</span>) and all internal arrays must be presented in double precision. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Input arrays (<span class="parmname">a</span>, 
+                <span class="parmname">x</span> and 
+                <span class="parmname">b</span>) must be presented in single precision. 
+              </p>
+<p>In this case all internal computations are performed in single precision. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM29"/><span><samp class="codeph"><span class="parmname">iparm</span>(29)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM30"/><span><samp class="codeph"><span class="parmname">iparm</span>(30)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Number of zero or negative pivots. 
+              </p>
+<p>If 
+                Intel&reg; oneAPI Math Kernel Library PARDISO detects zero or negative pivot for<span class="parmname">mtype</span>=2 or 
+                <span class="parmname">mtype</span>=4 matrix types, the factorization is stopped. 
+                Intel&reg; oneAPI Math Kernel Library PARDISO returns immediately with an<span class="parmname">error</span> = -4, and 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(30)</samp></span> reports the number of the equation where the zero or negative pivot is detected. 
+              </p>
+<p>Note: The returned value can be different for the parallel and sequential version in case of several zero/negative pivots. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="5" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM31"/><span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p> Partial solve and computing selected components of the solution vectors. 
+              </p>
+<p>This parameter controls the solve step of 
+                Intel&reg; oneAPI Math Kernel Library PARDISO. It can be used if only a few components of the solution vectors are needed or if you want to reduce the computation cost at the solve step by utilizing the sparsity of the right-hand sides. To use this option the input permutation vector define<span class="parmname">perm</span> so that when 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1 it means that either the 
+                <var>i</var>-th component in the right-hand sides is nonzero, or the 
+                <var>i</var>-th component in the solution vectors is computed, or both, depending on the value of 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span>. 
+              </p>
+<p> The permutation vector 
+                <span class="parmname">perm</span>must be present in all phases of 
+                Intel&reg; oneAPI Math Kernel Library PARDISO software. At the reordering step, the software overwrites the input vector<span class="parmname">perm</span> by a permutation vector used by the software at the factorization and solver step. If 
+                <span class="parmname">m</span> is the number of components such that 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1, then the last 
+                <span class="parmname">m</span> components of the output vector 
+                <span class="parmname">perm</span> are a set of the indices 
+                <var>i</var> satisfying the condition 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1 on input. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Turning on this option often increases the time used by 
+                  Intel&reg; oneAPI Math Kernel Library PARDISO for factorization and reordering steps, but it can reduce the time required for the solver step. 
+                </p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p> Set the parameters 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM8"><span><samp class="codeph"><span class="parmname">iparm</span>(8)</samp></span></a> (iterative refinement steps), 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM4"><span><samp class="codeph"><span class="parmname">iparm</span>(4)</samp></span></a> (preconditioned CGS), 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM5"><span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></span></a> (user permutation), and 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM36"><span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span></a> (Schur complement) to 0 as well. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Disables this option. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p> it is assumed that the right-hand sides have only a few non-zero components<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#NZ"><sup>*</sup></a> and the input permutation vector 
+                <span class="parmname">perm</span> is defined so that 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1 means that the (<var>i</var>)-th component in the right-hand sides is nonzero. In this case 
+                Intel&reg; oneAPI Math Kernel Library PARDISO only uses the non-zero components of the right-hand side vectors and computes only corresponding components in the solution vectors. That means the<var>i</var>-th component in the solution vectors is only computed if 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p> It is assumed that the right-hand sides have only a few non-zero components<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#NZ"><sup>*</sup></a> and the input permutation vector 
+                <span class="parmname">perm</span> is defined so that 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1 means that the 
+                <var>i</var>-th component in the right-hand sides is nonzero. 
+              </p>
+<p> Unlike for 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span>=1, all components of the solution vector are computed for this setting and all components of the right-hand sides are used. Because all components are used, for 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span>=2 you must set the 
+                <var>i</var>-th component of the right-hand sides to zero explicitly if 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> is not equal to 1. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">3 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Selected components of the solution vectors are computed. The 
+                <span class="parmname">perm</span> array is not related to the right-hand sides and it only indicates which components of the solution vectors should be computed. In this case 
+                <span class="parmname">perm</span><samp class="codeph">(<var>i</var>)</samp> = 1 means that the 
+                <var>i</var>-th component in the solution vectors is computed. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph"><span class="parmname">iparm</span>(31)</samp> - 
+              <samp class="codeph"><span class="parmname">iparm</span>(33)</samp></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="3" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM35"/><span><samp class="codeph"><span class="parmname">iparm</span>(35)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>One- or zero-based indexing of columns and rows. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>One-based indexing: columns and rows indexing in arrays 
+                <span class="parmname">ia</span>, 
+                <span class="parmname">ja</span>, and 
+                <span class="parmname">perm</span> starts from 1 (Fortran-style indexing). 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Zero-based indexing: columns and rows indexing in arrays 
+                <span class="parmname">ia</span>, 
+                <span class="parmname">ja</span>, and 
+                <span class="parmname">perm</span> starts from 0 (C-style indexing). 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM36"/><span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Schur complement matrix computation control. To calculate this matrix, you must set the input permutation vector 
+                <span class="parmname">perm</span> to a set of indexes such that when 
+                <samp class="codeph"><span class="parmname">perm</span>(<var>i</var>) = 1</samp>, the 
+                <var>i</var>-th element of the initial matrix is an element of the Schur matrix. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>You can only set one of 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM5"><span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></span></a>, 
+                  <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM31"><span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span></a>, and 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span>, so be sure that the 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(5)</samp></span> (user permutation) and the 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(31)</samp></span> (partial solution) parameters are 0 if you set 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(36)</samp></span>. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Do not compute Schur complement. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Compute Schur complement matrix as part of 
+                Intel&reg; oneAPI Math Kernel Library PARDISO factorization step and return it in the solution vector. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This option only computes the Schur complement matrix, and does not calculate factorization arrays. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Compute Schur complement matrix as part of 
+                Intel&reg; oneAPI Math Kernel Library PARDISO factorization step and return it in the solution vector. Since this option calculates factorization arrays you can use it to launch partial or full solution of the entire problem after the factorization step. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM37"/><span><samp class="codeph"><span class="parmname">iparm</span>(37)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Format for matrix storage. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Use CSR format (see 
+                <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of BSR Format</a>) for matrix storage. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Use CSR format (see 
+                <a href="GUID-3FD9A93D-CA65-4321-BED6-7593C6EEDB60.html#CSR3">Three Array Variation of BSR Format</a>) for matrix storage. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">&lt; 0 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Convert supplied matrix to variable BSR (VBSR) format (see 
+                <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html#GUID-D309FCF9-4568-44D1-A199-E54E04D624C8">Sparse Data Storage</a>) for matrix storage. 
+                Intel&reg; oneAPI Math Kernel Library PARDISO analyzes the matrix provided in CSR3 format and converts it to an internal VBSR format. Set<samp class="codeph"><span class="parmname">iparm</span>(37)</samp><samp class="codeph"> = -<var>t</var></samp>, 0 &lt; 
+                <var>t</var><span class="eqsymbol">≤</span> 100. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM38"/><span><samp class="codeph"><span class="parmname">iparm</span>(38)</samp></span> - 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(39)</samp></span></td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="5" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM40"/><span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Matrix input format. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Performance of the reordering step of the Parallel Direct Sparse Solver for Clusters Interface is slightly better for assembled format (CSR, 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span> = 0) than for distributed format (DCSR, 
+                  <span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span> &gt; 0) for the same matrices, so if the matrix is assembled on one node do not distribute it before calling 
+                <span class="option">cluster_sparse_solver</span>. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Provide the matrix in usual centralized input format: the master MPI process stores all data from matrix 
+                <var>A</var>, with rank=0. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Provide the matrix in distributed assembled matrix input format. In this case, each MPI process stores only a part (or domain) of the matrix 
+                <var>A</var> data. Set the bounds of the domain using 
+                <a href="#IPARM41"><span><samp class="codeph"><span class="parmname">iparm</span>(41)</samp></span></a> and 
+                <a href="#IPARM42"><span><samp class="codeph"><span class="parmname">iparm</span>(42)</samp></span></a>. The solution vector is placed on the master process. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>Provide the matrix in distributed assembled matrix input format. In this case, each MPI process stores only a part (or domain) of the matrix 
+                <var>A</var> data. Set the bounds of the domain using 
+                <a href="#IPARM41"><span><samp class="codeph"><span class="parmname">iparm</span>(41)</samp></span></a> and 
+                <a href="#IPARM42"><span><samp class="codeph"><span class="parmname">iparm</span>(42)</samp></span></a>. The solution vector, 
+                <var>A</var>, and RHS elements are distributed between processes in same manner. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">3 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p> Provide the matrix in distributed assembled matrix input format. In this case, each MPI process stores only a part (or domain) of the matrix 
+                <var>A</var> data. Set the bounds of the domain using 
+                <samp class="codeph"><span class="parmname">iparm</span>(41)</samp> and 
+                <samp class="codeph"><span class="parmname">iparm</span>(42)</samp>. The 
+                <var>A</var> and RHS elements are distributed between processes in same manner and the solution vector is the same on each process 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM41"/><span><samp class="codeph"><span class="parmname">iparm</span>(41)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Beginning of input domain. 
+              </p>
+<p>The number of the matrix 
+                <var>A</var> row, RHS element, and, for 
+                <a href="#IPARM40"><span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span></a><samp class="codeph">=2</samp>, solution vector that begins the input domain belonging to this MPI process. 
+              </p>
+<p>Only applicable to the distributed assembled matrix input format (<span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><samp class="codeph">&gt; 0</samp>). 
+              </p>
+<p>See 
+                <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Formats</a> for more details. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM42"/><span><samp class="codeph"><span class="parmname">iparm</span>(42)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>End of input domain. 
+              </p>
+<p>The number of the matrix 
+                <var>A</var> row, RHS element, and, for 
+                <a href="#IPARM40"><span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span></a><samp class="codeph">=2</samp>, solution vector that ends the input domain belonging to this MPI process. 
+              </p>
+<p>Only applicable to the distributed assembled matrix input format (<span><samp class="codeph"><span class="parmname">iparm</span>(40)</samp></span><samp class="codeph">&gt; 0</samp>). 
+              </p>
+<p>See 
+                <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Formats</a> for more details. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM43"/><span><samp class="codeph"><span class="parmname">iparm</span>(43)</samp></span> - 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(59)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" rowspan="4" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM60"/><span><samp class="codeph"><span class="parmname">iparm</span>(60)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>cluster_sparse_solver mode. 
+              </p>
+<p><span><samp class="codeph"><span class="parmname">iparm</span>(60)</samp></span> switches between in-core (IC) and out-of-core (OOC) of cluster_sparse_solver. OOC can solve very large problems by holding the matrix factors in files on the disk, which requires a reduced amount of main memory compared to IC. 
+              </p>
+<p>Unless you are operating in sequential mode, you can switch between IC and OOC modes after the reordering phase. However, you can get better cluster_sparse_solver performance by setting 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(60)</samp></span> before the reordering phase. 
+              </p>
+<p>The amount of memory used in OOC mode depends on the number of OpenMP threads. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Warning</h3> <p> Do not increase the number of OpenMP threads used for cluster_sparse_solver between the first call and the factorization or solution phase. Because the minimum amount of memory required for out-of-core execution depends on the number of OpenMP threads, increasing it after the initial call can cause incorrect results.</p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">0* 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>IC mode. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">1 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>IC mode is used if the total amount of RAM (in megabytes) needed for storing the matrix factors is less than sum of two values of the environment variables: 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> (default value 2000 MB) and 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_SWAP_SIZE</span> (default value 0 MB); otherwise OOC mode is used. In this case amount of RAM used by OOC mode cannot exceed the value of 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span>. 
+              </p>
+<p>If the total peak memory needed for storing the local arrays is more than 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span>, increase 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> if possible. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Conditional numerical reproducibility (CNR) is not supported for this mode. 
+                </p>
+</div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="8.285004142502071%" headers="d416165e34 ">2 
+            </td>
+<td class="row-nocellborder" valign="top" width="76.80198840099419%" headers="d416165e34 "><p>OOC mode. 
+              </p>
+<p>The OOC mode can solve very large problems by holding the matrix factors in files on the disk. Hence the amount of RAM required by OOC mode is significantly reduced compared to IC mode. 
+              </p>
+<p>If the total peak memory needed for storing the local arrays is more than 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span>, increase 
+                <span class="keyword">MKL_PARDISO_OOC_MAX_CORE_SIZE</span> if possible. 
+              </p>
+<p id="OOC_NRHS">To obtain better cluster_sparse_solver performance, during the numerical factorization phase you can provide the maximum number of right-hand sides, which can be used further during the solving phase. 
+              </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> To use OOC mode, you must disable 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(11)</samp></span> (scaling) and 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(13)</samp></span> = 1 (matching). 
+              </div>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM61"/><span><samp class="codeph"><span class="parmname">iparm</span>(61)</samp></span> - 
+              <span><samp class="codeph"><span class="parmname">iparm</span>(62)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM63"/><span><samp class="codeph"><span class="parmname">iparm</span>(63)</samp></span><p>output 
+              </p>
+</td>
+<td class="row-nocellborder" colspan="2" valign="top" headers="d416165e34 "><p>Size of the minimum OOC memory for numerical factorization and solution. 
+              </p>
+<p>This parameter provides the size in kilobytes of the minimum memory required by OOC 
+                Intel&reg; oneAPI Math Kernel Library PARDISO for internal floating point arrays. This parameter is computed in phase 1. 
+              </p>
+<p>Total peak memory consumption of OOC 
+                Intel&reg; oneAPI Math Kernel Library PARDISO can be estimated as<span class="keyword">max</span>(<a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM15"><span><samp class="codeph"><span class="parmname">iparm</span>(15)</samp></span></a>, 
+                <a href="GUID-264E311E-ACED-4D56-AC31-E9D3B11D1CBF.html#IPARM16"><span><samp class="codeph"><span class="parmname">iparm</span>(16)</samp></span></a> + 
+                <span><samp class="codeph"><span class="parmname">iparm</span>(63)</samp></span>). 
+              </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="14.91300745650373%" headers="d416165e32 "><samp class="codeph" id="IPARM64"/><span><samp class="codeph"><span class="parmname">iparm</span>(64)</samp></span><p>input 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" headers="d416165e34 "><p>Reserved. Set to zero. 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p id="NZ">Generally in sparse matrices, components which are equal to zero can be considered non-zero if necessary. For example, in order to make a matrix structurally symmetric, elements which are zero can be considered non-zero. See 
+        <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Formats</a> for an example. 
+      </p>
+</div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d416165e2142"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d416165e2142 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+<div/>
+</body>
+</html>

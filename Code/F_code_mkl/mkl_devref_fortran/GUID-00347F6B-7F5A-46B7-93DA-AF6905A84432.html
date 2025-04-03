@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?getf2"/>
+<meta name="abstract" content="Computes the LU factorization of a general m-by-n matrix using partial pivoting with row interchanges (unblocked algorithm)."/>
+<meta name="description" content="Computes the LU factorization of a general m-by-n matrix using partial pivoting with row interchanges (unblocked algorithm)."/>
+<meta name="DC.subject" content="?getf2, LAPACK routines, auxiliary routines, LU factorization, with partial pivoting, general matrix"/>
+<meta name="keywords" content="?getf2, LAPACK routines, auxiliary routines, LU factorization, with partial pivoting, general matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-00347F6B-7F5A-46B7-93DA-AF6905A84432"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?getf2</title>
+
+</head>
+<body id="GUID-00347F6B-7F5A-46B7-93DA-AF6905A84432">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?getf2</span></h1>
+<!--Computes the LU factorization of a general m-by-n matrix using partial pivoting with row interchanges (unblocked algorithm).--><div><p class="shortdesc">Computes the LU factorization of a general m-by-n matrix using partial pivoting with row interchanges (unblocked algorithm).</p>
+<div class="section" id="GUID-AFD0F117-C920-4D4F-A3FE-9B342591FC9E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgetf2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgetf2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgetf2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgetf2</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-2F6B9972-BC65-434B-A45D-6BFC9FC3F875"><h2 class="sectiontitle">Include Files</h2><ul id="d163e88"><li id="d163e89"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-CF61612A-987F-4483-9214-AEF8AD013D49"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the <var>LU</var> factorization of a general <var>m</var>-by-<var>n</var> matrix <var>A</var> using partial pivoting with row interchanges. The factorization has the form</p>
+<p><samp class="codeph"><var>A</var> = <var>P</var>*<var>L</var>*<var>U</var></samp></p>
+<p>where <var>p</var> is a permutation matrix, <var>L</var> is lower triangular with unit diagonal elements (lower trapezoidal if <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>) and <var>U</var> is upper triangular (upper trapezoidal if <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>). </p>
+</div>
+<div class="section" id="GUID-86B1271B-44E5-458B-8354-4E43D827EB2F"><h2 class="sectiontitle">Input Parameters</h2><p>The data types are given for the Fortran interface. 
+      </p>
+<dl id="GUID-CDDD8FC8-B571-4C16-8BFB-B66F295B8A55"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>A</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgetf2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgetf2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgetf2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgetf2</span>.</p>
+<p>Array, size (<var>lda</var>,*). Contains the matrix <var>A</var> to be factored. The second dimension of <var>a</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>m</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C3D2D8C3-3168-41A0-9EF2-F853F51928F9"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C6F78CC6-4A83-4069-8494-7565C9711470"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by <var>L</var> and <var>U</var>. The unit diagonal elements of <var>L</var> are not stored. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Array, size at least <samp class="codeph">max(1,min(<var>m</var>,<var>n</var>))</samp>. </p>
+<p>The pivot indices: for <samp class="codeph">1 ≤ i ≤ <var>n</var></samp>, row <var>i</var> was interchanged with row <var>ipiv</var>(<var>i</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var> &gt;0</samp>, <var>u</var><sub class="subb"><var>i</var><var>i</var></sub> is 0. The factorization has been completed, but <var>U</var> is exactly singular. Division by 0 will occur if you use the factor <var>U</var> for solving a system of linear equations.</p>
+<p><samp class="codeph">If <var>info</var> = -1011</samp>, memory allocation error occurred.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

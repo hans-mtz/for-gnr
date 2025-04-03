@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sbmv"/>
+<meta name="abstract" content="Computes a matrix-vector product with a symmetric band matrix."/>
+<meta name="description" content="Computes a matrix-vector product with a symmetric band matrix."/>
+<meta name="DC.subject" content="?sbmv, BLAS Level 2 routines, symmetric matrix, matrix-vector product, band storage, product:matrix-vector, matrix-vector operation:product"/>
+<meta name="keywords" content="?sbmv, BLAS Level 2 routines, symmetric matrix, matrix-vector product, band storage, product:matrix-vector, matrix-vector operation:product"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C53B20A8-CCE2-4AF3-A349-63B63C8CCF8D"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sbmv</title>
+
+</head>
+<body id="GUID-C53B20A8-CCE2-4AF3-A349-63B63C8CCF8D">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sbmv</span></h1>
+<!--Computes a matrix-vector product with a symmetric band matrix.--><div><p class="shortdesc">Computes a matrix-vector product with a symmetric band matrix.</p>
+<div class="section" id="GUID-BEDE7E82-C168-498D-BF65-085BBCEF9A27"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssbmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsbmv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">beta</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sbmv</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">y</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">]</span><span class="delim">[</span><span class="sep">,</span><span class="var">alpha</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">beta</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-B1788E0D-C834-4D8F-BA1C-A551C083CDDD"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8D8B129B-9FDB-4BCB-B01E-827D417B7B2D"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?sbmv</span> routines perform a matrix-vector operation defined as </p>
+<p><samp class="codeph"><var>y</var> := <var>alpha</var>*<var>A</var>*<var>x</var> + <var>beta</var>*<var>y</var></samp>,</p>
+<p>where:</p>
+<p><var>alpha</var> and <var>beta</var> are scalars,</p>
+<p><var>x</var> and <var>y</var> are <var>n</var>-element vectors,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> symmetric band matrix, with <var>k</var> super-diagonals.</p>
+</div>
+<div class="section" id="GUID-8131BA8D-1D93-46BE-9314-24912E27D995"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-D8E2A22D-C3D0-4F41-84CC-C8B22CDCA6AF"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the band matrix <var>A</var> is used:</p>
+<p>if <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span> - upper  triangular part;</p>
+<p>if <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span> - low  triangular part.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the number of super-diagonals of the matrix <var>A</var>.</p>
+<p>The value of <var>k</var> must satisfy <tt>0</tt><span class="eqsymbol">≤</span><var>k</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbmv</span></p>
+<p>Specifies the scalar <var>alpha</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbmv</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>n</var>)</samp>. Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, the leading <samp class="codeph">(<var>k</var> + 1)</samp> by <var>n</var> part of the array <var>a</var> must contain the upper triangular band part of the symmetric matrix, supplied column-by-column, <span>with the leading diagonal of the matrix in row <samp class="codeph">(<var>k</var> + 1)</samp> of the array, the first super-diagonal starting at position 2 in row <var>k</var>, and so on.</span> The top left <var>k</var> by <var>k</var> triangle of the array <var>a</var> 
+is not referenced.</p>
+<p>The following program segment transfers the upper triangular part of a symmetric band matrix from conventional full matrix storage (<var>matrix</var>) to band storage (<var>a</var>): </p>
+<pre>       do 20, j = 1, n
+          m = k + 1 - j
+          do 10, i = max( 1, j - k ), j
+             a( m + i, j ) = matrix( i, j )
+10        continue
+20     continue</pre><p>Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the leading <samp class="codeph">(<var>k</var> + 1)</samp> by <var>n</var> part of the array <var>a</var> must contain the lower triangular band part of the symmetric matrix, supplied column-by-column, <span>with the leading diagonal of the matrix in row 1 of the array, the first sub-diagonal starting at position 1 in row 2</span>, and so on. The bottom right <var>k</var> by <var>k</var> triangle of the array <var>a</var> is not referenced.</p>
+<p>The following program segment transfers the lower triangular part of a symmetric band matrix from conventional full matrix storage (<var>matrix</var>) to band storage (<var>a</var>): </p>
+<pre>       do 20, j = 1, n
+          m = 1 - j
+          do 10, i = j, min( n, j + k )
+             a( m + i, j ) = matrix( i, j )
+10        continue
+20     continue</pre></dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>a</var> as declared in the calling (sub)program. The value of <var>lda</var> must be at least <samp class="codeph">(<var>k</var> + 1)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbmv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of<var> incx</var> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbmv</span></p>
+<p>Specifies the scalar <var>beta</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssbmv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsbmv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incy</var>))</samp>. Before entry, the incremented array <var>y</var> must contain the vector <var>y</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>y</var>.</p>
+<p>The value of <var>incy</var> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-ABBEA4DA-7B4C-489A-8063-BDC09FBB1ADD"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1CAB8E9A-F811-4052-97FB-D6374938BD54"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Overwritten by the updated vector <var>y</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D659A2E2-EDA1-4FDA-B434-2F0C6E318DA7"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">sbmv</span> interface are the following:</p>
+<dl id="GUID-BCAC1C06-7AC6-4DF1-B6E3-4657DB77C9B4"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the array <var>a</var> of size (<var>k+1,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">beta</span></dt>
+
+<dd><p>The default value is 0.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Building an Application With FFTW3 Interface Wrappers"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A0917C64-6796-4C0A-81A8-99E0B115B365"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Building an Application With FFTW3 Interface Wrappers</title>
+
+</head>
+<body id="GUID-A0917C64-6796-4C0A-81A8-99E0B115B365">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Building an Application With FFTW3 Interface
+    Wrappers</h1>
+<div><p>Normally, the only change needed to build your application with FFTW3 wrappers replacing original FFTW library is to add Intel&reg; oneAPI Math Kernel Library at the link stage (see section<em>"Linking Your Application with Intel&reg; oneAPI Math Kernel Library" in the Intel&reg; oneAPI Math Kernel Library Developer Guide</em>). 
+    </p>
+<p> If you recompile your application, add subdirectory 
+      <span class="filepath">include\fftw</span> to
+      the search path for header files to avoid FFTW3 version conflicts. 
+    </p>
+<p> Sometimes, you may have to modify your application
+      according to the following recommendations: 
+    </p>
+<ul id="GUID-9ED2CA52-6C1A-43C2-AFFB-25296DE2C272"><li><p> The application requires 
+        </p>
+<p><samp class="codeph">#include
+            "fftw3.h"</samp> , 
+        </p>
+<p>which it probably already includes. 
+        </p>
+</li>
+<li><p> The application does not require 
+        </p>
+<p><samp class="codeph">#include
+            "mkl_dfti.h" . 
+          </samp></p>
+</li>
+<li><p> The application does not require 
+        </p>
+<p><samp class="codeph">#include
+            "fftw3_mkl.h"</samp> . 
+        </p>
+<p>It is required only in case you want to use the 
+          <span class="keyword">MKL_RODFT00</span> constant. 
+        </p>
+</li>
+<li><p> If the application does not check whether a 
+          <span class="keyword">NULL</span>plan is returned by plan creation functions, this check must be added, because the FFTW3 to Intel&reg; oneAPI Math Kernel Library wrappers do not provide 100% of FFTW3 functionality.</p>
+</li>
+</ul>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html">FFTW3 Interface to Intel&reg; Math Kernel Library</a></div>
+</div>
+<div/>
+</body>
+</html>

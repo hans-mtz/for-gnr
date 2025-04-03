@@ -1,0 +1,17 @@
+subroutine gnr_flex(s,D,eps,flex_e,gam,n,m)
+    use gnr_mod, only: flex_type, estimate_flex
+    
+    implicit none
+
+    integer(8), intent(in) :: n,m
+    real(8), intent(in) :: s(n), D(n,m)
+    real(8), intent(out) ::  eps(n),flex_e(n),gam(m)
+    type(flex_type(n_obs=n,n_coef=m)) :: flex
+
+    flex=estimate_flex(s,D)
+
+    eps=flex%resid
+    flex_e=flex%predict
+    gam=flex%coeff
+    
+end subroutine gnr_flex

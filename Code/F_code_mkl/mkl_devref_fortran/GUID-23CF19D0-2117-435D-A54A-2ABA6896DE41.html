@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lapll"/>
+<meta name="abstract" content="Measures the linear dependence of two vectors."/>
+<meta name="description" content="Measures the linear dependence of two vectors."/>
+<meta name="DC.subject" content="?lapll, LAPACK routines, auxiliary routines, linear dependence of vectors"/>
+<meta name="keywords" content="?lapll, LAPACK routines, auxiliary routines, linear dependence of vectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-23CF19D0-2117-435D-A54A-2ABA6896DE41"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lapll</title>
+
+</head>
+<body id="GUID-23CF19D0-2117-435D-A54A-2ABA6896DE41">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lapll</span></h1>
+<!--Measures the linear dependence of two vectors.--><div><p class="shortdesc">Measures the linear dependence of two vectors.</p>
+<div class="section" id="GUID-08B6BFF2-97BA-406E-B52B-12D3E843AEB9"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slapll</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">Y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">ssmin</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlapll</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">Y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">ssmin</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clapll</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">Y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">ssmin</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlapll</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">Y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">ssmin</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-4EA1545C-4651-439A-8A30-E8688B8ACDF0"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-1ADAE716-CB9F-4C61-BBBA-59B910E7C5FA"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given two column vectors <var>x</var> and <var>y</var> of length <var>n</var>, let </p>
+<p><samp class="codeph"><var>A</var> = (<var>x</var><var>y</var>)</samp> be the <var>n</var>-by-2 matrix.</p>
+<p>The routine <span class="option">?lapll</span> first computes the <var>QR</var> factorization of <var>A</var> as <samp class="codeph"><var>A</var> = <var>Q*R</var></samp> and then computes the SVD of the 2-by-2 upper triangular matrix <var>R</var>. The smaller singular value of <var>R</var> is returned in <var>ssmin</var>, which is used as the measurement of the linear dependency of the vectors <var>x</var> and <var>y</var>.</p>
+</div>
+<div class="section" id="GUID-B2A5C128-52D9-4724-A6CF-11BF712AF659"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A73806EC-15B1-443D-91B8-FE0D1C576F48"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The length of the vectors <var>x</var> and <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slapll</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlapll</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clapll</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlapll</span></p>
+<p>Array, <span class="keyword">DIMENSION</span><samp class="codeph">(1+(<var>n</var>-1)<var>incx</var>)</samp>. </p>
+<p>On entry, <var>x</var> contains the <var>n</var>-vector x.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slapll</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlapll</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clapll</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlapll</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (1+(<var>n</var>-1)<var>incy</var>). </p>
+<p>On entry, <var>y</var> contains the <var>n</var>-vector y.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The increment between successive elements of x; <samp class="codeph"><var>incx</var> &gt; 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The increment between successive elements of y; <samp class="codeph"><var>incy</var> &gt; 0</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-ECA9E10E-D8FF-4C75-8753-1FC72AE387C4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9A9D6230-2021-4601-91F3-072101077BE7"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>On exit, <var>x</var> is overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>On exit, <var>y</var> is overwritten.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ssmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slapll</span>/<span class="option">clapll</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlapll</span>/<span class="option">zlapll</span></p>
+<p>The smallest singular value of the <var>n</var>-by-2 matrix <var>A</var> = (<var>x</var><var>y</var>).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

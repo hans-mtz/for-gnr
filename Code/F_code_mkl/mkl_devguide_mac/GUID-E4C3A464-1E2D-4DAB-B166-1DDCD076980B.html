@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Instruction Set Specific Dispatching on Intel&reg; Architectures"/>
+<meta name="DC.subject" content="environment variables, to enable dispatching of new architectures, dispatch, new Intel&reg; architectures, enable with an environment variable, to control dispatching for Intel&reg; architectures, dispatch Intel&reg; architectures, configure with an environment variable"/>
+<meta name="keywords" content="environment variables, to enable dispatching of new architectures, dispatch, new Intel&reg; architectures, enable with an environment variable, to control dispatching for Intel&reg; architectures, dispatch Intel&reg; architectures, configure with an environment variable"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-1BC5DDF8-4B40-467C-9E5F-8DBAF3A03450.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E4C3A464-1E2D-4DAB-B166-1DDCD076980B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Instruction Set Specific Dispatching on Intel&reg; Architectures</title>
+
+</head>
+<body id="GUID-E4C3A464-1E2D-4DAB-B166-1DDCD076980B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1"> Instruction Set Specific Dispatching on Intel&reg; Architectures</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library automatically queries and then dispatches the code path supported on your Intel&reg; processor to the optimal instruction set architecture (ISA) by default. The<span class="keyword">MKL_ENABLE_INSTRUCTIONS</span> environment variable or the 
+  <span class="option">mkl_enable_instructions</span> support function enables you to dispatch to an ISA-specific code path of your choice. For example, you can run the Intel&reg; Advanced Vector Extensions (Intel&reg; AVX) code path on an Intel processor based on Intel&reg; Advanced Vector Extensions 2 (Intel&reg; AVX2), or you can run the Intel&reg; Streaming SIMD Extensions 4.2 (Intel&reg; SSE4.2) code path on an Intel AVX-enabled Intel processor. This feature is not available on non-Intel processors. 
+  </p>
+<p>In some cases Intel&reg; oneAPI Math Kernel Library also provides support for upcoming architectures ahead of hardware availability, but the library does not automatically dispatch the code path specific to an upcoming ISA by default. If for your exploratory work you need to enable an ISA for an Intel processor that is not yet released or if you are working in a simulated environment, you can use the<span class="keyword">MKL_ENABLE_INSTRUCTIONS</span> environment variable or 
+  <span class="option">mkl_enable_instructions</span> support function. 
+  </p>
+<p>The following table lists possible values of 
+    <span class="keyword">MKL_ENABLE_INSTRUCTIONS</span> alongside the corresponding ISA supported by a given processor. 
+    <span class="keyword">MKL_ENABLE_INSTRUCTIONS</span>dispatches to the default ISA if the ISA requested is not supported on the particular Intel processor. For example, if you request to run the Intel AVX512 code path on a processor based on Intel AVX2, Intel&reg; oneAPI Math Kernel Library runs the Intel AVX2 code path. The table also explains whether the ISA is dispatched by default on the processor that supports this ISA.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TABLE_9CE70D5915D745AB87E1264827D9E2A5" frame="hsides" border="1" rules="all"><thead align="left"><tr><th class="cellrowborder" valign="top" width="30.76923076923077%" id="d30787e74"><p>Value of 
+              <br/><span class="keyword">MKL_ENABLE_INSTRUCTIONS</span></p>
+</th>
+<th class="cellrowborder" valign="top" width="46.15384615384615%" id="d30787e80"><p>ISA 
+            </p>
+</th>
+<th class="row-nocellborder" valign="top" width="23.076923076923077%" id="d30787e83"><p>Dispatched by Default 
+            </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="30.76923076923077%" headers="d30787e74 "><p><span class="keyword"> AVX512</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="46.15384615384615%" headers="d30787e80 "><p>Intel&reg; Advanced Vector Extensions (Intel&reg; AVX-512) for systems based on Intel&reg; Xeon&reg; processors 
+            </p>
+</td>
+<td class="row-nocellborder" valign="top" width="23.076923076923077%" headers="d30787e83 "><p>Yes 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30.76923076923077%" headers="d30787e74 "><p><span class="keyword"> AVX512_E1</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="46.15384615384615%" headers="d30787e80 "><p>Intel&reg; Advanced Vector Extensions (Intel&reg; AVX-512) with support for Vector Neural Network Instructions. 
+            </p>
+</td>
+<td class="row-nocellborder" valign="top" width="23.076923076923077%" headers="d30787e83 "><p>Yes 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30.76923076923077%" headers="d30787e74 "><p><span class="keyword"> AVX512_E2</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="46.15384615384615%" headers="d30787e80 "><p>ICX: Intel&reg; Advanced Vector Extensions (Intel&reg; AVX-512) enabled processors. 
+            </p>
+</td>
+<td class="row-nocellborder" valign="top" width="23.076923076923077%" headers="d30787e83 "><p>Yes 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30.76923076923077%" headers="d30787e74 "><p><span class="keyword"> AVX2</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="46.15384615384615%" headers="d30787e80 "><p> Intel&reg; AVX2 
+            </p>
+</td>
+<td class="row-nocellborder" valign="top" width="23.076923076923077%" headers="d30787e83 "><p>Yes 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30.76923076923077%" headers="d30787e74 "><p><span class="keyword"> AVX</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="46.15384615384615%" headers="d30787e80 "><p> Intel&reg; AVX 
+            </p>
+</td>
+<td class="row-nocellborder" valign="top" width="23.076923076923077%" headers="d30787e83 "><p>Yes 
+            </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="30.76923076923077%" headers="d30787e74 "><p><span class="keyword">SSE4_2</span></p>
+</td>
+<td class="cellrowborder" valign="top" width="46.15384615384615%" headers="d30787e80 "><p> Intel&reg; SSE4.2 
+            </p>
+</td>
+<td class="row-nocellborder" valign="top" width="23.076923076923077%" headers="d30787e83 "><p>Yes 
+            </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For more details about the 
+  <span class="option">mkl_enable_instructions</span> function, including the argument values, see the 
+  <em>Intel&reg; oneAPI Math Kernel Library Developer Reference</em>. 
+  </p>
+<p> For example: 
+  </p>
+<ul id="GUID-71E2394D-197F-49FB-A356-C8CBBB485B73"><li id="LI_1BA304F00D99424597D21716057F228D">To configure the library not to dispatch more recent architectures than Intel AVX2, do one of the following: 
+      <ul id="GUID-59498578-10AB-4F38-86A2-95AF4CDD9BB2"><li id="LI_5863659DDC4643D4BC786BCFA1CA45CB"><p>Call 
+          </p>
+<p><samp class="codeph">mkl_enable_instructions(MKL_ENABLE_AVX2)</samp></p>
+</li>
+<li id="LI_3091C871332B4945B4E633537DA3EC1C"><p> Set the environment variable: 
+          </p>
+<ul id="GUID-F54EBC5A-7815-4BA0-960D-8F39F7C98AD6"><li id="LI_3D55740FD5FB4D08BD2D8DB4E7C31035"><p>For the bash shell: 
+              </p>
+<p><samp class="codeph">export MKL_ENABLE_INSTRUCTIONS=AVX2</samp></p>
+</li>
+<li id="LI_0709757FACB647E09229E058611C4C7B"><p>For a C shell (csh or tcsh): 
+              </p>
+<p><samp class="codeph"> setenv MKL_ENABLE_INSTRUCTIONS AVX2</samp></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> Settings specified by the 
+    <span class="option">mkl_enable_instructions</span> function take precedence over the settings specified by the 
+    <span class="keyword">MKL_ENABLE_INSTRUCTIONS</span> environment variable. 
+    </p>
+</div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d25e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d30787e207"><p id="d25e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d30787e207 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-1BC5DDF8-4B40-467C-9E5F-8DBAF3A03450.html">Managing Behavior of the Intel&reg; Math Kernel Library with Environment Variables</a></div>
+</div>
+<div/>
+</body>
+</html>

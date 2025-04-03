@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Trigonometric Transform Implementation Details"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7186062F-9E87-439C-97B3-E20DBDEC7BB3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-46488E96-DC4A-4686-B720-CB328D6032C3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Trigonometric Transform Implementation Details</title>
+
+</head>
+<body id="GUID-46488E96-DC4A-4686-B720-CB328D6032C3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Trigonometric Transform Implementation
+    Details</h1>
+<div><p>Several aspects of the Intel&reg; oneAPI Math Kernel Library TT interface are platform-specific and language-specific. To promote portability across platforms and ease of use across different languages, Intel&reg; oneAPI Math Kernel Library provides you with the TT language-specific header file to include in your code: 
+    </p>
+<ul id="GUID-D5617450-D374-4E27-BC8F-91792A674902"><li><span class="filepath">mkl_trig_transforms.f90</span>, to be
+        used together with 
+        <span class="filepath">mkl_dfti.f90</span>. 
+      </li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><ul id="GUID-30F0419C-BE2A-4CFD-832D-7B26468FDA1A"><li>Intel&reg; oneAPI Math Kernel Library TT interface supports Fortran versions starting with Fortran 90.</li>
+<li>Use of the Intel&reg; oneAPI Math Kernel Library TT software without including the above language-specific header files is not supported.</li>
+</ul>
+</p>
+</div>
+<div class="section" id="GUID-9144D605-2B22-439D-BC9F-5ADA9ADF3E03"><h2 class="sectiontitle">Header File</h2><p>The 
+        header file below defines the following function prototypes: 
+      </p>
+<pre>SUBROUTINE D_INIT_TRIG_TRANSFORM(n, tt_type, ipar, dpar, stat) 
+    INTEGER, INTENT(IN) :: n, tt_type 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(8), INTENT(INOUT) :: dpar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE D_INIT_TRIG_TRANSFORM 
+  
+SUBROUTINE D_COMMIT_TRIG_TRANSFORM(f, handle, ipar, dpar, stat) 
+    REAL(8), INTENT(INOUT) :: f(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(8), INTENT(INOUT) :: dpar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE D_COMMIT_TRIG_TRANSFORM 
+  
+SUBROUTINE D_FORWARD_TRIG_TRANSFORM(f, handle, ipar, dpar, stat) 
+    REAL(8), INTENT(INOUT) :: f(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(8), INTENT(INOUT) :: dpar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE D_FORWARD_TRIG_TRANSFORM 
+  
+SUBROUTINE D_BACKWARD_TRIG_TRANSFORM(f, handle, ipar, dpar, stat) 
+    REAL(8), INTENT(INOUT) :: f(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(8), INTENT(INOUT) :: dpar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE D_BACKWARD_TRIG_TRANSFORM 
+  
+SUBROUTINE S_INIT_TRIG_TRANSFORM(n, tt_type, ipar, spar, stat) 
+    INTEGER, INTENT(IN) :: n, tt_type 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(4), INTENT(INOUT) :: spar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE S_INIT_TRIG_TRANSFORM 
+  
+SUBROUTINE S_COMMIT_TRIG_TRANSFORM(f, handle, ipar, spar, stat) 
+    REAL(4), INTENT(INOUT) :: f(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(4), INTENT(INOUT) :: spar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE S_COMMIT_TRIG_TRANSFORM 
+  
+SUBROUTINE S_FORWARD_TRIG_TRANSFORM(f, handle, ipar, spar, stat) 
+    REAL(4), INTENT(INOUT) :: f(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(4), INTENT(INOUT) :: spar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE S_FORWARD_TRIG_TRANSFORM 
+  
+SUBROUTINE S_BACKWARD_TRIG_TRANSFORM(f, handle, ipar, spar, stat) 
+    REAL(4), INTENT(INOUT) :: f(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    REAL(4), INTENT(INOUT) :: spar(*) 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE S_BACKWARD_TRIG_TRANSFORM 
+  
+SUBROUTINE FREE_TRIG_TRANSFORM(handle, ipar, stat) 
+    INTEGER, INTENT(INOUT) :: ipar(*) 
+    TYPE(DFTI_DESCRIPTOR), POINTER :: handle 
+    INTEGER, INTENT(OUT) :: stat 
+END SUBROUTINE FREE_TRIG_TRANSFORM
+</pre><p>Fortran specifics of the TT routines usage are similar for all Intel&reg; oneAPI Math Kernel Library PDE support tools and described in<a href="GUID-8FEC7AA1-4319-41C7-AED3-2325C947BDA3.html#GUID-8FEC7AA1-4319-41C7-AED3-2325C947BDA3">Calling PDE Support Routines from
+          Fortran</a>. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7186062F-9E87-439C-97B3-E20DBDEC7BB3.html">Trigonometric Transform Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

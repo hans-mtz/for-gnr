@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?getrf"/>
+<meta name="abstract" content="Computes the LU factorization of a general m-by-n matrix."/>
+<meta name="description" content="Computes the LU factorization of a general m-by-n matrix."/>
+<meta name="DC.subject" content="?getrf, LAPACK routines, triangular factorization, general matrix, LU factorization"/>
+<meta name="keywords" content="?getrf, LAPACK routines, triangular factorization, general matrix, LU factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A02DB70F-9704-42A4-9071-D409D783D911"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?getrf</title>
+
+</head>
+<body id="GUID-A02DB70F-9704-42A4-9071-D409D783D911">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?getrf</span></h1>
+<!--Computes the LU factorization of a general m-by-n matrix. --><div><p class="shortdesc">Computes the LU factorization of a general m-by-n matrix. </p>
+<div class="section" id="GUID-0ACC96DA-0ADD-4950-9AC4-CB3294AFFC48"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgetrf</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgetrf</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgetrf</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgetrf</span><span class="delim">( </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call getrf</span><span class="delim">( </span><span class="var">a</span><span class="delim"> [</span><span class="sep">,</span><span class="var">ipiv</span><span class="delim">]</span><span class="delim"> [</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-964BE935-015D-4602-B556-D3C5A555F58C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FA3350DD-9097-43B5-995B-6C2DA4AA1749"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the <var>LU</var> factorization of a general <var>m</var>-by-<var>n</var> matrix <var>A</var> as </p>
+<p><pre>
+					<var>A</var> = <var>P*L*U</var>,</pre></p>
+<p>where <var>P</var> is a permutation matrix, <var>L</var> is lower triangular with unit diagonal elements (lower trapezoidal if <samp class="codeph"><var>m</var> &gt; <var>n</var></samp>) and <var>U</var> is upper triangular (upper trapezoidal if <samp class="codeph"><var>m</var> &lt; <var>n</var></samp>). The routine uses partial pivoting, with row interchanges.</p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p> This routine supports the Progress Routine feature. See <a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7">Progress Function</a>
+						for details.</p>
+</div>
+</p>
+</div>
+<div class="section" id="GUID-F1A7CCFF-5AD0-4C26-A396-F86A1713DBA8"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">m</span></p></td>
+
+<td valign="top" class="noborder"><p><span><samp class="codeph">INTEGER.</samp></span>The number of rows in the matrix <var>A</var> (<span><var>m</var><span class="eqsymbol">≥</span> 0</span>). </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><samp class="codeph">INTEGER</samp>. </span>The number of columns in <var>A</var><span>; <var>n</var><span class="eqsymbol">≥</span> 0</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">REAL</samp> for <span class="option">sgetrf</span></p>
+<p><samp class="codeph">DOUBLE PRECISION</samp> for <span class="option">dgetrf</span></p>
+<p><samp class="codeph">COMPLEX</samp> for <span class="option">cgetrf</span></p>
+<p><samp class="codeph">DOUBLE COMPLEX</samp> for <span class="option">zgetrf</span>.</p>
+<p>Array, size <samp class="codeph"><var>lda</var></samp> by <samp class="codeph">*</samp>
+							. Contains the matrix <var>A</var>. The second dimension of <var>a</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.
+						</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">INTEGER</samp>. The leading dimension of array <var>a</var>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-3A62166E-6E38-4FE0-9598-E62232A81937"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by <var>L</var> and <var>U</var>. The unit diagonal elements of <var>L</var> are not stored. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">INTEGER</samp>.</p>
+<p>Array, size at least <samp class="codeph">max(1,min(<var>m</var>, <var>n</var>))</samp>. Contains the pivot indices; for <samp class="codeph">1 <span class="eqsymbol">≤</span><var>i</var><span class="eqsymbol">≤</span>
+min(<var>m</var>, <var>n</var>)</samp>,
+row <var>i</var> was interchanged with row <span><samp class="codeph"><var>ipiv</var>(<var>i</var>)</samp></span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><samp class="codeph">INTEGER</samp>. </span>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful.  </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var>, <var>u</var><sub class="subb"><var>i</var><var>i</var></sub></samp> is 0. The factorization has been completed, but <var>U</var> is exactly singular. Division by 0 will occur if you use the factor <var>U</var> for solving a system of linear equations.</p>
+</td>
+</tr></table><p/>
+</div>
+<div class="section" id="GUID-6BE5EDAD-4D85-4B19-ABD9-8F8ECE31711E"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">getrf</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>A</var> of size  (<samp class="codeph"><var>m</var>,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length min(<samp class="codeph"><var>m</var>,<var>n</var></samp>).</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-25B2F2E6-986B-43E5-8D64-42740B17CD41"><h2 class="sectiontitle">Application Notes</h2><p>The computed <var>L</var> and <var>U</var> are the exact factors of a perturbed matrix <var>A</var> + <var>E</var>, where  </p>
+<p><pre>|<var>E</var>| <span class="eqsymbol">≤</span>
+					<var>c</var>(min(<var>m</var>,<var>n</var>))<span class="eqsymbol">ε</span>
+					<var>P</var>|<var>L</var>||<var>U</var>|</pre></p>
+<p><samp class="codeph"><var>c</var>(<var>n</var>)</samp> is a modest linear function of <var>n</var>, and <span class="eqsymbol">ε</span> is the machine precision.</p>
+<p>The approximate number of floating-point operations for real flavors is</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p>(2/3)<var>n</var><sup class="power">3</sup></p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var> = <var>n</var></samp>,</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(1/3)<var>n</var><sup class="power">2</sup>(3<var>m</var>-<var>n</var>)</p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var><span class="eqsymbol">&gt;</span><var>n</var></samp>,</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p>(1/3)<var>m</var><sup class="power">2</sup>(3<var>n</var>-<var>m</var>)</p></td>
+
+<td valign="top" class="noborder"><p>If <samp class="codeph"><var>m</var><span class="eqsymbol">&lt;</span><var>n</var></samp>.</p>
+</td>
+</tr></table><p>The number of operations for complex flavors is four times greater.</p>
+<p>After calling this routine with <samp class="codeph"><var>m</var> = <var>n</var></samp>, you can call the following:</p>
+<dl class="biblio" id="GUID-273FF7F4-0F7C-4320-A4E2-5055BACFAC50"><dt class="dlterm"><a href="GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0.html#GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0"><span class="option">?getrs</span></a></dt>
+
+<dd class="biblio"><p>to solve <samp class="codeph"><var>A</var>*<var>X</var> = <var>B</var></samp> or <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup><var>X</var> = <var>B</var></samp> or <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup><var>X</var> = <var>B</var></samp></p>
+</dd>
+<dt class="dlterm"><a href="GUID-63F50607-0569-435D-9FB5-1E3006A91768.html#GUID-63F50607-0569-435D-9FB5-1E3006A91768"><span class="option">?gecon</span></a></dt>
+
+<dd class="biblio"><p>to estimate the condition number of <var>A</var></p>
+</dd>
+<dt class="dlterm"><a href="GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6.html#GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6"><span class="option">?getri</span></a></dt>
+
+<dd class="biblio"><p>to compute the inverse of <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html">Matrix Factorization: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-E982C8B0-E96D-414B-B263-BABF455963F7.html#GUID-E982C8B0-E96D-414B-B263-BABF455963F7"><span class="option">mkl_progress</span></a> </div>
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

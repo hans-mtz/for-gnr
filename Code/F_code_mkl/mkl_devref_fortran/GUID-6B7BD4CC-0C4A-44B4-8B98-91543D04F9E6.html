@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laqr1"/>
+<meta name="abstract" content="Sets a scalar multiple of the first column of the product of 2-by-2 or 3-by-3 matrix H and specified shifts."/>
+<meta name="description" content="Sets a scalar multiple of the first column of the product of 2-by-2 or 3-by-3 matrix H and specified shifts."/>
+<meta name="DC.subject" content="?laqr1, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?laqr1, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6B7BD4CC-0C4A-44B4-8B98-91543D04F9E6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laqr1</title>
+
+</head>
+<body id="GUID-6B7BD4CC-0C4A-44B4-8B98-91543D04F9E6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laqr1</span></h1>
+<!--Sets a scalar multiple of the first column of the product of 2-by-2 or 3-by-3 matrix  H  and specified shifts.--><div><p class="shortdesc">Sets a scalar multiple of the first column of the product of 2-by-2 or 3-by-3 matrix <var>H</var> and specified shifts.</p>
+<div class="section" id="GUID-EE37A753-9375-428F-90AC-0F3DDA53E033"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaqr1</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">,</span><span class="var"> sr1</span><span class="sep">,</span><span class="var"> si1</span><span class="sep">,</span><span class="var"> sr2</span><span class="sep">, </span><span class="sep">si2, </span><span class="sep">v </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaqr1</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">,</span><span class="var"> sr1</span><span class="sep">,</span><span class="var"> si1</span><span class="sep">,</span><span class="var"> sr2</span><span class="sep">, </span><span class="sep">si2, </span><span class="var">v </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call claqr1</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">,</span><span class="var"> s1</span><span class="sep">,</span><span class="var"> s2</span><span class="sep">,</span><span class="var"> v </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlaqr1</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">,</span><span class="var"> s1</span><span class="sep">,</span><span class="var"> s2</span><span class="sep">,</span><span class="var"> v </span><span class="delim">)</span></p></div></div>
+<div class="section" id="GUID-92FBD073-F081-4A32-952E-1E43FDDBBE56"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-637108E3-50FB-4157-981F-843FF9C99080"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given a 2-by-2 or 3-by-3 matrix <var>H</var>, this routine sets <var>v</var> to a scalar multiple of the first column of the product</p>
+<p><samp class="codeph"><var> K</var> = (<var>H</var> - <span class="parmname">s1</span>*<var>I</var>)*(<var>H</var> - <span class="parmname">s2</span>*<var>I</var>)</samp>, or  <samp class="codeph"><var>K</var> = (<var>H</var> - (<span class="parmname">sr1</span> + i*<span class="parmname">si1</span>)*<var>I</var>)*(<var>H</var> - (<span class="parmname">sr2</span> + i*<span class="parmname">si2</span>)*<var>I</var>)</samp></p>
+<p>scaling to avoid overflows and most underflows. </p>
+<p>It is assumed that either 1) <samp class="codeph"><span class="parmname">sr1</span> = <span class="parmname">sr2</span></samp> and <samp class="codeph"><samp class="codeph"><span class="parmname">si1</span> = -<span class="parmname">si2</span></samp></samp>, or 2) <samp class="codeph"><span class="parmname">si1</span> = <span class="parmname">si2</span> = 0</samp>. 
+</p>
+<p>This is useful for starting double implicit shift bulges in the QR algorithm.
+</p>
+</div>
+<div class="section" id="GUID-7AB6D1B6-0DF1-44DD-A210-D9E9C4999C8F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-235EDA59-967D-4A77-A528-F858133BF6D0"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The order of the matrix <var>H</var>. <span class="parmname">n</span> must be equal to 2 or 3.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sr1</span>, <span class="parmname">si2</span>, <span class="parmname">sr2</span>, <span class="parmname">si2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr1</span></p>
+<p>Shift values that define <var>K</var> in the formula above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s1</span>, <span class="parmname">s2</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">claqr1</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr1</span>.</p>
+Shift values that define <var>K</var> in the formula above.
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr1</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claqr1</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr1</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldh</var>, <var>n</var>), contains 2-by-2 or 3-by-3 matrix <var>H</var> in the formula above.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The leading dimension of the array <span class="parmname">h</span> just as declared in the calling routine. <samp class="codeph"><samp class="codeph"><span class="parmname">ldh </span>≥ <span class="parmname">n</span></samp></samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C5D3224C-A19B-4C8B-8B15-A5635610B0B4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8C4F03C5-816F-45FB-B5ED-3AEE5E713798"><dt class="dlterm"><span class="parmname">v</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr1</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr1</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claqr1</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr1</span>.</p>
+<p>Array with dimension <samp class="codeph">(<span class="parmname">n</span>)</samp>.</p>
+<p>A scalar multiple of the first column of the matrix <var>K</var> in the formula above.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

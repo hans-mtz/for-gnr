@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Setting Environment Variables on a Cluster"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-961566D0-E177-467A-96F6-E0D6541430A0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-32A073C4-B3A4-4B67-81D6-0FA3E20BB8E5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Setting Environment Variables on a Cluster</title>
+
+</head>
+<body id="GUID-32A073C4-B3A4-4B67-81D6-0FA3E20BB8E5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em> Math Kernel Library Developer Guide</em></p>
+
+
+<h1 class="topictitle1">Setting Environment Variables on a Cluster</h1>
+<div id="GUID-B5A1254B-BCE7-4002-B93B-CE7EBA29C3A4"><p id="GUID-B30E1590-DEE2-4C92-BE7D-090723406190">By default, when you call the MPI launch command 
+      <samp class="codeph">mpiexec</samp>, the entire launching node environment is passed to the MPI processes. However, if there are undefined variables or variables that are different from what is stored in your environment, you can use 
+      <samp class="codeph">-env</samp> or 
+      <samp class="codeph">-genv</samp> options with 
+      <samp class="codeph">mpiexec</samp>. Each of these options take two arguments- the name and the value of the environment variable to be passed.
+    </p>
+<p><samp class="codeph">-genv NAME1 VALUE1 -genv NAME2 VALUE2</samp></p>
+<p><samp class="codeph">-env NAME VALUE -genv</samp></p>
+<p id="GUID-827E1B95-39CC-44B3-921A-1B2CC4804D1F"> See these MPICH2 examples on how to set the value of 
+      <samp class="codeph" id="GUID-64374EAF-15BD-4AE9-8C16-9103CA0A94E8">OMP_NUM_THREADS</samp> explicitly: 
+    </p>
+<p id="GUID-17C18C1E-24D8-42BB-A95F-543ACD453F50"><samp class="codeph" id="GUID-947B6792-B187-4D7B-B7A1-4E214E6FD338">mpiexec -genv OMP_NUM_THREADS 2 ....</samp></p>
+<p id="GUID-225FAE0C-2EF5-4A7B-B6BF-EA39FF371524"><samp class="codeph" id="GUID-63A7F3E1-AB98-4C9E-9F1B-144B82F54769">mpiexec -n 1 -host first -env OMP_NUM_THREADS 2 test.exe : -n 2 -host second -env OMP_NUM_THREADS 3 test.exe ....</samp></p>
+<p id="GUID-909F0411-60A6-48E1-BE75-078F1629ADB3">See these Intel MPI examples on how to set the value of 
+      <samp class="codeph" id="GUID-558415B7-CD0B-4619-8489-2DB76095E8B7">MKL_BLACS_MPI</samp> explicitly:
+    </p>
+<p id="GUID-84A349B0-34CB-4DA0-B87D-283B9C32F46E"><samp class="codeph" id="GUID-5B725000-285C-41A8-B7F7-E1BB3A7157EC">mpiexec -genv MKL_BLACS_MPI INTELMPI ....</samp></p>
+<p id="GUID-E520B8E1-88CD-4262-A3DD-6C13A7DAFDF6"><samp class="codeph" id="GUID-2C0ADC4C-B535-465B-ACEE-6EF2D9941EBC">mpiexec -n 1 -host first -env MKL_BLACS_MPI INTELMPI test.exe : -n 1 -host second -env MKL_BLACS_MPI INTELMPI test.exe.</samp></p>
+<p id="GUID-F84FB985-940C-4441-A292-0420F7915C2E"/>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-961566D0-E177-467A-96F6-E0D6541430A0.html">Working with the Intel&reg; oneAPI Math Kernel Library Cluster Software</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?geesx"/>
+<meta name="abstract" content="Computes the eigenvalues and Schur factorization of a general matrix, orders the factorization and computes reciprocal condition numbers."/>
+<meta name="description" content="Computes the eigenvalues and Schur factorization of a general matrix, orders the factorization and computes reciprocal condition numbers."/>
+<meta name="DC.subject" content="?geesx, LAPACK routines, driver routines, nonsymmetric eigenproblems"/>
+<meta name="keywords" content="?geesx, LAPACK routines, driver routines, nonsymmetric eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B21D6430-F478-4811-8DE0-3E0DBDE18723.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B26894CE-9D44-4C40-9F98-CBA356013A41"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?geesx</title>
+
+</head>
+<body id="GUID-B26894CE-9D44-4C40-9F98-CBA356013A41">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?geesx</span></h1>
+<!--Computes the eigenvalues and Schur factorization of a general matrix, orders the factorization and computes reciprocal condition numbers.--><div><p class="shortdesc">Computes the eigenvalues and Schur factorization of a general matrix, orders the factorization and computes reciprocal condition numbers.</p>
+<div class="section" id="GUID-A91D6120-3AA8-48DB-8AFA-C1A85D33A43A"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sgeesx</span><span class="delim">(</span><span class="var">jobvs</span><span class="sep">, </span><span class="var">sort</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sdim</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">vs</span><span class="sep">, </span><span class="var">ldvs</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">bwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dgeesx</span><span class="delim">(</span><span class="var">jobvs</span><span class="sep">, </span><span class="var">sort</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sdim</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">vs</span><span class="sep">, </span><span class="var">ldvs</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork</span><span class="sep">, </span><span class="var">bwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call cgeesx</span><span class="delim">(</span><span class="var">jobvs</span><span class="sep">, </span><span class="var">sort</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sdim</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">vs</span><span class="sep">, </span><span class="var">ldvs</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">bwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zgeesx</span><span class="delim">(</span><span class="var">jobvs</span><span class="sep">, </span><span class="var">sort</span><span class="sep">, </span><span class="var">select</span><span class="sep">, </span><span class="var">sense</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">sdim</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">vs</span><span class="sep">, </span><span class="var">ldvs</span><span class="sep">, </span><span class="var">rconde</span><span class="sep">, </span><span class="var">rcondv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">bwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call geesx</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="delim"> [</span><span class="sep">,</span><span class="var">vs</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">select</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">sdim</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rconde</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rcondev</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call geesx</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">vs</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">select</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">sdim</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rconde</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">rcondev</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3413355D-68EE-4B2C-B7D0-84C8772A4679"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-332B4264-602F-4C43-B390-746A901167F8"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes for an <var>n</var>-by-<var>n</var> real/complex nonsymmetric matrix <var>A</var>, the eigenvalues, the real-Schur/Schur form <var>T</var>, and, optionally, the matrix of Schur vectors <var>Z</var>. This gives the Schur factorization <samp class="codeph"><var>A</var> = <var>Z</var>*<var>T</var>*<var>Z</var><sup class="power"><var>H</var></sup></samp>.</p>
+<p> Optionally, it also orders the eigenvalues on the diagonal of the real-Schur/Schur form so that selected eigenvalues are at the top left; computes a reciprocal condition number for the average of the selected eigenvalues (<var>rconde</var>); and computes a reciprocal condition number for the right invariant subspace corresponding to the selected eigenvalues (<var>rcondv</var>). The leading columns of <var>Z</var> form an orthonormal basis for this invariant subspace. </p>
+<p>For further explanation of the reciprocal condition numbers <var>rconde</var> and <var>rcondv</var>, see [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#LUG">LUG</a>], Section 4.10 (where these quantities are called <var>s</var> and <var>sep</var> respectively). </p>
+<p>A real matrix is in real-Schur form if it is upper quasi-triangular with 1-by-1 and 2-by-2 blocks. 2-by-2 blocks will be standardized in the form </p>
+<p><br/><div class="imagecenter"><img src="GUID-22DA0E3F-0B0F-49E2-BBF5-DBB2B6CB0A96-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <samp class="codeph"><var>b</var>*<var>c</var> &lt; 0</samp>. The eigenvalues of such a block are <img src="GUID-2AF40FBC-6853-4BF5-8EB5-E38617D4E3C9-low.jpg" alt="Equation" align="center" class=".eq"/></p>
+<p>A complex matrix is in Schur form if it is upper triangular.</p>
+</div>
+<div class="section" id="GUID-4CF90ECE-5FC2-4DFA-A78C-471FF3F28479"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E82C2442-A589-4A72-A2BD-207C39E157D3"><dt class="dlterm"><span class="parmname">jobvs</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobvs</var> = <span class="keyword">'N'</span></samp>, then Schur vectors are not computed. </p>
+<p>If <samp class="codeph"><var>jobvs</var> = <span class="keyword">'V'</span></samp>, then Schur vectors are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sort</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'S'</span>. Specifies whether or not to order the eigenvalues on the diagonal of the Schur form.</p>
+<p>If <samp class="codeph"><var>sort</var> = <span class="keyword">'N'</span></samp>, then eigenvalues are not ordered. </p>
+<p>If <samp class="codeph"><var>sort</var> = <span class="keyword">'S'</span></samp>, eigenvalues are ordered (see <var>select</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">select</span></dt>
+
+<dd><p><span class="keyword">LOGICAL FUNCTION</span> of two <span class="keyword">REAL</span> arguments for real flavors.</p>
+<p><span class="keyword">LOGICAL FUNCTION</span> of one <span class="keyword">COMPLEX</span> argument for complex flavors.</p>
+<p><var>select</var> must be declared <span class="keyword">EXTERNAL</span> in the calling subroutine. </p>
+<p>If <samp class="codeph"><var>sort</var> = <span class="keyword">'S'</span></samp>, <var>select</var> is used to select eigenvalues to sort to the top left of the Schur form. </p>
+<p>If <samp class="codeph"><var>sort</var> = <span class="keyword">'N'</span></samp>, <var>select</var> is not referenced.</p>
+<p><em>For real flavors</em>:</p>
+<p>An eigenvalue <span><var>wr</var>(j)<samp class="codeph">+sqrt(-1)*</samp><var>wi</var>(j) is selected if <var>select</var>(<var>wr</var>(j), <var>wi</var>(j))</span> is true; that is, if either one of a complex conjugate pair of eigenvalues is selected, then both complex eigenvalues are selected. </p>
+<p><em>For complex flavors:</em></p>
+<p>An eigenvalue <span><var>w</var>(j) is selected if <var>select</var>(<var>w</var>(j))</span> is true.</p>
+<p>Note that a selected complex eigenvalue may no longer satisfy <span><var>select</var>(<var>wr</var>(j), <var>wi</var>(j))= <span class="keyword">.TRUE.</span></span> after ordering, since ordering may change the value of complex eigenvalues (especially if the eigenvalue is ill-conditioned); in this case <var>info</var> may be set to <var>n</var>+2 (see <var>info</var> below).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sense</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span>, <span class="keyword">'E'</span>, <span class="keyword">'V'</span>, or <span class="keyword">'B'</span>. Determines which reciprocal condition number are computed.</p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp>, none are computed; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp>, computed for average of selected eigenvalues only; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp>, computed for selected right invariant subspace only; </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'B'</span></samp>, computed for both.</p>
+<p>If <var>sense</var> is <span class="keyword">'E'</span>, <span class="keyword">'V'</span>, or <span class="keyword">'B'</span>, then <var>sort</var> must equal <span class="keyword">'S'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeesx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeesx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeesx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeesx</span>. </p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span> is an array containing the <var>n</var>-by-<var>n</var> matrix <var>A</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <var>a</var>. Must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldvs</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the output array <var>vs</var>. Constraints:</p>
+<p><samp class="codeph"><var>ldvs</var><span class="eqsymbol">≥</span> 1</samp>;</p>
+<p><samp class="codeph"><var>ldvs</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>if <samp class="codeph"><var>jobvs</var> = <span class="keyword">'V'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>. Constraint: </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, 3<var>n</var>)</samp> for real flavors; </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max</samp>(1, 2<var>n</var>) for complex flavors.</p>
+<p>Also, if <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span>, <span class="keyword">'V'</span>, or <span class="keyword">'B'</span></samp>, then</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>n</var>+2*<var>sdim</var>*(<var>n</var>-<var>sdim</var>)</samp> for real flavors; </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 2*<var>sdim</var>*(<var>n</var>-<var>sdim</var>)</samp> for complex flavors; </p>
+<p>where <var>sdim</var> is the number of selected eigenvalues computed by this routine. </p>
+<p>Note that <samp class="codeph">2*<var>sdim</var>*(<var>n</var>-<var>sdim</var>) <span class="eqsymbol">≤</span><var>n</var>*<var>n</var>/2</samp>. Note also that an error is only returned if <samp class="codeph"><span class="parmname">lwork</span>&lt;max(1, 2*<span class="parmname">n</span>)</samp>, but if <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp>, or <span class="keyword">'V'</span>, or <span class="keyword">'B'</span> this may not be large enough.</p>
+<p>For good performance, <var>lwork</var> must generally be larger.</p>
+<p>If <samp class="codeph"><span class="parmname">lwork</span> = -1</samp>, then a workspace query is assumed; the routine only calculates upper bound on the optimal size of the array <span class="parmname">work</span>, returns this value as the first entry of the <span class="parmname">work</span>      array, and no error message related to <span class="parmname">lwork</span> is issued by <span class="option">xerbla</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>Workspace array, <span>size (<var>liwork</var>)</span>. Used in real flavors only. Not referenced if <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>iwork</var>. Used in real flavors only. </p>
+<p>Constraint:</p>
+<p><samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span> 1</samp>; </p>
+<p>if <samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp> or <span class="keyword">'B'</span>, <samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span><var>sdim</var>*(<var>n</var>-<var>sdim</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cgeesx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zgeesx</span></p>
+<p>Workspace array, size at least max(1, <var>n</var>). Used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bwork</span></dt>
+
+<dd><p><span><span class="keyword">LOGICAL</span>. </span>Workspace array, size at least max(1, <var>n</var>). Not referenced if <samp class="codeph"><var>sort</var> = <span class="keyword">'N'</span></samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3DFD4501-C7B5-46F4-AD79-CF9D288EAFCD"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-E5B0B268-1D1E-45D6-B7DF-F47796B6AA5A"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, this array is overwritten by the real-Schur/Schur form <var>T</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">sdim</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>sort</var> = <span class="keyword">'N'</span></samp>, <var>sdim</var>= 0. </p>
+<p>If <samp class="codeph"><var>sort</var> = <span class="keyword">'S'</span></samp>, <var>sdim</var> is equal to the number of eigenvalues (after sorting) for which <var>select</var> is true. </p>
+<p>Note that for real flavors complex conjugate pairs for which <var>select</var> is true for either eigenvalue count as 2. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeesx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeesx</span></p>
+<p>Arrays, size at least max (1, <var>n</var>) each. Contain the real and imaginary parts, respectively, of the computed eigenvalues, in the same order that they appear on the diagonal of the output real-Schur form <var>T</var>. Complex conjugate pairs of eigenvalues appear consecutively with the eigenvalue having positive imaginary part first. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cgeesx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeesx</span>. </p>
+<p>Array, size at least max(1, <var>n</var>). Contains the computed eigenvalues. The eigenvalues are stored in the same order as they appear on the diagonal of the output Schur form <var>T</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vs</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgeesx</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgeesx</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgeesx</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgeesx</span>. </p>
+<p>Array <var>vs</var><span>(<var>ldvs</var>,*)</span><span>; the second dimension of <var>vs</var> must be at least max(1, <var>n</var>).</span></p>
+<p>If <samp class="codeph"><var>jobvs</var> = <span class="keyword">'V'</span></samp>, <var>vs</var> contains the orthogonal/unitary matrix <var>Z</var> of Schur vectors. </p>
+<p>If <samp class="codeph"><var>jobvs</var> = <span class="keyword">'N'</span></samp>, <var>vs</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rconde</span>, <span class="parmname">rcondv</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for single precision flavors <span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp> or <span class="keyword">'B'</span>, <var>rconde</var> contains the reciprocal condition number for the average of the selected eigenvalues. </p>
+<p>If <var>sense</var> = <span class="keyword">'N'</span> or <span class="keyword">'V'</span>, <var>rconde</var> is not referenced.</p>
+<p>If <var>sense</var> = <span class="keyword">'V'</span> or <span class="keyword">'B'</span>, <var>rcondv</var> contains the reciprocal condition number for the selected right invariant subspace. </p>
+<p>If <samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp> or <span class="keyword">'E'</span>, <var>rcondv</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work(1)</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work(1)</var> returns the required minimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, and </p>
+<p><samp class="codeph"><var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>:</p>
+<p>the <var>QR</var> algorithm failed to compute all the eigenvalues; elements 1:<var>ilo</var>-1 and <var>i</var>+1:<var>n</var> of <var>wr</var> and <var>wi</var> (for real flavors) or <var>w</var> (for complex flavors) contain those eigenvalues which have converged; if <samp class="codeph"><var>jobvs</var> = <span class="keyword">'V'</span></samp>, <var>vs</var> contains the transformation which reduces <var>A</var> to its partially converged Schur form;</p>
+<p><samp class="codeph"><var>i</var> = <var>n</var>+1</samp>:</p>
+<p>the eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned);</p>
+<p><samp class="codeph"><var>i</var> = <var>n</var>+2</samp>:</p>
+<p>after reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy <samp class="codeph"><var>select</var> = <span class="keyword">.TRUE.</span></samp>. This could also be caused by underflow due to scaling.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F574CDA6-0000-4384-8A7E-C6FB4732C58C"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">geesx</span> interface are the following:</p>
+<dl id="GUID-EA98B59D-DBF1-4D3F-8F4E-BF69F315D30A"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span></dt>
+
+<dd><p>Holds the vector of length (<var>n</var>). Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wi</span></dt>
+
+<dd><p>Holds the vector of length (<var>n</var>). Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector of length (<var>n</var>). Used in complex flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vs</span></dt>
+
+<dd><p>Holds the matrix <var>VS</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobvs</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>vs</var> as follows: </p>
+<p><samp class="codeph"><var>jobvs</var> = <span class="keyword">'V'</span></samp>, if <var>vs</var> is present, </p>
+<p><samp class="codeph"><var>jobvs</var> = <span class="keyword">'N'</span></samp>, if <var>vs</var> is omitted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sort</span></dt>
+
+<dd><p>Restored based on the presence of the argument <var>select</var> as follows: </p>
+<p><samp class="codeph"><var>sort</var> = <span class="keyword">'S'</span></samp>, if <var>select</var> is present, </p>
+<p><samp class="codeph"><var>sort</var> = <span class="keyword">'N'</span></samp>, if <var>select</var> is omitted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sense</span></dt>
+
+<dd><p>Restored based on the presence of arguments <var>rconde</var> and <span class="keyword">rcondv</span> as follows: </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'B'</span></samp>, if both <var>rconde</var> and <var>rcondv</var> are present, </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'E'</span></samp>, if <var>rconde</var> is present and <var>rcondv</var> omitted, </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'V'</span></samp>, if <var>rconde</var> is omitted and <var>rcondv</var> present, </p>
+<p><samp class="codeph"><var>sense</var> = <span class="keyword">'N'</span></samp>, if both <var>rconde</var> and <var>rcondv</var> are omitted.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-99A5B084-AFEB-4704-BF84-A25AB7023A49"><h2 class="sectiontitle">Application Notes</h2><p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> 
+(or <var>liwork</var>) for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp> (<samp class="codeph"><var>liwork</var> = -1</samp>). </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> (or <var>liwork</var>) sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>) on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>, <samp class="codeph"><var>iwork</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>, <var>iwork</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> (<var>liwork</var>) to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B21D6430-F478-4811-8DE0-3E0DBDE18723.html">Nonsymmetric Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

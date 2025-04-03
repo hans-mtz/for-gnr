@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?ormrz"/>
+<meta name="abstract" content="Multiplies a real matrix by the orthogonal matrix defined from the factorization formed by ?tzrzf."/>
+<meta name="description" content="Multiplies a real matrix by the orthogonal matrix defined from the factorization formed by ?tzrzf."/>
+<meta name="DC.subject" content="?ormrz, LAPACK routines, RZ factorization"/>
+<meta name="keywords" content="?ormrz, LAPACK routines, RZ factorization"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?ormrz</title>
+
+</head>
+<body id="GUID-A9BF410C-6F63-4EEA-BDDA-0C96D36C74EC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?ormrz</span></h1>
+<!--Multiplies a real matrix by the orthogonal matrix defined from the factorization formed by  ?tzrzf .--><div><p class="shortdesc">Multiplies a real matrix by the orthogonal matrix defined from the factorization formed by <span class="option">?tzrzf</span>.</p>
+<div class="section" id="GUID-973C1747-57CF-4022-B5FA-5E837C190775"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sormrz</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dormrz</span><span class="delim">(</span><span class="var">side</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">k</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ormrz</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">l</span><span class="delim"> [</span><span class="sep">, </span><span class="var">side</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-ADAE3029-3BC9-46E6-BEAC-F845B7B8E949"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-34791B05-FC00-462C-9ADF-8B2C4E71AA23"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?ormrz</span> routine multiplies a real <var>m</var>-by-<var>n</var> matrix <var>C</var> by <var>Q</var> or <var>Q</var><sup class="power"><var>T</var></sup>, where <var>Q</var> is the real orthogonal matrix defined as a product of <var>k</var> elementary reflectors <samp class="codeph"><var>H</var>(<var>i</var>)</samp> of order <var>n</var>: <samp class="codeph"><var>Q</var> = <var>H</var>(1)* <var>H</var><samp class="codeph">(2)</samp>*...*<samp class="codeph"><var>H</var>(<var>k</var>)</samp></samp> as returned by the factorization routine <a href="GUID-009DF030-771D-46F4-B9F6-01CBC0746003.html#GUID-009DF030-771D-46F4-B9F6-01CBC0746003">tzrzf</a> . </p>
+<p>Depending on the parameters <var>side</var> and <var>trans</var>, the routine can form one of the matrix products <samp class="codeph"><var>Q</var>*<var>C</var></samp>, <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>C</var></samp>, <samp class="codeph"><var>C</var>*<var>Q</var></samp>, or <samp class="codeph"><var>C</var>*<var>Q</var><sup class="power"><var>T</var></sup></samp> (overwriting the result over <var>C</var>).</p>
+<p>The matrix <var>Q</var> is of order <var>m</var> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp> and of order <var>n</var> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+<p>The <span class="option">?ormrz</span> routine replaces the deprecated <span class="option">?latzm</span> routine.</p>
+</div>
+<div class="section" id="GUID-CC7D08D7-5549-4385-9037-2085A0D3A141"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-FD9FC186-7E66-4DA7-BAE3-D8714B8AE858"><dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be either <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, <var>Q</var> or <var>Q</var><sup class="power"><var>T</var></sup> is applied to <var>C</var> from the left. </p>
+<p>If <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>, <var>Q</var> or <var>Q</var><sup class="power"><var>T</var></sup> is applied to <var>C</var> from the right.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be either <span class="keyword">'N'</span> or <span class="keyword">'T'</span>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, the routine multiplies <var>C</var> by <var>Q</var>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, the routine multiplies <var>C</var> by <var>Q</var><sup class="power"><var>T</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows in the matrix <var>C</var> (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of columns in <var>C</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">k</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elementary reflectors whose product defines the matrix <var>Q</var>. Constraints: </p>
+<p><samp class="codeph">0 <span class="eqsymbol">≤</span><var>k</var><span class="eqsymbol">≤</span><var>m</var></samp>, if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph">0 <span class="eqsymbol">≤</span><var>k</var><span class="eqsymbol">≤</span><var>n</var></samp>, if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>The number of columns of the matrix <var>A</var> containing the meaningful part of the Householder reflectors. Constraints: </p>
+<p><samp class="codeph">0 <span class="eqsymbol">≤</span><var>l</var><span class="eqsymbol">≤</span><var>m</var></samp>, if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph">0 <span class="eqsymbol">≤</span><var>l</var><span class="eqsymbol">≤</span><var>n</var></samp>, if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">tau</span>, <span class="parmname">c</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sormrz</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dormrz</span>. </p>
+<p>Arrays: <var>a</var>(<var>lda</var>,*), <var>tau</var>(*), <var>c</var>(<var>ldc</var>,*).</p>
+<p>On entry, the <var>i</var>th row of <var>a</var> must contain the vector which defines the elementary reflector <samp class="codeph"><var>H</var>(<var>i</var>)</samp>, for i = 1,2,...,<var>k</var>, as returned by <span class="option">stzrzf</span>/<span class="option">dtzrzf</span> in the last <var>k</var> rows of its array argument <var>a</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>m</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>, and at least max(1, <var>n</var>) if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p><var>tau</var><span>(i)</span> must contain the scalar factor of the elementary reflector <samp class="codeph"><var>H</var>(<var>i</var>)</samp>, as returned by <span class="option">stzrzf</span>/<span class="option">dtzrzf</span>.</p>
+<p>The size of <var>tau</var> must be at least max(1, <var>k</var>).</p>
+<p><var>c</var><span>(<var>ldc</var>,*)</span> contains the <var>m</var>-by-<var>n</var> matrix <var>C</var>.</p>
+<p>The second dimension of <var>c</var> must be at least max(1, <var>n</var>)</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; <span class="keyword"/><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>k</var>) . </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>c</var>; <var>ldc</var><span class="eqsymbol">≥</span> max(1, <var>m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The size of the <var>work</var> array. Constraints: </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>;</p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max(1, <var>m</var>)</samp> if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>. </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7B2630D9-F6C8-45E1-B7DA-E2FBDE5F2DDB"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3F49AA85-9900-4329-A5AD-CE91D4200A87"><dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Overwritten by the product <samp class="codeph"><var>Q</var>*<var>C</var></samp>, <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>C</var></samp>, <samp class="codeph"><var>C</var>*<var>Q</var></samp>, or <samp class="codeph"><var>C</var>*<var>Q</var><sup class="power"><var>T</var></sup></samp> (as specified by <var>side</var> and <var>trans</var>).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span>(1)</samp></dt>
+
+<dd><p>If <samp class="codeph"><var>info</var> = 0</samp>, on exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. Use this <var>lwork</var> for subsequent runs.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i-</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-74DC397A-6595-4E36-BCC9-676B277896DF"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">ormrz</span> interface are the following:</p>
+<dl id="GUID-C624B890-5C4D-4B86-B5EC-165134066565"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>k,m</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p>Holds the vector of length (<var>k</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>Holds the matrix <var>C</var> of size (<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">side</span></dt>
+
+<dd><p>Must be <span class="keyword">'L'</span> or <span class="keyword">'R'</span>. The default value is <span class="keyword">'L'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-43E92B21-5412-4B05-B345-D1120A58CE00"><h2 class="sectiontitle">Application Notes</h2><p>For better performance, try using <samp class="codeph"><var>lwork</var> = <var>n</var>*<var>blocksize</var></samp> (if <samp class="codeph"><var>side</var> = <span class="keyword">'L'</span></samp>) or <samp class="codeph"><var>lwork</var> = <var>m</var>*<var>blocksize</var></samp> (if <samp class="codeph"><var>side</var> = <span class="keyword">'R'</span></samp>) where 
+<var>blocksize</var> is a machine-dependent value (typically, 16 to 64) required for optimum performance of the <dfn class="term">blocked algorithm</dfn>. </p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+<p>The complex counterpart of this routine is <a href="GUID-43A1749C-F74A-494E-8C63-2443784D7B13.html#GUID-43A1749C-F74A-494E-8C63-2443784D7B13">unmrz</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C245461D-E7C8-44B7-AFD9-F1F44BE98AC5.html">Orthogonal Factorizations: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

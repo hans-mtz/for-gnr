@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_?_update_values"/>
+<meta name="abstract" content="Changes all or selected matrix values in internal representation."/>
+<meta name="description" content="Changes all or selected matrix values in internal representation."/>
+<meta name="DC.subject" content="mkl_sparse_s_update_values, mkl_sparse_d_update_values, mkl_sparse_c_update_values, mkl_sparse_z_update_values"/>
+<meta name="keywords" content="mkl_sparse_s_update_values, mkl_sparse_d_update_values, mkl_sparse_c_update_values, mkl_sparse_z_update_values"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6313A228-4C03-42C0-8595-11E50F4CB80D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-43972C28-CAE2-4FE6-84B8-0917F2F1606B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_?_update_values</title>
+
+</head>
+<body id="GUID-43972C28-CAE2-4FE6-84B8-0917F2F1606B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_?_update_values</span></h1>
+<!-- Changes all or selected matrix values in internal representation.--><div><p class="shortdesc"> Changes all or selected matrix values in internal representation.</p>
+<div class="section" id="GUID-FCA0074C-E441-434E-907D-2E392162AD28"><h2 class="sectiontitle">Syntax</h2><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine is supported for sparse matrices in BSR format only.</p>
+</div>
+<dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_s_update_values </span><span class="delim">(</span><span class="var">A</span><span class="sep">, </span><span class="var">values</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">indy</span><span class="sep">, </span><span class="var">values</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_d_update_values </span><span class="delim">(</span><span class="var">A</span><span class="sep">, </span><span class="var">values</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">indy</span><span class="sep">, </span><span class="var">values</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_c_update_values </span><span class="delim">(</span><span class="var">A</span><span class="sep">, </span><span class="var">values</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">indy</span><span class="sep">, </span><span class="var">values</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_z_update_values </span><span class="delim">(</span><span class="var">A</span><span class="sep">, </span><span class="var">values</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">indy</span><span class="sep">, </span><span class="var">values</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F1C9D233-946E-4990-A1AC-066E54B444C8"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-F895AAA2-BE30-45ED-B5D1-E4BF1E13A3C1"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-A81B3F65-ACC2-44B3-B8BD-63E7B60869DF"><h2 class="sectiontitle">Description</h2><p>Use the <span class="option">mkl_sparse_?_update_values</span> routine to change all or selected values of a matrix in the internal Inspector-Executor Sparse BLAS format.</p>
+<p>The values to be updated should already be present in the matrix structure.</p>
+<ul id="GUID-292BFF0E-6BC2-493C-8595-F26CF62573DC"><li><p>To change selected values, you must provide an array values (with new values) and also the corresponding row and column indices for each value via <var>indx</var> and <var>indy</var> arrays as well as the overall number of changed elements <var>nvalues</var>.</p>
+<p>So that, for example, to change A(0, 0) to 1 and A(0, 1) to 2, pass the following input parameters: <var>nvalues</var> = 2, <var>indx</var> = {0, 0}, <var>indy</var> = {0, 1} and <var>values</var> =  {1, 2}.</p>
+</li>
+<li><p>To change all the values in the matrix, one can simply provide the <var>values</var> array, no need to supply <var>indx</var> and <var>indy</var> arrays.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="GUID-570E11C0-9FCE-432D-A006-81F2B5522719"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2BE2B523-ED3A-4060-90EF-BC2C2E88706E"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Specifies handle containing internal data.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nvalues</span></dt>
+
+<dd><p><span class="keyword">C_INT</span> .</p>
+<p>Total number of elements changed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span class="keyword">C_INT</span> .</p>
+<p>Row indices for the new values.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Currently, only updating the full matrix is supported. Set <var>indx</var> and <var>indy</var> as NULL.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">indy</span></dt>
+
+<dd><p><span class="keyword">C_INT</span> .</p>
+<p>Column indices for the new values.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Currently, only updating the full matrix is supported. Set <var>indx</var> and <var>indy</var> as NULL.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">values</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_update_values</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_update_values</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_update_values</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_update_values</span></p>
+<p>New values.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-BE3D13CD-DCC6-411D-AE17-910F522A34BC"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-BCC56DA8-8FC1-42E9-AB7B-A8E180248787"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle containing modified internal data.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">status</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Value indicating whether the operation was successful or not, and why.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p> The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-6313A228-4C03-42C0-8595-11E50F4CB80D.html">Matrix Manipulation Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

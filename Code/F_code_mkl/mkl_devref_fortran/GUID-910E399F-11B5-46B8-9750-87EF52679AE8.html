@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sparse BLAS CSC Matrix Storage Format"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-910E399F-11B5-46B8-9750-87EF52679AE8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sparse BLAS CSC Matrix Storage Format</title>
+
+</head>
+<body id="GUID-910E399F-11B5-46B8-9750-87EF52679AE8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Sparse BLAS CSC Matrix Storage Format</h1>
+<div><p>The compressed sparse column format (CSC) is similar to the CSR format, but the columns are used instead the rows. In other words, the CSC format is identical to the CSR format for the transposed matrix. The CSR format is specified by four arrays: 
+      <var>values</var>, 
+      <var>columns</var>, 
+      <var>pointerB</var>, and 
+      <var>pointerE</var>. The following table describes the arrays in terms of the values, row, and column positions of the non-zero elements in a sparse matrix 
+      <var>A</var>. 
+    </p>
+<dl id="GUID-0F643779-0E0F-442F-BB91-31580FBF4563"><dt class="dlterm"><var>values</var></dt>
+
+<dd><p>A real or complex array that contains the non-zero elements of 
+            <var>A</var>. Values of the non-zero elements of 
+            <var>A</var> are mapped into the 
+            <var>values</var> array using the column-major storage mapping. 
+          </p>
+</dd>
+<dt class="dlterm"><var>rows</var></dt>
+
+<dd><p>Element 
+            <var>i</var> of the integer array 
+            <var>rows</var> is the number of the row in 
+            <var>A</var> that contains the 
+            <var>i</var>-th value in the 
+            <var>values</var> array. 
+          </p>
+</dd>
+<dt class="dlterm"><var>pointerB</var></dt>
+
+<dd><p>Element 
+            <var>j</var> of this integer array gives the index of the element in the 
+            <var>values</var> array that is first non-zero element in a column 
+            <var>j</var> of 
+            <var>A</var>. Note that this index is equal to 
+            <samp class="codeph"><var>pointerB</var>(<var>j</var>)-<span class="parmname">indexing</span></samp> 
+             for Inspector-executor Sparse BLAS CSC arrays. 
+          </p>
+</dd>
+<dt class="dlterm"><var>pointerE</var></dt>
+
+<dd><p>An integer array that contains column indices, such that 
+            <samp class="codeph"><var>pointerE</var>(<var>j</var>)-<span class="parmname">indexing</span></samp> is the index of the element in the 
+            <var>values</var> array that is last non-zero element in a column 
+            <var>j</var> of 
+            <var>A</var>. 
+          </p>
+</dd>
+</dl>
+<p>The length of the 
+      <var>values</var> and 
+      <var>columns</var> arrays is equal to the number of non-zero elements in 
+      <var>A</var>. The length of the 
+      <var>pointerB</var> and 
+      <var>pointerE</var> arrays is equal to the number of columns in 
+      <var>A</var>. 
+    </p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Note that the Intel&reg; oneAPI Math Kernel Library Sparse BLAS routines support the CSC format both with one-based indexing and zero-based indexing.</p>
+</div>
+</p>
+<p>For example, consider matrix 
+      <var>B</var>: 
+    </p>
+<p><br/><img src="equations/GUID-910E399F-11B5-46B8-9750-87EF52679ee1.png"/><br/></p>
+<p> It can be represented in the CSC format as: 
+    </p>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="GUID-626ACD34-F976-43A0-863F-6C31FFFC49F9" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Storage Arrays for a Matrix in CSC Format</span></caption><tbody><tr><td class="cellrowborder" colspan="2" valign="top"><strong>one-based indexing</strong></td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="row-nocellborder" valign="top" width="6%"> </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>values</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">8 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">6 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">7 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">-5) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>rows</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">5) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>pointerB</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">7 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">9 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">12) 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">  
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>pointerE</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">7 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">9 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">12 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">14) 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">  
+        </td>
+</tr>
+<tr><td class="cellrowborder" colspan="2" valign="top"><strong>zero-based indexing</strong></td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="cellrowborder" valign="top" width="6%"> </td>
+<td class="row-nocellborder" valign="top" width="6%"> </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>values</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">5 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">8 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">-3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">6 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">7 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">-5) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>rows</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(0 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">0 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">1 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">4 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">0 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">2 
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">4) 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>pointerB</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(0 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">6 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">8 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">11) 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">  
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="16%"><var>pointerE</var></td>
+<td class="cellrowborder" valign="top" width="6%">= 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">(3 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">6 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">8 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">11 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">13) 
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="cellrowborder" valign="top" width="6%">  
+        </td>
+<td class="row-nocellborder" valign="top" width="6%">  
+        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html">Sparse Matrix Storage Formats</a></div>
+</div>
+<div/>
+</body>
+</html>

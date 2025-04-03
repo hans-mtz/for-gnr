@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Systems of Linear Equations: ScaLAPACK Computational Routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D2528D78-17BC-49A0-99F2-28B9BA6C64B5.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-84812760-5A3F-45D3-8911-8A358BBEB71A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Systems of Linear Equations: ScaLAPACK Computational Routines</title>
+
+</head>
+<body id="GUID-84812760-5A3F-45D3-8911-8A358BBEB71A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Systems of Linear Equations: ScaLAPACK
+    Computational Routines</h1>
+<div><p>ScaLAPACK supports routines for the systems of
+      equations with the following types of matrices:
+    </p>
+<ul id="GUID-F2B5AC76-7EC9-49B3-85E4-B0DAF2787E6A"><li><p>general
+        </p>
+</li>
+<li><p>general banded
+        </p>
+</li>
+<li><p>general diagonally dominant-like banded
+          (including general tridiagonal)
+        </p>
+</li>
+<li><p>symmetric or Hermitian positive-definite 
+        </p>
+</li>
+<li><p>symmetric or Hermitian positive-definite banded
+        </p>
+</li>
+<li><p>symmetric or Hermitian positive-definite
+          tridiagonal
+        </p>
+</li>
+</ul>
+<p>A 
+      <dfn class="term">diagonally dominant-like</dfn> matrix is
+      defined as a matrix for which it is known in advance that pivoting is not
+      required in the 
+      <var>LU</var> factorization
+      of this matrix. 
+    </p>
+<p>For the above matrix types, the library includes
+      routines for performing the following computations: 
+      <var>factoring</var> the
+      matrix; 
+      <var>equilibrating</var>
+      the matrix; 
+      <var>solving</var> a system
+      of linear equations; 
+      <em>estimating the condition number</em> of a
+      matrix; 
+      <var>refining</var> the
+      solution of linear equations and computing its error bounds; 
+      <var>inverting</var> the
+      matrix. Note that for some of the listed matrix types only part of the
+      computational routines are provided (for example, routines that refine the
+      solution are not provided for band or tridiagonal matrices). See 
+      <a href="#TBL6-2">Table 
+        <span>“Computational Routines for Systems of Linear
+          Equations”</span></a> for full list of available routines. 
+    </p>
+<p>To solve a particular problem, you can either call
+      two or more computational routines or call a corresponding 
+      <a href="GUID-CF5CF672-F6FD-41A7-A0BC-CAAEFBD035EE.html#GUID-CF5CF672-F6FD-41A7-A0BC-CAAEFBD035EE">driver routine</a> that combines
+      several tasks in one call. Thus, to solve a system of linear equations with a
+      general matrix, you can first call 
+  <span class="option">p?getrf</span>(<var>LU</var> factorization) and then 
+  <span class="option">p?getrs</span>(computing the
+  solution). Then, you might wish to call 
+  <span class="option">p?gerfs</span> to refine the
+  solution and get the error bounds. Alternatively, you can just use the driver
+  routine 
+  <span class="option">p?gesvx</span> which performs
+  all these tasks in one call.
+  </p>
+<p><a href="#TBL6-2">Table 
+      <span>“Computational Routines for Systems of Linear
+        Equations”</span></a> lists the ScaLAPACK computational routines for
+    factorizing, equilibrating, and inverting matrices, estimating their condition
+    numbers, solving systems of equations with real matrices, refining the
+    solution, and estimating its error. 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL6-2" class="NoLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Systems of Linear
+    Equations</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="22.608695652173914%" id="d984997e113">Matrix type, storage scheme
+        </th>
+<th class="cellrowborder" valign="top" width="13.043478260869565%" id="d984997e115">Factorize matrix
+        </th>
+<th class="cellrowborder" valign="top" width="12.173913043478262%" id="d984997e117">Equilibrate matrix
+        </th>
+<th class="cellrowborder" valign="top" width="13.043478260869565%" id="d984997e119">Solve system
+        </th>
+<th class="cellrowborder" valign="top" width="13.043478260869565%" id="d984997e121">Condition number
+        </th>
+<th class="cellrowborder" valign="top" width="13.043478260869565%" id="d984997e123">Estimate error
+        </th>
+<th class="row-nocellborder" valign="top" width="13.043478260869565%" id="d984997e125">Invert matrix
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">general (partial pivoting)
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-A41D3B4D-CD30-47B8-AD47-346EDE1A3C61.html#GUID-A41D3B4D-CD30-47B8-AD47-346EDE1A3C61"><span class="option">p?getrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "><a href="GUID-D01B5C19-5F75-442C-B58D-0D0E7B121AE8.html#GUID-D01B5C19-5F75-442C-B58D-0D0E7B121AE8"><span class="option">p?geequ</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-30A38855-412D-494F-B149-ECD8AD29757C.html#GUID-30A38855-412D-494F-B149-ECD8AD29757C"><span class="option">p?getrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "><a href="GUID-168B4B45-834B-46D8-BB8E-239403DD6BD5.html#GUID-168B4B45-834B-46D8-BB8E-239403DD6BD5"><span class="option">p?gecon</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "><a href="GUID-E2F93F0C-01DB-4F83-9D2D-299EAF62AB58.html#GUID-E2F93F0C-01DB-4F83-9D2D-299EAF62AB58"><span class="option">p?gerfs</span></a></td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "><a href="GUID-9FF0E16D-9CD1-44BB-9A51-B1A4A0349600.html#GUID-9FF0E16D-9CD1-44BB-9A51-B1A4A0349600"><span class="option">p?getri</span></a></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">general band (partial pivoting)
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-3E5E5DB1-2012-405D-9820-88ACDBB020E0.html#GUID-3E5E5DB1-2012-405D-9820-88ACDBB020E0"><span class="option">p?gbtrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-2C2925C1-9003-4C39-8406-F8A5859181C9.html#GUID-2C2925C1-9003-4C39-8406-F8A5859181C9"><span class="option">p?gbtrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "> 
+        </td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "> 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">general band (no pivoting)
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-BC12A366-4534-402D-AE49-2854EF8131EA.html#GUID-BC12A366-4534-402D-AE49-2854EF8131EA"><span class="option">p?dbtrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-F603687D-8EC5-4ABB-AAE3-A66BB4D696CB.html#GUID-F603687D-8EC5-4ABB-AAE3-A66BB4D696CB"><span class="option">p?dbtrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "> 
+        </td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "> 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">general tridiagonal (no pivoting)
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-83BFC2A7-DEA8-4ABF-A237-EBE37BDA24B0.html#GUID-83BFC2A7-DEA8-4ABF-A237-EBE37BDA24B0"><span class="option">p?dttrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-E6DD074B-B9E7-463E-B2BC-048C78342CA9.html#GUID-E6DD074B-B9E7-463E-B2BC-048C78342CA9"><span class="option">p?dttrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "> 
+        </td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "> 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">symmetric/Hermitian positive-definite
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-B532328D-00DD-4368-B2A0-6607366D4446.html#GUID-B532328D-00DD-4368-B2A0-6607366D4446"><span class="option">p?potrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "><a href="GUID-34074084-8CE7-4B20-8C44-9CF9F486B63F.html#GUID-34074084-8CE7-4B20-8C44-9CF9F486B63F"><span class="option">p?poequ</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-E28B0A01-83C9-46AD-A391-AAFBFFE2E7BD.html#GUID-E28B0A01-83C9-46AD-A391-AAFBFFE2E7BD"><span class="option">p?potrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "><a href="GUID-CBE6172F-6389-47EE-B61C-5D1B29D74E60.html#GUID-CBE6172F-6389-47EE-B61C-5D1B29D74E60"><span class="option">p?pocon</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "><a href="GUID-7A056638-1195-4F3A-976C-A82162769F76.html#GUID-7A056638-1195-4F3A-976C-A82162769F76"><span class="option">p?porfs</span></a></td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "><a href="GUID-9E214414-1FAE-4191-A13B-0B9A340378AE.html#GUID-9E214414-1FAE-4191-A13B-0B9A340378AE"><span class="option">p?potri</span></a></td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">symmetric/Hermitian positive-definite,
+          band
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-A864A295-588C-4FCE-8894-C9F3B5647401.html#GUID-A864A295-588C-4FCE-8894-C9F3B5647401"><span class="option">p?pbtrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-1574A17C-7E59-42D3-AF07-4E73A142B9D9.html#GUID-1574A17C-7E59-42D3-AF07-4E73A142B9D9"><span class="option">p?pbtrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "> 
+        </td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "> 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">symmetric/Hermitian positive-definite,
+          tridiagonal
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "><a href="GUID-0B76E831-DC10-4F3F-95BC-E0C0E4BD4CDC.html#GUID-0B76E831-DC10-4F3F-95BC-E0C0E4BD4CDC"><span class="option">p?pttrf</span></a></td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-BC6488AC-0F55-43DC-AAA2-ADB941937ACD.html#GUID-BC6488AC-0F55-43DC-AAA2-ADB941937ACD"><span class="option">p?pttrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "> 
+        </td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "> 
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="22.608695652173914%" headers="d984997e113 ">triangular
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e115 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="12.173913043478262%" headers="d984997e117 "> 
+        </td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e119 "><a href="GUID-85CF086B-C856-4896-B6A3-ED48F6221D8B.html#GUID-85CF086B-C856-4896-B6A3-ED48F6221D8B"><span class="option">p?trtrs</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e121 "><a href="GUID-6AFDCD83-B8A1-4EB6-A502-8C8FA481BDEA.html#GUID-6AFDCD83-B8A1-4EB6-A502-8C8FA481BDEA"><span class="option">p?trcon</span></a></td>
+<td class="cellrowborder" valign="top" width="13.043478260869565%" headers="d984997e123 "><a href="GUID-8A283B9A-A2EA-49AC-893F-E05F43B5238B.html#GUID-8A283B9A-A2EA-49AC-893F-E05F43B5238B"><span class="option">p?trrfs</span></a></td>
+<td class="row-nocellborder" valign="top" width="13.043478260869565%" headers="d984997e125 "><a href="GUID-A77EBF88-D43A-4404-BE7A-2547814BD69F.html#GUID-A77EBF88-D43A-4404-BE7A-2547814BD69F"><span class="option">p?trtri</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In this table 
+    <span class="keyword">?</span> stands for 
+    <span class="keyword">s</span> (single precision real), 
+    <span class="keyword">d</span> (double precision real), 
+    <span class="keyword">c</span> (single precision complex),
+    or 
+    <span class="keyword">z</span> (double precision complex).
+  </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D2528D78-17BC-49A0-99F2-28B9BA6C64B5.html">ScaLAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

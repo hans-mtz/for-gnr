@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?gbtrs"/>
+<meta name="abstract" content="Solves a system of distributed linear equations with a general band matrix, using the LU factorization computed by p?gbtrf."/>
+<meta name="description" content="Solves a system of distributed linear equations with a general band matrix, using the LU factorization computed by p?gbtrf."/>
+<meta name="DC.subject" content="p?gbtrs, ScaLAPACK routines, solving linear equations, linear equations, solving, general matrix, band storage, solving linear equations. linear equations, solving systems of linear equations, ScaLAPACK"/>
+<meta name="keywords" content="p?gbtrs, ScaLAPACK routines, solving linear equations, linear equations, solving, general matrix, band storage, solving linear equations. linear equations, solving systems of linear equations, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2B634970-D6AF-466A-8A49-83F9B3542C39.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2C2925C1-9003-4C39-8406-F8A5859181C9"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?gbtrs</title>
+
+</head>
+<body id="GUID-2C2925C1-9003-4C39-8406-F8A5859181C9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?gbtrs</span></h1>
+<!--Solves a system of distributed linear equations with a general band matrix, using the  LU  factorization computed by  p?gbtrf .--><div><p class="shortdesc">Solves a system of distributed linear equations with a general band matrix, using the <var>LU</var> factorization computed by <span class="option">p?gbtrf</span>.</p>
+<div class="section" id="GUID-079A57B7-9C32-44CD-AF7A-07C8E871D414"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call psgbtrs</span><span class="delim">(</span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">bwl</span><span class="sep">, </span><span class="var">bwu</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdgbtrs</span><span class="delim">(</span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">bwl</span><span class="sep">, </span><span class="var">bwu</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pcgbtrs</span><span class="delim">(</span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">bwl</span><span class="sep">, </span><span class="var">bwu</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzgbtrs</span><span class="delim">(</span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">bwl</span><span class="sep">, </span><span class="var">bwu</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">laf</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DDAEEC16-575D-4CB2-94B0-15F2525C62DF"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-47474FC1-E02D-4068-90BA-708AA044332B"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?gbtrs</span><span> routine </span>solves a system of distributed linear equations with a general band distributed matrix sub(<var>A</var>) = <var>A</var>(1:<span class="parmname">n</span>, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1) using the <var>LU</var> factorization computed by p?gbtrf. </p>
+<p>The system has one of the following forms specified by <span class="parmname">trans</span>:</p>
+<p>sub(<var>A</var>)*<var>X</var> = sub(<var>B</var>) (no transpose), </p>
+<p>sub(<var>A</var>)<sup class="power"><var>T</var></sup>*X = sub(<var>B</var>) (transpose), </p>
+<p>sub(<var>A</var>)<sup class="power"><var>H</var></sup>*<var>X</var> = sub(<var>B</var>) (conjugate transpose),</p>
+<p>where sub(<var>B</var>) = <var>B</var>(<span class="parmname">ib</span>:<span class="parmname">ib</span>+<span class="parmname">n</span>-1, 1:<span class="parmname">nrhs</span>).</p>
+<p>Before calling this<span> routine</span>,you must call <a href="GUID-3E5E5DB1-2012-405D-9820-88ACDBB020E0.html#GUID-3E5E5DB1-2012-405D-9820-88ACDBB020E0"><span class="option">p?gbtrf</span></a> to compute the <var>LU</var> factorization of sub(<var>A</var>).</p>
+</div>
+<div class="section" id="GUID-548F0BC1-3605-4DFA-A27B-3DAE12F88072"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0C69DD62-4B81-42B1-9F24-25783E34C88D"><dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span> or <span class="keyword">'C'</span>.</p>
+<p>Indicates the form of the equations:</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, then sub(<var>A</var>)*<var>X</var> = sub(<var>B</var>) is solved for <var>X</var>.</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, then sub(<var>A</var>)<sup class="power"><var>T</var></sup>*<var>X</var> = sub(<var>B</var>) is solved for <var>X</var>.</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, then sub(<var>A</var>)<sup class="power"><var>H</var></sup> *<var>X</var> = sub(<var>B</var>) is solved for <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of linear equations;  the order of the distributed matrix sub(<var>A</var>) <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bwl</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of sub-diagonals within the band of <var>A</var><samp class="codeph">( 0 ≤ <var>bwl</var> ≤ <var>n-1</var> )</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">bwu</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of super-diagonals within the band of <var>A</var><samp class="codeph">( 0 ≤ <var>bwu</var> ≤ <var>n-1</var> )</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of right hand sides; the number of columns of the distributed matrix sub(<var>B</var>) <samp class="codeph">(<var>nrhs</var><span class="eqsymbol">≥</span> 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">psgbtrs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgbtrs</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgbtrs</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzgbtrs</span>. </p>
+<p>Pointers into the local memory  to arrays of local sizes <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp> and <samp class="codeph">(<var>lld_b</var>,<var>LOCc</var>(<var>nrhs</var>))</samp>, respectively.</p>
+<p>The array <var>a</var> contains details of the <var>LU</var> factorization of the distributed band matrix <var>A</var>.</p>
+<p>On entry, the array <var>b</var> contains the local pieces of the right hand sides<var> B</var>(<span class="parmname">ib</span>:<span class="parmname">ib</span>+<span class="parmname">n</span>-1, 1:<span class="parmname">nrhs</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The index in the global matrix <var>A</var> indicating the start of the matrix to be operated on ( which may be either all of <var>A</var> or a submatrix of <var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>dtype_a</var> = 501</samp>, then <samp class="codeph"><var>dlen_</var><span class="eqsymbol">≥</span> 7</samp>;</p>
+<p>else if <samp class="codeph"><var>dtype_a</var> = 1</samp>, then <samp class="codeph"><var>dlen_</var><span class="eqsymbol">≥</span> 9</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ib</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The index in the global matrix <var>A</var> indicating the start of the matrix to be operated on (which may be either all of <var>A</var> or a submatrix of <var>A</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descb</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>dtype_b</var> = 502</samp>, then <samp class="codeph"><var>dlen_</var><span class="eqsymbol">≥</span> 7</samp>;</p>
+<p>else if <samp class="codeph"><var>dtype_b</var> = 1</samp>, then <samp class="codeph"><var>dlen_</var><span class="eqsymbol">≥</span> 9</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">laf</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>The size of the array <span class="parmname">af</span>.   </p>
+<p>Must be <span class="parmname">laf</span><span class="eqsymbol">≥</span><var>nb_a</var>*(<span class="parmname">bwl</span>+<span class="parmname">bwu</span>)+6*(<span class="parmname">bwl</span>+<span class="parmname">bwu</span>)*(<var/><span class="parmname">bwl</span>+2*<span class="parmname">bwu</span>).</p>
+<p>If <span class="parmname">laf</span> is not large enough, an error code will be returned and the minimum acceptable size will be returned in <span class="parmname">af</span><span>(1)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local) Same type as <span class="parmname">a</span>. Workspace array of size <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span>The size of the <span class="parmname">work</span> array, must be at least <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span><var>nrhs</var>*(<var>nb_a</var>+2<var>*bwl</var>+4<var>*bwu</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-300F0DC9-D95C-46E9-9DC5-FBA4FFB64711"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9F128000-435D-4F9E-8646-D50E6F87665F"><dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span></span> array. </p>
+<p>The size of <span class="parmname">ipiv</span> must be <samp class="codeph"><span class="eqsymbol">≥</span><var>nb_a</var><var/></samp>. </p>
+<p>Contains pivot indices for local factorizations. Note that you should not alter the contents of this array between factorization and solve.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, overwritten by the local pieces of the solution distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">af</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">REAL</span> for <span class="option">psgbtrs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdgbtrs</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcgbtrs</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzgbtrs</span>.</p>
+<p>Array of size <span class="parmname">laf</span>. </p>
+<p>Auxiliary Fill-in space. The fill-in space is created in a call to the factorization<span> routine </span><span class="option">p?gbtrf</span> and is stored in <span class="parmname">af</span>. </p>
+<p>Note that if a linear system is to be solved using p?gbtrs after the factorization<span> routine</span>,<span class="parmname">af</span> must not be altered after the factorization.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><span class="parmname">work</span><span>(1)</span></samp></dt>
+
+<dd><p>On exit, <samp class="codeph"><var>work</var><span>(1)</span></samp> contains the minimum value of <span class="parmname">lwork</span> required for optimum performance.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful. </p>
+<p><samp class="codeph"><var>info</var> &lt; 0</samp>: </p>
+<p>If the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-2B634970-D6AF-466A-8A49-83F9B3542C39.html">Solving Systems of Linear Equations: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

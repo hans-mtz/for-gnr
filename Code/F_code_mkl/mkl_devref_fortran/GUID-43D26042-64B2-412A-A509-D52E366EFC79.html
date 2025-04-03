@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="PBLAS Routines Overview"/>
+<meta name="DC.subject" content="process grid, global array, array descriptor, block-cyclic distribution"/>
+<meta name="keywords" content="process grid, global array, array descriptor, block-cyclic distribution"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6A825383-D03C-4DFD-A0DB-A86ADC479BDB.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-43D26042-64B2-412A-A509-D52E366EFC79"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>PBLAS Routines Overview</title>
+
+</head>
+<body id="GUID-43D26042-64B2-412A-A509-D52E366EFC79">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">PBLAS Routines Overview</h1>
+<div><p>The model of the computing environment for PBLAS is
+      represented as a one-dimensional array of processes or also a two-dimensional
+      process grid. To use PBLAS, all global matrices or vectors must be distributed
+      on this array or grid prior to calling the PBLAS routines.
+    </p>
+<p>PBLAS uses the two-dimensional block-cyclic data
+      distribution as a layout for dense matrix computations. This distribution
+      provides good work balance between available processors, as well as gives the
+      opportunity to use PBLAS Level 3 routines for optimal local computations.
+      Information about the data distribution that is required to establish the
+      mapping between each global array and its corresponding process and memory
+      location is contained in the so called 
+      <dfn class="term">array descriptor</dfn> associated with each
+      global array. 
+      <a href="#TBL12-1">Table 
+        <span>"Content of the array descriptor for dense
+          matrices"</span></a> gives an example of an array descriptor structure.
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL12-1" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Content of Array Descriptor for Dense
+    Matrices</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="20%" id="d528268e48">Array Element #
+        </th>
+<th class="cellrowborder" valign="top" width="20%" id="d528268e50">Name
+        </th>
+<th class="row-nocellborder" valign="top" width="60%" id="d528268e52">Definition
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">1
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>dtype</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Descriptor type ( =1 for dense matrices)
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">2
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>ctxt</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">BLACS context handle for the process grid
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">3
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>m</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Number of rows in the global array
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">4
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>n</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Number of columns in the global array
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">5
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>mb</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Row blocking factor
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">6
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>nb</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Column blocking factor
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">7
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>rsrc</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Process row over which the first row of
+          the global array is distributed
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">8
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>csrc</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Process column over which the first
+          column of the global array is distributed
+        </td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="20%" headers="d528268e48 ">9
+        </td>
+<td class="cellrowborder" valign="top" width="20%" headers="d528268e50 "><var>lld</var></td>
+<td class="row-nocellborder" valign="top" width="60%" headers="d528268e52 ">Leading dimension of the local array
+        </td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The number of rows and columns of a global dense matrix
+    that a particular process in a grid receives after data distributing is denoted
+    by 
+    <samp class="codeph"><var>LOCr</var>()</samp> and 
+    <samp class="codeph"><var>LOCc</var>()</samp>, respectively.
+    To compute these numbers, you can use the ScaLAPACK tool routine 
+    <span class="keyword">numroc</span>.
+  </p>
+<p>After the block-cyclic distribution of global data is
+    done, you may choose to perform an operation on a submatrix of the global
+    matrix 
+    <var>A</var>, which is
+    contained in the global subarray 
+    <samp class="codeph">sub(<var>A</var>)</samp>, defined by the
+    following 6 values (for dense matrices):
+  </p>
+<dl id="GUID-FA175EED-C5B0-4FB5-B5EC-65BBBA9FD2AD"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>The number of rows of 
+          <samp class="codeph">sub(<var>A</var>)</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>The number of columns of 
+          <samp class="codeph">sub(<var>A</var>)</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>A pointer to the local array containing the
+          entire global array 
+          <var>A</var></p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>The row index of 
+          <samp class="codeph">sub(<var>A</var>)</samp> in the global array
+        </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>The column index of 
+          <samp class="codeph">sub(<var>A</var>)</samp> in the global array
+        </p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>The array descriptor for the global array 
+          <var>A</var></p>
+</dd>
+</dl>
+<p>Intel&reg; oneAPI Math Kernel Library provides the PBLAS routines with interface similar to the interface used in the Netlib PBLAS (see http://www.netlib.org/scalapack/html/pblas_qref.html).</p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-6A825383-D03C-4DFD-A0DB-A86ADC479BDB.html">PBLAS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?gtts2"/>
+<meta name="abstract" content="Solves a system of linear equations with a tridiagonal matrix using the LU factorization computed by ?gttrf."/>
+<meta name="description" content="Solves a system of linear equations with a tridiagonal matrix using the LU factorization computed by ?gttrf."/>
+<meta name="DC.subject" content="?gtts2, LAPACK routines, auxiliary routines, LU factorization, solving linear equations, tridiagonal matrix"/>
+<meta name="keywords" content="?gtts2, LAPACK routines, auxiliary routines, LU factorization, solving linear equations, tridiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6C1789F9-ABAC-4CC3-846C-C29A570DB9C5"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?gtts2</title>
+
+</head>
+<body id="GUID-6C1789F9-ABAC-4CC3-846C-C29A570DB9C5">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?gtts2</span></h1>
+<!--Solves a system of linear equations with a tridiagonal matrix using the LU factorization computed by  ?gttrf .--><div><p class="shortdesc">Solves a system of linear equations with a tridiagonal matrix using the LU factorization computed by <span class="option">?gttrf</span>.</p>
+<div class="section" id="GUID-1D373E1F-08D9-47CB-BB4E-DCC49894530B"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call sgtts2</span><span class="delim">( </span><span class="var">itrans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dgtts2</span><span class="delim">( </span><span class="var">itrans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call cgtts2</span><span class="delim">( </span><span class="var">itrans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zgtts2</span><span class="delim">( </span><span class="var">itrans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nrhs</span><span class="sep">, </span><span class="var">dl</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">du</span><span class="sep">, </span><span class="var">du2</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-05A23EDE-9162-46C7-8B18-D9D3871C3231"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-6EEF50AB-CECE-4C0E-ADA4-1BD9B77F0674"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine solves for <var>X</var> one of the following systems of linear equations with multiple right hand sides:</p>
+<p><samp class="codeph"><var>A*X</var> = <var>B</var>,      <var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var>, or   <var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var></samp>  (for complex matrices only), with a tridiagonal matrix A using the <var>LU</var> factorization computed by <a href="GUID-40417474-5534-460A-9DDB-0F34976BA0C7.html#GUID-40417474-5534-460A-9DDB-0F34976BA0C7"><span class="option">?gttrf</span></a>.</p>
+</div>
+<div class="section" id="GUID-7DD9B612-E88F-4719-AADC-7FDFCD191DC3"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-26425379-B790-4B54-B92A-783AD498E23B"><dt class="dlterm"><span class="parmname">itrans</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Must be 0, 1, or 2.</p>
+<p>Indicates the form of the equations to be solved:</p>
+<p>If <samp class="codeph"><var>itrans</var> = 0</samp>, then <samp class="codeph"><var>A*X</var> = <var>B</var></samp> (no transpose).</p>
+<p>If <samp class="codeph"><var>itrans</var> = 1</samp>, then <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var></samp> (transpose).</p>
+<p>If <samp class="codeph"><var>itrans</var> = 2</samp>, then <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var></samp> (conjugate transpose).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrhs</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of right-hand sides, i.e., the number of columns in <var>B</var> (<samp class="codeph"><var>nrhs</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">dl</span>,<span class="parmname">d</span>,<span class="parmname">du</span>,<span class="parmname">du2</span>,<span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sgtts2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dgtts2</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">cgtts2</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zgtts2</span>.</p>
+<p>Arrays: <samp class="codeph"><var>dl</var>(<var>n</var> - 1)</samp>, <samp class="codeph"><var>d</var>(<var>n</var> )</samp>, <samp class="codeph"><var>du</var>(<var>n</var> - 1)</samp>, <samp class="codeph"><var>du2</var>(<var>n</var> - 2)</samp>, <samp class="codeph"><var>b</var>(<var>ldb</var>,<var>nrhs</var>)</samp>. </p>
+<p>The array <var>dl</var> contains the (<var>n</var> - 1) multipliers that define the matrix <var>L</var> from the <var>LU</var> factorization of <var>A</var>. </p>
+<p>The array <var>d</var> contains the <var>n</var> diagonal elements of the upper triangular matrix <var>U</var> from the <var>LU</var> factorization of <var>A</var>. </p>
+<p>The array <var>du</var> contains the (<var>n</var> - 1) elements of the first super-diagonal of <var>U</var>. </p>
+<p>The array <var>du2</var> contains the (<var>n</var> - 2) elements of the second super-diagonal of <var>U</var>. </p>
+<p>The array <var>b</var> contains the matrix <var>B</var> whose columns are the right-hand sides for the systems of equations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of <var>b</var>; must be <samp class="codeph"><var>ldb</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Array, <span class="keyword">DIMENSION </span>(<var>n</var>). </p>
+<p>The pivot indices array, as returned by <span class="option">?gttrf</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E73C9C9D-4D43-495D-A699-356F95203C47"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-563F0ED2-FF57-4AF2-8857-FBBF3245BAB2"><dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>Overwritten by the solution matrix <var>X</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

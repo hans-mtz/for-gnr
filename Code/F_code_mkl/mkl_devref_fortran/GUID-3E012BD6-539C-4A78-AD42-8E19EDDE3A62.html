@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Poisson Solver Implementation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5985E9DC-AA77-4663-95E6-1A8A22BACCDA.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Poisson Solver Implementation</title>
+
+</head>
+<body id="GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Poisson Solver Implementation</h1>
+<div><p>Poisson Solver routines enable approximate solving of
+      certain two-dimensional and three-dimensional problems. 
+      <a href="#PDES_PLR_FIG13-2">Figure 
+        <span>"Structure of the Poisson Solver"</span></a>
+      shows the general structure of the Poisson Solver. 
+    </p>
+<div class="figtop" id="PDES_PLR_FIG13-2"><span class="figcap"><span/>Structure of
+        the Poisson Solver</span><p><br/><img src="GUID-0589CCBF-6B9C-437C-97CB-AA68FA4793B2-low.jpg" width="615" height="304"/><br/></p>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> Although in the Cartesian case, both periodic and non-periodic
+        solvers are also supported, they use the same interfaces. 
+      </p>
+</div>
+<p>Sections below provide details of the problems that can be solved using Intel&reg; oneAPI Math Kernel Library Poisson Solver.</p>
+<div class="section" id="TWO-DIMENSIONAL"><h2 class="sectiontitle">Two-Dimensional Problems</h2><p><strong>Notational
+          Conventions</strong></p>
+<p>The Poisson Solver interface description uses the
+        following notation for boundaries of a rectangular domain 
+        <var>a</var><sub><var>x</var></sub> &lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> &lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub> on a Cartesian plane: 
+      </p>
+<p><var>bd_a</var><sub><var>x</var></sub> = {<var>x</var> = 
+        <var>a</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> ≤ 
+        <var>y</var> ≤ 
+        <var>b</var><sub><var>y</var></sub>}, 
+        <var>bd_b</var><sub><var>x</var></sub> = {<var>x</var> = 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> ≤ 
+        <var>y</var> ≤ 
+        <var>b</var><sub><var>y</var></sub>} 
+      </p>
+<p><var>bd_a</var><sub><var>y</var></sub> = {<var>a</var><sub><var>x</var></sub> ≤ 
+        <var>x</var> ≤ 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>y</var> = 
+        <var>a</var><sub><var>y</var></sub>}, 
+        <var>bd_b</var><sub><var>y</var></sub> = {<var>a</var><sub><var>x</var></sub> ≤ 
+        <var>x</var> ≤ 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>y</var> = 
+        <var>b</var><sub><var>y</var></sub>}. 
+      </p>
+<p>The following figure shows these boundaries: 
+      </p>
+<p><br/><img src="GUID-A30B0677-78FA-4D55-A261-7103648E4DE2-low.gif" width="351" height="351"/><br/></p>
+<p>The wildcard "+" may stand for any of the symbols 
+        <var>a</var><sub><var>x</var></sub>, 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub>, 
+        <var>b</var><sub><var>y</var></sub>, so 
+        <var>bd_+</var> denotes
+        any of the above boundaries. 
+      </p>
+<p>The Poisson Solver interface description uses the
+        following notation for boundaries of a rectangular domain 
+        <var>a</var><sub>φ</sub> &lt; φ &lt; 
+        <var>b</var><sub>φ</sub>, 
+        <var>a</var><sub>θ</sub> &lt; θ &lt; 
+        <var>b</var><sub>θ</sub> on a sphere 0 ≤ φ ≤ 2 
+        <span><var>π</var></span>, 0 ≤ θ ≤ 
+        <span><var>π</var></span>: 
+      </p>
+<p><var>bd_a</var><sub>φ</sub> = {φ = 
+        <var>a</var><sub>φ</sub>, 
+        <var>a</var><sub>θ</sub> ≤ θ ≤ 
+        <var>b</var><sub>θ</sub>}, 
+        <var>bd_b</var><sub>φ</sub> = {φ = 
+        <var>b</var><sub>φ</sub>, 
+        <var>a</var><sub>θ</sub> ≤ θ ≤ 
+        <var>b</var><sub>θ</sub>}, 
+      </p>
+<p><var>bd_a</var><sub>θ</sub> = {<var>a</var><sub>φ</sub> ≤ φ ≤ 
+        <var>b</var><sub>φ</sub>, θ = 
+        <var>a</var><sub>θ</sub>}, 
+        <var>bd_b</var><sub>θ</sub> = {<var>a</var><sub>φ</sub> ≤ φ ≤ 
+        <var>b</var><sub>φ</sub>, θ = 
+        <var>b</var><sub>θ</sub>}. 
+      </p>
+<p>The wildcard "~" may stand for any of the symbols 
+        <var>a</var><sub>φ</sub>, 
+        <var>b</var><sub>φ</sub>, 
+        <var>a</var><sub>θ</sub>, 
+        <var>b</var><sub>θ</sub>, so 
+        <var>bd_~ 
+        </var> denotes any of the above boundaries. 
+      </p>
+<p><strong>Two-dimensional Helmholtz problem on a Cartesian
+          plane</strong></p>
+<p>The two-dimensional (2D) Helmholtz problem is to
+        find an approximate solution of the Helmholtz equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee1.png"/></span></p>
+<p>in a rectangle, that is, a rectangular domain 
+        <var>a</var><sub><var>x</var></sub>&lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub>&lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub>, with one of the
+        following boundary conditions on each boundary 
+        <var>bd_+</var>: 
+      </p>
+<ul id="GUID-271CF651-B33C-41A7-8239-776D9695D697"><li><p>The Dirichlet boundary condition</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee2.png"/></span></p>
+</li>
+<li><p>The Neumann boundary condition 
+          </p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee3.png"/></span></p>
+<p>where 
+          </p>
+<p><var>n</var>= -<var>x</var> on 
+            <var>bd_a</var><sub><var>x</var></sub>, 
+            <var>n</var>= 
+            <var>x</var> on 
+            <var>bd_b</var><sub><var>x</var></sub>, 
+          </p>
+<p><var>n</var>= -<var>y</var> on 
+            <var>bd_a</var><sub><var>y</var></sub>, 
+            <var>n</var>= 
+            <var>y</var> on 
+            <var>bd_b</var><sub><var>y</var></sub>. 
+          </p>
+</li>
+<li><p>Periodic boundary conditions</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee4.png"/></span></p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee5.png"/></span></p>
+</li>
+</ul>
+<p><strong>Two-dimensional Poisson problem on a Cartesian
+          plane</strong></p>
+<p>The Poisson problem is a special case of the
+        Helmholtz problem, when 
+        <var>q</var>=0. The 2D
+        Poisson problem is to find an approximate solution of the Poisson equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee6.png"/></span></p>
+<p>in a rectangle 
+        <var>a</var><sub><var>x</var></sub>&lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub>&lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub> with the Dirichlet,
+        Neumann, or periodic boundary conditions on each boundary 
+        <var>bd_+</var>. In case
+        of a problem with the Neumann boundary condition on the entire boundary, you
+        can find the solution of the problem only up to a constant. In this case, the
+        Poisson Solver will compute the solution that provides the minimal Euclidean
+        norm of a residual. 
+      </p>
+<p><strong>Two-dimensional (2D) Laplace problem on a Cartesian
+          plane</strong></p>
+<p>The Laplace problem is a special case of the
+        Helmholtz problem, when 
+        <var>q</var>=0 and 
+        <var>f(x, y)</var>=0. The
+        2D Laplace problem is to find an approximate solution of the Laplace equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee7.png"/></span></p>
+<p>in a rectangle 
+        <var>a</var><sub><var>x</var></sub>&lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub>&lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub> with the Dirichlet,
+        Neumann, or periodic boundary conditions on each boundary 
+        <var>bd_+</var>. 
+      </p>
+<p><strong>Helmholtz problem on a sphere</strong></p>
+<p>The Helmholtz problem on a sphere is to find an
+        approximate solution of the Helmholtz equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee8.png"/></span></p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3ee9.png"/></span></p>
+<p>in a domain bounded by angles 
+        <var>a</var><sub>φ</sub>≤ φ ≤ 
+        <var>b</var><sub>φ</sub>, 
+        <var>a</var><sub>θ</sub>≤ θ ≤ 
+        <var>b</var><sub>θ</sub> (spherical rectangle), with boundary
+        conditions for particular domains listed in 
+        <a href="#TBL13-4">Table 
+          <span>"Details of Helmholtz Problem on a
+            Sphere"</span></a>. 
+      </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL13-4" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Details of Helmholtz Problem on a
+        Sphere</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="40%" id="d476956e688">Domain on a sphere 
+            </th>
+<th class="cellrowborder" valign="top" width="40%" id="d476956e690">Boundary condition 
+            </th>
+<th class="row-nocellborder" valign="top" width="20%" id="d476956e692">Periodic/non-periodic case 
+            </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="40%" headers="d476956e688 "><p>Rectangular, that is, 
+                <var>b</var><sub>φ</sub> - 
+                <var>a</var><sub>φ</sub> &lt; 2 
+                <span><var>π</var></span> and 
+                <var>b</var><sub>θ</sub> - 
+                <var>a</var><sub>θ</sub> &lt; 
+                <span><var>π</var></span></p>
+</td>
+<td class="cellrowborder" valign="top" width="40%" headers="d476956e690 "><p>Homogeneous Dirichlet boundary conditions
+                on each boundary 
+                <var>bd_~</var></p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d476956e692 "><p><em>non-periodic</em></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d476956e688 "><p>Where 
+                <var>a</var><sub>φ</sub> = 0, 
+                <var>b</var><sub>φ</sub> = 2 
+                <span><var>π</var></span>, and 
+                <var>b</var><sub>θ</sub> - 
+                <var>a</var><sub>θ</sub> &lt; 
+                <span><var>π</var></span></p>
+</td>
+<td class="cellrowborder" valign="top" width="40%" headers="d476956e690 "><p>Homogeneous Dirichlet boundary conditions
+                on the boundaries 
+                <var>bd_a</var><sub>θ</sub> and 
+                <var>bd_b</var><sub>θ</sub></p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d476956e692 "><p><em>periodic</em></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="40%" headers="d476956e688 "><p>Entire sphere, that is, 
+                <var>a</var><sub>φ</sub> = 0, 
+                <var>b</var><sub>φ</sub> = 2 
+                <span><var>π</var></span>, 
+                <var>a</var><sub>θ</sub> = 0, and 
+                <var>b</var><sub>θ</sub> = 
+                <span><var>π</var></span></p>
+</td>
+<td class="cellrowborder" valign="top" width="40%" headers="d476956e690 "><p>Boundary condition 
+                <span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e10.png"/></span></p>
+<p>at the poles 
+              </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20%" headers="d476956e692 "><p><em>periodic</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Poisson problem on a sphere</strong></p>
+<p>The Poisson problem is a special case of the
+        Helmholtz problem, when 
+        <var>q</var>=0. The
+        Poisson problem on a sphere is to find an approximate solution of the Poisson
+        equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e11.png"/></span></p>
+<p>in a spherical rectangle 
+        <var>a</var><sub>φ</sub>≤ φ ≤ 
+        <var>b</var><sub>φ</sub>, 
+        <var>a</var><sub>θ</sub>≤ θ ≤ 
+        <var>b</var><sub>θ</sub> in cases listed in 
+        <a href="#TBL13-4">Table 
+          <span>"Details of Helmholtz Problem on a
+            Sphere"</span></a>. The solution to the Poisson problem on the entire sphere
+        can be found up to a constant only. In this case, Poisson Solver will compute
+        the solution that provides the minimal Euclidean norm of a residual. 
+      </p>
+<p><strong>Approximation of 2D
+          problems</strong></p>
+<p>To find an approximate solution for any of the 2D
+        problems, in the rectangular domain a uniform mesh can be defined for the
+        Cartesian case as:</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e12.png"/></span></p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e13.png"/></span></p>
+<p>and for the spherical case as:</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e14.png"/></span></p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e15.png"/></span></p>
+<p>The Poisson Solver uses the standard five-point
+        finite difference approximation on this mesh to compute the approximation to
+        the solution: 
+      <ul id="GUID-7BBCDFD0-4EC7-4BA1-9465-4DABE682CDA0"><li><p>In the Cartesian case, the values of the
+            approximate solution will be computed in the mesh points (<var>x</var><sub><var>i</var></sub> , 
+            <var>y</var><sub><var>j</var></sub>) provided that you can
+            supply the values of the right-hand side 
+            <var>f(x, y)</var> in
+            these points and the values of the appropriate boundary functions 
+            <var>G(x, y)</var>
+            and/or 
+            <var>g(x,y)</var> in
+            the mesh points laying on the boundary of the rectangular domain. 
+          </p>
+</li>
+<li><p>In the spherical case, the values of the
+            approximate solution will be computed in the mesh points (φ<sub><var>i</var></sub> , θ<sub><var>j</var></sub>) provided that you can
+            supply the values of the right-hand side 
+            <var>f</var>(φ, θ) in
+            these points. 
+          </p>
+</li>
+</ul>
+</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The number of mesh intervals 
+          <var>n</var><sub>φ</sub> in the φ direction of a spherical mesh
+          must be even in the periodic case. The Poisson Solver does not support
+          spherical meshes that do not meet this condition. 
+        </p>
+</div>
+</div>
+<div class="section" id="THREE-DIMENSIONAL"><h2 class="sectiontitle">Three-Dimensional Problems</h2><p><strong>Notational
+          Conventions</strong></p>
+<p>The Poisson Solver interface description uses the
+        following notation for boundaries of a parallelepiped domain 
+        <var>a</var><sub><var>x</var></sub> &lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> &lt; 
+        <var>y</var> &lt;<var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub> &lt; 
+        <var>z</var> &lt;<var>b</var><sub><var>z</var></sub>: 
+      </p>
+<p><var>bd_a</var><sub><var>x</var></sub> = {<var>x</var> = 
+        <var>a</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> ≤ 
+        <var>y</var> ≤ 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub> ≤ 
+        <var>z</var> ≤ 
+        <var>b</var><sub><var>z</var></sub>}, 
+        <var>bd_b</var><sub><var>x</var></sub> = {<var>x</var> = 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> ≤ 
+        <var>y</var> ≤ 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub> ≤ 
+        <var>z</var> ≤ 
+        <var>b</var><sub><var>z</var></sub>}, 
+      </p>
+<p><var>bd_a</var><sub><var>y</var></sub> = {<var>a</var><sub><var>x</var></sub> ≤ 
+        <var>x</var> ≤ 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>y 
+        </var>= 
+        <var>a</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub> ≤ 
+        <var>z</var> ≤ 
+        <var>b</var><sub><var>z</var></sub>}, 
+        <var>bd_b</var><sub><var>y</var></sub> = {<var>a</var><sub><var>x</var></sub> ≤ 
+        <var>x</var> ≤ 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>y</var> = 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub> ≤ 
+        <var>z</var> ≤ 
+        <var>b</var><sub><var>z</var></sub>}, 
+      </p>
+<p><var>bd_a</var><sub><var>z</var></sub> = {<var>a</var><sub><var>x</var></sub> ≤ 
+        <var>x</var> ≤ 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> ≤ 
+        <var>y</var> ≤ 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>z</var> = 
+        <var>a</var><sub><var>z</var></sub>}, 
+        <var>bd_b</var><sub><var>x</var></sub> = {<var>a</var><sub><var>x</var></sub> ≤ 
+        <var>x</var> ≤ 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub> ≤ 
+        <var>y</var> ≤ 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>z</var> = 
+        <var>b</var><sub><var>z</var></sub>}. 
+      </p>
+<p>The following figure shows these boundaries: 
+        <br/><img src="GUID-E94EC056-3EF0-482E-B239-085BD22F5C8C-low.jpg" width="655" height="415"/><br/></p>
+<p>The wildcard "+" may stand for any of the symbols 
+        <var>a</var><sub><var>x</var></sub>, 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub>, 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub>, 
+        <var>b</var><sub><var>z</var></sub>, so 
+        <var>bd_+</var> denotes
+        any of the above boundaries. 
+      </p>
+<p><strong>Three-dimensional (3D) Helmholtz problem</strong></p>
+<p>The 3D Helmholtz problem is to find an approximate
+        solution of the Helmholtz equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e16.png"/></span></p>
+<p>in a parallelepiped, that is, a parallelepiped
+        domain 
+        <var>a</var><sub><var>x</var></sub>&lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub>, 
+        <var>a</var><sub><var>y</var></sub>&lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub>&lt; 
+        <var>z</var> &lt; 
+        <var>b</var><sub><var>z</var></sub>, with one of the
+        following boundary conditions on each boundary 
+        <var>bd_+</var>: 
+      </p>
+<ul id="GUID-0833B630-564A-4210-991D-E2CC2DEA67AB"><li><p>The Dirichlet boundary condition</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e17.png"/></span></p>
+</li>
+<li><p>The Neumann boundary condition 
+          </p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e18.png"/></span></p>
+<p>where 
+          </p>
+<p><var>n</var>= -<var>x</var> on 
+            <var>bd_a</var><sub><var>x</var></sub>, 
+            <var>n</var>= 
+            <var>x</var> on 
+            <var>bd_b</var><sub><var>x</var></sub>,<var/></p>
+<p><var>n</var>= -<var>y</var> on 
+            <var>bd_a</var><sub><var>y</var></sub>, 
+            <var>n</var>= 
+            <var>y</var> on 
+            <var>bd_b</var><sub><var>y</var></sub>, 
+          </p>
+<p><var>n</var>= -<var>z</var> on 
+            <var>bd_a</var><sub><var>z</var></sub>, 
+            <var>n</var>= 
+            <var>z</var> on 
+            <var>bd_b</var><sub><var>z</var></sub>. 
+          </p>
+</li>
+<li><p>Periodic boundary conditions</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e19.png"/></span></p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e20.png"/></span></p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e21.png"/></span></p>
+</li>
+</ul>
+<p><strong>Three-dimensional (3D) Poisson problem</strong></p>
+<p>The Poisson problem is a special case of the
+        Helmholtz problem, when 
+        <var>q</var>=0. The 3D
+        Poisson problem is to find an approximate solution of the Poisson equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e22.png"/></span></p>
+<p>in a parallelepiped 
+        <var>a</var><sub><var>x</var></sub>&lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub> , 
+        <var>a</var><sub><var>y</var></sub>&lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub>&lt; 
+        <var>z</var> &lt; 
+        <var>b</var><sub><var>z</var></sub> with the Dirichlet,
+        Neumann, or periodic boundary conditions on each boundary 
+        <var>bd_+</var>. 
+      </p>
+<p><strong>Three-dimensional (3D) Laplace problem</strong></p>
+<p>The Laplace problem is a special case of the
+        Helmholtz problem, when 
+        <var>q</var>=0 and 
+        <var>f(x, y, z)</var>=0.
+        The 3D Laplace problem is to find an approximate solution of the Laplace
+        equation</p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e23.png"/></span></p>
+<p>in a parallelepiped 
+        <var>a</var><sub><var>x</var></sub>&lt; 
+        <var>x</var> &lt; 
+        <var>b</var><sub><var>x</var></sub> , 
+        <var>a</var><sub><var>y</var></sub>&lt; 
+        <var>y</var> &lt; 
+        <var>b</var><sub><var>y</var></sub>, 
+        <var>a</var><sub><var>z</var></sub>&lt; 
+        <var>z</var> &lt; 
+        <var>b</var><sub><var>z</var></sub> with the Dirichlet,
+        Neumann, or periodic boundary conditions on each boundary 
+        <var>bd_+</var>. 
+      </p>
+<p><strong>Approximation of 3D
+          problems</strong></p>
+<p>To find an approximate solution for each of the 3D
+        problems, a uniform mesh can be defined in the parallelepiped domain as: 
+        </p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e24.png"/></span></p>
+<p>where 
+        </p>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e25.png"/></span></p>
+<p/>
+<p><span><img class="img-middle" src="equations/GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3e26.png"/></span></p>
+<p>The Poisson Solver uses the standard seven-point
+        finite difference approximation on this mesh to compute the approximation to
+        the solution. The values of the approximate solution will be computed in the
+        mesh points (<var>x</var><sub><var>i</var></sub>, 
+        <var>y</var><sub><var>j</var></sub>, 
+        <var>z</var><sub><var>k</var></sub>), provided that you can
+        supply the values of the right-hand side 
+        <var>f(x, y, z)</var> in
+        these points and the values of the appropriate boundary functions 
+        <var>G(x, y, z)</var>
+        and/or 
+        <var>g(x, y, z)</var> in
+        the mesh points laying on the boundary of the parallelepiped domain. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-5985E9DC-AA77-4663-95E6-1A8A22BACCDA.html">Fast Poisson Solver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

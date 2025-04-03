@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?syev"/>
+<meta name="abstract" content="Computes selected eigenvalues and eigenvectors of a symmetric matrix."/>
+<meta name="description" content="Computes selected eigenvalues and eigenvectors of a symmetric matrix."/>
+<meta name="DC.subject" content="p?syev, ScaLAPACK routines, driver routines, symmetric matrix, eigenvalues and eigenvectors"/>
+<meta name="keywords" content="p?syev, ScaLAPACK routines, driver routines, symmetric matrix, eigenvalues and eigenvectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CF5CF672-F6FD-41A7-A0BC-CAAEFBD035EE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-98DAAD07-1FDA-49A3-88A5-88C40C670A75"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?syev</title>
+
+</head>
+<body id="GUID-98DAAD07-1FDA-49A3-88A5-88C40C670A75">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?syev</span></h1>
+<!--Computes selected eigenvalues and eigenvectors of a symmetric matrix.--><div><p class="shortdesc">Computes selected eigenvalues and eigenvectors of a symmetric matrix.</p>
+<div class="section" id="GUID-AFB22443-BF0D-438A-8BBD-1C876A386B50"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pssyev</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">iz</span><span class="sep">, </span><span class="var">jz</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdsyev</span><span class="delim">(</span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">iz</span><span class="sep">, </span><span class="var">jz</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-10E11E5A-1F45-4AF2-AB72-D36B58195377"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-54606762-243A-4CA5-B1CC-9BB29E9F92C4"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?syev</span><span>routine </span>computes all eigenvalues and, optionally, eigenvectors of a real symmetric matrix <var>A</var> by calling the recommended sequence of ScaLAPACK <span>routines</span>. </p>
+<p>In its present form, the<span> routine </span>assumes a homogeneous system and makes no checks for consistency of the eigenvalues or eigenvectors across the different processes. Because of this, it is possible that a heterogeneous system may return incorrect results without any error messages. </p>
+</div>
+<div class="section" id="GUID-D3A2C252-42B1-4FB7-85F8-2307F04DEF01"><h2 class="sectiontitle">Input Parameters</h2><p><var>np</var> = the number of rows local to a given process. </p>
+<p><var>nq</var> = the number of columns local to a given process. </p>
+<dl id="GUID-992A9DDD-01FA-4928-92AA-A398ADF88FFB"><dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. Specifies if it is necessary to compute the eigenvectors: </p>
+<p>If <samp class="codeph"><var>jobz</var> =<span class="keyword">'N'</span></samp>, then only eigenvalues are computed. </p>
+<p>If <samp class="codeph"><var>jobz</var> =<span class="keyword">'V'</span></samp>, then eigenvalues and eigenvectors are computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. Specifies whether the upper or lower triangular part of the symmetric matrix <var>A</var> is stored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>a</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>a</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The number of rows and columns of the matrix <var>A</var><samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span> 0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyev</span>. </p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyev</span>. </p>
+<p>Block cyclic array of global size <span>(<var>n</var>, <var>n</var>)</span> and local size <samp class="codeph">(<var>lld_a</var>, <var>LOC</var><var>c</var>(<var>ja</var>+<var>n</var>-1))</samp>. On entry, the symmetric matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, only the upper triangular part of <var>A</var> is used to define the elements of the symmetric matrix. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, only the lower triangular part of <var>A</var> is used to define the elements of the symmetric matrix. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the submatrix <var>A</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iz</span>, <span class="parmname">jz</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>Z</var> indicating the first row and the first column of the submatrix <var>Z</var>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descz</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>Z</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyev</span>. </p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyev</span>. </p>
+<p>Array of size <var>lwork</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>See below for definitions of variables used to define <var>lwork</var>. </p>
+<p>If no eigenvectors are requested (<samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>), then <samp class="codeph"><var>lwork</var> ≥ 5*<var>n</var> + <var>sizesytrd</var> + 1</samp>, </p>
+<p>where  <samp class="codeph"><var>sizesytrd</var></samp>is the workspace for <a class="allformats" href="GUID-C7F5DB40-39D9-4EC4-A912-1EED65DC2F22.html#GUID-C7F5DB40-39D9-4EC4-A912-1EED65DC2F22"><span class="option">p?sytrd</span></a> and is <samp class="codeph"><span class="keyword">max</span>(<span class="keyword">NB</span>*(<var>np</var> +1), 3*<span class="keyword">NB</span>)</samp>. </p>
+<p>If eigenvectors are requested (<samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>) then the amount of workspace required to guarantee that all eigenvectors are computed is: </p>
+<p><samp class="codeph"><var>qrmem</var> = 2*<var>n</var>-2</samp></p>
+<p><samp class="codeph"><var>lwmin</var> = 5*<var>n</var> + <var>n</var>*<var>ldc</var> + <span class="keyword">max</span>(<var>sizemqrleft</var>, <var>qrmem</var>) + 1</samp></p>
+<p> Variable definitions: </p>
+<p><samp class="codeph"><var>nb</var> = <var>desca</var><span>(<var>mb</var>_)</span> = <var>desca</var><span>(<var>nb</var>_)</span> = <var>descz</var><span>(<var>mb</var>_)</span> = <var>descz</var><span>(<var>nb</var>_)</span>;</samp></p>
+<p><samp class="codeph"><var>nn</var> = <span class="keyword">max</span>(<var>n</var>, <var>nb</var>, 2); </samp></p>
+<p><samp class="codeph"><var>desca</var><span>(<var>rsrc_</var>)</span> = <var>desca</var><span>(<var>rsrc_</var>)</span> = <var>descz</var><span>(<var>rsrc_</var>)</span> = <var>descz</var><span>(<var>csrc_</var>)</span> = 0</samp></p>
+<p><samp class="codeph"><var>np</var> = <span class="keyword">numroc</span>(<var>nn</var>, <var>nb</var>, 0, 0, <span class="keyword">NPROW</span>) </samp></p>
+<p><samp class="codeph"><var>nq</var> = <span class="keyword">numroc</span>(<span class="keyword">max</span>(<var>n</var>, <var>nb</var>, 2), <var>nb</var>, 0, 0, <span class="keyword">NPCOL</span>) </samp></p>
+<p><samp class="codeph"><var>nrc</var> = <span class="keyword">numroc</span>(<var>n</var>, <var>nb</var>, <var>myprowc</var>, 0, <span class="keyword">NPROCS</span>) </samp></p>
+<p><samp class="codeph"><var>ldc</var> = <span class="keyword">max</span>(1, <var>nrc</var>) </samp></p>
+<p><samp class="codeph"><var>sizemqrleft</var></samp> is the workspace for <span class="option">p?ormtr</span> when its <var>side</var> argument is <span class="keyword">'L'</span>. </p>
+<p><var>myprowc</var> is defined when a new context is created as follows: </p>
+<p><samp class="codeph"><span class="keyword">call blacs_get</span>(<var>desca</var><span>(<var>ctxt_</var>)</span>, 0, <var>contextc</var>) </samp></p>
+<p><samp class="codeph">call </samp><samp class="codeph"><span class="keyword">blacs_gridinit</span>(<var>contextc</var>, <span class="keyword">'R'</span>, <span class="keyword">NPROCS</span>, 1) </samp></p>
+<p><samp class="codeph"><span class="keyword">call </span></samp><samp class="codeph"><span class="keyword">blacs_gridinfo</span>(<var>contextc</var>, <var>nprowc</var>, <var>npcolc</var>, <var>myprowc</var>, <var>mypcolc</var>)</samp></p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then <var>lwork</var> is global input and a workspace query is assumed; the<span> routine </span>only calculates the minimum and optimal size for all work arrays. Each of these values is returned in the first entry of the corresponding work array, and no error message is issued by <span class="option">pxerbla</span>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F0DEA694-BA81-4D83-8263-20A4329E22E8"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-CBA63949-CD39-4020-9C2C-7358C9DBA85F"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the lower triangle (if <samp class="codeph"><var>uplo</var>=<span class="keyword">'L'</span></samp>) or the upper triangle (if <samp class="codeph"><var>uplo</var>=<span class="keyword">'U'</span></samp>) of <var>A</var>, including the diagonal, is destroyed. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>(global). <span><span class="keyword">REAL</span> for <span class="option">pssyev</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyev</span></p>
+<p>Array of size <var>n</var>. </p>
+<p>On normal exit, the first <var>m</var> entries contain the selected eigenvalues in ascending order. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>(local). <span><span class="keyword">REAL</span> for <span class="option">pssyev</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyev</span></p>
+<p>Array, global size <span>(<var>n</var>, <var>n</var>)</span>, local size <samp class="codeph">(<var>lld_z</var>, <var>LOCc</var>(<var>jz</var>+<var>n</var>-1))</samp>. If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then on normal exit the first <var>m</var> columns of <var>z</var> contain the orthonormal eigenvectors of the matrix corresponding to the selected eigenvalues. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then <var>z</var> is not referenced. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span><samp class="codeph">(1)</samp></dt>
+
+<dd><p>On output, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the workspace needed to guarantee completion. If the input parameters are incorrect, <span class="parmname">work</span><samp class="codeph">(1)</samp> may also be incorrect. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span><span class="parmname">work</span><samp class="codeph">(1)</samp> = </samp>minimal (optimal) amount of workspace </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span><span class="parmname">work</span><samp class="codeph">(1)</samp> = </samp>minimal workspace required to generate all the eigenvectors. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful.</p>
+<p>If <samp class="codeph"><var>info</var> &lt; 0</samp>: If the <var>i</var>-th argument is an array and the <var>j</var>-entry had an illegal value, then <samp class="codeph"><var>info</var> = -(<var>i</var>*100+<var>j</var>)</samp>, if the <var>i</var>-th argument is a scalar and had an illegal value, then <samp class="codeph"><var>info</var> = -<var>i</var></samp>. </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>: </p>
+<p>If <samp class="codeph"><var>info</var>= 1</samp> through <var>n</var>, the <var>i</var>-th eigenvalue did not converge in <span class="option">?steqr2</span> after a total of 30<var>n</var> iterations. </p>
+<p>If <samp class="codeph"><var>info</var>= <var>n</var>+1</samp>, then <span class="option">p?syev</span> has detected heterogeneity by finding that eigenvalues were not identical across the process grid. In this case, the accuracy of the results from <span class="option">p?syev</span> cannot be guaranteed. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-CF5CF672-F6FD-41A7-A0BC-CAAEFBD035EE.html">ScaLAPACK Driver Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

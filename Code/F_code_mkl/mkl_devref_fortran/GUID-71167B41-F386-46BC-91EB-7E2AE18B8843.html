@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="The FEAST Algorithm"/>
+<meta name="DC.subject" content="Sparse Solvers"/>
+<meta name="keywords" content="Sparse Solvers"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-68535A44-CDC9-4EA9-8AB3-7F93427750E6.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-71167B41-F386-46BC-91EB-7E2AE18B8843"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>The FEAST Algorithm</title>
+
+</head>
+<body id="GUID-71167B41-F386-46BC-91EB-7E2AE18B8843">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">The FEAST Algorithm</h1>
+<div><p>The Extended Eigensolver functionality is a set of high-performance numerical routines for solving symmetric standard eigenvalue problems, 
+		<span><var>A</var><var>x</var>=<var class="varname">λ</var><var>x</var></span>, or generalized symmetric-definite eigenvalue problems, 
+		<span><var>A</var><var>x</var>=<var class="varname">λ</var><var>B</var><var>x</var></span>. It yields all the eigenvalues (<var class="varname">λ</var>) and eigenvectors (<var>x</var>) within a given search interval 
+		<span>[<var class="varname">λ</var><sub> min</sub> , 
+		  <var class="varname">λ</var><sub> max</sub>]</span>. It is based on the FEAST algorithm, an innovative fast and stable numerical algorithm presented in 
+		<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#POLIZZI09">[Polizzi09]</a>, which fundamentally differs from the traditional Krylov subspace iteration based techniques (Arnoldi and Lanczos algorithms 
+		<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#BAI00">[Bai00]</a>) or other Davidson-Jacobi techniques 
+		<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SLEIJPEN96">[Sleijpen96]</a>. The FEAST algorithm is inspired by the density-matrix representation and contour integration techniques in quantum mechanics. 
+	 </p>
+<p>The FEAST numerical algorithm obtains eigenpair solutions using a numerically efficient contour integration technique. The main computational tasks in the FEAST algorithm consist of solving a few independent linear systems along the contour and solving a reduced eigenvalue problem. Consider a circle centered in the middle of the search interval 
+		<span>[<var class="varname">λ</var><sub> min</sub> , 
+		  <var class="varname">λ</var><sub> max</sub>]</span>. The numerical integration over the circle in the current version of FEAST is performed using 
+		<span><var>N</var><sub><var>e</var></sub></span>-point Gauss-Legendre quadrature with 
+		<span><var>x</var><sub><var>e</var></sub></span> the 
+		<span><var>e</var>-th</span> Gauss node associated with the weight 
+		<span><var class="varname">ω</var><sub><var>e</var></sub></span>. For example, for the case 
+		<span><var>N</var><sub><var>e</var></sub> = 8</span>: 
+	 </p>
+<ul class="simple"><li>( 
+		  <var>x</var><sub>1</sub>, 
+		  <var class="varname">ω</var><sub>1</sub> ) = (0.183434642495649 , 0.362683783378361), 
+		</li>
+<li>( 
+		  <var>x</var><sub>2</sub>, 
+		  <var class="varname">ω</var><sub>2</sub> ) = (-0.183434642495649 , 0.362683783378361), 
+		</li>
+<li> ( 
+		  <var>x</var><sub>3</sub>, 
+		  <var class="varname">ω</var><sub>3</sub> ) = (0.525532409916328 , 0.313706645877887), 
+		</li>
+<li> ( 
+		  <var>x</var><sub>4</sub>, 
+		  <var class="varname">ω</var><sub>4</sub> ) = (-0.525532409916328 , 0.313706645877887), 
+		</li>
+<li> ( 
+		  <var>x</var><sub>5</sub>, 
+		  <var class="varname">ω</var><sub>5</sub> ) = (0.796666477413626 , 0.222381034453374), 
+		</li>
+<li> ( 
+		  <var>x</var><sub>6</sub>, 
+		  <var class="varname">ω</var><sub>6</sub> ) = (-0.796666477413626 , 0.222381034453374), 
+		</li>
+<li> ( 
+		  <var>x</var><sub>7</sub>, 
+		  <var class="varname">ω</var><sub>7</sub> ) = (0.960289856497536 , 0.101228536290376), and 
+		</li>
+<li> ( 
+		  <var>x</var><sub>8</sub>, 
+		  <var class="varname">ω</var><sub>8</sub> ) = (-0.960289856497536 , 0.101228536290376). 
+		</li>
+</ul>
+<p>The figure 
+		<a href="#FEAST_PSEUDOCODE">FEAST Pseudocode</a> shows the basic pseudocode for the FEAST algorithm for the case of real symmetric (left pane) and complex Hermitian (right pane) generalized eigenvalue problems, using 
+		<var>N</var> for the size of the system and 
+		<var>M</var> for the number of eigenvalues in the search interval (see 
+		<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#POLIZZI09">[Polizzi09]</a>). 
+	 </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The pseudocode presents a simplified version of the actual algorithm. Refer to http://arxiv.org/abs/1302.0432 for an in-depth presentation and mathematical proof of convergence of FEAST. 
+		</p>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="FEAST_PSEUDOCODE" frame="border" border="1" cellspacing="0" rules="all"><caption><span class="tablecap">FEAST Pseudocode</span></caption><tbody><tr><td class="cellrowborder" valign="top" width="NaN%"><ul class="simple"><li><var>A</var>: real symmetric 
+				</li>
+<li><var>B</var>: symmetric positive definite (SPD) 
+				</li>
+<li><span class="eqsymbol">ℜ</span>{<var>x</var>}: real part of 
+				  <var>x</var></li>
+</ul>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%"><ul class="simple"><li><var>A</var>: complex Hermitian 
+				</li>
+<li><var>B</var>: Hermitian positive definite (HPD) 
+				</li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="NaN%"><p><img src="GUID-D6F0C9BC-2E31-4236-89BF-F6335EF87074-low.gif" width="325"/></p>
+</td>
+<td class="cellrowborder" valign="top" width="NaN%"><p><img src="GUID-A0ADCB71-20B8-4F0E-B62B-84F3D3701EE2-low.gif" width="325"/></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-68535A44-CDC9-4EA9-8AB3-7F93427750E6.html">Extended Eigensolver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

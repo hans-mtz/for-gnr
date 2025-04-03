@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?sytri_3"/>
+<meta name="abstract" content="Computes the inverse of a real or complex symmetric matrix."/>
+<meta name="description" content="Computes the inverse of a real or complex symmetric matrix."/>
+<meta name="DC.subject" content="?sytri_3, ssytri_3, dsytri_3, csytri_3, zsytri_3, LAPACK routines"/>
+<meta name="keywords" content="?sytri_3, ssytri_3, dsytri_3, csytri_3, zsytri_3, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?sytri_3</title>
+
+</head>
+<body id="GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?sytri_3</span></h1>
+<!--Computes the inverse of a real or complex symmetric matrix.--><div><p class="shortdesc">Computes the inverse of a real or complex symmetric matrix.</p>
+<div id="SYNTAX_3B0B9913671A40C9BF66947CC9B35542"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssytri_3</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsytri_3</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call csytri_3</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zsytri_3</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-DBD9EAEF-C693-4440-B2FE-9AE0A719E512"><h2 class="sectiontitle">Description</h2><p><span class="option">?sytri_3</span> computes the inverse of a real or complex symmetric matrix A using the factorization computed by <span class="option">?sytrf_rk</span>: A = P*U*D*(U<sup>T</sup>)*(P<sup>T</sup>) or A = P*L*D*(L<sup>T</sup>)*(P<sup>T</sup>), where U (or L) is a unit upper (or lower) triangular matrix, U<sup>T</sup> (or L<sup>T</sup>) is the transpose of U (or L), P is a permutation matrix, P<sup>T</sup> is the transpose of P, and D is symmetric and block diagonal with 1-by-1 and 2-by-2 diagonal blocks.</p>
+<p><span class="option">?sytri_3</span> sets the leading dimension of the workspace before calling <span class="option">?sytri_3x</span>, which actually computes the inverse. This is the blocked version of the algorithm, calling Level-3 BLAS.</p>
+</div>
+<div class="section" id="GUID-9F7BA048-9014-4FF7-8A8E-573749C628A9"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0D393712-4A05-40B9-BF27-DCD409641D06"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span></p>
+<p>Specifies whether the details of the factorization are stored as an upper or lower triangular matrix.</p>
+<ul id="GUID-009EE93D-AEB0-4A51-8B3E-5060461143FF"><li>= <samp class="codeph">'U'</samp>: The upper triangle of A is stored.</li>
+<li>= <samp class="codeph">'L'</samp>: The lower triangle of A is stored.</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix A. <span class="parmname">n</span> ≥ 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytri_3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytri_3</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytri_3</span></p>
+<p><span>Array, dimension (<span class="parmname">lda</span>,<span class="parmname">n</span>).</span> On entry, diagonal of the block diagonal matrix D and factors U or L as computed by <span class="option">?sytrf_rk</span>:</p>
+<ul id="GUID-CFC67D5A-1277-4844-BF07-276C30D4CE2A"><li><p><em>Only</em> diagonal elements of the symmetric block diagonal matrix D on the diagonal of A; that is, D(<var>k</var>,<var>k</var>) = A(<var>k</var>,<var>k</var>). Superdiagonal (or subdiagonal) elements of D should be provided on entry in array <span class="parmname">e</span>.</p>
+<p><em>—and—</em></p>
+</li>
+<li><p>If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, factor U in the superdiagonal part of A. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, factor L in the subdiagonal part of A.</p>
+</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The leading dimension of the array <span class="parmname">A</span>.<span><span class="parmname">lda</span> ≥ max(1, <span class="parmname">n</span>).</span></p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytri_3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytri_3</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytri_3</span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> On entry, contains the superdiagonal (or subdiagonal) elements of the symmetric block diagonal matrix D with 1-by-1 or 2-by-2 diagonal blocks. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, e(<var>i</var>) = D(<var>i</var><samp class="codeph">-</samp>1,<var>i</var>), <var>i</var>=2:N, and e(1) is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, e(<var>i</var>) = D(<var>i</var>+1,<var>i</var>), <var>i</var>=1:N<samp class="codeph">-</samp>1, and e(<span class="parmname">n</span>) is not referenced.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> For 1-by-1 diagonal block D(<var>k</var>), where 1 ≤ k ≤ <span class="parmname">n</span>, the element <span class="parmname">e</span>(<var>k</var>) is not referenced in both the <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp> and <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp> cases.</div>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER </span></p>
+<p><span>Array, dimension (<span class="parmname">n</span>).</span> Details of the interchanges and the block structure of D as determined by <span class="option">?sytrf_rk</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The length of the array <span class="parmname">work</span>.</p>
+<p>If <var>LDWORK</var> = <samp class="codeph"><var>-1</var></samp>, a workspace query is assumed; the routine calculates only the optimal size of the optimal size of the <span class="parmname">work</span> array and returns this value as the first entry of the <span class="parmname">work</span> array, and no error message related to <span class="parmname">lwork</span> is issued by XERBLA.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D36BE0C4-A94C-43FE-B7BF-FDE45A73C9D5"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-5CB79826-F8B0-45A6-AC8F-ADF1CBE083FB"><dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytri_3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytri_3</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytri_3</span></p>
+<p>On exit, if <span class="parmname">info</span> = 0, the symmetric inverse of the original matrix. If <span class="parmname">uplo</span> = <samp class="codeph">'U'</samp>, the upper triangular part of the inverse is formed and the part of A below the diagonal is not referenced. If <span class="parmname">uplo</span> = <samp class="codeph">'L'</samp>, the lower triangular part of the inverse is formed and the part of A above the diagonal is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssytri_3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsytri_3</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">csytri_3</span></p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">zsytri_3</span></p>
+<p>Array, dimension (<span class="parmname">n</span>+<var>NB</var>+1)*(<var>NB</var>+3). On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span>(1) returns the optimal <span class="parmname">lwork</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<ul id="GUID-7F07D37A-F3FC-4595-A928-0E4940D9D119"><li>= 0: successful exit.</li>
+<li>&lt; 0: If <span class="parmname">info</span> = <samp class="codeph">-</samp><var>i</var>, the <var>i</var><sup>th</sup> argument had an illegal value.</li>
+<li>&gt; 0: If <span class="parmname">info</span> = <var>i</var>, D(<var>i</var>,<var>i</var>) = 0; the matrix is singular and its inverse could not be computed.</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html">Matrix Inversion: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

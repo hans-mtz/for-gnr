@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_?_lu_smoother"/>
+<meta name="abstract" content="Computes an action of a preconditioner which corresponds to the approximate matrix decomposition for the system (see description below)."/>
+<meta name="description" content="Computes an action of a preconditioner which corresponds to the approximate matrix decomposition for the system (see description below)."/>
+<meta name="DC.subject" content="mkl_sparse_?_lu_smoother"/>
+<meta name="keywords" content="mkl_sparse_?_lu_smoother"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C769701C-2F95-4F2B-9B44-7209FB7E6929"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_?_lu_smoother</title>
+
+</head>
+<body id="GUID-C769701C-2F95-4F2B-9B44-7209FB7E6929">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_?_lu_smoother</span></h1>
+<!-- Computes an action of a preconditioner which corresponds to the approximate matrix decomposition      for the system    (see description below).--><div><p class="shortdesc"> Computes an action of a preconditioner which corresponds to the approximate matrix decomposition   <img class="img-middle" src="equations/GUID-C769701C-2F95-4F2B-9B44-7209FB7E6ee1.png"/> for the system <img class="img-middle" src="equations/GUID-C769701C-2F95-4F2B-9B44-7209FB7E6ee2.png"/> (see description below).</p>
+<div class="section" id="GUID-35D1D68E-CBCC-4E38-A7D9-87A81C80D4A7"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_s_lu_smoother </span><span class="delim">(</span><span class="var">op</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">approx_diag_inverse</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_d_lu_smoother </span><span class="delim">(</span><span class="var">op</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">approx_diag_inverse</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_c_lu_smoother </span><span class="delim">(</span><span class="var">op</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">approx_diag_inverse</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">status = </span><span class="kwd">mkl_sparse_z_lu_smoother </span><span class="delim">(</span><span class="var">op</span><span class="sep">, </span><span class="var">A</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">approx_diag_inverse</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F11B05FE-C14D-42CB-BA18-0B4A7941FD3B"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-F895AAA2-BE30-45ED-B5D1-E4BF1E13A3C1"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E14039D2-E0DB-42B1-9662-FD6B2597434B"><h2 class="sectiontitle">Description</h2><p>This routine computes an update for an iterative solution <var>x</var> of the system <var>Ax=b</var> by means of applying one iteration of an approximate preconditioner which is based on the following approximation: </p>
+<p><span><img class="img-middle" src="equations/GUID-C769701C-2F95-4F2B-9B44-7209FB7E6ee3.png"/></span>, where <var>E</var> is an approximate inverse of the diagonal (using exact inverse will result in Gauss-Seidel preconditioner), <var>L</var> and <var>U</var> are lower/upper triangular parts of <var>A</var>, <var>D</var> is the diagonal (block diagonal in case of BSR format) of <var>A</var>.</p>
+<p>The <span class="option">mkl_sparse_?_lu_smoother</span> routine performs these operations:</p>
+<pre>r = b - A*x    /* 1. Computes the residual */
+(L + D)*E*(U + D)*dx = r    /* 2. Finds the update dx by solving the system */
+y = x + dx    /* 3. Performs an update */
+</pre><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>This routine is supported only for sparse matrices in BSR format, non-transpose operation and real data types.</p>
+<p>Both diagonal values and approximate diagonal inverse arrays should be passed explicitly.</p>
+</div>
+</div>
+<div class="section" id="GUID-BEDD508D-3CEF-4BF4-AE29-4D51B8063204"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8AE441D1-1A64-439C-9F02-0745BB0B8D15"><dt class="dlterm"><span class="parmname">operation</span></dt>
+
+<dd><p><span class="keyword">C_INT</span> .</p>
+<p>Specifies the operation performed on matrix <var>A</var>.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_OPERATION_NON_TRANSPOSE, op(A) := A</tt></p></td>
+
+<td valign="top" class="noborder"><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Transpose and conjugate transpose (<tt>SPARSE_OPERATION_TRANSPOSE</tt> and <tt>SPARSE_OPERATION_CONJUGATE_TRANSPOSE</tt>) are not supported.</p>
+</div>
+<p> Non-transpose, <samp class="codeph">op(<var>A</var>)</samp>= <var>A</var>. 
+                </p>
+</td>
+</tr></table></dd>
+<dt class="dlterm"><span class="parmname">A</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Handle which contains the  sparse matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descr</span></dt>
+
+<dd><p><span class="keyword">MATRIX_DESCR</span>.</p>
+<p>Structure specifying sparse matrix properties.</p>
+<p><span class="keyword">sparse_matrix_type_t</span><var>type</var> - Specifies the type of a sparse matrix:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_GENERAL</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is processed as is. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_SYMMETRIC</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is symmetric (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_HERMITIAN</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is Hermitian (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is triangular (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is diagonal (only diagonal elements are processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_BLOCK_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-triangular (only the requested triangle is processed). 
+                Applies to BSR format only.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_BLOCK_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-diagonal (only diagonal blocks are processed). 
+                Applies to BSR format only.</p>
+</td>
+</tr></table><p><span class="keyword">sparse_fill_mode_t</span><var>mode</var> - Specifies the triangular matrix part for symmetric, Hermitian, triangular, and block-triangular matrices:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_FILL_MODE_LOWER</tt></p></td>
+
+<td valign="top" class="noborder"><p> The lower triangular matrix part is processed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_FILL_MODE_UPPER</tt></p></td>
+
+<td valign="top" class="noborder"><p> The upper triangular matrix part is processed. 
+                </p>
+</td>
+</tr></table><p><span class="keyword">sparse_diag_type_t</span><var>diag</var> - Specifies the diagonal type for non-general matrices:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_DIAG_NON_UNIT</tt></p></td>
+
+<td valign="top" class="noborder"><p>Diagonal elements might not be equal to one. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_DIAG_UNIT</tt></p></td>
+
+<td valign="top" class="noborder"><p>Diagonal elements are equal to one. 
+                </p>
+</td>
+</tr></table><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Only SPARSE_MATRIX_TYPE_GENERAL is supported.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_lu_smoother</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_lu_smoother</span></p>
+<p>Array of size at least <var>m</var>, where <var>m</var> is the number of rows (or nrows * block_size * block_size in case of BSR format) of matrix <var>A</var>.</p>
+<p>The array <var>diag</var> must contain the diagonal values of matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">approx_diag_inverse</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_lu_smoother</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_lu_smoother</span></p>
+<p>Array of size at least <var>m</var>, where <var>m</var> is the number of rows (or the number of rows  * block_size * block_size in case of BSR format) of matrix <var>A</var>.</p>
+<p>The array <var>approx_diag_inverse</var>  will be used as <var>E</var>,  approximate inverse of the diagonal of the matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_lu_smoother</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_lu_smoother</span></p>
+<p>Array of size at least <var>k</var>, where <var>k</var> is the number of columns (or columns * block_size in case of BSR format) of matrix <var>A</var>.</p>
+<p>On entry, the array <var>x</var> must contain the input vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_lu_smoother</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_lu_smoother</span></p>
+<p>Array of size at least <var>m</var>, where <var>m</var> is the number of rows ( or rows * block_size in case of BSR format ) of matrix <var>A</var>. The array <var>b</var> must contain the values of the right-hand side of the system.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-771EE79A-203B-4542-AE08-DEDCD11A6C9B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-CCED3FB4-8185-465A-B5A8-EB160EB65261"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">C_FLOAT</span> for <span class="option">mkl_sparse_s_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE</span> for <span class="option">mkl_sparse_d_lu_smoother</span></p>
+<p><span class="keyword">C_FLOAT_COMPLEX</span> for <span class="option">mkl_sparse_c_lu_smoother</span></p>
+<p><span class="keyword">C_DOUBLE_COMPLEX</span> for <span class="option">mkl_sparse_z_lu_smoother</span></p>
+<p>Overwritten by the computed vector <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">status</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Value indicating whether the operation was successful or not, and why.</p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p> The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-3DE16505-3172-4242-9ED4-C74CC420420C.html">Inspector-Executor Sparse BLAS Execution Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

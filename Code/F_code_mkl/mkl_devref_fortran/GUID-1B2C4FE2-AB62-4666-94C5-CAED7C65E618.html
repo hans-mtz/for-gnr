@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="DftiComputeForwardDM"/>
+<meta name="abstract" content="Computes the forward FFT."/>
+<meta name="description" content="Computes the forward FFT."/>
+<meta name="DC.subject" content="DftiComputeForwardDM, fast Fourier transform, FFT functions, FFT computation"/>
+<meta name="keywords" content="DftiComputeForwardDM, fast Fourier transform, FFT functions, FFT computation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-61AF8BC3-E79A-4FD4-B7AF-5A9E4FC47CE9.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DftiComputeForwardDM</title>
+
+</head>
+<body id="GUID-1B2C4FE2-AB62-4666-94C5-CAED7C65E618">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">DftiComputeForwardDM</span></h1>
+<!--Computes the forward FFT.--><div><p class="shortdesc">Computes the forward FFT.</p>
+<div class="section" id="GUID-AF6C835A-D900-4E25-9479-E4A0D70E522E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">Status</span><span class="oper"> = </span><span class="kwd">DftiComputeForwardDM</span><span class="delim">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">in_X</span><span class="sep">, </span><span class="var">out_X</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">Status</span><span class="oper"> = </span><span class="kwd">DftiComputeForwardDM</span><span class="delim">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">in_out_X</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-A6818BC9-1867-4BF7-8D57-AB5A8F33A289"><h2 class="sectiontitle">Include Files</h2><ul id="d163e224"><li id="d163e225"><span class="filepath">mkl_cdft.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E44E06C4-9CEF-4154-8C42-AFAA955E0AF5"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-8B3AB20B-D57C-48ED-AF06-BE5FE73A7898"><dt class="dlterm"><span class="parmname">handle</span></dt>
+
+<dd>The  descriptor handle.</dd>
+<dt class="dlterm"><span class="parmname">in_X, in_out_X</span></dt>
+
+<dd>Local part of input data. Array of complex values. Refer to <a class="allformats" href="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17.html#GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17">Distributing Data among Processes</a> on how to allocate and initialize the array.</dd>
+</dl>
+</div>
+<div class="section" id="GUID-609B7AB6-D37C-46FD-BA9F-76027B37C798"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-753D04E8-2A38-48D2-99DA-5F004FF36262"><dt class="dlterm"><span class="parmname">out_X, in_out_X </span></dt>
+
+<dd>Local part of output data. Array of complex values. Refer to <a class="allformats" href="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17.html#GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17">Distributing Data among Processes</a> on how to allocate the array.</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2734702A-1C19-45AA-A7AD-B24BC98E4139"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">DftiComputeForwardDM</span> function computes the forward FFT. <span>Forward FFT is the transform using the factor <samp class="codeph"><var>e</var><sup><i class="italic">-i2π/n</i></sup></samp>. 
+ 
+</span></p>
+<p>Before you call the function, the valid descriptor, created by <a href="GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3.html#GUID-DFA327CF-25F1-4591-954B-DDB37FC0E3E3"><span class="option">DftiCreateDescriptorDM</span></a>, must be  configured and committed using the  <a href="GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB.html#GUID-F674AA40-C3EA-4BFC-9F11-80BAFF7E0CCB"><span class="option">DftiCommitDescriptorDM</span></a> function. </p>
+<p>The computation is carried out by calling the <a href="GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3.html#GUID-2B4EE14C-05E0-47C4-9BFB-7741A921D2E3"><span class="option">DftiComputeForward</span></a> function. So, the functions have very much in common, and details not explicitly mentioned below can be found in the description of <span class="option">DftiComputeForward</span>. </p>
+<p>Local part of input data, as well as local part of the output data, is an appropriate sequence of complex values (each complex value consists of two real numbers: real part and imaginary part) that a particular process stores. See <a href="GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17.html#GUID-022CD4E5-45D2-4FE0-B636-01E985A02F17">Distributing Data Among Processes</a> for details. </p>
+<p>Refer to <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html#GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A">Configuration Settings</a>
+ for the list of configuration parameters that the descriptor passes to the function.</p>
+<p>The configuration parameter <samp class="codeph">DFTI_PRECISION</samp>
+determines the precision of input data, output data, and transform: a setting of <samp class="codeph">DFTI_SINGLE</samp> indicates single-precision floating-point data type and a setting of <samp class="codeph">DFTI_DOUBLE</samp> indicates double-precision floating-point data type.</p>
+<p>The configuration parameter <samp class="codeph">DFTI_PLACEMENT</samp> informs the function whether the computation should be in-place. If the value of this parameter is <samp class="codeph">DFTI_INPLACE</samp> (default), you must call the function with two parameters, otherwise you must supply three parameters. If <samp class="codeph">DFTI_PLACEMENT = DFTI_INPLACE</samp> and three parameters are supplied, then the third parameter is ignored.</p>
+<div class="Note"><h3 class="NoteTipHead">CAUTION</h3> <p>Even in case of an out-of-place transform, local array of input data <span class="parmname">in_X</span> may be changed. To save data, make its copy before calling <span class="option">DftiComputeForwardDM</span>.</p>
+</div>
+<p>In case of an in-place transform, <span class="option">DftiComputeForwardDM</span> dynamically allocates and deallocates a work buffer of the same size as the local input/output array requires. </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>You can specify your own workspace of the same size through the configuration parameter <samp class="codeph">CDFT_WORKSPACE</samp> to avoid redundant memory allocation.</p>
+</div>
+</div>
+<div class="section" id="RETURNVALUES_259BA98CBE0F406F9E252E85F096160C"><h2 class="sectiontitle">Return Values</h2><p>The function returns <samp class="codeph">DFTI_NO_ERROR</samp> when completes successfully. If the function fails, it returns a value of another  error class constant (for the list of constants, refer to <a class="allformats" href="GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE.html#GUID-36AD02CF-1FD2-491A-A50F-9956F50058EE">Error Codes</a>).</p>
+</div>
+<div class="section" id="GUID-256E5BA0-4A32-4AB6-A3E9-E58EBB9DB0DF"><h2 class="sectiontitle">Interface</h2><pre>   
+INTERFACE DftiComputeForwardDM
+   INTEGER(4) FUNCTION DftiComputeForwardDM(h, in_X, out_X)
+      TYPE(DFTI_DESCRIPTOR_DM), POINTER :: h
+   COMPLEX(8), DIMENSION(*) :: in_x, out_X
+   END FUNCTION DftiComputeForwardDM
+   INTEGER(4) FUNCTION DftiComputeForwardDMi(h, in_out_X)
+      TYPE(DFTI_DESCRIPTOR_DM), POINTER :: h
+      COMPLEX(8), DIMENSION(*) :: in_out_X
+   END FUNCTION DftiComputeForwardDMi
+   INTEGER(4) FUNCTION DftiComputeForwardDMs(h, in_X, out_X)
+      TYPE(DFTI_DESCRIPTOR_DM), POINTER :: h
+      COMPLEX(4), DIMENSION(*) :: in_x, out_X
+   END FUNCTION DftiComputeForwardDMs
+   INTEGER(4) FUNCTION DftiComputeForwardDMis(h, in_out_X)
+      TYPE(DFTI_DESCRIPTOR_DM), POINTER :: h
+      COMPLEX(4), DIMENSION(*) :: in_out_X
+   END FUNCTION DftiComputeForwardDMis
+END INTERFACE
+   </pre></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-61AF8BC3-E79A-4FD4-B7AF-5A9E4FC47CE9.html">Cluster FFT Computation Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

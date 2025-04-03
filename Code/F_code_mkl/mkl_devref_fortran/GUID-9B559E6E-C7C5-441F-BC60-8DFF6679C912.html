@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larrb"/>
+<meta name="abstract" content="Provides limited bisection to locate eigenvalues for more accuracy."/>
+<meta name="description" content="Provides limited bisection to locate eigenvalues for more accuracy."/>
+<meta name="DC.subject" content="?larrb, LAPACK routines, auxiliary routines, bisection"/>
+<meta name="keywords" content="?larrb, LAPACK routines, auxiliary routines, bisection"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larrb</title>
+
+</head>
+<body id="GUID-9B559E6E-C7C5-441F-BC60-8DFF6679C912">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larrb</span></h1>
+<!--Provides limited bisection to locate eigenvalues for more accuracy.--><div><p class="shortdesc">Provides limited bisection to locate eigenvalues for more accuracy.</p>
+<div class="section" id="GUID-4D51980D-0C66-4658-B4DB-C2EB4664C4EC"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarrb</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">lld</span><span class="sep">, </span><span class="var">ifirst</span><span class="sep">, </span><span class="var">ilast</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">offset</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">spdiam</span><span class="sep">, </span><span class="var">twist</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarrb</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">lld</span><span class="sep">, </span><span class="var">ifirst</span><span class="sep">, </span><span class="var">ilast</span><span class="sep">, </span><span class="var">rtol1</span><span class="sep">, </span><span class="var">rtol2</span><span class="sep">, </span><span class="var">offset</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">wgap</span><span class="sep">, </span><span class="var">werr</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">spdiam</span><span class="sep">, </span><span class="var">twist</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-B8991F9D-3471-4C82-ABAD-1FEB9AD60F93"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7CE6B521-256D-4CDF-B6F1-C7A88BC74ED5"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Given the relatively robust representation (RRR) <var>L*D*L</var><sup class="power"><var>T</var></sup>, the routine does "limited" bisection to refine the eigenvalues of <var>L*D*L</var><sup class="power"><var>T</var></sup>, <var>w</var>( <var>ifirst</var>-<var>offset</var> ) through <var>w</var>( <var> ilast</var>-<var>offset</var> ), to more accuracy. Initial guesses for these eigenvalues are input in <var>w</var>. The corresponding estimate of the error in these guesses and their gaps are input in <var>werr</var>  and <var>wgap</var>, respectively. During bisection, intervals [<var>left</var>, <var>right</var>] are maintained by storing their mid-points and semi-widths in the arrays <var>w</var> and <var>werr</var> respectively.</p>
+</div>
+<div class="section" id="GUID-B09F7E5D-8FB2-4F4F-B70E-F6B87B5AEF89"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-B8D11FCF-F539-4234-92FF-F867003A20E2"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). The <var>n</var> diagonal elements of the diagonal matrix <var>D</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lld</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>-1). </p>
+<p>The <var>n</var>-1 elements <samp class="codeph"><var>L</var><sub class="subb"><var>i</var></sub>*<var>L</var><sub class="subb"><var>i</var></sub>*<var>D</var><sub class="subb"><var>i</var></sub></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ifirst</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The index of the first eigenvalue to be computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilast</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The index of the last eigenvalue to be computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rtol1</span>, <span class="parmname">rtol2</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Tolerance for the convergence of the bisection intervals. An interval [<var>left</var>, <var>right</var>] has converged if <samp class="codeph">RIGHT-LEFT.LT.MAX( <span class="parmname">rtol1</span>*<span class="keyword">gap</span>, <span class="parmname">rtol2</span>*max(|left|,|right|) )</samp>, where <span class="keyword">gap</span> is the (estimated) distance to the nearest
+eigenvalue.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">offset</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Offset for the arrays <var>w</var>, <var>wgap</var> and <var>werr</var>, that is, the <var>ifirst</var>-<var>offset</var> through <var>ilast</var>-<var>offset</var> elements of these arrays are to be used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On input, <var>w</var>( <var>ifirst</var>-<var>offset</var> ) through <var>w</var>( <var>ilast</var>-<var>offset</var> ) are estimates of the eigenvalues of <var>L*D*L</var><sup class="power"><var>T</var></sup> indexed <var>ifirst</var> through <var>ilast</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>-1). The estimated gaps between consecutive eigenvalues of <var>L*D*L</var><sup class="power"><var>T</var></sup>, that is, <var>wgap</var>(<var>i</var>-<var>offset</var>) is the gap between eigenvalues <var>i</var> and <var>i</var>+1. Note that if <span class="keyword">IFIRST.EQ.ILAST</span> then <var>wgap</var>(<var>ifirst</var>-<var>offset</var>) must be set to 0. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On input, <var>werr</var>(<var>ifirst</var>-<var>offset</var>) through <var>werr</var>(<var>ilast</var>-<var>offset</var>) are the errors in the estimates of the corresponding elements in <var>w</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (2*<var>n</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>The minimum pivot in the Sturm sequence. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">spdiam</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarrb</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarrb</span></p>
+<p>The spectral diameter of the matrix. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">twist</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The twist index for the twisted factorization that is used          for the negcount.</p>
+<ul class="nobullet" id="GUID-15D5C227-9464-4DDF-83CB-744A53E585E7"><li><p><span class="parmname">twist</span> = <var>n</var>: Compute negcount from <samp class="codeph"><var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup> - <var>lambda</var>*<var>i</var> = <var>L+</var>*<var> D+ </var>*<var>L+</var><sup class="power"><var>T</var></sup></samp></p>
+</li>
+<li><p><span class="parmname">twist</span> = <var>n</var>: Compute negcount from <samp class="codeph"><var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup> - <var>lambda</var>*<var>i</var> = <var>U-</var>*<var>D-</var>*<var>U-</var><sup class="power"><var>T</var></sup></samp></p>
+</li>
+<li><p><span class="parmname">twist</span> = <var>n</var>: Compute negcount from <samp class="codeph"><var>L</var>*<var>D</var>*<var>L</var><sup class="power"><var>T</var></sup> - <var>lambda</var>*<var>i</var> = <var>N</var><sub class="subb"><var>r</var></sub>*<var>D </var><sub><var>r</var></sub>*<var>N</var><sub><var>r</var></sub></samp></p>
+</li>
+</ul>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Workspace array, <span class="keyword">DIMENSION</span> (2*<var>n</var>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-8EC963F6-C9D8-4946-89DC-E6FF699968E2"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9A5DF69D-A5F4-4AFB-9D9F-979F193F1600"><dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>On output, the estimates of the eigenvalues are "refined".</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wgap</span></dt>
+
+<dd><p>On output, the gaps are refined.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">werr</span></dt>
+
+<dd><p>On output, "refined" errors in the estimates of <var>w</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Error flag. </p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

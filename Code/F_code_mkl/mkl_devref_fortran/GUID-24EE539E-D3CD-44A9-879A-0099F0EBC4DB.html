@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lar1va"/>
+<meta name="abstract" content="Computes scaled eigenvector corresponding to given eigenvalue."/>
+<meta name="description" content="Computes scaled eigenvector corresponding to given eigenvalue."/>
+<meta name="DC.subject" content="slar1va, dlar1va, ScaLAPACK routines, auxiliary routines, eigenvectors, scaled"/>
+<meta name="keywords" content="slar1va, dlar1va, ScaLAPACK routines, auxiliary routines, eigenvectors, scaled"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-24EE539E-D3CD-44A9-879A-0099F0EBC4DB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lar1va</title>
+
+</head>
+<body id="GUID-24EE539E-D3CD-44A9-879A-0099F0EBC4DB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lar1va</span></h1>
+<!--Computes scaled eigenvector corresponding to given eigenvalue.--><div><p class="shortdesc"><em>Computes scaled eigenvector corresponding to given eigenvalue.</em></p>
+<div class="section" id="GUID-3EEF2116-04B1-49E5-A345-78A6C9BE0DA1"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slar1va</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">b1</span><span class="sep">, </span><span class="var">bn</span><span class="sep">, </span><span class="var">lambda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">ld</span><span class="sep">, </span><span class="var">lld</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">gaptol</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">wantnc</span><span class="sep">, </span><span class="var">negcnt</span><span class="sep">, </span><span class="var">ztz</span><span class="sep">, </span><span class="var">mingma</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">nrminv</span><span class="sep">, </span><span class="var">resid</span><span class="sep">, </span><span class="var">rqcorr</span><span class="sep">, </span><span class="var">work </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlar1va</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">b1</span><span class="sep">, </span><span class="var">bn</span><span class="sep">, </span><span class="var">lambda</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">l</span><span class="sep">, </span><span class="var">ld</span><span class="sep">, </span><span class="var">lld</span><span class="sep">, </span><span class="var">pivmin</span><span class="sep">, </span><span class="var">gaptol</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">wantnc</span><span class="sep">, </span><span class="var">negcnt</span><span class="sep">, </span><span class="var">ztz</span><span class="sep">, </span><span class="var">mingma</span><span class="sep">, </span><span class="var">r</span><span class="sep">, </span><span class="var">isuppz</span><span class="sep">, </span><span class="var">nrminv</span><span class="sep">, </span><span class="var">resid</span><span class="sep">, </span><span class="var">rqcorr</span><span class="sep">, </span><span class="var">work </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-9E43DBE0-A39E-4149-BB47-48439E5C38DB"><h2 class="sectiontitle">Description</h2><p><span class="option">?slar1va</span> computes the (scaled) r-th column of the inverse of the submatrix in rows <span class="parmname">b1</span> through <span class="parmname">bn</span> of the tridiagonal matrix <span><var>L</var><var>D</var><var>L</var><sup>T</sup> - <var class="varname">λ</var><var>I</var></span>. When <var class="varname">λ</var> is close to an eigenvalue, the computed vector is an accurate eigenvector. Usually, <span class="parmname">r</span> corresponds to the index where the eigenvector is largest in magnitude. The following steps accomplish this computation : </p>
+<ol id="GUID-46237E43-6933-46A6-A165-D6EDEAC68542"><li><p>Stationary qd transform,  <span><var>L</var><var>D</var><var>L</var><sup>T</sup> - <var class="varname">λ</var><var>I</var></span> = <span><var>L</var><sub>+</sub><var>D</var><sub>+</sub><var>L</var><sub>+</sub><sup>T</sup></span>, </p>
+</li>
+<li><p>Progressive qd transform, <span><var>L</var><var>D</var><var>L</var><sup>T</sup> - <var class="varname">λ</var><var>I</var></span> = <span><var>U</var><sub>-</sub><var>D</var><sub>-</sub><var>U</var><sub>-</sub><sup>T</sup></span>, </p>
+</li>
+<li><p>Computation of the diagonal elements of the inverse of <span><var>L</var><var>D</var><var>L</var><sup>T</sup> - <var class="varname">λ</var><var>I</var></span> by combining the above transforms, and choosing <span class="parmname">r</span> as the index where the diagonal of the inverse is (one of the) largest in magnitude. </p>
+</li>
+<li><p>Computation of the (scaled) <span class="parmname">r</span>-th column of the inverse using the twisted factorization obtained by combining the top part of the stationary and the bottom part of the progressive transform. </p>
+</li>
+</ol>
+</div>
+<div class="section" id="GUID-2FC4282A-D36B-4EB3-8B21-E738F6BD0ABD"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C324A750-344A-42AA-90F5-89B8DEF122B6"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The order of the matrix <span><var>L</var><var>D</var><var>L</var><sup>T</sup></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b1</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>First index of the submatrix of <span><var>L</var><var>D</var><var>L</var><sup>T</sup></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">bn</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>Last index of the submatrix of <span><var>L</var><var>D</var><var>L</var><sup>T</sup></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lambda</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>The shift <var class="varname">λ</var>. In order to compute an accurate eigenvector, <span class="parmname">lambda</span> should be a good approximation to an eigenvalue of <span><var>L</var><var>D</var><var>L</var><sup>T</sup></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">l</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>Array of size <span class="parmname">n</span>-1</p>
+<p>The (<span class="parmname">n</span>-1) subdiagonal elements of the unit bidiagonal matrix <var>L</var>, in elements <span>1 to <span class="parmname">n</span>-1</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>The <span class="parmname">n</span> diagonal elements of the diagonal matrix <var>D</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ld</span></dt>
+
+<dd><p><span class="keyword">REAL</span>             for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>Array of size <span class="parmname">n</span>-1</p>
+<p>The <span class="parmname">n</span>-1 elements <span><span class="parmname">l</span>(<var>i</var>)*<span class="parmname">d</span>(<var>i</var>)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lld</span></dt>
+
+<dd><p><span class="keyword">REAL</span>             for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>Array of size <span class="parmname">n</span>-1</p>
+<p>The <span class="parmname">n</span>-1 elements <span><span class="parmname">l</span>(<var>i</var>)*<span class="parmname">l</span>(<var>i</var>)*<span class="parmname">d</span>(<var>i</var>)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pivmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span>             for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>The minimum pivot in the Sturm sequence.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">gaptol</span></dt>
+
+<dd><p><span class="keyword">REAL</span>             for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>Tolerance that indicates when eigenvector entries are negligible with respect to their contribution to the residual.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>Array of size <span class="parmname">n</span></p>
+<p>On input, all entries of <span class="parmname">z</span> must be set to 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wantnc</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span></p>
+<p>Specifies whether <span class="parmname">negcnt</span> has to be computed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>The twist index for the twisted factorization used to compute <span class="parmname">z</span>.</p>
+<p>On input, 0 <span class="eqsymbol">≤</span><span class="parmname">r</span><span class="eqsymbol">≤</span><span class="parmname">n</span>. If <span class="parmname">r</span> is input as 0, <span class="parmname">r</span> is set to the index where (<span><var>L</var><var>D</var><var>L</var><sup>T</sup> - <var class="varname">σ</var><var>I</var></span>)<sup>-1</sup> is largest in magnitude. If 1 <span class="eqsymbol">≤</span><span class="parmname">r</span><span class="eqsymbol">≤</span><span class="parmname">n</span>, <span class="parmname">r</span> is unchanged.</p>
+<p>Ideally, <span class="parmname">r</span> designates the position of the maximum entry in the eigenvector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>(Workspace)             array of size 4*<span class="parmname">n</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DF3C4BF4-41E3-413A-8DCA-A5910D13794A"><h2 class="sectiontitle">OUTPUT Parameters</h2><dl id="GUID-D52CB03B-5D0F-4BD1-8680-134468849A01"><dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>On output, <span class="parmname">z</span> contains the (scaled) <span class="parmname">r</span>-th column of the inverse. The scaling is such that <span><span class="parmname">z</span>(<span class="parmname">r</span>)</span> equals 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">negcnt</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span></p>
+<p>If <span class="parmname">wantnc</span><span>is <span class="keyword">.TRUE.</span></span> then <span class="parmname">negcnt</span> = the number of pivots &lt; <span class="parmname">pivmin</span> in the  matrix factorization <span><var>L</var><var>D</var><var>L</var><sup>T</sup></span>, and <span class="parmname">negcnt</span> = -1 otherwise.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ztz</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>The square of the 2-norm of <span class="parmname">z</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">mingma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>The reciprocal of the largest (in magnitude) diagonal element of the inverse of <span><var>L</var><var>D</var><var>L</var><sup>T</sup> - <var class="varname">σ</var><var>I</var></span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">r</span></dt>
+
+<dd><p>On output, <span class="parmname">r</span> contains the twist index used to compute <span class="parmname">z</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">isuppz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span> array of size 2</p>
+<p>The support of the vector in <span class="parmname">z</span>, i.e., the vector <span class="parmname">z</span> is non-zero only in elements <span><span class="parmname">isuppz</span>(1) through <span class="parmname">isuppz</span>(2)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nrminv</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p><span class="parmname">nrminv</span> = 1/<span class="keyword">SQRT</span>( <span class="parmname">ztz</span> )</p>
+</dd>
+<dt class="dlterm"><span class="parmname">resid</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>The residual of the FP vector.</p>
+<p><span class="parmname">resid</span> = <span class="keyword">ABS</span>( <span class="parmname">mingma</span> )/<span class="keyword">SQRT</span>( <span class="parmname">ztz</span> )</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rqcorr</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slar1va</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlar1va</span></p>
+<p>The Rayleigh Quotient correction to <span class="parmname">lambda</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hetri_rook"/>
+<meta name="abstract" content="Computes the inverse of a complex Hermitian matrix using U*D*UH or L*D*LH bounded Bunch-Kaufman factorization."/>
+<meta name="description" content="Computes the inverse of a complex Hermitian matrix using U*D*UH or L*D*LH bounded Bunch-Kaufman factorization."/>
+<meta name="DC.subject" content="?hetri_rook, LAPACK routines, matrix inversion, inverting a matrix, Hermitian matrix, inverting the matrix"/>
+<meta name="keywords" content="?hetri_rook, LAPACK routines, matrix inversion, inverting a matrix, Hermitian matrix, inverting the matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-50312D46-C692-464B-889F-CC56E144F496"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hetri_rook</title>
+
+</head>
+<body id="GUID-50312D46-C692-464B-889F-CC56E144F496">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hetri_rook</span></h1>
+<!--Computes the inverse of a complex Hermitian matrix using  U * D * U H  or  L * D * L H  bounded Bunch-Kaufman factorization.--><div><p class="shortdesc">Computes the inverse of a complex Hermitian matrix using <var>U</var>*<var>D</var>*<var>U</var><sup>H</sup> or <var>L</var>*<var>D</var>*<var>L</var><sup>H</sup> bounded Bunch-Kaufman factorization.</p>
+<div class="section" id="GUID-23DCF726-E994-4E3A-9081-93F9D52C2D2D"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chetri_rook</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zhetri_rook</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hetri_rook</span><span class="delim">( </span><span class="var">a</span><span class="sep">, </span><span class="var">ipiv</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-5A3CEEC8-DAAD-4C42-80A9-282F1C989EEE"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-1EB8E712-ADA7-47A1-8DF5-7CCAC353AC20"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the inverse <samp class="codeph">inv(<var>A</var>)</samp> of a complex Hermitian matrix <var>A</var>. Before calling this routine, call <a class="allformats" href="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7.html#GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7"><span class="option">?hetrf_rook</span></a> to factorize <var>A</var>.</p>
+</div>
+<div class="section" id="GUID-1E9BD6D0-B34F-48FF-A837-A6D2F7A5B108"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>Indicates how the input matrix <var>A</var> has been factored: </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the array <var>a</var> stores the factorization <samp class="codeph"><var>A</var> = <var>U*D*U</var><sup class="power">H</sup></samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the array <var>a</var> stores the factorization <samp class="codeph"><var>A</var> = <var>L*D*L</var><sup class="power">H</sup></samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var>; <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span>, <span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX</span> for <span class="option">chetri_rook</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhetri_rook</span>. </p>
+<p>Arrays: </p>
+<p><samp class="codeph"><var>a</var>(<var>lda</var>,*)</samp> contains the factorization of the matrix <var>A</var>, as returned by <a class="allformats" href="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7.html#GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7"><span class="option">?hetrf_rook</span></a>.</p>
+<p>The second dimension of <var>a</var> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+<p><samp class="codeph"><var>work</var>(*)</samp> is a workspace array.</p>
+<p>The dimension of <var>work</var> must be at least <samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lda</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>.</p>
+<p>Array, size at least <samp class="codeph">max(1, <var>n</var>)</samp>. The <var>ipiv</var> array, as returned by <a class="allformats" href="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7.html#GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7"><span class="option">?hetrf_rook</span></a>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-DF4F62D9-7144-4BFB-97FA-0B94DD263B7A"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>Overwritten by the <var>n</var>-by-<var>n</var> matrix inv(<var>A</var>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <var>info</var> = <var>-i</var>, the <var>i</var>-th parameter had an illegal value.</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var></samp>, the <var>i</var>-th diagonal element of <var>D</var> is zero, <var>D</var> is singular, and the inversion could not be completed.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-61288E3C-03F9-4A7D-8344-92F275273011"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77  counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hetri_rook</span> interface are as follows:</p>
+<table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the matrix <var>A</var> of size (<samp class="codeph"><var>n</var>,<var>n</var></samp>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ipiv</span></p></td>
+
+<td valign="top" class="noborder"><p>Holds the vector of length <var>n</var>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">uplo</span></p></td>
+
+<td valign="top" class="noborder"><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-51282B83-C101-470C-8ED0-9F63464BB9EF"><h2 class="sectiontitle">Application Notes</h2><p>The total number of floating-point operations is approximately <samp class="codeph">(8/3)<var>n</var><sup class="power">3</sup></samp> for complex flavors.</p>
+<p>The real counterpart of this routine is <a class="allformats" href="GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C.html#GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C"><span class="option">?sytri_rook</span></a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html">Matrix Inversion: LAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-BEC328BC-73C7-453F-B375-DB017AD24971.html#GUID-BEC328BC-73C7-453F-B375-DB017AD24971">Matrix Storage Schemes</a></div></div></div>
+</body>
+</html>

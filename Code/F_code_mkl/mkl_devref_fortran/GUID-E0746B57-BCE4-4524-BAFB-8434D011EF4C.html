@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasrt2"/>
+<meta name="abstract" content="Sorts numbers in increasing or decreasing order."/>
+<meta name="description" content="Sorts numbers in increasing or decreasing order."/>
+<meta name="DC.subject" content="?lasrt2, ScaLAPACK routines, auxiliary routines, sorting, numbers in increasing/decreasing order, ScaLAPACK"/>
+<meta name="keywords" content="?lasrt2, ScaLAPACK routines, auxiliary routines, sorting, numbers in increasing/decreasing order, ScaLAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E0746B57-BCE4-4524-BAFB-8434D011EF4C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasrt2</title>
+
+</head>
+<body id="GUID-E0746B57-BCE4-4524-BAFB-8434D011EF4C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasrt2</span></h1>
+<!--Sorts numbers in increasing or decreasing order.--><div><p class="shortdesc">Sorts numbers in increasing or decreasing order.</p>
+<div class="section" id="GUID-EEE819AD-DFE8-4A9C-92D6-2F81951D9166"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call slasrt2</span><span class="delim">(</span><span class="var">id</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">key</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasrt2</span><span class="delim">(</span><span class="var">id</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">key</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-3E9A6AF3-75B6-4538-AFAC-95DA171CE14A"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">?lasrt2</span><span>routine </span>is modified LAPACK <span>routine </span><a href="GUID-F1C6E83E-430A-49B5-BF52-0380A2D542C6.html#GUID-F1C6E83E-430A-49B5-BF52-0380A2D542C6"><span class="option">?lasrt</span></a>, which sorts the numbers in <var>d</var> in increasing order (if <samp class="codeph"><var>id</var> = <span class="keyword">'I'</span></samp>) or in decreasing order (if <samp class="codeph"><var>id</var> = <span class="keyword">'D'</span></samp> ). It uses Quick Sort, reverting to Insertion Sort on arrays of size <span class="eqsymbol">≤</span> 20. The size of <span class="keyword">STACK</span> limits <var>n</var> to about 2<sup class="power">32</sup>.</p>
+</div>
+<div class="section" id="GUID-2BD7389A-3933-42B4-81EA-A0EC8828A63F"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2869F7FB-AAF8-4851-9B81-4A42B92A5146"><dt class="dlterm"><span class="parmname">id</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>= <span class="keyword">'I'</span>: sort <var>d</var> in increasing order; </p>
+<p>= <span class="keyword">'D'</span>: sort <var>d</var> in decreasing order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The length of the array <var>d</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasrt2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasrt2</span>. </p>
+<p>Array of size <var>n</var>. </p>
+<p>On entry, the array to be sorted.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">key</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array of size <var>n</var>. </p>
+<p>On entry, <var>key</var> contains a key to each of the entries in <samp class="codeph"><var>d</var><span>()</span></samp>. </p>
+<p>Typically, <span><span class="parmname">key</span>(<var>i</var>) = <var>i</var> for all <var>i</var></span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1E7F876C-AF45-4EB9-B7F1-E19FB2302A3A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-C6C78CA8-196D-47F0-AD95-5193B8326917"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit, <var>d</var> has been sorted into increasing order </p>
+<p><span>(<var>d</var>(1) <span class="eqsymbol">≤</span> ... <span class="eqsymbol">≤</span><var> d</var>(<var>n</var>) )</span></p>
+<p> or into decreasing order</p>
+<p><span>(<var>d</var>(1) <span class="eqsymbol">≥</span> ... <span class="eqsymbol">≥</span><var> d</var>(<var>n</var>) )</span>,</p>
+<p> depending on <var>id</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p><samp class="codeph">= 0</samp>:  successful exit </p>
+<p><samp class="codeph">&lt; 0</samp>:  if <samp class="codeph"><var>info</var> = -i</samp>, the <var>i</var>-th argument had an illegal value.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">key</span></dt>
+
+<dd><p>On exit, <span class="parmname">key</span> is permuted in exactly the same manner as <span class="parmname">d</span> was permuted from input to output. Therefore, if <span><span class="parmname">key</span>(<var>i</var>) = <var>i</var> for all <var>i</var></span> on input, <span><span class="parmname">d</span>(<var>i</var>) on output equals <span class="parmname">d</span>(<span class="parmname">key</span>(<var>i</var>)) on input</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

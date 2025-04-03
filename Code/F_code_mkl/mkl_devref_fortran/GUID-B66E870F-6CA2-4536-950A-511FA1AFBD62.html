@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?la_gercond_x"/>
+<meta name="abstract" content="Computes the infinity norm condition number of op(A)*diag(x) for general matrices."/>
+<meta name="description" content="Computes the infinity norm condition number of op(A)*diag(x) for general matrices."/>
+<meta name="DC.subject" content="?la_gercond_x, cla_gercond_x, zdla_gercond_x, la_gercond_x"/>
+<meta name="keywords" content="?la_gercond_x, cla_gercond_x, zdla_gercond_x, la_gercond_x"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B66E870F-6CA2-4536-950A-511FA1AFBD62"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?la_gercond_x</title>
+
+</head>
+<body id="GUID-B66E870F-6CA2-4536-950A-511FA1AFBD62">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?la_gercond_x</span></h1>
+<!--Computes the infinity norm condition number of op(A)*diag(x) for general matrices.--><div><p class="shortdesc">Computes the infinity norm condition number of op(A)*diag(x) for general matrices.</p>
+<div class="section" id="GUID-BF6A0004-1455-4108-802E-230CE9D8ABFC"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call cla_gercond_x</span><span class="delim">( </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zla_gercond_x</span><span class="delim">( </span><span class="var">trans</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">af</span><span class="sep">, </span><span class="var">ldaf</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">info</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">rwork</span><span class="delim"> )</span></p></dl></div>
+<div class="section" id="GUID-75B61AC2-683C-4EB8-9397-B5DFC8DE379A"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-AB884132-B042-4C44-B8E9-1150CD17717D"><h2 class="sectiontitle">Description</h2><p>The function computes the infinity norm condition number of</p>
+<p><samp class="codeph">op(<var>A</var>) * diag(<var>x</var>)</samp></p>
+<p>where the <span class="parmname">x</span> is a <span class="keyword">COMPLEX</span> vector for <span class="option">cla_gercond_x</span> and a <span class="keyword">DOUBLE COMPLEX</span> vector for <span class="option">zla_gercond_x</span>.</p>
+</div>
+<div class="section" id="GUID-5B778BAF-ADB5-4F8D-8F9C-6F02E0D53550"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-28282549-BB8C-441D-8C68-4FB8D6B4799F"><dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.  Must be <span class="keyword">'N'</span> or <span class="keyword">'T'</span> or <span class="keyword">'C'</span>.</p>
+<p>Specifies the form of the system of equations:</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, the system has the form <var>A*X</var> = <var>B</var> (No transpose)</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp>, the system has the form <var>A</var><sup class="power"><var>T</var></sup><var>*X</var> = <var>B</var> (Transpose)</p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'C'</span></samp>, the system has the form  <var>A</var><sup class="power"><var>H</var></sup><var>*X</var> = <var>B</var> (Conjugate Transpose = Transpose)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of linear equations, that is, the order of the matrix <var>A</var>; <var>n</var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">af</span>, <span class="parmname">x</span>, <span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">cla_gercond_x</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zla_gercond_x</span></p>
+<p>Arrays:</p>
+<p><span class="parmname">a</span>(<span class="parmname">lda</span>,*) contains the original general <var>n</var>-by-<var>n</var> matrix <var>A</var>.</p>
+<p><span class="parmname">af</span>(<span class="parmname">ldaf</span>,*) contains the factors <var>L</var> and <var>U</var> from the factorization <samp class="codeph"><var>A</var>=<var>P</var>*<var>L</var>*<var>U</var></samp> as returned by <span class="option">?getrf</span>.</p>
+<p><span class="parmname">x</span>, <span class="keyword">DIMENSION</span><var>n</var>. The vector <samp class="codeph"><var>x</var></samp> in the formula  <samp class="codeph">op(<var>A</var>) * diag(<var>x</var>)</samp>.</p>
+<p><span class="parmname">work</span> is a workspace array of <span class="keyword">DIMENSION</span> (2*<var>n</var>).</p>
+<p>The second dimension of <span class="parmname">a</span> and <span class="parmname">af</span> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <span class="parmname">lda</span><span class="eqsymbol">≥</span><samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldaf</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  The leading dimension of <span class="parmname">af</span>. <span class="parmname">ldaf</span><span class="eqsymbol">≥</span><samp class="codeph">max(1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Array with <span class="keyword">DIMENSION</span><var>n</var>. The pivot indices from the factorization <samp class="codeph"><var>A</var> = <var>P</var>*<var>L</var>*<var>U</var></samp> as computed by <span class="option">?getrf</span>. Row <var>i</var> of the matrix was interchanged with row <samp class="codeph"><span class="parmname">ipiv</span>(<var>i</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">cla_gercond_x</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zla_gercond_x</span></p>
+<p>Array <span class="parmname">rwork</span> with <span class="keyword">DIMENSION</span><var>n</var> is a workspace.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-48AB0592-D2F6-4D1A-B092-16E2211E6913"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2A70475B-AB7F-4C9E-802A-54BB7C9BC2C2"><dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>If <span class="parmname">info</span> = 0, the execution is successful.</p>
+<p>If <var>i</var> &gt; 0, the <var>i</var>-th parameter is invalid.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">?getrf</span></a> </div></div></div>
+</body>
+</html>

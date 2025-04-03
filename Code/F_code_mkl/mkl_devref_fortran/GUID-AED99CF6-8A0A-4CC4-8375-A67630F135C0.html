@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?axpyi"/>
+<meta name="abstract" content="Adds a scalar multiple of compressed sparse vector to a full-storage vector."/>
+<meta name="description" content="Adds a scalar multiple of compressed sparse vector to a full-storage vector."/>
+<meta name="DC.subject" content="?axpyi, Sparse BLAS Level 1 routines and functions, sum, of sparse vector and full-storage vector, vector-scalar product, sparse vectors, adding and scaling"/>
+<meta name="keywords" content="?axpyi, Sparse BLAS Level 1 routines and functions, sum, of sparse vector and full-storage vector, vector-scalar product, sparse vectors, adding and scaling"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-AED99CF6-8A0A-4CC4-8375-A67630F135C0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?axpyi</title>
+
+</head>
+<body id="GUID-AED99CF6-8A0A-4CC4-8375-A67630F135C0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?axpyi</span></h1>
+<!--Adds a scalar multiple of compressed sparse vector to a full-storage vector.--><div><p class="shortdesc">Adds a scalar multiple of compressed sparse vector to a full-storage vector.</p>
+<div class="section" id="GUID-C776DBF5-2038-43A7-B865-A093FCB7DBB6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call saxpyi</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call daxpyi</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call caxpyi</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zaxpyi</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call axpyi</span><span class="delim">(</span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="delim"> [</span><span class="sep">, </span><span class="var">a</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-EA39AF1F-EE89-43CD-AE74-7230F480438D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-35BA807E-C3CF-4252-B78F-078AD0E71CC2"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?axpyi</span> routines perform a vector-vector operation defined as <pre><var>y</var> := <var>a</var>*<var>x</var> + <var>y</var></pre></p>
+<p>where:</p>
+<p><var>a</var> is a scalar,</p>
+<p><var>x</var> is a sparse vector stored in compressed form,</p>
+<p><var>y</var> is a vector in full storage form.</p>
+<p>The <span class="option">?axpyi</span> routines reference or modify only the elements of <var>y</var> whose indices are listed in the array <span class="parmname">indx</span>.</p>
+<p>The values in <span class="parmname">indx</span> must be distinct.</p>
+</div>
+<div class="section" id="GUID-B731559A-4103-469D-B85A-8006F8EBDA68"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-FC12DDE5-19E8-4C46-8731-CCD8FA7CD7A8"><dt class="dlterm"><span class="parmname">nz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elements in <var>x</var> and <span class="parmname">indx</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">saxpyi</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">daxpyi</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">caxpyi</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zaxpyi</span></p>
+<p>Specifies the scalar <var>a</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">saxpyi</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">daxpyi</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">caxpyi</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zaxpyi</span></p>
+<p>Array, size at least <span class="parmname">nz</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the indices for the elements of <var>x</var>.</p>
+<p>Array, size at least <span class="parmname">nz</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">saxpyi</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">daxpyi</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">caxpyi</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zaxpyi</span></p>
+<p>Array, size at least <samp class="codeph">max(<span class="parmname">indx</span>(i))</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-18955C46-5AD5-4CC4-8221-0A3D0C295F80"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-D29F4327-D3DF-43BA-9310-E7DD8494E4EC"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Contains the updated vector <var>y</var>. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-416A49EA-4745-4BFE-BB63-237628A4B2CF"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in 
+Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">axpyi</span> interface are the following:</p>
+<dl id="GUID-54936A4C-11AE-431F-9C71-A1B820A1D5B3"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>Holds the vector with the number of elements
+ <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements
+ <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

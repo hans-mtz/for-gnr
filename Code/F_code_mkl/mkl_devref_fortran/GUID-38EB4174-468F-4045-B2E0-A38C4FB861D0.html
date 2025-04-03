@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?syr"/>
+<meta name="abstract" content="Performs a rank-1 update of a symmetric matrix."/>
+<meta name="description" content="Performs a rank-1 update of a symmetric matrix."/>
+<meta name="DC.subject" content="?syr, BLAS Level 2 routines, symmetric matrix, rank-1 update, real symmetric matrix, updating, rank-1, matrix-vector operation"/>
+<meta name="keywords" content="?syr, BLAS Level 2 routines, symmetric matrix, rank-1 update, real symmetric matrix, updating, rank-1, matrix-vector operation"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-38EB4174-468F-4045-B2E0-A38C4FB861D0"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?syr</title>
+
+</head>
+<body id="GUID-38EB4174-468F-4045-B2E0-A38C4FB861D0">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?syr</span></h1>
+<!--Performs a rank-1 update of a symmetric matrix.--><div><p class="shortdesc">Performs a rank-1 update of a symmetric matrix.</p>
+<div class="section" id="GUID-E620D36F-6B4E-40A6-8BDA-3D625DEF55A8"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call ssyr</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dsyr</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call syr</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">, </span><span class="var">alpha</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-AF3ACD03-6372-41AB-8E70-DD5319AB8EA4"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-9802D989-EF40-4300-BAAD-874D85CF6BAB"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?syr</span> routines perform a matrix-vector operation defined as</p>
+<p><samp class="codeph"><var>A</var>  := <var>alpha</var>*<var>x</var>*<var>x</var>' + <var>A</var></samp> ,</p>
+<p>where:</p>
+<p><var>alpha</var> is a real scalar,</p>
+<p><var>x</var> is an <var>n</var>-element vector,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> symmetric matrix.</p>
+</div>
+<div class="section" id="GUID-50FC44E1-865F-49E8-AC16-BC00E4D59FD0"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E70184DC-2709-4DEB-9070-1AE98A648F2D"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the upper or lower triangular part of the array <span class="parmname">a</span> is used.</p>
+<p>If <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, then the upper  triangular part of the array <span class="parmname">a</span> is used.</p>
+<p>If <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, then the low  triangular part of the array <span class="parmname">a</span> is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var>  must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyr</span></p>
+<p>Specifies the scalar  <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyr</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var>-1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of <var>incx</var>  must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">ssyr</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dsyr</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>n</var>)</samp>.</p>
+<p>Before entry with <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, the leading <var>n</var>-by-<var>n</var> upper triangular part of the array <span class="parmname">a</span> must contain the upper triangular part of the symmetric matrix <var>A</var> and the strictly lower triangular part of <span class="parmname">a</span> is not referenced.</p>
+<p>Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the leading <var>n</var>-by-<var>n</var> lower triangular part of the array <var>a</var> must contain the 
+lower triangular part of the symmetric matrix <var>A</var> and the strictly upper triangular part of <var>a</var> is not referenced. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>a</var> as declared in the calling (sub)program. The value of <var>lda</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C03D1215-FD77-4AD8-8FA2-C48A5D8B938C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-B211BB90-5E2D-4CCF-BFBD-AF7E96C8B3FC"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>With <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, the upper triangular part of the array <var>a</var> is overwritten by the upper triangular part of the updated matrix.</p>
+<p>With <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the lower triangular part of the array <var>a</var> is overwritten by the lower triangular part of the updated matrix.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-4EDB8D3D-6A6B-4520-86E3-8128517B343E"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">syr</span> interface are the following:</p>
+<dl id="GUID-8D9E345D-317E-4111-9738-09B66E44EF1C"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n</var>,<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>The default value is 1.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

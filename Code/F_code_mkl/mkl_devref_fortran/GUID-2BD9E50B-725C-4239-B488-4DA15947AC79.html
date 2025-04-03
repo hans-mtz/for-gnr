@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?latrd"/>
+<meta name="abstract" content="Reduces the first nb rows and columns of a symmetric/Hermitian matrix A to real tridiagonal form by an orthogonal/unitary similarity transformation."/>
+<meta name="description" content="Reduces the first nb rows and columns of a symmetric/Hermitian matrix A to real tridiagonal form by an orthogonal/unitary similarity transformation."/>
+<meta name="DC.subject" content="?latrd, slatrd, dlatrd, clatrd, zlatrd, LAPACK routines, auxiliary routines, symmetric matrix, reducing to tridiagonal form, LAPACK, Hermitian matrix"/>
+<meta name="keywords" content="?latrd, slatrd, dlatrd, clatrd, zlatrd, LAPACK routines, auxiliary routines, symmetric matrix, reducing to tridiagonal form, LAPACK, Hermitian matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2BD9E50B-725C-4239-B488-4DA15947AC79"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?latrd</title>
+
+</head>
+<body id="GUID-2BD9E50B-725C-4239-B488-4DA15947AC79">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?latrd</span></h1>
+<!--Reduces the first  nb  rows and columns of a symmetric/Hermitian matrix  A  to real tridiagonal form by an orthogonal/unitary similarity transformation.--><div><p class="shortdesc">Reduces the first <var>nb</var> rows and columns of a symmetric/Hermitian matrix <var>A</var> to real tridiagonal form by an orthogonal/unitary similarity transformation.</p>
+<div class="section" id="GUID-C446A9A2-AA29-45C7-ACE7-15E0197D7FEF"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slatrd</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">ldw</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlatrd</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">ldw</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clatrd</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">ldw</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlatrd</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">tau</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">ldw</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-17BAF601-4D4A-4601-8E62-8844175B8ADE"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-2F37E8B2-2380-486A-8657-7BAA5AD063EF"><h2 class="sectiontitle">Description</h2><p>The routine <span class="option">?latrd</span> reduces <var>nb</var> rows and columns of a real symmetric or complex Hermitian matrix <var>A</var> to symmetric/Hermitian tridiagonal form by an orthogonal/unitary similarity transformation <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>A</var>*<var>Q</var></samp> for real flavors,  <samp class="codeph"><var>Q</var><sup class="power"><var>H</var></sup>*<var>A</var>*<var>Q</var></samp> for complex flavors, and returns the matrices <var>V</var> and <var>W</var> which are  needed to apply the transformation to the unreduced part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <span class="option">?latrd</span> reduces the last <var>nb</var> rows and columns of a matrix, of which the upper triangle is supplied; </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <span class="option">?latrd</span> reduces the first <var>nb</var> rows and columns of a matrix, of which the lower triangle is supplied. </p>
+<p>This is an auxiliary routine called by <span class="option">?sytrd</span>/<span class="option">?hetrd</span>.</p>
+</div>
+<div class="section" id="GUID-53DE8E8B-F8B7-4415-BA78-5BD82B1C8E56"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-AFEC56EC-6971-40DD-9DE3-F72ACBF76F23"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the upper or lower triangular part of the symmetric/Hermitian matrix <var>A</var> is stored:</p>
+<p>= <span class="keyword">'U'</span>: upper triangular</p>
+<p>= <span class="keyword">'L'</span>: lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The number of rows and columns to be reduced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrd</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>On entry, the symmetric/Hermitian matrix <var>A</var></p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of <span class="parmname">a</span> contains the upper triangular part of the matrix <var>A</var>, and the strictly lower triangular part of <span class="parmname">a</span> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of <span class="parmname">a</span> contains the lower triangular part of the matrix <var>A</var>, and the strictly upper triangular part of <span class="parmname">a</span> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <span class="parmname">a</span>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> (1,<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldw</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The leading dimension of the output array <var>w</var>. <samp class="codeph"><var>ldw</var><span class="eqsymbol">≥</span> max(1,<var>n</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-199C58A2-1E0D-445C-854C-6D0EA482725F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2E067AB7-1068-44DD-8D32-005184F41C51"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the last <var>nb</var> columns have been reduced to tridiagonal form, with the diagonal elements overwriting the diagonal elements of <span class="parmname">a</span>; the elements above the diagonal with the array <var>tau</var>, represent the orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors; </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the first <var>nb</var> columns have been reduced to tridiagonal form, with the diagonal elements overwriting the diagonal elements of <span class="parmname">a</span>; the elements below the diagonal with the array <var>tau</var>, represent the  orthogonal/unitary matrix <var>Q</var> as a product of elementary reflectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrd</span>/<span class="option">clatrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrd</span>/<span class="option">zlatrd</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <samp class="codeph"><var>e</var>(<var>n</var>-<var>nb</var>:<var>n</var>-1)</samp> contains the superdiagonal elements of the last <var>nb</var> columns of the reduced matrix; </p>
+<p>if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <samp class="codeph"><var>e</var>(1:<var>nb</var>)</samp> contains the subdiagonal elements of the first <var>nb</var> columns of the reduced matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrd</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). </p>
+<p>The scalar factors of the elementary reflectors, stored in <samp class="codeph"><var>tau</var>(<var>n</var>-<var>nb</var>:<var>n</var>-1)</samp> if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, and in <samp class="codeph"><var>tau</var>(1:<var>nb</var>)</samp> if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrd</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrd</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldw</var>, <var>n</var>). </p>
+<p>The <var>n</var>-by-<var>nb</var> matrix <var>W</var> required to update the unreduced part of <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-223515AA-8F8C-4937-8865-69211AD77029"><h2 class="sectiontitle">Application Notes</h2><p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the matrix <var>Q</var> is represented as a product of elementary  reflectors</p>
+<p><samp class="codeph"><var>Q</var>  = <var>H</var>(<var>n</var>)*<var>H</var>(<var>n</var>-1)*...*<var>H</var>(<var>n</var>-<var>nb</var>+1)</samp></p>
+<p>Each <var>H</var>(<var>i</var>) has the form </p>
+<p><samp class="codeph"><var>H</var>(<var>i</var>) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var>'</samp></p>
+<p>where <var>tau</var> is a real/complex scalar, and <var>v</var> is a real/complex vector with <samp class="codeph"><var>v</var>(<var>i</var>:<var>n</var>) = 0</samp> and <samp class="codeph"><var>v</var>(<var>i</var>-1) = 1</samp>;  <samp class="codeph"><var>v</var>(1: <var>i</var>-1)</samp> is stored on exit in <samp class="codeph"><var>a</var>(1: <var>i</var>-1, <var>i</var>)</samp>, and <var>tau</var> in <samp class="codeph"><var>tau</var>(<var>i</var>-1)</samp>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the matrix <var>Q</var> is represented as a product of elementary  reflectors</p>
+<p><samp class="codeph"><var>Q</var> =  <var>H</var>(1)*<var>H</var>(2)*...*<var>H</var>(<var>nb</var>)</samp></p>
+<p>Each <var>H</var>(<var>i</var>) has the form <samp class="codeph"><var>H</var>(<var>i</var>) = <var>I</var> - <var>tau</var>*<var>v</var>*<var>v</var>'</samp></p>
+<p>where <var>tau</var> is a real/complex scalar, and <var>v</var> is a real/complex vector with <samp class="codeph"><var>v</var>(1: <var>i</var>) = 0</samp> and <samp class="codeph"><var>v</var>(<var>i</var>+1) = 1</samp>; <samp class="codeph"><var>v</var>( <var>i</var>+1:n)</samp> is stored on exit in <samp class="codeph"><var>a</var>(<var>i</var>+1:<var>n</var>, <var>i</var>)</samp>, and <var>tau</var> in <var>tau</var>(<var>i</var>). </p>
+<p>The elements of the vectors <var>v</var> together form the <var>n</var>-by-<var>nb</var> matrix <var>V</var> which is needed, with <var>W</var>, to apply the transformation to the unreduced  part of the matrix, using a symmetric/Hermitian rank-2k update of the form:  </p>
+<p><samp class="codeph"><var>A</var> := <var>A</var> - <var>VW</var>' - <var>WV</var>'</samp>. </p>
+<p>The contents of <var>a</var> on exit are illustrated by the following examples with <samp class="codeph"><var>n</var> = 5</samp> and <samp class="codeph"><var>nb</var> = 2</samp>: </p>
+<p><br/><div class="imagecenter"><img src="GUID-D95A4290-662F-4DCE-8756-59A8EDBAFEE4-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>where <var>d</var> denotes a diagonal element of the reduced matrix, <var>a</var> denotes  an element of the original matrix that is unchanged, and <var>v</var><sub class="subb"><var>i</var></sub>  denotes  an element of the vector defining <var>H</var>(<var>i</var>).</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

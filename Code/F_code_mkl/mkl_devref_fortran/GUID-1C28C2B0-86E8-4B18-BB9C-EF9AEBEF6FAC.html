@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dss_define_structure"/>
+<meta name="abstract" content="Communicates locations of non-zero elements in the matrix to the solver."/>
+<meta name="description" content="Communicates locations of non-zero elements in the matrix to the solver."/>
+<meta name="DC.subject" content="Sparse Solver, direct sparse solver interface, dss_define_structure"/>
+<meta name="keywords" content="Sparse Solver, direct sparse solver interface, dss_define_structure"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dss_define_structure</title>
+
+</head>
+<body id="GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dss_define_structure</span></h1>
+<!--Communicates locations of non-zero elements in the matrix to the solver.--><div><p class="shortdesc">Communicates locations of non-zero elements in the matrix to the solver.</p>
+<div class="section" id="GUID-8B39AB2F-AE47-4ECC-8B55-318E881A8129"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_define_structure</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">rowIndex</span><span class="sep">, </span><span class="var">nRows</span><span class="sep">, </span><span class="var">nCols</span><span class="sep">, </span><span class="var">columns</span><span class="sep">, </span><span class="var">nNonZeros</span><span class="sep">)</span><span class="delim">;</span></p></dl></div>
+<div class="section" id="GUID-04D6DEB7-BC92-44AC-9F28-27667B003326"><h2 class="sectiontitle">Include Files</h2><ul id="d163e166"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_dss.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-01A9B1DC-F090-47C0-AAC8-9F3F22038378"><h2 class="sectiontitle">Description</h2><p><span/>The routine <span class="option">dss_define_structure</span> communicates the locations of the <span class="parmname">nNonZeros</span> number of non-zero elements in a matrix of <samp class="codeph"><span class="parmname">nRows</span> * <span class="parmname">nCols</span></samp> size to the solver.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The Intel&reg; oneAPI Math Kernel Library DSS software operates only on square matrices, so<span class="parmname">nRows</span> must be equal to <span class="parmname">nCols</span>.</p>
+</div>
+<p>To communicate the locations of non-zero elements in the matrix, do the following:</p>
+<ol class="arabic" id="GUID-181EA558-34D5-4C7E-B022-E164167AFD78"><li><p>Define the general non-zero structure of the matrix by specifying the value for the options argument <span class="parmname">opt</span>. You can set the following values for real matrices:</p>
+<ul class="none" id="GUID-57D5892C-03DF-4E53-841B-1B5548C880D5"><li><p><span class="keyword">MKL_DSS_SYMMETRIC_STRUCTURE</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_SYMMETRIC</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_NON_SYMMETRIC</span></p>
+</li>
+</ul>
+<p>and for complex matrices:</p>
+<ul class="none" id="GUID-FF57797F-7C9D-4139-8936-4A7E2B8F79D2"><li><p><span class="keyword">MKL_DSS_SYMMETRIC_STRUCTURE_COMPLEX</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_SYMMETRIC_COMPLEX</span></p>
+</li>
+<li><p><span class="keyword">MKL_DSS_NON_SYMMETRIC_COMPLEX</span></p>
+<p>The information about the matrix type must be defined in <span class="option">dss_define_structure</span>.</p>
+</li>
+</ul>
+</li>
+<li><p>Provide the actual locations of the non-zeros by means of the arrays <span class="parmname">rowIndex</span> and <span class="parmname">columns</span> (see <a class="allformats" href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html#GUID-9FCEB1C4-670D-4738-81D2-F378013412B0">Sparse Matrix Storage Format</a>).</p>
+</li>
+</ol>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> No diagonal element can be omitted from the values array. If there is a zero value on the diagonal, for example, that element nonetheless must be explicitly represented.</div>
+</div>
+<div class="section" id="GUID-8C4D59C7-A452-46CA-B29B-AE03F256CD20"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">opt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Parameter to pass the DSS options. The default value for the matrix structure is <span class="keyword">MKL_DSS_SYMMETRIC</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rowIndex </span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Array of size <samp class="codeph"><span class="parmname">nRows</span>+1</samp>. Defines the location of non-zero entries in the matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nRows</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Number of rows in the matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nCols</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Number of columns in the matrix; must be equal to <span class="parmname">nRows</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">columns</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Array of size <span class="parmname">nNonZeros</span>. Defines the column location of non-zero entries in the matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nNonZeros</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Number of non-zero elements in the matrix.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-0CCAA095-1955-457F-A4E2-15510EAA8AE9"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">handle</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">TYPE (MKL_DSS_HANDLE)</span>, <span class="keyword">INTENT(INOUT)</span></p>
+<p> Pointer to the data structure storing internal DSS results (<span class="keyword">MKL_DSS_HANDLE</span>). </p>
+</td>
+</tr></table></div>
+<div class="section" id="RETURNVALUES_F50EC2F44528449AADB80C29842DA388"><h2 class="sectiontitle">Return Values</h2><p><span class="keyword">MKL_DSS_SUCCESS</span></p>
+<p><span class="keyword">MKL_DSS_STATE_ERR</span></p>
+<p><span class="keyword">MKL_DSS_INVALID_OPTION</span></p>
+<p><span class="keyword">MKL_DSS_STRUCTURE_ERR</span></p>
+<p><span class="keyword">MKL_DSS_ROW_ERR</span></p>
+<p><span class="keyword">MKL_DSS_COL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_NOT_SQUARE</span></p>
+<p><span class="keyword">MKL_DSS_TOO_FEW_VALUES</span></p>
+<p><span class="keyword">MKL_DSS_TOO_MANY_VALUES</span></p>
+<p><span class="keyword">MKL_DSS_OUT_OF_MEMORY</span></p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_TERM_LVL_ERR</span></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

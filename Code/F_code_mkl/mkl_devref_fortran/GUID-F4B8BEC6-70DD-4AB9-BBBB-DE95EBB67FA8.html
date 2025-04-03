@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_COMPLEX_STORAGE, DFTI_REAL_STORAGE, DFTI_CONJUGATE_EVEN_STORAGE"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F4B8BEC6-70DD-4AB9-BBBB-DE95EBB67FA8"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_COMPLEX_STORAGE, DFTI_REAL_STORAGE, DFTI_CONJUGATE_EVEN_STORAGE</title>
+
+</head>
+<body id="GUID-F4B8BEC6-70DD-4AB9-BBBB-DE95EBB67FA8">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_COMPLEX_STORAGE, DFTI_REAL_STORAGE, DFTI_CONJUGATE_EVEN_STORAGE</h1>
+<div><p> Depending on the value of the 
+      <span class="keyword">DFTI_FORWARD_DOMAIN</span> configuration parameter, the implementation of FFT supports several storage schemes for input and output data (see document [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#3_PTPTANG">3</a>] for the rationale behind the definition of the storage schemes). The data elements are placed within contiguous memory blocks, defined with generalized strides (see 
+      <a href="GUID-2C619B0B-84D2-4CF0-9E5A-FFB4287A1BFB.html#GUID-2C619B0B-84D2-4CF0-9E5A-FFB4287A1BFB"><span class="keyword">DFTI_INPUT_STRIDES, DFTI_OUTPUT_STRIDES</span></a>). For multiple transforms, all sets of data should be located within the same memory block, and the data sets should be placed at the same 
+      <samp class="codeph">distance</samp> from each other (see 
+      <a href="GUID-76671365-D14B-418B-8333-D750BF63F6E9.html#GUID-76671365-D14B-418B-8333-D750BF63F6E9"><span class="keyword">DFTI_NUMBER_OF TRANSFORMS</span></a> and 
+      <a href="GUID-248B84B3-9D02-4D58-A199-BDD98FD12D72.html#GUID-248B84B3-9D02-4D58-A199-BDD98FD12D72"><span class="keyword">DFTI_INPUT DISTANCE, DFTI_OUTPUT_DISTANCE</span></a>). 
+       
+    </p>
+<p><a href="GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A.html#GUID-0E5501C5-30C5-413F-BD13-FC45CBC2884A">FFT Examples</a> demonstrate the usage of storage formats. 
+    </p>
+<div class="section" id="SECTION_2E0FD855362E4E949ADE2901E31FC10E"><h2 class="sectiontitle">DFTI_COMPLEX_STORAGE: storage schemes for a complex domain</h2><p> For the 
+        <span class="keyword">DFTI_COMPLEX</span> forward domain, both input and output sequences belong to a complex domain. In this case, the configuration parameter 
+        <span class="keyword">DFTI_COMPLEX_STORAGE</span> can have one of the two values: 
+        <span class="keyword">DFTI_COMPLEX_COMPLEX</span> (default) or 
+        <span class="keyword">DFTI_REAL_REAL</span>. 
+      </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>In the Intel&reg; oneAPI Math Kernel LibraryFFT interface, storage schemes for a forward complex domain and the respective backward complex domain are the same. 
+        </p>
+</div>
+<p> With 
+        <span class="keyword">DFTI_COMPLEX_COMPLEX</span> storage, complex-valued data sequences are referenced by a single complex parameter (array) 
+        <samp class="codeph">AZ</samp> so that a complex-valued element 
+        <var>z</var><sub><var>k</var><sub>1</sub>, 
+          <var>k</var><sub>2</sub>, ..., 
+          <var>k</var><sub><var>d</var></sub></sub> of the 
+        <samp class="codeph">m</samp>-th 
+        <samp class="codeph">d</samp>-dimensional sequence is located at 
+        <samp class="codeph">AZ[m*distance + stride</samp><sub><samp class="codeph">0</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">+ ... k</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">] 
+        </samp>as a structure consisting of the real and imaginary parts. 
+      </p>
+<p> This code illustrates the use of the 
+        <span class="keyword">DFTI_COMPLEX_COMPLEX</span> storage: 
+      </p>
+<pre>complex :: AZ(N1,N2,N3,M)   ! sizes and number of transforms
+...
+! on input:  Z{k1,k2,k3,m} = AZ(k1,k2,k3,m)
+status = DftiComputeForward( desc, AZ(:,1,1,1) )
+! on output: Z{k1,k2,k3,m} = AZ(k1,k2,k3,m)
+</pre><p> With the 
+        <span class="keyword">DFTI_REAL_REAL</span> storage, complex-valued data sequences are referenced by two real parameters 
+        <samp class="codeph">AR</samp> and 
+        <samp class="codeph">AI</samp> so that a complex-valued element 
+        <var>z</var><sub><var>k</var><sub>1</sub>, 
+          <var>k</var><sub>2</sub>, ..., 
+          <var>k</var><sub><var>d</var></sub></sub> of the 
+        <samp class="codeph">m</samp>-th sequence is computed as 
+        <samp class="codeph">AR[m*distance + stride</samp><sub><samp class="codeph">0</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">+ ... k</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">]</samp> + √(-1) 
+        <samp class="codeph"><var/>* AI[m*distance + stride</samp><sub><samp class="codeph">0</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">+ ... k</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">]</samp>. 
+      </p>
+<p>This code illustrates the use of the 
+        <samp class="codeph">DFTI_REAL_REAL</samp> storage: 
+      </p>
+<pre>real :: AR(N1,N2,N3,M), AI(N1,N2,N3,M)
+...
+! on input:  Z{k1,k2,k3,m} = cmplx(AR(k1,k2,k3,m),AI(k1,k2,k3,m))
+status = DftiComputeForward( desc, AR(:,1,1,1), AI(:,1,1,1) )
+! on output: Z{k1,k2,k3,m} = cmplx(AR(k1,k2,k3,m),AI(k1,k2,k3,m))
+</pre></div>
+<div class="section" id="SECTION_DDECEB9D448D499BB448D49557DBB993"><h2 class="sectiontitle">DFTI_REAL_STORAGE: storage schemes for a real domain</h2><p>The Intel&reg; oneAPI Math Kernel LibraryFFT interface supports only one configuration value for this storage scheme: 
+        <span class="keyword">DFTI_REAL_REAL</span>. With the 
+        <span class="keyword">DFTI_REAL_REAL</span> storage, real-valued data sequences in a real domain are referenced by one real parameter 
+        <samp class="codeph">AR</samp> so that real-valued element of the 
+        <samp class="codeph">m</samp>-th sequence is located as 
+        <samp class="codeph">AR[m*distance + stride</samp><sub><samp class="codeph">0</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">1</samp></sub><samp class="codeph"> + k</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">2</samp></sub><samp class="codeph">+ ... k</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">*stride</samp><sub><samp class="codeph">d</samp></sub><samp class="codeph">]</samp>. 
+        <strong/></p>
+</div>
+<div class="section" id="CONJUGATE_EVEN_STORAGE"><h2 class="sectiontitle">DFTI_CONJUGATE_EVEN_STORAGE: storage scheme for a conjugate-even domain</h2><p>The Intel&reg; oneAPI Math Kernel LibraryFFT interface supports two configuration values for this parameter: 
+        <span class="keyword">DFTI_COMPLEX_REAL</span> (default) and 
+        <span class="keyword">DFTI_COMPLEX_COMPLEX</span>. In both cases, the conjugate-even symmetry of the data enables storing only about a half of the whole mathematical result, so that one part of it can be directly referenced in the memory while the other part can be reconstructed depending on the selected storage configuration. 
+      </p>
+<p> With the 
+        <span class="keyword">DFTI_COMPLEX_REAL</span> storage, the complex-valued data sequences in the conjugate-even domain can be reconstructed as described in section 
+        <a href="GUID-F65C2255-963E-429F-9E74-99DFBCE1526F.html"><span class="keyword">DFTI_PACKED_FORMAT</span></a>. 
+      </p>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p> Although 
+          <span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE=DFTI_COMPLEX_REAL</span> is the default setting for the 
+          <span class="keyword">DFTI_REAL</span> forward domain, avoid using this storage scheme. This storage scheme is deprecated for one-dimensional transforms and the default will change in a future release. For two-dimensional transforms, this storage scheme is deprecated, support will be removed, and the default will change in a future release. 
+        </p>
+</div>
+<p> With the 
+        <span class="keyword">DFTI_COMPLEX_COMPLEX</span> storage, the complex-valued data sequences in the conjugate-even domain are referenced by one complex parameter 
+        <samp class="codeph">AZ 
+        </samp>so that a complex-valued element 
+        <var>z</var><sub><var>k</var><sub>1</sub>, 
+          <var>k</var><sub>2</sub>, ..., 
+          <var>k</var><sub><var>d</var></sub></sub> of the 
+        <samp class="codeph">m</samp>-th sequence can be referenced or reconstructed as described below. 
+      </p>
+<div class="Note"><h3 class="NoteTipHead">Important</h3> <p>Use the 
+          <span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE=DFTI_COMPLEX_COMPLEX</span> configuration setting, which will become the default in future. This setting is supported for all transform ranks, provides a uniform pattern for reconstructing the entire conjugate-even sequence from the part of it that is actually stored, and is compatible with data layouts supported by other FFT libraries, such as FFTW. This storage scheme disregards the setting of 
+          <span class="keyword">DFTI_PACKED_FORMAT</span>. 
+        </p>
+</div>
+<p> Consider a d-dimensional real-to-complex transform 
+        <br/><img id="IMAGE_9F147C6B9EAD478B8B8A4B2A654509D9" src="GUID-D1FF402B-5EE6-4D47-B707-4651BABAB6B1-low.gif" width="453" height="71"/><br/></p>
+<p>Because the input sequence 
+        <var>R</var> is real-valued, the mathematical result 
+        <var>Z</var> has conjugate-even symmetry: 
+      </p>
+<p><var>z</var><sub><var>k</var><sub>1</sub>, 
+          <var>k</var><sub>2</sub>, ..., 
+          <var>k</var><sub><var>d</var></sub></sub> = 
+        <var>conjugate 
+        </var>(<var>z</var><sub><var>N</var><sub>1</sub>-<var>k</var><sub>1</sub>, 
+          <var>N</var><sub>2</sub>-<var>k</var><sub>2</sub>, ..., 
+          <var>N</var><sub>d</sub>-<var>k</var><sub><var>d</var></sub></sub>), 
+      </p>
+<p> where index arithmetic is performed modulo the length of the respective dimension. Obviously, the first element of the result is real-valued: 
+      </p>
+<p><var>z</var><sub>0, 0, ..., 0</sub> = 
+        <var>conjugate 
+        </var>(<var>z</var><sub>0, 0, ..., 0 
+        </sub>). 
+      </p>
+<p> For dimensions with even lengths, some of the other elements are real-valued too. For example, if 
+        <var>N</var><sub><var>s</var></sub> is even, 
+      </p>
+<p><var>z</var><sub>0, 0, ..., 
+          <var>N</var><sub><var>s 
+            </var></sub>/2, 0, ..., 0</sub> = 
+        <var>conjugate 
+        </var>(<var>z</var><sub>0, 0, ...,<var>N</var><sub><var>s 
+            </var></sub>/2, 0, ..., 0 
+        </sub>). 
+      </p>
+<p> With the conjugate-even symmetry, approximately a half of the result suffices to fully reconstruct it. For an arbitrary dimension 
+        <var>h</var>, it suffices to store elements 
+        <var>z</var><sub><var>k</var><sub>1</sub>, ...,<var>k</var><sub><var>h</var></sub>, ..., 
+          <var>k</var><sub><var>d</var></sub></sub> for the following indices: 
+      </p>
+<ul id="UL_D91B9993086542F5BEEA7931526E8A26"><li><var>k</var><sub><var>h</var></sub> = 0, ..., [<var>N</var><sub><var>h</var></sub> /2] 
+        </li>
+<li><var>k</var><sub><var>i</var></sub> = 0, …<var>, N</var><sub><var>i</var></sub> -1, where 
+          <var>i</var> = 1, …<var>, d</var> and 
+          <var>i</var><span class="eqsymbol">≠</span><var>h</var></li>
+</ul>
+<p> The symmetry property enables reconstructing the remaining elements: for 
+        <var>k</var><sub><var>h</var></sub> = [<var>N</var><sub><var>h</var></sub> /2] + 1, ... , 
+        <var>N</var><sub><var>h</var></sub>- 1. In the Intel&reg; oneAPI Math Kernel LibraryFFT interface, the halved dimension is 
+        <span>the first dimension</span>. 
+      </p>
+<p> The following code illustrates usage of the 
+        <span class="keyword">DFTI_COMPLEX_COMPLEX</span> storage for a conjugate-even domain: 
+      </p>
+<pre>real :: AR(N1,N2,M)          ! Array containing values of R
+complex :: AZ(N1/2+1,N2,M)   ! Array containing values of Z
+...
+! on input:  R{k1,k2,m} = AR(k1,k2,m)
+status = DftiComputeForward( desc, AR(:,1,1), AZ(:,1,1) )
+! on output:
+! for k1=1 … N1/2+1:  Z{k1,k2,m} = AZ(k1,k2,m)
+! for k1=N1/2+2 … N1: Z{k1,k2,m} = conj(AZ(mod(N1-k1+1,N1)+1,mod(N2-k2+1,N2)+1,m))
+</pre><p> For the backward transform, the input and output parameters and layouts exchange roles: set the strides describing the layout in the backward/forward domain as input/output strides, respectively. For example: 
+      </p>
+<pre>...
+status = DftiSetValue( desc, DFTI_INPUT_STRIDES,  fwd_domain_strides )
+status = DftiSetValue( desc, DFTI_OUTPUT_STRIDES, bwd_domain_strides )
+status = DftiCommitDescriptor( desc )
+status = DftiComputeForward( desc, ... )
+...
+status = DftiSetValue( desc, DFTI_INPUT_STRIDES,  bwd_domain_strides )
+status = DftiSetValue( desc, DFTI_OUTPUT_STRIDES, fwd_domain_strides )
+status = DftiCommitDescriptor( desc )
+status = DftiComputeBackward( desc, ... )
+</pre><div class="Note"><h3 class="NoteTipHead">Important</h3> <p> For in-place transforms, ensure the first element of the input data has the same address as the first element of the output data for each dimension. 
+        </p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8.html#GUID-AF9CC444-2F3E-4408-B6E2-02A5CDCFFEB8"><span class="option">DftiSetValue</span></a> </div></div></div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_sparse_copy"/>
+<meta name="abstract" content="Creates a copy of a matrix handle."/>
+<meta name="description" content="Creates a copy of a matrix handle."/>
+<meta name="DC.subject" content="mkl_sparse_copy"/>
+<meta name="keywords" content="mkl_sparse_copy"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-6313A228-4C03-42C0-8595-11E50F4CB80D.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-51C4A1C3-0518-4FF4-A3DC-489AB0A9D9B4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_sparse_copy</title>
+
+</head>
+<body id="GUID-51C4A1C3-0518-4FF4-A3DC-489AB0A9D9B4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_sparse_copy</span></h1>
+<!--Creates a copy of a matrix handle.--><div><p class="shortdesc">Creates a copy of a matrix handle.</p>
+<div class="section" id="GUID-35D1D68E-CBCC-4E38-A7D9-87A81C80D4A7"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">stat = mkl_sparse_copy</span><span class="delim"> (</span><span class="var">source</span><span class="sep">, </span><span class="var">descr</span><span class="sep">, </span><span class="var">dest</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-F11B05FE-C14D-42CB-BA18-0B4A7941FD3B"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-535D7DC2-357E-4A91-A8D5-3AD6C571682A"><li><span class="filepath">mkl_spblas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E14039D2-E0DB-42B1-9662-FD6B2597434B"><h2 class="sectiontitle">Description</h2><p>The <span class="option">mkl_sparse_copy</span> routine creates a copy of a matrix handle.</p>
+</div>
+<div class="section" id="GUID-BEDD508D-3CEF-4BF4-AE29-4D51B8063204"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-09C75D62-2AA7-4D3C-81BD-31C2C9A3A165"><dt class="dlterm"><span class="parmname">source</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span>.</p>
+<p>Specifies handle containing internal data.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descr</span></dt>
+
+<dd><p><samp class="codeph">MATRIX_DESCR</samp>. 
+          </p>
+<p>Descriptor specifying sparse matrix properties. 
+          </p>
+<p><var>type</var> - Specifies the type of a sparse matrix: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_GENERAL 
+                </tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is processed as is. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_SYMMETRIC</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is symmetric (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_HERMITIAN</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is Hermitian (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_MATRIX_TYPE_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is triangular (only the requested triangle is processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p> The matrix is diagonal (only diagonal elements are processed). 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_BLOCK_TRIANGULAR</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-triangular (only requested triangle is processed). Applies to BSR format only.
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_MATRIX_TYPE_BLOCK_DIAGONAL</tt></p></td>
+
+<td valign="top" class="noborder"><p>The matrix is block-diagonal (only diagonal blocks are processed). Applies to BSR format only.
+                </p>
+</td>
+</tr></table><p><var>mode</var> - Specifies the triangular matrix part for symmetric, Hermitian, triangular, and block-triangular matrices: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_FILL_MODE_LOWER</tt></p></td>
+
+<td valign="top" class="noborder"><p> The lower triangular matrix part is processed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_FILL_MODE_UPPER</tt></p></td>
+
+<td valign="top" class="noborder"><p>The upper triangular matrix part is processed. 
+                </p>
+</td>
+</tr></table><p><var>diag</var> - Specifies diagonal type for non-general matrices: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_DIAG_NON_UNIT</tt></p></td>
+
+<td valign="top" class="noborder"><p>Diagonal elements might not be equal to one. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_DIAG_UNIT</tt></p></td>
+
+<td valign="top" class="noborder">Diagonal elements are equal to one. 
+              </td>
+</tr></table></dd>
+</dl>
+</div>
+<div class="section" id="GUID-771EE79A-203B-4542-AE08-DEDCD11A6C9B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9E8FAB35-E3A2-48E6-89C1-63CA6A787C8F"><dt class="dlterm"><span class="parmname">dest</span></dt>
+
+<dd><p><span class="keyword">SPARSE_MATRIX_T</span> for <span class="option">mkl_sparse_copy</span></p>
+<p>Handle containing internal data.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stat</span></dt>
+
+<dd><p><samp class="codeph">INTEGER</samp></p>
+<p>Value indicating whether the operation was successful or not, and why: 
+          </p>
+<table cellspacing="0" cellpadding="4" border="0" width="100%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><tt> SPARSE_STATUS_SUCCESS</tt></p></td>
+
+<td valign="top" class="noborder"><p>The operation was successful. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_INITIALIZED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The routine encountered an empty handle or matrix array. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_ALLOC_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Internal memory allocation failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INVALID_VALUE</tt></p></td>
+
+<td valign="top" class="noborder"><p>The input parameters contain an invalid value. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_EXECUTION_FAILED</tt></p></td>
+
+<td valign="top" class="noborder"><p>Execution failed. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_INTERNAL_ERROR</tt></p></td>
+
+<td valign="top" class="noborder"><p>An error in algorithm implementation occurred. 
+                </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><tt>SPARSE_STATUS_NOT_SUPPORTED</tt></p></td>
+
+<td valign="top" class="noborder"><p>The requested operation is not supported. 
+                </p>
+</td>
+</tr></table></dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-6313A228-4C03-42C0-8595-11E50F4CB80D.html">Matrix Manipulation Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

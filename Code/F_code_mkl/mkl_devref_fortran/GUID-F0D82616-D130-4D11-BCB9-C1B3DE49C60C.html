@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?laqr4"/>
+<meta name="abstract" content="Computes the eigenvalues of a Hessenberg matrix, and optionally the matrices from the Schur decomposition."/>
+<meta name="description" content="Computes the eigenvalues of a Hessenberg matrix, and optionally the matrices from the Schur decomposition."/>
+<meta name="DC.subject" content="?laqr4, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?laqr4, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-F0D82616-D130-4D11-BCB9-C1B3DE49C60C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?laqr4</title>
+
+</head>
+<body id="GUID-F0D82616-D130-4D11-BCB9-C1B3DE49C60C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?laqr4</span></h1>
+<!--Computes the eigenvalues of a Hessenberg matrix, and optionally the matrices from the Schur decomposition.--><div><p class="shortdesc">Computes the eigenvalues of a Hessenberg matrix, and optionally the matrices from the Schur decomposition.</p>
+<div class="section" id="GUID-F18EE8DD-111A-400D-83B4-C3866F859C1E"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slaqr4</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlaqr4</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">wr</span><span class="sep">, </span><span class="var">wi</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call claqr4</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlaqr4</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">ldz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span><span class="delim"/><span class="delim"/></p></div></div>
+<div class="section" id="GUID-7091B644-50BB-400C-9FDD-41B1EE8D91DC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-4F43DAB7-9EC8-4832-A72C-56284833D1CE"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the eigenvalues of a Hessenberg matrix  <var>H</var>, and, optionally, the matrices <var>T</var> and <var>Z</var> from the Schur decomposition <samp class="codeph"><var>H</var>=<var>Z</var>*<var>T</var>*<var>Z</var><sup><var>H</var></sup></samp>, where <var>T</var>  is an upper quasi-triangular/triangular matrix (the Schur form), and <var>Z</var> is the orthogonal/unitary matrix of Schur vectors. </p>
+<p>Optionally <var>Z</var> may be postmultiplied into an input orthogonal/unitary matrix <var>Q</var> so that this routine can give the Schur factorization of a matrix <var>A</var> which has been reduced to the Hessenberg form <var>H</var> by the orthogonal/unitary matrix <var>Q</var>:  <samp class="codeph"><var>A</var> = <var>Q</var>*<var>H</var>*<var>Q</var><sup><var>H</var></sup> = (<var>QZ</var>)*<var>H</var>*(<var>QZ</var>)<sup><var>H</var></sup></samp>.
+</p>
+<p> This routine implements one level of recursion for <span class="option">?laqr0</span>. It is a complete implementation of the small bulge multi-shift QR algorithm.  It may be called by <span class="option">?laqr0</span> and, for large enough deflation window size, it may be called by <span class="option">?laqr3</span>.  This routine is identical to <span class="option">?laqr0</span> except that it calls <span class="option">?laqr2</span>     instead of <span class="option">?laqr3</span>.
+</p>
+</div>
+<div class="section" id="GUID-9A1EB8C4-07D7-4BA2-84D7-E91600A3F9DA"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-9B046D53-73EE-4BB7-84C0-7CF1D05E2F50"><dt class="dlterm"><span class="parmname">wantt</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>.</p>
+<p>If <samp class="codeph"><var>wantt</var> = <span class="keyword">.TRUE.</span></samp>, the full Schur form <span class="keyword">T</span> is required;</p>
+<p>If <samp class="codeph"><var>wantt</var> = <span class="keyword">.FALSE.</span></samp>, only eigenvalues are required.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wantz</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.TRUE.</span></samp>, the matrix of Schur vectors <var>Z</var> is required;  </p>
+<p>If <samp class="codeph"><var>wantz</var> = <span class="keyword">.FALSE.</span></samp>, Schur vectors are not required. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the Hessenberg matrix <var>H</var>. <samp class="codeph">(<var>n</var> ≥ 0)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>It is assumed that <var>H</var> is already upper triangular in rows and columns <samp class="codeph">1:<span class="parmname">ilo</span>-1</samp> and <samp class="codeph"><span class="parmname">ihi</span>+1:<span class="parmname">n</span></samp>, and if <samp class="codeph"><span class="parmname">ilo </span>&gt; 1</samp> then <samp class="codeph"><var>h</var>(<var>ilo</var>, <var>ilo</var>-1) = 0</samp>.</p>
+<p><span class="parmname">ilo</span> and <span class="parmname">ihi</span> are normally set by a previous call to <span class="option">cgebal</span>, and then passed to <span class="option">cgehrd</span> when the matrix output by <span class="option">cgebal</span> is reduced to Hessenberg form. Otherwise, <span class="parmname">ilo</span> and <span class="parmname">ihi</span> should be set to <samp class="codeph">1</samp> and <span class="parmname">n</span>, respectively.</p>
+<p> If <samp class="codeph"><span class="parmname">n </span>&gt; 0</samp>, then  <samp class="codeph">1 ≤ <var>ilo </var>≤<var> ihi </var>≤ <span class="parmname">n</span></samp>.  </p>
+<p>If <samp class="codeph"><span class="parmname">n</span>=0</samp>, then <samp class="codeph"><span class="parmname">ilo</span>=1</samp> and <samp class="codeph"><span class="parmname">ihi</span>=0</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr4</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claqr4</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr4</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldh</var>, <var>n</var>), contains the upper Hessenberg matrix <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <span class="parmname">h</span>. <samp class="codeph"><span class="parmname">ldh </span>≥ max(1, <span class="parmname">n</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iloz</span>, <span class="parmname">ihiz</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.  Specify the rows of <var>Z</var> to which transformations must be applied if <var>wantz</var> is <samp class="codeph"><span class="keyword">.TRUE.</span>, 1 ≤<var> iloz</var> ≤<var> ilo</var>; <var>ihi </var>≤<var> ihiz </var>≤<var> n</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr4</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claqr4</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr4</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldz</var>, <var>ihi</var>), contains the matrix <var>Z </var> if <var>wantz</var> is <span class="keyword">.TRUE.</span>.  If <var>wantz</var> is <span class="keyword">.FALSE.</span>, <var>z</var> is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldz</span></dt>
+
+<dd><p><span class="keyword">INTEGER.</span> The leading dimension of the array <span class="parmname">z</span>. </p>
+<p>If <var>wantz</var> is <span class="keyword">.TRUE.</span>, then <samp class="codeph"><span class="parmname">ldz </span>≥ max(1, <span class="parmname">ihiz</span>)</samp>. Otherwise, <samp class="codeph"><span class="parmname">ldz </span>≥ 1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr4</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">claqr4</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr4</span>.</p>
+<p>Workspace array with dimension <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The dimension of the array <var>work</var>.  </p>
+<p><samp class="codeph"><var>lwork</var> ≥ max(1,<var>n</var>)</samp> is sufficient, but for the optimal performance a greater workspace may be required, typically as large as <samp class="codeph">6*<span class="parmname">n</span></samp>. </p>
+<p>It is recommended to use the workspace query to determine the optimal workspace size. If <samp class="codeph"><span class="parmname">lwork</span>=-1,</samp>then the routine performs a workspace query: it estimates the optimal workspace size for the given values of the input parameters <span class="parmname">n</span>, <span class="parmname">ilo</span>, and <span class="parmname">ihi</span>. The estimate is returned in <samp class="codeph"><span class="parmname">work</span>(1)</samp>. No error messages related to the <span class="parmname">lwork</span> is issued by <span class="option">xerbla</span>. Neither <var>H</var> nor <var>Z</var> are accessed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F2794BED-6820-4AD5-B770-67B4402C957C"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-070B9C8F-F1CC-431E-88BA-8E82555D3D01"><dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>If <samp class="codeph"><span class="parmname">info</span>=0</samp>, and <var>wantt</var> is <span class="keyword">.TRUE.</span>,  then <span class="parmname">h</span> contains the upper quasi-triangular/triangular matrix <var>T</var>  from the Schur decomposition (the Schur form).</p>
+<p>If <samp class="codeph"><span class="parmname">info</span>=0</samp>, and <var>wantt</var> is <span class="keyword">.FALSE.</span>,  then the contents of <span class="parmname">h</span> are unspecified on exit.</p>
+<p>(The output values of <span class="parmname">h</span> when <samp class="codeph"><span class="parmname">info </span>&gt; 0</samp> are given under the description of the <span class="parmname">info</span> parameter below.)</p>
+<p>The routines may explicitly set <samp class="codeph"><span class="parmname">h</span>(i,j)</samp> for <samp class="codeph">i&gt;j</samp>  and <samp class="codeph">j=1,2,...<span class="parmname">ilo</span>-1</samp> or<samp class="codeph"> j=<span class="parmname">ihi</span>+1, <span class="parmname">ihi</span>+2,...<span class="parmname">n</span></samp>.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><var>work</var>(1)</samp></dt>
+
+<dd><p>On exit <samp class="codeph"><var>work</var>(1)</samp> contains the minimum value of <var>lwork</var> required for optimum performance. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">claqr4</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlaqr4</span>.</p>
+<p>Arrays,<span class="keyword"> DIMENSION</span>(<var>n</var>). The computed eigenvalues of <span class="parmname">h</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">ilo</span>:<span class="parmname">ihi</span>) are stored in <span class="parmname">w</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>). If <var>wantt</var> is <span class="keyword">.TRUE.</span>,  then the eigenvalues are stored in the same order as on the diagonal of the Schur form returned in <span class="parmname">h</span>, with <samp class="codeph"><span class="parmname">w</span>(i) = <span class="parmname">h</span>(i,i)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">wr</span>, <span class="parmname">wi</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slaqr4</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlaqr4</span></p>
+<p>Arrays,<span class="keyword"> DIMENSION</span>(<var>ihi</var>) each. The real and imaginary parts, respectively, of the computed eigenvalues of  <span class="parmname">h</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">ilo</span>:<span class="parmname">ihi</span>) are stored in the <span class="parmname">wr</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>) and <span class="parmname">wi</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>). If two eigenvalues are computed as a complex conjugate pair, they are stored in consecutive elements of <var>wr</var> and <var>wi</var>, say the <var>i</var>-th and (<var>i</var>+1)-th, with <var>wi</var>(<var>i</var>)&gt; 0 and <var>wi</var>(<var>i</var>+1) &lt; 0. If <var>wantt</var> is <span class="keyword">.TRUE.</span>, then the eigenvalues are stored in the same order as on the diagonal of the Schur form returned in <var>h</var>, with <samp class="codeph"><span class="parmname">wr</span>(i) = <span class="parmname">h</span>(i,i)</samp>,  and if  <samp class="codeph"><span class="parmname">h</span>(i:i+1,i:i+1)</samp>is a 2-by-2 diagonal block, then <samp class="codeph"><span class="parmname">wi</span>(i)=sqrt(-<span class="parmname">h</span>(i+1,i)*<span class="parmname">h</span>(i,i+1))</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p>If <var>wantz</var> is <span class="keyword">.TRUE.</span>, then <var><span class="parmname">z</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">iloz</span>:<span class="parmname">ihiz</span>)</var> is replaced by <var><span class="parmname">z</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">iloz</span>:<span class="parmname">ihiz</span>)*<var>U</var></var>, where <var>U</var> is the orthogonal/unitary Schur factor of <var><span class="parmname">h</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">ilo</span>:<span class="parmname">ihi</span>)</var>.</p>
+<p>If <var>wantz</var> is <span class="keyword">.FALSE.</span>, <var>z</var> is not referenced.  </p>
+<p>(The output values of <span class="parmname">z</span> when <samp class="codeph"><span class="parmname">info</span> &gt; 0</samp> are given under the description of the <span class="parmname">info</span> parameter below.)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p><samp class="codeph">= 0</samp>: the execution is successful.</p>
+<p><samp class="codeph">&gt; 0</samp>: if <samp class="codeph"><var>info</var> = <var>i</var></samp>, then the routine failed to compute all the eigenvalues.  Elements <samp class="codeph">1:<var>ilo</var>-1</samp> and <samp class="codeph">i+1:<span class="parmname">n</span></samp> of <var>wr</var> and <var>wi</var> contain those eigenvalues which have been successfully computed.   </p>
+<p><samp class="codeph">&gt; 0</samp>: if <var>wantt</var> is <span class="keyword">.FALSE.</span>, then the remaining unconverged eigenvalues are the eigenvalues of the upper Hessenberg matrix rows and columns <span class="parmname">ilo</span> through <span class="parmname">info</span> of the final output value of <span class="parmname">h</span>. </p>
+<p><samp class="codeph">&gt; 0</samp>: if <var>wantt</var> is <span class="keyword">.TRUE.</span>, then <samp class="codeph">(</samp>initial value of <samp class="codeph"><span class="parmname">h</span>)*<var>U</var> = <var>U</var>*(</samp>final value of <samp class="codeph"><span class="parmname">h</span>, </samp>where <var>U</var> is an orthogonal/unitary matrix.  The final value of <span class="parmname">h</span> is upper Hessenberg and quasi-triangular/triangular in rows and columns <samp class="codeph"><span class="parmname">info</span>+1</samp> through <span class="parmname">ihi</span>.</p>
+<p><samp class="codeph">&gt; 0</samp>: if <var>wantz</var> is <span class="keyword">.TRUE.</span>, then <samp class="codeph">(</samp>final value of <samp class="codeph"><span class="parmname">z</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">iloz</span>:<span class="parmname">ihiz</span>))=(</samp>initial value of <samp class="codeph"><span class="parmname">z</span>(<span class="parmname">ilo</span>:<span class="parmname">ihi</span>, <span class="parmname">iloz</span>:<span class="parmname">ihiz</span>)*<var>U</var></samp>, where <var>U</var> is the orthogonal/unitary matrix in the previous expression (regardless of the value of <span class="parmname">wantt</span>).</p>
+<p><samp class="codeph">&gt; 0</samp>: if <var>wantz</var> is <span class="keyword">.FALSE.</span>, then <span class="parmname">z</span> is not accessed.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

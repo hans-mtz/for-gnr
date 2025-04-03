@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="ipar"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A0068460-37C4-487D-9E5C-9E29459AF74A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-0E6B858A-D5DC-47A9-BD48-E86DFDF58487"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>ipar</title>
+
+</head>
+<body id="GUID-0E6B858A-D5DC-47A9-BD48-E86DFDF58487">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">ipar</h1>
+<div><dl id="GUID-8EF13C3F-A66C-417F-84DE-F27622A574EC"><dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span class="keyword">MKL_INT</span> array of size 128, holds integer data needed for Fast Helmholtz Solver (both for Cartesian and spherical coordinate systems). Its elements are described in 
+            <a href="#TBL13-6">Table 
+              <span>"Elements of the ipar Array"</span></a>: 
+          </p>
+</dd>
+</dl>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Initial values are assigned to the array parameters by the appropriate 
+        <a href="GUID-A136A543-BD61-4D81-AEE6-0580130E91D2.html#GUID-A136A543-BD61-4D81-AEE6-0580130E91D2"><span class="option">?_init_Helmholtz_2D/?_init_Helmholtz_3D</span></a>/<a href="GUID-89C1F318-7802-41F5-96F8-4245F4476BF1.html#GUID-89C1F318-7802-41F5-96F8-4245F4476BF1"><span class="option">?_init_sph_p/?_init_sph_np</span></a> and 
+        <a href="GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868.html#GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868"><span class="option">?_commit_Helmholtz_2D/?_commit_Helmholtz_3D</span></a>/<a href="GUID-C79A67EC-E804-440B-8075-B7E86509A247.html#GUID-C79A67EC-E804-440B-8075-B7E86509A247"><span class="option">?_commit_sph_p/?_commit_sph_np</span></a> routines. 
+      </p>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL13-6" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Elements of the ipar Array</span></caption><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="11.952429331261579%" id="d116421e78"><p>Index 
+          </p>
+</th>
+<th class="row-nocellborder" colspan="4" valign="top" id="d116421e81"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>0 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contains status value of the last Poisson Solver routine called. In general, it should be 0 on exit from a routine to proceed with the Fast Helmholtz Solver. The element has no predefined values. This element can also be used to inform the 
+            <a href="GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868.html#GUID-B7D1CFF5-DABD-4EB4-A614-93D3EDB4E868"><span class="option">?_commit_Helmholtz_2D/?_commit_Helmholtz_3D</span></a>/<a href="GUID-C79A67EC-E804-440B-8075-B7E86509A247.html#GUID-C79A67EC-E804-440B-8075-B7E86509A247"><span class="option">?_commit_sph_p/?_commit_sph_np</span></a> routines of how the Commit step of the computation should be carried out (see 
+            <a href="GUID-BEC5700F-FE70-4F25-ACC2-E2D48EE470BA.html#FIG13-3">Figure 
+              <span>"Typical Order of Invoking Poisson Solver Routines"</span></a>). A non-zero value of 
+            <span class="parmname">ipar[0]</span> with decimal representation 
+            <br/><img src="GUID-07AD058D-AE09-4A3F-B050-355BC118351D-low.gif" width="168" height="28"/><br/>=100<var>a</var>+10<var>b</var>+<var>c</var>, where each of 
+            <var>a</var>, 
+            <var>b</var>, and 
+            <var>c</var> is equal to 0 or 9, indicates that some parts of the Commit step should be omitted. 
+          <ul id="GUID-F9AD1717-8119-4454-96E7-B738D90D6361"><li><p>If 
+                <var>c</var>=9, the routine omits checking of parameters and initialization of the data structures. 
+              </p>
+</li>
+<li><p>If 
+                <var>b</var>=9, 
+              </p>
+<ul id="GUID-F5842CBD-FD64-4319-9FF1-6E9B90E73BB9"><li><p>In the Cartesian case, the routine omits the adjustment of the right-hand side vector 
+                    <span class="parmname">f</span> to the Neumann boundary condition (multiplication of boundary values by 0.5 as well as incorporation of the boundary function 
+                    <var>g</var>) and/or the Dirichlet boundary condition (setting boundary values to 0 as well as incorporation of the boundary function 
+                    <var>G</var>). 
+                  </p>
+</li>
+<li><p>For the Helmholtz solver on a sphere, the routine omits computation of the spherical weights for the 
+                    <span class="parmname">dpar</span>/<span class="parmname">spar</span> array. 
+                  </p>
+</li>
+</ul>
+</li>
+<li><p>If 
+                <var>a</var>=9, the routine omits the normalization of the right-hand side vector 
+                <span class="parmname">f</span>. Depending on the solver, the normalization means: 
+              </p>
+<ul id="GUID-60EA659E-2042-4DBF-9485-BD30B03F99A7"><li>2D Cartesian case: multiplication by 
+                  <var>h</var><sub>y</sub><sup>2</sup>, where 
+                  <var>h</var><sub>y</sub> is the mesh size in the 
+                  <var>y</var> direction (for details, see 
+                  <a href="GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62.html#GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62">Poisson Solver Implementation</a>). 
+                </li>
+<li> 3D (Cartesian) case: multiplication by 
+                  <var>h</var><sub>z</sub><sup>2</sup>, where 
+                  <var>h</var><sub>z</sub> is the mesh size in the 
+                  <var>z</var> direction. 
+                </li>
+<li>Helmholtz solver on a sphere: multiplication by 
+                  <var>h</var><sub>θ</sub><sup>2</sup>, where 
+                  <var>h</var><sub>θ</sub> is the mesh size in the θ direction (for details, see 
+                  <a href="GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62.html#GUID-3E012BD6-539C-4A78-AD42-8E19EDDE3A62">Poisson Solver Implementation</a>). 
+                </li>
+</ul>
+</li>
+</ul>
+</p>
+<p>Using 
+            <span class="parmname">ipar[0]</span> you can adjust the routine to your needs and improve efficiency in solving multiple Helmholtz problems that differ only in the right-hand side. You must be cautious when using this method, because any misunderstanding of the commit process may cause incorrect results or program failure (see also 
+            <a href="GUID-CB845DD3-06D9-40C6-86AD-7688B2928C7A.html">Caveat on Parameter Modifications</a>). 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>1 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contains error messaging options: 
+          </p>
+<ul id="GUID-2E09948F-D12E-4675-95A8-A4445DADF64C"><li><span class="parmname">ipar[1]</span>=-1 indicates that all error messages are printed to the 
+              <span class="filepath">MKL_Poisson_Library_log.txt</span> file in the folder from which the routine is called. If the file does not exist, the routine tries to create it. If the attempt fails, the routine prints information that the file cannot be created to the standard output device (usually, screen). 
+            </li>
+<li><span class="parmname">ipar[1]</span>=0 indicates that no error messages will be printed. 
+            </li>
+<li><span class="parmname">ipar[1]</span>=1 is the default value. It indicates that all error messages are printed to the standard output device. 
+            </li>
+</ul>
+<p>In case of errors, the 
+            <span class="parmname">stat</span> parameter contains a non-zero value on exit from a routine regardless of the 
+            <span class="parmname">ipar[1]</span> setting. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>2 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contains warning messaging options: 
+          </p>
+<ul id="GUID-65D0468B-C8BE-41E3-9E2B-6A3348BFC6FC"><li><span class="parmname">ipar[2]</span>=-1 indicates that all warning messages are printed to the 
+              <span class="filepath">MKL_Poisson_Library_log.txt</span> file in the directory from which the routine is called. If the file does not exist, the routine tries to create it. If the attempt fails, the routine prints information that the file cannot be created to the standard output device. 
+            </li>
+<li><span class="parmname">ipar[2]</span>=0 indicates that no warning messages will be printed. 
+            </li>
+<li><span class="parmname">ipar[2]</span>=1 is the default value. It indicates that all warning messages are printed to the standard output device. 
+            </li>
+</ul>
+<p>In case of warnings, the 
+            <span class="parmname">stat</span> parameter contains a non-zero value on exit from a routine regardless of the 
+            <span class="parmname">ipar[2]</span> setting. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>3 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Unused. 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="5" align="left" valign="top" headers="d116421e78 d116421e81 "><p>Parameters 4 through 9 are used only in the Cartesian case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>4 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes this value: 
+          </p>
+<ul id="GUID-AEA92D79-A87F-4A0B-A7F5-AE4F75ADF938"><li>2, if 
+              <span class="parmname">BCtype[0]</span>='P' 
+            </li>
+<li>1, if 
+              <span class="parmname">BCtype[0]</span>='N' 
+            </li>
+<li> 0, if 
+              <span class="parmname">BCtype[0]</span>='D' 
+            </li>
+<li>-1, otherwise 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>5 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes this value: 
+          </p>
+<ul id="GUID-CA17C519-3EFF-4FA0-8619-571BAD1E4401"><li>2, if 
+              <span class="parmname">BCtype[1]</span>='P' 
+            </li>
+<li>1, if 
+              <span class="parmname">BCtype[1]</span>='N' 
+            </li>
+<li> 0, if 
+              <span class="parmname">BCtype[1]</span>='D' 
+            </li>
+<li>-1, otherwise 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>6 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes this value: 
+          </p>
+<ul id="GUID-435E902D-34DD-41C0-9350-FD7050FE105F"><li>2, if 
+              <span class="parmname">BCtype[2]</span>='P' 
+            </li>
+<li>1, if 
+              <span class="parmname">BCtype[2]</span>='N' 
+            </li>
+<li> 0, if 
+              <span class="parmname">BCtype[2]</span>='D' 
+            </li>
+<li>-1, otherwise 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>7 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes this value: 
+          </p>
+<ul id="GUID-D6D97813-710E-4A22-84E9-E6BA55901DDC"><li>2, if 
+              <span class="parmname">BCtype[3]</span>='P' 
+            </li>
+<li>1, if 
+              <span class="parmname">BCtype[3]</span>='N' 
+            </li>
+<li> 0, if 
+              <span class="parmname">BCtype[3]</span>='D' 
+            </li>
+<li>-1, otherwise 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>8 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes this value: 
+          </p>
+<ul id="GUID-308502B7-4D5F-49BD-89D5-7F055DC17FA0"><li>2, if 
+              <span class="parmname">BCtype[4]</span>='P' 
+            </li>
+<li>1, if 
+              <span class="parmname">BCtype[4]</span>='N' 
+            </li>
+<li> 0, if 
+              <span class="parmname">BCtype[4]</span>='D' 
+            </li>
+<li>-1, otherwise 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>9 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes this value: 
+          </p>
+<ul id="GUID-AE5C0E72-B0C4-4A6A-88A5-BA9026B459F4"><li>2, if 
+              <span class="parmname">BCtype[5]</span>='P' 
+            </li>
+<li>1, if 
+              <span class="parmname">BCtype[5]</span>='N' 
+            </li>
+<li> 0, if 
+              <span class="parmname">BCtype[5]</span>='D' 
+            </li>
+<li>-1, otherwise 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>10 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p> Takes the value of 
+          </p>
+<ul id="GUID-414845B7-13DE-48F7-8F50-C059526488B3"><li><p><span class="parmname">nx</span>, that is, the number of intervals along the 
+                <var>x</var>-axis, in the Cartesian case. 
+              </p>
+</li>
+<li><p><span class="parmname">np</span>, that is, the number of intervals along the φ-axis, in the spherical case. 
+              </p>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>11 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+          </p>
+<ul id="GUID-E67ABB5D-A2D3-4B58-8943-661B930AB3C9"><li><p><span class="parmname">ny</span>, that is, the number of intervals along the 
+                <var>y</var>-axis, in the Cartesian case 
+              </p>
+</li>
+<li><p><span class="parmname">nt</span>, that is, the number of intervals along the θ-axis, in the spherical case. 
+              </p>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>12 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">nz</span>, the number of intervals along the 
+            <var>z</var>-axis. This parameter is used only in the 3D case (Cartesian). 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>13 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Has the value of 6, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>14 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[13]</span>+<span class="parmname">ipar[10]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="5" align="left" valign="top" headers="d116421e78 d116421e81 "><p>The values of 
+            <span class="parmname">ipar[15]</span> - 
+            <span class="parmname">ipar[20]</span> depend on the dimension of the problem for the Cartesian solver or on whether the solver on a sphere is periodic. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "> </td>
+<td class="cellrowborder" colspan="2" align="center" valign="top" headers="d116421e81 "><strong>Cartesian Solver</strong></td>
+<td class="row-nocellborder" colspan="2" align="center" valign="top" headers="d116421e81 "><strong>Spherical Solver</strong></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "> </td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p><strong>2D case</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="20.12191477917887%" headers="d116421e81 "><p><strong>3D case</strong></p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><strong>Periodic case</strong></td>
+<td class="row-nocellborder" valign="top" width="20.115938564513232%" headers="d116421e81 "><strong>Non-periodic case</strong></td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>15 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Unused 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="3" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[14]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>16 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Unused 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="3" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[14]</span>+<span class="parmname">ipar[11]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>17 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[14]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="3" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[16]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>18 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[14]</span>+3*<span class="parmname">ipar[10]</span>/2+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="20.12191477917887%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[16]</span>+3*<span class="parmname">ipar[10]</span>/2+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[16]</span>+3*<span class="parmname">ipar[10]</span>/4+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20.115938564513232%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[16]</span>+3*<span class="parmname">ipar[10]</span>/2+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>19 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[18]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="cellrowborder" colspan="2" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[18]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20.115938564513232%" headers="d116421e81 "><p>Unused 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>20 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[19]</span>+3*<span class="parmname">ipar[12]</span>/4, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array. 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="20.12191477917887%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[18]</span>+3*<span class="parmname">ipar[11]</span>/2+1, which specifies the internal partitioning of the dpar/spar array. 
+          </p>
+</td>
+<td class="cellrowborder" valign="top" width="23.904858662523157%" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[18]</span>+3*<span class="parmname">ipar[10]</span>/4+1, which specifies the internal partitioning of the dpar/spar array. 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="20.115938564513232%" headers="d116421e81 "><p>Unused 
+          </p>
+</td>
+</tr>
+<tr><td class="row-nocellborder" colspan="5" align="left" valign="top" headers="d116421e78 d116421e81 "><p>The values of 
+            <span class="parmname">ipar[21]</span> - 
+            <span class="parmname">ipar[119]</span> are assigned regardless of the dimension of the problem for the Cartesian solver or of whether the solver on a sphere is periodic. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>21 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contains message style options: 
+          </p>
+<ul id="GUID-EECB56B2-1DF5-48C0-8B47-EE3C8CA86193"><li><p><span class="parmname">ipar[21]</span>=0 indicates that Poisson Solver routines print all error and warning messages in Fortran-style notations. 
+              </p>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>22 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contains the number of OpenMP threads to be used for computations in a multithreaded environment. The default value is 1 in the serial mode, and the result returned by the 
+            <a href="GUID-87918C24-1FA2-411E-A27C-8413EACDB30F.html#GUID-87918C24-1FA2-411E-A27C-8413EACDB30F"><span class="option">mkl_get_max_threads</span></a> function otherwise. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>23 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[18]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array in the periodic Cartesian case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>24 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[23]</span>+3*<span class="parmname">ipar[12]</span>/4, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array in the periodic Cartesian case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>25 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[20]</span>+1, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array in the periodic 3D Cartesian case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>26 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Takes the value of 
+            <span class="parmname">ipar[25]</span>+3*<span class="parmname">ipar[13]</span>/4, which specifies the internal partitioning of the 
+            <span class="parmname">dpar/spar</span> array in the periodic 3D Cartesian case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>27 through 39 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Unused. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>40 through 59 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contain the first twenty elements of the 
+            <span class="parmname">ipar</span> array of the first Trigonometric Transform that the solver uses. (For details, see 
+            <a href="GUID-3DA88A75-AC3D-45F1-B647-7D020451D010.html#GUID-3DA88A75-AC3D-45F1-B647-7D020451D010">Common Parameters</a> in the "Trigonometric Transform Routines" section.) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>60 through 79 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contain the first twenty elements of the 
+            <span class="parmname">ipar</span> array of the second Trigonometric Transform that the 3D Cartesian and periodic spherical solvers use. (For details, see 
+            <a href="GUID-3DA88A75-AC3D-45F1-B647-7D020451D010.html#GUID-3DA88A75-AC3D-45F1-B647-7D020451D010">Common Parameters</a> in the "Trigonometric Transform Routines" section.) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>80 through 99 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contain the first twenty elements of the 
+            <span class="parmname">ipar</span> array of the third Trigonometric Transform that the solver uses in case of periodic boundary conditions along the 
+            <var>x</var>-axis. (For details, see 
+            <a href="GUID-3DA88A75-AC3D-45F1-B647-7D020451D010.html#GUID-3DA88A75-AC3D-45F1-B647-7D020451D010">Common Parameters</a> in the "Trigonometric Transform Routines" section.) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="11.952429331261579%" headers="d116421e78 "><p>100 through 119 
+          </p>
+</td>
+<td class="row-nocellborder" colspan="4" valign="top" headers="d116421e81 "><p>Contain the first twenty elements of the 
+            <span class="parmname">ipar</span> array of the fourth Trigonometric Transform used by periodic spherical solvers and 3D Cartesian solvers with periodic boundary conditions along the 
+            <var>y</var>-axis. (For details, see 
+            <a href="GUID-3DA88A75-AC3D-45F1-B647-7D020451D010.html#GUID-3DA88A75-AC3D-45F1-B647-7D020451D010">Common Parameters</a> in the "Trigonometric Transform Routines" section.) 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> While you can declare the 
+      <span class="parmname">ipar</span> array as 
+      <samp class="codeph">MKL_INT ipar[120]</samp>, for future compatibility you should declare 
+      <span class="parmname">ipar</span> as 
+      <samp class="codeph">MKL_INT ipar[128]</samp>. 
+    </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A0068460-37C4-487D-9E5C-9E29459AF74A.html">Common Parameters for the Poisson Solver</a></div>
+</div>
+<div/>
+</body>
+</html>

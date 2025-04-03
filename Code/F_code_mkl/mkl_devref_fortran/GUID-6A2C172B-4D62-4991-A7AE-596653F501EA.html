@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasd0"/>
+<meta name="abstract" content="Computes the singular values of a real upper bidiagonal n-by-m matrix B with diagonal d and off-diagonal e. Used by ?bdsdc."/>
+<meta name="description" content="Computes the singular values of a real upper bidiagonal n-by-m matrix B with diagonal d and off-diagonal e. Used by ?bdsdc."/>
+<meta name="DC.subject" content="?lasd0, LAPACK routines, auxiliary routines, real upper bidiagonal matrix, singular values"/>
+<meta name="keywords" content="?lasd0, LAPACK routines, auxiliary routines, real upper bidiagonal matrix, singular values"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6A2C172B-4D62-4991-A7AE-596653F501EA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasd0</title>
+
+</head>
+<body id="GUID-6A2C172B-4D62-4991-A7AE-596653F501EA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasd0</span></h1>
+<!--Computes the singular values of a real upper bidiagonal  n -by- m  matrix B with diagonal  d  and off-diagonal  e . Used by  ?bdsdc .--><div><p class="shortdesc">Computes the singular values of a real upper bidiagonal <var>n</var>-by-<var>m</var> matrix B with diagonal <var>d</var> and off-diagonal <var>e</var>. Used by <span class="option">?bdsdc</span>.</p>
+<div class="section" id="GUID-2DEA5780-9AF8-4909-940C-8AAE770E626A"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasd0</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">smlsiz</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasd0</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">smlsiz</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-2F056EDF-E7FB-4B87-B5D5-744DDCAD461C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E6500EA0-A2A2-4D4A-B9AA-0374BAAB0048"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>Using a divide and conquer approach, the routine <span class="option">?lasd0</span> computes the singular value decomposition (SVD) of a real upper bidiagonal <var>n</var>-by-<var>m</var> matrix <var>B</var> with diagonal <var>d</var> and offdiagonal <var>e</var>, where <var>m</var> = <var>n</var> + <var>sqre</var>.</p>
+<p>The algorithm computes orthogonal matrices <var>U</var> and <var>VT</var> such that <samp class="codeph"><var>B</var> =  <var>U</var>*<var>S</var>*<var>VT</var></samp>. The singular values <var>S</var> are overwritten on <var>d</var>.</p>
+<p>The related subroutine <a href="GUID-3AAA7AE9-4796-4296-9BFD-185F7A5D7EC8.html#GUID-3AAA7AE9-4796-4296-9BFD-185F7A5D7EC8"><span class="option">?lasda</span></a> computes only the singular values, and optionally, the singular vectors in compact form.</p>
+</div>
+<div class="section" id="GUID-F7EEC664-45F8-4027-BFF8-73EBA4D1A90D"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-4EC282A3-04EF-423D-A9AA-0655D8573E67"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, the row dimension of the upper bidiagonal matrix. This is also the dimension of the main diagonal array <var>d</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sqre</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> Specifies the column dimension of the bidiagonal matrix. </p>
+<p>If <samp class="codeph"><var>sqre</var> = 0</samp>: the bidiagonal matrix has column dimension <var>m</var> = <var>n</var>.</p>
+<p>If <samp class="codeph"><var>sqre</var> = 1</samp>: the bidiagonal matrix has column dimension <samp class="codeph"><var>m</var> = <var>n</var>+1</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span><span class="keyword">REAL</span></span> for <span class="option">slasd0</span></p>
+<p><span><span class="keyword">DOUBLE PRECISION</span></span> for <span class="option">dlasd0</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On entry, <var>d</var> contains the main diagonal of the bidiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span><span class="keyword">REAL</span></span> for <span class="option">slasd0</span></p>
+<p><span><span class="keyword">DOUBLE PRECISION</span></span> for <span class="option">dlasd0</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>m</var>-1). Contains the subdiagonal entries of the bidiagonal matrix. On exit, <var>e</var> is destroyed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldu</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, leading dimension of the output array <var>u</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldvt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, leading dimension of the output array <var>vt</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">smlsiz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, maximum size of the subproblems at the bottom of the computation tree.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>Workspace array, <span class="keyword">dimension</span> must be at least <samp class="codeph">(8<var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span><span class="keyword">REAL</span></span> for <span class="option">slasd0</span></p>
+<p><span><span class="keyword">DOUBLE PRECISION</span></span> for <span class="option">dlasd0</span></p>
+<p>Workspace array, <span class="keyword">dimension</span> must be at least <samp class="codeph">(3<var>m</var><sup class="power">2</sup>+2<var>m</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2D0D1641-8996-4104-B494-C87F40CE53C3"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-36977FBF-7998-4F0A-A3F0-38FA26198037"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On exit <var>d</var>, If <samp class="codeph"><var>info</var> = 0</samp>, contains singular values of the bidiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p><span><span class="keyword">REAL</span></span> for <span class="option">slasd0</span></p>
+<p><span><span class="keyword">DOUBLE PRECISION</span></span> for <span class="option">dlasd0</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> at least (<var>ldq</var>, <var>n</var>). On exit, <var>u</var> contains the left singular vectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt</span></dt>
+
+<dd><p><span><span class="keyword">REAL</span></span> for <span class="option">slasd0</span></p>
+<p><span><span class="keyword">DOUBLE PRECISION</span></span> for <span class="option">dlasd0</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> at least (<var>ldvt</var>, <var>m</var>). On exit, <var>vt</var><sup class="power"><var>T</var></sup> contains the right singular vectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span></span>. </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>: successful exit. </p>
+<p>If <samp class="codeph"><var>info</var> = -<var>i</var> &lt; 0</samp>, the <var>i</var>-th argument had an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> = 1</samp>, a singular value did not converge.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

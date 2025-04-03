@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Sparse BLAS BSR Matrix Storage Format"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Sparse BLAS BSR Matrix Storage Format</title>
+
+</head>
+<body id="GUID-4BA1807B-DC76-48BD-B18F-F96EDC6617F1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Sparse BLAS BSR Matrix Storage Format</h1>
+<div><p>The Intel&reg; oneAPI Math Kernel Library block compressed sparse row (BSR) format for sparse matrices is specified by four arrays:<var>values</var>, 
+      <var>columns</var>, 
+      <var>pointerB</var>, and 
+      <var>pointerE</var>. The
+      following table describes these arrays. 
+    </p>
+<dl id="GUID-6CB191FB-D0A4-4B7C-A09D-9422F5DC8726"><dt class="dlterm"><var>values</var></dt>
+
+<dd><p>A real array that contains the elements of the
+            non-zero blocks of a sparse matrix. The elements are stored block-by-block in
+            row-major order. A non-zero block is the block that contains at least one
+            non-zero element. All elements of non-zero blocks are stored, even if some of
+            them are equal to zero. Within each non-zero block elements are stored in
+            column-major order in the case of one-based indexing, and in row-major order in
+            the case of the zero-based indexing. 
+          </p>
+</dd>
+<dt class="dlterm"><var>columns</var></dt>
+
+<dd><p>Element 
+            <var>i</var> of the
+            integer array 
+            <var>columns</var> is
+            the number of the column in the block matrix that contains the 
+            <var>i</var>-th
+            non-zero block. 
+          </p>
+</dd>
+<dt class="dlterm"><var>pointerB</var></dt>
+
+<dd><p>Element 
+            <var>j</var> of this
+            integer array gives the index of the element in the 
+            <var>columns</var>
+            array that is first non-zero block in a row 
+            <var>j</var> of the
+            block matrix. 
+          </p>
+</dd>
+<dt class="dlterm"><var>pointerE</var></dt>
+
+<dd><p>Element 
+            <var>j</var> of this
+            integer array gives the index of the element in the 
+            <var>columns</var>
+            array that contains the last non-zero block in a row 
+            <var>j</var> of the
+            block matrix plus 1. 
+          </p>
+</dd>
+</dl>
+<p>The length of the 
+      <var>values</var> array is
+      equal to the number of all elements in the non-zero blocks, the length of the 
+      <var>columns</var> array is
+      equal to the number of non-zero blocks. The length of the 
+      <var>pointerB</var> and 
+      <var>pointerE</var> arrays
+      is equal to the number of block rows in the block matrix. 
+    </p>
+<p><div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Note that the Intel&reg; oneAPI Math Kernel Library Sparse BLAS routines support BSR format both with one-based indexing and zero-based indexing.</p>
+</div>
+</p>
+<p>For example, consider the sparse matrix 
+      <var>D</var></p>
+<p><br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee1.png"/><br/></p>
+<p>If the size of the block equals 2, then the sparse
+      matrix 
+      <var>D</var> can be
+      represented as a 3x3 block matrix 
+      <var>E</var> with the
+      following structure: 
+    </p>
+<p><br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee2.png"/><br/></p>
+<p>where 
+    </p>
+<p><br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee3.png"/><br/>,
+      <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee4.png"/><br/>,
+      <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee5.png"/><br/>,
+      <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee6.png"/><br/>,
+      <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee7.png"/><br/></p>
+<p>The matrix 
+      <var>D</var> can be
+      represented in the BSR format as follows: 
+    </p>
+<p>one-based indexing 
+    </p>
+<pre>
+				<var>values</var>  =  (1 2 0 1 6 8 7 2 1 5 4 1 4 0 3 0 7 0 2 0)
+				<var>columns</var>  = (1   2   2   2   3)
+				<var>pointerB</var> = (1   3   4)
+				<var>pointerE</var> = (3   4   6)</pre><p>zero-based indexing 
+    </p>
+<pre>
+				<var>values</var>  =  [1 0 2 1 6 7 8 2 1 4 5 1 4 3 0 0 7 2 0 0]
+				<var>columns</var>  = [0   1   1   1   2]
+				<var>pointerB</var> = [0   2   3]
+				<var>pointerE</var> = [2   3   5]</pre><p>This storage format is supported by the NIST Sparse
+      BLAS library [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#REM05">Rem05</a>]. 
+    </p>
+<div class="section" id="GUID-9BD4DADE-6059-4042-BC2A-F41048A47953"><h2 class="sectiontitle">Three Array Variation of BSR Format</h2><p>Intel&reg; oneAPI Math Kernel Library supports the variation of the BSR format that is specified by three arrays:<var>values</var>, 
+        <var>columns</var>, and 
+        <var>rowIndex</var>. The
+        following table describes these arrays. 
+      </p>
+<dl id="GUID-EA699320-CF29-499E-A3E5-A929EC74BB5A"><dt class="dlterm"><var>values</var></dt>
+
+<dd><p>A real array that contains the elements of
+              the non-zero blocks of a sparse matrix. The elements are stored block by block
+              in row-major order. A non-zero block is the block that contains at least one
+              non-zero element. All elements of non-zero blocks are stored, even if some of
+              them is equal to zero. Within each non-zero block the elements are stored in
+              column major order in the case of the one-based indexing, and in row major
+              order in the case of the zero-based indexing. 
+            </p>
+</dd>
+<dt class="dlterm"><var>columns</var></dt>
+
+<dd><p>Element 
+              <var>i</var> of the
+              integer array 
+              <var>columns</var>
+              is the number of the column in the block matrix that contains the 
+              <var>i</var>-th
+              non-zero block. 
+            </p>
+</dd>
+<dt class="dlterm"><var>rowIndex</var></dt>
+
+<dd><p>Element 
+              <var>j</var> of
+              this integer array gives the index of the element in the 
+              <var>columns</var>
+              array that is first non-zero block in a row 
+              <var>j</var> of the
+              block matrix. 
+            </p>
+</dd>
+</dl>
+<p>The length of the 
+        <var>values</var> array
+        is equal to the number of all elements in the non-zero blocks, the length of
+        the 
+        <var>columns</var> array
+        is equal to the number of non-zero blocks. 
+      </p>
+<p>As the 
+        <var>rowIndex</var> array
+        gives the location of the first non-zero block within a row, and the non-zero
+        blocks are stored consecutively, the number of non-zero blocks in the 
+        <var>i</var>-th row is
+        equal to the difference of 
+        <samp class="codeph"><var>rowIndex</var>(<var>i</var>)</samp> and 
+        <samp class="codeph"><var>rowIndex</var>(<var>i</var>+1)</samp>. 
+      </p>
+<p>To retain this relationship for the last row of the
+        block matrix, an additional entry (dummy entry) is added to the end of 
+        <var>rowIndex</var> with
+        value equal to the number of non-zero blocks plus one. This makes the total
+        length of the 
+        <var>rowIndex</var> array
+        one larger than the number of rows of the block matrix. 
+      </p>
+<p>The above matrix 
+        <var>D</var> can be
+        represented in this 3-array variation of the BSR format as follows: 
+      </p>
+<p>one-based indexing 
+      </p>
+<pre>
+				<var>values</var>  =  (1 2 0 1 6 8 7 2 1 5 4 2 4 0 3 0 7 0 2 0)
+				<var>columns</var>  = (1   2   2   2   3)
+				<var>rowIndex</var> = (1   3   4   6)</pre><p>zero-based indexing 
+      </p>
+<pre>
+				<var>values</var>  =  (1 0 2 1 6 7 8 2 1 4 5 1 4 3 0 0 7 2 0 0)
+				<var>columns</var>  = (0   1   1   1   2)
+				<var>rowIndex</var> = (0   2   3 5)</pre></div>
+<div class="section" id="GUID-1A1C5F94-1D6F-4E70-816D-42F2B36ED44F"><p>When storing symmetric matrices, it is necessary to
+        store only the upper or the lower triangular part of the matrix. 
+      </p>
+<p>For example, consider the symmetric sparse matrix 
+        <var>F</var>: 
+      </p>
+<p><br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee8.png"/><br/></p>
+<p>If the size of the block equals 2, then the sparse
+        matrix 
+        <var>F</var> can be
+        represented as a 3x3 block matrix 
+        <var>G</var> with the
+        following structure: 
+      </p>
+<p><br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661ee9.png"/><br/></p>
+<p>where 
+      </p>
+<p><br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661e10.png"/><br/>,
+        <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661e11.png"/><br/>,
+        <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661e12.png"/><br/>,
+        <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661e13.png"/><br/>,
+        and <br/><img src="equations/GUID-4BA1807B-DC76-48BD-B18F-F96EDC661e14.png"/><br/></p>
+<p>The symmetric matrix 
+        <var>F</var> can be
+        represented in this 3-array variation of the BSR format (storing only the upper
+        triangular part) as follows: 
+      </p>
+<p>one-based indexing 
+      </p>
+<pre>
+				<var>values</var>  =  (1 2 0 1 6 8 7 2 1 5 4 2 7 0 2 0)
+				<var>columns</var>  = (1   2   2   3)
+				<var>rowIndex</var> = (1   3   4 5)</pre><p>zero-based indexing 
+      </p>
+<pre>
+				<var>values</var>  =  (1 0 2 1 6 7 8 2 1 4 5 2 7 2 0 0)
+				<var>columns</var>  = (0   1   1   2)
+				<var>rowIndex</var> = (0   2   3 4)</pre></div>
+<div class="section" id="VBSR"><h2 class="sectiontitle">Variable BSR Format</h2><p>A variation of BSR3 is variable block compressed sparse row format.
+        For a trust level 
+        <var>t</var>, 0 
+        <span class="eqsymbol">≤</span><var>t</var><span class="eqsymbol">≤</span> 100, rows similar up to 
+        <var>t</var> percent are placed in one supernode. 
+      </p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9FCEB1C4-670D-4738-81D2-F378013412B0.html">Sparse Matrix Storage Formats</a></div>
+</div>
+<div/>
+</body>
+</html>

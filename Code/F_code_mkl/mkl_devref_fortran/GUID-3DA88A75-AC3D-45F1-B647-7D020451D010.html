@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Common Parameters of the Trigonometric Transforms"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7186062F-9E87-439C-97B3-E20DBDEC7BB3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-3DA88A75-AC3D-45F1-B647-7D020451D010"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Common Parameters of the Trigonometric Transforms</title>
+
+</head>
+<body id="GUID-3DA88A75-AC3D-45F1-B647-7D020451D010">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Common Parameters of the Trigonometric
+    Transforms</h1>
+<div><p>This section provides description of array parameters
+      that hold TT routine options: 
+      <span class="parmname">ipar</span>, 
+      <span class="parmname">dpar</span> and 
+      <span class="parmname">spar</span>. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Initial values are assigned to the array parameters
+        by the appropriate 
+        <a href="GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597.html#GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597"><span class="option">?_init_trig_transform</span></a> and 
+        <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">?_commit_trig_transform</span></a>
+        routines. 
+      </p>
+</div>
+<dl id="GUID-2EDA7230-7773-4679-8390-23178DF0AC51"><dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span class="keyword">MKL_INT</span> array of size 128, holds integer
+            data needed for Trigonometric Transform computations. Its elements are
+            described in 
+            <a href="#TBL13-2">Table 
+              <span>"Elements of the ipar Array"</span></a>:
+            
+          </p>
+</dd>
+</dl>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL13-2" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Elements of the ipar Array</span></caption><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="19%" id="d471884e70"><p>Index 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="81%" id="d471884e73"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>0 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Contains the size of the problem to solve. The 
+            <a href="GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597.html#GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597"><span class="option">?_init_trig_transform</span></a>
+            routine sets 
+            <span class="parmname">ipar[0]</span>=<span class="parmname">n</span>, and all subsequently
+            called TT routines use 
+            <span class="parmname">ipar[0]</span>
+            as the size of the transform. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>1 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Contains error messaging options: 
+          </p>
+<ul id="GUID-3E01324E-7704-4263-A258-EF5884B948CC"><li><span class="parmname">ipar[1]</span>=-1 indicates that all
+              error messages will be printed to the file 
+              <span class="filepath">MKL_Trig_Transforms_log.txt</span> in the
+              folder from which the routine is called. If the file does not exist, the
+              routine tries to create it. If the attempt fails, the routine prints
+              information that the file cannot be created to the standard output device. 
+            </li>
+<li><span class="parmname">ipar[1]</span>=0 indicates that no
+              error messages will be printed. 
+            </li>
+<li><span class="parmname">ipar[1]</span>=1 (default) indicates
+              that all error messages will be printed to the preconnected default output
+              device (usually, screen). 
+            </li>
+</ul>
+<p>In case of errors, each TT routine assigns a
+            non-zero value to 
+            <span class="parmname">stat</span>
+            regardless of the 
+            <span class="parmname">ipar[1]</span>
+            setting. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>2 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Contains warning messaging options: 
+          </p>
+<ul id="GUID-0EEDC75C-205D-4272-B404-49E8ACA338EB"><li><span class="parmname">ipar[2]</span>=-1 indicates that all
+              warning messages will be printed to the file 
+              <span class="filepath">MKL_Trig_Transforms_log.txt</span> in the
+              directory from which the routine is called. If the file does not exist, the
+              routine tries to create it. If the attempt fails, the routine prints
+              information that the file cannot be created to the standard output device. 
+            </li>
+<li><span class="parmname">ipar[2]</span>=0 indicates that no
+              warning messages will be printed. 
+            </li>
+<li><span class="parmname">ipar[2]</span>=1 (default) indicates
+              that all warning messages will be printed to the preconnected default output
+              device (usually, screen). 
+            </li>
+</ul>
+<p>In case of warnings, the 
+            <span class="parmname">stat</span>
+            parameter will acquire a non-zero value regardless of the 
+            <span class="parmname">ipar[2]</span>
+            setting. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>3 through 4 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Reserved for future use. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>5 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Contains the type of the transform. The 
+            <a href="GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597.html#GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597"><span class="option">?_init_trig_transform</span></a>
+            routine sets 
+            <span class="parmname">ipar[5]</span>=<span class="parmname">tt_type</span>, and all subsequently
+            called TT routines use 
+            <span class="parmname">ipar[5]</span>
+            as the type of the transform. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>6 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Contains the 
+            <span class="parmname">stat</span>
+            value returned by the last completed TT routine. Used to check that the
+            previous call to a TT routine completed with 
+            <span class="parmname">stat</span>=0.
+            
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>7 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Informs the 
+            <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">?_commit_trig_transform</span></a>
+            routines whether to initialize data structures 
+            <span class="parmname">dpar</span>
+            (<span class="parmname">spar</span>) and 
+            <span class="parmname">handle</span>.
+            
+            <span class="parmname">ipar[7]</span>=0 indicates that the
+            routine should skip the initialization and only check correctness and
+            consistency of the parameters. Otherwise, the routine initializes the data
+            structures. The default value is 1. 
+          </p>
+<p>The possibility to check correctness and
+            consistency of input data without initializing data structures 
+            <span class="parmname">dpar</span>, 
+            <span class="parmname">spar</span>
+            and 
+            <span class="parmname">handle</span>
+            enables avoiding performance losses in a repeated use of the same transform for
+            different data vectors. Note that you can benefit from the opportunity that 
+            <span class="parmname">ipar[7]</span>
+            gives only if you are sure to have supplied proper tolerance value in the 
+            <span class="parmname">dpar</span> or
+            
+            <span class="parmname">spar</span>
+            array. Otherwise, avoid tuning this parameter. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>8 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Contains message style options for TT routines.
+            
+            <span>If 
+              <span class="parmname">ipar[8]</span>=0 then TT routines
+              print all error and warning messages in Fortran-style notations. 
+            </span>The default value is 1. 
+          </p>
+<p>When specifying message style options, be aware
+            that by default, numbering of elements 
+            <span>in Fortran arrays</span><span> starts at 1</span>. 
+             The use of 
+            <span class="parmname">ipar[8]</span>
+            enables you to view messages in a more convenient style. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>9 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Specifies the number of OpenMP threads to run TT routines in the OpenMP environment of the Intel&reg; oneAPI Math Kernel Library Poisson Solver. The default value is 1. You are highly recommended not to alter this value. See also<a href="#PDES_TTR_CAVEAT">Caveat on Parameter
+              Modifications</a>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>10 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Specifies the mode of compatibility with FFTW.
+            The default value is 0. Set the value to 1 to invoke compatibility with FFTW.
+            In the latter case, results will not be normalized, because FFTW does not do
+            this. It is highly recommended not to alter this value, but rather use
+            real-to-real FFTW to MKL wrappers, described in 
+            <a href="GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9.html#GUID-A23603DA-B6D1-48AA-90D2-A415302F27D9">FFTW to Intel&reg; MKL Wrappers for FFTW
+              3.x</a>. See also 
+            <a href="#PDES_TTR_CAVEAT">Caveat on Parameter
+              Modifications</a>. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e70 "><p>11 through 127 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e73 "><p>Reserved for future use. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>While you can declare the 
+      <span class="parmname">ipar</span> array as
+      
+      <samp class="codeph">MKL_INT ipar[11]</samp>, for
+      future compatibility you should declare 
+      <span class="parmname">ipar</span> as 
+      <samp class="codeph">MKL_INT ipar[128]</samp>. 
+    </p>
+</div>
+<p>Arrays 
+    <span class="parmname">dpar</span> and 
+    <span class="parmname">spar</span> are the
+    same except in the data precision: 
+  </p>
+<dl id="GUID-65B12B7D-A391-4D24-B89C-806BE1A22B39"><dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p><span class="keyword">double</span> array of size 5<span class="parmname">n</span>/2+2, holds data needed for
+          double-precision routines to perform TT computations. This array is initialized
+          in the 
+          <a href="GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597.html#GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597"><span class="option">d_init_trig_transform</span></a> and 
+          <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">d_commit_trig_transform</span></a>
+          routines. 
+        </p>
+</dd>
+<dt class="dlterm"><span class="parmname">spar</span></dt>
+
+<dd><p><span class="keyword">float</span>
+          array of size 5<span class="parmname">n</span>/2+2, holds data needed for
+          single-precision routines to perform TT computations. This array is initialized
+          in the 
+          <a href="GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597.html#GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597"><span class="option">s_init_trig_transform</span></a> and 
+          <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">s_commit_trig_transform</span></a>
+          routines. 
+        </p>
+</dd>
+</dl>
+<p>As 
+    <span class="parmname">dpar</span> and 
+    <span class="parmname">spar</span> have
+    similar elements in respective positions, the elements are described together
+    in 
+    <a href="#TBL13-3">Table 
+      <span>"Elements of the dpar and spar
+        Arrays"</span></a>: 
+  </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL13-3" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Elements of the dpar and spar Arrays</span></caption><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="19%" id="d471884e417"><p>Index 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="81%" id="d471884e420"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e417 "><p>0 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e420 "><p>Contains the first absolute tolerance used by
+            the appropriate 
+            <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">?_commit_trig_transform</span></a>
+            routine. For a staggered cosine or a sine transform, 
+            <span class="parmname">f[n]</span>
+            should be equal to 0.0 and for a staggered sine or a sine transform, 
+            <span class="parmname">f[0]</span>
+            should be equal to 0.0. The 
+          <span class="option">?_commit_trig_transform</span> routine
+          checks whether absolute values of these parameters are below 
+          <span class="parmname">dpar[0]*n</span>
+          or 
+          <span class="parmname">spar[0]*n</span>, depending on the
+          routine precision. To suppress warnings resulting from tolerance checks, set 
+          <span class="parmname">dpar[0]</span>
+          or 
+          <span class="parmname">spar[0]</span>
+          to a sufficiently large number. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e417 "><p>1 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e420 "><p>Reserved for future use. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="19%" headers="d471884e417 "><p>2 through 5<span class="parmname">n</span>/2+1 
+          </p>
+</td>
+<td class="row-nocellborder" valign="top" width="81%" headers="d471884e420 "><p>Contain tabulated values of trigonometric
+            functions. Contents of the elements depend upon the type of transform 
+            <span class="parmname">tt_type</span>, set up in the 
+            <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">?_commit_trig_transform</span></a>
+            routine: 
+          </p>
+<ul id="GUID-BC1B9745-D1FB-41A2-9435-9F7CBD3D691C"><li>If 
+              <span class="parmname">tt_type</span>=<samp class="codeph">MKL_SINE_TRANSFORM</samp>, the transform uses
+              only the first 
+              <span class="parmname">n</span>/2
+              array elements, which contain tabulated sine values. 
+            </li>
+<li>If 
+              <span class="parmname">tt_type</span>=<samp class="codeph">MKL_STAGGERED_SINE_TRANSFORM</samp>, the
+              transform uses only the first 3<span class="parmname">n</span>/2 array elements, which
+              contain tabulated sine and cosine values. 
+            </li>
+<li>If 
+              <span class="parmname">tt_type</span>=<samp class="codeph">MKL_STAGGERED2_SINE_TRANSFORM</samp>, the
+              transform uses all the 5<span class="parmname">n</span>/2 array elements, which
+              contain tabulated sine and cosine values. 
+            </li>
+<li>If 
+              <span class="parmname">tt_type</span>=<samp class="codeph">MKL_COSINE_TRANSFORM</samp>, the transform
+              uses only the first 
+              <span class="parmname">n</span>
+              array elements, which contain tabulated cosine values. 
+            </li>
+<li>If 
+              <span class="parmname">tt_type</span>=<samp class="codeph">MKL_STAGGERED_COSINE_TRANSFORM</samp>, the
+              transform uses only the first 3<span class="parmname">n</span>/2 elements, which contain
+              tabulated sine and cosine values. 
+            </li>
+<li>If 
+              <span class="parmname">tt_type</span>=<samp class="codeph">MKL_STAGGERED2_COSINE_TRANSFORM</samp>, the
+              transform uses all the 5<span class="parmname">n</span>/2 elements, which contain
+              tabulated sine and cosine values. 
+            </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>To save memory, you can define the array size
+      depending upon the type of transform. 
+    </p>
+</div>
+<div class="section" id="PDES_TTR_CAVEAT"><h2 class="sectiontitle">Caveat on Parameter Modifications</h2><p>Flexibility of the TT interface enables you to skip a
+      call to the 
+      <a href="GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597.html#GUID-E91AE29C-2B4F-4149-B059-F3CBA9BC3597"><span class="option">?_init_trig_transform</span></a>
+      routine and to initialize the basic data structures explicitly in your code.
+      You may also need to modify the contents of 
+      <span class="parmname">ipar</span>, 
+      <span class="parmname">dpar</span> and 
+      <span class="parmname">spar</span> arrays
+      after initialization. When doing so, provide correct and consistent data in the
+      arrays. Mistakenly altered arrays cause errors or wrong computation. You can
+      perform a basic check for correctness and consistency of parameters by calling
+      the 
+      <a href="GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948.html#GUID-D155EA79-72E4-4502-AA67-D4BCBE8BC948"><span class="option">?_commit_trig_transform</span></a>
+      routine; however, this does not ensure the correct result of a transform but
+      only reduces the chance of errors or wrong results. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>To supply correct and consistent parameters to TT
+        routines, you should have considerable experience in using the TT interface and
+        good understanding of elements that the 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">spar</span> and 
+        <span class="parmname">dpar</span> arrays
+        contain and dependencies between values of these elements. 
+      </p>
+</div>
+<p>However, in rare occurrences, even advanced users
+      might fail to compute a transform using TT routines after the parameter
+      modifications. In cases like these, refer for technical support at 
+      <a href="http://www.intel.com/software/products/support/" target="_blank">http://www.intel.com/software/products/support/ 
+      </a>. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">warning</h3> <p>The only way that ensures proper computation of the
+        Trigonometric Transforms is to follow a typical sequence of invoking the
+        routines and not change the default set of parameters. So, avoid modifications
+        of 
+        <span class="parmname">ipar</span>, 
+        <span class="parmname">dpar</span> and 
+        <span class="parmname">spar</span> arrays
+        unless a strong need arises. 
+      </p>
+</div>
+</div>
+<p>
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d471884e626"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d471884e626 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7186062F-9E87-439C-97B3-E20DBDEC7BB3.html">Trigonometric Transform Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

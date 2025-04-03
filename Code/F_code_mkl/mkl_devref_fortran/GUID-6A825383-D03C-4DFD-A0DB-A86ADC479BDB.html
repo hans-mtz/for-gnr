@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="PBLAS Routines"/>
+<meta name="DC.subject" content="PBLAS routines, routine groups, xerbla, error reporting routine, error handling, xerbla"/>
+<meta name="keywords" content="PBLAS routines, routine groups, xerbla, error reporting routine, error handling, xerbla"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0191F247-778C-4C69-B54F-ABF951506FCD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-43D26042-64B2-412A-A509-D52E366EFC79.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-E936F8B0-9489-464B-A638-62998627FBEA.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97D8DD69-5008-4E67-B918-47BE1B36FEAE.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6A825383-D03C-4DFD-A0DB-A86ADC479BDB"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>PBLAS Routines</title>
+
+</head>
+<body id="GUID-6A825383-D03C-4DFD-A0DB-A86ADC479BDB">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">PBLAS Routines</h1>
+<div><p>Intel&reg; oneAPI Math Kernel Library<span>implements</span>
+      the PBLAS (Parallel Basic Linear Algebra Subprograms) routines from the
+      ScaLAPACK package for distributed-memory architecture. PBLAS is intended for
+      using in vector-vector, matrix-vector, and matrix-matrix operations to simplify
+      the parallelization of linear codes. The design of PBLAS is as consistent as
+      possible with that of the BLAS. The routine descriptions are arranged in
+      several sections according to the PBLAS level of operation: 
+    </p>
+<ul id="GUID-27A0E1DA-C1F1-494B-9249-410AEE6E620F"><li><p><a href="GUID-97D8DD69-5008-4E67-B918-47BE1B36FEAE.html#GUID-97D8DD69-5008-4E67-B918-47BE1B36FEAE">PBLAS Level 1 Routines</a>
+          (distributed vector-vector operations) 
+        </p>
+</li>
+<li><p><a href="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html#GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D">PBLAS Level 2 Routines</a>
+          (distributed matrix-vector operations) 
+        </p>
+</li>
+<li><p><a href="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html#GUID-4CC1EA07-16A1-4716-9E2B-103391E17530">PBLAS Level 3 Routines</a>
+          (distributed matrix-matrix operations) 
+        </p>
+</li>
+</ul>
+<p>Each section presents the routine and function group
+      descriptions in alphabetical order by the routine group name; for example, the 
+  <span class="option">p?asum</span> group, the 
+  <span class="option">p?axpy</span> group. The
+  question mark in the group name corresponds to a character indicating the data
+  type (<tt>s</tt>, 
+  <tt>d</tt>, 
+  <tt>c</tt>, and 
+  <tt>z</tt> or their combination); see 
+  <a href="GUID-E936F8B0-9489-464B-A638-62998627FBEA.html#GUID-E936F8B0-9489-464B-A638-62998627FBEA"><em>Routine
+      Naming Conventions</em></a>. 
+  </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>PBLAS routines are provided only with Intel&reg; oneAPI Math Kernel Library versions for Linux* and Windows* OSs.</p>
+</div>
+<p>Generally, PBLAS runs on a network of computers using MPI as a message-passing layer and a set of prebuilt communication subprograms (BLACS), as well as a set of PBLAS optimized for the target architecture. The Intel&reg; oneAPI Math Kernel Library version of PBLAS is optimized for Intel&reg; processors. For the detailed system and environment requirements see<em>Intel&reg; oneAPI Math Kernel Library Release Notes</em> and 
+    <em>Intel&reg; oneAPI Math Kernel Library Developer Guide</em>. 
+  </p>
+<p>For full reference on PBLAS routines and related
+    information, see http://www.netlib.org/scalapack/html/pblas_qref.html. 
+  </p>
+<p id="P_CF_128498338457233">
+<div class="tablenoborder"><table cellpadding="4" summary="" id="d433e46" frame="border" border="1" cellspacing="0" rules="all"><thead align="left"><tr><th class="cellrowborder" align="left" valign="top" width="100%" id="d781329e112"><p id="d433e52">Optimization Notice 
+              </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="bgcolor(#f5f5f5)" bgcolor="#f5f5f5" valign="top" width="100%" headers="d781329e112 "><p>Intel's compilers may or may not optimize to the same degree for non-Intel microprocessors for optimizations that are not unique to Intel microprocessors. These optimizations include SSE2, SSE3, and SSSE3 instruction sets and other optimizations. Intel does not guarantee the availability, functionality, or effectiveness of any optimization on microprocessors not manufactured by Intel. Microprocessor-dependent optimizations in this product are intended for use with Intel microprocessors. Certain optimizations not specific to Intel microarchitecture are reserved for Intel microprocessors. Please refer to the applicable product User and Reference Guides for more information regarding the specific instruction sets covered by this notice. 
+              </p>
+<p> Notice revision #20110804 
+              </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+ This notice covers the following instruction sets: SSE2, SSE4.2, AVX2, AVX-512. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0191F247-778C-4C69-B54F-ABF951506FCD.html">Developer Reference for Intel&reg; oneAPI Math Kernel Library - Fortran</a></div>
+</div>
+<div>
+<ul class="ullinks">
+<li class="ulchildlink"><a href="GUID-43D26042-64B2-412A-A509-D52E366EFC79.html">PBLAS Routines Overview</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-E936F8B0-9489-464B-A638-62998627FBEA.html">PBLAS Routine Naming Conventions</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-97D8DD69-5008-4E67-B918-47BE1B36FEAE.html">PBLAS Level 1 Routines</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html">PBLAS Level 2 Routines</a><br/>
+</li>
+<li class="ulchildlink"><a href="GUID-4CC1EA07-16A1-4716-9E2B-103391E17530.html">PBLAS Level 3 Routines</a><br/>
+</li>
+</ul>
+</div>
+</body>
+</html>

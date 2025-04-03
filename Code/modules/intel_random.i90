@@ -1,0 +1,78 @@
+# 1 "/Volumes/SSD Hans 1/Github/gnr/Code/modules/intel_random.f90"
+include 'mkl_vsl.f90'
+include "errcheck.inc" 
+module intel_random
+    USE MKL_VSL_TYPE
+    USE MKL_VSL
+    use iso_c_binding, only: c_int, c_double
+    implicit none
+contains
+    subroutine runif_i(a,b,n,r,seed)
+        integer(c_int), intent(in) :: a,b,n
+        integer(c_int), intent(out) :: r(n)
+        TYPE (VSL_STREAM_STATE) :: stream
+        integer(c_int) :: errcode
+        integer brng,method,seed
+        
+        brng=VSL_BRNG_MT2203
+        method=VSL_RNG_METHOD_UNIFORM_STD
+
+
+!     ***** Initialize *****
+        errcode=vslnewstream( stream, brng,  seed )
+        call CheckVslError(errcode)
+
+!     ***** Call RNG *****
+        errcode=virnguniform( method, stream, n, r, a, b )
+        call CheckVslError(errcode)
+
+    
+!     ***** Deinitialize *****
+        errcode=vsldeletestream( stream )
+        call CheckVslError(errcode)
+        
+    end subroutine runif_i
+
+    subroutine percentiles(vector, quantiles, values)
+        real(c_double), intent(in) :: vector(:), quantiles(:)
+        real(c_double), intent(out) :: values(size(quantiles))
+        TYPE(VSL_SS_TASK) task
+        integer(c_int) :: p, n, x_storage, m, o_storage, task_method, errcode
+        integer(8) :: task_params
+        real(c_double) :: o_stat(size(vector),1), q_out(size(quantiles),1), v_in(size(vector),1)
+
+!     ***** Initialize parameters of Summary Statistics task *****
+        x_storage   = VSL_SS_MATRIX_STORAGE_ROWS
+        o_storage   = VSL_SS_MATRIX_STORAGE_ROWS
+        task_params = ior( VSL_SS_QUANTS, VSL_SS_ORDER_STATS )
+        task_method = VSL_SS_METHOD_FAST
+        p=1 !Task dimension
+        n=size(vector) ! Number of observations
+        m=size(quantiles) ! Number of quantiles
+        errcode=0
+        v_in(:,1)=vector
+
+!     ***** Create Summary Statistics task *****
+        errcode = vsldssnewtask( task, p, n, x_storage, v_in )
+        call CheckVslError( errcode )
+! print*, "made it here?"
+        errcode = vsldsseditquantiles( task, m, quantiles, q_out, o_stat, o_storage )
+        call CheckVslError( errcode )
+
+!     ***** Compute quantiles and order statistics using FAST method *****
+        errcode = vsldsscompute( task, task_params, task_method )
+        call CheckVslError( errcode )
+! print*, "made it here?"
+        values=q_out(:,1)
+! print*, "q_out", q_out
+! print*, "quantiles", quantiles
+! print*, "o_stat,", o_stat
+!     ***** Delete Summary Statistics task *****
+        errcode = vslssdeletetask( task )
+        call CheckVslError( errcode )
+  
+        call MKL_FREE_BUFFERS()
+        
+    end subroutine percentiles
+    
+end module intel_random

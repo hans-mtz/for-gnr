@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="VS RNG Usage ModelIntel&reg; oneMKL RNG Usage Model"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-50EFE620-4696-4249-86E9-93A6C94A199C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>VS RNG Usage ModelIntel&reg; oneMKL RNG Usage Model</title>
+
+</head>
+<body id="GUID-50EFE620-4696-4249-86E9-93A6C94A199C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">VS RNG Usage Model</span>Intel&reg; oneMKL<span class="option"> RNG Usage Model</span></h1>
+<div><p> A typical algorithm for 
+      <span>VS</span><span>oneMKL</span> random number generators is as follows: 
+    </p>
+<ol id="GUID-2A5D1CC7-2CC4-44B8-A000-126D870B3E4C"><li id="LI_82A76B44BED14A6A9DBF2E7FDE5707EA"><p>Create and initialize stream/streams. Functions 
+  <span class="option">vslNewStream</span>, 
+  <span class="option">vslNewStreamEx</span>, 
+  <span class="option">vslCopyStream</span>, 
+  <span class="option">vslCopyStreamState</span>, 
+  <span class="option">vslLeapfrogStream</span>, 
+  <span class="option">vslSkipAheadStream</span>, 
+  <span class="option"> vslSkipAheadStreamEx</span>. 
+  </p>
+</li>
+<li id="LI_62AEC8E31F4E4E7083B4257CE9F3DFE7"><p>Call one or more RNGs. 
+    </p>
+</li>
+<li id="LI_B0989B509D53412BA5DD75AA80B3C20A"><p>Process the output. 
+    </p>
+</li>
+<li id="LI_FB07B60CA19D487B8832D3EFF8675BD7"><p> Delete the stream or streams with the function 
+  <span class="option">vslDeleteStream</span>. 
+  </p>
+</li>
+</ol>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p> You may reiterate steps 2-3. Random number streams may be generated for different threads. 
+    </p>
+</div>
+<p> The following example demonstrates generation of a random stream that is output of basic generator MT19937. The seed is equal to 777. The stream is used to generate 10,000 normally distributed random numbers in blocks of 1,000 random numbers with parameters 
+    <var>a</var> = 5 and 
+    <var>sigma</var> = 2. Delete the streams after completing the generation. The purpose of the example is to calculate the sample mean for normal distribution with the given parameters. 
+  </p>
+<div class="tbstyle(tblExampleStandard)" id="VSLUSAGE_FORTRAN"><h2 class="sectiontitle">Example of VS RNG Usage</h2><p><pre>
+      include 'mkl_vsl.f90'
+ 
+      program MKL_VSL_GAUSSIAN
+ 
+      USE MKL_VSL_TYPE
+      USE MKL_VSL
+ 
+      real(kind=8) r(1000)  ! buffer for random numbers
+      real(kind=8) s        ! average
+      real(kind=8) a, sigma ! parameters of normal distribution
+ 
+      TYPE (VSL_STREAM_STATE) :: stream
+ 
+      integer(kind=4) errcode
+      integer(kind=4) i,j
+      integer brng,method,seed,n
+ 
+      n = 1000
+      s = 0.0
+      a = 5.0
+      sigma  = 2.0
+      brng=VSL_BRNG_MT19937
+      method=VSL_RNG_METHOD_GAUSSIAN_ICDF
+      seed=777
+ 
+!     ***** Initializing *****
+      errcode=vslnewstream( stream, brng,  seed )
+ 
+!     ***** Generating *****
+      do i = 1,10
+          errcode=vdrnggaussian( method, stream, n, r, a, sigma )
+          do j = 1, 1000
+              s = s + r(j)
+          end do
+      end do
+ 
+      s = s / 10000.0
+ 
+!     ***** Deinitialize *****
+      errcode=vsldeletestream( stream )
+ 
+!     ***** Printing results *****
+      print *,"Sample mean of normal distribution = ", s
+ 
+      end
+</pre></p>
+</div>
+<p>Additionally, examples that demonstrate usage of VS random number generators are available in: 
+  </p>
+<p><span class="filepath">${MKL}/examples/vslf/source</span></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-624DD98B-ADE3-4B19-B711-2BC79D287E31.html">Random Number Generators</a></div>
+</div>
+<div/>
+</body>
+</html>

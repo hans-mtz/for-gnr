@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?roti"/>
+<meta name="abstract" content="Applies Givens rotation to sparse vectors one of which is in compressed form."/>
+<meta name="description" content="Applies Givens rotation to sparse vectors one of which is in compressed form."/>
+<meta name="DC.subject" content="?roti, Sparse BLAS Level 1 routines and functions, Givens rotation, of sparse vectors, rotation, sparse vectors"/>
+<meta name="keywords" content="?roti, Sparse BLAS Level 1 routines and functions, Givens rotation, of sparse vectors, rotation, sparse vectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-A049DC64-EB0F-4B0E-AEB1-A0531E1F80F6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?roti</title>
+
+</head>
+<body id="GUID-A049DC64-EB0F-4B0E-AEB1-A0531E1F80F6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?roti</span></h1>
+<!--Applies Givens rotation to sparse vectors one of which is in compressed form.--><div><p class="shortdesc">Applies Givens rotation to sparse vectors one of which is in compressed form.</p>
+<div class="section" id="GUID-D8F4EDF2-28B7-491B-A9CC-5229E2741367"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sroti</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call droti</span><span class="delim">(</span><span class="var">nz</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call roti</span><span class="delim">(</span><span class="var">x</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">s</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-5BEB3676-1218-4AF2-A825-39B2B9D9A87B"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7652D549-1062-4C7A-B6DF-32E517C3FBCD"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?roti</span> routines apply the Givens rotation to elements of two real vectors, <var>x</var> (in compressed form <var>nz</var>, <var>x</var>, <var>indx</var>) and <var>y</var> (in full storage form):</p>
+<pre><var>x</var>(<var>i</var>) = <var>c*x</var>(<var>i</var>) + <var>s*y</var>(<var>indx</var>(<var>i</var>))</pre><pre><var>y</var>(<var>indx</var>(<var>i</var>)) = <var>c*y</var>(<var>indx</var>(<var>i</var>))- <var>s*x</var>(<var>i</var>)</pre><p>The routines reference only the elements of <var>y</var> whose indices are listed in the array <var>indx</var>. The values in <var>indx</var> must be distinct.</p>
+</div>
+<div class="section" id="GUID-E36B8176-B919-4F92-9FEF-E8EFC538F365"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-68CD61C2-0FE3-42CC-8EE0-23D5E720AA0B"><dt class="dlterm"><span class="parmname">nz</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of elements in <var>x</var> and <var>indx</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sroti</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">droti</span></p>
+<p>Array, size at least <var>nz</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the indices for the elements of <var>x</var>.</p>
+<p>Array, size at least <var>nz</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sroti</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">droti</span></p>
+<p>Array, size at least max(<var>indx(i)</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sroti</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">droti</span>.</p>
+<p>A scalar.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">s</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sroti</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">droti</span>.</p>
+<p>A scalar.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-CE221AC7-46CD-441F-A229-B229758D8697"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-BA125BC1-F5E0-4F75-9C50-DB593BB9CC1A"><dt class="dlterm"><span class="parmname">x</span> and <var>y</var></dt>
+
+<dd><p>The updated arrays.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-5EA488A0-B01F-443D-BFB6-6EB0E2B8BD54"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">roti</span> interface are the following:</p>
+<dl id="GUID-72CA9155-D23F-466F-B083-F76855437DFB"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>nz</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

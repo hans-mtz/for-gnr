@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="DFTI_FORWARD_DOMAIN"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5E2D3C66-4C49-4408-912B-5B2B66862743.html#GUID-5E2D3C66-4C49-4408-912B-5B2B66862743"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5CEB97BB-C622-4BC4-8CA2-0BF32763AB39.html#GUID-5CEB97BB-C622-4BC4-8CA2-0BF32763AB39"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2E31EB2D-15B4-481B-B40F-FE7B6CDDCEDF.html#GUID-2E31EB2D-15B4-481B-B40F-FE7B6CDDCEDF"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="prodname" content="Intel&reg; Math Kernel Library FFT"/>
+<meta name="version" content="630813-079US"/>
+<meta name="series" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-582557F0-6B08-4DC0-9026-C9010065E8CD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>DFTI_FORWARD_DOMAIN</title>
+
+</head>
+<body id="GUID-582557F0-6B08-4DC0-9026-C9010065E8CD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">DFTI_FORWARD_DOMAIN</h1>
+<div><p id="FORMULA">The general form of a discrete Fourier transform is 
+    </p>
+<p><span><img class="img-middle" src="equations/GUID-582557F0-6B08-4DC0-9026-C9010065Eee1.png"/></span></p>
+<p>for 
+		<samp class="codeph"><var>k</var><sub><var>l</var></sub> = 0, ... 
+        <var>n</var><sub><var>l</var></sub>-1</samp> (<var>l</var> = 1, ..., 
+      <var>d</var>), where 
+      <span class="eqsymbol">σ</span> is a scale factor, 
+      <span class="eqsymbol">δ</span> = -1 for the forward transform, and 
+      <span class="eqsymbol">δ</span> = +1 for the backward transform. 
+    </p>
+<p>The Intel&reg; oneAPI Math Kernel Library implementation of the FFT algorithm, used for fast computation of discrete Fourier transforms, supports forward transforms on input sequences of two domains, as specified by the<samp class="codeph">DFTI_FORWARD_DOMAIN</samp> configuration parameter: general complex-valued sequences (<samp class="codeph">DFTI_COMPLEX</samp> domain) and general real-valued sequences (<samp class="codeph">DFTI_REAL</samp> domain). The forward transform maps the forward domain to the corresponding backward domain, as shown in 
+      <a href="#TBL11-4">Table 
+        <span>"Correspondence of Forward and Backward Domain"</span></a>.</p>
+<p> The conjugate-even domain covers complex-valued sequences with the symmetry property: 
+    </p>
+<p><span><img class="img-middle" src="equations/GUID-582557F0-6B08-4DC0-9026-C9010065Eee2.png"/></span></p>
+<p> where the index arithmetic is performed modulo respective size, that is, 
+    </p>
+<p><span><img class="img-middle" src="equations/GUID-582557F0-6B08-4DC0-9026-C9010065Eee3.png"/></span></p>
+<p>
+      and therefore 
+    </p>
+<p><span><img class="img-middle" src="equations/GUID-582557F0-6B08-4DC0-9026-C9010065Eee4.png"/></span></p>
+<p>Due to this property of conjugate-even sequences, only a part of such sequence is stored in the computer memory, as described in 
+      <a href="GUID-F4B8BEC6-70DD-4AB9-BBBB-DE95EBB67FA8.html#CONJUGATE_EVEN_STORAGE"><span class="keyword">DFTI_CONJUGATE_EVEN_STORAGE</span></a>. 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL11-4" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Correspondence of Forward and Backward Domain</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="50%" id="d666519e118"><p>Forward Domain 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="50%" id="d666519e121"><p>Implied Backward Domain 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d666519e118 "><p>Complex (<samp class="codeph">DFTI_COMPLEX</samp>) 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d666519e121 "><p>Complex (<samp class="codeph">DFTI_COMPLEX</samp>) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="50%" headers="d666519e118 "><p>Real (<samp class="codeph">DFTI_REAL</samp>) 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="50%" headers="d666519e121 "><p>Conjugate-even 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="keyword">DFTI_FORWARD_DOMAIN</span> does not have a default value. Set it explicitly by calling the 
+  <span class="option">DftiCreateDescriptor</span> function. 
+  </p>
+<p>To better understand usage of the 
+    <span class="keyword">DFTI_FORWARD_DOMAIN</span>configuration parameter, you can refer to these examples in your Intel&reg; oneAPI Math Kernel Library directory:</p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__BASIC_SP_COMPLEX_DFT_1D_F90">./examples/dftf/source/basic_sp_complex_dft_1d.f90</span></p>
+<p><span class="filepath" id="EXAMPLES__DFTF__SOURCE__BASIC_SP_REAL_DFT_1D_F90">./examples/dftf/source/basic_sp_real_dft_1d.f90</span></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D4DA93E0-FE57-462C-91D7-5968F3D49F8A.html">Configuration Settings</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-5E2D3C66-4C49-4408-912B-5B2B66862743.html#GUID-5E2D3C66-4C49-4408-912B-5B2B66862743"><span class="keyword">DFTI_PRECISION</span></a> </div>
+<div><a href="GUID-5CEB97BB-C622-4BC4-8CA2-0BF32763AB39.html#GUID-5CEB97BB-C622-4BC4-8CA2-0BF32763AB39"><span class="keyword">DFTI_DIMENSION, DFTI_LENGTHS</span></a> </div>
+<div><a href="GUID-2E31EB2D-15B4-481B-B40F-FE7B6CDDCEDF.html#GUID-2E31EB2D-15B4-481B-B40F-FE7B6CDDCEDF"><span class="option">DftiCreateDescriptor</span></a> </div></div></div>
+</body>
+</html>

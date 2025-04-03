@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?trsv"/>
+<meta name="abstract" content="Solves a system of linear equations whose coefficients are in a triangular matrix."/>
+<meta name="description" content="Solves a system of linear equations whose coefficients are in a triangular matrix."/>
+<meta name="DC.subject" content="?trsv, BLAS Level 2 routines, system of linear equations, with a triangular matrix, triangular matrix, solving systems of linear equations"/>
+<meta name="keywords" content="?trsv, BLAS Level 2 routines, system of linear equations, with a triangular matrix, triangular matrix, solving systems of linear equations"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-13DB003B-72CE-4F87-8952-9A6914F51337"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?trsv</title>
+
+</head>
+<body id="GUID-13DB003B-72CE-4F87-8952-9A6914F51337">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?trsv</span></h1>
+<!--Solves a system of linear equations whose coefficients are in a triangular matrix.--><div><p class="shortdesc">Solves a system of linear equations whose coefficients are in a triangular matrix.</p>
+<div class="section" id="GUID-9BA4C1B6-479B-41B1-BCA8-7826F40DA952"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call strsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dtrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ctrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ztrsv</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call trsv</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">x</span><span class="delim"> [</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">, </span><span class="var">trans</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">diag</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-E4B183E2-F728-4DDA-AC27-6AB9A92842EC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e31"><li><span class="filepath">mkl.fi</span>, <span class="filepath">blas.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-5223E824-2485-42EF-B01A-3B765F30DBDD"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The <span class="option">?trsv</span> routines solve one of the systems of equations:</p>
+<p><samp class="codeph"><var>A</var>*<var>x</var> = <var>b</var></samp>,  or <samp class="codeph"><var>A</var>'*<var>x</var> = <var>b</var></samp>, or <samp class="codeph">conjg(<var>A</var>')*<var>x</var> = <var>b</var></samp>,</p>
+<p>where:</p>
+<p><var>b</var> and <var>x</var> are <var>n</var>-element vectors,</p>
+<p><var>A</var> is an <var>n</var>-by-<var>n</var> unit, or non-unit, upper or lower triangular matrix.</p>
+<p>The routine does not test for singularity or near-singularity.</p>
+<p>Such tests must be performed before calling this routine.</p>
+</div>
+<div class="section" id="GUID-9DA9F166-C665-415A-8F55-461E98EB3198"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-2A95014B-60A0-410E-AFF7-07C9D1151BB2"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the matrix <var>A</var> is upper or lower triangular:</p>
+<span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span><p>if <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, then the matrix is low  triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies the systems of equations:</p>
+<p>if <span><samp class="codeph"><span class="parmname">trans</span>= 'N'</samp> or <samp class="codeph">'n'</samp></span>, then <samp class="codeph"><var>A</var>*<var>x</var> = <var>b</var></samp>;</p>
+<p>if <span><samp class="codeph"><span class="parmname">trans</span>= 'T'</samp> or <samp class="codeph">'t'</samp></span>, then <samp class="codeph"><var>A</var>'*<var>x</var> = <var>b</var></samp>;</p>
+<p>if <span><samp class="codeph"><span class="parmname">trans</span>= 'C'</samp> or <samp class="codeph">'c'</samp></span>, then <samp class="codeph">oconjg(<var>A</var>')*<var>x</var> = <var>b</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Specifies whether the matrix <var>A</var> is unit triangular:</p>
+<p>if <span><samp class="codeph"><span class="parmname">diag</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>  then the matrix is unit triangular;</p>
+<p>if <span><samp class="codeph"><span class="parmname">diag</span> = <span class="keyword">'N'</span></samp> or <span class="keyword">'n'</span></span>, then the matrix is not unit triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the order of the matrix <var>A</var>. The value of <var>n</var> must be at least zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctrsv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsv</span></p>
+<p>Array, size <samp class="codeph">(<var>lda</var>, <var>n</var>)</samp>
+. Before entry with <span><span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span></span>, the leading <var>n</var>-by-<var>n</var> upper triangular part of the array <var>a</var> must contain the upper triangular matrix and the strictly lower triangular part of <var>a</var> is not referenced. Before entry with <span><samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span></span>, the leading <var>n</var>-by-<var>n</var> lower triangular part of the array <var>a</var> must contain the lower triangular matrix and the strictly upper triangular part of <var>a</var> is not referenced.</p>
+<p>When <span><samp class="codeph"><span class="parmname">diag</span> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span></span>, the diagonal elements of <var>a</var> are not referenced either, but are assumed to be unity.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the leading dimension of <var>a</var> as declared in the calling (sub)program. The value of <var>lda</var> must be at least <samp class="codeph">max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">strsv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dtrsv</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">ctrsv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">ztrsv</span></p>
+<p>Array, size at least <samp class="codeph">(1 + (<var>n</var> - 1)*abs(<var>incx</var>))</samp>. Before entry, the incremented array <var>x</var> must contain the <var>n</var>-element right-hand side vector <var>b</var>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Specifies the increment for the elements of <var>x</var>.</p>
+<p>The value of <var>incx</var> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-7E0AF44F-2D83-41A3-A58E-50400ECDBD9A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-233AB6FB-FF13-45C7-85AD-1FBBC2C93E65"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Overwritten with the solution vector <var>x</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A7CD88FC-334A-45E9-AF72-58C07D1EF68A"><h2 class="sectiontitle">BLAS 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77   counterparts. For general conventions applied to skip redundant or reconstructible arguments, see <a class="allformats" href="GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78.html#GUID-90EE7236-20A4-4B7E-B942-0E00B0AAAE78">BLAS 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">trsv</span> interface are the following:</p>
+<dl id="GUID-04A099B6-A946-463B-AB44-832129A7E5DA"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>a</var> of size (<var>n</var>,<var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>Holds the vector with the number of elements <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span>, <span class="keyword">'C'</span>, or <span class="keyword">'T'</span>.</p>
+<p>The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'U'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-9B9E459C-4E87-4A5E-8BC3-2FE06C86D0F1.html">BLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

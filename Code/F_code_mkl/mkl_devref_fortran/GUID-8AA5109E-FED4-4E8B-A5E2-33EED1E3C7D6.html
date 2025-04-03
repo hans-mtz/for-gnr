@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?max1"/>
+<meta name="abstract" content="Finds the index of the element whose real part has maximum absolute value (similar to the Level 1 PBLAS p?amax, but using the absolute value to the real part)."/>
+<meta name="description" content="Finds the index of the element whose real part has maximum absolute value (similar to the Level 1 PBLAS p?amax, but using the absolute value to the real part)."/>
+<meta name="DC.subject" content="ScaLAPACK routines, auxiliary routines, p?max1, finding, index of the element of a vector with the largest absolute value of the real part"/>
+<meta name="keywords" content="ScaLAPACK routines, auxiliary routines, p?max1, finding, index of the element of a vector with the largest absolute value of the real part"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-8AA5109E-FED4-4E8B-A5E2-33EED1E3C7D6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?max1</title>
+
+</head>
+<body id="GUID-8AA5109E-FED4-4E8B-A5E2-33EED1E3C7D6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?max1</span></h1>
+<!--Finds the index of the element whose real part has maximum absolute value (similar to the Level 1 PBLAS  p?amax , but using the absolute value to the real part).--><div><p class="shortdesc">Finds the index of the element whose real part has maximum absolute value (similar to the Level 1 PBLAS <span class="option">p?amax</span>, but using the absolute value to the real part).</p>
+<div class="section" id="GUID-A968869D-B54A-402A-9B5F-27289138A42E"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pcmax1</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzmax1</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">amax</span><span class="sep">, </span><span class="var">indx</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-2C36CCDD-7EB5-4A74-B03A-499AB211C616"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?max1</span><span>routine </span>computes the global index of the maximum element in absolute value of a distributed vector sub(<var>X</var>). The global index is returned in <var>indx</var> and the value is returned in <var>amax</var>, where sub(<var>X</var>) denotes <samp class="codeph"><var>X</var>(<var>ix</var>:<var>ix</var>+<var>n</var>-1, <var>jx</var>)</samp> if <samp class="codeph"><var>incx</var> = 1</samp>, <samp class="codeph"><var>X</var>(<var>ix</var>, <samp class="codeph"><var>jx</var>:<var>jx</var>+<var>n</var>-1)</samp></samp> if <samp class="codeph"><var>incx</var> = <var>m_x</var></samp>.</p>
+</div>
+<div class="section" id="GUID-94EA2F34-9F20-4FEA-8865-0593E4940C68"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-3EF1F472-ADC3-4EF9-87A7-7DCEA2A320FA"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)<span> pointer to <span class="keyword">INTEGER</span></span>. The number of components of the distributed vector sub(<var>X</var>). <var>n </var><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local) </p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pcmax1</span>. </p>
+<p><span class="keyword">COMPLEX*16</span> for <span class="option">pzmax1</span></p>
+<p>Pointer into the local memory to an array of size <span>(<var>lld_x</var>, <var>LOCc</var>(<span class="parmname">jx</span>+<span class="parmname">n</span>-1))</span>. On entry this array contains the local pieces of the  distributed vector  sub(<var>X</var>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row index in the global matrix <var>X</var> indicating the first row of sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The column index in the global matrix <var>X</var>  indicating the  first column of sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span>. </span>Array of size <var>dlen_</var>. The array descriptor for the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global)<span><span class="keyword">INTEGER</span></span>.The global increment for the elements of <var>X</var>. Only two values of <var>incx</var> are supported in this version, namely 1 and <var>m_x</var>. <var>incx</var> must not be zero.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-D4A6949D-80E4-4D39-B472-189A4A426EC4"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-009AD977-8C1C-4233-856F-9079B509A7AB"><dt class="dlterm"><span class="parmname">amax</span></dt>
+
+<dd><p>(global output)<span> pointer to <span class="keyword">REAL</span></span>.The absolute value of the largest entry of the distributed vector sub(<var>X</var>) only in the scope of sub(<var>X</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">indx</span></dt>
+
+<dd><p>(global output)<span> pointer to <span class="keyword">INTEGER</span></span>.The global index of the element of the distributed vector sub(<var>X</var>) whose real part has maximum absolute value.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

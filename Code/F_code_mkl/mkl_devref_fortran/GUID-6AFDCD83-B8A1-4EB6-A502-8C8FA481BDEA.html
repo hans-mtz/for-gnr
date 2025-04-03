@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?trcon"/>
+<meta name="abstract" content="Estimates the reciprocal of the condition number of a triangular distributed matrix in either 1-norm or infinity-norm."/>
+<meta name="description" content="Estimates the reciprocal of the condition number of a triangular distributed matrix in either 1-norm or infinity-norm."/>
+<meta name="DC.subject" content="p?trcon, ScaLAPACK routines, condition number estimation, condition number, general matrix, ScaLAPACK, estimating the condition number"/>
+<meta name="keywords" content="p?trcon, ScaLAPACK routines, condition number estimation, condition number, general matrix, ScaLAPACK, estimating the condition number"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D0D55561-A051-4C97-B771-E1CBF3F86D16.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6AFDCD83-B8A1-4EB6-A502-8C8FA481BDEA"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?trcon</title>
+
+</head>
+<body id="GUID-6AFDCD83-B8A1-4EB6-A502-8C8FA481BDEA">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?trcon</span></h1>
+<!--Estimates the reciprocal of the condition number of a triangular distributed matrix in either 1-norm or infinity-norm.--><div><p class="shortdesc">Estimates the reciprocal of the condition number of a triangular distributed matrix in either 1-norm or infinity-norm.</p>
+<div class="section" id="GUID-A389B6CD-B2EA-4B9B-85E6-6EE77B53A8A1"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pstrcon</span><span class="delim">(</span><span class="var">norm, uplo, diag, n, a, ia, ja, desca, rcond, work, lwork, iwork, liwork, info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdtrcon</span><span class="delim">(</span><span class="var">norm, uplo, diag, n, a, ia, ja, desca, rcond, work, lwork, iwork, liwork, info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pctrcon</span><span class="delim">(</span><span class="var">norm, uplo, diag, n, a, ia, ja, desca, rcond, work, lwork, rwork, lrwork, info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pztrcon</span><span class="delim">(</span><span class="var">norm, uplo, diag, n, a, ia, ja, desca, rcond, work, lwork, rwork, lrwork, info</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-AD3A3476-9DDC-42A2-A0C6-C32D5B4B5776"><h2 class="sectiontitle">Include Files</h2><p/>
+</div>
+<div class="section" id="GUID-52FD98BB-A90A-489C-BE1F-38405B4346E8"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">p?trcon</span><span>routine </span>estimates the reciprocal of the condition number of a triangular distributed matrix sub(<var>A</var>) = <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1), in either the 1-norm or the infinity-norm.</p>
+<p>The norm of sub(<var>A</var>) is computed and an estimate is obtained for ||(sub(<var>A</var>))<sup class="power">-1</sup>||<span>, then the reciprocal of the condition number is computed as </span></p>
+<p><br/><div class="imagecenter"><img src="GUID-18AC4BDA-8A1A-4302-8502-4E86548D75BD-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+</div>
+<div class="section" id="GUID-1DFAF2E5-57B0-4D0A-B6B0-7B6C494A1AE6"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-13FC48A3-3C1A-4D66-BCF5-ACBD88B02A3D"><dt class="dlterm"><span class="parmname">norm</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'1'</span> or <span class="keyword">'O'</span> or <span class="keyword">'I'</span>.</p>
+<p>Specifies whether the 1-norm condition number or the infinity-norm condition number is required.</p>
+<p>If <samp class="codeph"><var>norm</var> = <span class="keyword">'1'</span></samp> or <span class="keyword">'O'</span>, then the 1-norm is used;</p>
+<p>If <samp class="codeph"><var>norm</var> = <span class="keyword">'I'</span></samp>, then the infinity-norm is used.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, sub(<var>A</var>) is upper triangular. If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, sub(<var>A</var>) is lower triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p>(global) <span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'U'</span>.</p>
+<p>If <samp class="codeph"><var>diag</var> = <span class="keyword">'N'</span></samp>, sub(<var>A</var>) is non-unit triangular. If <samp class="codeph"><var>diag</var> = <span class="keyword">'U'</span></samp>, sub(<var>A</var>) is unit triangular.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The order of the distributed matrix sub(<var>A</var>), <samp class="codeph">(<var>n</var><span class="eqsymbol">≥</span>0)</samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pstrcon</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrcon</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pctrcon</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pztrcon</span>. </p>
+<p>Pointer into the local memory to an array of size <samp class="codeph"><samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp></samp>.</p>
+<p>The array <span class="parmname">a</span> contains the local pieces of the triangular distributed matrix sub(<var>A</var>).</p>
+<p> If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of this distributed matrix contains the upper triangular matrix, and its strictly lower triangular part is not referenced.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of this distributed matrix contains the lower triangular matrix, and its strictly upper triangular part is not referenced. </p>
+<p>If <samp class="codeph"><var>diag</var> = <span class="keyword">'U'</span></samp>, the diagonal elements of sub(<var>A</var>) are also not referenced and are assumed to be 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>The row and column indices in the global matrix <var>A</var> indicating the first row and the first column of the matrix sub(<var>A</var>), respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of size <var>dlen_</var>.  The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pstrcon</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdtrcon</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">pctrcon</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pztrcon</span>. </p>
+<p>The array <span class="parmname">work</span> of size <span class="parmname">lwork</span> is a workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span>The size of the array <span class="parmname">work</span>. </p>
+<p><em>For real flavors:</em></p>
+<p><span class="parmname">lwork</span> must be at least </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 2*<var>LOCr</var>(<var>n</var>+mod(<var>ia</var>-1,<var>mb_a</var>))+</samp><samp class="codeph"><var>LOCc</var>(<var>n</var>+mod(<var>ja</var>-1,<var>nb_a</var>))+</samp><samp class="codeph">max(2, max(<var>nb_a</var>*max(1,iceil(<span class="keyword">NPROW</span>-1, <span class="keyword">NPCOL</span>))</samp>,</p>
+<p><samp class="codeph"><var>LOCc</var>(<var>n</var>+mod(<var>ja</var>-1,<var>nb_a</var>))+</samp><samp class="codeph"><var>nb_a</var>*max(1,iceil(<span class="keyword">NPCOL</span>-1, <span class="keyword">NPROW</span>))))</samp>.</p>
+<p><em>For complex flavors:</em></p>
+<p><span class="parmname">lwork</span> must be at least </p>
+<p><samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> 2*<var>LOCr</var>(<var>n</var>+mod(<var>ia</var>-1,<var>mb_a</var>))+</samp><samp class="codeph">max(2, max(<var>nb_a</var>*iceil(<span class="keyword">NPROW</span>-1, <span class="keyword">NPCOL</span>)</samp>,</p>
+<p><samp class="codeph"><var>LOCc</var>(<var>n</var>+mod(<var>ja</var>-1,<var>nb_a</var>))+</samp><samp class="codeph"><var>nb_a</var>*iceil(<span class="keyword">NPCOL</span>-1, <span class="keyword">NPROW</span>)))</samp>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p><samp class="codeph"> iceil(<var>x</var>,<var>y</var>)</samp> is the ceiling of <samp class="codeph"><var>x</var>/<var>y</var></samp>, and <samp class="codeph">mod(<var>x</var>,<var>y</var>)</samp> is the integer remainder of <samp class="codeph"><var>x</var>/<var>y</var></samp>.</p>
+</div>
+</dd>
+<dt class="dlterm"><span class="parmname">iwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">INTEGER</span>. </span>Workspace array of size <span class="parmname">liwork</span>. Used in real flavors only.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">liwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span>The size of the array <span class="parmname">iwork</span>; used in real flavors only. Must be at least</p>
+<p><samp class="codeph"><var>liwork</var><span class="eqsymbol">≥</span><var>LOCr</var>(<var>n</var>+mod(<var>ia</var>-1,<var>mb_a</var>))</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p>(local) <span><span class="keyword">REAL</span> for <span class="option">pcpocon</span></span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pzpocon</span></p>
+<p>Workspace array of size <span class="parmname">lrwork</span>. Used in complex flavors only. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">lrwork</span></dt>
+
+<dd><p>(local or global) <span><span class="keyword">INTEGER</span>. </span>The size of the array <span class="parmname">rwork</span>; used in complex flavors only. Must be at least <samp class="codeph"><var/></samp></p>
+<p><samp class="codeph"><var>lrwork</var><span class="eqsymbol">≥</span><var>LOCc</var>(<var>n</var>+mod(<var>ja</var>-1,<var>nb_a</var>))</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-E07DFB48-7DE7-48DB-8AE9-87A354C2CA8B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-0A8467EA-B665-4A18-9D5B-DD11F47E1613"><dt class="dlterm"><span class="parmname">rcond</span></dt>
+
+<dd><p>(global) <span><span class="keyword">REAL</span> for single precision flavors. </span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for double precision flavors. </p>
+<p>The reciprocal of the condition number of the distributed matrix sub(<var>A</var>). </p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><var>work</var><span>(1)</span></samp></dt>
+
+<dd><p>On exit, <samp class="codeph"><var>work</var><span>(1)</span></samp> contains the minimum value of <span class="parmname">lwork</span> required for optimum performance.</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><var>iwork</var><span>(1)</span></samp></dt>
+
+<dd><p>On exit, <samp class="codeph"><var>iwork</var><span>(1)</span></samp> contains the minimum value of <span class="parmname">liwork</span> required for optimum performance (for real flavors).</p>
+</dd>
+<dt class="dlterm"><samp class="codeph"><var>rwork</var><span>(1)</span></samp></dt>
+
+<dd><p>On exit, <samp class="codeph"><var>rwork</var><span>(1)</span></samp> contains the minimum value of <span class="parmname">lrwork</span> required for optimum performance (for complex flavors).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>If <samp class="codeph"><var>info</var>=0</samp>, the execution is successful.</p>
+<p><span class="parmname">info</span> &lt; 0: </p>
+<p>If the <var>i</var>-th argument is an array and the <var>j-</var>th entry had an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>); if the <var>i-</var>th argument is a scalar and had an illegal value, then <span class="parmname">info</span> = <var>-i</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D0D55561-A051-4C97-B771-E1CBF3F86D16.html">Estimating the Condition Number: ScaLAPACK Computational Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

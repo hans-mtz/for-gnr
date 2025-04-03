@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Mathematical Conventions for Data Fitting Functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-426E072B-5F6B-467B-955B-8F7505F7956A.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4422B178-FCB5-4E30-9C81-FCDDF6C31D50"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Mathematical Conventions for Data Fitting Functions</title>
+
+</head>
+<body id="GUID-4422B178-FCB5-4E30-9C81-FCDDF6C31D50">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Mathematical Conventions for Data Fitting
+    Functions</h1>
+<div><p>This section explains the notation used for Data
+      Fitting function descriptions. Spline notations are based on the terminology
+      and definitions of [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#DEBOOR2001"><span>deBoor2001</span></a>].
+      The Subbotin quadratic spline definition follows the conventions of [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#STECHSUB76"><span>StechSub76</span></a>].
+      The quasi-uniform partition definition is based on [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#SCHUMACHER2007"><span>Schumaker2007</span></a>].
+      
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL17-0" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Mathematical Notation in the Data Fitting
+    Component</span></caption><thead align="left"><tr><th class="cellrowborder" align="center" valign="top" width="NaN%" id="d530039e41">Concept 
+        </th>
+<th class="row-nocellborder" align="center" valign="top" width="NaN%" id="d530039e43">Mathematical Notation 
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p> Partition of interpolation interval [<var>a</var>, 
+            <var>b</var>] , where
+            
+          </p>
+<p><ul id="GUID-457FEBB1-3E16-4FA0-AD4C-F446272733ED"><li><var class="varname">x</var><sub><var>i</var></sub> denotes
+              breakpoints. 
+            </li>
+<li>
+              [<var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>) denotes a
+              sub-interval (cell) of size 
+              <span class="eqsymbol">Δ</span><sub><var>i</var></sub>=<var class="varname">x</var><sub><var>i</var>+1</sub>-<var class="varname">x</var><sub><var>i</var></sub> . 
+            </li>
+</ul>
+</p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><p>{<var class="varname">x</var><sub><var>i</var></sub>}<sub><var>i</var>=1,...,<var>n</var></sub>,
+            where 
+            <var>a</var> =<var class="varname">
+              x</var><sub>1</sub> &lt; 
+            <var class="varname">x</var><sub>2</sub>&lt;...
+            &lt;<var class="varname">x</var><sub><var>n</var></sub>
+            =<var> b</var></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p>Quasi-uniform partition of interpolation interval
+            [<var>a</var>, 
+            <var>b</var>] 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><p>Partition {<var class="varname">x</var><sub><var>i</var></sub>}<sub><var>i</var>=1,...,<var>n</var></sub> which meets the constraint with a constant 
+            <var>C</var> defined as 
+          </p>
+<p>1 
+            <span class="eqsymbol">≤</span><var>M</var>/ 
+            <var>m</var><span class="eqsymbol">≤</span><var>C</var>, 
+          </p>
+<p>where 
+          </p>
+<ul id="GUID-64AC37CF-155B-4A53-9F0B-5E3FC058135C"><li><p><var>M</var> =
+                max<sub><var>i</var>=1,...,<var>n</var>-1</sub> (<span class="eqsymbol">Δ</span><sub><var>i</var></sub>) 
+              </p>
+</li>
+<li><p><var>m</var> =
+                min<sub><var>i</var>=1,...,<var>n</var>-1</sub> (<span class="eqsymbol">Δ</span><sub><var>i</var></sub>) 
+              </p>
+</li>
+<li><p><span class="eqsymbol">Δ</span><sub><var>i</var></sub> = 
+                <var class="varname">x</var><sub><var>i</var>+1</sub> -<var class="varname"> x</var><sub><var>i</var></sub></p>
+</li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p> Vector-valued function of dimension 
+            <var class="varname">p</var> being fit 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><p><span class="eqsymbol">ƒ</span>(<var class="varname">x</var>) = (<span class="eqsymbol">ƒ</span><sub>1</sub>(<var class="varname">x</var>),..., 
+            <span class="eqsymbol">ƒ</span><sub><var>p</var></sub>(<var class="varname">x</var><var class="varname"/>)<var class="varname"/>) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p>Piecewise polynomial (PP) function 
+            <span class="eqsymbol">ƒ</span> of order 
+            <samp class="codeph"><var>k</var>+1</samp></p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><p><span class="eqsymbol">ƒ</span>(<var class="varname">x</var>) ≔ 
+            <var>P</var><sub><var>i</var></sub> (<var class="varname">x</var>), if 
+            <var class="varname">x</var> ∈ [ 
+            <var>x</var><sub><var>i</var></sub>, 
+            <var>x</var><sub><var>i</var>+1</sub>), 
+            <var>i</var> = 1,..., 
+            <var>n</var>-1 
+          </p>
+<p>where 
+          </p>
+<p><ul id="GUID-83BE8F9D-9397-486F-B171-23E0F4A56BE3"><li> {<var class="varname">x</var><sub><var>i</var></sub>}<sub><var>i</var>=
+                1,..., 
+                <var>n</var></sub> is a strictly increasing sequence of
+              breakpoints. 
+            </li>
+<li><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+              <var>c</var><sub><var>i</var>,0</sub> + 
+              <var>c</var><sub><var>i</var>,1</sub>(<var class="varname">x</var> - 
+              <var class="varname">x</var><sub><var>i</var></sub>) + ... + 
+              <var>c</var><sub><var>i</var>,<var>k</var></sub>(<var class="varname">x</var> - 
+              <var class="varname">x</var><sub><var>i</var></sub>)<sup><var>k</var></sup>
+              is a polynomial of degree 
+              <var>k</var> (order
+              
+              <var>k</var>+1)
+              over the interval 
+              <var class="varname">x</var> ∈ [ 
+              <var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>). 
+            </li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p>Function 
+            <var>p</var> agrees
+            with function 
+            <span class="eqsymbol">ƒ</span> at the points {<var class="varname">x</var><sub><var>i</var></sub>}<sub><var>i</var>=1,...,<var>n</var></sub>
+            . 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><p> For every point ζ in sequence {<var class="varname">x</var><sub><var>i</var></sub>}<sub><var>i</var>=1,...,<var>n</var></sub>
+            that occurs 
+            <var>m</var> times,
+            the equality 
+            <var>p</var><sup>(<var>i</var>-1)</sup>(ζ) = 
+            <span class="eqsymbol">ƒ</span><sup>(<var>i</var>-1)</sup>(ζ) holds for
+            all 
+            <var>i</var> = 1,...,<var>m</var>, where 
+            <var>p</var><sup>(<var>i</var>)</sup>(<var>t</var><var class="varname"/>) is the derivative of the 
+            <var>i</var>-th
+            order. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p> The 
+            <var>k</var>-th
+            divided difference of function 
+            <span class="eqsymbol">ƒ</span> at points 
+            <var class="varname">x</var><sub><var>i</var></sub>,..., 
+            <var class="varname">x</var><sub><var>i</var> + 
+              <var>k</var></sub>. This difference is the leading
+            coefficient of the polynomial of order 
+            <var>k</var>+1 that
+            agrees with 
+            <span class="eqsymbol">ƒ</span> at 
+            <var class="varname">x</var><sub><var>i</var></sub>,..., 
+            <var class="varname">x</var><sub><var>i</var> + 
+              <var>k</var></sub>. 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><p>[ 
+            <var class="varname">x</var><sub><var>i</var></sub>,..., 
+            <var class="varname">x</var><sub><var>i</var> + 
+              <var>k</var></sub>] 
+            <span class="eqsymbol">ƒ</span></p>
+<p>In particular, 
+          </p>
+<ul id="GUID-57DD2751-27BC-4052-995D-BAFF18033018"><li>[<var class="varname">x</var><sub>1</sub>]<span class="eqsymbol">ƒ</span> = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub>1</sub>) 
+            </li>
+<li>[ 
+              <var class="varname">x</var><sub>1</sub>, 
+              <var class="varname">x</var><sub>2</sub>] 
+              <span class="eqsymbol">ƒ</span> = (<span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub>1</sub>) - 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub>2</sub>)) / (<var class="varname">x</var><sub>1</sub> - 
+              <var class="varname">x</var><sub>2</sub>) 
+            </li>
+</ul>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="NaN%" headers="d530039e41 "><p> A 
+            <var>k</var>-order
+            derivative of interpolant 
+            <span class="eqsymbol">ƒ</span>(<var class="varname">x</var>) at interpolation site 
+            <img src="GUID-8772A661-0D6F-4E4D-AF58-5912D09FFFBA-low.gif" width="13" height="14"/>. 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="NaN%" headers="d530039e43 "><img src="GUID-98DC3AAF-ADFB-4F57-A595-42B8863D2EC9-low.gif" width="49" height="25"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL17-1" class="NoLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Interpolants to the Function 
+    <span class="eqsymbol">ƒ</span> at 
+    <var class="varname">x</var><sub>1</sub>,..., 
+  <var class="varname">x</var><sub><var>n</var></sub>
+  and Boundary Conditions</span></caption><thead align="left"><tr><th class="cellrowborder" align="center" valign="top" width="36.101083032490976%" id="d530039e679">Concept 
+        </th>
+<th class="row-nocellborder" align="center" valign="top" width="63.898916967509024%" id="d530039e681">Mathematical Notation 
+        </th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Linear interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1, 
+              <var>i</var></sub> + 
+            <var>c</var><sub>2, 
+              <var>i</var></sub>(<var class="varname">x</var> - 
+            <var class="varname">x</var><sub><var>i</var></sub>), 
+          </p>
+<p> where 
+          </p>
+<p><ul id="GUID-4027C126-D263-48F0-9BCC-70CB8EDC09D2"><li><var class="varname">x</var> ∈ [ 
+              <var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>) 
+            </li>
+<li><var>c</var><sub>1, 
+                <var>i</var></sub> = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+<li><var>c</var><sub>2, 
+                <var>i</var></sub> = [<var class="varname">x</var><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub> ]<span class="eqsymbol">ƒ</span></li>
+<li><var>i</var> = 1,..., 
+              <var>n</var>-1 
+            </li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Piecewise parabolic interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1, 
+              <var>i</var></sub> + 
+            <var>c</var><sub>2, 
+              <var>i</var></sub>(<var class="varname">x</var> - 
+            <var class="varname">x</var><sub><var>i</var></sub>) + 
+            <var>c</var><sub>3, 
+              <var>i</var></sub>(<var class="varname">x</var> - 
+            <var class="varname">x</var><sub><var>i</var></sub>)<sup>2</sup>,
+            
+            <var class="varname">x</var> ∈ [ 
+            <var>x</var><sub><var>i</var></sub>, 
+            <var>x</var><sub><var>i</var>+1</sub>) 
+          </p>
+<p> Coefficients 
+            <var>c</var><sub>1, 
+              <var>i</var></sub>, 
+            <var>c</var><sub>2, 
+              <var>i</var></sub>, and 
+            <var>c</var><sub>3, 
+              <var>i</var></sub> depend on the conditions: 
+          </p>
+<p><ul id="GUID-3412F9D1-8B5A-4A4F-B1AF-11C073AAF4B6"><li><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var><sub><var>i</var></sub>) = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+<li><var>P</var><sub><var>i</var></sub>(<var>x</var><sub><var>i</var>+1</sub>)
+              = 
+              <span class="eqsymbol">ƒ</span>(<var>x</var><sub><var>i</var>+1</sub>)
+              
+            </li>
+<li><var>P</var><sub><var>i</var></sub>((<var>x</var><sub><var>i</var>+1</sub>
+              + 
+              <var class="varname">x</var><sub><var>i</var></sub>) / 2) = 
+              <var>v</var><sub><var>i</var>+1</sub></li>
+</ul>
+</p>
+<p> where parameter 
+            <var>v</var><sub><var>i</var>+1</sub>
+            depends on the interpolant being continuously differentiable: 
+          </p>
+<p><var>P</var><sub><var>i</var>-1</sub><sup>(1)</sup>(<var class="varname">x</var><sub><var>i</var></sub>) = 
+            <var>P</var><sub><var>i</var></sub><sup>(1)</sup>(<var class="varname">x</var><sub><var>i</var></sub>) 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Piecewise parabolic Subbotin interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var>(<var class="varname">x</var>) = 
+            <var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1,<var>i</var></sub>+<var>c</var><sub>2,<var>i</var></sub>(<var>x</var>-<var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)+<var>c</var><sub>3,<var>i</var></sub>(<var>x</var>-<var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)<sup>2</sup>+<var>d</var><sub>3,<var>i</var></sub>((<var>x</var>-<var class="varname">t</var><sub><var>i</var></sub>)<sub>+</sub>)<sup>2</sup>,
+            
+          </p>
+<p> where 
+          </p>
+<p><ul id="GUID-175998D8-F92F-415F-ACDF-8748AC225384"><li><p><var class="varname">x</var>
+                ∈ [ 
+                <var>t</var><sub><var>i</var></sub>, 
+                <var>t</var><sub><var>i</var>+1</sub>) 
+              </p>
+</li>
+<li><p>{<var class="varname">t</var><sub><var>i</var></sub>}<sub><var>i</var>=1,...,<var>n</var>+1</sub>
+                is a sequence of knots such that 
+              </p>
+<ul id="GUID-6E8EDB1E-B20B-46F6-9307-17869D58EC46"><li><p><var class="varname">t</var><sub>1</sub> = 
+                    <var class="varname">x</var><sub>1</sub>, 
+                    <var class="varname">t</var><sub><var>n</var>+1</sub> = 
+                    <var class="varname">x</var><sub><var>n</var></sub></p>
+</li>
+<li><p><var class="varname">t</var><sub><var>i</var></sub> ∈ (<var class="varname">x</var><sub><var>i</var>-1</sub>, 
+                    <var class="varname">x</var><sub><var>i</var></sub>), 
+                    <var>i</var> = 2,..., 
+                    <var>n</var></p>
+</li>
+</ul>
+</li>
+<li><p><img src="GUID-A3324E50-8840-492D-BBED-2D0986B7D548-low.gif" width="160" height="48"/></p>
+</li>
+</ul>
+</p>
+<p> Coefficients 
+            <var>c</var><sub>1,<var>i</var></sub>, 
+            <var>c</var><sub>2,<var>i</var></sub>, 
+            <var>c</var><sub>3,<var>i</var></sub>, and 
+            <var>d</var><sub>3,<var>i</var></sub> depend on the
+            following conditions: 
+          </p>
+<p><ul id="GUID-AA05B2F3-DFF7-4044-8CE2-EC6DC3E70E50"><li><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var><sub><var>i</var></sub>) = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>), 
+              <var>P</var><sub><var>i</var></sub>(<var class="varname">x</var><sub><var>i</var>+1</sub>) = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var>+1</sub>) 
+            </li>
+<li><var>P</var>(<var class="varname">x</var>) is a continuously differentiable polynomial
+              of the second degree on [ 
+              <var>t</var><sub><var>i</var></sub>, 
+              <var>t</var><sub><var>i</var>+1</sub>), 
+              <var>i</var> = 1,..., 
+              <var>n</var>. 
+            </li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p>Piecewise cubic Hermite interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1,<var>i</var></sub> + 
+            <var>c</var><sub>2,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)
+            + 
+            <var>c</var><sub>3,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)<sup>2</sup>
+            + 
+            <var>c</var><sub>4,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var>i</var></sub>)<sup>3</sup>,
+            
+          </p>
+<p> where 
+          </p>
+<p><ul id="GUID-D2DD6DCF-A026-4908-A2F4-3B4BF3BA5BF9"><li><var class="varname">x</var>
+              ∈ [ 
+              <var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>) 
+            </li>
+<li><var>c</var><sub>1,<var>i</var></sub> = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+<li><var>c</var><sub>2,<var>i</var></sub> = 
+              <var>s</var><sub><var>i</var></sub></li>
+<li><var>c</var><sub>3,<var>i</var></sub> =
+              ([<var class="varname">x</var><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span> - 
+              <var>s</var><sub><var>i</var></sub>
+              ) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              - 
+              <var>c</var><sub>4,<var>i</var></sub>(<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              
+            </li>
+<li><var>c</var><sub>4,<var>i</var></sub> = (<var>s</var><sub><var>i</var></sub>
+              + 
+              <var>s</var><sub><var>i</var>+1</sub>
+              - 2[<var class="varname">x</var><sub><var>i</var></sub>,
+              
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span>) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)<sup>2</sup></li>
+<li><var>i</var> = 1,..., 
+              <var>n</var>-1 
+            </li>
+<li><var>s</var><sub><var>i</var></sub>
+              = 
+              <span class="eqsymbol">ƒ</span><sup>(1)</sup>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p>Piecewise cubic Bessel interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1,<var>i</var></sub> + 
+            <var>c</var><sub>2,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)
+            + 
+            <var>c</var><sub>3,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)<sup>2</sup>
+            + 
+            <var>c</var><sub>4,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var>i</var></sub>)<sup>3</sup>,
+            
+          </p>
+<p> where 
+          </p>
+<p><ul id="GUID-389DCE31-BE59-4D1B-9FE2-8F212DE68511"><li><var class="varname">x</var>
+              ∈ [ 
+              <var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>) 
+            </li>
+<li><var>c</var><sub>1,<var>i</var></sub> = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+<li><var>c</var><sub>2,<var>i</var></sub> = 
+              <var>s</var><sub><var>i</var></sub></li>
+<li><var>c</var><sub>3,<var>i</var></sub> =
+              ([<var class="varname">x</var><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span> - 
+              <var>s</var><sub><var>i</var></sub>
+              ) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              - 
+              <var>c</var><sub>4,<var>i</var></sub>(<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              
+            </li>
+<li><var>c</var><sub>4,<var>i</var></sub> = (<var>s</var><sub><var>i</var></sub>
+              + 
+              <var>s</var><sub><var>i</var>+1</sub>
+              - 2[<var class="varname">x</var><sub><var>i</var></sub>,
+              
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span>) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)<sup>2</sup></li>
+<li><var>i</var> = 1,..., 
+              <var>n</var>-1 
+            </li>
+<li><var>s</var><sub><var>i</var></sub>
+              = (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>[<var class="varname">x</var><sub><var>i</var>-1</sub>, 
+              <var class="varname">x</var><sub><var>i</var></sub>]<span class="eqsymbol">ƒ</span> + 
+              <span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var>-1</sub>[<var class="varname">x</var><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span>) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>
+              + 
+              <span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var>+1</sub>)
+              
+            </li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p>Piecewise cubic Akima interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1,<var>i</var></sub> + 
+            <var>c</var><sub>2,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)
+            + 
+            <var>c</var><sub>3,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)<sup>2</sup>
+            + 
+            <var>c</var><sub>4,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var>i</var></sub>)<sup>3</sup>,
+            
+          </p>
+<p> where 
+          </p>
+<p><ul id="GUID-4BB266DF-2BAC-43EA-BBCE-4ADD5E441FC3"><li><var class="varname">x</var>
+              ∈ [ 
+              <var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>) 
+            </li>
+<li><var>c</var><sub>1,<var>i</var></sub> = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+<li><var>c</var><sub>2,<var>i</var></sub> = 
+              <var>s</var><sub><var>i</var></sub></li>
+<li><var>c</var><sub>3,<var>i</var></sub> =
+              ([<var class="varname">x</var><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span> - 
+              <var>s</var><sub><var>i</var></sub>
+              ) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              - 
+              <var>c</var><sub>4,<var>i</var></sub>(<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              
+            </li>
+<li><var>c</var><sub>4,<var>i</var></sub> = (<var>s</var><sub><var>i</var></sub>
+              + 
+              <var>s</var><sub><var>i</var>+1</sub>
+              - 2[<var class="varname">x</var><sub><var>i</var></sub>,
+              
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span>) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)<sup>2</sup></li>
+<li><var>i</var> = 1,..., 
+              <var>n</var>-1 
+            </li>
+<li><var>s</var><sub><var>i</var></sub>
+              = (<var>w</var><sub><var>i</var>+1</sub>[<var class="varname">x</var><sub><var>i</var>-1</sub>, 
+              <var class="varname">x</var><sub><var>i</var></sub>]<span class="eqsymbol">ƒ</span> + 
+              <var>w</var><sub><var>i</var>-1</sub>[<var class="varname">x</var><span class="eqsymbol">ƒ</span><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span>) /
+              (<var>w</var><sub><var>i</var>+1</sub> + 
+              <var>w</var><sub><var>i</var>-1</sub>), 
+              <p>where 
+              </p>
+<p><var>w</var><sub><var>i</var></sub> =
+                |[<var class="varname">x</var><sub><var>i</var></sub>, 
+                <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span> - [<var class="varname">x</var><sub><var>i</var>-1</sub>, 
+                <var class="varname">x</var><sub><var>i</var></sub>]<span class="eqsymbol">ƒ</span>| 
+              </p>
+</li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p>Piecewise natural cubic interpolant 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><var>P</var><sub><var>i</var></sub>(<var class="varname">x</var>) = 
+            <var>c</var><sub>1,<var>i</var></sub> + 
+            <var>c</var><sub>2,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)
+            + 
+            <var>c</var><sub>3,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var/></sub><sub><var>i</var></sub>)<sup>2</sup>
+            + 
+            <var>c</var><sub>4,<var>i</var></sub>(<var>x</var>
+            - 
+            <var class="varname">x</var><sub><var>i</var></sub>)<sup>3</sup>,
+            
+          </p>
+<p> where 
+          </p>
+<p><ul id="GUID-D64DD619-7ACD-4DBD-86C8-DC523C0E1B04"><li><var class="varname">x</var>
+              ∈ [ 
+              <var>x</var><sub><var>i</var></sub>, 
+              <var>x</var><sub><var>i</var>+1</sub>) 
+            </li>
+<li><var>c</var><sub>1,<var>i</var></sub> = 
+              <span class="eqsymbol">ƒ</span>(<var class="varname">x</var><sub><var>i</var></sub>) 
+            </li>
+<li><var>c</var><sub>2,<var>i</var></sub> = 
+              <var>s</var><sub><var>i</var></sub></li>
+<li><var>c</var><sub>3,<var>i</var></sub> =
+              ([<var class="varname">x</var><sub><var>i</var></sub>, 
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span> - 
+              <var>s</var><sub><var>i</var></sub>
+              ) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              - 
+              <var>c</var><sub>4,<var>i</var></sub>(<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)
+              
+            </li>
+<li><var>c</var><sub>4,<var>i</var></sub> = (<var>s</var><sub><var>i</var></sub>
+              + 
+              <var>s</var><sub><var>i</var>+1</sub>
+              - 2[<var class="varname">x</var><sub><var>i</var></sub>,
+              
+              <var class="varname">x</var><sub><var>i</var>+1</sub>]<span class="eqsymbol">ƒ</span>) / (<span class="eqsymbol">Δ</span><var>x</var><sub><var>i</var></sub>)<sup>2</sup></li>
+<li><var>i</var> = 1,..., 
+              <var>n</var>-1 
+            </li>
+<li> Parameter 
+              <var>s</var><sub><var>i</var></sub>
+              depends on the condition that the interpolant is twice continuously
+              differentiable: 
+              <var>P</var><sub><var>i</var>-1</sub><sup>(2)</sup>(<var class="varname">x</var><sub><var>i</var></sub>) = 
+              <var>P</var><sub><var>i</var></sub><sup>(2)</sup>(<var class="varname">x</var><sub><var>i</var></sub>). 
+            </li>
+</ul>
+</p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Not-a-knot boundary condition. 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p> Parameters 
+            <var>s</var><sub>1</sub> and 
+            <var>s</var><sub><var>n</var></sub>
+            provide 
+            <var>P</var><sub>1</sub> = 
+            <var>P</var><sub>2</sub> and 
+            <var>P</var><sub><var>n</var>-1</sub> = 
+            <var>P</var><sub><var>n</var></sub>, so that the
+            first and the last interior breakpoints are inactive. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Free-end boundary condition. 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><span class="eqsymbol">ƒ</span><sup>"</sup>(<var class="varname">x</var><sub>1</sub>) = 
+            <span class="eqsymbol">ƒ</span><sup>"</sup>(<var class="varname">x</var><sub><var>n</var></sub>) = 0 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Look-up interpolator for discrete set of
+            points 
+            <span>(<var>x</var><sub>1</sub>, 
+              <var class="varname">y</var><sub>1</sub>),...,
+              (<var>x</var><sub><var>n</var></sub>, 
+              <var class="varname">y</var><sub><var>n</var></sub>)</span> . 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><img src="GUID-9A4D3C6F-3202-4655-B69E-7DFDEC192DFE-low.gif" width="172" height="120"/></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Step-wise constant continuous right
+            interpolator. 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><img src="GUID-45EA8EF7-3A12-4935-8508-B7982BC4FD13-low.gif" width="197" height="122"/></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" align="left" valign="top" width="36.101083032490976%" headers="d530039e679 "><p> Step-wise constant continuous left
+            interpolator. 
+          </p>
+</td>
+<td class="row-nocellborder" align="left" valign="top" width="63.898916967509024%" headers="d530039e681 "><p><img src="GUID-67A9E85F-0247-4E54-B75B-5992C1FDACEC-low.gif" width="201" height="122"/></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-426E072B-5F6B-467B-955B-8F7505F7956A.html">Data Fitting Functions</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lahef_aa"/>
+<meta name="abstract" content="Factorizes a panel of a complex Hermitian matrix A using Aasen's algorithm."/>
+<meta name="description" content="Factorizes a panel of a complex Hermitian matrix A using Aasen's algorithm."/>
+<meta name="DC.subject" content="?lahef_aa, clahef_aa, zlahef_aa, LAPACK routines"/>
+<meta name="keywords" content="?lahef_aa, clahef_aa, zlahef_aa, LAPACK routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-55DCF8F5-3610-498D-8473-20A625E5AC3A"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lahef_aa</title>
+
+</head>
+<body id="GUID-55DCF8F5-3610-498D-8473-20A625E5AC3A">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lahef_aa</span></h1>
+<!-- Factorizes a panel of a complex Hermitian matrix  A  using Aasen's algorithm.--><div><p class="shortdesc"> Factorizes a panel of a complex Hermitian matrix <var>A</var> using Aasen's algorithm.</p>
+<div id="SYNTAX_270C38C6100945D4A3EDB5DD5B882B80"><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call clahef_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zlahef_aa</span><span class="delim">(</span><span class="var">uplo</span><span class="sep">, </span><span class="var">j1</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">nb</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">ipiv</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ldh</span><span class="sep">, </span><span class="var">work</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="DESCRIPTION_6D7FE6ED89D54EFF9FE146474D5F9317"><h2 class="sectiontitle">Description</h2><p><span class="option">?lahef_aa</span> factorizes a panel of a complex Hermitian matrix <var>A</var> using Aasen's algorithm. The panel consists of a set of <span class="parmname">nb</span> rows of <var>A</var> when <span class="parmname">uplo</span> is 'U', or a set of <span class="parmname">nb</span> columns when <span class="parmname">uplo</span> is 'L'. In order to factorize the panel, Aasen's algorithm requires the last row, or column, of the previous panel. The first row, or column, of <var>A</var> is set to be the first row, or column, of an identity matrix, which is used to factorize the first panel. The resulting <var>j</var>-th row of <var>U</var>, or <var>j</var>-th column of <var>L</var>, is stored in the (<var>j</var>-1)-st row, or column, of <var>A</var> (without the unit diagonals), while the diagonal and subdiagonal of <var>A</var> are overwritten by those of <var>T</var>. </p>
+</div>
+<div class="section" id="ARGUMENTS_E4DD0223F6C746A8A29B6562D3769223"><h2 class="sectiontitle">Input Parameters</h2><p/>
+<dl id="GUID-3E601878-742A-48AC-AA41-92C775EE10FE"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span></p>
+<p>If <span class="parmname">uplo</span> = 'U': Upper triangular of <var>A</var> is stored.</p>
+<p>If <span class="parmname">uplo</span>= 'L': Lower triangular of <var>A</var> is stored..</p>
+</dd>
+<dt class="dlterm"><span class="parmname">j1</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The location of the first row, or column, of the panel within the submatrix of <var>A</var>, passed to this routine, for example when called by <span class="option">?hetrf_aa</span>. For the first panel, <span class="parmname">j1</span> is 1, while for the remaining panels, <span class="parmname">j1</span> is 2.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The dimension of the submatrix. <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The dimension of the panel to be factorized.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">clahef_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlahef_aa</span></p>
+<p>Array of size (<span class="parmname">lda</span>,<span class="parmname">m</span>) for the first panel, and size (<span class="parmname">lda</span>,<span class="parmname">m</span>+1) for the remaining panels. On entry, <span class="parmname">a</span> contains the last row, or column, of the previous panel, and the trailing submatrix of <var>A</var> to be factorized, except for the first panel, only the panel is passed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the array <span class="parmname">a</span>. <span class="parmname">lda</span><span class="eqsymbol">≥</span> max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">clahef_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlahef_aa</span></p>
+<p>Workspace array of size <span>(<span class="parmname">ldh</span>, <span class="parmname">nb</span>)</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldh</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of the workspace <span class="parmname">h</span>. <span class="parmname">ldh</span><span class="eqsymbol">≥</span> max(1,<span class="parmname">m</span>).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="ARGUMENTS_840FA748FA5A4C56BA3E6D9AC2C2F084"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-9ABE7362-EEAD-4B2E-8D35-649AC14FF421"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, the leading panel is factorized.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipiv</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER </span>. </span>Array of size (<span class="parmname">n</span>). Details of the row and column interchanges: the row and column <var>k</var> were interchanged with the row and column <span class="parmname">ipiv</span><samp class="codeph">(<var>k</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">h</span></dt>
+
+<dd><p>Workspace array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">COMPLEX </span> for <span class="option">clahef_aa</span></p>
+<p><span class="keyword">COMPLEX*16 </span> for <span class="option">zlahef_aa</span></p>
+<p>Workspace array of size (<span class="parmname">m</span>).</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

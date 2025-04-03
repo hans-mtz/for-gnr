@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?larfgp"/>
+<meta name="abstract" content="Generates an elementary reflector (Householder matrix) with non-negative beta ."/>
+<meta name="description" content="Generates an elementary reflector (Householder matrix) with non-negative beta ."/>
+<meta name="DC.subject" content="?larfgp, LAPACK routines, auxiliary routines, Householder matrix, elementary reflector, LAPACK generation, LAPACK"/>
+<meta name="keywords" content="?larfgp, LAPACK routines, auxiliary routines, Householder matrix, elementary reflector, LAPACK generation, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-7A657B61-DDFD-4132-91DF-51D2CD142E70"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?larfgp</title>
+
+</head>
+<body id="GUID-7A657B61-DDFD-4132-91DF-51D2CD142E70">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?larfgp</span></h1>
+<!--Generates an elementary reflector (Householder matrix) with non-negative beta .--><div><p class="shortdesc">Generates an elementary reflector (Householder matrix) with non-negative beta .</p>
+<div class="section" id="GUID-1A0C3C82-AE1D-4A5F-A6FA-1A3180A2F63D"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slarfgp</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlarfgp</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clarfgp</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlarfgp</span><span class="delim">( </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-A66ACCFC-2F20-4802-A8AD-3FDF95D721CC"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-EA8A8D7A-1A81-4A9C-9F13-C009F492425B"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?larfgp</span> generates a real/complex elementary reflector <var>H</var> of order <var>n</var>, such that</p>
+<p><img src="GUID-39533CCC-C827-4FBF-B022-52A29F6D8A90-low.gif" alt="Equation" align="center" class=".eq"/> for real flavors and</p>
+<p><img src="GUID-B50F1DA4-64F9-41CE-8B64-96D013595B0E-low.gif" alt="Equation" align="center" class=".eq"/> for complex flavors,</p>
+<p>where <var>alpha</var> and <var>beta</var> are scalars (with <var>beta</var> real and non-negative for all flavors), and <var>x</var> is an (<var>n</var>-1)-element real/complex vector. <var>H</var> is represented in the form</p>
+<p><img src="GUID-67DDBC89-0365-4CFF-BBB2-25AC5077A378-low.gif" alt="Equation" align="center" class=".eq"/> for real flavors and</p>
+<p><img src="GUID-12E970FA-574B-4582-A720-7DDCF8C2C133-low.png" alt="Equation" align="center" class=".eq"/> for complex flavors,</p>
+<p>where <var>tau</var> is a real/complex scalar and v is a real/complex (<var>n</var>-1)-element vector. Note that for <span class="option">c</span>/<span class="option">zlarfgp</span>, <var>H</var> is not Hermitian.</p>
+<p>If the elements of <var>x</var> are all zero (and, for complex flavors, <var>alpha</var> is real), then <samp class="codeph"><var>tau</var> = 0</samp> and <var>H</var> is taken to be the unit matrix.</p>
+<p>Otherwise, <samp class="codeph">1 ≤  <var>tau</var> ≤ 2</samp> (for real flavors), or</p>
+<p><samp class="codeph">1 ≤ Re(<var>tau</var>) ≤ 2</samp> and <samp class="codeph">abs(<var>tau</var>-1) ≤ 1</samp> (for complex flavors).</p>
+</div>
+<div class="section" id="GUID-53DC6852-AB85-4437-8F10-92906046BFD4"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-E51B4DA8-B363-46DB-A5F6-BE6EE30FB0BD"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the elementary reflector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfgp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfgp</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfgp</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfgp</span></p>
+<p>On entry, the value alpha.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">s</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfgp</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfgp</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfgp</span></p>
+<p>Array, <span class="keyword">DIMENSION</span> (1+(<var>n</var>-2)*abs(<var>incx</var>)). </p>
+<p>On entry, the vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>The increment between elements of <var>x</var>. <samp class="codeph"><var>incx</var> &gt; 0</samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-0A520629-CA32-499B-86FA-2C39F0932864"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-53BEE5F4-7CA6-444C-A222-34C4512A49E2"><dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>On exit, it is overwritten with the value <var>beta</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>On exit, it is overwritten with the vector <var>v</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slarfgp</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlarfgp</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clarfgp</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlarfgp</span></p>
+<p>The value <var>tau</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

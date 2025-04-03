@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hbtrd"/>
+<meta name="abstract" content="Reduces a complex Hermitian band matrix to tridiagonal form."/>
+<meta name="description" content="Reduces a complex Hermitian band matrix to tridiagonal form."/>
+<meta name="DC.subject" content="?hbtrd, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?hbtrd, LAPACK routines, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-6E6360FD-4FE6-41C9-9092-BC7A67ED7967"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hbtrd</title>
+
+</head>
+<body id="GUID-6E6360FD-4FE6-41C9-9092-BC7A67ED7967">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hbtrd</span></h1>
+<!--Reduces a complex Hermitian band matrix to tridiagonal form.--><div><p class="shortdesc">Reduces a complex Hermitian band matrix to tridiagonal form.</p>
+<div class="section" id="GUID-99976D16-85CA-4B3F-B1CF-DB518E04ECBB"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chbtrd</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhbtrd</span><span class="delim">(</span><span class="var">vect</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">kd</span><span class="sep">, </span><span class="var">ab</span><span class="sep">, </span><span class="var">ldab</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">q</span><span class="sep">, </span><span class="var">ldq</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hbtrd</span><span class="delim">(</span><span class="var">ab</span><span class="delim"> [</span><span class="sep">, </span><span class="var">q</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">vect</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-457E45B8-0E8E-42F0-8903-C9F279A1B238"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-3E872478-6A2C-4CC3-9571-E8FF1E3D08FB"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine reduces a complex Hermitian band matrix <var>A</var> to symmetric tridiagonal form <var>T</var> by a unitary similarity transformation: <samp class="codeph"><var>A</var> = <var>Q*T*Q</var></samp><sup class="power"><var>H</var></sup>. The unitary matrix <var>Q</var> is determined as a product of Givens rotations. </p>
+<p>If required, the routine can also form the matrix <var>Q</var> explicitly.</p>
+</div>
+<div class="section" id="GUID-86020A26-D5F5-4705-9EE3-6129E5D94E97"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-626B2A0A-EC59-4C0E-8340-2CC0EA6E202D"><dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'V'</span>, <span class="keyword">'N'</span>, or <span class="keyword">'U'</span>.</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, the routine returns the explicit matrix <var>Q</var>. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, the routine does not return <var>Q</var>.</p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'U'</span></samp>, the routine updates matrix <var>X</var> by forming <var>Q</var>*<var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>.</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, <var>ab</var> stores the upper triangular part of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, <var>ab</var> stores the lower triangular part of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrix <var>A</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">kd</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of super- or sub-diagonals in <var>A</var></p>
+<p>(<samp class="codeph"><var>kd</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">ab</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chbtrd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhbtrd</span>.</p>
+<p><var>ab</var><span>(<var>ldab</var>,*)</span> is an array containing either upper or lower triangular part of the matrix <var>A</var> (as specified by <var>uplo</var>) in band storage format. </p>
+<p>The second dimension of <var>ab</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var>(*) is a workspace array. </p>
+<p>The dimension of <var>work</var> must be at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chbtrd</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhbtrd</span>.</p>
+<p><span class="parmname">q</span><span>(<var>ldq</var>,*)</span>
+ is an array.</p>
+<p>If <samp class="codeph"><span class="parmname">vect</span> = <span class="keyword">'U'</span></samp>, the <span class="parmname">q</span> array must contain an <var>n</var>-by-<var>n</var> matrix <var>X</var>. </p>
+<p>If <samp class="codeph"><span class="parmname">vect</span> = <span class="keyword">'N'</span></samp> or <samp class="codeph"><span class="keyword">'V'</span></samp>, the <span class="parmname">q</span> parameter need not be set.'</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldab</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>ab</var>; at least <var>kd</var>+1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldq</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>q</var>. Constraints:</p>
+<p><samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp> if <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp> or <samp class="codeph"><span class="keyword">'U'</span></samp>;</p>
+<p><samp class="codeph"><var>ldq</var><span class="eqsymbol">≥</span> 1</samp> if <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C230DFBA-7632-4473-9869-4E0D56ACE73F"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-274487F0-2B1A-46DF-99FB-DDA1C89D8C2D"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>On exit, the diagonal elements of the array <span class="parmname">ab</span> are overwritten by the diagonal elements of the tridiagonal matrix <var>T</var>. If <span class="parmname">kd</span> &gt; 0, the elements on the first superdiagonal (if <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'U'</span></samp>) or the first subdiagonal (if <samp class="codeph"><span class="parmname">uplo</span> = <span class="keyword">'L'</span></samp>) are ovewritten by the off-diagonal elements of <var>T</var>. The rest of <span class="parmname">ab</span> is overwritten by values generated during the reduction.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span>, <span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chbtrd</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhbtrd</span>. </p>
+<p>Arrays: </p>
+<p><var>d</var><span>(*)</span> contains the diagonal elements of the matrix <var>T</var>. </p>
+<p>The dimension of <var>d</var> must be at least max(1, <var>n</var>).</p>
+<p><var>e</var><span>(*)</span> contains the off-diagonal elements of <var>T</var>. </p>
+<p>The dimension of <var>e</var> must be at least max(1, <var>n</var>-1).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, <var>q</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, <var>q</var> contains the <var>n</var>-by-<var>n</var> matrix <var>Q</var>. </p>
+<p>If <samp class="codeph"><var>vect</var> = <span class="keyword">'U'</span></samp>, <var>q</var> contains the product  <var>X</var>* <var>Q</var>. </p>
+<p>The second dimension of <var>q</var> must be: </p>
+<p>at least max(1, <var>n</var>) if <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>;</p>
+<p>at least 1 if <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-56E026EC-E2D0-4997-941A-05E0427610C0"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hbtrd</span> interface are the following:</p>
+<dl id="GUID-FF6D3DEC-0EC5-4FB6-A389-C13F24771503"><dt class="dlterm"><span class="parmname">ab</span></dt>
+
+<dd><p>Holds the array <var>A</var> of size (<var>kd+1,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">q</span></dt>
+
+<dd><p>Holds the matrix <var>Q</var> of size (<var>n,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vect</span></dt>
+
+<dd><p>If omitted, this argument is restored based on the presence of argument <var>q</var> as follows: <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>, if <var>q</var> is present, <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, if <var>q</var> is omitted. </p>
+<p>If present, <var>vect</var> must be equal to <span class="keyword">'V'</span> or <span class="keyword">'U'</span> and the argument <var>q</var> must also be present. Note that there will be an error condition if <var>vect</var> is present and <var>q</var> omitted.</p>
+</dd>
+</dl>
+<p>Note that diagonal (<span class="parmname">d</span>) and off-diagonal (<span class="parmname">e</span>) elements of the matrix <var>T</var> are
+omitted because they are kept in the matrix <var>A</var> on exit.</p>
+</div>
+<div class="section" id="GUID-3FF42753-8566-40A0-9EB8-4123018C63A2"><h2 class="sectiontitle">Application Notes</h2><p>The computed matrix <var>T</var> is exactly similar to a matrix <var>A</var> + <var>E</var>, where <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>c</var>(<var>n</var>)*<span class="eqsymbol">ε</span>*||<var>A</var>||<sub>2</sub></samp>, <var>c</var>(<var>n</var>) is a modestly increasing function of <var>n</var>, and <span class="eqsymbol">ε</span> is the machine precision. The computed matrix <var>Q</var> differs from an exactly unitary matrix by a matrix <var>E</var> such that <samp class="codeph">||<var>E</var>||<sub>2</sub> = <var>O</var>(<span class="eqsymbol">ε</span>)</samp>.</p>
+<p>The total number of floating-point operations is approximately <samp class="codeph">20<var>n</var><sup class="power">2</sup>*<var>kd</var></samp> if <samp class="codeph"><var>vect</var> = <span class="keyword">'N'</span></samp>, with <samp class="codeph">10<var>n</var><sup class="power">3</sup>*(<var>kd</var>-1)/<var>kd</var></samp> additional operations if <samp class="codeph"><var>vect</var> = <span class="keyword">'V'</span></samp>.</p>
+<p>The real counterpart of this routine is <a href="GUID-A0CCE615-0242-45E6-BA30-AA338E6111E1.html#GUID-A0CCE615-0242-45E6-BA30-AA338E6111E1">sbtrd</a>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="mkl_finalize"/>
+<meta name="abstract" content="Terminates Intel&reg; oneAPI Math Kernel Library execution environment and frees resources allocated by the library."/>
+<meta name="description" content="Terminates Intel&reg; oneAPI Math Kernel Library execution environment and frees resources allocated by the library."/>
+<meta name="DC.subject" content="specific hardware support, mkl_finalize, support functions"/>
+<meta name="keywords" content="specific hardware support, mkl_finalize, support functions"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AF27C389-5BB7-450F-B7BF-43D592D5B1C4.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-B954DF2B-8075-4AA4-9EF4-3F19063386EC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>mkl_finalize</title>
+
+</head>
+<body id="GUID-B954DF2B-8075-4AA4-9EF4-3F19063386EC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">mkl_finalize</span></h1>
+<!--Terminates Intel&reg; oneAPI Math Kernel Library execution environment and frees resources allocated by the library.--><div><p class="shortdesc">Terminates Intel&reg; oneAPI Math Kernel Library execution environment and frees resources allocated by the library.</p>
+<div class="section" id="GUID-4A708C78-61F3-485F-A997-C9A85FE5351F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call </span><span class="kwd">mkl_finalize</span></p></dl></div>
+<div class="section" id="GUID-B128DD10-3ECE-4FDC-A6DC-CB04CD1D1166"><h2 class="sectiontitle">Fortran Include Files/Modules </h2><ul id="d163e286"><li>Include file: <span class="filepath">mkl.fi</span></li>
+<li>Module (compiled): <span class="filepath">mkl_service.mod</span></li>
+<li>Module (source): <span class="filepath">mkl_service.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C0980D3F-1962-4402-92EC-F4E87C70451F"><h2 class="sectiontitle">Description</h2><p>This function frees resources allocated by Intel&reg; oneAPI Math Kernel Library. Once this function is called, the application can no longer call Intel&reg; oneAPI Math Kernel Library functions other than<span class="option">mkl_finalize</span>.</p>
+<p>In particular, the <span class="option">mkl_finalize</span>function enables you to free resources when a third-party shared library is statically linked to Intel&reg; oneAPI Math Kernel Library. To avoid resource leaks that may happen when a shared library is loaded and unloaded multiple times, call<span class="option">mkl_finalize</span> each time the library is unloaded. The recommended method to do this depends on the operating system:</p>
+<ul id="GUID-F94A893D-A4CE-4DA8-A4B8-CF05EA4F614A"><li id="LI_7880B023A3FC43A2B06DEC4B579351B9"><p>On Linux* or macOS*,  place the call into a shared library
+destructor.</p>
+</li>
+<li id="LI_213979A6A5AD4BACA916418C14860771"><p>On Windows*, call
+<span class="option">mkl_finalize</span> from the <samp class="codeph">DLL_PROCESS_DETACH</samp> handler of
+<span class="option">DllMain</span>.</p>
+</li>
+</ul>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Intel&reg; oneAPI Math Kernel Library shared libraries automatically perform finalization when they are unloaded. If an application is statically linked to Intel&reg; oneAPI Math Kernel Library, the operating system frees all resources allocated by Intel&reg; oneAPI Math Kernel Library during termination of the process associated with the application.</p>
+</div>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-AF27C389-5BB7-450F-B7BF-43D592D5B1C4.html">Miscellaneous</a></div>
+</div>
+<div/>
+</body>
+</html>

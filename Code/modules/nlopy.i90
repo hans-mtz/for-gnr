@@ -1,0 +1,36 @@
+# 1 "/Volumes/SSD Hans 1/Github/gnr/Code/modules/nlopy.f90"
+module nlopt
+    include 'nlopt.f'
+    use iso_c_binding, only: c_double, c_int, c_char
+    implicit none
+    type, bind(c) :: control_type
+        character(kind=c_char,len=*) :: algorithm
+
+    end type control_type
+    interface
+        subroutine f(val,n, x, grad, need_grad, f_data) 
+            use iso_c_binding
+            real(c_double) :: val, x(n), grad(n)
+            integer(c_int) :: n, need_grad
+        end subroutine f
+    end interface
+contains
+    subroutine minimize(f,  params, data, control)
+        external f
+        real(c_double), intent(inout) :: params(:)
+        real(c_double), intent(in) :: data(:,:)
+        real(c_double) :: minf
+        type(control_type) :: control
+        integer(c_int) :: opt, n, ires
+
+        n=size(params)
+
+        call nlo_create(opt,control%algorithm,n)
+
+        call nlo_set_min_objective(ires,opt,f,0)
+
+        call nlo_optimize(ires,opt,params,minf)
+        
+        call nlo_destroy(opt)
+        
+    end subroutine minimize

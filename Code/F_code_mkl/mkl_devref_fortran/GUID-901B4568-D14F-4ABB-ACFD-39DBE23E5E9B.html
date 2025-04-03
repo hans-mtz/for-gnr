@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Direct Method"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-863A7B42-D87A-47CE-9FF4-3D0C0FF4F071.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-901B4568-D14F-4ABB-ACFD-39DBE23E5E9B"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Direct Method</title>
+
+</head>
+<body id="GUID-901B4568-D14F-4ABB-ACFD-39DBE23E5E9B">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Direct Method</h1>
+<div><p>For solvers that use the direct method, the basic technique employed in finding the solution of the system <var>Ax</var> = <var>b</var> is to first factor <var>A</var> into triangular matrices. That is, find a lower triangular matrix <var>L</var> and an upper triangular matrix <var>U</var>, such that <samp class="codeph"><var>A </var>= <var>LU</var></samp>. Having obtained such a factorization (usually referred to as an <var>LU</var> decomposition or <var>LU</var> factorization), the solution to the original problem can be rewritten as follows. </p>
+<dl id="GUID-FEE5B88F-B9F6-410D-A942-308A99E32D16"><dt class="dlterm"/>
+
+<dd><samp class="codeph"><var>Ax</var> = <var>b</var></samp></dd>
+<dt class="dlterm"><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>Equation</dt>
+
+<dd><samp class="codeph"><var>LUx</var> = <var>b</var></samp></dd>
+<dt class="dlterm"><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>Equation</dt>
+
+<dd><samp class="codeph"><var>L</var>(<var>Ux</var>) = <var>b</var></samp></dd>
+</dl>
+<p>This leads to the following two-step process for finding the solution to the original system of equations:</p>
+<ol id="GUID-0E9CE9D9-34CF-4034-945E-2C89874602A9"><li><p>Solve the systems of equations <samp class="codeph"><var>Ly</var> = <var>b</var></samp>.</p>
+</li>
+<li><p>Solve the system <samp class="codeph"><var>Ux</var> = <var>y</var></samp>.</p>
+</li>
+</ol>
+<p>Solving the systems <samp class="codeph"><var>Ly</var> = <var>b</var></samp> and <samp class="codeph"><var>Ux</var> = <var>y</var></samp> is referred to as a forward solve and a backward solve, respectively.</p>
+<p>If a symmetric matrix <var>A</var> is also positive definite, it can be shown that <var>A</var> can be factored as <var>LL</var><sup><var>T</var></sup> where <var>L</var> is a lower triangular matrix. Similarly, a Hermitian matrix, <var>A</var>, that is positive definite can be factored as <samp class="codeph"><var>A</var> = <var>LL</var><sup><var>H</var></sup></samp>. For both symmetric and Hermitian matrices, a factorization of this form is called a Cholesky factorization.</p>
+<p>In a Cholesky factorization, the matrix <var>U</var> in an <var>LU</var> decomposition is either <var>L</var><sup><var>T</var></sup> or <var>L</var><sup><var>H</var></sup>. Consequently, a solver can increase its efficiency by only storing <var>L</var>, and one-half of <var>A</var>, and not computing <var>U</var>. Therefore, users who can express their application as the solution of a system of positive definite equations will gain a significant performance improvement over using a general representation. </p>
+<p>For matrices that are symmetric (or Hermitian) but not positive definite, there are still some significant efficiencies to be had. It can be shown that if <var>A</var> is symmetric but not positive definite, then <var>A</var> can be factored as <samp class="codeph"><var>A</var> = <var>LDL</var><sup><var>T</var></sup></samp>, where <var>D</var> is a diagonal matrix and <var>L</var> is a lower unit triangular matrix. Similarly, if <var>A</var> is Hermitian, it can be factored as <samp class="codeph"><var>A</var> = <var>LDL</var><sup><var>H</var></sup></samp>. In either case, we again only need to store <var>L</var>, <var>D</var>, and half of <var>A</var> and we need not compute <var>U</var>. However, the backward solve phases must be amended to solving <samp class="codeph"><var>L</var><sup><var>T</var></sup><var>x</var> = <var>D</var><sup><var>-1</var></sup><var>y</var></samp> rather than <samp class="codeph"><var>L</var><sup><var>T</var></sup><var>x</var> = <var>y</var></samp>.</p>
+<div class="section" id="GUID-E80CF957-189A-498D-BA5E-F4C5F87A487D"><h2 class="sectiontitle">Fill-In and Reordering of Sparse Matrices</h2><p>Two important concepts associated with the solution of sparse systems of equations are fill-in and reordering. The following example illustrates these concepts.</p>
+<p>Consider the system of linear equation <samp class="codeph"><var>Ax</var> = <var>b</var></samp>, where <var>A</var> is a symmetric positive definite sparse matrix, and <var>A</var> and <var>b</var> are  defined by the following:
+</p>
+<p><br/><div class="imagecenter"><img src="GUID-B24E0B09-8C7E-4DB6-AEC9-05BB3253BAF1-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>A star (*) is used to represent zeros and to emphasize the sparsity of <var>A</var>. The Cholesky factorization of <var>A</var> is: <samp class="codeph"><var>A</var> = <var>LL</var><sup><var>T</var></sup></samp>, where <var>L</var> is the following:
+</p>
+<p><br/><div class="imagecenter"><img src="GUID-C59BE3DF-4844-4D7B-BB1F-7BE96D176ED0-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>Notice that even though the matrix <var>A</var> is relatively sparse, the lower triangular matrix <var>L</var> has no zeros below the diagonal. If we computed <var>L</var> and then used it for the forward and backward solve phase, we would do as much computation as if <var>A</var> had been dense.</p>
+<p>The situation of <var>L</var> having non-zeros in places where <var>A</var> has zeros is referred to as fill-in. Computationally, it would be more efficient if a solver could exploit the non-zero structure of <var>A</var> in such a way as to reduce the fill-in when computing <var>L</var>. By doing this, the solver would only need to compute the non-zero entries in <var>L</var>. Toward this end, consider permuting the rows and columns of <var>A</var>. As described in <a href="GUID-E2C4841D-D095-4D0E-983E-180B3F68FFBC.html#GUID-E2C4841D-D095-4D0E-983E-180B3F68FFBC">Matrix Fundamentals</a>, the permutations of the rows of <var>A</var> can be represented as a permutation matrix, <var>P</var>. The result of permuting the rows is the product of <var>P</var> and <var>A</var>. Suppose, in the above example, we swap the first and fifth row of <var>A</var>, then swap the first and fifth columns of <var>A</var>, and call the resulting matrix <var>B</var>. Mathematically, we can express the process of permuting the rows and columns of <var>A</var> to get <var>B</var> as <samp class="codeph"><var>B</var> = <var>PAP</var><sup><var>T</var></sup></samp>. After permuting the rows and columns of <var>A</var>, we see that <var>B</var> is given by the following:
+</p>
+<p><br/><div class="imagecenter"><img src="GUID-154CDC52-B7D6-417C-AB78-CE285583BCB6-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>Since <var>B</var> is obtained from <var>A</var> by simply switching rows and columns, the numbers of non-zero entries in <var>A</var> and <var>B</var> are the same. However, when we find the Cholesky factorization, <var>B</var> = <var>LL</var><sup><var>T</var></sup>, we see the following:
+</p>
+<p><br/><div class="imagecenter"><img src="GUID-618CF980-ADD6-4FFD-8A97-5690BC0E53F8-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>The fill-in associated with <var>B</var> is much smaller than the fill-in associated with <var>A</var>. Consequently, the storage and computation time needed to factor <var>B</var> is much smaller than to factor <var>A</var>. Based on this, we see that an efficient sparse solver needs to find permutation <var>P</var> of the matrix <var>A</var>, which minimizes the fill-in for factoring <samp class="codeph"><var>B</var> = <var>PAP</var><sup><var>T</var></sup></samp>, and then use the factorization of <var>B</var> to solve the original system of equations.</p>
+<p>Although the above example is based on a symmetric positive definite matrix and a Cholesky decomposition, the same approach works for a general <var>LU</var> decomposition. Specifically, let <var>P</var> be a permutation matrix, <samp class="codeph"><var>B</var> = <var>PAP</var><sup><var>T</var></sup></samp> and suppose that <var>B</var> can be factored as <samp class="codeph"><var>B</var> = <var>LU</var></samp>. Then <pre><var>Ax</var> = <var>b</var></pre></p>
+<p><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>   <samp class="codeph"><var>PA</var>(<var>P</var><sup><var>-1</var></sup><var>P</var>)<var>x</var> = <var>Pb</var></samp></p>
+<p><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>   <samp class="codeph"><var>PA</var>(<var>P</var><sup><var>T</var></sup><var>P</var>)<var>x</var> = <var>Pb</var></samp></p>
+<p><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>   <samp class="codeph">(<var>PAP</var><sup><var>T</var></sup>)(<var>P</var><var>x</var>) = <var>Pb</var></samp></p>
+<p><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>   <samp class="codeph"><var>B</var>(<var>Px</var>) = <var>Pb</var></samp></p>
+<p><img src="GUID-F8877089-D535-400A-BFDB-062AFD025133-low.jpg" alt="Equation" align="center" class=".eq"/>   <samp class="codeph"><var>LU</var>(<var>Px</var>) = <var>Pb</var></samp></p>
+<p>It follows that if we obtain an <var>LU</var> factorization for <var>B</var>, we can solve the original system of equations by a three step process:</p>
+</div>
+<ol id="GUID-F9E00DAA-75EC-4FEE-8140-C26948B72A09"><li><p>Solve <samp class="codeph"><var>Ly</var> = <var>Pb</var></samp>.</p>
+</li>
+<li><p>Solve <samp class="codeph"><var>Uz</var> = <var>y</var></samp>.</p>
+</li>
+<li><p>Set <samp class="codeph"><var>x</var> = <var>P</var><sup><var>T</var></sup><var>z</var></samp>.</p>
+</li>
+</ol>
+<p>If we apply this three-step process to the current example, we first need to perform the forward solve of the systems of equation <samp class="codeph"><var>Ly</var> = <var>Pb</var></samp>:
+</p>
+<p><br/><div class="imagecenter"><img src="GUID-DD919993-FC13-4E21-A517-99299B25F09C-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>This gives: 
+</p>
+<p><img src="GUID-2FB31D52-A878-4AB2-B93D-0EF6BB25F871-low.jpg" alt="Equation" align="center" class=".eq"/></p>
+<p>The second step is to perform the backward solve, <samp class="codeph"><var>Uz</var> = <var>y</var></samp>. Or, in this case, since a Cholesky factorization is used, <samp class="codeph"><var>L</var><sup><var>T</var></sup><var>z</var> = <var>y</var></samp>.
+</p>
+<p><br/><div class="imagecenter"><img src="GUID-1F7BCA0E-66E3-4E36-9C47-EF7F61F3EC2A-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>This gives 
+</p>
+<p><img src="GUID-AB01C0FB-2551-46ED-9522-978F807213D3-low.jpg" alt="Equation" align="center" class=".eq"/></p>
+<p>The third and final step is to set <samp class="codeph"><var>x</var> = <var>P</var><sup><var>T</var></sup><var>z</var></samp>. This gives </p>
+<p><img src="GUID-7423034E-ED69-4908-BC60-D772774C6A6E-low.jpg" alt="Equation" align="center" class=".eq"/></p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-863A7B42-D87A-47CE-9FF4-3D0C0FF4F071.html">Sparse Linear Systems</a></div>
+</div>
+<div/>
+</body>
+</html>

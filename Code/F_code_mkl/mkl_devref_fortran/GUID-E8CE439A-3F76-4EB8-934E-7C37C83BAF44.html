@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="pardiso_export"/>
+<meta name="abstract" content="Places pointers dedicated for sparse representation of a requested matrix (values, rows, and columns) into MKL PARDISO"/>
+<meta name="description" content="Places pointers dedicated for sparse representation of a requested matrix (values, rows, and columns) into MKL PARDISO"/>
+<meta name="DC.subject" content="Sparse Solvers, pardiso_export"/>
+<meta name="keywords" content="Sparse Solvers, pardiso_export"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-7E829836-0FEF-46B2-8943-86A022193462.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-E8CE439A-3F76-4EB8-934E-7C37C83BAF44"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>pardiso_export</title>
+
+</head>
+<body id="GUID-E8CE439A-3F76-4EB8-934E-7C37C83BAF44">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">pardiso_export</h1>
+<!--Places pointers dedicated for sparse representation of a requested matrix (values, rows, and columns) into MKL PARDISO--><div><p class="shortdesc">Places pointers dedicated for sparse representation of a requested matrix (values, rows, and columns) into MKL PARDISO</p>
+<div class="section" id="GUID-CA717A28-8348-4C00-AABA-C591298D9F53"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call </span><span class="kwd">pardiso_export</span><span class="delim">(</span><span class="var">pt</span><span class="sep">, </span><span class="var">values</span><span class="sep">, </span><span class="var">rows</span><span class="sep">, </span><span class="var">columns</span><span class="sep">, </span><span class="var">step</span><span class="sep">, </span><span class="var">iparm</span><span class="sep">, </span><span class="var">error</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-B4643BC5-D641-4502-896C-474C395C324F"><h2 class="sectiontitle">Include Files</h2><ul id="GUID-C9CCF119-E52B-4011-BBE4-84441F61B5DB"><li><span class="filepath">mkl.fi</span></li>
+<li><span class="filepath">mkl_pardiso.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-01F77B9A-5FF8-48E5-A4B3-9E03FEB55DC7"><h2 class="sectiontitle">Description</h2><p>This auxiliary routine places pointers dedicated for sparse representation of a requested matrix (values, rows, and columns) into MKL PARDISO. The matrix will be stored in the three-array variant of the compressed sparse row (CSR3 format) with 0-based indexing. For details, refer to <a href="https://software.intel.com/content/www/us/en/develop/documentation/onemkl-developer-reference-c/top/appendix-a-linear-solvers-basics/sparse-matrix-storage-formats/sparse-blas-csr-matrix-storage-format.html" target="_blank">Three Array Variation of CSR Format</a>.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>Currently, this routine can be used only for a sparse Schur complement matrix. All parameters related to the Schur complement matrix (perm, iparm) must be set before the reordering stage of MKL PARDISO (phase = 11) is called.</p>
+</div>
+</div>
+<div class="section" id="GUID-BB367DD8-17F6-43F0-9FC6-DBBB9E224A87"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">pt</span><span class="parmname">(64)</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">INTEGER</samp> on 32-bit architectures; <samp class="codeph">INTEGER*8</samp> on 64-bit architectures</p>
+<p>Array with a size of 64. Handle to internal data structure for the Intel<sup>&reg;</sup> MKL PARDISO solver. The entries must be set to zero prior to the first call to <span class="option">pardiso</span>. Unique for factorization.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iparm</span><span class="parmname">(64)</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">INTEGER</samp></p>
+<p>This array is used to pass various parameters to Intel<sup>&reg;</sup> MKL PARDISO and to return some useful information after execution of the solver.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">step</span></p></td>
+
+<td valign="top" class="noborder"><p><samp class="codeph">INTEGER</samp></p>
+<p>Stage indicator. These are the currently supported values:</p>
+<table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder"><tr><th valign="bottom" align="left" id="d1739493e128">Step value</th>
+<th valign="bottom" align="left" id="d1739493e130">Notes</th>
+</tr>
+<tr><td valign="top" headers="d1739493e128"><samp class="codeph">1</samp></td>
+<td valign="top" headers="d1739493e130"><p>Used to place pointers related to a Schur complement matrix in MKL PARDISO. The routine with <span class="parmname">step</span> equal to 1 must be called between the reordering and factorization phases of MKL PARDISO.</p>
+</td>
+</tr>
+<tr><td valign="top" headers="d1739493e128"><samp class="codeph">−1</samp></td>
+<td valign="top" headers="d1739493e130"><p>Used to clean the internal handle.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-41707C4C-60ED-4745-BC1C-A76A8345BFC1"><h2 class="sectiontitle">Input/Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">values</span><span class="parmname">(*)</span></p></td>
+
+<td valign="top" class="noborder"><p>Parameter type: input/output parameter.</p>
+<p><samp class="codeph">PARDISO_DATA_TYPE</samp> (see <a href="GUID-EE25678B-B88C-4BF3-9552-8A42AA041250.html">PARDISO_DATA_TYPE</a>)</p>
+<p>This array contains the non-zero elements of the requested matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rows</span></p></td>
+
+<td valign="top" class="noborder"><p>Parameter type: input/output parameter.</p>
+<p><samp class="codeph">INTEGER</samp></p>
+<p>For CSR3 format, <samp class="codeph">rows[i] ( i &lt; size )</samp> points to the first column index of row i in the array columns; that is, <samp class="codeph">rows[i]</samp> gives the index of the element in the array values that contains the first non-zero element from row <samp class="codeph">i</samp> of the sparse matrix. The last element, <samp class="codeph">rows[size]</samp>, is equal to the number of non-zero elements in the sparse matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">columns</span></p></td>
+
+<td valign="top" class="noborder"><p>Parameter type: input/output parameter.</p>
+<p><samp class="codeph">INTEGER</samp></p>
+<p>This array contains the column indices for the non-zero elements of the requested matrix.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">error</span></p></td>
+
+<td valign="top" class="noborder"><p>Parameter type: output parameter.</p>
+<p><samp class="codeph">INTEGER</samp></p>
+<p>The error status:</p>
+<ul id="GUID-41E1AD68-66F7-4B65-8B2B-C93A0C09C1DF"><li><samp class="codeph">0</samp> indicates no error.</li>
+<li><samp class="codeph">1</samp> indicates inconsistent input data.</li>
+</ul>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-240DDEAC-A5EA-4C1D-9981-D994ADCF4939"><h2 class="sectiontitle">Usage Example</h2><p>The following C-style example demonstrates how to use the <span class="option">pardiso_export</span> routine to get the sparse representation (that is, three-array CSR format) of a Schur complement matrix.</p>
+<p><pre>#include "mkl.h"
+
+/*
+ * Call the reordering phase of MKL PARDISO with iparm[35] set to -1 in
+ * order to compute the Schur complement matrix only, or -2 to compute all
+ * factorization arrays.  perm array indices related to the Schur complement
+ * matrix must be set to 1.
+ */
+phase = 11;
+for ( i = 0; i &lt; schur_size; i++ ) { perm[i] = 1.; }
+iparm[35] = -1;
+pardiso(pt, &amp;maxfct, &amp;mnum, &amp;mtype, &amp;phase, &amp;n, a, ia, ja, perm, &amp;nrhs,
+  iparm, &amp;msglvl, b, x, &amp;error);
+
+/*
+ * After the reordering phase, iparm[35] will contain the number of non-zero
+ * elements for the Schur complement matrix.  Arrays dedicated to the sparse
+ * representation of the Schur complement matrix must be allocated before
+ * the factorization stage of MKL PARDISO is called.
+ */
+schur_nnz     = iparm[35];
+schur_rows    = (MKL_INT   *) mkl_malloc(schur_size+1, ALIGNMENT);
+schur_columns = (MKL_INT   *) mkl_malloc(schur_nnz , ALIGNMENT);
+schur_values  = (DATA_TYPE *) mkl_malloc(schur_nnz , ALIGNMENT);
+
+/*
+ * Call to the pardiso_export routine with step equal to 1 in order to put
+ * pointers related to the three-array CSR format into MKL PARDISO:
+ */
+pardiso_export(pt, schur_values, schur_ia, schur_ja, &amp;step, iparm, &amp;error);
+
+/*
+ * Call the factorization phase of PARDISO with iparm[35] equal to -1 or -2
+ * to compute the Schur complement matrix:
+ */
+phase = 22;
+iparm[35] = -1;
+pardiso(pt, &amp;maxfct, &amp;mnum, &amp;mtype, &amp;phase, &amp;n, a, ia, ja, perm, &amp;nrhs,
+  iparm, &amp;msglvl, b, x, &amp;error);
+
+/*
+ * After the factorization stage, schur_values, schur_rows, and
+ * schur_columns will contain the Schur complement matrix in CSR3 format.
+ */</pre></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html">oneMKL PARDISO - Parallel Direct Sparse Solver Interface</a></div>
+</div>
+<div/>
+</body>
+</html>

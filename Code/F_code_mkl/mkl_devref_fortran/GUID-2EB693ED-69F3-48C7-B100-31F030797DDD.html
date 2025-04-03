@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?syngst"/>
+<meta name="abstract" content="Reduces a complex Hermitian-definite generalized eigenproblem to standard form."/>
+<meta name="description" content="Reduces a complex Hermitian-definite generalized eigenproblem to standard form."/>
+<meta name="DC.subject" content="pssyngst, pdsyngst"/>
+<meta name="keywords" content="pssyngst, pdsyngst"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2EB693ED-69F3-48C7-B100-31F030797DDD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?syngst</title>
+
+</head>
+<body id="GUID-2EB693ED-69F3-48C7-B100-31F030797DDD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?syngst</span></h1>
+<!--Reduces a complex Hermitian-definite generalized  eigenproblem to standard form.--><div><p class="shortdesc">Reduces a complex Hermitian-definite generalized  eigenproblem to standard form.</p>
+<div class="section" id="GUID-A2740DED-00CD-4277-A01E-3F2CD1A20D97"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pssyngst</span><span class="delim"> (</span><span class="var">ibtype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdsyngst</span><span class="delim"> (</span><span class="var">ibtype</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ib</span><span class="sep">, </span><span class="var">jb</span><span class="sep">, </span><span class="var">descb</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">info </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-0458FEFB-86A6-4768-85E8-D2A01748B775"><h2 class="sectiontitle">Description</h2><p><span class="option">p?syngst</span> reduces a complex Hermitian-definite generalized  eigenproblem to standard form.</p>
+<p><span class="option">p?syngst</span> performs the same function as <span class="option">p?hegst</span>, but is based on  rank 2K updates, which are faster and more scalable than  triangular solves (the basis of <span class="option">p?syngst</span>).</p>
+<p><span class="option">p?syngst</span> calls <span class="option">p?hegst</span> when <span class="parmname">uplo</span>='U', hence <span class="option">p?hengst</span> provides  improved performance only when <span class="parmname">uplo</span>='L', <span class="parmname">ibtype</span>=1.</p>
+<p><span class="option">p?syngst</span> also calls <span class="option">p?hegst</span> when insufficient workspace is  provided,  hence <span class="option">p?syngst</span> provides improved  performance only when <span class="parmname">lwork</span> &gt;= 2 * NP0 * NB + NQ0 * NB + NB * NB</p>
+<p>In the following sub( <var>A</var> ) denotes <var>A</var>( <span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">n</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1 ) and sub( <var>B</var> ) denotes <var>B</var>( <span class="parmname">ib</span>:<span class="parmname">ib</span>+<span class="parmname">n</span>-1, <span class="parmname">jb</span>:<span class="parmname">jb</span>+<span class="parmname">n</span>-1 ).</p>
+<p>If <span class="parmname">ibtype</span> = 1, the problem is sub( <var>A</var> )*x = lambda*sub( <var>B</var> )*x,  and sub( <var>A</var> ) is overwritten by inv(<var>U</var><sup><var>H</var></sup>)*sub( <var>A</var> )*inv(<var>U</var>) or  inv(<var>L</var>)*sub( <var>A</var> )*inv(<var>L</var><sup><var>H</var></sup>)</p>
+<p>If <span class="parmname">ibtype</span> = 2 or 3, the problem is sub( <var>A</var> )*sub( <var>B</var> )*x = lambda*x or  sub( <var>B</var> )*sub( <var>A</var> )*x = lambda*x, and sub( <var>A</var> ) is overwritten by  <var>U</var>*sub( <var>A</var> )*<var>U</var><sup><var>H</var></sup> or <var>L</var><sup><var>H</var></sup>*sub( <var>A</var> )*<var>L</var>.</p>
+<p>sub( <var>B</var> ) must have been previously factorized as <var>U</var><sup><var>H</var></sup>*<var>U</var> or <var>L</var>*<var>L</var><sup><var>H</var></sup> by  <span class="option">p?potrf</span>.</p>
+</div>
+<div class="section" id="GUID-30BB895F-F365-4528-9B94-7A6583AA4461"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0FC78C3D-FD17-42A6-82CF-2BFE58DB919B"><dt class="dlterm"><span class="parmname">ibtype</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>= 1: compute inv(<var>U</var><sup><var>H</var></sup>)*sub( <var>A</var> )*inv(<var>U</var>) or               inv(<var>L</var>)*sub( <var>A</var> )*inv(<var>L</var><sup><var>H</var></sup>);</p>
+<p>= 2 or 3: compute <var>U</var>*sub( <var>A</var> )*<var>U</var><sup><var>H</var></sup> or <var>L</var><sup><var>H</var></sup>*sub( <var>A</var> )*<var>L</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>(global)</p>
+<p>CHARACTER. </p>
+<p>= 'U':  Upper triangle of sub( <var>A</var> ) is stored and sub( <var>B</var> ) is                  factored as <var>U</var><sup><var>H</var></sup>*<var>U</var>;</p>
+<p>= 'L':  Lower triangle of sub( <var>A</var> ) is stored and sub( <var>B</var> ) is                  factored as <var>L</var>*<var>L</var><sup><var>H</var></sup>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p>The order of the matrices sub( <var>A</var> ) and sub( <var>B</var> ).  <span class="parmname">n</span> &gt;= 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyngst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyngst</span></p>
+<p>Pointer into the          local memory to an array of size <samp class="codeph">(<var>lld_a</var>,<var>LOCc</var>(<var>ja</var>+<var>n</var>-1))</samp>.</p>
+<p>On entry, this array contains the local pieces of the          <span class="parmname">n</span>-by-<span class="parmname">n</span> Hermitian distributed matrix sub( <var>A</var> ). If <span class="parmname">uplo</span> = 'U',          the leading <span class="parmname">n</span>-by-<span class="parmname">n</span> upper triangular part of sub( <var>A</var> ) contains          the upper triangular part of the matrix, and its strictly          lower triangular part is not referenced.  If <span class="parmname">uplo</span> = 'L', the          leading <span class="parmname">n</span>-by-<span class="parmname">n</span> lower triangular part of sub( <var>A</var> ) contains          the lower triangular part of the matrix, and its strictly          upper triangular part is not referenced.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p><var>A</var>'s global row index, which points to the beginning of the          submatrix which is to be operated on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ja</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p><var>A</var>'s global column index, which points to the beginning of          the submatrix which is to be operated on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyngst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyngst</span></p>
+<p>Pointer into the local memory          to an array of size <samp class="codeph">(<var>lld_b</var>,<var>LOCc</var>(<var>jb</var>+<var>n</var>-1))</samp>.</p>
+<p>On entry,          this array contains the local pieces of the triangular factor          from the Cholesky factorization of sub( <var>B</var> ), as returned by          <span class="option">p?potrf</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ib</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p><var>B</var>'s global row index, which points to the beginning of the          submatrix which is to be operated on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jb</span></dt>
+
+<dd><p>(global)</p>
+<p>INTEGER. </p>
+<p><var>B</var>'s global column index, which points to the beginning of          the submatrix which is to be operated on.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descb</span></dt>
+
+<dd><p>(global and local)</p>
+<p>INTEGER. </p>
+<p>Array of size <var>dlen_</var>.</p>
+<p>The array descriptor for the distributed matrix <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyngst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyngst</span></p>
+<p>Array,                                                  size (<span class="parmname">lwork</span>)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p>(local or global)</p>
+<p>INTEGER. </p>
+<p>The size of the array <span class="parmname">work</span>.</p>
+<p><span class="parmname">lwork</span> is local input and must be at least          <span class="parmname">lwork</span> &gt;= MAX( NB * ( NP0 +1 ), 3 * NB )</p>
+<p>When <span class="parmname">ibtype</span> = 1 and <span class="parmname">uplo</span> = 'L', <span class="option">p?syngst</span> provides improved          performance when <span class="parmname">lwork</span> &gt;= 2 * NP0 * NB + NQ0 * NB + NB * NB,</p>
+<p>where NB = <var>mb_a</var> = <var>nb_a</var>,</p>
+<p>NP0 = <span class="option">numroc</span>( <span class="parmname">n</span>, NB, 0, 0, NPROW ),</p>
+<p>NQ0 = <span class="option">numroc</span>( <span class="parmname">n</span>, NB, 0, 0, NPROW ),</p>
+<p><span class="option">numroc</span> is a ScaLAPACK tool functions</p>
+<p>MYROW, MYCOL, NPROW and NPCOL can be determined by calling          the subroutine <span class="option">blacs_gridinfo</span>.</p>
+<p>If <span class="parmname">lwork</span> = -1, then <span class="parmname">lwork</span> is global input and a workspace          query is assumed; the routine only calculates the          optimal size for all work arrays. Each of these          values is returned in the first entry of the corresponding          work array, and no error message is issued by <span class="option">pxerbla</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-33AE96C9-F730-4A69-83D9-7DE95CF4B27E"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">a</span></p></td>
+
+<td valign="top" class="noborder"><p>On exit, if <span class="parmname">info</span> = 0, the transformed matrix, stored in the          same format as sub( <var>A</var> ).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">scale</span></p></td>
+
+<td valign="top" class="noborder"><p>(global)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyngst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyngst</span></p>
+<p>Amount by which the eigenvalues should be scaled to          compensate for the scaling performed in this routine.          At present, <span class="parmname">scale</span> is always returned as 1.0, it is          returned here to allow for future enhancement.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p>(local)</p>
+<p><span class="keyword">REAL</span> for <span class="option">pssyngst</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdsyngst</span></p>
+<p>Array,                                                  size (<span class="parmname">lwork</span>)</p>
+<p>On exit, <span class="parmname">work</span><samp class="codeph">(1)</samp> returns the minimal and optimal <span class="parmname">lwork</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">info</span></p></td>
+
+<td valign="top" class="noborder"><p>(global)</p>
+<p>INTEGER. </p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  If the <var>i</var>-th argument is an array and the <var>j</var>-th entry had                an illegal value, then <span class="parmname">info</span> = -(<var>i</var>*100+<var>j</var>), if the <var>i</var>-th                argument is a scalar and had an illegal value, then                <span class="parmname">info</span> = -<var>i</var>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-0FCEE214-C41D-4237-ABB9-177F60687E14.html">Symmetric Eigenvalue Problems: ScaLAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

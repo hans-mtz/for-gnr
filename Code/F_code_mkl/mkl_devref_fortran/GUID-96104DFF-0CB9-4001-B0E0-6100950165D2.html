@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Convolution and Correlation Task Constructors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BE3BF27D-D852-4C7A-BD38-4409D54E1B1A.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-ADB96099-29BC-4ACD-86D4-53EDF57B2EFD.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5C3E7C88-CC86-49D6-B9E8-C631DDE0421B.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-2F493494-ACF7-45D7-8E56-51348BF813C2.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A7BE7BE1-2BB1-4FC8-88D6-B35D8EDA309E.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-96104DFF-0CB9-4001-B0E0-6100950165D2"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Convolution and Correlation Task Constructors</title>
+
+</head>
+<body class="no-rel-links" id="GUID-96104DFF-0CB9-4001-B0E0-6100950165D2">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Convolution and Correlation Task
+    Constructors</h1>
+<div><p>Task constructors are routines intended for creating
+      a new task descriptor and setting up basic parameters. No additional parameter
+      adjustment is typically required and other routines can use the task object. 
+    </p>
+<p>Intel<span>&reg;</span> MKL
+      implementation of the convolution and correlation API provides two different
+      forms of constructors: a general form and an X-form. X-form constructors work
+      in the same way as the general form constructors but also assign particular
+      data to the first operand vector used in the convolution or correlation
+      operation (stored in array 
+      <var>x</var>). 
+    </p>
+<p>Using X-form constructors is recommended when you
+      need to compute multiple convolutions or correlations with the same data vector
+      held in array 
+      <var>x</var> against
+      different vectors held in array 
+      <var>y</var>. This helps
+      improve performance by eliminating unnecessary overhead in repeated computation
+      of intermediate data required for the operation. 
+    </p>
+<p>Each constructor routine has an associated
+      one-dimensional version that provides algorithmic and computational benefits. 
+    </p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>If the constructor fails to create a task
+        descriptor, it returns the 
+        <span class="keyword">NULL</span> task pointer. 
+      </p>
+</div>
+<p>The 
+      <a href="#TBL10-14">Table 
+        <span>"Task Constructors"</span></a> lists available
+      task constructors: 
+    </p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL10-14" class="AllLineStandard" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Task Constructors</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="39%" id="d1115805e58"><p>Routine 
+          </p>
+</th>
+<th class="row-nocellborder" valign="top" width="61%" id="d1115805e61"><p>Description 
+          </p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="39%" headers="d1115805e58 "><p><a href="GUID-ADB96099-29BC-4ACD-86D4-53EDF57B2EFD.html#GUID-ADB96099-29BC-4ACD-86D4-53EDF57B2EFD"><span class="option">vslConvNewTask</span>/<span class="option">vslCorrNewTask</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="61%" headers="d1115805e61 "><p>Creates a new convolution or correlation task
+            descriptor for a multidimensional case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="39%" headers="d1115805e58 "><p><a href="GUID-5C3E7C88-CC86-49D6-B9E8-C631DDE0421B.html#GUID-5C3E7C88-CC86-49D6-B9E8-C631DDE0421B"><span class="option">vslConvNewTask1D</span>/<span class="option">vslCorrNewTask1D</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="61%" headers="d1115805e61 "><p>Creates a new convolution or correlation task
+            descriptor for a one-dimensional case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="39%" headers="d1115805e58 "><p><a href="GUID-2F493494-ACF7-45D7-8E56-51348BF813C2.html#GUID-2F493494-ACF7-45D7-8E56-51348BF813C2"><span class="option">vslConvNewTaskX</span>/<span class="option">vslCorrNewTaskX</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="61%" headers="d1115805e61 "><p>Creates a new convolution or correlation task
+            descriptor as an X-form for a multidimensional case. 
+          </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="39%" headers="d1115805e58 "><p><a href="GUID-A7BE7BE1-2BB1-4FC8-88D6-B35D8EDA309E.html#GUID-A7BE7BE1-2BB1-4FC8-88D6-B35D8EDA309E"><span class="option">vslConvNewTaskX1D</span>/<span class="option">vslCorrNewTaskX1D</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="61%" headers="d1115805e61 "><p>Creates a new convolution or correlation task
+            descriptor as an X-form for a one-dimensional case. 
+          </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div/>
+</body>
+</html>

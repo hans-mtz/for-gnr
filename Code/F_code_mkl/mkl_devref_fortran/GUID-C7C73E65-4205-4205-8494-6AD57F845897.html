@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?gerc"/>
+<meta name="abstract" content="Performs a rank-1 update (conjugated) of a distributed general matrix."/>
+<meta name="description" content="Performs a rank-1 update (conjugated) of a distributed general matrix."/>
+<meta name="DC.subject" content="p?gerc, pcgerc, pzgerc, PBLAS Level 2 routines, rank-1 update, conjugated, distributed general matrix, distributed general matrix, rank-l update, conjugated, distributed matrix-vector operation, rank-1 update, conjugated, updating, rank-1, conjugated"/>
+<meta name="keywords" content="p?gerc, pcgerc, pzgerc, PBLAS Level 2 routines, rank-1 update, conjugated, distributed general matrix, distributed general matrix, rank-l update, conjugated, distributed matrix-vector operation, rank-1 update, conjugated, updating, rank-1, conjugated"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C7C73E65-4205-4205-8494-6AD57F845897"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?gerc</title>
+
+</head>
+<body id="GUID-C7C73E65-4205-4205-8494-6AD57F845897">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?gerc</span></h1>
+<!--Performs a rank-1 update (conjugated) of a distributed general matrix.--><div><p class="shortdesc">Performs a rank-1 update (conjugated) of a distributed general matrix.</p>
+<div class="section" id="GUID-BE9768F9-06E8-4F9F-B964-F38A30999B19"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pcgerc</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pzgerc</span><span class="delim">(</span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">ix</span><span class="sep">, </span><span class="var">jx</span><span class="sep">, </span><span class="var">descx</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">iy</span><span class="sep">, </span><span class="var">jy</span><span class="sep">, </span><span class="var">descy</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">ia</span><span class="sep">, </span><span class="var">ja</span><span class="sep">, </span><span class="var">desca</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-800EBD46-E500-481C-9AE4-A55C8A6E44A7"><h2 class="sectiontitle">Include Files</h2><ul id="d163e233"><li id="d163e234"><span class="filepath">mkl_pblas.h</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-E63F8DD6-6AAF-4F0B-AB94-A2A484AE014C"><h2 class="sectiontitle">Description</h2><p>The <span class="option">p?gerc</span> routines perform a distributed matrix-vector operation defined as <pre>sub(<var>A</var>) := <var>alpha</var>*sub(<var>x</var>)*conjg(sub(<var>y</var>)') + sub(<var>A</var>),</pre></p>
+<p>where: </p>
+<p><var>alpha</var> is a scalar,</p>
+<p><samp class="codeph">sub(<var>A</var>)</samp> is a <span class="parmname">m</span>-by-<span class="parmname">n</span>
+distributed general matrix, 
+
+		<samp class="codeph">sub(<var>A</var>) = <var>A</var>(<span class="parmname">ia</span>:<span class="parmname">ia</span>+<span class="parmname">m</span>-1, <span class="parmname">ja</span>:<span class="parmname">ja</span>+<span class="parmname">n</span>-1)</samp>,</p>
+<p><samp class="codeph">sub(<var>x</var>)</samp> is an <var>m</var>-element distributed vector, sub(<var>y</var>) is an<var>n</var>-element distributed vector,</p>
+<p><samp class="codeph">sub(<var>x</var>)</samp>denotes <samp class="codeph"><var>X</var>(<span class="parmname">ix</span>, <span class="parmname">jx</span>:<span class="parmname">jx</span>+<span class="parmname">m</span>-1)</samp> if <samp class="codeph"><span class="parmname">incx</span> = <span class="parmname">m_x</span></samp>, and <samp class="codeph"><var>X</var>(<span class="parmname">ix</span>: <span class="parmname">ix</span>+<span class="parmname">m</span>-1, <span class="parmname">jx</span>)</samp> if <samp class="codeph"><span class="parmname">incx</span> = 1,</samp></p>
+<p><samp class="codeph">sub(<var>y</var>)</samp>denotes <samp class="codeph"><var>Y</var>(<span class="parmname">iy</span>, <span class="parmname">jy</span>:<span class="parmname">jy</span>+<span class="parmname">n</span>-1)</samp> if <samp class="codeph"><span class="parmname">incy</span> = <span class="parmname">m_y</span></samp>, and <samp class="codeph"><var>Y</var>(<span class="parmname">iy</span>: <span class="parmname">iy</span>+<span class="parmname">n</span>-1, <span class="parmname">jy</span>)</samp> if <samp class="codeph"><span class="parmname">incy</span> = 1</samp>.</p>
+</div>
+<div class="section" id="GUID-EF9B0E5F-B611-4828-A061-95944E54D1A7"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-BEA655D0-E51F-4AA7-B03B-D97986DD9D27"><dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p>(global) <span><span class="keyword"> INTEGER</span>. </span>Specifies the number of rows of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>, <span class="parmname">m</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>. </span>Specifies the number of columns of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>, <span class="parmname">n</span><span class="eqsymbol">≥</span> 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>(global)<span><span class="keyword">COMPLEX</span>  for <span class="option">pcgerc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzgerc</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>(local)<span><span class="keyword">COMPLEX</span>  for <span class="option">pcgerc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzgerc</span></p>
+<p>Array, size at least
+	<samp class="codeph">(<span class="parmname">jx</span>-1)*<span class="parmname">m_x</span> + <span class="parmname">ix</span>+(<span class="parmname">n</span>-1)*abs(<span class="parmname">incx</span>))</samp>.</p>
+<p>This array contains the entries of the distributed vector <samp class="codeph">sub(<var>x</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ix</span>, <span class="parmname">jx</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>X</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>x</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descx</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword"> INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>X</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p>(global) <span><span class="keyword"> INTEGER</span>.  </span>Specifies the increment for the elements of <samp class="codeph">sub(<var>x</var>)</samp>. Only two values are supported, namely 1 and <span class="parmname">m_x</span>. <span class="parmname">incx</span> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>(local)<span><span class="keyword">COMPLEX</span>  for <span class="option">pcgerc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzgerc</span></p>
+<p>Array, size at least
+						<samp class="codeph">(<span class="parmname">jy</span>-1)*<span class="parmname">m_y</span> + <span class="parmname">iy</span>+(<span class="parmname">n</span>-1)*abs(<span class="parmname">incy</span>))</samp>.</p>
+<p>This array contains the entries of the distributed vector <samp class="codeph">sub(<var>y</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iy</span>, <span class="parmname">jy</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>Y</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>y</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">descy</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword">INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>Y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p>(global) <span><span class="keyword"> INTEGER</span>.  </span>Specifies the increment for the elements of <samp class="codeph">sub(<var>y</var>)</samp>. Only two values are supported, namely 1 and <span class="parmname">m_y</span>.
+ <span class="parmname">incy</span> must not be zero.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>(local)<span><span class="keyword">COMPLEX</span>  for <span class="option">pcgerc</span></span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">pzgerc</span></p>
+<p>Array, size at least
+						<samp class="codeph">(<span class="parmname">lld_a</span>, LOCq(<span class="parmname">ja</span>+<span class="parmname">n</span>-1))</samp>. Before entry this array contains the local pieces of the distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ia</span>, <span class="parmname">ja</span></dt>
+
+<dd><p>(global) <span><span class="keyword">INTEGER</span>.  </span>The row and column indices in the distributed matrix <var>A</var> indicating the first row and the first column of the submatrix <samp class="codeph">sub(<var>A</var>)</samp>, respectively.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desca</span></dt>
+
+<dd><p>(global and local) <span><span class="keyword"> INTEGER</span></span> array of dimension 9. The array descriptor of the distributed matrix <var>A</var>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-AC8BC9ED-2359-47E1-AB6E-471CDAC1B438"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2CF92012-0185-4DF3-AD25-DE3EC26E0657"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Overwritten by the updated distributed matrix <samp class="codeph">sub(<var>A</var>)</samp>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C595220E-9146-45A9-B426-1A5A3FB3A56D.html">PBLAS Level 2 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

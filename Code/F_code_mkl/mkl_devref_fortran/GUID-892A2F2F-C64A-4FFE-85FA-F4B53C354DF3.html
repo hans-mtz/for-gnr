@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?las2"/>
+<meta name="abstract" content="Computes singular values of a 2-by-2 triangular matrix."/>
+<meta name="description" content="Computes singular values of a 2-by-2 triangular matrix."/>
+<meta name="DC.subject" content="?las2, LAPACK routines, auxiliary routines, 2-by-2 triangular matrix, singular values"/>
+<meta name="keywords" content="?las2, LAPACK routines, auxiliary routines, 2-by-2 triangular matrix, singular values"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-892A2F2F-C64A-4FFE-85FA-F4B53C354DF3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?las2</title>
+
+</head>
+<body id="GUID-892A2F2F-C64A-4FFE-85FA-F4B53C354DF3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?las2</span></h1>
+<!--Computes singular values of a 2-by-2 triangular matrix.--><div><p class="shortdesc">Computes singular values of a 2-by-2 triangular matrix.</p>
+<div class="section" id="GUID-6307D687-DF8A-4B96-AE3D-3163CC6C8E8E"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slas2</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ssmin</span><span class="sep">, </span><span class="var">ssmax</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlas2</span><span class="delim">( </span><span class="var">f</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">ssmin</span><span class="sep">, </span><span class="var">ssmax</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-63042C17-82B6-4E0B-ABBF-9DCC2E700CA0"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-DF8214AB-BA05-4863-85A2-1CCFCD5165AB"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?las2</span> computes the singular values of the 2-by-2 matrix</p>
+<p><br/><div class="imagecenter"><img src="GUID-186229CE-5192-4EED-AE00-92224FD4FCCA-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>On return, <var>ssmin</var> is the smaller singular value and <var>SSMAX</var> is the larger singular value.</p>
+</div>
+<div class="section" id="GUID-8ECA9BF4-336C-489F-894E-EB5F0EA2D3B3"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-69F50180-FCA2-4049-AC33-F68CC8678B19"><dt class="dlterm"><span class="parmname">f</span>, <span class="parmname">g</span>, <span class="parmname">h</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slas2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlas2</span></p>
+<p>The (1,1), (1,2) and (2,2) elements of the 2-by-2 matrix, respectively.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-3D84F0D4-82F9-4392-AA03-FC02E2412412"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-6A1FCE8D-24C8-45C6-8074-AA04EE223BAB"><dt class="dlterm"><span class="parmname">ssmin</span>, <span class="parmname">ssmax</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slas2</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlas2</span></p>
+<p>The smaller and the larger singular values, respectively.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-96F98E44-9C43-4EF3-835C-3C05068D7763"><h2 class="sectiontitle">Application Notes</h2><p>Barring over/underflow, all output quantities are correct to within  a few units in the last place (<var>ulps</var>), even in the absence of a guard  digit in addition/subtraction. In ieee arithmetic, the code works correctly if one matrix element is  infinite. Overflow will not occur unless the largest singular value itself overflows, or is within a few ulps of overflow. (On machines with partial overflow, like the Cray, overflow may occur if the largest singular value is within a factor of 2 of overflow.) Underflow is harmless if underflow is gradual. Otherwise, results may correspond to a matrix modified by perturbations of size near the underflow threshold.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

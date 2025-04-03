@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?axpy_batch_strided"/>
+<meta name="abstract" content="Computes a group of vector-scalar products added to a vector."/>
+<meta name="description" content="Computes a group of vector-scalar products added to a vector."/>
+<meta name="DC.Relation" scheme="URI" content="GUID-723C9818-01C2-4825-912B-343F445DDB96.html"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-D2F71377-B47A-4BA9-B94E-4962AF1956D1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?axpy_batch_strided</title>
+
+</head>
+<body id="GUID-D2F71377-B47A-4BA9-B94E-4962AF1956D1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?axpy_batch_strided</span></h1>
+<!--Computes a group of vector-scalar products added to a vector.--><div><p class="shortdesc">Computes a group of vector-scalar products added to a vector.</p>
+<div class="section" id="GUID-17ADB23B-C9B0-44B4-89F9-B7199DA9E872"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call saxpy_batch_strided</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">stridex</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">stridey</span><span class="sep">, </span><span class="var">batch_size</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call daxpy_batch_strided</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">stridex</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">stridey</span><span class="sep">, </span><span class="var">batch_size</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call caxpy_batch_strided</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">stridex</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">stridey</span><span class="sep">, </span><span class="var">batch_size</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zaxpy_batch_strided</span><span class="delim">(</span><span class="var">n</span><span class="sep">, </span><span class="var">alpha</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">incx</span><span class="sep">, </span><span class="var">stridex</span><span class="sep">, </span><span class="var">y</span><span class="sep">, </span><span class="var">incy</span><span class="sep">, </span><span class="var">stridey</span><span class="sep">, </span><span class="var">batch_size</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-6A90076C-2BEE-4E80-8396-ED64B1883535"><h2 class="sectiontitle">Include Files</h2><ul id="d163e40"><li id="d163e41"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-4BC6BF9A-BAB9-4078-A6B5-9C7ECB9D4821"><h2 class="sectiontitle">Description</h2><p>The <span class="option">?axpy_batch_strided</span> routines perform a series of scalar-vector product added to a vector. They are similar to the <span class="option">?axpy</span> routine counterparts, but the <span class="option">?axpy_batch_strided</span> routines perform vector operations with a group of vectors. </p>
+<p>All vector <var>x</var> (respectively, <var>y</var>) have the same parameters (size, increments) and are stored at constant <var>stridex</var> (respectively, <var>stridey</var>) from each other. The operation is defined as</p>
+<pre>For i = 0 … batch_size – 1
+    X and Y are vectors at offset i * stridex and i * stridey in x and y
+    Y = alpha * X + Y
+end for</pre></div>
+<div class="section" id="GUID-6F86EF6A-8FFE-4C6A-8B71-23B95C1F1365"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-C749A4E6-CF28-43E4-8D0B-712EC35683D4"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span>INTEGER. </span> Number of elements in vectors <var>x</var> and <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">alpha</span></dt>
+
+<dd><p>REAL for <span class="option">saxpy_batch_strided</span></p>
+<p>DOUBLE PRECISION for <span class="option">daxpy_batch_strided</span></p>
+<p>COMPLEX for <span class="option">caxpy_batch_strided</span></p>
+<p>DOUBLE COMPLEX for <span class="option">zaxpy_batch_strided</span></p>
+<p>Specifies the scalar <var>alpha</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>REAL for <span class="option">saxpy_batch_strided</span></p>
+<p>DOUBLE PRECISION for <span class="option">daxpy_batch_strided</span></p>
+<p>COMPLEX for <span class="option">caxpy_batch_strided</span></p>
+<p>DOUBLE COMPLEX for <span class="option">zaxpy_batch_strided</span></p>
+<p>Array of size at least <var>stridex</var>*<var>batch_size</var> holding the <var>x</var> vectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incx</span></dt>
+
+<dd><p><span>INTEGER. </span> Specifies the increment for the elements of <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stridex</span></dt>
+
+<dd><p><span>INTEGER. </span> Stride between two consecutive <var>x</var> vectors, must be at least (1 + (n-1)*abs(<var>incx</var>)).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>REAL for <span class="option">saxpy_batch_strided</span></p>
+<p>DOUBLE PRECISION for <span class="option">daxpy_batch_strided</span></p>
+<p>COMPLEX for <span class="option">caxpy_batch_strided</span></p>
+<p>DOUBLE COMPLEX for <span class="option">zaxpy_batch_strided</span></p>
+<p>Array of size at least <var>stridey</var>*<var>batch_size</var> holding the <var>y</var> vectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">incy</span></dt>
+
+<dd><p><span>INTEGER. </span> Specifies the increment for the elements of <var>y</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">stridey</span></dt>
+
+<dd><p><span>INTEGER. </span> Stride between two consecutive <var>y</var> vectors, must be at least (1 + (n-1)*abs(<var>incy</var>)).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">batch_size</span></dt>
+
+<dd><p><span>INTEGER. </span> Number of <span class="option">axpy</span> computations to perform and <var>x</var> and <var>y</var> vectors. Must be at least 0.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A0926D96-B673-48A4-986A-033719589288"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-1BC27F0A-0344-4F99-9EAE-9E3653EADEC7"><dt class="dlterm"><span class="parmname">y</span></dt>
+
+<dd><p>Array holding the <var>batch_size</var> updated vector <var>y</var>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-723C9818-01C2-4825-912B-343F445DDB96.html">BLAS-like Extensions</a></div>
+</div>
+<div/>
+</body>
+</html>

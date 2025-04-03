@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dss_solve_real, dss_solve_complex"/>
+<meta name="abstract" content="Compute the corresponding solution vector and place it in the output array."/>
+<meta name="description" content="Compute the corresponding solution vector and place it in the output array."/>
+<meta name="DC.subject" content="Sparse Solver, direct sparse solver interface, dss_solve_real, dss_solve_complex, dss_solve"/>
+<meta name="keywords" content="Sparse Solver, direct sparse solver interface, dss_solve_real, dss_solve_complex, dss_solve"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-5391461F-446B-49E9-BE39-4B82452A70FC"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dss_solve_real, dss_solve_complex</title>
+
+</head>
+<body id="GUID-5391461F-446B-49E9-BE39-4B82452A70FC">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dss_solve_real</span>, <span class="option">dss_solve_complex</span></h1>
+<!--Compute the corresponding solution vector and place it in the output array.--><div><p class="shortdesc">Compute the corresponding solution vector and place it in the output array.</p>
+<div class="section" id="GUID-4D9157DF-ACFB-4F76-8C22-0CC18069C7F6"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_solve_real</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">rRhsValues</span><span class="sep">, </span><span class="var">nRhs</span><span class="sep">, </span><span class="var">rSolValues</span><span class="sep">)</span></p><p class="dlsyntaxpara"><span class="kwd">call dss_solve_complex</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">cRhsValues</span><span class="sep">, </span><span class="var">nRhs</span><span class="sep">, </span><span class="var">cSolValues</span><span class="sep">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call dss_solve</span><span class="sep">(</span><span class="var">handle</span><span class="sep">, </span><span class="var">opt</span><span class="sep">, </span><span class="var">RhsValues</span><span class="sep">, </span><span class="var">nRhs</span><span class="sep">, </span><span class="var">SolValues</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-93C193D6-70C0-40CB-A221-59E07656D437"><h2 class="sectiontitle">Include Files</h2><ul id="d163e166"><li><span class="filepath">mkl.fi</span>, <span class="filepath">mkl_dss.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8D61CB40-4E09-4737-B78C-854EBFFAB8AB"><h2 class="sectiontitle">Description</h2><p><span/>For each right-hand side column vector defined in the arrays <span class="parmname">rRhsValues</span>, <span class="parmname">cRhsValues</span>,
+ or <span class="parmname">RhsValues</span>, these routines compute the corresponding solution vector and place it in the arrays <span class="parmname">rSolValues</span>, <span class="parmname">cSolValues</span>, or <span class="parmname">SolValues</span> respectively.</p>
+<div class="Note"><h3 class="NoteTipHead">Note</h3> <p>The data type (single or double precision) of  all arrays must be in correspondence with precision specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</div>
+<p>The lengths of the right-hand side and solution vectors, <span class="parmname">nRows</span> and <span class="parmname">nCols</span> respectively, must be defined in a previous call to <a class="allformats" href="GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC.html#GUID-1C28C2B0-86E8-4B18-BB9C-EF9AEBEF6FAC">dss_define_structure</a>.</p>
+<p> By default, both routines perform the full
+solution step (it corresponds to <samp class="codeph"><span class="parmname">phase</span> = 33</samp>in Intel&reg; oneAPI Math Kernel Library PARDISO). The parameter<span class="parmname">opt</span> enables you to calculate the
+final solution step-by-step, calling forward and backward
+substitutions.</p>
+<p>If it is set to <span class="keyword">MKL_DSS_FORWARD_SOLVE</span>, the forward
+substitution (corresponding to <samp class="codeph"><span class="parmname">phase</span> = 331</samp>in Intel&reg; oneAPI Math Kernel Library PARDISO) is performed;</p>
+<p>if it is set to <span class="keyword">MKL_DSS_DIAGONAL_SOLVE</span>, the
+diagonal substitution (corresponding to <samp class="codeph"><span class="parmname">phase</span> = 332</samp>in Intel&reg; oneAPI Math Kernel Library PARDISO) is performed, if possible;</p>
+<p>if it is set to <span class="keyword">MKL_DSS_BACKWARD_SOLVE</span>,  the backward substitution (corresponding to <samp class="codeph"><span class="parmname">phase</span> = 333</samp>in Intel&reg; oneAPI Math Kernel Library PARDISO) is performed.</p>
+<p>For more details about using these substitutions for
+different types of matrices, see <a href="GUID-7E829836-0FEF-46B2-8943-86A022193462.html#GUID-70E6283E-35F8-4935-84DB-E4FBDD5B5A12">Separate Forward and Backward Substitution</a>in the Intel&reg; oneAPI Math Kernel Library PARDISO solver description.</p>
+<p> This parameter also can control the number of
+refinement steps that is used on the solution stage: if it is set to <span class="keyword">MKL_DSS_REFINEMENT_OFF</span>, the maximum
+number of refinement steps equal to zero, and if it is set to <span class="keyword">MKL_DSS_REFINEMENT_ON</span>
+(default value), the maximum number of refinement steps
+is equal to 2.</p>
+<p><span class="keyword"> MKL_DSS_CONJUGATE_SOLVE</span> option added to the parameter
+<span class="parmname">opt</span> enables solving a conjugate transposed system <var>A</var><sup><var>H</var></sup><var>X</var> = <var>B</var> based on the factorization of
+the matrix <var>A</var>. This option is equivalent to
+the parameter <span><samp class="codeph"><span class="parmname">iparm</span>(12)</samp></span><samp class="codeph">= 1</samp>in Intel&reg; oneAPI Math Kernel Library PARDISO.</p>
+<p><span class="keyword"> MKL_DSS_TRANSPOSE_SOLVE</span> option added to the parameter
+<span class="parmname">opt</span> enables solving a transposed system <var>A</var><sup><var>T</var></sup><var>X</var> = <var>B</var> based on the factorization of
+the matrix <var>A</var>. This option is equivalent to
+the parameter <span><samp class="codeph"><span class="parmname">iparm</span>(12)</samp></span><samp class="codeph">= 2</samp>in Intel&reg; oneAPI Math Kernel Library PARDISO.</p>
+</div>
+<div class="section" id="GUID-C41F11EB-202B-48F7-9612-414355AD68C8"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">handle</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">TYPE (MKL_DSS_HANDLE)</span>, <span class="keyword">INTENT(INOUT)</span></p>
+<p> Pointer to the data structure storing internal DSS results (<span class="keyword">MKL_DSS_HANDLE</span>).
+</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">opt</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Parameter to pass the DSS options.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nRhs</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">INTEGER</span>, <span class="keyword">INTENT(IN)</span></p>
+<p>Number of the right-hand sides in the system of linear equations.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rRhsValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL*8</span></p>
+<p><span class="keyword">REAL(KIND=4)</span>, <span class="keyword">INTENT(IN)</span> or </p>
+<p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+<p> Array of size <samp class="codeph"><span class="parmname">nRows</span> * <span class="parmname">nRhs</span></samp>. Contains real right-hand side vectors.
+ Real data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">cRhsValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX*16</span></p>
+<p><span class="keyword">COMPLEX(KIND=4)</span>, <span class="keyword">INTENT(IN)</span> or </p>
+<p><span class="keyword">COMPLEX(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+<p> Array of size <samp class="codeph"><span class="parmname">nRows</span> * <span class="parmname">nRhs</span></samp>. Contains complex right-hand side vectors. Complex data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">RhsValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL(KIND=4)</span>, <span class="keyword">INTENT(IN)</span>, or </p>
+<p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(IN)</span>, or
+</p>
+<p><span class="keyword">COMPLEX(KIND=4)</span>, <span class="keyword">INTENT(IN)</span>, or </p>
+<p><span class="keyword">COMPLEX(KIND=8)</span>, <span class="keyword">INTENT(IN)</span></p>
+<p> Array of size <samp class="codeph"><span class="parmname">nRows</span> * <span class="parmname">nRhs</span></samp>. Contains right-hand side vectors. Real or complex data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-BD032246-60B3-401E-B6B3-F36BF03083E5"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">rSolValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL(KIND=4)</span>, <span class="keyword">INTENT(OUT)</span> or <span class="keyword"/></p>
+<p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span></p>
+<p> Array of size <samp class="codeph"><span class="parmname">nCols</span> * <span class="parmname">nRhs</span></samp>. Contains real solution vectors.
+ Real data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">cSolValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">COMPLEX(KIND=4)</span>, <span class="keyword">INTENT(OUT)</span> or <span class="keyword"/></p>
+<p><span class="keyword">COMPLEX(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span></p>
+<p> Array of size <samp class="codeph"><span class="parmname">nCols</span> * <span class="parmname">nRhs</span></samp>. Contains complex solution vectors. Complex data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">SolValues</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL(KIND=4)</span>, <span class="keyword">INTENT(OUT)</span>, or </p>
+<p><span class="keyword">REAL(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span>, or
+</p>
+<p><span class="keyword">COMPLEX(KIND=4)</span>, <span class="keyword">INTENT(OUT)</span>, or</p>
+<p><span class="keyword">COMPLEX(KIND=8)</span>, <span class="keyword">INTENT(OUT)</span></p>
+<p> Array of size <samp class="codeph"><span class="parmname">nCols</span> * <span class="parmname">nRhs</span></samp>. Contains solution vectors. Real or complex data, single or double precision as it is specified by the parameter  <span class="parmname">opt</span>
+in the routine <span class="option">dss_create</span>.</p>
+</td>
+</tr></table></div>
+<div class="section" id="RETURNVALUES_F8D19EC32AF94067BE2002ACB9A33F53"><h2 class="sectiontitle">Return Values</h2><p><span class="keyword">MKL_DSS_SUCCESS</span></p>
+<p><span class="keyword">MKL_DSS_STATE_ERR</span></p>
+<p><span class="keyword">MKL_DSS_INVALID_OPTION</span></p>
+<p><span class="keyword">MKL_DSS_OUT_OF_MEMORY</span></p>
+<p><span class="keyword">MKL_DSS_DIAG_ERR</span></p>
+<p><span class="keyword">MKL_DSS_FAILURE</span></p>
+<p><span class="keyword">MKL_DSS_MSG_LVL_ERR</span></p>
+<p><span class="keyword">MKL_DSS_TERM_LVL_ERR</span></p>
+<p><span class="keyword"> MKL_DSS_OOC_MEM_ERR</span></p>
+<p><span class="keyword"> MKL_DSS_OOC_OC_ERR</span></p>
+<p><span class="keyword"> MKL_DSS_OOC_RW_ERR</span></p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5567883-80B0-4EFF-8FDE-2C098883E821.html">DSS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

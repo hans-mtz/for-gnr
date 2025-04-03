@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="Vector Arguments"/>
+<meta name="DC.subject" content="vector arguments, sparse vector, sparse vectors, compressed form, full-storage form, arguments, compressed sparse vectors, full-storage vectors"/>
+<meta name="keywords" content="vector arguments, sparse vector, sparse vectors, compressed form, full-storage form, arguments, compressed sparse vectors, full-storage vectors"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-FC40420B-57AB-46D1-9FEB-5BB6FBB4C495"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>Vector Arguments</title>
+
+</head>
+<body id="GUID-FC40420B-57AB-46D1-9FEB-5BB6FBB4C495">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">Vector Arguments</h1>
+<div><p><strong>Compressed sparse vectors.</strong> Let 
+      <var>a</var> be a vector stored in an array, and assume that the only non-zero elements of 
+      <var>a</var> are the following: 
+    </p>
+<pre><var>a</var>(<var>k</var><sub>1</sub>), <var>a</var>(<var>k</var><sub>2</sub>), <var>a</var>(<var>k</var><sub>3</sub>) . . . <var>a</var>(<var>k</var><sub><var>nz</var></sub>), </pre><p>where 
+      <var>nz</var> is the total number of non-zero elements in 
+      <var>a</var>. 
+    </p>
+<p>In Sparse BLAS, this vector can be represented in compressed form by two arrays, 
+      <var>x</var> (values) and 
+      <var>indx</var> (indices). Each array has 
+      <var>nz</var> elements: 
+    </p>
+<pre><var>x</var>(1)=<var>a</var>(<var>k</var><sub>1</sub>), <var>x</var>(2)=<var>a</var>(<var>k</var><sub>2</sub>), . . . <var>x</var>(<var>nz</var>)= <var>a</var>(<var>k</var><sub><var>nz</var></sub>), </pre><pre><var>indx</var>(1)=<var>k</var><sub>1</sub>, <var>indx</var>(2)=<var>k</var><sub>2</sub>, . . . <var>indx</var>(<var>nz</var>)= <var>k</var><sub><var>nz</var></sub>. </pre><p>Thus, a sparse vector is fully determined by the triple (<var>nz</var>, 
+      <var>x</var>, 
+      <var>indx</var>). If you pass a negative or zero value of 
+      <var>nz</var> to Sparse BLAS, the subroutines do not modify any arrays or variables. 
+    </p>
+<p><strong>Full-storage vectors.</strong> Sparse BLAS routines can also use a vector argument fully stored in a single array (a full-storage vector). If 
+      <var>y</var> is a full-storage vector, its elements must be stored contiguously: the first element in 
+      <samp class="codeph"><var>y</var>(1)</samp>, the second in 
+      <samp class="codeph"><var>y</var>(2)</samp>, and so on. This corresponds to an increment 
+      <samp class="codeph"><var>incy</var> = 1</samp> in BLAS Level 1. No increment value for full-storage vectors is passed as an argument to Sparse BLAS routines or functions. 
+    </p>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-B5E36638-0A9C-491D-B45A-1EA3A3949DD3.html">Sparse BLAS Level 1 Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

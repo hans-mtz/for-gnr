@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?disna"/>
+<meta name="abstract" content="Computes the reciprocal condition numbers for the eigenvectors of a symmetric/ Hermitian matrix or for the left or right singular vectors of a general matrix."/>
+<meta name="description" content="Computes the reciprocal condition numbers for the eigenvectors of a symmetric/ Hermitian matrix or for the left or right singular vectors of a general matrix."/>
+<meta name="DC.subject" content="?disna, LAPACK routines, condition number estimation, condition number, symmetric matrix, estimating the condition number, symmetric eigenvalue problems"/>
+<meta name="keywords" content="?disna, LAPACK routines, condition number estimation, condition number, symmetric matrix, estimating the condition number, symmetric eigenvalue problems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-16F92449-D99E-4813-8F65-4599EC1B18BD"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?disna</title>
+
+</head>
+<body id="GUID-16F92449-D99E-4813-8F65-4599EC1B18BD">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?disna</span></h1>
+<!--Computes the reciprocal condition numbers for the eigenvectors of a symmetric/ Hermitian matrix or for the left or right singular vectors of a general matrix.--><div><p class="shortdesc">Computes the reciprocal condition numbers for the eigenvectors of a symmetric/ Hermitian matrix or for the left or right singular vectors of a general matrix.</p>
+<div class="section" id="GUID-4F06C81D-E043-4ADD-A767-831BFCB95062"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call sdisna</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call ddisna</span><span class="delim">(</span><span class="var">job</span><span class="sep">, </span><span class="var">m</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">sep</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call disna</span><span class="delim">(</span><span class="var">d</span><span class="sep">, </span><span class="var">sep</span><span class="delim"> [</span><span class="sep">,</span><span class="var">job</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">minmn</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-EB9AE93E-A573-4434-BB3A-FF378BA7938D"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-C528CD8F-8FD6-4752-878C-CB2077D81262"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes the reciprocal condition numbers for the eigenvectors of a real symmetric or complex Hermitian matrix or for the left or right singular vectors of a general <var>m</var>-by-<var>n</var> matrix.</p>
+<p>The reciprocal condition number is the 'gap' between the corresponding eigenvalue or singular value and the nearest other one.</p>
+<p>The bound on the error, measured by angle in radians, in the <var>i</var>-th computed vector is given by</p>
+<p><samp class="codeph"><span class="option">?lamch</span>('E')*(<var>anorm</var>/<var>sep</var>(<var>i</var>))</samp></p>
+<p>where <samp class="codeph"><var>anorm</var> = ||<var>A</var>||<sub>2</sub> = max( |<var>d</var>(j)| )</samp>. <var>sep</var>(<var>i</var>) is not allowed to be smaller than <samp class="codeph"><span class="option">slamch</span>('E')*<var>anorm</var></samp> in order to limit the size of the error bound.</p>
+<p><span class="option">?disna</span> may also be used to compute error bounds for eigenvectors of the generalized symmetric definite eigenproblem.</p>
+</div>
+<div class="section" id="GUID-23CF4289-B368-4762-AF31-0E454FAE7409"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-00CACA3B-A280-4715-9FD8-BE11C3A0AFED"><dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'E'</span>,<span class="keyword">'L'</span>, or <span class="keyword">'R'</span>. Specifies for which problem the reciprocal condition numbers should be computed:</p>
+<p><var>job</var> = <span class="keyword">'E'</span>: for the eigenvectors of a symmetric/Hermitian matrix;</p>
+<p><var>job</var> = <span class="keyword">'L'</span>: for the left singular vectors of a general matrix;</p>
+<p><var>job</var> = <span class="keyword">'R'</span>: for the right singular vectors of a general matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">m</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The number of rows of the matrix (<samp class="codeph"><var>m</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'L'</span></samp>, or <span class="keyword">'R'</span>, the number of columns of the matrix (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). Ignored if <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sdisna</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">ddisna</span>. </p>
+<p>Array, dimension at least max(1,<var>m</var>) if <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, and at least max(1, min(<var>m,n</var>)) if <samp class="codeph"><var>job</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'R'</span>. </p>
+<p>This array must contain the eigenvalues (if <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>) or singular values (if <samp class="codeph"><var>job</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'R'</span>) of the matrix, in either increasing or decreasing order. </p>
+<p>If singular values, they must be non-negative.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C2F1B574-1E1F-4091-AC11-940FB27CA65A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-8B00B308-5735-4DD8-B36B-FDC3C1052B8C"><dt class="dlterm"><span class="parmname">sep</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">sdisna</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">ddisna</span>. </p>
+<p>Array, dimension at least max(1,<var>m</var>) if <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, and at least max(1, min(<var>m,n</var>)) if <samp class="codeph"><var>job</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'R'</span>. The reciprocal condition numbers of the vectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th parameter had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-59D1915A-0C3A-4F6B-99CA-991B22E59379"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">disna</span> interface are the following:</p>
+<dl id="GUID-C5D792A0-F782-45FC-B821-FE871DC5CD2E"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>Holds the vector of length min(<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sep</span></dt>
+
+<dd><p>Holds the vector of length min(<var>m,n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">job</span></dt>
+
+<dd><p>Must be <span class="keyword">'E'</span>, <span class="keyword">'L'</span>, or <span class="keyword">'R'</span>. The default value is <span class="keyword">'E'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">minmn</span></dt>
+
+<dd><p>Indicates which of the values <var>m</var> or <var>n</var> is smaller. Must be either <span class="keyword">'M'</span> or <span class="keyword">'N'</span>, the default is <span class="keyword">'M'</span>. </p>
+<p>If <samp class="codeph"><var>job</var> = <span class="keyword">'E'</span></samp>, this argument is superfluous, If <samp class="codeph"><var>job</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'R'</span>, this argument is used by the routine.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-A37AAAD0-DBF8-48BD-91AB-446CCAB4537F.html">Symmetric Eigenvalue Problems: LAPACK Computational Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

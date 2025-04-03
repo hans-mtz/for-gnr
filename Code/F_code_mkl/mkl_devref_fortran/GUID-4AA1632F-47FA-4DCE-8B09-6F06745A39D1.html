@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasq3"/>
+<meta name="abstract" content="Checks for deflation, computes a shift and calls dqds. Used by ?bdsqr."/>
+<meta name="description" content="Checks for deflation, computes a shift and calls dqds. Used by ?bdsqr."/>
+<meta name="DC.subject" content="?lasq3, LAPACK routines, auxiliary routines"/>
+<meta name="keywords" content="?lasq3, LAPACK routines, auxiliary routines"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4AA1632F-47FA-4DCE-8B09-6F06745A39D1"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasq3</title>
+
+</head>
+<body id="GUID-4AA1632F-47FA-4DCE-8B09-6F06745A39D1">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasq3</span></h1>
+<!--Checks for deflation, computes a shift and calls  dqds . Used by  ?bdsqr .--><div><p class="shortdesc">Checks for deflation, computes a shift and calls <var>dqds</var>. Used by <span class="option">?bdsqr</span>.</p>
+<div class="section" id="GUID-752DCE7D-A31A-4C5B-8542-87CE1058BCB5"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasq3</span><span class="delim">( </span><span class="var">i0</span><span class="sep">, </span><span class="var">n0</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">pp</span><span class="sep">, </span><span class="var">dmin</span><span class="sep">, </span><span class="var">sigma</span><span class="sep">, </span><span class="var">desig</span><span class="sep">, </span><span class="var">qmax</span><span class="sep">, </span><span class="var">nfail</span><span class="sep">, </span><span class="var">iter</span><span class="sep">, </span><span class="var">ndiv</span><span class="sep">, </span><span class="var">ieee</span><span class="sep">, </span><span class="var">ttype</span><span class="sep">, </span><span class="var">dmin1</span><span class="sep">, </span><span class="var">dmin2</span><span class="sep">, </span><span class="var">dn</span><span class="sep">, </span><span class="var">dn1</span><span class="sep">, </span><span class="var">dn2</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasq3</span><span class="delim">( </span><span class="var">i0</span><span class="sep">, </span><span class="var">n0</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">pp</span><span class="sep">, </span><span class="var">dmin</span><span class="sep">, </span><span class="var">sigma</span><span class="sep">, </span><span class="var">desig</span><span class="sep">, </span><span class="var">qmax</span><span class="sep">, </span><span class="var">nfail</span><span class="sep">, </span><span class="var">iter</span><span class="sep">, </span><span class="var">ndiv</span><span class="sep">, </span><span class="var">ieee</span><span class="sep">, </span><span class="var">ttype</span><span class="sep">, </span><span class="var">dmin1</span><span class="sep">, </span><span class="var">dmin2</span><span class="sep">, </span><span class="var">dn</span><span class="sep">, </span><span class="var">dn1</span><span class="sep">, </span><span class="var">dn2</span><span class="sep">, </span><span class="var">g</span><span class="sep">, </span><span class="var">tau</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-F5323F86-397E-4C60-8CCF-3D39050845EE"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-118D4E78-0FCA-4EB4-B9FB-A2DC4F2506A4"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="option">?lasq3</span> checks for deflation, computes a shift <span class="parmname">tau</span>, and calls <var>dqds</var>. In case of failure, it changes shifts, and tries again until output is positive.</p>
+</div>
+<div class="section" id="GUID-FB9D5418-7FEF-4526-A334-B079EEB485E7"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-0CC2601B-001B-4DFB-986F-41F09A7C223D"><dt class="dlterm"><span class="parmname">i0</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. First index.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n0</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Last index.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">z</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (4<var>n</var>). <span class="parmname">z</span> holds the <var>qd</var> array.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pp</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. <samp class="codeph"><span class="parmname">pp</span>=0</samp> for ping, <samp class="codeph"><span class="parmname">pp</span>=1</samp> for pong. <samp class="codeph"><span class="parmname">pp</span>=2</samp> indicates that flipping was applied to the <var>Z</var> array and that the initial tests for deflation should not be performed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desig</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>Lower order part of <var>sigma</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">qmax</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>Maximum value of <var>q</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ieee</span></dt>
+
+<dd><p><span class="keyword">LOGICAL</span>. </p>
+<p>Flag for <span class="keyword">ieee</span>
+
+ or non-<span class="keyword">ieee</span>
+
+ arithmetic (passed to <span class="option">?lasq5</span>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ttype</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>Shift type.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dmin1</span>, <span class="parmname">dmin2</span>, <span class="parmname">dn</span>, <span class="parmname">dn1</span>, <span class="parmname">dn2</span>, <span class="parmname">g</span>, <span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>These scalars are passed as arguments in order to save their values between calls to <span class="option">?lasq3</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-91168D0A-E4BF-4653-835F-F1D1F7B64EB0"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-DD38DBAD-EA81-4738-8BC7-F3CB9369192B"><dt class="dlterm"><span class="parmname">dmin</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>Minimum value of <var>d</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">pp</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. <samp class="codeph"><span class="parmname">pp</span>=0</samp> for ping, <samp class="codeph"><span class="parmname">pp</span>=1</samp> for pong. <samp class="codeph"><span class="parmname">pp</span>=2</samp> indicates that flipping was applied to the <var>Z</var> array and that the initial tests for deflation should not be performed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sigma</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>Sum of shifts used in the current segment.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">desig</span></dt>
+
+<dd><p>Lower order part of <var>sigma</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nfail</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Number of times shift was too big.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">iter</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Number of iterations.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ndiv</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. Number of divisions.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ttype</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Shift type.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dmin1</span>, <span class="parmname">dmin2</span>, <span class="parmname">dn</span>, <span class="parmname">dn1</span>, <span class="parmname">dn2</span>, <span class="parmname">g</span>, <span class="parmname">tau</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasq3</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasq3</span>.</p>
+<p>These scalars are passed as arguments in order to save their values between calls to <span class="option">?lasq3</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

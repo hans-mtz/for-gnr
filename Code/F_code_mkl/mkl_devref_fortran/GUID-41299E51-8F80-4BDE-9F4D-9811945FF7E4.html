@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?lasdq"/>
+<meta name="abstract" content="Computes the SVD of a real bidiagonal matrix with diagonal d and off-diagonal e. Used by ?bdsdc."/>
+<meta name="description" content="Computes the SVD of a real bidiagonal matrix with diagonal d and off-diagonal e. Used by ?bdsdc."/>
+<meta name="DC.subject" content="?lasdq, LAPACK routines, auxiliary routines, real upper bidiagonal matrix, SVD, real lower bidiagonal matrix"/>
+<meta name="keywords" content="?lasdq, LAPACK routines, auxiliary routines, real upper bidiagonal matrix, SVD, real lower bidiagonal matrix"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-41299E51-8F80-4BDE-9F4D-9811945FF7E4"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?lasdq</title>
+
+</head>
+<body id="GUID-41299E51-8F80-4BDE-9F4D-9811945FF7E4">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?lasdq</span></h1>
+<!--Computes the SVD of a real  bidiagonal matrix with diagonal  d  and off-diagonal  e . Used by  ?bdsdc .--><div><p class="shortdesc">Computes the SVD of a real  bidiagonal matrix with diagonal <var>d</var> and off-diagonal <var>e</var>. Used by <span class="option">?bdsdc</span>.</p>
+<div class="section" id="GUID-E606A8D0-12BB-45BF-8060-710EE500B4C2"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slasdq</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ncvt</span><span class="sep">, </span><span class="var">nru</span><span class="sep">, </span><span class="var">ncc</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlasdq</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">sqre</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ncvt</span><span class="sep">, </span><span class="var">nru</span><span class="sep">, </span><span class="var">ncc</span><span class="sep">, </span><span class="var">d</span><span class="sep">, </span><span class="var">e</span><span class="sep">, </span><span class="var">vt</span><span class="sep">, </span><span class="var">ldvt</span><span class="sep">, </span><span class="var">u</span><span class="sep">, </span><span class="var">ldu</span><span class="sep">, </span><span class="var">c</span><span class="sep">, </span><span class="var">ldc</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-7E473937-4018-4D46-A5C5-5B45A8DF753C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-8C0BA9E2-B994-4B3C-A080-C3F7063EBE78"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine <span class="keyword">?lasdq</span> computes the singular value decomposition (<var>SVD</var>) of a real  (upper or lower) bidiagonal matrix with diagonal <var>d</var> and off-diagonal <var>e</var>, accumulating the transformations if desired. If <var>B</var> is the input bidiagonal matrix, the algorithm computes orthogonal  matrices <var>Q</var> and <var>P</var> such that <samp class="codeph"><var>B</var> = <var>Q</var>*<var>S</var>*<var>P</var><sup class="power"><var>T</var></sup></samp>. The singular values <var>S</var> are overwritten on <var>d</var>. </p>
+<p>The input matrix <var>U</var> is changed to <samp class="codeph"><var>U</var>*<var>Q</var></samp> if desired. </p>
+<p>The input matrix <var>VT</var> is changed to <samp class="codeph"><var>P</var><sup class="power"><var>T</var></sup>*<var>VT</var></samp> if desired. </p>
+<p>The input matrix <var>C</var> is changed to <samp class="codeph"><var>Q</var><sup class="power"><var>T</var></sup>*<var>C</var></samp> if desired.</p>
+</div>
+<div class="section" id="GUID-0EB23A10-AE53-459F-98D3-441BF65CEE69"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-64C8FB34-5EBE-49CF-804A-5483BD011A8E"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>.</span> On entry, <var>uplo</var> specifies whether the input bidiagonal matrix is upper or lower bidiagonal. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp> or <span class="keyword">'u'</span>, <var>B</var> is upper bidiagonal; </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp> or <span class="keyword">'l'</span>, <var>B</var> is lower bidiagonal.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">sqre</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0: then the input matrix is <var>n</var>-by-<var>n</var>. </p>
+<p>= 1: then the input matrix is <var>n</var>-by-(<var>n</var>+1) if <samp class="codeph"><var>uplu</var> = <span class="keyword">'U'</span></samp> and (<var>n</var>+1)-by-<var>n</var> if <samp class="codeph"><var>uplu</var></samp></p>
+<p>= <span class="keyword">'L'</span>. The bidiagonal matrix has <samp class="codeph"><var>n</var> = <var>nl</var> + <var>nr</var> + 1</samp> rows and <samp class="codeph"><var>m</var> = <var>n</var> + <var>sqre</var><span class="eqsymbol">≥</span><var>n</var></samp> columns.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>n</var> specifies the number of rows and columns  in the matrix. <var>n</var> must be at least 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ncvt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>ncvt</var> specifies the number of columns of the matrix <var>VT</var>. <var>ncvt</var> must be at least 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">nru</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>nru</var> specifies the number of rows of the matrix <var>U</var>. <var>nru</var> must be at least 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ncc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>ncc</var> specifies the number of columns of the matrix <var>C</var>. <var>ncc</var> must be at least 0.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasdq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasdq</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). On entry, <var>d</var> contains the diagonal entries of the  bidiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasdq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasdq</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> is (<var>n</var>-1) if <samp class="codeph"><var>sqre</var> = 0</samp> and <var>n</var> if <samp class="codeph"><var>sqre</var> = 1</samp>. On entry, the entries of <var>e</var> contain the off-diagonal entries of the  bidiagonal matrix.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasdq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasdq</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldvt</var>, <var>ncvt</var>). On entry, contains a matrix which on exit has been premultiplied by <var>P</var><sup class="power"><var>T</var></sup>, dimension <var>n</var>-by-<var>ncvt</var> if <samp class="codeph"><var>sqre</var> = 0</samp> and (<var>n</var>+1)-by-<var>ncvt</var> if <samp class="codeph"><var>sqre</var> = 1</samp> (not referenced if <var>ncvt</var>=0).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldvt</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>ldvt</var> specifies the leading dimension of <var>vt</var> as declared in the calling (sub) program. <var>ldvt</var> must be at least 1. If <var>ncvt</var> is nonzero, <var>ldvt</var> must also be at least <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasdq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasdq</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldu</var>, <var>n</var>). On entry, contains a  matrix which on exit has been  postmultiplied by <var>Q</var>, dimension <var>nru</var>-by-<var>n</var> if <samp class="codeph"><var>sqre</var> = 0</samp> and <var>nru</var>-by-(<var>n</var>+1) if <samp class="codeph"><var>sqre</var> = 1</samp> (not referenced if <var>nru</var>=0).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldu</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>ldu</var>  specifies the leading dimension of <var>u</var> as  declared in the calling (sub) program. <var>ldu</var> must be at least <samp class="codeph">max(1, <var>nru</var> )</samp> .</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasdq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasdq</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>ldc</var>, <var>ncc</var>). On entry, contains an <var>n</var>-by-<var>ncc</var> matrix which on exit has been premultiplied by <var>Q'</var>, dimension <var>n</var>-by-<var>ncc</var> if <samp class="codeph"><var>sqre</var> = 0</samp> and (<var>n</var>+1)-by-<var>ncc</var> if <samp class="codeph"><var>sqre</var> = 1</samp> (not referenced if <var>ncc</var>=0).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldc</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On entry, <var>ldc</var> specifies the leading dimension of <var>C</var> as declared in the calling (sub) program. <var>ldc</var> must be at least 1. If <var>ncc</var> is non-zero, <var>ldc</var> must also be at least <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slasdq</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlasdq</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (4<var>n</var>). This is a workspace array. Only referenced if one of <var>ncvt</var>, <var>nru</var>, or <var>ncc</var> is nonzero, and if <var>n</var> is at least 2. </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DB629C49-A687-4E38-B0C3-D9943356D91A"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-3939E341-3A76-4B8E-A7F1-640E9C244399"><dt class="dlterm"><span class="parmname">d</span></dt>
+
+<dd><p>On normal exit, <var>d</var> contains the singular values in ascending order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">e</span></dt>
+
+<dd><p>On normal  exit, <var>e</var> will contain 0. If the algorithm does not converge, <var>d</var> and <var>e</var> will contain the diagonal and superdiagonal entries  of a bidiagonal matrix orthogonally equivalent to the one  given as input.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">vt</span></dt>
+
+<dd><p>On exit, the matrix has been premultiplied by <var>P</var>'.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">u</span></dt>
+
+<dd><p>On exit, the matrix has been postmultiplied by <var>Q</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">c</span></dt>
+
+<dd><p>On exit, the matrix has been premultiplied by <var>Q</var>'.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>.</span> On exit, a value of 0 indicates a successful exit. If <samp class="codeph"><var>info</var> &lt; 0</samp>, argument number -<var>info</var> is illegal. If <samp class="codeph"><var>info</var> &gt; 0</samp>, the algorithm did not converge, and <var>info</var> specifies how many superdiagonals did not converge.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?latrs"/>
+<meta name="abstract" content="Solves a triangular system of equations with the scale factor set to prevent overflow."/>
+<meta name="description" content="Solves a triangular system of equations with the scale factor set to prevent overflow."/>
+<meta name="DC.subject" content="?latrs, slatrs, dlatrs, clatrs, zlatrs, LAPACK routines, auxiliary routines, triangular system of equations, solving with scale factor, LAPACK"/>
+<meta name="keywords" content="?latrs, slatrs, dlatrs, clatrs, zlatrs, LAPACK routines, auxiliary routines, triangular system of equations, solving with scale factor, LAPACK"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-4793C771-0067-4542-9637-BC02BA0C8F9C"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?latrs</title>
+
+</head>
+<body id="GUID-4793C771-0067-4542-9637-BC02BA0C8F9C">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?latrs</span></h1>
+<!--Solves a triangular system of equations with the scale factor set to prevent overflow. --><div><p class="shortdesc">Solves a triangular system of equations with the scale factor set to prevent overflow. </p>
+<div class="section" id="GUID-09CC3CD5-6330-4EB2-B9F7-22851DC36E09"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="kwd">call slatrs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">normin</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">cnorm</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call dlatrs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">normin</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">cnorm</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call clatrs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">normin</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">cnorm</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p><p class="dlsyntaxpara"><span class="kwd">call zlatrs</span><span class="delim">( </span><span class="var">uplo</span><span class="sep">, </span><span class="var">trans</span><span class="sep">, </span><span class="var">diag</span><span class="sep">, </span><span class="var">normin</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">scale</span><span class="sep">, </span><span class="var">cnorm</span><span class="sep">, </span><span class="var">info</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-82856DD4-96AB-4CD0-B516-A6B36E7073FD"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-FFA9381A-F25E-4679-A88D-B69D3F2CAFB1"><h2 class="sectiontitle">Description</h2><p>The routine solves one of the triangular systems</p>
+<p><samp class="codeph"><var>A</var>*<var>x</var> = <var>s</var>*<var>b</var></samp>, or  <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup>*<var>x</var> = <var>s</var>*<var>b,</var></samp>  or  <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup>*<var>x</var> = <var>s</var>*<var>b</var></samp> (for complex flavors)</p>
+<p>with scaling to prevent overflow. Here <var>A</var> is an upper or lower  triangular matrix, <var>A</var><sup class="power"><var>T</var></sup> denotes the transpose of <var>A</var>, <var>A</var><sup class="power"><var>H</var></sup> denotes the conjugate transpose of <var>A</var>, <var>x</var> and <var>b</var> are <var>n</var>-element vectors, and <var>s</var> is a scaling factor, usually less than  or equal to 1, chosen so that the components of <var>x</var> will be less than the overflow threshold. If the unscaled problem will not cause overflow, the Level 2 BLAS routine <span class="option">?trsv</span> is called. If the matrix <var>A</var> is singular <samp class="codeph">(<var>A</var>(<var>j</var>,<var>j</var>) = 0</samp> for some <var>j</var>), then <var>s</var> is set to 0 and a  non-trivial solution to  <samp class="codeph"><var>A</var>*<var>x</var> = 0</samp> is returned.</p>
+</div>
+<div class="section" id="GUID-9A31CDD0-625A-4778-83B9-AA21AD9CAF57"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-341CBD1A-E2AE-4714-8215-B47BEC0B5EEB"><dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>.</p>
+<p>Specifies whether the matrix <var>A</var> is upper or lower triangular.</p>
+<p>= <span class="keyword">'U'</span>:  Upper triangular</p>
+<p>= <span class="keyword">'L'</span>:  Lower triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">trans</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>Specifies the 
+operation applied to <var>A</var>. </p>
+<p>= <span class="keyword">'N'</span>:  solve <samp class="codeph"><var>A</var>*<var>x</var> = <var>s</var>*<var>b</var></samp> (no transpose) </p>
+<p>= <span class="keyword">'T'</span>:  solve <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup>*<var>x</var> = <var>s</var>*<var>b</var></samp> (transpose) </p>
+<p>= <span class="keyword">'C'</span>:  solve <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup>*<var>x</var> = <var>s</var>*<var>b</var></samp>  (conjugate transpose)</p>
+</dd>
+<dt class="dlterm"><span class="parmname">diag</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>Specifies whether or not the matrix <var>A</var> is unit triangular.</p>
+<p>= <span class="keyword">'N'</span>:  non-unit triangular</p>
+<p>= <span class="keyword">'N'</span>:  non-unit triangular</p>
+</dd>
+<dt class="dlterm"><span class="parmname">normin</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*1</span>. </p>
+<p>Specifies whether <var>cnorm</var> has been set or not.</p>
+<p>= <span class="keyword">'Y'</span>: <var>cnorm</var> contains the column norms on entry;</p>
+<p>= <span class="keyword">'N'</span>: <var>cnorm</var> is not set on entry. O</p>
+<p>n exit, the norms will be computed and stored in <var>cnorm</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The order of the matrix <var>A</var>. <samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp></p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrs</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrs</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrs</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). Contains the triangular matrix <var>A</var>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, the leading <var>n</var>-by-<var>n</var> upper triangular part of the array <var>a</var> contains the upper triangular matrix, and the strictly lower triangular part of <var>A</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, the leading <var>n</var>-by-<var>n</var> lower triangular part of the array <var>a</var> contains the lower triangular matrix, and the strictly upper triangular part of <var>A</var> is not referenced. </p>
+<p>If <samp class="codeph"><var>diag</var> = <span class="keyword">'U'</span></samp>, the diagonal elements of <var>A</var> are also not referenced and are assumed to be 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. The leading dimension of the array <var>a</var>. <samp class="codeph"><var>lda</var><span class="eqsymbol">≥</span> max(1, <var>n</var>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrs</span></p>
+<p><span class="keyword">COMPLEX</span> for <span class="option">clatrs</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zlatrs</span>.</p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>On entry, the right hand side <var>b</var> of the triangular system.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cnorm</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrs</span>/<span class="option">clatrs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrs</span>/<span class="option">zlatrs</span>. </p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>n</var>). </p>
+<p>If <samp class="codeph"><var>normin</var> = <span class="keyword">'Y'</span></samp>, <var>cnorm</var> is an input argument and <var>cnorm</var> (<var>j</var>) contains the norm of the off-diagonal part of the <var>j</var>-th column of <var>A</var>. </p>
+<p>If <samp class="codeph"><var>trans</var> = <span class="keyword">'N'</span></samp>, <var>cnorm</var> (<var>j</var>) must be greater than or equal to the infinity-norm, and if <samp class="codeph"><var>trans</var> = <span class="keyword">'T'</span></samp> or <span class="keyword">'C'</span>, <var>cnorm</var>(<var>j</var>) must be greater than or equal to the 1-norm.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-2D4D7B4B-18E5-4FA7-BB23-15DEB0CFB041"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-34483D6B-3F47-4E44-92C7-B31619AAE36C"><dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p>On exit, <span class="parmname">x</span> is overwritten by the solution vector <var>x</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">scale</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">slatrs</span>/<span class="option">clatrs</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">dlatrs</span>/<span class="option">zlatrs</span>. </p>
+<p>Array, <span class="keyword">DIMENSION</span> (<var>lda</var>, <var>n</var>). The scaling factor <var>s</var> for the triangular system as described above. </p>
+<p>If <samp class="codeph"><var>scale</var> = 0</samp>, the matrix <var>A</var> is singular or badly scaled, and the vector <var>x</var> is an exact or approximate solution to <samp class="codeph"><var>A</var>*<var>x</var> = 0</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">cnorm</span></dt>
+
+<dd><p>If <samp class="codeph"><var>normin</var> = <span class="keyword">'N'</span></samp>, <var>cnorm</var> is an output argument and <var>cnorm</var>(<var>j</var>) returns the 1-norm of the off-diagonal part of the <var>j</var>-th column of <var>A</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>= 0:  successful exit</p>
+<p>&lt; 0:  if <samp class="codeph"><var>info</var> = -<var>k</var></samp>, the <var>k</var>-th argument had an illegal value</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-C2771638-D7FB-4D46-AB19-82BDA575214A"><h2 class="sectiontitle">Application Notes</h2><p>A rough bound on <var>x</var> is computed; if that is less than overflow, <span class="option">?trsv</span>  is called, otherwise, specific code is used which checks for possible overflow or divide-by-zero at every operation. </p>
+<p>A columnwise scheme is used for solving <samp class="codeph"><var>Ax</var> = <var>b</var></samp>. The basic algorithm  if <var>A</var> is lower triangular is</p>
+<p><samp class="codeph"><var>x</var>[1:<var>n</var>] := <var>b</var>[1:<var>n</var>]</samp></p>
+<p><samp class="codeph">for <samp class="codeph"><var>j</var> = 1</samp>, ..., <var>n</var></samp></p>
+<p><samp class="codeph"><var>x</var>(<var>j</var>) := <var>x</var>(<var>j</var>) / A(<var>j</var>,<var>j</var>)</samp></p>
+<p><samp class="codeph"><var>x</var>[<var>j</var>+1:<var>n</var>] := <var>x</var>[<var>j</var>+1:<var>n</var>] - <var>x</var>(<var>j</var>)*<var>a</var>[<var>j</var>+1:<var>n</var>,<var>j</var>]</samp></p>
+<p><samp class="codeph">end</samp></p>
+<p>Define bounds on the components of <var>x</var> after <var>j</var> iterations of the loop:</p>
+<p><samp class="codeph"><var>M</var>(<var>j</var>) = bound on <var>x</var>[1:<var>j</var>]</samp></p>
+<p><samp class="codeph"><var>G</var>(<var>j</var>) = bound on <var>x</var>[<var>j</var>+1:<var>n</var>]</samp></p>
+<p>Initially, let <samp class="codeph"><var>M</var>(0) = 0</samp> and <samp class="codeph"><var>G</var>(0) = max{<var>x</var>(<var>i</var>), <var>i</var>=1,...,<var>n</var>}</samp>.</p>
+<p>Then for iteration <var>j</var>+1 we have</p>
+<p><samp class="codeph"><var>M</var>(<var>j</var>+1) ≤ <var>G</var>(<var>j</var>) / | <var>a</var>(<var>j</var>+1,<var>j</var>+1)|</samp></p>
+<p><samp class="codeph"><var>G</var>(<var>j</var>+1) ≤ <var>G</var>(<var>j</var>) +  <var>M</var>(<var>j</var>+1)*| <var>a</var>[<var>j</var>+2:<var>n</var>,<var>j</var>+1]|</samp></p>
+<p><samp class="codeph">≤ <var>G</var>(<var>j</var>)(1 + <var>cnorm</var>(<var>j</var>+1)/ | <var>a</var>(<var>j</var>+1,<var>j</var>+1)|</samp>,</p>
+<p>where <var>cnorm</var>(<var>j</var>+1) is greater than or equal to the infinity-norm of column <var>j</var>+1 of <var>a</var>, not counting the diagonal. Hence</p>
+<p><br/><div class="imagecenter"><img src="GUID-5745BDE5-210B-4243-ABB6-F99079C4DDE4-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>and</p>
+<p><br/><div class="imagecenter"><img src="GUID-1EDFCCA1-E147-4003-A1D4-160EC177419B-low.jpg" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>Since <samp class="codeph">|<var>x</var>(<var>j</var>)| ≤ <var>M</var>(<var>j</var>)</samp>, we use the Level 2 BLAS routine <span class="option">?trsv</span> if the reciprocal of the largest <samp class="codeph"><var>M</var>(<var>j</var>), <var>j</var>=1,..,<var>n</var></samp>, is larger than <samp class="codeph">max(<var>underflow</var>, 1/<var>overflow</var>)</samp>. </p>
+<p>The bound on <var>x</var>(<var>j</var>) is also used to determine when a step in the columnwise method can be performed without fear of overflow. If  the computed bound is greater than a large constant, <var>x</var> is scaled to  prevent overflow, but if the bound overflows, <var>x</var> is set to 0, <var>x</var>(<var>j</var>) to 1, and scale to 0, and a non-trivial solution to <samp class="codeph"><var>A</var><var>x</var> = 0</samp> is found. </p>
+<p>Similarly, a row-wise scheme is used to solve <samp class="codeph"><var>A</var><sup class="power"><var>T</var></sup><var>x</var> = <var>b</var></samp> or <samp class="codeph"><var>A</var><sup class="power"><var>H</var></sup><var>x</var> = <var>b</var></samp>. The basic  algorithm for <var>A</var> upper triangular is</p>
+<p><samp class="codeph">for <var>j</var> = 1, ..., <var>n</var></samp></p>
+<p><samp class="codeph"><var>x</var>(<var>j</var>) := (  <var>b</var>(<var>j</var>) -  <var>A</var>[1:<var>j</var>-1,<var>j</var>]' <var>x</var>[1:<var>j</var>-1]) /  <var>A</var>(<var>j</var>,<var>j</var>)</samp></p>
+<p><samp class="codeph">end</samp></p>
+<p>We simultaneously compute two bounds</p>
+<p><samp class="codeph"><var>G</var>(<var>j</var>) = bound on (  <var>b</var>(<var>i</var>) - <var>A</var>[1:<var>i</var>-1,<var>i</var>]'*<var>x</var>[1:<var>i</var>-1]), 1≤ <var>i</var>≤ <var>j</var></samp></p>
+<p><samp class="codeph"><var>M</var>(<var>j</var>) = bound on <var>x</var>(<var>i</var>), 1≤ <var>i</var>≤ <var>j</var></samp></p>
+<p>The initial values are <samp class="codeph"><var>G</var>(0) = 0</samp>, <samp class="codeph"><var>M</var>(0) = max{ <var>b</var>(<var>i</var>), <var>i</var>=1,..,<var>n</var>}</samp>, and we  add the constraint <samp class="codeph"><var>G</var>(<var>j</var>) <span class="eqsymbol">≥</span><var>G</var>(<var>j</var>-1)</samp> and <samp class="codeph"><var>M</var>(<var>j</var>) <span class="eqsymbol">≥</span><var>M</var>(<var>j</var>-1)</samp> for <samp class="codeph"><var>j</var><span class="eqsymbol">≥</span> 1</samp>. </p>
+<p>Then the bound on <var>x</var>(<var>j</var>) is</p>
+<p><samp class="codeph"><var>M</var>(<var>j</var>) ≤ <var>M</var>(<var>j</var>-1) *(1 + <var>cnorm</var>(<var>j</var>)) / |  <var>A</var>(<var>j</var>,<var>j</var>)|</samp></p>
+<p><br/><div class="imagecenter"><img src="GUID-BD944DD4-FEEB-476F-B862-DCA993F6E59C-low.gif" alt="Equation" align="center" class=".eq"/></div><br/></p>
+<p>and we can safely call <span class="option">?trsv</span> if <samp class="codeph">1/<var>M</var>(<var>n</var>)</samp> and <samp class="codeph">1/<var>G</var>(<var>n</var>)</samp> are both greater than <samp class="codeph">max(<var>underflow</var>, 1/<var>overflow</var>)</samp>.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-118DC64D-62BB-4B91-9E76-562387E86B79.html">LAPACK Auxiliary Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

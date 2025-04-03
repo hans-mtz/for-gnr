@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="topic"/>
+<meta name="DC.Title" content="LAPACK Linear Equation Computational Routines"/>
+<meta name="DC.subject" content="matrix equation, AX = B"/>
+<meta name="keywords" content="matrix equation, AX = B"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-637284D3-4D1F-4D6C-9509-382CB2DD1A3D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-AAE3AFD5-EC69-4723-B201-C70980D5B3ED.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4FED9933-3CF4-42B0-BB3E-E7C9776433D3.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-5AC46E1F-2B0E-42C5-8BB9-2662F5EE8241.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-421DAC57-F553-4782-BB4A-03EA0D905F7D.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-A9CF6B22-DEF3-4AF3-8D1E-D605A0DD05A6.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-CA12B714-C79D-4598-B0A4-BF61F5B007BB.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>LAPACK Linear Equation Computational Routines</title>
+
+</head>
+<body class="no-rel-links" id="GUID-2046459C-7738-44B5-BF85-A723AEDDE5F3">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1">LAPACK Linear Equation Computational Routines</h1>
+<div><p><a href="#TBL3-1">Table
+        <span>"Computational Routines for Systems of Equations with Real Matrices"</span></a> lists the LAPACK computational routines
+      <span>(FORTRAN 77 and Fortran 95 interfaces)
+      </span>for factorizing, equilibrating, and inverting
+      <dfn class="term">real</dfn> matrices, estimating their condition numbers, solving systems of equations with real matrices, refining the solution, and estimating its error.
+      <a href="#TBL3-2">Table "Computational Routines for Systems of Equations with Complex Matrices"</a> lists similar routines for
+      <dfn class="term">complex</dfn> matrices.<span> Respective routine names in the Fortran 95 interface are without the first symbol (see
+        <a href="GUID-18FA709C-D7B7-4D1E-A6A8-5D316FCD811D.html#GUID-18FA709C-D7B7-4D1E-A6A8-5D316FCD811D">Routine Naming Conventions</a>).
+      </span></p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL3-1" class="NoLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Systems of Equations with Real Matrices</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.626168224299064%" id="d268342e59"><p>Matrix type, storage scheme</p>
+</th>
+<th class="cellrowborder" valign="top" width="12.149532710280374%" id="d268342e62"><p>Factorize matrix</p>
+</th>
+<th class="cellrowborder" valign="top" width="14.018691588785046%" id="d268342e65"><p>Equilibrate matrix</p>
+</th>
+<th class="cellrowborder" valign="top" width="11.214953271028037%" id="d268342e68"><p>Solve system</p>
+</th>
+<th class="cellrowborder" valign="top" width="13.084112149532709%" id="d268342e71"><p>Condition number</p>
+</th>
+<th class="cellrowborder" valign="top" width="12.149532710280374%" id="d268342e74"><p>Estimate error</p>
+</th>
+<th class="row-nocellborder" valign="top" width="17.75700934579439%" id="d268342e77"><p>Invert matrix</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>general</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">?getrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p><a href="GUID-C20CD22A-5C1F-42F8-9961-63AF7421295B.html#GUID-C20CD22A-5C1F-42F8-9961-63AF7421295B"><span class="option">?geequ</span></a>,</p>
+<p><a href="GUID-DA7B6C87-52AA-4539-BF9B-5886EA8E2D21.html#GUID-DA7B6C87-52AA-4539-BF9B-5886EA8E2D21"><span class="option">?geequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0.html#GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0"><span class="option">?getrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-63F50607-0569-435D-9FB5-1E3006A91768.html#GUID-63F50607-0569-435D-9FB5-1E3006A91768"><span class="option">?gecon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-A3CD196D-97A3-4135-8E78-1813A0A73E84.html#GUID-A3CD196D-97A3-4135-8E78-1813A0A73E84"><span class="option">?gerfs</span></a>,</p>
+<p><a href="GUID-BD64165E-4522-4C88-8E90-DAD49B77019E.html#GUID-BD64165E-4522-4C88-8E90-DAD49B77019E"><span class="option">?gerfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6.html#GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6"><span class="option">?getri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>general band</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">?gbtrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p><a href="GUID-5B9EB6C7-494D-4FCC-BBF9-AC3B59984652.html#GUID-5B9EB6C7-494D-4FCC-BBF9-AC3B59984652"><span class="option">?gbequ</span></a>,</p>
+<p><a href="GUID-A97EF1BA-C38E-4941-8D01-AEA68A18CF0C.html#GUID-A97EF1BA-C38E-4941-8D01-AEA68A18CF0C"><span class="option">?gbequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7.html#GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7"><span class="option">?gbtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-55877F0D-D603-4A37-B110-F5350BB8F8C4.html#GUID-55877F0D-D603-4A37-B110-F5350BB8F8C4"><span class="option">?gbcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-EF70810C-6FB0-44B9-B471-47AFBDC028E8.html#GUID-EF70810C-6FB0-44B9-B471-47AFBDC028E8"><span class="option">?gbrfs</span></a>,</p>
+<p><a href="GUID-A7AB402C-4E8E-4B0D-A670-DF9D4E0FC2C1.html#GUID-A7AB402C-4E8E-4B0D-A670-DF9D4E0FC2C1"><span class="option">?gbrfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>general tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-40417474-5534-460A-9DDB-0F34976BA0C7.html#GUID-40417474-5534-460A-9DDB-0F34976BA0C7"><span class="option">?gttrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-A76FB023-4172-4F12-B612-6D675328FA43.html#GUID-A76FB023-4172-4F12-B612-6D675328FA43"><span class="option">?gttrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-98176574-A654-40D6-845D-D18FAA83B5F0.html#GUID-98176574-A654-40D6-845D-D18FAA83B5F0"><span class="option">?gtcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-97D64164-CDFF-49DF-A816-37D32298D23E.html#GUID-97D64164-CDFF-49DF-A816-37D32298D23E"><span class="option">?gtrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>diagonally dominant tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-E0C00886-6E12-4E84-941F-555E7F14FEDE.html#GUID-E0C00886-6E12-4E84-941F-555E7F14FEDE"><span class="option">?dttrfb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-66F60167-A653-4DC5-BAF4-D003BBBAA746.html#GUID-66F60167-A653-4DC5-BAF4-D003BBBAA746"><span class="option">?dttrsb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p/>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p/>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric positive-definite</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-15A9E907-2600-430B-BF11-DFA0A375711B.html#GUID-15A9E907-2600-430B-BF11-DFA0A375711B"><span class="option">?potrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p><a href="GUID-61BD0B69-59E9-4946-9CAD-A20D6D5E84E2.html#GUID-61BD0B69-59E9-4946-9CAD-A20D6D5E84E2"><span class="option">?poequ</span></a>,</p>
+<p><a href="GUID-5949CC58-AD9C-48EA-A9EB-F1F5AE17F9FD.html#GUID-5949CC58-AD9C-48EA-A9EB-F1F5AE17F9FD"><span class="option">?poequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-2039BD5D-44D1-487A-9B68-87BD46019A5F.html#GUID-2039BD5D-44D1-487A-9B68-87BD46019A5F"><span class="option">?potrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB.html#GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB"><span class="option">?pocon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-E711D1E4-00F6-4D5F-A1B1-F018E4AFDFCD.html#GUID-E711D1E4-00F6-4D5F-A1B1-F018E4AFDFCD"><span class="option">?porfs</span></a>,</p>
+<p><a href="GUID-8CFFBC53-C9F6-428E-B486-52AB16E5E2FF.html#GUID-8CFFBC53-C9F6-428E-B486-52AB16E5E2FF"><span class="option">?porfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-1B333271-FE8C-4A98-8A70-F0FC29925BA1.html#GUID-1B333271-FE8C-4A98-8A70-F0FC29925BA1"><span class="option">?potri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric positive-definite, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF.html#GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF"><span class="option">?pptrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p><a href="GUID-F7D57A2E-95A5-48E9-B09D-6587C2614F71.html#GUID-F7D57A2E-95A5-48E9-B09D-6587C2614F71"><span class="option">?ppequ</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF.html#GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF"><span class="option">?pptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-65301377-3A94-4C5E-BCF5-33691A0323FE.html#GUID-65301377-3A94-4C5E-BCF5-33691A0323FE"><span class="option">?ppcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-261094E9-779C-4198-8451-79E03F8C8843.html#GUID-261094E9-779C-4198-8451-79E03F8C8843"><span class="option">?pprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2.html#GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2"><span class="option">?pptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric positive-definite, RFP storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76.html#GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76"><span class="option">?pftrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-674C9C39-E08F-4C9C-865A-AA3D8881D974.html#GUID-674C9C39-E08F-4C9C-865A-AA3D8881D974"><span class="option">?pftrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p> </p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B.html#GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B"><span class="option">?pftri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric positive-definite, band</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html#GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D"><span class="option">?pbtrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p><a href="GUID-6364E6E5-8809-4543-8280-4195096896A8.html#GUID-6364E6E5-8809-4543-8280-4195096896A8"><span class="option">?pbequ</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF.html#GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF"><span class="option">?pbtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-6F3C30BC-C2D3-4ECC-B0A7-DD9754A7A62D.html#GUID-6F3C30BC-C2D3-4ECC-B0A7-DD9754A7A62D"><span class="option">?pbcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-D3671B5E-A6F8-4E56-AF65-2BEF91D4B0B6.html#GUID-D3671B5E-A6F8-4E56-AF65-2BEF91D4B0B6"><span class="option">?pbrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric positive-definite, tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html#GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682"><span class="option">?pttrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-FE593312-5EA4-4914-BEF9-682D5DB72416.html#GUID-FE593312-5EA4-4914-BEF9-682D5DB72416"><span class="option">?pttrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-A5E155AF-E997-46CD-95BE-F44EDA90B4CA.html#GUID-A5E155AF-E997-46CD-95BE-F44EDA90B4CA"><span class="option">?ptcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-CB1DE653-6AF8-49D2-BE1A-81447EF15860.html#GUID-CB1DE653-6AF8-49D2-BE1A-81447EF15860"><span class="option">?ptrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric indefinite</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">?sytrf</span></a></p>
+<p><a class="allformats" href="GUID-E4F0C583-4A62-4B8C-8035-580C08F2F9BC.html#GUID-E4F0C583-4A62-4B8C-8035-580C08F2F9BC"><span class="option">?sytrf_rook</span></a></p>
+<p><a class="allformats" href="GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665.html#GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665"><span class="option">?sytrf_rk</span></a></p>
+<p><a class="allformats" href="GUID-35B3D213-C161-4CD1-9F0A-591FC1790D19.html#GUID-35B3D213-C161-4CD1-9F0A-591FC1790D19"><span class="option">?sytrf_aa</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p><a class="allformats" href="GUID-21BA3ECB-2B1E-470F-9F68-0F5E8D5A7FFF.html#GUID-21BA3ECB-2B1E-470F-9F68-0F5E8D5A7FFF"><span class="option">?syequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD.html#GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD"><span class="option">?sytrs</span></a></p>
+<p><a href="GUID-D78BC1ED-58C9-481B-9286-193EDE0E7AE0.html#GUID-D78BC1ED-58C9-481B-9286-193EDE0E7AE0"><span class="option">?sytrs_rook</span></a></p>
+<p><a href="GUID-22836745-C221-448A-8718-DAC263C52A96.html#GUID-22836745-C221-448A-8718-DAC263C52A96"><span class="option">?sytrs2</span></a></p>
+<p><a class="allformats" href="GUID-023D672F-3647-4C4C-9BD0-86E47EC0AA2D.html#GUID-023D672F-3647-4C4C-9BD0-86E47EC0AA2D"><span class="option">?sytrs3</span></a></p>
+<p><a class="allformats" href="GUID-D042EC84-E4D6-46CD-B885-541A5C2EE813.html#GUID-D042EC84-E4D6-46CD-B885-541A5C2EE813"><span class="option">?sytrs_aa</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-C84FC6A9-EA43-4390-96D6-FC497737E234.html#GUID-C84FC6A9-EA43-4390-96D6-FC497737E234"><span class="option">?sycon</span></a></p>
+<p><a href="GUID-AE5916C1-1123-4E55-87EA-B1668ED18F50.html#GUID-AE5916C1-1123-4E55-87EA-B1668ED18F50"><span class="option">?sycon_rook</span></a></p>
+<p><a class="allformats" href="GUID-6E1A6C2C-87E0-43FB-A688-065FF67873B4.html#GUID-6E1A6C2C-87E0-43FB-A688-065FF67873B4"><span class="option">?sycon_3</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-4B6133A5-9E12-461E-A22C-E44B1D2EB645.html#GUID-4B6133A5-9E12-461E-A22C-E44B1D2EB645"><span class="option">?syrfs</span></a>,</p>
+<p><a href="GUID-765F6CB3-5258-422D-BCFB-59B1C1BFEDC7.html#GUID-765F6CB3-5258-422D-BCFB-59B1C1BFEDC7"><span class="option">?syrfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-932B0A5D-D7A0-4AB1-8CC0-70F67F2EBC2A.html#GUID-932B0A5D-D7A0-4AB1-8CC0-70F67F2EBC2A"><span class="option">?sytri</span></a></p>
+<p><a href="GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C.html#GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C"><span class="option">?sytri_rook</span></a></p>
+<p><a href="GUID-1576D150-4AD0-4CAF-BD65-F4EE78F9BCDC.html#GUID-1576D150-4AD0-4CAF-BD65-F4EE78F9BCDC"><span class="option">?sytri2</span></a></p>
+<p><a href="GUID-E789C810-50C8-414F-9CF9-9E3A6AB61FED.html#GUID-E789C810-50C8-414F-9CF9-9E3A6AB61FED"><span class="option">?sytri2x</span></a></p>
+<p><a class="allformats" href="GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C.html#GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C"><span class="option">?sytri_3</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>symmetric indefinite, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p><a class="allformats" href="GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A.html#GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A"><span class="option">?sptrf</span></a></p>
+<p><a href="GUID-7C6574A1-164E-4A4A-A0F9-75949A5B35F7.html#GUID-7C6574A1-164E-4A4A-A0F9-75949A5B35F7"><span class="option">mkl_?spffrt2, mkl_?spffrtx</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-29A1B330-50B2-4792-8BC6-CD372D185EEB.html#GUID-29A1B330-50B2-4792-8BC6-CD372D185EEB"><span class="option">?sptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-48ADC51E-C806-45D4-893C-A91EE90C6426.html#GUID-48ADC51E-C806-45D4-893C-A91EE90C6426"><span class="option">?spcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-4752707C-A551-4E8A-89B0-C62962A7A0BA.html#GUID-4752707C-A551-4E8A-89B0-C62962A7A0BA"><span class="option">?sprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-6627C65C-C5F0-4DD2-8DED-7D9451CE9B8C.html#GUID-6627C65C-C5F0-4DD2-8DED-7D9451CE9B8C"><span class="option">?sptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>triangular</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-65AB242A-E790-4222-BB85-4355DC389BC6.html#GUID-65AB242A-E790-4222-BB85-4355DC389BC6"><span class="option">?trtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-AFF3667B-1CCF-417D-996C-E754B5226614.html#GUID-AFF3667B-1CCF-417D-996C-E754B5226614"><span class="option">?trcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-6A483F45-1124-437D-A259-0C6C616CA930.html#GUID-6A483F45-1124-437D-A259-0C6C616CA930"><span class="option">?trrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-C2AA1F15-D2C5-425B-90BD-1012163DA3EE.html#GUID-C2AA1F15-D2C5-425B-90BD-1012163DA3EE"><span class="option">?trtri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>triangular, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-71E82DE1-EA67-43D4-B40F-FCBE0E751FA3.html#GUID-71E82DE1-EA67-43D4-B40F-FCBE0E751FA3"><span class="option">?tptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-E3EFC88C-C14C-42A2-BE01-7982CCE23600.html#GUID-E3EFC88C-C14C-42A2-BE01-7982CCE23600"><span class="option">?tpcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-45D79A50-467D-49B4-B6CA-AE8F59F6EE87.html#GUID-45D79A50-467D-49B4-B6CA-AE8F59F6EE87"><span class="option">?tprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-FE8B98E7-CD7A-49D0-A4E8-097AF05F8EB6.html#GUID-FE8B98E7-CD7A-49D0-A4E8-097AF05F8EB6"><span class="option">?tptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>triangular, RFP storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p> </p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p><a href="GUID-828A8350-E5DB-4699-A6F6-DF6EE9E9130B.html#GUID-828A8350-E5DB-4699-A6F6-DF6EE9E9130B"><span class="option">?tftri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e59 "><p>triangular band</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e62 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e65 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e68 "><p><a href="GUID-382CC62B-BD54-45BE-B5FE-E9716511CC3C.html#GUID-382CC62B-BD54-45BE-B5FE-E9716511CC3C"><span class="option">?tbtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e71 "><p><a href="GUID-57944053-FAD0-423F-8500-8C2883219004.html#GUID-57944053-FAD0-423F-8500-8C2883219004"><span class="option">?tbcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e74 "><p><a href="GUID-4D20BECB-0994-4F45-95FB-C4A2B97C3F28.html#GUID-4D20BECB-0994-4F45-95FB-C4A2B97C3F28"><span class="option">?tbrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e77 "><p> </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the table above,
+    <span class="keyword">?</span> denotes
+    <span class="keyword">s</span> (single precision) or
+    <span class="keyword">d</span> (double precision) for the FORTRAN 77 interface.</p>
+
+<div class="tablenoborder"><table cellpadding="4" summary="" id="TBL3-2" class="NoLineLong" frame="hsides" border="1" rules="all"><caption><span class="tablecap">Computational Routines for Systems of Equations with Complex Matrices</span></caption><thead align="left"><tr><th class="cellrowborder" valign="top" width="19.626168224299064%" id="d268342e1102"><p>Matrix type, storage scheme</p>
+</th>
+<th class="cellrowborder" valign="top" width="12.149532710280374%" id="d268342e1105"><p>Factorize matrix</p>
+</th>
+<th class="cellrowborder" valign="top" width="14.018691588785046%" id="d268342e1108"><p>Equilibrate matrix</p>
+</th>
+<th class="cellrowborder" valign="top" width="11.214953271028037%" id="d268342e1111"><p>Solve system</p>
+</th>
+<th class="cellrowborder" valign="top" width="13.084112149532709%" id="d268342e1114"><p>Condition number</p>
+</th>
+<th class="cellrowborder" valign="top" width="12.149532710280374%" id="d268342e1117"><p>Estimate error</p>
+</th>
+<th class="row-nocellborder" valign="top" width="17.75700934579439%" id="d268342e1120"><p>Invert matrix</p>
+</th>
+</tr>
+</thead>
+<tbody><tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>general</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-A02DB70F-9704-42A4-9071-D409D783D911.html#GUID-A02DB70F-9704-42A4-9071-D409D783D911"><span class="option">?getrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a href="GUID-C20CD22A-5C1F-42F8-9961-63AF7421295B.html#GUID-C20CD22A-5C1F-42F8-9961-63AF7421295B"><span class="option">?geequ</span></a>,</p>
+<p><a href="GUID-DA7B6C87-52AA-4539-BF9B-5886EA8E2D21.html#GUID-DA7B6C87-52AA-4539-BF9B-5886EA8E2D21"><span class="option">?geequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0.html#GUID-73425BCA-BFB6-4E53-82DA-4EEF729853B0"><span class="option">?getrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-63F50607-0569-435D-9FB5-1E3006A91768.html#GUID-63F50607-0569-435D-9FB5-1E3006A91768"><span class="option">?gecon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-A3CD196D-97A3-4135-8E78-1813A0A73E84.html#GUID-A3CD196D-97A3-4135-8E78-1813A0A73E84"><span class="option">?gerfs</span></a>,</p>
+<p><a href="GUID-BD64165E-4522-4C88-8E90-DAD49B77019E.html#GUID-BD64165E-4522-4C88-8E90-DAD49B77019E"><span class="option">?gerfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6.html#GUID-655FC62D-9BCD-4582-9D8C-50D05BFAE9E6"><span class="option">?getri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>general band</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-03E2AA41-0886-485D-B0D7-1C2186119220.html#GUID-03E2AA41-0886-485D-B0D7-1C2186119220"><span class="option">?gbtrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a href="GUID-5B9EB6C7-494D-4FCC-BBF9-AC3B59984652.html#GUID-5B9EB6C7-494D-4FCC-BBF9-AC3B59984652"><span class="option">?gbequ</span></a>,</p>
+<p><a href="GUID-A97EF1BA-C38E-4941-8D01-AEA68A18CF0C.html#GUID-A97EF1BA-C38E-4941-8D01-AEA68A18CF0C"><span class="option">?gbequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7.html#GUID-C489B35B-78DE-4C7A-A542-2190CFED44A7"><span class="option">?gbtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-55877F0D-D603-4A37-B110-F5350BB8F8C4.html#GUID-55877F0D-D603-4A37-B110-F5350BB8F8C4"><span class="option">?gbcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-EF70810C-6FB0-44B9-B471-47AFBDC028E8.html#GUID-EF70810C-6FB0-44B9-B471-47AFBDC028E8"><span class="option">?gbrfs</span></a>,</p>
+<p><a href="GUID-A7AB402C-4E8E-4B0D-A670-DF9D4E0FC2C1.html#GUID-A7AB402C-4E8E-4B0D-A670-DF9D4E0FC2C1"><span class="option">?gbrfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>general tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-40417474-5534-460A-9DDB-0F34976BA0C7.html#GUID-40417474-5534-460A-9DDB-0F34976BA0C7"><span class="option">?gttrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-A76FB023-4172-4F12-B612-6D675328FA43.html#GUID-A76FB023-4172-4F12-B612-6D675328FA43"><span class="option">?gttrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-98176574-A654-40D6-845D-D18FAA83B5F0.html#GUID-98176574-A654-40D6-845D-D18FAA83B5F0"><span class="option">?gtcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-97D64164-CDFF-49DF-A816-37D32298D23E.html#GUID-97D64164-CDFF-49DF-A816-37D32298D23E"><span class="option">?gtrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian positive-definite</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-15A9E907-2600-430B-BF11-DFA0A375711B.html#GUID-15A9E907-2600-430B-BF11-DFA0A375711B"><span class="option">?potrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a href="GUID-61BD0B69-59E9-4946-9CAD-A20D6D5E84E2.html#GUID-61BD0B69-59E9-4946-9CAD-A20D6D5E84E2"><span class="option">?poequ</span></a>,</p>
+<p><a href="GUID-5949CC58-AD9C-48EA-A9EB-F1F5AE17F9FD.html#GUID-5949CC58-AD9C-48EA-A9EB-F1F5AE17F9FD"><span class="option">?poequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-2039BD5D-44D1-487A-9B68-87BD46019A5F.html#GUID-2039BD5D-44D1-487A-9B68-87BD46019A5F"><span class="option">?potrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB.html#GUID-605D9318-ADE6-4E59-9E56-DB577F63F1CB"><span class="option">?pocon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-E711D1E4-00F6-4D5F-A1B1-F018E4AFDFCD.html#GUID-E711D1E4-00F6-4D5F-A1B1-F018E4AFDFCD"><span class="option">?porfs</span></a>,</p>
+<p><a href="GUID-8CFFBC53-C9F6-428E-B486-52AB16E5E2FF.html#GUID-8CFFBC53-C9F6-428E-B486-52AB16E5E2FF"><span class="option">?porfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-1B333271-FE8C-4A98-8A70-F0FC29925BA1.html#GUID-1B333271-FE8C-4A98-8A70-F0FC29925BA1"><span class="option">?potri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian positive-definite, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF.html#GUID-B472B068-3BEE-49E9-8870-9E7CD87237BF"><span class="option">?pptrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a href="GUID-F7D57A2E-95A5-48E9-B09D-6587C2614F71.html#GUID-F7D57A2E-95A5-48E9-B09D-6587C2614F71"><span class="option">?ppequ</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF.html#GUID-49BE8E3A-F115-44A6-83BD-0549AE5A0EEF"><span class="option">?pptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-65301377-3A94-4C5E-BCF5-33691A0323FE.html#GUID-65301377-3A94-4C5E-BCF5-33691A0323FE"><span class="option">?ppcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-261094E9-779C-4198-8451-79E03F8C8843.html#GUID-261094E9-779C-4198-8451-79E03F8C8843"><span class="option">?pprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2.html#GUID-AA20DBCD-0D5E-4D61-9C11-32156A498BB2"><span class="option">?pptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian positive-definite, RFP storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76.html#GUID-07B01968-68F5-4540-B5C4-E3F9FC5A3E76"><span class="option">?pftrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p/>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-674C9C39-E08F-4C9C-865A-AA3D8881D974.html#GUID-674C9C39-E08F-4C9C-865A-AA3D8881D974"><span class="option">?pftrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p/>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p/>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B.html#GUID-BD8C8134-65F7-4A08-9576-5204D6F9F58B"><span class="option">?pftri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian positive-definite, band</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D.html#GUID-E040EE45-DBF5-4A09-A319-15DA1D1B8F4D"><span class="option">?pbtrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a href="GUID-6364E6E5-8809-4543-8280-4195096896A8.html#GUID-6364E6E5-8809-4543-8280-4195096896A8"><span class="option">?pbequ</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF.html#GUID-2BAFD56D-B0F7-4E0C-8142-80E69D05D7AF"><span class="option">?pbtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-6F3C30BC-C2D3-4ECC-B0A7-DD9754A7A62D.html#GUID-6F3C30BC-C2D3-4ECC-B0A7-DD9754A7A62D"><span class="option">?pbcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-D3671B5E-A6F8-4E56-AF65-2BEF91D4B0B6.html#GUID-D3671B5E-A6F8-4E56-AF65-2BEF91D4B0B6"><span class="option">?pbrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian positive-definite, tridiagonal</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682.html#GUID-C5723D71-924B-49FF-9FD4-9BDE2B3EB682"><span class="option">?pttrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-FE593312-5EA4-4914-BEF9-682D5DB72416.html#GUID-FE593312-5EA4-4914-BEF9-682D5DB72416"><span class="option">?pttrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-A5E155AF-E997-46CD-95BE-F44EDA90B4CA.html#GUID-A5E155AF-E997-46CD-95BE-F44EDA90B4CA"><span class="option">?ptcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-CB1DE653-6AF8-49D2-BE1A-81447EF15860.html#GUID-CB1DE653-6AF8-49D2-BE1A-81447EF15860"><span class="option">?ptrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p> </p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian indefinite</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9.html#GUID-D115CA2C-FB54-4605-9E0C-6152237D63D9"><span class="option">?hetrf</span></a></p>
+<p><a class="allformats" href="GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7.html#GUID-BBDF4214-702A-4F3D-BAB3-DD7A8FFF6FD7"><span class="option">?hetrf_rook</span></a></p>
+<p><a class="allformats" href="GUID-3F601047-5DCE-4FCF-9158-73E238FE7F5E.html#GUID-3F601047-5DCE-4FCF-9158-73E238FE7F5E"><span class="option">?hetrf_rk</span></a></p>
+<p><a class="allformats" href="GUID-D1A222DA-9CF5-47C4-83ED-B68923634F15.html#GUID-D1A222DA-9CF5-47C4-83ED-B68923634F15"><span class="option">?hetrf_aa</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a class="allformats" href="GUID-BB492318-87F7-4C6E-9B1A-EE3C7F41E8A0.html#GUID-BB492318-87F7-4C6E-9B1A-EE3C7F41E8A0"><span class="option">?heequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-BD2A730B-941D-442A-A9FE-D91DF0B18D30.html#GUID-BD2A730B-941D-442A-A9FE-D91DF0B18D30"><span class="option">?hetrs</span></a></p>
+<p><a href="GUID-916E575F-6707-47FB-89F1-59D3F0AAB70C.html#GUID-916E575F-6707-47FB-89F1-59D3F0AAB70C"><span class="option">?hetrs_rook</span></a></p>
+<p><a href="GUID-82B40C5D-1ED1-408B-B7CE-7817844879E8.html#GUID-82B40C5D-1ED1-408B-B7CE-7817844879E8"><span class="option">?hetrs2</span></a></p>
+<p><a class="allformats" href="GUID-EE37DE18-7E9E-4CB2-8D36-9E4E61CE6578.html#GUID-EE37DE18-7E9E-4CB2-8D36-9E4E61CE6578"><span class="option">?hetrs_3</span></a></p>
+<p><a class="allformats" href="GUID-78F448C7-AC85-45E7-A90A-2D1A249BA71A.html#GUID-78F448C7-AC85-45E7-A90A-2D1A249BA71A"><span class="option">?hetrs_aa</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-E0F33EE3-1548-42EE-A0B2-A9C8150E1A0A.html#GUID-E0F33EE3-1548-42EE-A0B2-A9C8150E1A0A"><span class="option">?hecon</span></a></p>
+<p><a href="GUID-B6F4F4A3-F9D3-4587-8AC4-7D956204D2D0.html#GUID-B6F4F4A3-F9D3-4587-8AC4-7D956204D2D0"><span class="option">?hecon_rook</span></a></p>
+<p><a class="allformats" href="GUID-F4D7AE03-6715-4F96-8ED7-1AB51F932DFC.html#GUID-F4D7AE03-6715-4F96-8ED7-1AB51F932DFC"><span class="option">?hecon_3</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-4D0A8A0C-FC5A-41CD-ABB2-C9C0551F2964.html#GUID-4D0A8A0C-FC5A-41CD-ABB2-C9C0551F2964"><span class="option">?herfs</span></a>,</p>
+<p><a href="GUID-C08AB0B6-44DA-4265-8BE5-3AC3A887E752.html#GUID-C08AB0B6-44DA-4265-8BE5-3AC3A887E752"><span class="option">?herfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-A5B920CD-65EC-4AB2-BA66-2A46EA241619.html#GUID-A5B920CD-65EC-4AB2-BA66-2A46EA241619"><span class="option">?hetri</span></a></p>
+<p><a href="GUID-50312D46-C692-464B-889F-CC56E144F496.html#GUID-50312D46-C692-464B-889F-CC56E144F496"><span class="option">?hetri_rook</span></a></p>
+<p><a href="GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57.html#GUID-B7669BB3-1C00-4E8F-A9A1-FDA549158B57"><span class="option">?hetri2</span></a></p>
+<p><a href="GUID-F561B8C2-12CD-49D0-93D1-F066CFF60005.html#GUID-F561B8C2-12CD-49D0-93D1-F066CFF60005"><span class="option">?hetri2x</span></a></p>
+<p><a class="allformats" href="GUID-6911A877-78B4-46AA-9CD8-27BAEF2F609B.html#GUID-6911A877-78B4-46AA-9CD8-27BAEF2F609B"><span class="option">?hetri_3</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>symmetric indefinite</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5.html#GUID-E63FFF60-72A7-44E2-8DEE-4331872FF8D5"><span class="option">?sytrf</span></a></p>
+<p><a class="allformats" href="GUID-E4F0C583-4A62-4B8C-8035-580C08F2F9BC.html#GUID-E4F0C583-4A62-4B8C-8035-580C08F2F9BC"><span class="option">?sytrf_rook</span></a></p>
+<p><a class="allformats" href="GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665.html#GUID-C4AD3948-66B9-4EEB-B36B-30C1BF66B665"><span class="option">?sytrf_rk</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p><a class="allformats" href="GUID-21BA3ECB-2B1E-470F-9F68-0F5E8D5A7FFF.html#GUID-21BA3ECB-2B1E-470F-9F68-0F5E8D5A7FFF"><span class="option">?syequb</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD.html#GUID-B0A8462E-6B28-4A48-82C4-24A0BEE65FAD"><span class="option">?sytrs</span></a></p>
+<p><a href="GUID-D78BC1ED-58C9-481B-9286-193EDE0E7AE0.html#GUID-D78BC1ED-58C9-481B-9286-193EDE0E7AE0"><span class="option">?sytrs_rook</span></a></p>
+<p><a href="GUID-22836745-C221-448A-8718-DAC263C52A96.html#GUID-22836745-C221-448A-8718-DAC263C52A96"><span class="option">?sytrs2</span></a></p>
+<p><a class="allformats" href="GUID-023D672F-3647-4C4C-9BD0-86E47EC0AA2D.html#GUID-023D672F-3647-4C4C-9BD0-86E47EC0AA2D"><span class="option">?sytrs3</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-C84FC6A9-EA43-4390-96D6-FC497737E234.html#GUID-C84FC6A9-EA43-4390-96D6-FC497737E234"><span class="option">?sycon</span></a></p>
+<p><a href="GUID-AE5916C1-1123-4E55-87EA-B1668ED18F50.html#GUID-AE5916C1-1123-4E55-87EA-B1668ED18F50"><span class="option">?sycon_rook</span></a></p>
+<p><a class="allformats" href="GUID-6E1A6C2C-87E0-43FB-A688-065FF67873B4.html#GUID-6E1A6C2C-87E0-43FB-A688-065FF67873B4"><span class="option">?sycon_3</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-4B6133A5-9E12-461E-A22C-E44B1D2EB645.html#GUID-4B6133A5-9E12-461E-A22C-E44B1D2EB645"><span class="option">?syrfs</span></a>,</p>
+<p><a href="GUID-765F6CB3-5258-422D-BCFB-59B1C1BFEDC7.html#GUID-765F6CB3-5258-422D-BCFB-59B1C1BFEDC7"><span class="option">?syrfsx</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-932B0A5D-D7A0-4AB1-8CC0-70F67F2EBC2A.html#GUID-932B0A5D-D7A0-4AB1-8CC0-70F67F2EBC2A"><span class="option">?sytri</span></a></p>
+<p><a href="GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C.html#GUID-65BCA477-DB53-444B-83A9-0DCEC51D620C"><span class="option">?sytri_rook</span></a></p>
+<p><a href="GUID-1576D150-4AD0-4CAF-BD65-F4EE78F9BCDC.html#GUID-1576D150-4AD0-4CAF-BD65-F4EE78F9BCDC"><span class="option">?sytri2</span></a></p>
+<p><a href="GUID-E789C810-50C8-414F-9CF9-9E3A6AB61FED.html#GUID-E789C810-50C8-414F-9CF9-9E3A6AB61FED"><span class="option">?sytri2x</span></a></p>
+<p><a class="allformats" href="GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C.html#GUID-B7C7995B-E1B7-4F55-9A90-F44E856A1E5C"><span class="option">?sytri_3</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>Hermitian indefinite, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE.html#GUID-AB9F4FEF-B046-405E-A1DD-101856C265CE"><span class="option">?hptrf</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-2B415C3A-F27C-45B1-BD61-1048118AE28A.html#GUID-2B415C3A-F27C-45B1-BD61-1048118AE28A"><span class="option">?hptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-C4E6059F-8442-46E0-B4DD-F09C8335FB62.html#GUID-C4E6059F-8442-46E0-B4DD-F09C8335FB62"><span class="option">?hpcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-514251DD-F90F-4F14-9D19-295B9346BA44.html#GUID-514251DD-F90F-4F14-9D19-295B9346BA44"><span class="option">?hprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-9A2DE6CA-69B8-4B9C-9709-C4AD0E167725.html#GUID-9A2DE6CA-69B8-4B9C-9709-C4AD0E167725"><span class="option">?hptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>symmetric indefinite, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p><a class="allformats" href="GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A.html#GUID-F7D8FCAB-E12C-4424-B494-5BE9BF7F929A"><span class="option">?sptrf</span></a></p>
+<p><a href="GUID-7C6574A1-164E-4A4A-A0F9-75949A5B35F7.html#GUID-7C6574A1-164E-4A4A-A0F9-75949A5B35F7"><span class="option">mkl_?spffrt2, mkl_?spffrtx</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-29A1B330-50B2-4792-8BC6-CD372D185EEB.html#GUID-29A1B330-50B2-4792-8BC6-CD372D185EEB"><span class="option">?sptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-48ADC51E-C806-45D4-893C-A91EE90C6426.html#GUID-48ADC51E-C806-45D4-893C-A91EE90C6426"><span class="option">?spcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-4752707C-A551-4E8A-89B0-C62962A7A0BA.html#GUID-4752707C-A551-4E8A-89B0-C62962A7A0BA"><span class="option">?sprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-6627C65C-C5F0-4DD2-8DED-7D9451CE9B8C.html#GUID-6627C65C-C5F0-4DD2-8DED-7D9451CE9B8C"><span class="option">?sptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>triangular</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-65AB242A-E790-4222-BB85-4355DC389BC6.html#GUID-65AB242A-E790-4222-BB85-4355DC389BC6"><span class="option">?trtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-AFF3667B-1CCF-417D-996C-E754B5226614.html#GUID-AFF3667B-1CCF-417D-996C-E754B5226614"><span class="option">?trcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-6A483F45-1124-437D-A259-0C6C616CA930.html#GUID-6A483F45-1124-437D-A259-0C6C616CA930"><span class="option">?trrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-C2AA1F15-D2C5-425B-90BD-1012163DA3EE.html#GUID-C2AA1F15-D2C5-425B-90BD-1012163DA3EE"><span class="option">?trtri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>triangular, packed storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-71E82DE1-EA67-43D4-B40F-FCBE0E751FA3.html#GUID-71E82DE1-EA67-43D4-B40F-FCBE0E751FA3"><span class="option">?tptrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-E3EFC88C-C14C-42A2-BE01-7982CCE23600.html#GUID-E3EFC88C-C14C-42A2-BE01-7982CCE23600"><span class="option">?tpcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-45D79A50-467D-49B4-B6CA-AE8F59F6EE87.html#GUID-45D79A50-467D-49B4-B6CA-AE8F59F6EE87"><span class="option">?tprfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-FE8B98E7-CD7A-49D0-A4E8-097AF05F8EB6.html#GUID-FE8B98E7-CD7A-49D0-A4E8-097AF05F8EB6"><span class="option">?tptri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>triangular, RFP storage</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p/>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p/>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p/>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p><a href="GUID-828A8350-E5DB-4699-A6F6-DF6EE9E9130B.html#GUID-828A8350-E5DB-4699-A6F6-DF6EE9E9130B"><span class="option">?tftri</span></a></p>
+</td>
+</tr>
+<tr><td class="cellrowborder" valign="top" width="19.626168224299064%" headers="d268342e1102 "><p>triangular band</p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1105 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="14.018691588785046%" headers="d268342e1108 "><p> </p>
+</td>
+<td class="cellrowborder" valign="top" width="11.214953271028037%" headers="d268342e1111 "><p><a href="GUID-382CC62B-BD54-45BE-B5FE-E9716511CC3C.html#GUID-382CC62B-BD54-45BE-B5FE-E9716511CC3C"><span class="option">?tbtrs</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="13.084112149532709%" headers="d268342e1114 "><p><a href="GUID-57944053-FAD0-423F-8500-8C2883219004.html#GUID-57944053-FAD0-423F-8500-8C2883219004"><span class="option">?tbcon</span></a></p>
+</td>
+<td class="cellrowborder" valign="top" width="12.149532710280374%" headers="d268342e1117 "><p><a href="GUID-4D20BECB-0994-4F45-95FB-C4A2B97C3F28.html#GUID-4D20BECB-0994-4F45-95FB-C4A2B97C3F28"><span class="option">?tbrfs</span></a></p>
+</td>
+<td class="row-nocellborder" valign="top" width="17.75700934579439%" headers="d268342e1120 "><p> </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the table above,
+    <span class="keyword">?</span> stands for
+    <span class="keyword">c</span> (single precision complex) or
+    <span class="keyword">z</span> (double precision complex) for FORTRAN 77 interface.</p>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="p?laqr5"/>
+<meta name="abstract" content="Performs a single small-bulge multi-shift QR sweep."/>
+<meta name="description" content="Performs a single small-bulge multi-shift QR sweep."/>
+<meta name="DC.subject" content="pslaqr5, ScaLAPACK routines, auxiliary routines, pdlaqr5"/>
+<meta name="keywords" content="pslaqr5, ScaLAPACK routines, auxiliary routines, pdlaqr5"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-84DE0984-4809-46E4-B6C0-6629E85D5EF9"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>p?laqr5</title>
+
+</head>
+<body id="GUID-84DE0984-4809-46E4-B6C0-6629E85D5EF9">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">p?laqr5</span></h1>
+<!--Performs a single small-bulge multi-shift QR sweep.--><div><p class="shortdesc">Performs a single small-bulge multi-shift QR sweep.</p>
+<div class="section" id="GUID-4DEC1779-0138-4B3A-9767-92977DF871C1"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call pslaqr5</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">kacc22</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ktop</span><span class="sep">, </span><span class="var">kbot</span><span class="sep">, </span><span class="var">nshfts</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">si</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">desch</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork </span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call pdlaqr5</span><span class="delim">(</span><span class="var"> wantt</span><span class="sep">, </span><span class="var">wantz</span><span class="sep">, </span><span class="var">kacc22</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ktop</span><span class="sep">, </span><span class="var">kbot</span><span class="sep">, </span><span class="var">nshfts</span><span class="sep">, </span><span class="var">sr</span><span class="sep">, </span><span class="var">si</span><span class="sep">, </span><span class="var">h</span><span class="sep">, </span><span class="var">desch</span><span class="sep">, </span><span class="var">iloz</span><span class="sep">, </span><span class="var">ihiz</span><span class="sep">, </span><span class="var">z</span><span class="sep">, </span><span class="var">descz</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">iwork</span><span class="sep">, </span><span class="var">liwork </span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-1CE23380-6C6C-4745-A4C8-E08EF061E09F"><h2 class="sectiontitle">Description</h2><p>This auxiliary <span>subroutine </span>called by <a href="GUID-830E109D-B055-45DB-9CCD-D20C716FF20A.html"><span class="option">p?laqr0</span></a> performs a single small-bulge multi-shift QR sweep by chasing separated groups of bulges along the main block diagonal of a Hessenberg matrix <var>H</var>. </p>
+</div>
+<div class="section" id="GUID-9367ED3A-3A45-430B-8C22-AF5156B4A7AB"><h2 class="sectiontitle">Input Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">wantt</span></p></td>
+
+<td valign="top" class="noborder"><p>  (global) <span class="keyword">LOGICAL</span> scalar </p>
+<p><span class="parmname">wantt</span><span class="keyword">= .TRUE.</span> if the quasi-triangular Schur factor is being computed.  <span class="parmname">wantt</span> is set to <span class="keyword">.FALSE.</span> otherwise. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">wantz</span></p></td>
+
+<td valign="top" class="noborder"><p>  (global) <span class="keyword">LOGICAL</span> scalar </p>
+<p><span class="parmname">wantz</span><span class="keyword">= .TRUE.</span> if the orthogonal Schur factor is being computed.  <span class="parmname">wantz</span> is set to <span class="keyword">.FALSE.</span> otherwise. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">kacc22</span></p></td>
+
+<td valign="top" class="noborder"><p> (global) <span class="keyword">INTEGER</span></p>
+<p>Value 0, 1, or 2. Specifies the computation mode of far-from-diagonal orthogonal updates.</p>
+<p>= 0: <span class="option">p?laqr5</span> does not
+accumulate reflections and does not use matrix-matrix multiply to update
+far-from-diagonal matrix entries. </p>
+<p>= 1: <span class="option">p?laqr5</span> accumulates reflections and uses matrix-matrix multiply to update the far-from-diagonal matrix entries. </p>
+<p>= 2: <span class="option">p?laqr5</span> accumulates reflections, uses matrix-matrix multiply to update the far-from-diagonal matrix entries, and takes advantage of 2-by-2 block structure during matrix multiplies. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">n</span></p></td>
+
+<td valign="top" class="noborder"><p>      (global) <span class="keyword">INTEGER</span> scalar </p>
+<p> The order of the Hessenberg matrix <var>H</var> and, if
+<span class="parmname">wantz</span><span>is <span class="keyword">.TRUE.</span></span>, the order of the orthogonal matrix <var>Z</var>. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">ktop</span>, <span class="parmname">kbot</span></p></td>
+
+<td valign="top" class="noborder"><p> (global) <span class="keyword">INTEGER</span> scalar </p>
+<p>These are the first and last rows and columns of an isolated diagonal block upon which the QR sweep is to be applied. It is assumed without a check that either <span class="parmname">ktop</span> = 1  or <var>H</var>(<span class="parmname">ktop</span>,<span class="parmname">ktop</span>-1) = 0 and either <span class="parmname">kbot</span> = <span class="parmname">n</span>  or   <var>H</var>(<span class="parmname">kbot</span>+1,<span class="parmname">kbot</span>) = 0. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">nshfts</span></p></td>
+
+<td valign="top" class="noborder"><p> (global) <span class="keyword">INTEGER</span> scalar </p>
+<p><span class="parmname">nshfts</span> gives the number of simultaneous shifts.  <span class="parmname">nshfts</span> must be positive and even. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">sr</span>, <span class="parmname">si</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">pslaqr5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr5</span></p>
+<p>(global) Array of size <span class="parmname">nshfts</span></p>
+<p><span class="parmname">sr</span> contains the real parts and <span class="parmname">si</span> contains the imaginary parts of the <span class="parmname">nshfts</span> shifts of origin that define the multi-shift QR sweep. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">h</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">pslaqr5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr5</span></p>
+<p>      (local) Array of size  <span>(<var>lld_h</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">n</span>))</span></p>
+<p>On input <span class="parmname">h</span> contains a Hessenberg matrix <var>H</var>.  </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">desch</span></p></td>
+
+<td valign="top" class="noborder"><p>  (global and local) <span class="keyword">INTEGER</span></p>
+<p> array of size <var>dlen_</var>. </p>
+<p>The array descriptor for the distributed matrix <var>H</var> . </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iloz</span>, <span class="parmname">ihiz</span></p></td>
+
+<td valign="top" class="noborder"><p>(global) <span class="keyword">INTEGER</span></p>
+<p>Specify the rows of the matrix <var>Z</var> to which transformations must be applied if <span class="parmname">wantz</span><span>is <span class="keyword">.TRUE.</span></span>. 1 <span class="eqsymbol">≤</span><span class="parmname">iloz</span><span class="eqsymbol">≤</span><span class="parmname">ihiz</span><span class="eqsymbol">≤</span><span class="parmname">n</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">z</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">pslaqr5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr5</span></p>
+<p>      (local)              array of size  <span>(<var>lld_z</var>,<span><var>LOC</var><sub><var>c</var></sub></span>(<span class="parmname">n</span>))</span></p>
+<p>If <span class="parmname">wantz</span><span class="keyword">= .TRUE.</span>, then the QR Sweep orthogonal similarity transformation is accumulated into the matrix <var>Z</var>(<span class="parmname">iloz</span>:<span class="parmname">ihiz</span>,<span class="parmname">kbot</span>:<span class="parmname">ktop</span>) from the right. If <span class="parmname">wantz</span><span class="keyword">= .FALSE.</span>, then <span class="parmname">z</span> is unreferenced. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">descz</span></p></td>
+
+<td valign="top" class="noborder"><p>  (global and local) <span class="keyword">INTEGER</span> array of size <var>dlen_</var>.</p>
+<p> The array descriptor for the distributed matrix <var>Z</var>. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span></p></td>
+
+<td valign="top" class="noborder"><p><span class="keyword">REAL</span> for <span class="option">pslaqr5</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">pdlaqr5</span></p>
+<p>   (local workspace)              array of size <span class="parmname">lwork</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">lwork</span></p></td>
+
+<td valign="top" class="noborder"><p>  (local) <span class="keyword">INTEGER</span></p>
+<p> The size of the <span class="parmname">work</span> array
+(<span class="parmname">lwork</span><span class="eqsymbol">≥</span>1).</p>
+<p> If <span class="parmname">lwork</span>=-1, then a workspace query is
+assumed. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span></p></td>
+
+<td valign="top" class="noborder"><p>  (local workspace) <span class="keyword">INTEGER</span> array of size <span class="parmname">liwork</span></p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">liwork</span></p></td>
+
+<td valign="top" class="noborder"><p> (local) <span class="keyword">INTEGER</span></p>
+<p> The size of the <span class="parmname">iwork</span> array
+(<span class="parmname">liwork</span><span class="eqsymbol">≥</span>1).</p>
+<p> If <span class="parmname">liwork</span>=-1, then a workspace query is
+assumed. </p>
+</td>
+</tr></table></div>
+<div class="section" id="GUID-F43EE6B3-EFC3-4320-B23F-A584034F630A"><h2 class="sectiontitle">Output Parameters</h2><table cellspacing="0" cellpadding="4" border="0" width="90%" style="border-spacing:0; border-collapse:collapse"><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">h</span></p></td>
+
+<td valign="top" class="noborder"><p>A multi-shift QR sweep with shifts <span class="parmname">sr</span>(<var>j</var>)+<var>i</var>*<span class="parmname">si</span>(<var>j</var>) is applied to the isolated diagonal block in rows and columns <span class="parmname">ktop</span> through <span class="parmname">kbot</span> of the matrix <var>H</var>. </p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">z</span></p></td>
+
+<td valign="top" class="noborder"><p> If <span class="parmname">wantz</span><span>is <span class="keyword">.TRUE.</span></span>, <span class="parmname">z</span> is updated with transformations applied only to the submatrix <var>Z</var>(<span class="parmname">iloz</span>:<span class="parmname">ihiz</span>,<span class="parmname">kbot</span>:<span class="parmname">ktop</span>).</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">work</span><span>(1)</span></p></td>
+
+<td valign="top" class="noborder"><p> On exit, if <span class="parmname">info</span> = 0, <span class="parmname">work</span><span>(1)</span> returns the optimal <span class="parmname">lwork</span>.</p>
+</td>
+</tr><tr><td valign="top" width="30%" class="noborder"><p><span class="parmname">iwork</span><span>(1)</span></p></td>
+
+<td valign="top" class="noborder"><p> On exit, if <span class="parmname">info</span> = 0, <span class="parmname">iwork</span><span>(1)</span> returns the optimal <span class="parmname">liwork</span>.</p>
+</td>
+</tr></table></div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-BF7438B3-BB55-478A-88DB-33C01481F990.html">ScaLAPACK Auxiliary Routines</a></div>
+</div>
+<div class="See Also"><h2>See Also</h2>
+<div class="linklist">
+<div><a href="GUID-97273960-E4A4-4016-8667-BE6A36156792.html#GUID-97273960-E4A4-4016-8667-BE6A36156792">Overview</a> for details of ScaLAPACK  array descriptor structures and related notations.</div></div></div>
+</body>
+</html>

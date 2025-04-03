@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="dcg"/>
+<meta name="abstract" content="Computes the approximate solution vector."/>
+<meta name="description" content="Computes the approximate solution vector."/>
+<meta name="DC.subject" content="RCI CG sparse solver routines, dcg, Sparse Solver, iterative sparse solver interface"/>
+<meta name="keywords" content="RCI CG sparse solver routines, dcg, Sparse Solver, iterative sparse solver interface"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-4CACC422-8069-440F-8272-344094F0186B.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-C47541C6-E556-4754-978C-9EB0EE41AFE6"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>dcg</title>
+
+</head>
+<body id="GUID-C47541C6-E556-4754-978C-9EB0EE41AFE6">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">dcg</span></h1>
+<!--Computes the approximate solution vector.--><div><p class="shortdesc">Computes the approximate solution vector.</p>
+<div class="section" id="GUID-89AAF2FA-20EF-4D23-8D80-E1051A4D590F"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">dcg</span><span class="sep">(</span><span class="var">n</span><span class="sep">, </span><span class="var">x</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">RCI_request</span><span class="sep">, </span><span class="var">ipar</span><span class="sep">, </span><span class="var">dpar</span><span class="sep">, </span><span class="var">tmp</span><span class="sep">)</span></p></dl></div>
+<div class="section" id="GUID-104EC70C-57D5-45CA-8303-57FB59176C2C"><h2 class="sectiontitle">Include Files</h2><ul id="d163e258"><li>Fortran: <span class="filepath">mkl_rci.fi</span>, <span class="filepath">mkl_rci.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-361CBB40-D743-4DF3-8D2B-1B7C0B6F5C58"><h2 class="sectiontitle">Description</h2><p><span/>The <span class="option">dcg</span> routine  computes the approximate solution vector using the CG method [<a href="GUID-732F9EE1-BCEC-4D9B-9B93-AF5499B21140.html#YOUNG71">Young71</a>].  The routine <span class="option">dcg</span> uses the vector in the array <span class="parmname">x</span> before the first call as an initial approximation to the solution. The parameter <span class="parmname">RCI_request</span> gives you information about the task completion and requests results of certain operations that are required by the solver.</p>
+<p>Note that lengths of all vectors must be defined in a previous call to the <span class="option">dcg_init</span> routine.</p>
+</div>
+<div class="section" id="GUID-4D4CAEBD-4864-4F7D-A283-7D9569B95D1C"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-A50E1973-84CE-40EE-B4B5-6F843D89153F"><dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Sets the size of the problem.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span> . </span>Array of size <span class="parmname">n</span>. Contains the initial approximation to the solution vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span> . </span>Array of size <span class="parmname">n</span>. Contains the right-hand side vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span> . </span>Array of size <span class="parmnamen">(</span><span class="parmname">n</span><span>, </span>4). Refer to the <a class="allformats" href="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html#RCI_ID_COMMONPARAMETERS">CG Common Parameters</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-38F0FDAB-A269-4AA4-97E0-AFE1054E45FF"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-5DCB8838-B47B-447A-89E7-5D5592DF2668"><dt class="dlterm"><span class="parmname">RCI_request</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Gives information about result of work of the
+routine.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">x</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span> . </span>Array of size <var class="varname">n</var>. Contains the updated approximation to the solution vector.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ipar</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span> . </span>Array of size <span class="parmname">128</span>. Refer to the <a class="allformats" href="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html#RCI_ID_COMMONPARAMETERS">CG Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">dpar</span></dt>
+
+<dd><p><span><span class="keyword">DOUBLE PRECISION</span> . </span>Array of size <span class="parmname">128</span>. Refer to the <a class="allformats" href="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html#RCI_ID_COMMONPARAMETERS">CG Common Parameters</a>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">tmp</span></dt>
+
+<dd><p class="normal"><span><span class="keyword">DOUBLE PRECISION</span> . </span>Array of size <samp class="codeph">(<span class="parmname">n</span><span>,</span>4)</samp>. Refer to the <a class="allformats" href="GUID-84B673F3-E221-4D25-A260-62D3398CA2F8.html#RCI_ID_COMMONPARAMETERS">CG Common Parameters</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="RETURNVALUES_C87CD54E01EB4ECF9B3B664278C013E4"><h2 class="sectiontitle">Return Values</h2><dl id="GUID-5D57198F-8363-40B0-91C9-4EE9F092B827"><dt class="dlterm"><span class="parmname">RCI_request</span>=0</dt>
+
+<dd class="ddretval"><p>Indicates that the task completed normally and the solution is found and stored in the vector <span class="parmname">x</span>. This occurs only if the stopping tests are fully automatic. For the user defined stopping tests, see the description of the <span class="parmname">RCI_request</span><span class="parmnamen">= 2</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>=-1</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the maximum number of iterations was reached, but the relative stopping criterion was not met. This situation occurs only if you request both tests.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>=-2</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because of an attempt to divide by zero. This situation happens if the matrix is non-positive definite or almost non-positive definite.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>=- 10</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because the residual norm is invalid. This usually happens because the value <span class="parmname">dpar</span><samp class="codeph">(6)</samp> was altered outside of the routine, or the <span class="option">dcg_check</span> routine was not called.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>=-11</dt>
+
+<dd class="ddretval"><p>Indicates that the routine was interrupted because it enters the infinite cycle. This usually happens because the values <span class="parmname">ipar</span><samp class="codeph">(8)</samp>, <span class="parmname">ipar</span><samp class="codeph">(9)</samp>, <span class="parmname">ipar</span><samp class="codeph">(10)</samp> were altered outside of the routine, or the <span class="option">dcg_check</span> routine was not called.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 1</dt>
+
+<dd class="ddretval"><p>Indicates that you must multiply the matrix by <span class="parmname">tmp</span><samp class="codeph">(1:<span class="parmname">n</span>,1)</samp>, put the result in the <span class="parmname">tmp</span><samp class="codeph">(1:<span class="parmname">n</span>,2)</samp>, and return control back to the routine <span class="option">dcg</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 2</dt>
+
+<dd class="ddretval"><p>Indicates that you must perform the stopping tests. If they fail,  return control back to the <span class="option">dcg</span> routine. Otherwise, the solution is found and stored in the vector <span class="parmname">x</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">RCI_request</span>= 3</dt>
+
+<dd class="ddretval"><p>Indicates that you must apply the preconditioner to <samp class="codeph"><span class="parmname">tmp</span>(:, 3)</samp>, put the result in the <samp class="codeph"><span class="parmname">tmp</span>(:, 4)</samp>, and return control back to the routine <span class="option">dcg</span>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-4CACC422-8069-440F-8272-344094F0186B.html">RCI ISS Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

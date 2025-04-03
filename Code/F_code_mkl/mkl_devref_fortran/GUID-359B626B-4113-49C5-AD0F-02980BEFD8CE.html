@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="iparmq"/>
+<meta name="abstract" content="Environmental enquiry function which returns values for tuning algorithmic performance."/>
+<meta name="description" content="Environmental enquiry function which returns values for tuning algorithmic performance."/>
+<meta name="DC.subject" content="iparmq, LAPACK routines, utility functions and routines, environmental enquiry"/>
+<meta name="keywords" content="iparmq, LAPACK routines, utility functions and routines, environmental enquiry"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-359B626B-4113-49C5-AD0F-02980BEFD8CE"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>iparmq</title>
+
+</head>
+<body id="GUID-359B626B-4113-49C5-AD0F-02980BEFD8CE">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">iparmq</span></h1>
+<!--Environmental enquiry function which returns values for tuning algorithmic performance.--><div><p class="shortdesc">Environmental enquiry function which returns values for tuning algorithmic performance.</p>
+<div class="section" id="GUID-D6AB56AC-D791-427F-A83E-EF014EDC3DF1"><h2 class="sectiontitle">Syntax</h2><div class="dlsyntaxpara"><p class="dlsyntaxpara"><span class="var">value</span><span class="oper"> = </span><span class="kwd">iparmq</span><span class="delim">( </span><span class="var">ispec</span><span class="sep">, </span><span class="var">name</span><span class="sep">, </span><span class="var">opts</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">ilo</span><span class="sep">, </span><span class="var">ihi</span><span class="sep">, </span><span class="var">lwork</span><span class="delim"> )</span></p></div></div>
+<div class="section" id="GUID-EA1447DC-2E41-4B5F-A33F-A150E087D5B3"><h2 class="sectiontitle">Include Files</h2><ul id="d163e82"><li id="d163e83"><span class="filepath">mkl.fi</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-1433B01F-A0B2-4D48-95AF-E24877220BA5"><h2 class="sectiontitle">Description</h2><p>The function sets problem and machine dependent parameters useful for <span class="option">?hseqr</span> and its subroutines. It is called whenever <span class="option">ilaenv</span> is called with <samp class="codeph">12≤<span class="parmname">ispec</span>≤16</samp>.</p>
+</div>
+<div class="section" id="GUID-5CFFCF4A-53DA-421C-A5E5-D28D5349B110"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-96E3D5E2-9A0A-4ED8-A7FB-2B4B47DDF57D"><dt class="dlterm"><span class="parmname">ispec</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>Specifies the parameter to be returned as the value of <span class="option">iparmq</span>:</p>
+<p>= 12: (<span class="parmname">inmin</span>)  Matrices of order <span class="parmname">nmin</span> or less are sent directly to <span class="option">?lahqr</span>, the implicit double shift QR algorithm.   <span class="parmname">nmin</span> must be at least <samp class="codeph">11</samp>.
+</p>
+<p>= 13: (<span class="parmname">inwin</span>)   Size of the deflation window. This is best set greater than or equal to the number of simultaneous shifts <span class="parmname">ns</span>. Larger matrices benefit from larger deflation windows. 
+</p>
+<p>= 14: (<span class="parmname">inibl</span>)   Determines when to stop nibbling and invest in an (expensive) multi-shift QR sweep. If the aggressive early deflation subroutine finds <span class="parmname">ld</span> converged eigenvalues from an order           <span class="parmname">nw</span> deflation window and <samp class="codeph"><span class="parmname">ld</span>&gt;(<span class="parmname">nw</span>*<span class="parmname">nibble</span>)/100</samp>, then the next QR sweep is skipped and early deflation is applied immediately to the remaining active diagonal block.  Setting
+<samp class="codeph"><span class="option">iparmq</span>(<span class="parmname">ispec</span>=14)=0</samp> causes <span class="keyword">TTQRE</span> to skip a multi-shift QR sweep whenever early deflation finds a converged eigenvalue. Setting <span class="option"> iparmq</span>(<span class="parmname">ispec</span>=14) greater than or equal to 100 prevents <span class="keyword">TTQRE</span> from skipping a multi-shift QR sweep.
+</p>
+<p>= 15: (<span class="parmname">nshfts</span>) The number of simultaneous shifts in a multi-shift QR iteration.</p>
+<p>= 16: (<span class="parmname">iacc22</span>) <span class="option">iparmq</span> is set to <samp class="codeph">0</samp>, <samp class="codeph">1</samp> or <samp class="codeph">2</samp> with the following meanings.
+</p>
+<p><samp class="codeph"> 0: </samp>  During the multi-shift QR sweep, <span class="option">?laqr5</span> does not accumulate reflections and does not use matrix-matrix multiply to update the far-from-diagonal matrix entries.
+</p>
+<p><samp class="codeph">1:  </samp> During the multi-shift QR sweep, <span class="option">?laqr5</span> and/or <span class="option">?laqr3</span> accumulates reflections and uses matrix-matrix multiply to update the far-from-diagonal matrix entries.
+</p>
+<p><samp class="codeph">2:  </samp> During the multi-shift QR sweep, <span class="option">?laqr5</span> accumulates reflections and takes advantage of 2-by-2 block structure during matrix-matrix multiplies.
+</p>
+<p>(If <span class="option">?trrm</span> is slower than <span class="option">?gemm</span>, then <samp class="codeph"><span class="option">iparmq</span>(<span class="parmname">ispec</span>=16)=1</samp> may be more efficient than <samp class="codeph"><span class="option">iparmq</span>(<span class="parmname">ispec</span>=16)=2</samp> despite the greater level of arithmetic work implied by the latter choice.)
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">name</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*(*)</span>. The name of the calling subroutine. </p>
+</dd>
+<dt class="dlterm"><span class="parmname">opts</span></dt>
+
+<dd><p><span class="keyword">CHARACTER*(*)</span>. This is a concatenation of the string arguments to <span class="keyword">TTQRE</span>.
+</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. <span class="parmname">n</span> is the order of the Hessenberg matrix <var>H</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ilo</span>, <span class="parmname">ihi</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p> It is assumed that <var>H</var> is already upper triangular in rows and columns <samp class="codeph">1:<span class="parmname">ilo</span>-1</samp> and <samp class="codeph"><span class="parmname">ihi</span>+1:<span class="parmname">n</span></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>.</p>
+<p>The amount of workspace available.
+</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-1DC7C851-85F4-42C9-A0F8-7E1AFC9ACADF"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-FF713D69-B7F4-4B29-AC46-37AB13727A67"><dt class="dlterm"><span class="parmname">value</span></dt>
+
+<dd><p><span class="keyword">INTEGER</span>. </p>
+<p>If <samp class="codeph"><var>value</var><span class="eqsymbol">≥</span> 0</samp>: the value of the parameter specified by <var>iparmq</var>;</p>
+<p>If <samp class="codeph"><var>value</var> = <span class="keyword">-k</span> &lt; 0</samp>: the <span class="keyword">k</span>-th argument had an illegal value.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-F95E460B-1ADC-4C1E-AB08-ABA1C408B805"><h2 class="sectiontitle">Application Notes</h2><p>The following conventions have been used when calling <span class="option">ilaenv</span> from the LAPACK routines:</p>
+<ol id="GUID-1061CE5E-4F23-4A2B-BCA7-9F4FF7698105"><li><p><var>opts</var> is a concatenation of all of the character options to subroutine <var>name</var>, in the same order that they appear in the argument list for <var>name</var>, even if they are not used in determining the value of the parameter specified by <var>ispec</var>.</p>
+</li>
+<li><p>The problem dimensions <var>n1</var>, <var>n2</var>, <var>n3</var>, <var>n4</var> are specified in the order that they appear in the argument list for <var>name</var>. <var>n1</var> is used first, <var>n2</var> second, and so on, and unused problem dimensions are passed a value of -1.</p>
+</li>
+<li><p>The parameter value returned by <span class="option">ilaenv</span> is checked for validity in the calling subroutine. For example, <span class="option">ilaenv</span> is used to retrieve the optimal blocksize for <span class="option">strtri</span> as follows:</p>
+<p><pre>  nb = ilaenv( 1, 'strtri', uplo // diag, n, -1, -1, -1&gt; )</pre><pre>  if( nb.le.1 ) nb = max( 1, n )</pre></p>
+</li>
+</ol>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-D75D53F5-60C9-4D5D-865D-EDC5424BEF1F.html">LAPACK Utility Functions and Routines</a></div>
+</div>
+<div/>
+</body>
+</html>

@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0016)http://localhost -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="DC.Type" content="FunctionRef"/>
+<meta name="DC.Title" content="?hegv"/>
+<meta name="abstract" content="Computes all eigenvalues and, optionally, eigenvectors of a complex generalized Hermitian positive-definite eigenproblem."/>
+<meta name="description" content="Computes all eigenvalues and, optionally, eigenvectors of a complex generalized Hermitian positive-definite eigenproblem."/>
+<meta name="DC.subject" content="?hegv, LAPACK routines, driver routines, generalized symmetric definite eigenproblems"/>
+<meta name="keywords" content="?hegv, LAPACK routines, driver routines, generalized symmetric definite eigenproblems"/>
+<meta name="DC.Relation" scheme="URI" content="GUID-C620318B-8DB6-4CC3-8D4F-B9AFF2EA6B1F.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.intel.com/software/products/softwaredocs_feedback"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="GUID-48B78B59-0426-4C71-8EBE-216C6D06329F"/>
+<meta name="DC.Language" content="en-US"/>
+<link rel="stylesheet" type="text/css" href="intel_css_styles.css"/>
+<title>?hegv</title>
+
+</head>
+<body id="GUID-48B78B59-0426-4C71-8EBE-216C6D06329F">
+ <!-- ==============(Start:NavScript)================= -->
+ <script src="NavScript.js" language="JavaScript1.2" type="text/javascript"></script>
+ <script language="JavaScript1.2" type="text/javascript">WriteNavLink(0);</script>
+ <!-- ==============(End:NavScript)================= -->
+<p id="header_text" style="margin-bottom : 20pt"><em>Intel&reg; oneAPI Math Kernel Library Developer Reference - Fortran</em></p>
+
+
+<h1 class="topictitle1"><span class="option">?hegv</span></h1>
+<!--Computes all eigenvalues and, optionally, eigenvectors of a complex generalized Hermitian positive-definite eigenproblem.--><div><p class="shortdesc">Computes all eigenvalues and, optionally, eigenvectors of a complex generalized Hermitian positive-definite eigenproblem.</p>
+<div class="section" id="GUID-5E1C4B28-E5EA-456A-9E85-5156E6BEE8D9"><h2 class="sectiontitle">Syntax</h2><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call chegv</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p><p class="dlsyntaxpara"><span class="kwd">call zhegv</span><span class="delim">(</span><span class="var">itype</span><span class="sep">, </span><span class="var">jobz</span><span class="sep">, </span><span class="var">uplo</span><span class="sep">, </span><span class="var">n</span><span class="sep">, </span><span class="var">a</span><span class="sep">, </span><span class="var">lda</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">ldb</span><span class="sep">, </span><span class="var">w</span><span class="sep">, </span><span class="var">work</span><span class="sep">, </span><span class="var">lwork</span><span class="sep">, </span><span class="var">rwork</span><span class="sep">, </span><span class="var">info</span><span class="delim">)</span></p></dl><dl class="dlsyntax"><p class="dlsyntaxpara"><span class="kwd">call hegv</span><span class="delim">(</span><span class="var">a</span><span class="sep">, </span><span class="var">b</span><span class="sep">, </span><span class="var">w</span><span class="delim"> [</span><span class="sep">,</span><span class="var">itype</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">jobz</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">uplo</span><span class="delim">] </span><span class="delim">[</span><span class="sep">,</span><span class="var">info</span><span class="delim">]</span><span class="delim">)</span></p></dl></div>
+<div class="section" id="GUID-55B83B4B-0985-422B-A1D0-8E18A0B99097"><h2 class="sectiontitle">Include Files</h2><ul id="d163e55"><li><span class="filepath">mkl.fi</span>, <span class="filepath">lapack.f90</span></li>
+</ul>
+</div>
+<div class="section" id="GUID-7A192BA9-68BB-4D25-940E-FEB8908518D3"><h2 class="sectiontitle">Description</h2><p><span/></p>
+<p>The routine computes all the eigenvalues, and optionally, the eigenvectors of a complex generalized Hermitian positive-definite eigenproblem, of the form</p>
+<p><samp class="codeph"><var>A</var>*<var>x</var> = <span class="eqsymbol">λ</span>*<var>B</var>*<var>x</var>, <var>A</var>*<var>B</var>*<var>x</var> = <span class="eqsymbol">λ</span>*<var>x</var></samp>, or <samp class="codeph"><var>B</var>*<var>A</var>*<var>x</var> = <span class="eqsymbol">λ</span>*<var>x</var></samp>.</p>
+<p>Here <var>A</var> and <var>B</var> are assumed to be Hermitian and <var>B</var> is also positive definite.</p>
+</div>
+<div class="section" id="GUID-A6625530-D3D5-4978-BA32-E7C2DC2A71C6"><h2 class="sectiontitle">Input Parameters</h2><dl id="GUID-AC69BCB3-E396-4798-AE41-3309CC3BC8B9"><dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>Must be 1 or 2 or 3. Specifies the problem type to be solved: </p>
+<p>if <samp class="codeph"><var>itype</var> = 1</samp>, the problem type is <samp class="codeph"><var>A*x</var> = <var>lambda</var>*<var>B</var>*<var>x</var></samp>; </p>
+<p>if <samp class="codeph"><var>itype</var> = 2</samp>, the problem type is <samp class="codeph"><var>A*B*x</var> = <var>lambda</var>*<var>x</var></samp>; </p>
+<p>if <samp class="codeph"><var>itype</var> = 3</samp>, the problem type is <samp class="codeph"><var>B</var>*<var>A*x</var> = <var>lambda</var>*<var/><var>x</var></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then compute eigenvalues only. </p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then compute eigenvalues and eigenvectors.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p><span><span class="keyword">CHARACTER*1</span>. </span>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. </p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>, arrays <var>a</var> and <var>b</var> store the upper triangles of <var>A</var> and <var>B</var>;</p>
+<p>If <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>, arrays <var>a</var> and <var>b</var> store the lower triangles of <var>A</var> and <var>B</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">n</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The order of the matrices <var>A</var> and <var>B</var> (<samp class="codeph"><var>n</var><span class="eqsymbol">≥</span> 0</samp>). </p>
+</dd>
+<dt class="dlterm"><span class="parmname">a</span>, <span class="parmname">b</span><span>, <span class="parmname">work</span></span></dt>
+
+<dd><p><span class="keyword">COMPLEX</span> for <span class="option">chegv</span></p>
+<p><span class="keyword">DOUBLE COMPLEX</span> for <span class="option">zhegv</span>. </p>
+<p>Arrays: </p>
+<p><var>a</var><span>(<var>lda</var>,*)</span> contains the upper or lower triangle of the Hermitian matrix <var>A</var>, as specified by <var>uplo</var>. </p>
+<p>The second dimension of <var>a</var> must be at least max(1, <var>n</var>).</p>
+<p><var>b</var><span>(<var>ldb</var>,*)</span> contains the upper or lower triangle of the Hermitian positive definite matrix <var>B</var>, as specified by <var>uplo</var>. </p>
+<p>The second dimension of <var>b</var> must be at least max(1, <var>n</var>).</p>
+<p><var>work</var> is a workspace array, its dimension <samp class="codeph">max(1, <span class="parmname">lwork</span>)</samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lda</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>a</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">ldb</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span>The leading dimension of <var>b</var>; at least max(1, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">lwork</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>The dimension of the array <var>work</var>; <samp class="codeph"><var>lwork</var><span class="eqsymbol">≥</span> max</samp>(1, 2<var>n</var>-1). </p>
+<p>If <samp class="codeph"><var>lwork</var> = -1</samp>, then a workspace query is assumed; the routine only calculates the optimal size of the <var>work</var> array, returns this value as the first entry of the <var>work</var> array, and no error message related to <var>lwork</var> is issued by <a class="allformats" href="GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73.html#GUID-F3536B0B-2FA0-40B4-AF9B-51A182827F73">xerbla</a>.</p>
+<p>See <em>Application Notes</em> for the suggested value of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">rwork</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chegv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhegv</span>. </p>
+<p>Workspace array, size at least max(1, 3<var>n</var>-2). </p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-DD66C5C6-2121-42C6-94D1-67C1AC59279B"><h2 class="sectiontitle">Output Parameters</h2><dl id="GUID-2E94AEA7-6E41-4253-971F-E2066F4A55FB"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>jobz</var> = <span class="keyword">'V'</span></samp>, then if <samp class="codeph"><var>info</var> = 0</samp>, <var>a</var> contains the matrix <var>Z</var> of eigenvectors. The eigenvectors are normalized as follows: </p>
+<p>if <samp class="codeph"><var>itype</var> = 1</samp> or 2, <samp class="codeph"><var>Z</var><sup class="power"><var>H</var></sup>*<var>B</var>*<var>Z</var> = I</samp>; </p>
+<p>if <samp class="codeph"><var>itype</var> = 3</samp>, <samp class="codeph"><var>Z</var><sup class="power"><var>H</var></sup>*inv(<var>B</var>)*<var>Z</var> = I</samp>;</p>
+<p>If <samp class="codeph"><var>jobz</var> = <span class="keyword">'N'</span></samp>, then on exit the upper triangle (if <samp class="codeph"><var>uplo</var> = <span class="keyword">'U'</span></samp>) or the lower triangle (if <samp class="codeph"><var>uplo</var> = <span class="keyword">'L'</span></samp>) of <var>A</var>, including the diagonal, is destroyed.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var><span class="eqsymbol">≤</span><var>n</var></samp>, the part of <var>b</var> containing the matrix is overwritten by the triangular factor <var>U</var> or <var>L</var> from the Cholesky factorization <samp class="codeph"><var>B</var> = <var>U</var><sup class="power"><var>H</var></sup>*<var>U</var></samp> or <samp class="codeph"><var>B</var> = <var>L</var>*<var>L</var><sup class="power"><var>H</var></sup></samp>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p><span class="keyword">REAL</span> for <span class="option">chegv</span></p>
+<p><span class="keyword">DOUBLE PRECISION</span> for <span class="option">zhegv</span>. </p>
+<p>Array, size at least max(1, <var>n</var>). </p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, contains the eigenvalues in ascending order.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">work(1)</span></dt>
+
+<dd><p>On exit, if <samp class="codeph"><var>info</var> = 0</samp>, then <var>work(1)</var> returns the required minimal size of <var>lwork</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">info</span></dt>
+
+<dd><p><span><span class="keyword">INTEGER</span>. </span></p>
+<p>If <samp class="codeph"><var>info</var> = 0</samp>, the execution is successful. </p>
+<p>If <samp class="codeph"><var>info</var> = <var>-i</var></samp>, the <var>i</var>-th argument has an illegal value. </p>
+<p>If <samp class="codeph"><var>info</var> &gt; 0</samp>, <span class="option">cpotrf</span>/<span class="option">zpotrf</span> or <span class="option">cheev</span>/<span class="option">zheev</span> return an error code:</p>
+<p>If <samp class="codeph"><var>info</var> = <var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, <span class="option">cheev</span>/<span class="option">zheev</span> fails to converge, and <var>i</var> off-diagonal elements of an intermediate tridiagonal do not converge to zero;</p>
+<p>If <samp class="codeph"><var>info</var> = <var>n</var> + <var>i</var></samp>, for <samp class="codeph">1 <span class="eqsymbol">≤</span><var>i</var><span class="eqsymbol">≤</span><var>n</var></samp>, then the leading minor of order <var>i</var> of <var>B</var> is not positive-definite. The factorization of <var>B</var> can not be completed and no eigenvalues or eigenvectors are computed.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-A549A0D7-F27B-45FA-9B97-8052B821A876"><h2 class="sectiontitle">LAPACK 95 Interface Notes</h2><p>Routines in Fortran 95 interface have fewer arguments in the calling sequence than their FORTRAN 77 counterparts. For general conventions applied to skip redundant or restorable arguments, see <a class="allformats" href="GUID-01F81694-7662-44A2-AE4B-7629ECD5883F.html#GUID-01F81694-7662-44A2-AE4B-7629ECD5883F">LAPACK 95 Interface Conventions</a>.</p>
+<p>Specific details for the routine <span class="option">hegv</span> interface are the following:</p>
+<dl id="GUID-854421FF-8DC9-4651-AF69-D8A87BB404DB"><dt class="dlterm"><span class="parmname">a</span></dt>
+
+<dd><p>Holds the matrix <var>A</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">b</span></dt>
+
+<dd><p>Holds the matrix <var>B</var> of size (<var>n</var>, <var>n</var>).</p>
+</dd>
+<dt class="dlterm"><span class="parmname">w</span></dt>
+
+<dd><p>Holds the vector of length <var>n</var>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">itype</span></dt>
+
+<dd><p>Must be 1, 2, or 3. The default value is 1.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">jobz</span></dt>
+
+<dd><p>Must be <span class="keyword">'N'</span> or <span class="keyword">'V'</span>. The default value is <span class="keyword">'N'</span>.</p>
+</dd>
+<dt class="dlterm"><span class="parmname">uplo</span></dt>
+
+<dd><p>Must be <span class="keyword">'U'</span> or <span class="keyword">'L'</span>. The default value is <span class="keyword">'U'</span>.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="GUID-786838C8-E70D-43CE-ADC5-34AE4B678B35"><h2 class="sectiontitle">Application Notes</h2><p>For optimum performance use <var>lwork</var><span class="eqsymbol">≥</span> (<var>nb</var>+1)*<var>n</var>, where <var>nb</var> is the blocksize for <span class="option">chetrd</span>/<span class="option">zhetrd</span> returned by <a class="allformats" href="GUID-DD46DAED-D0DE-4B58-A602-BE1E4E7D50F1.html#GUID-DD46DAED-D0DE-4B58-A602-BE1E4E7D50F1">ilaenv</a>. </p>
+<p>If you are in doubt how much workspace to supply, use a generous value of <var>lwork</var> for the first run or set  <samp class="codeph"><var>lwork</var> = -1</samp>. </p>
+<p>If you choose the first option and set any of admissible <var>lwork</var> sizes, which is no less than the minimal value described, the routine completes the task, though probably not so fast as with a recommended workspace, and provides the recommended workspace in the first element of the corresponding array <var>work</var> on exit. Use this value (<samp class="codeph"><var>work</var>(1)</samp>) for subsequent runs.</p>
+<p>If you set <samp class="codeph"><var>lwork</var> = -1</samp>, the routine returns immediately and provides the recommended workspace in the first element of the corresponding array (<var>work</var>). This operation is called a workspace query.</p>
+<p>Note that if you set <var>lwork</var> to less than the minimal required value and not -1, the routine returns immediately with an error exit and does not provide any information on the recommended workspace.</p>
+</div>
+</div>
+
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a href="GUID-C620318B-8DB6-4CC3-8D4F-B9AFF2EA6B1F.html">Generalized Symmetric Definite Eigenvalue Problems: LAPACK Driver Routines</a></div>
+</div>
+<div/>
+</body>
+</html>
