@@ -1,6 +1,6 @@
 ## GNR in FORTRAN
 
-This repository contains a FORTRAN implementation of the production function estimation method in Ghandi, Navarro, Rivers (2020).
+This repository contains a FORTRAN implementation of the production function estimation method in Gandhi, Navarro, Rivers (2020) "On the Identification of Gross Output Production Functions".
 
 ### Requirements
 
